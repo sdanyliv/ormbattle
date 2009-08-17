@@ -1,0 +1,390 @@
+Performance tests (100):
+
+Entity Framework
+Create: 6668 op/s
+Update: 7346 op/s
+Remove: 10217 op/s
+Fetch: 134 op/s
+Query: 576 op/s
+Compiled query: 5906 op/s
+Materialize: 179599 op/s
+
+DataObjects.Net
+Create: 24365 op/s
+Update: 18158 op/s
+Remove: 32074 op/s
+Fetch: 9392 op/s
+Query: 1675 op/s
+Compiled query: 7829 op/s
+Materialize: 96575 op/s
+
+LightSpeed
+Create: 13365 op/s
+Update: 14440 op/s
+Remove: 26139 op/s
+Fetch: 5233 op/s
+Query: 258 op/s
+Compiled query: 258 op/s
+Materialize: 99034 op/s
+
+LLBLGen Pro
+Create: 3291 op/s
+Update: 5027 op/s
+Remove: 10704 op/s
+Fetch: 6689 op/s
+Query: 3406 op/s
+Compiled query: 3406 op/s
+Materialize: 60737 op/s
+
+NHibernate
+Create: 8909 op/s
+Update: 13655 op/s
+Remove: 16013 op/s
+Fetch: 6780 op/s
+Query: 1161 op/s
+Compiled query: 1161 op/s
+Materialize: 31847 op/s
+
+OpenAccess
+Create: 14422 op/s
+Update: 12606 op/s
+Remove: 39756 op/s
+Fetch: 3554 op/s
+Query: 3918 op/s
+Compiled query: 4286 op/s
+Materialize: 96155 op/s
+
+Subsonic
+Create: 2064 op/s
+Update: 3841 op/s
+Remove: 4104 op/s
+Fetch: 8862 op/s
+Query: 348 op/s
+Compiled query: 348 op/s
+Materialize: 21001 op/s
+
+SqlClient
+Create: 11528 op/s
+Update: 15936 op/s
+Remove: 18577 op/s
+Fetch: 19514 op/s
+Query: 15278 op/s
+Compiled query: 20774 op/s
+Materialize: 239170 op/s
+
+Performance tests (1000):
+
+Entity Framework
+Create: 6733 op/s
+Update: 6654 op/s
+Remove: 10270 op/s
+Fetch: 5084 op/s
+Query: 565 op/s
+Compiled query: 6270 op/s
+Materialize: 396732 op/s
+
+DataObjects.Net
+Create: 18401 op/s
+Update: 35254 op/s
+Remove: 32065 op/s
+Fetch: 10324 op/s
+Query: 1669 op/s
+Compiled query: 7867 op/s
+Materialize: 355152 op/s
+
+LightSpeed
+Create: 13409 op/s
+Update: 30258 op/s
+Remove: 28259 op/s
+Fetch: 5196 op/s
+Query: 268 op/s
+Compiled query: 268 op/s
+Materialize: 328892 op/s
+
+LLBLGen Pro
+Create: 3342 op/s
+Update: 4998 op/s
+Remove: 10422 op/s
+Fetch: 7127 op/s
+Query: 3758 op/s
+Compiled query: 3758 op/s
+Materialize: 101749 op/s
+
+NHibernate
+Create: 9438 op/s
+Update: 17260 op/s
+Remove: 18505 op/s
+Fetch: 6987 op/s
+Query: 1180 op/s
+Compiled query: 1180 op/s
+Materialize: 42992 op/s
+
+OpenAccess
+Create: 16012 op/s
+Update: 15230 op/s
+Remove: 61312 op/s
+Fetch: 6542 op/s
+Query: 4207 op/s
+Compiled query: 4198 op/s
+Materialize: 230386 op/s
+
+Subsonic
+Create: 2528 op/s
+Update: 4036 op/s
+Remove: 4460 op/s
+Fetch: 9132 op/s
+Query: 353 op/s
+Compiled query: 353 op/s
+Materialize: 47773 op/s
+
+SqlClient
+Create: 12312 op/s
+Update: 19745 op/s
+Remove: 20389 op/s
+Fetch: 21264 op/s
+Query: 17744 op/s
+Compiled query: 21409 op/s
+Materialize: 833298 op/s
+
+Performance tests (5000):
+
+Entity Framework
+Create: 7128 op/s
+Update: 6154 op/s
+Remove: 8680 op/s
+Fetch: 6983 op/s
+Query: 572 op/s
+Compiled query: 6534 op/s
+Materialize: 553358 op/s
+
+DataObjects.Net
+Create: 21803 op/s
+Update: 32177 op/s
+Remove: 40953 op/s
+Fetch: 10154 op/s
+Query: 1649 op/s
+Compiled query: 7931 op/s
+Materialize: 473238 op/s
+
+LightSpeed
+Create: 12788 op/s
+Update: 27135 op/s
+Remove: 28906 op/s
+Fetch: 5277 op/s
+Query: 269 op/s
+Compiled query: 269 op/s
+Materialize: 603441 op/s
+
+LLBLGen Pro
+Create: 3648 op/s
+Update: 5016 op/s
+Remove: 11089 op/s
+Fetch: 7531 op/s
+Query: 3832 op/s
+Compiled query: 3832 op/s
+Materialize: 98016 op/s
+
+NHibernate
+Create: 9647 op/s
+Update: 16727 op/s
+Remove: 18099 op/s
+Fetch: 7047 op/s
+Query: 1191 op/s
+Compiled query: 1191 op/s
+Materialize: 41045 op/s
+
+OpenAccess
+Create: 15627 op/s
+Update: 14735 op/s
+Remove: 56626 op/s
+Fetch: 6281 op/s
+Query: 4056 op/s
+Compiled query: 4164 op/s
+Materialize: 174454 op/s
+
+Subsonic
+Create: 2693 op/s
+Update: 4011 op/s
+Remove: 4388 op/s
+Fetch: 9504 op/s
+Query: 353 op/s
+Compiled query: 353 op/s
+Materialize: 54044 op/s
+
+SqlClient
+Create: 15936 op/s
+Update: 19993 op/s
+Remove: 20846 op/s
+Fetch: 21982 op/s
+Query: 19081 op/s
+Compiled query: 22052 op/s
+Materialize: 1498666 op/s
+
+Performance tests (10000):
+
+Entity Framework
+Create: 6714 op/s
+Update: 5891 op/s
+Remove: 8609 op/s
+Fetch: 7323 op/s
+Query: 550 op/s
+Compiled query: 6528 op/s
+Materialize: 567026 op/s
+
+DataObjects.Net
+Create: 24382 op/s
+Update: 31923 op/s
+Remove: 39548 op/s
+Fetch: 9957 op/s
+Query: 1625 op/s
+Compiled query: 7971 op/s
+Materialize: 318881 op/s
+
+LightSpeed
+Create: 12038 op/s
+Update: 24215 op/s
+Remove: 26143 op/s
+Fetch: 5310 op/s
+Query: 269 op/s
+Compiled query: 269 op/s
+Materialize: 411793 op/s
+
+LLBLGen Pro
+Create: 3627 op/s
+Update: 5005 op/s
+Remove: 11165 op/s
+Fetch: 7638 op/s
+Query: 3845 op/s
+Compiled query: 3845 op/s
+Materialize: 100364 op/s
+
+NHibernate
+Create: 9673 op/s
+Update: 16714 op/s
+Remove: 18030 op/s
+Fetch: 7065 op/s
+Query: 1190 op/s
+Compiled query: 1190 op/s
+Materialize: 39796 op/s
+
+OpenAccess
+Create: 14609 op/s
+Update: 13644 op/s
+Remove: 47753 op/s
+Fetch: 6290 op/s
+Query: 4037 op/s
+Compiled query: 4177 op/s
+Materialize: 203713 op/s
+
+Subsonic
+Create: 2658 op/s
+Update: 3806 op/s
+Remove: 4442 op/s
+Fetch: 9555 op/s
+Query: 354 op/s
+Compiled query: 354 op/s
+Materialize: 53920 op/s
+
+SqlClient
+Create: 18205 op/s
+Update: 19845 op/s
+Remove: 20834 op/s
+Fetch: 22035 op/s
+Query: 19244 op/s
+Compiled query: 21882 op/s
+Materialize: 1581082 op/s
+
+Performance tests (30000):
+
+Entity Framework
+Create: 6622 op/s
+Update: 5819 op/s
+Remove: 8443 op/s
+Fetch: 7621 op/s
+Query: 483 op/s
+Compiled query: 6519 op/s
+Materialize: 508405 op/s
+
+DataObjects.Net
+Create: 26221 op/s
+Update: 31183 op/s
+Remove: 38972 op/s
+Fetch: 10114 op/s
+Query: 1627 op/s
+Compiled query: 7988 op/s
+Materialize: 325192 op/s
+
+LightSpeed
+Create: 11733 op/s
+Update: 23782 op/s
+Remove: 25675 op/s
+Fetch: 5308 op/s
+Query: 269 op/s
+Compiled query: 269 op/s
+Materialize: 387762 op/s
+
+LLBLGen Pro
+Create: 3478 op/s
+Update: 5012 op/s
+Remove: 11089 op/s
+Fetch: 7582 op/s
+Query: 3805 op/s
+Compiled query: 3805 op/s
+Materialize: 72188 op/s
+
+NHibernate
+Create: 13837 op/s
+Update: 16300 op/s
+Remove: 17729 op/s
+Fetch: 7031 op/s
+Query: 1183 op/s
+Compiled query: 1183 op/s
+Materialize: 37724 op/s
+
+OpenAccess
+Create: 13390 op/s
+Update: 12676 op/s
+Remove: 42610 op/s
+Fetch: 6268 op/s
+Query: 4087 op/s
+Compiled query: 4156 op/s
+Materialize: 122439 op/s
+
+Subsonic
+Create: 2231 op/s
+Update: 3920 op/s
+Remove: 4209 op/s
+Fetch: 9622 op/s
+Query: 347 op/s
+Compiled query: 347 op/s
+Materialize: 54229 op/s
+
+SqlClient
+Create: 17995 op/s
+Update: 19926 op/s
+Remove: 20759 op/s
+Fetch: 22048 op/s
+Query: 19349 op/s
+Compiled query: 22440 op/s
+Materialize: 2198642 op/s
+
+Linq tests:
+
+Entity Framework
+Passed: 75 out of 100; failed with assertion: 1.
+
+DataObjects.Net
+Passed: 98 out of 100; failed with assertion: 0.
+
+LightSpeed
+Passed: 35 out of 100; failed with assertion: 3.
+
+LLBLGen Pro
+Passed: 41 out of 100; failed with assertion: 3.
+
+NHibernate
+Passed: 28 out of 100; failed with assertion: 4.
+
+OpenAccess
+Passed: 39 out of 100; failed with assertion: 0.
+
