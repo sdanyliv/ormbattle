@@ -27,15 +27,6 @@ Query: 258 op/s
 Compiled query: 258 op/s
 Materialize: 99034 op/s
 
-LLBLGen Pro
-Create: 3291 op/s
-Update: 5027 op/s
-Remove: 10704 op/s
-Fetch: 6689 op/s
-Query: 3406 op/s
-Compiled query: 3406 op/s
-Materialize: 60737 op/s
-
 NHibernate
 Create: 8909 op/s
 Update: 13655 op/s
@@ -100,15 +91,6 @@ Fetch: 5196 op/s
 Query: 268 op/s
 Compiled query: 268 op/s
 Materialize: 328892 op/s
-
-LLBLGen Pro
-Create: 3342 op/s
-Update: 4998 op/s
-Remove: 10422 op/s
-Fetch: 7127 op/s
-Query: 3758 op/s
-Compiled query: 3758 op/s
-Materialize: 101749 op/s
 
 NHibernate
 Create: 9438 op/s
@@ -175,15 +157,6 @@ Query: 269 op/s
 Compiled query: 269 op/s
 Materialize: 603441 op/s
 
-LLBLGen Pro
-Create: 3648 op/s
-Update: 5016 op/s
-Remove: 11089 op/s
-Fetch: 7531 op/s
-Query: 3832 op/s
-Compiled query: 3832 op/s
-Materialize: 98016 op/s
-
 NHibernate
 Create: 9647 op/s
 Update: 16727 op/s
@@ -248,15 +221,6 @@ Fetch: 5310 op/s
 Query: 269 op/s
 Compiled query: 269 op/s
 Materialize: 411793 op/s
-
-LLBLGen Pro
-Create: 3627 op/s
-Update: 5005 op/s
-Remove: 11165 op/s
-Fetch: 7638 op/s
-Query: 3845 op/s
-Compiled query: 3845 op/s
-Materialize: 100364 op/s
 
 NHibernate
 Create: 9673 op/s
@@ -323,15 +287,6 @@ Query: 269 op/s
 Compiled query: 269 op/s
 Materialize: 387762 op/s
 
-LLBLGen Pro
-Create: 3478 op/s
-Update: 5012 op/s
-Remove: 11089 op/s
-Fetch: 7582 op/s
-Query: 3805 op/s
-Compiled query: 3805 op/s
-Materialize: 72188 op/s
-
 NHibernate
 Create: 13837 op/s
 Update: 16300 op/s
@@ -378,9 +333,6 @@ Passed: 98 out of 100; failed with assertion: 0.
 
 LightSpeed
 Passed: 35 out of 100; failed with assertion: 3.
-
-LLBLGen Pro
-Passed: 41 out of 100; failed with assertion: 3.
 
 NHibernate
 Passed: 28 out of 100; failed with assertion: 4.
