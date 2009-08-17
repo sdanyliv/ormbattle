@@ -29,7 +29,8 @@
     string[] ExcludeTables = new string[]{
     "sysdiagrams",
     "BuildVersion",
-    "KeyTable"
+    "KeyTable",
+    "Simplests"
     };
 
     string CleanUp(string tableName){

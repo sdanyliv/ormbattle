@@ -122,6 +122,7 @@ namespace OrmBattle.SubsonicModel.PerformanceTest
         }
 			
         public Query<Simplest> Simplest { get; set; }
+
 			
 
         #region ' Aggregates and SubSonic Queries '
@@ -225,7 +226,6 @@ namespace OrmBattle.SubsonicModel.PerformanceTest
 
             #region ' Query Defs '
             Simplest = new Query<Simplest>(provider);
-            Simplest = new Query<Simplest>(provider);
             #endregion
 
 
@@ -233,7 +233,6 @@ namespace OrmBattle.SubsonicModel.PerformanceTest
         	if(DataProvider.Schema.Tables.Count == 0)
 			{
             	DataProvider.Schema.Tables.Add(new SimplestTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new SimplestsTable(DataProvider));
             }
             #endregion
         }
