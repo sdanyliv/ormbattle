@@ -117,23 +117,19 @@
     </Reference>
     <Reference Include="Xtensive.Core.Testing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bin\Latest\Xtensive.Core.Testing.dll</HintPath>
+      <HintPath>..\Lib\Xtensive.Core.Testing.dll</HintPath>
     </Reference>
     <Reference Include="Xtensive.Integrity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bin\Latest\Xtensive.Integrity.dll</HintPath>
-    </Reference>
-    <Reference Include="Xtensive.Sql.SqlServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bin\Latest\Xtensive.Sql.SqlServer.dll</HintPath>
+      <HintPath>..\Lib\Xtensive.Integrity.dll</HintPath>
     </Reference>
     <Reference Include="Xtensive.Storage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bin\Latest\Xtensive.Storage.dll</HintPath>
+      <HintPath>..\Lib\Xtensive.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="Xtensive.Storage.Providers.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
+    <Reference Include="Xtensive.Storage.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bin\Latest\Xtensive.Storage.Providers.Sql.dll</HintPath>
+      <HintPath>..\Lib\Xtensive.Storage.Model.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -233,7 +229,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="True" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
+      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="True" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
