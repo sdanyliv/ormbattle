@@ -65,8 +65,8 @@ namespace OrmBattle.Tests.Linq
     [Test]
     public void AggregateTest3()
     {
-      var result = db.Customers.Where(c => db.Orders.Count(o => o.Customer == c) > 5);
-      var expected = Customers.Where(c => db.Orders.Count(o => o.Customer == c) > 5);
+      var result = db.Customers.Where(c => db.Orders.Count(o => o.Customer.Id == c.Id) > 5);
+      var expected = Customers.Where(c => db.Orders.Count(o => o.Customer.Id == c.Id) > 5);
       
       Assert.IsTrue(expected.Except(result).Count() == 0);
     }
@@ -82,8 +82,8 @@ namespace OrmBattle.Tests.Linq
     [Test]
     public void AggregateTest5()
     {
-      var max = db.Customers.Max(c => db.Orders.Count(o => o.Customer == c));
-      var max1 = Customers.Max(c => db.Orders.Count(o => o.Customer == c));
+      var max = db.Customers.Max(c => db.Orders.Count(o => o.Customer.Id == c.Id));
+      var max1 = Customers.Max(c => db.Orders.Count(o => o.Customer.Id == c.Id));
       Assert.AreEqual(max1, max);
     }
 
@@ -92,7 +92,7 @@ namespace OrmBattle.Tests.Linq
     {
       var result = db.Suppliers.Select(
         supplier => db.Products.Select(
-                      product => db.Products.Where(p => p == product && p.Supplier == supplier)));
+                      product => db.Products.Where(p => p.Id == product.Id && p.Supplier.Id == supplier.Id)));
       var count = result.ToList().Count;
       Assert.Greater(count, 0);
       foreach (var queryable in result) {

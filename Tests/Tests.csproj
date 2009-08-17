@@ -123,6 +123,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Xtensive.Integrity.dll</HintPath>
     </Reference>
+    <Reference Include="Xtensive.Sql.SqlServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL" />
     <Reference Include="Xtensive.Storage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Xtensive.Storage.dll</HintPath>
@@ -130,6 +131,10 @@
     <Reference Include="Xtensive.Storage.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Xtensive.Storage.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Xtensive.Storage.Providers.Sql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Xtensive.Storage.Providers.Sql.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
