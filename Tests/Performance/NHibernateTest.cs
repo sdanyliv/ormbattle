@@ -51,10 +51,11 @@ namespace OrmBattle.Tests.Performance
 
     protected override void InsertTest(int count)
     {
-      using (var transaction = session.BeginTransaction()) {
+      using (var statelessSession = factory.OpenStatelessSession())
+      using (var transaction = statelessSession.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var s = new Simplest(i, i);
-          session.Save(s);
+          statelessSession.Insert(s);
         }
         transaction.Commit();
       }
@@ -63,11 +64,12 @@ namespace OrmBattle.Tests.Performance
 
     protected override void UpdateTest()
     {
-      using (var transaction = session.BeginTransaction()) {
-        var query = session.Linq<Simplest>();
+      using (var statelessSession = factory.OpenStatelessSession())
+      using (var transaction = statelessSession.BeginTransaction()) {
+        var query = statelessSession.CreateQuery("from Simplest").List<Simplest>();
         foreach (var o in query) {
           o.Value++;
-          session.Update(o);
+          statelessSession.Update(o);
         }
         transaction.Commit();
       }
@@ -75,10 +77,11 @@ namespace OrmBattle.Tests.Performance
 
     protected override void DeleteTest()
     {
-      using (var transaction = session.BeginTransaction()) {
-        var query = session.Linq<Simplest>();
+      using (var statelessSession = factory.OpenStatelessSession())
+      using (var transaction = statelessSession.BeginTransaction()) {
+        var query = statelessSession.CreateQuery("from Simplest").List<Simplest>();
         foreach (var o in query)
-          session.Delete(o);
+          statelessSession.Delete(o);
         transaction.Commit();
       }
     }
