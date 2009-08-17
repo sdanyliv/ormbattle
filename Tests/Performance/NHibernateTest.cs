@@ -57,8 +57,8 @@ namespace OrmBattle.Tests.Performance
           var s = new Simplest(i, i);
           session.Save(s);
           if (i % 25 == 0) { 
-            //25, same as the ADO batch size
-            //flush a batch of inserts and release memory:
+            // 25, same as the ADO batch size.
+            // Flushes the batch of inserts and releases memory.
             session.Flush();
             session.Clear();
           }
