@@ -42,6 +42,7 @@ namespace OrmBattle.Tests.Performance
     protected override void OpenSession()
     {
       session = factory.OpenSession();
+      session.FlushMode = FlushMode.Commit;
     }
 
     protected override void CloseSession()
@@ -51,11 +52,16 @@ namespace OrmBattle.Tests.Performance
 
     protected override void InsertTest(int count)
     {
-      using (var statelessSession = factory.OpenStatelessSession())
-      using (var transaction = statelessSession.BeginTransaction()) {
+      using (var transaction = session.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var s = new Simplest(i, i);
-          statelessSession.Insert(s);
+          session.Save(s);
+          if (i % 25 == 0) { 
+            //25, same as the ADO batch size
+            //flush a batch of inserts and release memory:
+            session.Flush();
+            session.Clear();
+          }
         }
         transaction.Commit();
       }
