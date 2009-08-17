@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E33759E1-8045-46CC-A83E-6B6495E3D960}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OrmBattle.LLBLGenModel</RootNamespace>
+    <AssemblyName>LLBLGenModel</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SD.LLBLGen.Pro.DQE.SqlServer.NET20, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\SD.LLBLGen.Pro.DQE.SqlServer.NET20.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.LLBLGen.Pro.LinqSupportClasses.NET35, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\SD.LLBLGen.Pro.LinqSupportClasses.NET35.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses.NET20, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\SD.LLBLGen.Pro.ORMSupportClasses.NET20.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Northwind\CollectionClasses\ActiveProductsCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\CategoriesCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\CustomersCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\DiscontinuedProductsCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\EmployeesCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\OrderDetailsCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\OrdersCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\ProductsCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\RegionsCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\ShippersCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\SuppliersCollection.cs" />
+    <Compile Include="Northwind\CollectionClasses\TerritoriesCollection.cs" />
+    <Compile Include="Northwind\ConstantsEnums.cs" />
+    <Compile Include="Northwind\DaoClasses\ActiveProductsDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\CategoriesDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\CustomersDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\DiscontinuedProductsDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\EmployeesDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\OrderDetailsDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\OrdersDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\ProductsDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\RegionsDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\ShippersDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\SuppliersDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\TerritoriesDAO.cs" />
+    <Compile Include="Northwind\DaoClasses\TypedListDAO.cs" />
+    <Compile Include="Northwind\EntityClasses\ActiveProductsEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\CategoriesEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\CommonEntityBase.cs" />
+    <Compile Include="Northwind\EntityClasses\CustomersEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\DiscontinuedProductsEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\EmployeesEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\OrderDetailsEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\OrdersEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\ProductsEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\RegionsEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\ShippersEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\SuppliersEntity.cs" />
+    <Compile Include="Northwind\EntityClasses\TerritoriesEntity.cs" />
+    <Compile Include="Northwind\FactoryClasses\DaoFactory.cs" />
+    <Compile Include="Northwind\FactoryClasses\EntityFactories.cs" />
+    <Compile Include="Northwind\FactoryClasses\EntityFieldFactory.cs" />
+    <Compile Include="Northwind\FactoryClasses\EntityFieldsFactory.cs" />
+    <Compile Include="Northwind\HelperClasses\DbUtils.cs" />
+    <Compile Include="Northwind\HelperClasses\DbUtilsComPlus.cs" />
+    <Compile Include="Northwind\HelperClasses\FieldCreationClasses.cs" />
+    <Compile Include="Northwind\HelperClasses\FieldInfoProvider.cs" />
+    <Compile Include="Northwind\HelperClasses\InheritanceInfoProvider.cs" />
+    <Compile Include="Northwind\HelperClasses\PersistenceInfoProvider.cs" />
+    <Compile Include="Northwind\HelperClasses\ResultsetFields.cs" />
+    <Compile Include="Northwind\HelperClasses\Transaction.cs" />
+    <Compile Include="Northwind\HelperClasses\TransactionComPlus.cs" />
+    <Compile Include="Northwind\HelperClasses\TypeDefaultValue.cs" />
+    <Compile Include="Northwind\Linq\LinqMetaData.cs" />
+    <Compile Include="Northwind\RelationClasses\ActiveProductsRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\DiscontinuedProductsRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\RegionsRelations.cs" />
+    <Compile Include="PerformanceTest\CollectionClasses\SimplestCollection.cs" />
+    <Compile Include="PerformanceTest\ConstantsEnums.cs" />
+    <Compile Include="PerformanceTest\DaoClasses\SimplestDAO.cs" />
+    <Compile Include="PerformanceTest\DaoClasses\TypedListDAO.cs" />
+    <Compile Include="PerformanceTest\EntityClasses\CommonEntityBase.cs" />
+    <Compile Include="PerformanceTest\EntityClasses\SimplestEntity.cs" />
+    <Compile Include="PerformanceTest\FactoryClasses\DaoFactory.cs" />
+    <Compile Include="PerformanceTest\FactoryClasses\EntityFactories.cs" />
+    <Compile Include="PerformanceTest\FactoryClasses\EntityFieldFactory.cs" />
+    <Compile Include="PerformanceTest\FactoryClasses\EntityFieldsFactory.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\DbUtils.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\DbUtilsComPlus.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\FieldCreationClasses.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\FieldInfoProvider.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\InheritanceInfoProvider.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\PersistenceInfoProvider.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\ResultsetFields.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\Transaction.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\TransactionComPlus.cs" />
+    <Compile Include="PerformanceTest\HelperClasses\TypeDefaultValue.cs" />
+    <Compile Include="PerformanceTest\Linq\LinqMetaData.cs" />
+    <Compile Include="PerformanceTest\RelationClasses\DynamicRelation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PerformanceTest\RelationClasses\SimplestRelations.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PerformanceTest\StoredProcedureCallerClasses\ActionProcedures.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PerformanceTest\StoredProcedureCallerClasses\RetrievalProcedures.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Northwind\RelationClasses\CategoriesRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\CustomersRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\DynamicRelation.cs" />
+    <Compile Include="Northwind\RelationClasses\EmployeesRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\OrderDetailsRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\OrdersRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\ProductsRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\ShippersRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\SuppliersRelations.cs" />
+    <Compile Include="Northwind\RelationClasses\TerritoriesRelations.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
