@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikModel.Northwind", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateModel", "NHibernateModel\NHibernateModel.csproj", "{C16E9E0F-62F2-4452-8992-5515CDE563B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLBLGenModel", "LLBLGenModel\LLBLGenModel.csproj", "{E33759E1-8045-46CC-A83E-6B6495E3D960}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0CE6E3AF-29DE-43AF-8C95-C92D608D16CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikModel.PerformanceTest", "TelerikModel.PerformanceTest\TelerikModel.PerformanceTest.csproj", "{B27823BC-536A-4AAC-9763-E7E641F29385}"
@@ -43,10 +41,6 @@ Global
 		{C16E9E0F-62F2-4452-8992-5515CDE563B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C16E9E0F-62F2-4452-8992-5515CDE563B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C16E9E0F-62F2-4452-8992-5515CDE563B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E33759E1-8045-46CC-A83E-6B6495E3D960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E33759E1-8045-46CC-A83E-6B6495E3D960}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E33759E1-8045-46CC-A83E-6B6495E3D960}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E33759E1-8045-46CC-A83E-6B6495E3D960}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0CE6E3AF-29DE-43AF-8C95-C92D608D16CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CE6E3AF-29DE-43AF-8C95-C92D608D16CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CE6E3AF-29DE-43AF-8C95-C92D608D16CD}.Release|Any CPU.ActiveCfg = Release|Any CPU

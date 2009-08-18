@@ -66,14 +66,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="SD.LLBLGen.Pro.LinqSupportClasses.NET35, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\SD.LLBLGen.Pro.LinqSupportClasses.NET35.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.LLBLGen.Pro.ORMSupportClasses.NET20, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ca73b74ba4e3ff27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\SD.LLBLGen.Pro.ORMSupportClasses.NET20.dll</HintPath>
-    </Reference>
     <Reference Include="SubSonic.Core, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\SubSonic.Core.dll</HintPath>
@@ -151,9 +143,6 @@
     <Compile Include="Linq\LightSpeedTest.generated.cs">
       <DependentUpon>Template.tt</DependentUpon>
     </Compile>
-    <Compile Include="Linq\LLBLGenTest.generated.cs">
-      <DependentUpon>Template.tt</DependentUpon>
-    </Compile>
     <Compile Include="Linq\NHibernateTest.generated.cs">
       <DependentUpon>Template.tt</DependentUpon>
     </Compile>
@@ -166,7 +155,6 @@
     <Compile Include="Performance\DOTest.cs" />
     <Compile Include="Performance\EFTest.cs" />
     <Compile Include="Performance\LightSpeedTest.cs" />
-    <Compile Include="Performance\LLBLGenTest.cs" />
     <Compile Include="Performance\NHibernateTest.cs" />
     <Compile Include="Performance\SqlClientTest.cs" />
     <Compile Include="Performance\SubsonicTest.cs" />
@@ -189,10 +177,6 @@
     <ProjectReference Include="..\LightSpeedModel\LightSpeedModel.csproj">
       <Project>{2961A24F-A9D7-433C-87B2-1DBC29EBCFEF}</Project>
       <Name>LightSpeedModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LLBLGenModel\LLBLGenModel.csproj">
-      <Project>{E33759E1-8045-46CC-A83E-6B6495E3D960}</Project>
-      <Name>LLBLGenModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\NHibernateModel\NHibernateModel.csproj">
       <Project>{C16E9E0F-62F2-4452-8992-5515CDE563B5}</Project>
@@ -234,7 +218,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="True" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
+      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="True" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

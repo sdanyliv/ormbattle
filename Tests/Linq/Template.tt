@@ -169,46 +169,6 @@ namespace OrmBattle.Tests.Linq
 
 <# manager.EndBlock(); #>
 
-<# manager.StartBlock("LLBLGenTest.generated.cs"); #>
-  using OrmBattle.LLBLGenModel.Northwind.CollectionClasses;
-  using OrmBattle.LLBLGenModel.Northwind.EntityClasses;
-  using OrmBattle.LLBLGenModel.Northwind.HelperClasses;
-  using OrmBattle.LLBLGenModel.Northwind.Linq;
-  using Category = LLBLGenModel.Northwind.EntityClasses.CategoriesEntity;
-  using Customer = LLBLGenModel.Northwind.EntityClasses.CustomersEntity;
-  using Employee = LLBLGenModel.Northwind.EntityClasses.EmployeesEntity;
-  using Order = LLBLGenModel.Northwind.EntityClasses.OrdersEntity;
-  using OrderDetail = LLBLGenModel.Northwind.EntityClasses.OrderDetailsEntity;
-  using Product = LLBLGenModel.Northwind.EntityClasses.ProductsEntity;
-  using DiscontinuedProduct = LLBLGenModel.Northwind.EntityClasses.DiscontinuedProductsEntity;
-  using Supplier = LLBLGenModel.Northwind.EntityClasses.SuppliersEntity;
-  
-  [TestFixture]
-  public class LLBLGenTest
-  {
-    protected LinqMetaData db;
-
-    [TestFixtureSetUp]
-    public virtual void Setup()
-    {
-      db = new LinqMetaData();
-      
-      Categories = db.Categories.ToList();
-      Customers = db.Customers.ToList();
-      Employees = db.Employees.ToList();
-      Orders = db.Orders.ToList();
-      Suppliers = db.Suppliers.ToList();
-      
-      Console.Out.WriteLine("LLBLGen Pro");
-    }
-
-    [TestFixtureTearDown]
-    public virtual void TearDown()
-    {}
-
-<# manager.EndBlock(); #>
-
-
 <# manager.StartBlock("DOTest.generated.cs"); #>
   using DOModel;
   using DOModel.Northwind;
