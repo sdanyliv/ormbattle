@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 using OrmBattle.NHibernateModel;
 using System.Diagnostics;
 using NUnit.Framework;
@@ -18,6 +19,8 @@ namespace OrmBattle.Tests.Performance
   [Serializable]
   public class SqlClientTest : TestBase
   {
+    const int BatchLength = 25;
+
     private readonly SqlConnection con = new SqlConnection("Data Source=localhost;"
       + "Initial Catalog = PerformanceTest;"
       + "Integrated Security=SSPI;");
@@ -64,20 +67,34 @@ namespace OrmBattle.Tests.Performance
 
     protected override void BatchInsertTest(int count)
     {
+      var builder = new StringBuilder(8192);
+      var parameters = new List<SqlParameter>(50);
+      for (int i = 0; i < BatchLength; i++) {
+        string idParameterName = "@pId" + i;
+        string valueParameterName = "@pValue" + i;
+        var idParameter = new SqlParameter(idParameterName, SqlDbType.BigInt);
+        var valueParameter = new SqlParameter(valueParameterName, SqlDbType.BigInt);
+        builder.AppendLine(string.Format(
+          "INSERT INTO [dbo].[Simplest] " +
+          "([Simplest].[Id], [Simplest].[Value]) " +
+          "VALUES ({0}, {1});", idParameterName, valueParameterName));
+        parameters.Add(idParameter);
+        parameters.Add(valueParameter); 
+      }
+
       using (var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
-        cmd.Parameters.Add(new SqlParameter("@pValue", SqlDbType.BigInt));
-        cmd.CommandText = "INSERT INTO " +
-                          "[dbo].[Simplest] ([Simplest].[Id], [Simplest].[Value]) " +
-                          "VALUES (@pId, @pValue)";
+        cmd.Parameters.AddRange(parameters.ToArray());
+        cmd.CommandText = builder.ToString();
         cmd.Prepare();
 
-        for (int i = 0; i < count; i++) {
-          cmd.Parameters["@pId"].SqlValue = (long) i;
-          cmd.Parameters["@pValue"].SqlValue = (long) i;
-          cmd.ExecuteNonQuery();
+        for (int itemIndex = 0; itemIndex < count; itemIndex++) {
+          var batchItem = itemIndex % BatchLength;
+          cmd.Parameters["@pId"+batchItem].SqlValue = (long) itemIndex;
+          cmd.Parameters["@pValue"+batchItem].SqlValue = (long) itemIndex;
+          if (batchItem + 1 == BatchLength)
+            cmd.ExecuteNonQuery();
         }
 
         transaction.Commit();
@@ -87,7 +104,22 @@ namespace OrmBattle.Tests.Performance
 
     protected override void BatchUpdateTest()
     {
-      using(var transaction = con.BeginTransaction()) {
+      var builder = new StringBuilder(8192);
+      var parameters = new List<SqlParameter>(50);
+      for (int i = 0; i < BatchLength; i++) {
+        string idParameterName = "@pId" + i;
+        string valueParameterName = "@pValue" + i;
+        var idParameter = new SqlParameter(idParameterName, SqlDbType.BigInt);
+        var valueParameter = new SqlParameter(valueParameterName, SqlDbType.BigInt);
+        builder.AppendLine(string.Format(
+          "UPDATE [dbo].[Simplest] " +
+          "SET [Simplest].[Value] = {1} " +
+          "WHERE [Simplest].[Id] = {0};", idParameterName, valueParameterName));
+        parameters.Add(idParameter);
+        parameters.Add(valueParameter);
+      }
+
+      using (var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
         cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " +
@@ -104,14 +136,18 @@ namespace OrmBattle.Tests.Performance
 
         cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "UPDATE [dbo].[Simplest] SET [Simplest].[Value] = @pValue WHERE [Simplest].[Id] = @pId";
-        cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
-        cmd.Parameters.Add(new SqlParameter("@pValue", SqlDbType.BigInt));
+        cmd.Parameters.AddRange(parameters.ToArray());
+        cmd.CommandText = builder.ToString();
         cmd.Prepare();
+
+        int itemIndex = 0;
         foreach (var l in list) {
-          cmd.Parameters["@pId"].SqlValue = l.Id;
-          cmd.Parameters["@pValue"].SqlValue = l.Value + 1;
-          cmd.ExecuteNonQuery();
+          var batchItem = itemIndex % BatchLength;
+          cmd.Parameters["@pId" + batchItem].SqlValue = (long)itemIndex;
+          cmd.Parameters["@pValue" + batchItem].SqlValue = (long)itemIndex;
+          if (batchItem + 1 == BatchLength)
+            cmd.ExecuteNonQuery();
+          itemIndex++;
         }
         transaction.Commit();
       }
@@ -119,6 +155,19 @@ namespace OrmBattle.Tests.Performance
 
     protected override void BatchDeleteTest()
     {
+      var builder = new StringBuilder(8192);
+      var parameters = new List<SqlParameter>(50);
+      builder.Append(
+          "DELETE [dbo].[Simplest] " +
+          "WHERE [Simplest].[Id] IN (");
+      for (int i = 0; i < BatchLength; i++) {
+        string idParameterName = "@pId" + i;
+        var idParameter = new SqlParameter(idParameterName, SqlDbType.BigInt);
+        builder.Append(idParameterName + ", ");
+        parameters.Add(idParameter);
+      }
+      builder.AppendLine("-1);");
+
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
@@ -136,13 +185,17 @@ namespace OrmBattle.Tests.Performance
 
         cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "DELETE [dbo].[Simplest] WHERE [Simplest].[Id] = @pId";
-        cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
+        cmd.Parameters.AddRange(parameters.ToArray());
+        cmd.CommandText = builder.ToString();
         cmd.Prepare();
 
+        int itemIndex = 0;
         foreach (var l in list) {
-          cmd.Parameters["@pId"].SqlValue = l.Id;
-          cmd.ExecuteNonQuery();
+          var batchItem = itemIndex % BatchLength;
+          cmd.Parameters["@pId" + batchItem].SqlValue = (long)itemIndex;
+          if (batchItem + 1 == BatchLength)
+            cmd.ExecuteNonQuery();
+          itemIndex++;
         }
         transaction.Commit();
       }

@@ -82,7 +82,7 @@ namespace OrmBattle.Tests.Performance
         BatchInsertTest(count);
         measure.Complete();
         CloseSession();
-        var createString = "Create: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+        var batchCreateString = "Batch Create: " + GetResult(count, measure.TimeSpent.TotalSeconds);
 
         TestHelper.CollectGarbage();
         OpenSession();
@@ -90,7 +90,7 @@ namespace OrmBattle.Tests.Performance
         BatchUpdateTest();
         measure.Complete();
         CloseSession();
-        var updateString = "Update: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+        var batchUpdateString = "Batch Update: " + GetResult(count, measure.TimeSpent.TotalSeconds);
 
         TestHelper.CollectGarbage();
         OpenSession();
@@ -145,8 +145,37 @@ namespace OrmBattle.Tests.Performance
         BatchDeleteTest();
         measure.Complete();
         CloseSession();
+        var batchRemoveString = "Batch Remove: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+        CloseSession();
+
+        TestHelper.CollectGarbage();
+        OpenSession();
+        measure = new Measurement(MeasurementOptions.None);
+        InsertTest(count);
+        measure.Complete();
+        CloseSession();
+        var createString = "Create: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+
+        TestHelper.CollectGarbage();
+        OpenSession();
+        measure = new Measurement(MeasurementOptions.None);
+        UpdateTest();
+        measure.Complete();
+        CloseSession();
+        var updateString = "Update: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+
+        TestHelper.CollectGarbage();
+        OpenSession();
+        measure = new Measurement(MeasurementOptions.None);
+        DeleteTest();
+        measure.Complete();
+        CloseSession();
         var removeString = "Remove: " + GetResult(count, measure.TimeSpent.TotalSeconds);
         CloseSession();
+
+        Console.Out.WriteLine(batchCreateString);
+        Console.Out.WriteLine(batchUpdateString);
+        Console.Out.WriteLine(batchRemoveString);
 
         Console.Out.WriteLine(createString);
         Console.Out.WriteLine(updateString);
