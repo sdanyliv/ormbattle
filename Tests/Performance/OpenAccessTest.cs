@@ -48,6 +48,35 @@ namespace OrmBattle.Tests.Performance
       scope.Dispose();
     }
 
+    protected override void BatchInsertTest(int count)
+    {
+      scope.Transaction.Begin();
+      for (int i = 0; i < count; i++) {
+        var s = new Simplest(i, i);
+        scope.Add(s);
+      }
+      scope.Transaction.Commit();
+      instanceCount = count;
+    }
+
+    protected override void BatchUpdateTest()
+    {
+      scope.Transaction.Begin();
+      var query = scope.Extent<Simplest>();
+      foreach (var o in query)
+        o.Value++;
+      scope.Transaction.Commit();
+    }
+
+    protected override void BatchDeleteTest()
+    {
+      scope.Transaction.Begin();
+      var query = scope.Extent<Simplest>();
+      foreach (var s in query)
+        scope.Remove(s);
+      scope.Transaction.Commit();
+    }
+
     protected override void InsertTest(int count)
     {
       scope.Transaction.Begin();
@@ -72,8 +101,8 @@ namespace OrmBattle.Tests.Performance
     {
       scope.Transaction.Begin();
       var query = scope.Extent<Simplest>();
-      foreach (var s in query)
-        scope.Remove(s);
+      foreach (var o in query)
+        o.Value++;
       scope.Transaction.Commit();
     }
 

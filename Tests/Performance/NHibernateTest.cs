@@ -50,7 +50,7 @@ namespace OrmBattle.Tests.Performance
       session.Dispose();
     }
 
-    protected override void InsertTest(int count)
+    protected override void BatchInsertTest(int count)
     {
       using (var transaction = session.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
@@ -68,7 +68,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void UpdateTest()
+    protected override void BatchUpdateTest()
     {
       using (var statelessSession = factory.OpenStatelessSession())
       using (var transaction = statelessSession.BeginTransaction()) {
@@ -81,13 +81,52 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void DeleteTest()
+    protected override void BatchDeleteTest()
     {
       using (var statelessSession = factory.OpenStatelessSession())
       using (var transaction = statelessSession.BeginTransaction()) {
         var query = statelessSession.CreateQuery("from Simplest").List<Simplest>();
         foreach (var o in query)
           statelessSession.Delete(o);
+        transaction.Commit();
+      }
+    }
+
+    protected override void InsertTest(int count)
+    {
+      using (var insertSession = factory.OpenSession())
+      using (var transaction = insertSession.BeginTransaction()) {
+        for (int i = 0; i < count; i++) {
+          var s = new Simplest(i, i);
+          insertSession.Save(s);
+        }
+        transaction.Commit();
+      }
+      instanceCount = count;
+    }
+
+    protected override void UpdateTest()
+    {
+      using (var updateSession = factory.OpenSession())
+      using (var transaction = updateSession.BeginTransaction()) {
+        var query = updateSession.CreateQuery("from Simplest").List<Simplest>();
+        foreach (var o in query) {
+          o.Value++;
+          updateSession.Update(o);
+        }
+        transaction.Commit();
+      }
+    }
+
+    protected override void DeleteTest()
+    {
+      using (var deleteSession = factory.OpenSession())
+      using (var transaction = deleteSession.BeginTransaction()) {
+        var query = deleteSession.CreateQuery("from Simplest").List<Simplest>();
+        foreach (var o in query) {
+          o.Value++;
+          deleteSession.Delete(o);
+        }
         transaction.Commit();
       }
     }

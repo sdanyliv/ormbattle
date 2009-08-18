@@ -44,6 +44,32 @@ namespace OrmBattle.Tests.Performance
       scope.Dispose();
     }
 
+    protected override void BatchInsertTest(int count)
+    {
+      for (int i = 0; i < count; i++) {
+        var simplest = new Simplest {Id = i, Value = i};
+        repo.Add(simplest);
+      }
+      instanceCount = count;
+    }
+
+    protected override void BatchUpdateTest()
+    {
+      var i = 0;
+      foreach (var simplest in db.Simplest) {
+        simplest.Value++;
+        repo.Update(simplest);
+      }
+    }
+
+    protected override void BatchDeleteTest()
+    {
+      var i = 0;
+      foreach (var simplest in db.Simplest) {
+        repo.Delete(simplest.Id);
+      }
+    }
+
     protected override void InsertTest(int count)
     {
       for (int i = 0; i < count; i++) {

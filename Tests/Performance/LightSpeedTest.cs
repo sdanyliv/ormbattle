@@ -55,7 +55,7 @@ namespace OrmBattle.Tests.Performance
       db.Dispose();
     }
 
-    protected override void InsertTest(int count)
+    protected override void BatchInsertTest(int count)
     {
       Simplest min = null;
       Simplest max = null;
@@ -76,7 +76,7 @@ namespace OrmBattle.Tests.Performance
       maxId = max.Id;
     }
 
-    protected override void UpdateTest()
+    protected override void BatchUpdateTest()
     {
       using (var transaction = db.BeginTransaction()) {
         foreach (var s in db.Simplests) {
@@ -87,12 +87,56 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void DeleteTest()
+    protected override void BatchDeleteTest()
     {
       using (var transaction = db.BeginTransaction()) {
         foreach (var s in db.Simplests)
           db.Remove(s);
         db.SaveChanges();
+        transaction.Commit();
+      }
+    }
+
+    protected override void InsertTest(int count)
+    {
+      Simplest min = null;
+      Simplest max = null;
+      using (var transaction = db.BeginTransaction()) {
+        for (int i = 0; i < count - 1; i++) {
+          var simplest = new Simplest {Value = i};
+          db.Add(simplest);
+          db.SaveChanges();
+          if (min == null)
+            min = simplest;
+        }
+        max = new Simplest {Value = count - 1};
+        db.Add(max);
+        db.SaveChanges();
+        transaction.Commit();
+      }
+      instanceCount = count;
+      minId = min.Id;
+      maxId = max.Id;
+    }
+
+    protected override void UpdateTest()
+    {
+      using (var transaction = db.BeginTransaction()) {
+        foreach (var s in db.Simplests) {
+          s.Value++;
+          db.SaveChanges();
+        }
+        transaction.Commit();
+      }
+    }
+
+    protected override void DeleteTest()
+    {
+      using (var transaction = db.BeginTransaction()) {
+        foreach (var s in db.Simplests) {
+          db.Remove(s);
+          db.SaveChanges();
+        }
         transaction.Commit();
       }
     }
