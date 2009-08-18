@@ -102,7 +102,7 @@ namespace OrmBattle.Tests.Performance
       scope.Transaction.Begin();
       var query = scope.Extent<Simplest>();
       foreach (var o in query)
-        o.Value++;
+        scope.Remove(o);
       scope.Transaction.Commit();
     }
 
