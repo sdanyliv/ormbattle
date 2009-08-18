@@ -46,7 +46,7 @@ namespace OrmBattle.Tests.Performance
     {
     }
 
-    protected override void InsertTest(int count)
+    protected override void BatchInsertTest(int count)
     {
       using (var transaction = new Transaction(IsolationLevel.ReadCommitted, "Insert")) {
         for (int i = 0; i < count; i++) {
@@ -58,7 +58,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void UpdateTest()
+    protected override void BatchUpdateTest()
     {
       long sum = (long)instanceCount * (instanceCount - 1) / 2;
       using (var transaction = new Transaction(IsolationLevel.ReadCommitted, "Update")) {
@@ -73,7 +73,7 @@ namespace OrmBattle.Tests.Performance
       Assert.AreEqual(0, sum);
     }
 
-    protected override void DeleteTest()
+    protected override void BatchDeleteTest()
     {
       using (var transaction = new Transaction(IsolationLevel.ReadCommitted, "Delete")) {
         var metaData = new LinqMetaData(transaction);
@@ -81,6 +81,21 @@ namespace OrmBattle.Tests.Performance
           s.Delete();
         transaction.Commit();
       }
+    }
+
+    protected override void InsertTest(int count)
+    {
+      throw new NotImplementedException();
+    }
+
+    protected override void UpdateTest()
+    {
+      throw new NotImplementedException();
+    }
+
+    protected override void DeleteTest()
+    {
+      throw new NotImplementedException();
     }
 
     protected override void FetchTest(int count)

@@ -18,6 +18,7 @@ namespace OrmBattle.Tests.Performance
   {
     protected Domain domain;
     private SessionConsumptionScope sessionScope;
+    private Session session;
 
     protected override void SetUp()
     {
@@ -52,6 +53,7 @@ namespace OrmBattle.Tests.Performance
     protected override void OpenSession()
     {
       sessionScope = Session.Open(domain);
+      session = sessionScope.Session;
     }
 
     protected override void CloseSession()
@@ -59,7 +61,7 @@ namespace OrmBattle.Tests.Performance
       sessionScope.DisposeSafely();
     }
 
-    protected override void InsertTest(int count)
+    protected override void BatchInsertTest(int count)
     {
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++)
@@ -69,7 +71,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void UpdateTest()
+    protected override void BatchUpdateTest()
     {
       using (var ts = Transaction.Open()) {
         var query = Query.Execute(() => Query<Simplest>.All);
@@ -79,12 +81,48 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void DeleteTest()
+    protected override void BatchDeleteTest()
     {
       using (var ts = Transaction.Open()) {
         var query = Query.Execute(() => Query<Simplest>.All);
         foreach (var o in query)
           o.Remove();
+        ts.Complete();
+      }
+    }
+
+    protected override void InsertTest(int count)
+    {
+      using (var ts = Transaction.Open()) {
+        for (int i = 0; i < count; i++) {
+          new Simplest(i, i);
+          session.Persist();
+        }
+        ts.Complete();
+      }
+      instanceCount = count;
+    }
+
+    protected override void UpdateTest()
+    {
+      using (var ts = Transaction.Open()) {
+        var query = Query.Execute(() => Query<Simplest>.All);
+        foreach (var o in query) {
+          o.Value++;
+          session.Persist();
+        }
+        ts.Complete();
+      }
+    }
+
+    protected override void DeleteTest()
+    {
+      using (var ts = Transaction.Open()) {
+        var query = Query.Execute(() => Query<Simplest>.All);
+        foreach (var o in query) {
+          o.Remove();
+          session.Persist();
+        }
         ts.Complete();
       }
     }

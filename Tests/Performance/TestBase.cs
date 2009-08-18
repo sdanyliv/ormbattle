@@ -54,7 +54,7 @@ namespace OrmBattle.Tests.Performance
       warmup = true;
       CombinedTest(10);
       warmup = false;
-      InsertTest(BaseCount);
+      BatchInsertTest(BaseCount);
       FetchTest(BaseCount);
       MaterializeTest(BaseCount);
       CompiledQueryTest(BaseCount);
@@ -64,13 +64,13 @@ namespace OrmBattle.Tests.Performance
     {
       if (warmup) {
         OpenSession();
-        InsertTest(count);
-        UpdateTest();
+        BatchInsertTest(count);
+        BatchUpdateTest();
         FetchTest(count / 2);
         QueryTest(count / 5);
         CompiledQueryTest(count);
         MaterializeTest(count);
-        DeleteTest();
+        BatchDeleteTest();
         CloseSession();
       }
       else {
@@ -79,7 +79,7 @@ namespace OrmBattle.Tests.Performance
         TestHelper.CollectGarbage();
         OpenSession();
         measure = new Measurement(MeasurementOptions.None);
-        InsertTest(count);
+        BatchInsertTest(count);
         measure.Complete();
         CloseSession();
         var createString = "Create: " + GetResult(count, measure.TimeSpent.TotalSeconds);
@@ -87,7 +87,7 @@ namespace OrmBattle.Tests.Performance
         TestHelper.CollectGarbage();
         OpenSession();
         measure = new Measurement(MeasurementOptions.None);
-        UpdateTest();
+        BatchUpdateTest();
         measure.Complete();
         CloseSession();
         var updateString = "Update: " + GetResult(count, measure.TimeSpent.TotalSeconds);
@@ -142,7 +142,7 @@ namespace OrmBattle.Tests.Performance
         TestHelper.CollectGarbage();
         OpenSession();
         measure = new Measurement(MeasurementOptions.None);
-        DeleteTest();
+        BatchDeleteTest();
         measure.Complete();
         CloseSession();
         var removeString = "Remove: " + GetResult(count, measure.TimeSpent.TotalSeconds);
@@ -166,6 +166,9 @@ namespace OrmBattle.Tests.Performance
       return string.Format(kmbFormat, (long)kmbBase);
     } 
 
+    protected abstract void BatchInsertTest(int count);
+    protected abstract void BatchUpdateTest();
+    protected abstract void BatchDeleteTest();
     protected abstract void InsertTest(int count);
     protected abstract void UpdateTest();
     protected abstract void DeleteTest();

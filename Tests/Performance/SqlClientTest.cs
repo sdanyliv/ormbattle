@@ -62,6 +62,92 @@ namespace OrmBattle.Tests.Performance
     }
 
 
+    protected override void BatchInsertTest(int count)
+    {
+      using (var transaction = con.BeginTransaction()) {
+        var cmd = con.CreateCommand();
+        cmd.Transaction = transaction;
+        cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
+        cmd.Parameters.Add(new SqlParameter("@pValue", SqlDbType.BigInt));
+        cmd.CommandText = "INSERT INTO " +
+                          "[dbo].[Simplest] ([Simplest].[Id], [Simplest].[Value]) " +
+                          "VALUES (@pId, @pValue)";
+        cmd.Prepare();
+
+        for (int i = 0; i < count; i++) {
+          cmd.Parameters["@pId"].SqlValue = (long) i;
+          cmd.Parameters["@pValue"].SqlValue = (long) i;
+          cmd.ExecuteNonQuery();
+        }
+
+        transaction.Commit();
+      }
+      instanceCount = count;
+    }
+
+    protected override void BatchUpdateTest()
+    {
+      using(var transaction = con.BeginTransaction()) {
+        var cmd = con.CreateCommand();
+        cmd.Transaction = transaction;
+        cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " +
+          "FROM [dbo].[Simplest]";
+        cmd.Prepare();
+
+        var dr = cmd.ExecuteReader();
+        var list = new List<Simplest>();
+        while (dr.Read()) {
+          if (!dr.IsDBNull(0) && !dr.IsDBNull(1))
+            list.Add(new Simplest(dr.GetInt64(0), dr.GetInt64(1)));
+        }
+        dr.Close();
+
+        cmd = con.CreateCommand();
+        cmd.Transaction = transaction;
+        cmd.CommandText = "UPDATE [dbo].[Simplest] SET [Simplest].[Value] = @pValue WHERE [Simplest].[Id] = @pId";
+        cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
+        cmd.Parameters.Add(new SqlParameter("@pValue", SqlDbType.BigInt));
+        cmd.Prepare();
+        foreach (var l in list) {
+          cmd.Parameters["@pId"].SqlValue = l.Id;
+          cmd.Parameters["@pValue"].SqlValue = l.Value + 1;
+          cmd.ExecuteNonQuery();
+        }
+        transaction.Commit();
+      }
+    }
+
+    protected override void BatchDeleteTest()
+    {
+      using(var transaction = con.BeginTransaction()) {
+        var cmd = con.CreateCommand();
+        cmd.Transaction = transaction;
+        cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " +
+          "FROM [dbo].[Simplest]";
+        cmd.Prepare();
+
+        var dr = cmd.ExecuteReader();
+        var list = new List<Simplest>();
+        while (dr.Read()) {
+          if (!dr.IsDBNull(0) && !dr.IsDBNull(1))
+            list.Add(new Simplest(dr.GetInt64(0), dr.GetInt64(1)));
+        }
+        dr.Close();
+
+        cmd = con.CreateCommand();
+        cmd.Transaction = transaction;
+        cmd.CommandText = "DELETE [dbo].[Simplest] WHERE [Simplest].[Id] = @pId";
+        cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
+        cmd.Prepare();
+
+        foreach (var l in list) {
+          cmd.Parameters["@pId"].SqlValue = l.Id;
+          cmd.ExecuteNonQuery();
+        }
+        transaction.Commit();
+      }
+    }
+
     protected override void InsertTest(int count)
     {
       using (var transaction = con.BeginTransaction()) {
