@@ -25,7 +25,6 @@ namespace OrmBattle.TestRunner
                       new EFTest(),
                       new DOTest(),
                       new LightSpeedTest(),
-                      new LLBLGenTest(),
                       new NHibernateTest(),
                       new OpenAccessTest(),
                       new SubsonicTest(),
