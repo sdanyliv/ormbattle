@@ -44,7 +44,7 @@ namespace OrmBattle.Tests.Performance
       scope.Dispose();
     }
 
-    protected override void BatchInsertTest(int count)
+    protected override void InsertMultipleTest(int count)
     {
       for (int i = 0; i < count; i++) {
         var simplest = new Simplest {Id = i, Value = i};
@@ -53,7 +53,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void BatchUpdateTest()
+    protected override void UpdateMultipleTest()
     {
       var i = 0;
       foreach (var simplest in db.Simplest) {
@@ -62,7 +62,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void BatchDeleteTest()
+    protected override void DeleteMultipleTest()
     {
       var i = 0;
       foreach (var simplest in db.Simplest) {
@@ -70,7 +70,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void InsertTest(int count)
+    protected override void InsertSingleTest(int count)
     {
       for (int i = 0; i < count; i++) {
         var simplest = new Simplest {Id = i, Value = i};
@@ -79,7 +79,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void UpdateTest()
+    protected override void UpdateSingleTest()
     {
       var i = 0;
       foreach (var simplest in db.Simplest) {
@@ -88,7 +88,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void DeleteTest()
+    protected override void DeleteSingleTest()
     {
       var i = 0;
       foreach (var simplest in db.Simplest) {
@@ -108,7 +108,7 @@ namespace OrmBattle.Tests.Performance
         Assert.AreEqual(0, sum);
     }
 
-    protected override void QueryTest(int count)
+    protected override void LinqQueryTest(int count)
     {
       for (int i = 0; i < count; i++) {
         var id = i % instanceCount;
@@ -119,7 +119,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void CompiledQueryTest(int count)
+    protected override void CompiledLinqQueryTest(int count)
     {
       Log.Error("Compiled queries are not supported.");
     }
