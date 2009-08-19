@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using LightSpeedModel;
 using Mindscape.LightSpeed;
+using Mindscape.LightSpeed.Querying;
 using NUnit.Framework;
 
 namespace OrmBattle.Tests.Performance
@@ -169,15 +170,44 @@ namespace OrmBattle.Tests.Performance
 
     protected override void CompiledLinqQueryTest(int count)
     {
-      Log.Error("Compiled queries are not supported.");
+      Log.Error("Linq compiled queries are not supported.");
     }
 
-    protected override void MaterializeTest(int count)
+    protected override void NativeQueryTest(int count)
+    {
+      var ids = Enumerable.Range((int)minId, (int)(maxId - minId));
+      using (var transaction = db.BeginTransaction()) {
+        foreach (var i in ids) {
+          int id = i;
+          var query = db.Find<Simplest>(Entity.Attribute("id") == id);
+          foreach (var simplest in query) {
+            // Doing nothing, just enumerate
+          }
+        }
+        transaction.Commit();
+      }
+    }
+
+    protected override void NativeMaterializeTest(int count)
+    {
+      var query = db.Find<Simplest>();
+      using (var transaction = db.BeginTransaction()) {
+        int i = 0;
+        while (i < count) 
+          foreach (var o in query) {
+            if (++i >= count)
+              break;
+          }
+        transaction.Commit();
+      }
+    }
+
+    protected override void LinqMaterializeTest(int count)
     {
       using (var transaction = db.BeginTransaction()) {
         int i = 0;
-        while (i < count)
-          foreach (var o in db.Simplests) {
+        while (i < count) 
+          foreach (var o in db.Simplests.Where(s => s.Id > 0)) {
             if (++i >= count)
               break;
           }

@@ -137,26 +137,20 @@ namespace OrmBattle.Tests.Performance
 
     protected override void LinqQueryTest(int count)
     {
-      using (var ts = new esTransactionScope()) {
-        for (int i = 0; i < count; i++) {
-          var simplests = new SimplestCollection();
-          var id = i%instanceCount;
-          simplests.Query.Where(simplests.Query.Id == id);
-          if(simplests.Query.Load())
-            foreach (var simplest in simplests) {
-              // Doing nothing, just enumerate
-            }
-        }
-        ts.Complete();
-      }
+      Log.Error("Linq queries are not supported.");
     }
 
     protected override void CompiledLinqQueryTest(int count)
     {
+      Log.Error("Linq compiled queries are not supported.");
+    }
+
+    protected override void NativeQueryTest(int count)
+    {
       using (var ts = new esTransactionScope()) {
         for (int i = 0; i < count; i++) {
-          var id = i%instanceCount;
           var simplests = new SimplestCollection();
+          var id = i%instanceCount;
           simplests.Query.Where(simplests.Query.Id == id);
           if(simplests.Query.Load())
             foreach (var simplest in simplests) {
@@ -167,7 +161,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void MaterializeTest(int count)
+    protected override void NativeMaterializeTest(int count)
     {
       using (var ts = new esTransactionScope()) {
         var simplests = new SimplestCollection();
@@ -180,6 +174,11 @@ namespace OrmBattle.Tests.Performance
         }
         ts.Complete();
       }
+    }
+
+    protected override void LinqMaterializeTest(int count)
+    {
+      Log.Error("Linq materialization is not supported.");
     }
   }
 }

@@ -10,6 +10,7 @@ using System.Reflection;
 using NUnit.Framework;
 using SubSonic.DataProviders;
 using OrmBattle.SubsonicModel.PerformanceTest;
+using SubSonic.Query;
 
 namespace OrmBattle.Tests.Performance
 {
@@ -124,7 +125,28 @@ namespace OrmBattle.Tests.Performance
       Log.Error("Compiled queries are not supported.");
     }
 
-    protected override void MaterializeTest(int count)
+    protected override void NativeQueryTest(int count)
+    {
+      for (int i = 0; i < count; i++) {
+        var id = i % instanceCount;
+        var query = new Select().From("Simplest").Where("Id").IsEqualTo(id);
+        foreach (var simplest in query.ExecuteTypedList<Simplest>()) {
+          // Doing nothing, just enumerate
+        }
+      }
+    }
+
+    protected override void NativeMaterializeTest(int count)
+    {
+      var query = new Select().From("Simplest");
+      int i = 0;
+      while (i < count)
+        foreach (var o in query.ExecuteTypedList<Simplest>())
+          if (++i >= count)
+            break;
+    }
+
+    protected override void LinqMaterializeTest(int count)
     {
       int i = 0;
       while (i < count)

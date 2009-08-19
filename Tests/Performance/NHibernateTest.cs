@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Criterion;
 using OrmBattle.NHibernateModel;
 using NUnit.Framework;
 using NHibernate.Linq;
@@ -99,6 +100,7 @@ namespace OrmBattle.Tests.Performance
         for (int i = 0; i < count; i++) {
           var s = new Simplest(i, i);
           insertSession.Save(s);
+          insertSession.Flush();
         }
         transaction.Commit();
       }
@@ -113,6 +115,7 @@ namespace OrmBattle.Tests.Performance
         foreach (var o in query) {
           o.Value++;
           updateSession.Update(o);
+          updateSession.Flush();
         }
         transaction.Commit();
       }
@@ -126,6 +129,7 @@ namespace OrmBattle.Tests.Performance
         foreach (var o in query) {
           o.Value++;
           deleteSession.Delete(o);
+          deleteSession.Flush();
         }
         transaction.Commit();
       }
@@ -162,15 +166,43 @@ namespace OrmBattle.Tests.Performance
 
     protected override void CompiledLinqQueryTest(int count)
     {
-      Log.Error("Compiled queries are not supported.");
+      Log.Error("Linq compiled queries are not supported.");
     }
 
-    protected override void MaterializeTest(int count)
+    protected override void NativeQueryTest(int count)
+    {
+      using (var transaction = session.BeginTransaction()) {
+        for (int i = 0; i < count; i++) {
+          var id = i%instanceCount;
+          var query = session.CreateCriteria<Simplest>()
+            .Add(Expression.Eq("Id", (long)id));
+          foreach (var simplest in query.List()) {
+            // Doing nothing, just enumerate
+          }
+        }
+        transaction.Commit();
+      }
+    }
+
+    protected override void LinqMaterializeTest(int count)
     {
       int i = 0;
       using (var transaction = session.BeginTransaction()) {
         while (i < count)
-          foreach (var o in session.Linq<Simplest>()) {
+          foreach (var o in session.Linq<Simplest>().Where(s => s.Id > 0)) {
+            if (++i >= count)
+              break;
+          }
+        transaction.Commit();
+      }
+    }
+
+    protected override void NativeMaterializeTest(int count)
+    {
+      int i = 0;
+      using (var transaction = session.BeginTransaction()) {
+        while (i < count)
+          foreach (var o in session.CreateCriteria<Simplest>().List()) {
             if (++i >= count)
               break;
           }

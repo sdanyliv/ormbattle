@@ -79,31 +79,17 @@ namespace OrmBattle.Tests.Performance
 
     protected override void InsertSingleTest(int count)
     {
-      scope.Transaction.Begin();
-      for (int i = 0; i < count; i++) {
-        var s = new Simplest(i, i);
-        scope.Add(s);
-      }
-      scope.Transaction.Commit();
-      instanceCount = count;
+      Log.Error("Not implemented.");
     }
 
     protected override void UpdateSingleTest()
     {
-      scope.Transaction.Begin();
-      var query = scope.Extent<Simplest>();
-      foreach (var o in query)
-        o.Value++;
-      scope.Transaction.Commit();
+      Log.Error("Not implemented.");
     }
 
     protected override void DeleteSingleTest()
     {
-      scope.Transaction.Begin();
-      var query = scope.Extent<Simplest>();
-      foreach (var o in query)
-        scope.Remove(o);
-      scope.Transaction.Commit();
+      Log.Error("Not implemented.");
     }
 
     protected override void FetchTest(int count)
@@ -148,12 +134,37 @@ namespace OrmBattle.Tests.Performance
       scope.Transaction.Commit();
     }
 
-    protected override void MaterializeTest(int count)
+    protected override void NativeQueryTest(int count)
+    {
+      scope.Transaction.Begin();
+      for (int i = 0; i < count; i++) {
+        var id = i % instanceCount;
+        var query = scope.GetOqlQuery<Simplest>("select * from SimplestExtent AS s where s.Id == $1");
+        foreach (var simplest in query.ExecuteEnumerable(id)) {
+          // Doing nothing, just enumerate
+        }
+      }
+      scope.Transaction.Commit();
+    }
+
+    protected override void LinqMaterializeTest(int count)
     {
       scope.Transaction.Begin();
       int i = 0;
       while (i < count)
         foreach (var o in GetAllSimplest(scope))
+          if (++i >= count)
+            break;
+
+      scope.Transaction.Commit();
+    }
+
+    protected override void NativeMaterializeTest(int count)
+    {
+      scope.Transaction.Begin();
+      int i = 0;
+      while (i < count)
+        foreach (var o in scope.GetOqlQuery<Simplest>().ExecuteEnumerable())
           if (++i >= count)
             break;
 
@@ -170,7 +181,7 @@ namespace OrmBattle.Tests.Performance
 
     static IQueryable GetAllSimplest(IObjectScope scope)
     {
-      return scope.Extent<Simplest>();
+      return scope.Extent<Simplest>().Where(s => s.Id > 0);
     }
   }
 }
