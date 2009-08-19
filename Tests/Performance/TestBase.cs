@@ -14,7 +14,7 @@ namespace OrmBattle.Tests.Performance
   [TestFixture]
   public abstract class TestBase
   {
-    public int BaseCount = 20000;
+    public int BaseCount = 1000;
     public int WarmupCount = 1000;
     protected int instanceCount = 0;
     protected bool warmup;

@@ -22,6 +22,9 @@ namespace OrmBattle.Tests.Performance
       simplests.LoadAll();
       simplests.MarkAllAsDeleted();
       simplests.Save();
+
+      Console.Out.WriteLine();
+      Console.Out.WriteLine("EntitySpaces");
     }
 
     protected override void TearDown()

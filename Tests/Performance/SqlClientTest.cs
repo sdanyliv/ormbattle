@@ -37,6 +37,7 @@ namespace OrmBattle.Tests.Performance
         transaction.Commit();
       }
       con.Close();
+      Console.Out.WriteLine();
       Console.Out.WriteLine("SqlClient");
     }
 
