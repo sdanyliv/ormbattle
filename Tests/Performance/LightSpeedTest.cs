@@ -55,7 +55,7 @@ namespace OrmBattle.Tests.Performance
       db.Dispose();
     }
 
-    protected override void BatchInsertTest(int count)
+    protected override void InsertMultipleTest(int count)
     {
       Simplest min = null;
       Simplest max = null;
@@ -76,7 +76,7 @@ namespace OrmBattle.Tests.Performance
       maxId = max.Id;
     }
 
-    protected override void BatchUpdateTest()
+    protected override void UpdateMultipleTest()
     {
       using (var transaction = db.BeginTransaction()) {
         foreach (var s in db.Simplests) {
@@ -87,7 +87,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void BatchDeleteTest()
+    protected override void DeleteMultipleTest()
     {
       using (var transaction = db.BeginTransaction()) {
         foreach (var s in db.Simplests)
@@ -97,7 +97,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void InsertTest(int count)
+    protected override void InsertSingleTest(int count)
     {
       Simplest min = null;
       Simplest max = null;
@@ -119,7 +119,7 @@ namespace OrmBattle.Tests.Performance
       maxId = max.Id;
     }
 
-    protected override void UpdateTest()
+    protected override void UpdateSingleTest()
     {
       using (var transaction = db.BeginTransaction()) {
         foreach (var s in db.Simplests) {
@@ -130,7 +130,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void DeleteTest()
+    protected override void DeleteSingleTest()
     {
       using (var transaction = db.BeginTransaction()) {
         foreach (var s in db.Simplests) {
@@ -152,7 +152,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void QueryTest(int count)
+    protected override void LinqQueryTest(int count)
     {
       var ids = Enumerable.Range((int)minId, (int)(maxId - minId));
       using (var transaction = db.BeginTransaction()) {
@@ -167,7 +167,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void CompiledQueryTest(int count)
+    protected override void CompiledLinqQueryTest(int count)
     {
       Log.Error("Compiled queries are not supported.");
     }

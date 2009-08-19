@@ -65,7 +65,7 @@ namespace OrmBattle.Tests.Performance
     }
 
 
-    protected override void BatchInsertTest(int count)
+    protected override void InsertMultipleTest(int count)
     {
       var builder = new StringBuilder(8192);
       var parameters = new List<SqlParameter>(50);
@@ -102,7 +102,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void BatchUpdateTest()
+    protected override void UpdateMultipleTest()
     {
       var builder = new StringBuilder(8192);
       var parameters = new List<SqlParameter>(50);
@@ -153,7 +153,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void BatchDeleteTest()
+    protected override void DeleteMultipleTest()
     {
       var builder = new StringBuilder(8192);
       var parameters = new List<SqlParameter>(50);
@@ -201,7 +201,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void InsertTest(int count)
+    protected override void InsertSingleTest(int count)
     {
       using (var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
@@ -224,7 +224,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void UpdateTest()
+    protected override void UpdateSingleTest()
     {
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
@@ -256,7 +256,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void DeleteTest()
+    protected override void DeleteSingleTest()
     {
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
@@ -319,7 +319,7 @@ namespace OrmBattle.Tests.Performance
         Assert.AreEqual(0, sum);
     }
 
-    protected override void QueryTest(int count)
+    protected override void LinqQueryTest(int count)
     {
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
@@ -346,7 +346,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void CompiledQueryTest(int count)
+    protected override void CompiledLinqQueryTest(int count)
     {
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();

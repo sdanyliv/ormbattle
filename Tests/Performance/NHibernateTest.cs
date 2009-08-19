@@ -50,7 +50,7 @@ namespace OrmBattle.Tests.Performance
       session.Dispose();
     }
 
-    protected override void BatchInsertTest(int count)
+    protected override void InsertMultipleTest(int count)
     {
       using (var transaction = session.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
@@ -68,7 +68,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void BatchUpdateTest()
+    protected override void UpdateMultipleTest()
     {
       using (var statelessSession = factory.OpenStatelessSession())
       using (var transaction = statelessSession.BeginTransaction()) {
@@ -81,7 +81,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void BatchDeleteTest()
+    protected override void DeleteMultipleTest()
     {
       using (var statelessSession = factory.OpenStatelessSession())
       using (var transaction = statelessSession.BeginTransaction()) {
@@ -92,7 +92,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void InsertTest(int count)
+    protected override void InsertSingleTest(int count)
     {
       using (var insertSession = factory.OpenSession())
       using (var transaction = insertSession.BeginTransaction()) {
@@ -105,7 +105,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void UpdateTest()
+    protected override void UpdateSingleTest()
     {
       using (var updateSession = factory.OpenSession())
       using (var transaction = updateSession.BeginTransaction()) {
@@ -118,7 +118,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void DeleteTest()
+    protected override void DeleteSingleTest()
     {
       using (var deleteSession = factory.OpenSession())
       using (var transaction = deleteSession.BeginTransaction()) {
@@ -146,7 +146,7 @@ namespace OrmBattle.Tests.Performance
         Assert.AreEqual(0, sum);
     }
 
-    protected override void QueryTest(int count)
+    protected override void LinqQueryTest(int count)
     {
       using (var transaction = session.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
@@ -160,7 +160,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void CompiledQueryTest(int count)
+    protected override void CompiledLinqQueryTest(int count)
     {
       Log.Error("Compiled queries are not supported.");
     }

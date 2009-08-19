@@ -56,7 +56,7 @@ namespace OrmBattle.Tests.Performance
       dataContext.Dispose();
     }
 
-    protected override void BatchInsertTest(int count)
+    protected override void InsertMultipleTest(int count)
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
@@ -69,7 +69,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void BatchUpdateTest()
+    protected override void UpdateMultipleTest()
     {
       long sum = (long)instanceCount * (instanceCount - 1) / 2;
       using (var transaction = dataContext.Connection.BeginTransaction()) {
@@ -83,7 +83,7 @@ namespace OrmBattle.Tests.Performance
       Assert.AreEqual(0, sum);
     }
 
-    protected override void BatchDeleteTest()
+    protected override void DeleteMultipleTest()
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         foreach (var s in dataContext.Simplest)
@@ -93,7 +93,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void InsertTest(int count)
+    protected override void InsertSingleTest(int count)
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
@@ -106,7 +106,7 @@ namespace OrmBattle.Tests.Performance
       instanceCount = count;
     }
 
-    protected override void UpdateTest()
+    protected override void UpdateSingleTest()
     {
       long sum = (long)instanceCount * (instanceCount - 1) / 2;
       using (var transaction = dataContext.Connection.BeginTransaction()) {
@@ -120,7 +120,7 @@ namespace OrmBattle.Tests.Performance
       Assert.AreEqual(0, sum);
     }
 
-    protected override void DeleteTest()
+    protected override void DeleteSingleTest()
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         foreach (var s in dataContext.Simplest) {
@@ -146,7 +146,7 @@ namespace OrmBattle.Tests.Performance
         Assert.AreEqual(0, sum);
     }
 
-    protected override void QueryTest(int count)
+    protected override void LinqQueryTest(int count)
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
@@ -160,7 +160,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void CompiledQueryTest(int count)
+    protected override void CompiledLinqQueryTest(int count)
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         var resultQuery = System.Data.Objects.CompiledQuery.Compile((PerformanceTestEntities context, long id) => context.Simplest.Where(o => o.Id == id));
