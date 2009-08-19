@@ -11,6 +11,7 @@ using NUnit.Framework;
 using Xtensive.Core.Disposing;
 using Xtensive.Storage;
 using Xtensive.Storage.Configuration;
+using Xtensive.Storage.Rse;
 
 namespace OrmBattle.Tests.Performance
 {
@@ -170,14 +171,45 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void MaterializeTest(int count)
+    protected override void NativeQueryTest(int count)
+    {
+      var primaryIndex = session.Domain.Model.Types[typeof(Simplest)].Indexes.PrimaryIndex;
+      long id = 0;
+      var recordSet = primaryIndex.ToRecordSet().Filter(t => t.GetValueOrDefault<long>(0) == id);
+      using (var ts = Transaction.Open()) {
+        for (int i = 0; i < count; i++) {
+          id = i % instanceCount;
+          foreach (var simplest in recordSet.ToEntities<Simplest>(0)) {
+            // Doing nothing, just enumerate
+          }
+        }
+        ts.Complete();
+      }
+    }
+
+    protected override void LinqMaterializeTest(int count)
     {
       using (var ts = Transaction.Open()) {
         int i = 0;
         while (i < count)
-          foreach (var o in Query.Execute(() => Query<Simplest>.All))
+          foreach (var o in Query.Execute(() => Query<Simplest>.All.Where(s => s.Id > 0)))
             if (++i >= count)
               break;
+        ts.Complete();
+      }
+    }
+
+    protected override void NativeMaterializeTest(int count)
+    {
+      var primaryIndex = session.Domain.Model.Types[typeof(Simplest)].Indexes.PrimaryIndex;
+      var simplests = primaryIndex.ToRecordSet().ToEntities<Simplest>(0);
+      using (var ts = Transaction.Open()) {
+        int i = 0;
+        while (i < count) {
+          foreach (var o in simplests)
+            if (++i >= count)
+              break;
+        }
         ts.Complete();
       }
     }

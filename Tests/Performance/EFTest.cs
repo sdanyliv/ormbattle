@@ -6,6 +6,7 @@
 
 using System;
 using System.Data;
+using System.Data.Objects;
 using System.Diagnostics;
 using OrmBattle.EFModel;
 using NUnit.Framework;
@@ -173,10 +174,37 @@ namespace OrmBattle.Tests.Performance
         dataContext.SaveChanges();
         transaction.Commit();
       }
-      
     }
 
-    protected override void MaterializeTest(int count)
+    protected override void NativeQueryTest(int count)
+    {
+      using (var transaction = dataContext.Connection.BeginTransaction()) {
+        for (int i = 0; i < count; i++) {
+          var id = i % instanceCount;
+          var result = dataContext.Simplest.Where("it.Id == @id", new ObjectParameter("id", id));
+          foreach (var o in result) {
+            // Doing nothing, just enumerate
+          }
+        }
+        transaction.Commit();
+      }
+    }
+
+    protected override void LinqMaterializeTest(int count)
+    {
+      using (var transaction = dataContext.Connection.BeginTransaction()) {
+        int i = 0;
+        while (i < count)
+          foreach (var o in dataContext.Simplest.Where(s => s.Id > 0)) {
+            if (++i >= count)
+              break;
+          }
+        dataContext.SaveChanges();
+        transaction.Commit();
+      }
+    }
+
+    protected override void NativeMaterializeTest(int count)
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         int i = 0;

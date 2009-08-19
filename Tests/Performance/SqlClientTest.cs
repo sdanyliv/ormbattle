@@ -321,32 +321,15 @@ namespace OrmBattle.Tests.Performance
 
     protected override void LinqQueryTest(int count)
     {
-      using(var transaction = con.BeginTransaction()) {
-        var cmd = con.CreateCommand();
-        cmd.Transaction = transaction;
-        cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " + 
-          "FROM [dbo].[Simplest] WHERE [Simplest].[id] = @pId";
-        cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
-        SqlDataReader dr;
-
-        for (int i = 0; i < count; i++) {
-          cmd.Parameters["@pId"].SqlValue = i % instanceCount;
-          dr = cmd.ExecuteReader();
-
-          var s = new Simplest();
-          while (dr.Read()) {
-            if (!dr.IsDBNull(0))
-              s.Id = dr.GetInt64(0);
-            if (!dr.IsDBNull(1))
-              s.Value = dr.GetInt64(1);
-          }
-          dr.Close();
-        }
-        transaction.Commit();
-      }
+      Log.Error("Linq queries are not supported.");
     }
 
     protected override void CompiledLinqQueryTest(int count)
+    {
+      Log.Error("Linq compiled queries are not supported.");
+    }
+
+    protected override void NativeQueryTest(int count)
     {
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
@@ -354,7 +337,6 @@ namespace OrmBattle.Tests.Performance
         cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " + 
           "FROM [dbo].[Simplest] WHERE [Simplest].[id] = @pId";
         cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
-        cmd.Prepare();
         SqlDataReader dr;
 
         for (int i = 0; i < count; i++) {
@@ -374,7 +356,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void MaterializeTest(int count)
+    protected override void NativeMaterializeTest(int count)
     {
       long sum = 0;
       int i = 0;
@@ -402,6 +384,11 @@ namespace OrmBattle.Tests.Performance
         transaction.Commit();
       }
       Assert.AreEqual((long)count * (count - 1) / 2, sum);
+    }
+
+    protected override void LinqMaterializeTest(int count)
+    {
+      Log.Error("Linq materialization is not supported.");
     }
   }
 }
