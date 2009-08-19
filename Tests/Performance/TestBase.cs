@@ -151,10 +151,10 @@ namespace OrmBattle.Tests.Performance
         TestHelper.CollectGarbage();
         OpenSession();
         measure = new Measurement(MeasurementOptions.None);
-        InsertTest(count);
+        InsertTest(count / 5);
         measure.Complete();
         CloseSession();
-        var createString = "Create: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+        var createString = "Create: " + GetResult(count / 5, measure.TimeSpent.TotalSeconds);
 
         TestHelper.CollectGarbage();
         OpenSession();
@@ -162,7 +162,7 @@ namespace OrmBattle.Tests.Performance
         UpdateTest();
         measure.Complete();
         CloseSession();
-        var updateString = "Update: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+        var updateString = "Update: " + GetResult(count / 5, measure.TimeSpent.TotalSeconds);
 
         TestHelper.CollectGarbage();
         OpenSession();
@@ -170,7 +170,7 @@ namespace OrmBattle.Tests.Performance
         DeleteTest();
         measure.Complete();
         CloseSession();
-        var removeString = "Remove: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+        var removeString = "Remove: " + GetResult(count / 5, measure.TimeSpent.TotalSeconds);
         CloseSession();
 
         Console.Out.WriteLine(batchCreateString);
