@@ -21,7 +21,6 @@ namespace OrmBattle.Tests.Performance
 
     protected override void SetUp()
     {
-      Console.Out.WriteLine("Entity Framework");
       using (var dataContext = new PerformanceTestEntities()) {
         dataContext.Connection.Open();
         using (var transaction = dataContext.Connection.BeginTransaction()) {
@@ -31,6 +30,8 @@ namespace OrmBattle.Tests.Performance
           transaction.Commit();
         }
       }
+      Console.Out.WriteLine();
+      Console.Out.WriteLine("Entity Framework");
     }
 
     protected override void TearDown()

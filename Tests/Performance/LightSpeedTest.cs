@@ -32,6 +32,7 @@ namespace OrmBattle.Tests.Performance
         db.SaveChanges();
         transaction.Commit();
       }
+      Console.Out.WriteLine();
       Console.Out.WriteLine("LightSpeed");
     }
 

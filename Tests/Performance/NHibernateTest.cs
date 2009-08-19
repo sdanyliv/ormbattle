@@ -28,6 +28,7 @@ namespace OrmBattle.Tests.Performance
         session.Delete("from Simplest");
         session.Flush();
       }
+      Console.Out.WriteLine();
       Console.Out.WriteLine("NHibernate");
     }
 
@@ -144,7 +145,7 @@ namespace OrmBattle.Tests.Performance
           var o = session.Get<Simplest>(key);
           sum -= o.Id;
         }
-        transaction.Commit();
+        transaction.Rollback(); // avoiding dirty checks
       }
       if (count <= instanceCount)
         Assert.AreEqual(0, sum);
@@ -160,7 +161,7 @@ namespace OrmBattle.Tests.Performance
             // Doing nothing, just enumerate
           }
         }
-        transaction.Commit();
+        transaction.Rollback(); // avoiding dirty checks
       }
     }
 
@@ -180,7 +181,7 @@ namespace OrmBattle.Tests.Performance
             // Doing nothing, just enumerate
           }
         }
-        transaction.Commit();
+        transaction.Rollback(); // avoiding dirty checks
       }
     }
 
@@ -193,7 +194,7 @@ namespace OrmBattle.Tests.Performance
             if (++i >= count)
               break;
           }
-        transaction.Commit();
+        transaction.Rollback(); // avoiding dirty checks
       }
     }
 
@@ -206,7 +207,7 @@ namespace OrmBattle.Tests.Performance
             if (++i >= count)
               break;
           }
-        transaction.Commit();
+        transaction.Rollback(); // avoiding dirty checks
       }
     }
   }
