@@ -44,7 +44,7 @@ namespace OrmBattle.Tests.Performance
     protected override void OpenSession()
     {
       session = factory.OpenSession();
-      session.FlushMode = FlushMode.Commit;
+      session.FlushMode = FlushMode.Never;
     }
 
     protected override void CloseSession()
