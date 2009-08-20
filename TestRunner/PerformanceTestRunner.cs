@@ -41,6 +41,7 @@ namespace OrmBattle.TestRunner
             test.TestTearDown();
           }
         }
+        Console.Out.WriteLine();
       }
     }
 
