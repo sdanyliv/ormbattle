@@ -30,7 +30,6 @@ namespace OrmBattle.Tests.Performance
           transaction.Commit();
         }
       }
-      Console.Out.WriteLine();
       Console.Out.WriteLine("Entity Framework");
     }
 

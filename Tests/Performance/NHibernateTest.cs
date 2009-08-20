@@ -28,7 +28,7 @@ namespace OrmBattle.Tests.Performance
         session.Delete("from Simplest");
         session.Flush();
       }
-      Console.Out.WriteLine();
+
       Console.Out.WriteLine("NHibernate");
     }
 
@@ -65,6 +65,8 @@ namespace OrmBattle.Tests.Performance
             session.Clear();
           }
         }
+        session.Flush();
+        session.Clear();
         transaction.Commit();
       }
       instanceCount = count;
@@ -102,6 +104,7 @@ namespace OrmBattle.Tests.Performance
           var s = new Simplest(i, i);
           insertSession.Save(s);
           insertSession.Flush();
+          insertSession.Clear();
         }
         transaction.Commit();
       }
@@ -117,6 +120,7 @@ namespace OrmBattle.Tests.Performance
           o.Value++;
           updateSession.Update(o);
           updateSession.Flush();
+          // updateSession.Clear();
         }
         transaction.Commit();
       }
@@ -131,6 +135,7 @@ namespace OrmBattle.Tests.Performance
           o.Value++;
           deleteSession.Delete(o);
           deleteSession.Flush();
+          // deleteSession.Clear();
         }
         transaction.Commit();
       }
@@ -145,7 +150,7 @@ namespace OrmBattle.Tests.Performance
           var o = session.Get<Simplest>(key);
           sum -= o.Id;
         }
-        transaction.Rollback(); // avoiding dirty checks
+        transaction.Rollback(); // avoiding dirty checking
       }
       if (count <= instanceCount)
         Assert.AreEqual(0, sum);
@@ -161,7 +166,7 @@ namespace OrmBattle.Tests.Performance
             // Doing nothing, just enumerate
           }
         }
-        transaction.Rollback(); // avoiding dirty checks
+        transaction.Rollback(); // avoiding dirty checking
       }
     }
 
@@ -181,7 +186,7 @@ namespace OrmBattle.Tests.Performance
             // Doing nothing, just enumerate
           }
         }
-        transaction.Rollback(); // avoiding dirty checks
+        transaction.Rollback(); // avoiding dirty checking
       }
     }
 
@@ -194,7 +199,7 @@ namespace OrmBattle.Tests.Performance
             if (++i >= count)
               break;
           }
-        transaction.Rollback(); // avoiding dirty checks
+        transaction.Rollback(); // avoiding dirty checking
       }
     }
 
@@ -207,7 +212,7 @@ namespace OrmBattle.Tests.Performance
             if (++i >= count)
               break;
           }
-        transaction.Rollback(); // avoiding dirty checks
+        transaction.Rollback(); // avoiding dirty checking
       }
     }
   }

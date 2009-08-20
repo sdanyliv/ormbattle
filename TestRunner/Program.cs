@@ -10,8 +10,7 @@ namespace OrmBattle.TestRunner
   {
     private static void Main(string[] args)
     {
-      // var performanceTestRunner = new PerformanceTestRunner(100, 1000, 10000, 30000);
-      var performanceTestRunner = new PerformanceTestRunner(100, 1000, 5000, 10000, 30000);
+      var performanceTestRunner = new PerformanceTestRunner(50, 100, 500, 1000, 5000, 10000, 30000);
       var linqTestRunner = new LinqTestRunner();
 
       performanceTestRunner.Run();

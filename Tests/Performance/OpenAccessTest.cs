@@ -26,7 +26,7 @@ namespace OrmBattle.Tests.Performance
         scope.Remove(scope.Extent<Simplest>().ToList());
         scope.Transaction.Commit();
       }
-      Console.Out.WriteLine();
+
       Console.Out.WriteLine("OpenAccess");
     }
 
