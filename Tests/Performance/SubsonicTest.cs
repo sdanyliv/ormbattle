@@ -27,7 +27,7 @@ namespace OrmBattle.Tests.Performance
       db.Provider.MigrateToDatabase<Simplest>(Assembly.GetExecutingAssembly());
       repo = new SimplestRepository(db);
       repo.DeleteMany(s => true);
-      Console.Out.WriteLine();
+
       Console.Out.WriteLine("Subsonic");
     }
 

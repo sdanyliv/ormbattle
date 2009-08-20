@@ -15,7 +15,7 @@ namespace OrmBattle.Tests.Performance
   public abstract class TestBase
   {
     public int BaseCount = 1000;
-    public int WarmupCount = 1000;
+    public int WarmupCount = 10000;
     protected int instanceCount = 0;
     protected bool warmup;
 
@@ -41,7 +41,7 @@ namespace OrmBattle.Tests.Performance
     public void RegularTest()
     {
       warmup = true;
-      CombinedTest(WarmupCount);
+      CombinedTest(Math.Min(BaseCount,WarmupCount));
       warmup = false;
 
       CombinedTest(BaseCount);

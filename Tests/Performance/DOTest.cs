@@ -37,7 +37,6 @@ namespace OrmBattle.Tests.Performance
         ts.Complete();
       }
 
-      Console.Out.WriteLine();
       Console.Out.WriteLine("DataObjects.Net");
     }
 

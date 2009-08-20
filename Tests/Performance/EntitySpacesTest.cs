@@ -23,7 +23,6 @@ namespace OrmBattle.Tests.Performance
       simplests.MarkAllAsDeleted();
       simplests.Save();
 
-      Console.Out.WriteLine();
       Console.Out.WriteLine("EntitySpaces");
     }
 
