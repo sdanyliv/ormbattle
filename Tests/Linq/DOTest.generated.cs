@@ -14,7 +14,7 @@ namespace OrmBattle.Tests.Linq
   using DOModel.Northwind;
   using Xtensive.Storage;
   using Xtensive.Storage.Configuration;
-
+  
   [TestFixture]
   public class DOTest
   {
@@ -27,20 +27,20 @@ namespace OrmBattle.Tests.Linq
     {
       var config = DomainConfiguration.Load("mssql2005");
       config.Sessions.Add(new SessionConfiguration("Default"));
-      config.Types.Register(typeof (Supplier).Assembly, typeof (Supplier).Namespace);
+      config.Types.Register(typeof(Supplier).Assembly, typeof(Supplier).Namespace);
       domain = BuildDomain(config);
 
       disposables = new DisposableSet();
       disposables.Add(Session.Open(domain));
       disposables.Add(Transaction.Open());
       db = new NorthwindContext();
-
+      
       Categories = db.Categories.ToList();
       Customers = db.Customers.ToList();
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Suppliers = db.Suppliers.ToList();
-
+      
       Console.Out.WriteLine("DataObjects.Net");
     }
 
@@ -59,20 +59,20 @@ namespace OrmBattle.Tests.Linq
         return result;
       }
     }
-
+    
     [TestFixtureTearDown]
     public virtual void TearDown()
     {
       disposables.DisposeSafely();
     }
-
-    private List<Category> Categories;
-    private List<Customer> Customers;
-    private List<Employee> Employees;
-    private List<Order> Orders;
-    private List<Supplier> Suppliers;
-
-    #region Where tests
+  
+    List<Category> Categories;
+    List<Customer> Customers;
+    List<Employee> Employees;
+    List<Order> Orders;
+    List<Supplier> Suppliers;
+    
+    #region Filtering tests
 
     [Test]
     [Category("Filtering")]
@@ -209,7 +209,16 @@ namespace OrmBattle.Tests.Linq
 
     #endregion
 
+    #region Projection tests
 
+    [Test]
+    [Category("Projections")]
+    public void SelectTest()
+    {
+      
+    }
+
+    #endregion
 
 
     [Test]
@@ -233,15 +242,15 @@ namespace OrmBattle.Tests.Linq
     {
       var result = db.Customers.Where(c => db.Orders.Count(o => o.Customer.Id == c.Id) > 5);
       var expected = Customers.Where(c => db.Orders.Count(o => o.Customer.Id == c.Id) > 5);
-
+      
       Assert.IsTrue(expected.Except(result).Count() == 0);
     }
 
     [Test]
     public void AggregateTest4()
     {
-      var sum = db.Orders.Select(o => (int?) o.Id).Sum();
-      var sum1 = Orders.Select(o => (int?) o.Id).Sum();
+      var sum = db.Orders.Select(o => (int?)o.Id).Sum();
+      var sum1 = Orders.Select(o => (int?)o.Id).Sum();
       Assert.AreEqual(sum1, sum);
     }
 
@@ -274,14 +283,12 @@ namespace OrmBattle.Tests.Linq
     public void ComplexTest2()
     {
       var result = db.Customers
-        .GroupBy(c => c.Country,
-                 (country, customers) => customers.Where(k => k.CompanyName.Substring(0, 1) == country.Substring(0, 1)))
+        .GroupBy(c => c.Country, (country, customers) => customers.Where(k => k.CompanyName.Substring(0, 1) == country.Substring(0, 1)))
         .SelectMany(k => k);
       var expected = Customers
-        .GroupBy(c => c.Country,
-                 (country, customers) => customers.Where(k => k.CompanyName.Substring(0, 1) == country.Substring(0, 1)))
+        .GroupBy(c => c.Country, (country, customers) => customers.Where(k => k.CompanyName.Substring(0, 1) == country.Substring(0, 1)))
         .SelectMany(k => k);
-
+        
       Assert.AreEqual(0, expected.Except(result).Count());
     }
 
@@ -292,12 +299,12 @@ namespace OrmBattle.Tests.Linq
       var suppliers = db.Suppliers;
       var result = from p in products
                    select new
-                          {
-                            Product = p,
-                            Suppliers = suppliers
-                     .Where(s => s.Id == p.Supplier.Id)
-                     .Select(s => s.CompanyName)
-                          };
+                   {
+                     Product = p,
+                     Suppliers = suppliers
+                       .Where(s => s.Id == p.Supplier.Id)
+                       .Select(s => s.CompanyName)
+                   };
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
       foreach (var p in list)
@@ -310,9 +317,7 @@ namespace OrmBattle.Tests.Linq
     {
       var result =
         from c in db.Customers
-        where
-          db.Orders.Where(o => o.Customer == c).All(
-          o => db.Employees.Where(e => o.Employee == e).Any(e => e.FirstName.StartsWith("A")))
+        where db.Orders.Where(o => o.Customer == c).All(o => db.Employees.Where(e => o.Employee == e).Any(e => e.FirstName.StartsWith("A")))
         select c;
       var list = result.ToList();
       Assert.AreEqual(2, list.Count);
@@ -333,7 +338,7 @@ namespace OrmBattle.Tests.Linq
           Customers.Where(c => c == o.Customer).All(c => c.CompanyName.StartsWith("A")) ||
           Employees.Where(e => e == o.Employee).All(e => e.FirstName.EndsWith("t"))
         select o;
-
+        
       Assert.AreEqual(0, expected.Except(result).Count());
       Assert.AreEqual(result.ToList().Count, 366);
     }
@@ -342,25 +347,24 @@ namespace OrmBattle.Tests.Linq
     public void AllAnyTest3()
     {
       var result = from c in db.Customers
-                   select new
-                          {
-                            Customer = c,
-                            HasNewOrders = db.Orders
-                     .Where(o => o.OrderDate > new DateTime(2001, 1, 1))
-                     .Select(o => o.Customer)
-                     .Contains(c)
-                          };
+        select new
+        {
+          Customer = c,
+          HasNewOrders = db.Orders
+            .Where(o => o.OrderDate > new DateTime(2001, 1, 1))
+            .Select(o => o.Customer)
+            .Contains(c)
+        };
 
       var expected =
         from c in Customers
-        select new
-               {
-                 Customer = c,
-                 HasNewOrders = Orders
-          .Where(o => o.OrderDate > new DateTime(2001, 1, 1))
-          .Select(o => o.Customer)
-          .Contains(c)
-               };
+        select new {
+          Customer = c,
+          HasNewOrders = Orders
+            .Where(o => o.OrderDate > new DateTime(2001, 1, 1))
+            .Select(o => o.Customer)
+            .Contains(c)
+        };
       Assert.AreEqual(0, expected.Except(result).Count());
       Assert.AreEqual(0, result.ToList().Count(i => i.HasNewOrders));
     }
@@ -377,12 +381,12 @@ namespace OrmBattle.Tests.Linq
     [Test]
     public void AllAnyTest5()
     {
-      var ids = new[] {"ABCDE", "ALFKI"};
+      var ids = new[] { "ABCDE", "ALFKI" };
       var result = db.Customers.Where(c => ids.Any(id => c.Id == id));
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
     }
-
+    
     [Test]
     public void AllAnyTest6()
     {
@@ -392,8 +396,8 @@ namespace OrmBattle.Tests.Linq
       Assert.Greater(list.Count, 0);
       Assert.AreEqual(41, list.Count);
     }
-
-
+    
+    
     [Test]
     public void DistinctTest1()
     {
@@ -445,17 +449,17 @@ namespace OrmBattle.Tests.Linq
     [Test]
     public void FirstSingleTest4()
     {
-      var result =
+      var result = 
         from p in db.Products
         select new
-               {
-                 ProductID = p.Id,
-                 MaxOrder = db.OrderDetails
+        {
+         ProductID = p.Id,
+         MaxOrder = db.OrderDetails
           .Where(od => od.Product == p)
-          .OrderByDescending(od => od.UnitPrice*od.Quantity)
+          .OrderByDescending(od => od.UnitPrice * od.Quantity)
           .FirstOrDefault()
           .Order
-               };
+        };
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
     }
@@ -516,7 +520,7 @@ namespace OrmBattle.Tests.Linq
     [Test]
     public void GroupByTest4()
     {
-      var result = db.Customers.GroupBy(customer => new {customer.City, customer.Address});
+      var result = db.Customers.GroupBy(customer => new { customer.City, customer.Address });
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
     }
@@ -644,15 +648,15 @@ namespace OrmBattle.Tests.Linq
         .GroupJoin(db.Orders,
                    customer => customer.Id,
                    order => order.Customer.Id,
-                   (customer, orders) => new {customer, orders})
+                   (customer, orders) => new { customer, orders })
         .GroupJoin(db.Employees,
                    customerOrders => customerOrders.customer.City,
                    employee => employee.City,
                    (customerOrders, employees) => new
-                                                  {
-                                                    ords = customerOrders.orders.Count(),
-                                                    emps = employees.Count()
-                                                  });
+                   {
+                     ords = customerOrders.orders.Count(),
+                     emps = employees.Count()
+                   });
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
     }
@@ -663,7 +667,7 @@ namespace OrmBattle.Tests.Linq
       var result =
         from p in db.Products
         join s in db.Suppliers on p.Supplier.Id equals s.Id
-        select new {p.ProductName, s.ContactName, s.Phone};
+        select new { p.ProductName, s.ContactName, s.Phone };
 
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
@@ -675,7 +679,7 @@ namespace OrmBattle.Tests.Linq
       var result =
         from c in db.Customers
         join o in db.Orders on c equals o.Customer
-        select new {c.ContactName, o.OrderDate};
+        select new { c.ContactName, o.OrderDate };
 
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
@@ -686,9 +690,9 @@ namespace OrmBattle.Tests.Linq
     {
       var result =
         from c in db.Customers
-        join o in db.Orders on new {Customer = c, Name = c.ContactName} equals
-          new {o.Customer, Name = o.Customer.ContactName}
-        select new {c.ContactName, o.OrderDate};
+        join o in db.Orders on new { Customer = c, Name = c.ContactName } equals
+          new { o.Customer, Name = o.Customer.ContactName }
+        select new { c.ContactName, o.OrderDate };
 
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
@@ -702,9 +706,9 @@ namespace OrmBattle.Tests.Linq
         db.Products,
         c => c,
         p => p.Category,
-        (c, pGroup) => new {c, pGroup})
+        (c, pGroup) => new { c, pGroup })
         .SelectMany(@t => @t.pGroup.DefaultIfEmpty(),
-                    (@t, p) => new {Name = p == null ? "Nothing!" : p.ProductName, @t.c.CategoryName});
+                    (@t, p) => new { Name = p == null ? "Nothing!" : p.ProductName, @t.c.CategoryName });
 
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
@@ -715,8 +719,7 @@ namespace OrmBattle.Tests.Linq
     {
       var result = db.Customers
         .Take(2)
-        .Select(
-        c => db.Orders.Select(o => db.Employees.Take(2).Where(e => e.Orders.Contains(o))).Where(o => o.Count() > 0))
+        .Select(c => db.Orders.Select(o => db.Employees.Take(2).Where(e => e.Orders.Contains(o))).Where(o => o.Count() > 0))
         .Select(os => os);
 
       var list = result.ToList();
@@ -730,7 +733,7 @@ namespace OrmBattle.Tests.Linq
     public void NestedCollectionsTest2()
     {
       var result = db.Customers
-        .Select(c => new {Customer = c, Orders = db.Orders})
+        .Select(c => new { Customer = c, Orders = db.Orders })
         .Select(i => i.Customer.Orders);
 
       var list = result.ToList();
@@ -744,8 +747,8 @@ namespace OrmBattle.Tests.Linq
     public void NestedCollectionsTest3()
     {
       var result = db.Customers
-        .Select(c => new {Customer = c, Orders = db.Orders.Where(o => o.Customer == c)})
-        .SelectMany(i => i.Orders.Select(o => new {i.Customer, Order = o}));
+        .Select(c => new { Customer = c, Orders = db.Orders.Where(o => o.Customer == c) })
+        .SelectMany(i => i.Orders.Select(o => new { i.Customer, Order = o }));
 
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
@@ -771,16 +774,16 @@ namespace OrmBattle.Tests.Linq
     public void OrderByTest2()
     {
       var result = db.OrderDetails
-        .Select(od => new {Details = od, Order = od.Order})
-        .OrderBy(x => new {x, x.Order.Customer})
-        .Select(x => new {x, x.Order.Customer});
+        .Select(od => new { Details = od, Order = od.Order })
+        .OrderBy(x => new { x, x.Order.Customer })
+        .Select(x => new { x, x.Order.Customer });
       var expected = db.OrderDetails.ToList()
-        .Select(od => new {Details = od, Order = od.Order})
+        .Select(od => new { Details = od, Order = od.Order })
         .OrderBy(x => x.Details.Order.Id)
         .ThenBy(x => x.Details.Product.Id)
         .ThenBy(x => x.Details.Order.Id)
         .ThenBy(x => x.Order.Customer.Id)
-        .Select(x => new {x, x.Order.Customer});
+        .Select(x => new { x, x.Order.Customer });
       Assert.IsTrue(expected.SequenceEqual(result));
     }
 
@@ -790,11 +793,11 @@ namespace OrmBattle.Tests.Linq
       var result = db.Orders
         .OrderBy(o => o.OrderDate)
         .ThenBy(o => o.Freight)
-        .Select(o => new {o.OrderDate, o.Freight});
+        .Select(o => new { o.OrderDate, o.Freight });
       var expected = db.Orders.ToList()
         .OrderBy(o => o.OrderDate)
         .ThenBy(o => o.Freight)
-        .Select(o => new {o.OrderDate, o.Freight});
+        .Select(o => new { o.OrderDate, o.Freight });
       Assert.IsTrue(expected.SequenceEqual(result));
     }
 
@@ -824,10 +827,10 @@ namespace OrmBattle.Tests.Linq
       List<string> original = customers.Select(c => c.ContactName).ToList().Select(s => s.ToUpper()).ToList();
       original.Sort();
       Assert.IsTrue(original.SequenceEqual(
-                      customers
-                        .OrderBy(c => c.ContactName.ToUpper())
-                        .ToList()
-                        .Select(c => c.ContactName.ToUpper())));
+        customers
+          .OrderBy(c => c.ContactName.ToUpper())
+          .ToList()
+          .Select(c => c.ContactName.ToUpper())));
     }
 
     [Test]
@@ -838,10 +841,10 @@ namespace OrmBattle.Tests.Linq
       original.Sort();
 
       Assert.IsTrue(original.SequenceEqual(
-                      customers
-                        .OrderBy(c => c.ContactName)
-                        .ToList()
-                        .Select(c => c.ContactName)));
+        customers
+          .OrderBy(c => c.ContactName)
+          .ToList()
+          .Select(c => c.ContactName)));
     }
 
     [Test]
@@ -849,10 +852,10 @@ namespace OrmBattle.Tests.Linq
     {
       var result = db.Customers
         .OrderBy(c => c.Id)
-        .Select(c => new {c.Fax, c.Phone});
+        .Select(c => new { c.Fax, c.Phone });
       var expected = db.Customers.ToList()
         .OrderBy(c => c.Id)
-        .Select(c => new {c.Fax, c.Phone});
+        .Select(c => new { c.Fax, c.Phone });
       Assert.IsTrue(expected.SequenceEqual(result));
     }
 
@@ -863,12 +866,12 @@ namespace OrmBattle.Tests.Linq
         from c in db.Customers.OrderBy(c => c.ContactName)
         from o in db.Orders.OrderBy(o => o.OrderDate)
         where c == o.Customer
-        select new {c.ContactName, o.OrderDate};
+        select new { c.ContactName, o.OrderDate };
       var expected =
         from c in db.Customers.ToList().OrderBy(c => c.ContactName)
         from o in db.Orders.ToList().OrderBy(o => o.OrderDate)
         where c == o.Customer
-        select new {c.ContactName, o.OrderDate};
+        select new { c.ContactName, o.OrderDate };
       Assert.IsTrue(expected.SequenceEqual(result));
     }
 
@@ -940,9 +943,7 @@ namespace OrmBattle.Tests.Linq
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);
       List<int> list = result.ToList();
-      List<int> original =
-        db.Orders.ToList().OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id).
-          ToList();
+      List<int> original = db.Orders.ToList().OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id).ToList();
       Assert.IsTrue(list.SequenceEqual(original));
     }
 
@@ -1004,8 +1005,8 @@ namespace OrmBattle.Tests.Linq
     {
       var result =
         from c in db.Customers
-        from o in db.Orders.Where(o => o.Customer == c).Select(o => new {o.Id, c.CompanyName}).DefaultIfEmpty()
-        select new {c.ContactName, o};
+        from o in db.Orders.Where(o => o.Customer == c).Select(o => new { o.Id, c.CompanyName }).DefaultIfEmpty()
+        select new { c.ContactName, o };
 
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
@@ -1016,8 +1017,7 @@ namespace OrmBattle.Tests.Linq
     {
       var result =
         from c in db.Customers
-        from r in
-          (c.Orders.Select(o => c.ContactName + o.ShipName)).Union(c.Orders.Select(o => c.ContactName + o.ShipName))
+        from r in (c.Orders.Select(o => c.ContactName + o.ShipName)).Union(c.Orders.Select(o => c.ContactName + o.ShipName))
         orderby r
         select r;
 
@@ -1053,9 +1053,9 @@ namespace OrmBattle.Tests.Linq
       var result =
         from pd in
           from p in db.Products
-          select new {ProductKey = p.Id, p.ProductName, TotalPrice = p.UnitPrice*p.UnitsInStock}
+          select new { ProductKey = p.Id, p.ProductName, TotalPrice = p.UnitPrice * p.UnitsInStock }
         where pd.TotalPrice > 100
-        select new {PKey = pd.ProductKey, pd.ProductName, Total = pd.TotalPrice};
+        select new { PKey = pd.ProductKey, pd.ProductName, Total = pd.TotalPrice };
 
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
@@ -1092,15 +1092,15 @@ namespace OrmBattle.Tests.Linq
     public void SetOperationsTest2()
     {
       var result = (
-                     from c in db.Customers
-                     select c.Phone)
+          from c in db.Customers
+          select c.Phone)
         .Union(
-        from c in db.Customers
-        select c.Fax)
+          from c in db.Customers
+          select c.Fax)
         .Union(
-        from e in db.Employees
-        select e.HomePhone
-        );
+          from e in db.Employees
+          select e.HomePhone
+          );
 
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
@@ -1165,7 +1165,7 @@ namespace OrmBattle.Tests.Linq
                 product == null
                   ? "NULL"
                   : product.ProductName);
-
+                  
       var expected = db.DiscontinuedProducts.ToList()
         .Select(discontinuedProduct => discontinuedProduct as Product)
         .Select(product =>
@@ -1296,14 +1296,14 @@ namespace OrmBattle.Tests.Linq
     [Test]
     public void WhereTest16()
     {
-      var order = db.Orders.Where(o => Math.Floor((double) o.Id) == 0 || o.Id > 0).First();
+      var order = db.Orders.Where(o => Math.Floor((double)o.Id) == 0 || o.Id > 0).First();
       Assert.IsNotNull(order);
     }
 
     [Test]
     public void WhereTest17()
     {
-      var order = db.Orders.Where(o => Math.Round((decimal) o.Id, 2) == 0 || o.Id > 0).First();
+      var order = db.Orders.Where(o => Math.Round((decimal)o.Id, 2) == 0 || o.Id > 0).First();
       Assert.IsNotNull(order);
     }
 
@@ -1329,5 +1329,4 @@ namespace OrmBattle.Tests.Linq
     }
   }
 }
-
 // Generated code end
