@@ -234,6 +234,155 @@ namespace OrmBattle.Tests.Linq
     List<Employee> Employees;
     List<Order> Orders;
     List<Supplier> Suppliers;
+    
+    #region Filtering tests
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereTest()
+    {
+      var result = from o in db.Orders
+                   where o.ShipCity == "Seattle"
+                   select o;
+      var expected = from o in Orders
+                     where o.ShipCity == "Seattle"
+                     select o;
+      var list = result.ToList();
+      Assert.AreEqual(14, list.Count);
+      Assert.AreEqual(0, expected.Except(list).Count());
+    }
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereParameterTest()
+    {
+      var city = "Seattle";
+      var result = from o in db.Orders
+                   where o.ShipCity == city
+                   select o;
+      var expected = from o in Orders
+                     where o.ShipCity == city
+                     select o;
+      var list = result.ToList();
+      Assert.AreEqual(14, list.Count);
+      Assert.AreEqual(0, expected.Except(list).Count());
+      
+      city = "Rio de Janeiro";
+      list = result.ToList();
+      Assert.AreEqual(34, list.Count);
+      Assert.AreEqual(0, expected.Except(list).Count());
+    }
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereConditionsTest()
+    {
+      var result = from p in db.Products
+                  where p.UnitsInStock < p.ReorderLevel && p.UnitsOnOrder == 0
+                  select p;
+      var list = result.ToList();
+      Assert.AreEqual(1, list.Count);
+    }
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereNullTest()
+    {
+      var result = from o in db.Orders
+                   where o.ShipRegion == null
+                   select o;
+      var list = result.ToList();
+      Assert.AreEqual(507, list.Count);
+    }
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereNullParameterTest()
+    {
+      string region = null;
+      var result = from o in db.Orders
+                   where o.ShipRegion == region
+                   select o;
+      var list = result.ToList();
+      Assert.AreEqual(507, list.Count);
+
+      region = "WA";
+      list = result.ToList();
+      Assert.AreEqual(19, list.Count);
+    }
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereCoalesceTest()
+    {
+      var result = from o in db.Orders
+                   where (o.ShipRegion ?? "N/A") == "N/A"
+                   select o;
+      var list = result.ToList();
+      Assert.AreEqual(507, list.Count);
+    }
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereConditionalTest()
+    {
+      var result = from o in db.Orders
+                   where (o.ShipCity == "Seattle" ? "Home" : "Other") == "Home"
+                   select o;
+      var list = result.ToList();
+      Assert.AreEqual(14, list.Count);
+    }
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereConditionalBooleanTest()
+    {
+      var result = from o in db.Orders
+                   where o.ShipCity == "Seattle" ? true : false
+                   select o;
+      var list = result.ToList();
+      Assert.AreEqual(14, list.Count);
+    }
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereAnonymousParameterTest()
+    {
+      var cityRegion = new {City = "Seattle", Region = "WA"};
+      var result = from o in db.Orders
+                   where new { City = o.ShipCity, Region = o.ShipRegion } == cityRegion
+                   select o;
+      var list = result.ToList();
+      Assert.AreEqual(14, list.Count);
+    }
+
+    [Test]
+    [Category("Filtering")]
+    public void WhereEntityParameterTest()
+    {
+      var order = db.Orders.OrderBy(o => o.OrderDate).First();
+      var result = from o in db.Orders
+                   where o == order
+                   select o;
+      var list = result.ToList();
+      Assert.AreEqual(1, list.Count);
+      Assert.AreEqual(order, list[0]);
+      Assert.AreSame(order, list[0]);
+    }
+
+    #endregion
+
+    #region Projection tests
+
+    [Test]
+    [Category("Projections")]
+    public void SelectTest()
+    {
+      
+    }
+
+    #endregion
+
 
     [Test]
     public void AggregateTest1()
