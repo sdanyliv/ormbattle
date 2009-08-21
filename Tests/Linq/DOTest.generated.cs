@@ -72,7 +72,7 @@ namespace OrmBattle.Tests.Linq
     List<Employee> Employees;
     List<Order> Orders;
     List<Supplier> Suppliers;
-
+    
     // DTO for testing purposes.
     public class OrderDTO
     {
@@ -235,19 +235,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    public void SelectCalculatedTest()
-    {
-      var result = from o in db.Orders
-                   select o.Freight * 1000;
-      var expected = from o in Orders
-                     select o.Freight * 1000;
-      var list = result.ToList();
-      Assert.AreEqual(expected.Count(), list.Count);
-      Assert.AreEqual(0, expected.Except(list).Count());
-    }
-
-    [Test]
-    [Category("Projections")]
     public void SelectBooleanTest()
     {
       var result = from o in db.Orders
@@ -257,6 +244,25 @@ namespace OrmBattle.Tests.Linq
       var list = result.ToList();
       Assert.AreEqual(expected.Count(), list.Count);
       Assert.AreEqual(0, expected.Except(list).Count());
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectCalculatedTest()
+    {
+      var result = from o in db.Orders
+                   select o.Freight * 1000;
+      var expected = from o in Orders
+                     select o.Freight * 1000;
+      var list = result.ToList();
+      var expectedList = expected.ToList();
+      list.Sort();
+      expectedList.Sort();
+      Assert.AreEqual(expectedList.Count, list.Count);
+      expectedList.Zip(list, (i, j) => {
+                               Assert.AreEqual(i,j);
+                               return true;
+                             });
     }
 
     [Test]
@@ -272,9 +278,15 @@ namespace OrmBattle.Tests.Linq
                      where o.Freight > 100
                      select o.Freight;
       var list = result.ToList();
+      var expectedList = expected.ToList();
+      list.Sort();
+      expectedList.Sort();
       Assert.AreEqual(187, list.Count);
-      Assert.AreEqual(expected.Count(), list.Count);
-      Assert.AreEqual(0, expected.Except(list).Count());
+      Assert.AreEqual(expectedList.Count, list.Count);
+      expectedList.Zip(list, (i, j) => {
+                               Assert.AreEqual(i,j);
+                               return true;
+                             });
     }
 
     [Test]
@@ -330,8 +342,8 @@ namespace OrmBattle.Tests.Linq
       Assert.AreEqual(267, list.Count);
     }
 
-    #endregion
 
+    #endregion
 
     [Test]
     public void AggregateTest1()
