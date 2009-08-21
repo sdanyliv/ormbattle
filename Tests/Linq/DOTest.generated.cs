@@ -342,8 +342,128 @@ namespace OrmBattle.Tests.Linq
       Assert.AreEqual(267, list.Count);
     }
 
+    [Test]
+    [Category("Projections")]
+    public void SelectManyAnonymousTest()
+    {
+      var result = from c in db.Customers
+                   from o in c.Orders
+                   where o.Freight < 500.00M
+                   select new {CustomerId = c.Id, o.Id, o.Freight};
+      var list = result.ToList();
+      Assert.AreEqual(817, list.Count);
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectManyLetTest()
+    {
+      var result = from c in db.Customers
+                   from o in c.Orders
+                   let freight = o.Freight
+                   where freight < 500.00M
+                   select new { CustomerId = c.Id, o.Id, freight };
+      var list = result.ToList();
+      Assert.AreEqual(817, list.Count);
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectManyGroupByTest()
+    {
+      var result = db.Orders
+        .GroupBy(o => o.Customer)
+        .Where(g => g.Count() > 89)
+        .SelectMany(g => g.Select(o => o.Customer));
+
+      var list = result.ToList();
+      Assert.AreEqual(89, list.Count);
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectManyOuterProjectionTest()
+    {
+      var result = db.Customers.SelectMany(i => i.Orders.Select(t => i));
+
+      var list = result.ToList();
+      Assert.AreEqual(830, list.Count);
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectManyLeftJoinTest()
+    {
+      var result =
+        from c in db.Customers
+        from o in c.Orders.Select(o => new { o.Id, c.CompanyName }).DefaultIfEmpty()
+        select new { c.ContactName, o };
+
+      var list = result.ToList();
+      Assert.Greater(list.Count, 0);
+    }
 
     #endregion
+
+    #region Partitioning / Paging tests
+
+    [Test]
+    [Category("Partitioning/Paging")]
+    public void TakeTest()
+    {
+      var result = (from o in db.Orders
+                   orderby o.OrderDate, o.Id
+                   select o).Take(10);
+      var expected = (from o in Orders
+                    orderby o.OrderDate, o.Id
+                    select o).Take(10);
+    }
+
+    [Test]
+    [Category("Partitioning/Paging")]
+    public void SkipTest()
+    {
+      
+    }
+
+    [Test]
+    [Category("Partitioning/Paging")]
+    public void TakeSkipTest()
+    {
+      
+    }
+
+    [Test]
+    [Category("Partitioning/Paging")]
+    public void ComplexTakeSkipTest()
+    {
+      var original = db.Orders.ToList()
+        .OrderBy(o => o.OrderDate)
+        .Skip(100)
+        .Take(50)
+        .OrderBy(o => o.RequiredDate)
+        .Where(o => o.OrderDate != null)
+        .Select(o => o.RequiredDate)
+        .Distinct()
+        .Skip(10);
+      var result = db.Orders
+        .OrderBy(o => o.OrderDate)
+        .Skip(100)
+        .Take(50)
+        .OrderBy(o => o.RequiredDate)
+        .Where(o => o.OrderDate != null)
+        .Select(o => o.RequiredDate)
+        .Distinct()
+        .Skip(10);
+      var originalList = original.ToList();
+      var resultList = result.ToList();
+      Assert.AreEqual(originalList.Count, resultList.Count);
+      Assert.IsTrue(originalList.SequenceEqual(resultList));
+    }
+
+    #endregion
+
+
 
     [Test]
     public void AggregateTest1()
