@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Xtensive.Core.Disposing;
+using Xtensive.Core.Collections;
 
 namespace OrmBattle.Tests.Linq
 {
@@ -45,6 +46,14 @@ namespace OrmBattle.Tests.Linq
     List<Employee> Employees;
     List<Order> Orders;
     List<Supplier> Suppliers;
+    
+    // DTO for testing purposes.
+    public class OrderDTO
+    {
+      public int Id { get; set; }
+      public string CustomerId { get; set; }
+      public DateTime? OrderDate { get; set;}
+    }
     
     #region Filtering tests
 
@@ -189,11 +198,126 @@ namespace OrmBattle.Tests.Linq
     [Category("Projections")]
     public void SelectTest()
     {
-      
+      var result = from o in db.Orders
+                   select o.ShipRegion;
+      var expected = from o in Orders
+                     select o.ShipRegion;
+      var list = result.ToList();
+      Assert.AreEqual(expected.Count(), list.Count);
+      Assert.AreEqual(0, expected.Except(list).Count());
     }
 
-    #endregion
+    [Test]
+    [Category("Projections")]
+    public void SelectBooleanTest()
+    {
+      var result = from o in db.Orders
+                   select o.ShipRegion == "WA";
+      var expected = from o in Orders
+                     select o.ShipRegion == "WA";
+      var list = result.ToList();
+      Assert.AreEqual(expected.Count(), list.Count);
+      Assert.AreEqual(0, expected.Except(list).Count());
+    }
 
+    [Test]
+    [Category("Projections")]
+    public void SelectCalculatedTest()
+    {
+      var result = from o in db.Orders
+                   select o.Freight * 1000;
+      var expected = from o in Orders
+                     select o.Freight * 1000;
+      var list = result.ToList();
+      var expectedList = expected.ToList();
+      list.Sort();
+      expectedList.Sort();
+      Assert.AreEqual(expectedList.Count, list.Count);
+      expectedList.Zip(list, (i, j) => {
+                               Assert.AreEqual(i,j);
+                               return true;
+                             });
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectNestedCalculatedTest()
+    {
+      var result = from r in
+                     from o in db.Orders
+                     select o.Freight*1000
+                   where r > 100000
+                   select r/1000;
+      var expected = from o in Orders
+                     where o.Freight > 100
+                     select o.Freight;
+      var list = result.ToList();
+      var expectedList = expected.ToList();
+      list.Sort();
+      expectedList.Sort();
+      Assert.AreEqual(187, list.Count);
+      Assert.AreEqual(expectedList.Count, list.Count);
+      expectedList.Zip(list, (i, j) => {
+                               Assert.AreEqual(i,j);
+                               return true;
+                             });
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectAnonymousTest()
+    {
+      var result = from o in db.Orders
+                   select new {OrderID = o.Id, o.OrderDate, o.Freight};
+      var expected = from o in Orders
+                   select new { OrderID = o.Id, o.OrderDate, o.Freight };
+      var list = result.ToList();
+      Assert.AreEqual(expected.Count(), list.Count);
+      Assert.AreEqual(0, expected.Except(list).Count());
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectSubqueryTest()
+    {
+      var result = from o in db.Orders
+                   select db.Customers.Where(c => c.Id == o.Customer.Id);
+      var expected = from o in Orders
+                     select Customers.Where(c => c.Id == o.Customer.Id);
+      var list = result.ToList();
+      Assert.AreEqual(expected.Count(), list.Count);
+      expected.Zip(result, (expectedCustomers, actualCustomers) => {
+                             Assert.AreEqual(expectedCustomers.Count(), actualCustomers.Count());
+                             Assert.AreEqual(0, expectedCustomers.Except(actualCustomers));
+                             return true;
+                           });
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectDtoTest()
+    {
+      var result = from o in db.Orders
+                   select new OrderDTO{ Id = o.Id, CustomerId = o.Customer.Id, OrderDate = o.OrderDate};
+      var list = result.ToList();
+      Assert.AreEqual(Orders.Count(), list.Count);
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectNestedDtoTest()
+    {
+      var result = from r in
+                     from o in db.Orders
+                     select new OrderDTO {Id = o.Id, CustomerId = o.Customer.Id, OrderDate = o.OrderDate}
+                   where r.OrderDate > new DateTime(1998, 01, 01)
+                   select r;
+      var list = result.ToList();
+      Assert.AreEqual(267, list.Count);
+    }
+
+
+    #endregion
 
     [Test]
     public void AggregateTest1()
