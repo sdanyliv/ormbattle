@@ -54,19 +54,12 @@ namespace OrmBattle.Tests.Performance
 
     protected override void InsertMultipleTest(int count)
     {
-      using (var transaction = session.BeginTransaction()) {
+      using (var statelessSession = factory.OpenStatelessSession())
+      using (var transaction = statelessSession.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var s = new Simplest(i, i);
-          session.Save(s);
-          if (i % 25 == 0) { 
-            // 25, same as the ADO batch size.
-            // Flushes the batch of inserts and releases memory.
-            session.Flush();
-            session.Clear();
-          }
+          statelessSession.Insert(s);
         }
-        session.Flush();
-        session.Clear();
         transaction.Commit();
       }
       instanceCount = count;
