@@ -333,6 +333,66 @@ namespace OrmBattle.Tests.Linq
       Assert.AreEqual(267, list.Count);
     }
 
+    [Test]
+    [Category("Projections")]
+    public void SelectManyAnonymousTest()
+    {
+      var result = from c in db.Customers
+                   from o in c.Orders
+                   where o.Freight < 500.00M
+                   select new {CustomerId = c.Id, o.Id, o.Freight};
+      var list = result.ToList();
+      Assert.AreEqual(817, list.Count);
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectManyLetTest()
+    {
+      var result = from c in db.Customers
+                   from o in c.Orders
+                   let freight = o.Freight
+                   where freight < 500.00M
+                   select new { CustomerId = c.Id, o.Id, freight };
+      var list = result.ToList();
+      Assert.AreEqual(817, list.Count);
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectManyGroupByTest()
+    {
+      var result = db.Orders
+        .GroupBy(o => o.Customer)
+        .Where(g => g.Count() > 89)
+        .SelectMany(g => g.Select(o => o.Customer));
+
+      var list = result.ToList();
+      Assert.AreEqual(89, list.Count);
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectManyOuterProjectionTest()
+    {
+      var result = db.Customers.SelectMany(i => i.Orders.Select(t => i));
+
+      var list = result.ToList();
+      Assert.AreEqual(830, list.Count);
+    }
+
+    [Test]
+    [Category("Projections")]
+    public void SelectManyLeftJoinTest()
+    {
+      var result =
+        from c in db.Customers
+        from o in c.Orders.Select(o => new { o.Id, c.CompanyName }).DefaultIfEmpty()
+        select new { c.ContactName, o };
+
+      var list = result.ToList();
+      Assert.Greater(list.Count, 0);
+    }
 
     #endregion
 
