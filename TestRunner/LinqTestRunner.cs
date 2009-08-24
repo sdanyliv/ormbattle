@@ -55,7 +55,7 @@ namespace OrmBattle.TestRunner
           }
         }
         finally {
-          Console.Out.WriteLine(string.Format("Passed: {0} out of {1}; failed with assertion: {2}. LINQ score: {3}%.", total - failed, total, assertsFailed, (total - failed) / total));
+          Console.Out.WriteLine(string.Format("Passed: {0} out of {1}; failed with assertion: {2}. LINQ score: {3}%.", total - failed, total, assertsFailed, (total - failed) * 100 / total));
           Console.Out.WriteLine();
           var tearDown = type.GetMethod("TearDown");
           tearDown.Invoke(test, ArrayUtils<object>.EmptyArray);
