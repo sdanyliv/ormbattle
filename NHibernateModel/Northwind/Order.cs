@@ -22,8 +22,7 @@ namespace OrmBattle.NHibernateModel.Northwind
 	{
 		public virtual int Id { get; set; }
 
-		[SoapElement(IsNullable = true)]
-		public virtual Decimal? Freight { get; set; }
+		public virtual Decimal Freight { get; set; }
 
 		[SoapElement(IsNullable = true)]
 		public virtual DateTime? OrderDate { get; set; }

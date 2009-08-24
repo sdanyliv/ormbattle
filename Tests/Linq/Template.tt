@@ -1610,8 +1610,11 @@ namespace OrmBattle.Tests.Linq
 
     #endregion
 
+    #region Standard functions tests
+
     [Test]
-    public void WhereTest1()
+    [Category("Standard functions")]
+    public void StringStartsWithTest()
     {
       var result = db.Customers.Where(c => c.Id.StartsWith("A") || c.Id.StartsWith("L"));
 
@@ -1620,7 +1623,8 @@ namespace OrmBattle.Tests.Linq
     }
 
     [Test]
-    public void WhereTest2()
+    [Category("Standard functions")]
+    public void StringStartsWithParameterizedTest()
     {
       var likeA = "A";
       var likeL = "L";
@@ -1631,133 +1635,165 @@ namespace OrmBattle.Tests.Linq
     }
 
     [Test]
-    public void WhereTest3()
-    {
-      var customerAlfki = db.Customers.Single(c => c.Id == "ALFKI");
-      var customer = db.Customers.Where(c => c == customerAlfki).First();
-
-      Assert.AreEqual(customerAlfki, customer);
-      Assert.AreSame(customerAlfki, customer);
-    }
-
-    [Test]
-    public void WhereTest4()
-    {
-      var customer = db.Customers.Where(c => (c.City ?? "Seattle") == "Seattle").First();
-      Assert.IsNotNull(customer);
-    }
-
-    [Test]
-    public void WhereTest5()
-    {
-      var order = db.Orders.Where(o => (o.Customer.Id == "ALFKI" ? 1000 : 0) == 1000).First();
-      Assert.IsNotNull(order);
-    }
-
-    [Test]
-    public void WhereTest6()
+    [Category("Standard functions")]
+    public void StringLengthTest()
     {
       var customer = db.Customers.Where(c => c.City.Length == 7).First();
       Assert.IsNotNull(customer);
     }
 
     [Test]
-    public void WhereTest7()
+    [Category("Standard functions")]
+    public void StringContainsTest()
     {
       var customer = db.Customers.Where(c => c.ContactName.Contains("and")).First();
       Assert.IsNotNull(customer);
     }
 
     [Test]
-    public void WhereTest8()
+    [Category("Standard functions")]
+    public void StringToLowerTest()
     {
       var customer = db.Customers.Where(c => c.City.ToLower() == "seattle").First();
       Assert.IsNotNull(customer);
     }
 
     [Test]
-    public void WhereTest9()
+    [Category("Standard functions")]
+    public void StringRemoveTest()
     {
       var customer = db.Customers.Where(c => c.City.Remove(3) == "Sea").First();
       Assert.IsNotNull(customer);
     }
 
     [Test]
-    public void WhereTest10()
+    [Category("Standard functions")]
+    public void DateTimeTest()
     {
       var order = db.Orders.Where(o => o.OrderDate >= new DateTime(o.OrderDate.Value.Year, 1, 1)).First();
       Assert.IsNotNull(order);
     }
 
     [Test]
-    public void WhereTest11()
+    [Category("Standard functions")]
+    public void DateTimeDayTest()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.Day == 5).First();
       Assert.IsNotNull(order);
     }
 
     [Test]
-    public void WhereTest12()
+    [Category("Standard functions")]
+    public void DateTimeDayOfWeek()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfWeek == DayOfWeek.Friday).First();
       Assert.IsNotNull(order);
     }
 
     [Test]
-    public void WhereTest13()
+    [Category("Standard functions")]
+    public void DateTimeDayOfYear()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfYear == 360).First();
       Assert.IsNotNull(order);
     }
 
     [Test]
-    public void WhereTest14()
+    [Category("Standard functions")]
+    public void MathAbsTest()
     {
       var order = db.Orders.Where(o => Math.Abs(o.Id) == 10 || o.Id > 0).First();
       Assert.IsNotNull(order);
     }
 
     [Test]
-    public void WhereTest15()
+    [Category("Standard functions")]
+    public void MathTrignometricTest()
     {
       var order = db.Orders.Where(o => Math.Asin(Math.Cos(o.Id)) == 0 || o.Id > 0).First();
       Assert.IsNotNull(order);
     }
 
     [Test]
-    public void WhereTest16()
+    [Category("Standard functions")]
+    public void MathFloorTest()
     {
-      var order = db.Orders.Where(o => Math.Floor((double)o.Id) == 0 || o.Id > 0).First();
-      Assert.IsNotNull(order);
+      var result = db.Orders.Where(o => Math.Floor(o.Freight) == 140);
+      var list = result.ToList();
+      Assert.AreEqual(2, list.Count);
     }
 
     [Test]
-    public void WhereTest17()
+    [Category("Standard functions")]
+    public void MathCeilingTest()
     {
-      var order = db.Orders.Where(o => Math.Round((decimal)o.Id, 2) == 0 || o.Id > 0).First();
-      Assert.IsNotNull(order);
+      var result = db.Orders.Where(o => Math.Ceiling(o.Freight) == 141);
+      var list = result.ToList();
+      Assert.AreEqual(2, list.Count);
     }
 
     [Test]
-    public void WhereTest18()
+    [Category("Standard functions")]
+    public void MathTruncateTest()
+    {
+      var result = db.Orders.Where(o => Math.Truncate(o.Freight) == 141);
+      var list = result.ToList();
+      Assert.AreEqual(2, list.Count);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    public void MathRoundAwayFromZeroTest()
+    {
+      var result = db.Orders.Where(o => Math.Round(o.Freight/10, 1, MidpointRounding.AwayFromZero) == 6.5m );
+      var list = result.ToList();
+      Assert.AreEqual(7, list.Count);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    public void MathRoundToEvenTest()
+    {
+      var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1, MidpointRounding.ToEven) == 6.5m);
+      var list = result.ToList();
+      Assert.AreEqual(6, list.Count);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    public void MathRoundDefaultTest()
+    {
+      var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1) == 6.5m);
+      var list = result.ToList();
+      Assert.AreEqual(6, list.Count);
+    }
+
+
+    [Test]
+    [Category("Standard functions")]
+    public void StringCompareToTest()
     {
       var customer = db.Customers.Where(c => c.City.CompareTo("Seattle") >= 0).First();
       Assert.IsNotNull(customer);
     }
 
     [Test]
-    public void WhereTest19()
+    [Category("Standard functions")]
+    public void ComparisonWithNullTest()
     {
       var customer = db.Customers.Where(c => null != c.City).First();
       Assert.IsNotNull(customer);
     }
 
     [Test]
-    public void WhereTest20()
+    [Category("Standard functions")]
+    public void EqualsWithNullTest()
     {
       var customer = db.Customers.Where(c => !c.Address.Equals(null)).First();
       Assert.IsNotNull(customer);
     }
+
+    #endregion
   }
 }
 // Generated code end

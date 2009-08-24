@@ -3,7 +3,7 @@
     <id name="Id" type="System.Int32" column="OrderID" unsaved-value="0">
       <generator class="native" />
     </id>
-    <property name="Freight" type="System.Decimal" column="Freight" not-null="false" />
+    <property name="Freight" type="System.Decimal" column="Freight" not-null="true" />
     <property name="OrderDate" type="System.DateTime" column="OrderDate" not-null="false" />
     <property name="RequiredDate" type="System.DateTime" column="RequiredDate" not-null="false" />
     <property name="ShipAddress" type="System.String" column="ShipAddress" not-null="false" />
