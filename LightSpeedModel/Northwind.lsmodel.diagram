@@ -44,7 +44,7 @@
         <elementListCompartment Id="402b528a-a148-43a3-806a-33873d7e1a7d" absoluteBounds="4.2650000000000006, 4.91, 1.4700000000000002, 1.8078206380208333" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </entityShape>
-    <oneToManyAssociationConnector edgePoints="[(4.125 : 8.15625); (2.59375 : 8.15625); (2.59375 : 6.78543131510417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <oneToManyAssociationConnector edgePoints="[(4.125 : 8.15625); (2.59375 : 8.15625); (2.59375 : 6.78543131510417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <oneToManyAssociationMoniker Id="a98fac44-06a0-4141-9f5c-61b5bed478cc" />
       <relativeChildShapes />
       <nodes>
@@ -100,13 +100,13 @@
         <entityShapeMoniker Id="29ac6a38-569c-4295-997b-9305d4f70a89" />
       </nodes>
     </oneToManyAssociationConnector>
-    <entityShape Id="e2b3c998-51a4-4643-9eb4-3112cb770fc0" absoluteBounds="0.5, 8.5, 1.5, 0.51">
+    <entityShape Id="e2b3c998-51a4-4643-9eb4-3112cb770fc0" absoluteBounds="0.5, 8.5, 1.5, 0.50999999999999979">
       <entityMoniker name="/Northwind/DiscontinuedProduct" />
       <nestedChildShapes>
         <elementListCompartment Id="84971c4c-b121-4873-a3d2-0866fbfc791f" absoluteBounds="0.51500000000000057, 8.91, 1.4700000000000002, 0" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </entityShape>
-    <inheritanceConnector edgePoints="[(1.8125 : 6.78543131510417); (1.8125 : 8.5)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="0ab4a4b5-00e2-4ccc-9ef1-8dfbea8592c8">
+    <inheritanceConnector edgePoints="[(1.8125 : 6.78543131510417); (1.8125 : 8.5)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="0ab4a4b5-00e2-4ccc-9ef1-8dfbea8592c8">
       <relativeChildShapes />
       <nodes>
         <entityShapeMoniker Id="29ac6a38-569c-4295-997b-9305d4f70a89" />

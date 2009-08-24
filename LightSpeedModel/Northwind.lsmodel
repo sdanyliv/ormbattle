@@ -173,7 +173,7 @@
     </entity>
     <entity name="Order" identityType="Int32" cacheExpiry="0" tableName="Orders" identityColumnName="OrderID">
       <entityProperties>
-        <entityProperty name="Freight" dataType="Decimal" isNullable="true" />
+        <entityProperty name="Freight" dataType="Decimal" />
         <entityProperty name="OrderDate" dataType="DateTime" isNullable="true" />
         <entityProperty name="RequiredDate" dataType="DateTime" isNullable="true" />
         <entityProperty name="ShipAddress" isNullable="true">

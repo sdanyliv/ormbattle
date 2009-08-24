@@ -530,7 +530,7 @@ namespace LightSpeedModel.Northwind
   {
     #region Fields
   
-    private System.Nullable<decimal> _freight;
+    private decimal _freight;
     private System.Nullable<System.DateTime> _orderDate;
     private System.Nullable<System.DateTime> _requiredDate;
     [ValidateLength(0, 60)]
@@ -613,7 +613,7 @@ namespace LightSpeedModel.Northwind
     }
 
 
-    public System.Nullable<decimal> Freight
+    public decimal Freight
     {
       get { return Get(ref _freight, "Freight"); }
       set { Set(ref _freight, value, "Freight"); }
