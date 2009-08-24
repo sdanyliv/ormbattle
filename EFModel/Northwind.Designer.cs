@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NorthwindModel", "EmployeeTerritories", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OrmBattle.EFModel.Territory), "Employees", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OrmBattle.EFModel.Employee))]
 
 // Original file name:
-// Generation date: 10.08.2009 14:48:59
+// Generation date: 24.08.2009 19:23:51
 namespace OrmBattle.EFModel
 {
     
@@ -145,7 +145,6 @@ namespace OrmBattle.EFModel
             }
         }
         private global::System.Data.Objects.ObjectQuery<Product> _Products;
-
         /// <summary>
         /// There are no comments for Products in the schema.
         /// </summary>
@@ -1478,19 +1477,21 @@ namespace OrmBattle.EFModel
         /// <summary>
         /// Create a new Order object.
         /// </summary>
+        /// <param name="freight">Initial value of Freight.</param>
         /// <param name="id">Initial value of Id.</param>
-        public static Order CreateOrder(int id)
+        public static Order CreateOrder(decimal freight, int id)
         {
             Order order = new Order();
+            order.Freight = freight;
             order.Id = id;
             return order;
         }
         /// <summary>
         /// There are no comments for Property Freight in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<decimal> Freight
+        public decimal Freight
         {
             get
             {
@@ -1505,8 +1506,8 @@ namespace OrmBattle.EFModel
                 this.OnFreightChanged();
             }
         }
-        private global::System.Nullable<decimal> _Freight;
-        partial void OnFreightChanging(global::System.Nullable<decimal> value);
+        private decimal _Freight;
+        partial void OnFreightChanging(decimal value);
         partial void OnFreightChanged();
         /// <summary>
         /// There are no comments for Property OrderDate in the schema.
