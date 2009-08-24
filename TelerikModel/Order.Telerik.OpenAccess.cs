@@ -12,7 +12,7 @@ namespace OrmBattle.TelerikModel.Northwind
   {
     private int id; // pk 
 
-    private Decimal? freight;
+    private Decimal freight;
 
     private DateTime? orderDate;
 
@@ -72,7 +72,7 @@ namespace OrmBattle.TelerikModel.Northwind
         }
  
         [Telerik.OpenAccess.FieldAlias("freight")]
-        public Decimal? Freight
+        public Decimal Freight
         {
             get { return freight; }
             set { this.freight = value; }

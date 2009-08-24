@@ -22,7 +22,7 @@ namespace OrmBattle.TelerikModel.Northwind
     }
 
     [Telerik.OpenAccess.FieldAlias("freight")]
-    public Decimal? Freight
+    public Decimal Freight
     {
       get { return freight; }
       set { this.freight = value; }
