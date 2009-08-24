@@ -460,7 +460,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Freight" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Freight" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="OrderDate" Type="DateTime" />
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="RequiredDate" Type="DateTime" />
