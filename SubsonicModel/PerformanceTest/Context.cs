@@ -121,7 +121,7 @@ namespace OrmBattle.SubsonicModel.PerformanceTest
             return null;
         }
 			
-        public Query<Simplest> Simplest { get; set; }
+        public Query<Simplest> Simplests { get; set; }
 
 			
 
@@ -225,14 +225,14 @@ namespace OrmBattle.SubsonicModel.PerformanceTest
             provider = new DbQueryProvider(this.Provider);
 
             #region ' Query Defs '
-            Simplest = new Query<Simplest>(provider);
+            Simplests = new Query<Simplest>(provider);
             #endregion
 
 
             #region ' Schemas '
         	if(DataProvider.Schema.Tables.Count == 0)
 			{
-            	DataProvider.Schema.Tables.Add(new SimplestTable(DataProvider));
+            	DataProvider.Schema.Tables.Add(new SimplestsTable(DataProvider));
             }
             #endregion
         }

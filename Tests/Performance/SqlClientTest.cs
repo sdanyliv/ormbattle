@@ -32,7 +32,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "DELETE [dbo].[Simplest]";
+        cmd.CommandText = "DELETE [dbo].[Simplests]";
         cmd.ExecuteNonQuery();
         transaction.Commit();
       }
@@ -48,7 +48,7 @@ namespace OrmBattle.Tests.Performance
       {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "DELETE [dbo].[Simplest]";
+        cmd.CommandText = "DELETE [dbo].[Simplests]";
         cmd.ExecuteNonQuery();
         transaction.Commit();
       }
@@ -76,8 +76,8 @@ namespace OrmBattle.Tests.Performance
         var idParameter = new SqlParameter(idParameterName, SqlDbType.BigInt);
         var valueParameter = new SqlParameter(valueParameterName, SqlDbType.BigInt);
         builder.AppendLine(string.Format(
-          "INSERT INTO [dbo].[Simplest] " +
-          "([Simplest].[Id], [Simplest].[Value]) " +
+          "INSERT INTO [dbo].[Simplests] " +
+          "([Simplests].[Id], [Simplests].[Value]) " +
           "VALUES ({0}, {1});", idParameterName, valueParameterName));
         parameters.Add(idParameter);
         parameters.Add(valueParameter); 
@@ -113,9 +113,9 @@ namespace OrmBattle.Tests.Performance
         var idParameter = new SqlParameter(idParameterName, SqlDbType.BigInt);
         var valueParameter = new SqlParameter(valueParameterName, SqlDbType.BigInt);
         builder.AppendLine(string.Format(
-          "UPDATE [dbo].[Simplest] " +
-          "SET [Simplest].[Value] = {1} " +
-          "WHERE [Simplest].[Id] = {0};", idParameterName, valueParameterName));
+          "UPDATE [dbo].[Simplests] " +
+          "SET [Simplests].[Value] = {1} " +
+          "WHERE [Simplests].[Id] = {0};", idParameterName, valueParameterName));
         parameters.Add(idParameter);
         parameters.Add(valueParameter);
       }
@@ -123,8 +123,8 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " +
-          "FROM [dbo].[Simplest]";
+        cmd.CommandText = "SELECT [Simplests].[Id], [Simplests].[Value] " +
+          "FROM [dbo].[Simplests]";
         cmd.Prepare();
 
         var dr = cmd.ExecuteReader();
@@ -159,8 +159,8 @@ namespace OrmBattle.Tests.Performance
       var builder = new StringBuilder(8192);
       var parameters = new List<SqlParameter>(50);
       builder.Append(
-          "DELETE [dbo].[Simplest] " +
-          "WHERE [Simplest].[Id] IN (");
+          "DELETE [dbo].[Simplests] " +
+          "WHERE [Simplests].[Id] IN (");
       for (int i = 0; i < BatchLength; i++) {
         string idParameterName = "@pId" + i;
         var idParameter = new SqlParameter(idParameterName, SqlDbType.BigInt);
@@ -172,8 +172,8 @@ namespace OrmBattle.Tests.Performance
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " +
-          "FROM [dbo].[Simplest]";
+        cmd.CommandText = "SELECT [Simplests].[Id], [Simplests].[Value] " +
+          "FROM [dbo].[Simplests]";
         cmd.Prepare();
 
         var dr = cmd.ExecuteReader();
@@ -210,7 +210,7 @@ namespace OrmBattle.Tests.Performance
         cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
         cmd.Parameters.Add(new SqlParameter("@pValue", SqlDbType.BigInt));
         cmd.CommandText = "INSERT INTO " +
-                          "[dbo].[Simplest] ([Simplest].[Id], [Simplest].[Value]) " +
+                          "[dbo].[Simplests] ([Simplests].[Id], [Simplests].[Value]) " +
                           "VALUES (@pId, @pValue)";
         cmd.Prepare();
 
@@ -230,8 +230,8 @@ namespace OrmBattle.Tests.Performance
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " +
-          "FROM [dbo].[Simplest]";
+        cmd.CommandText = "SELECT [Simplests].[Id], [Simplests].[Value] " +
+          "FROM [dbo].[Simplests]";
         cmd.Prepare();
 
         var dr = cmd.ExecuteReader();
@@ -244,7 +244,7 @@ namespace OrmBattle.Tests.Performance
 
         cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "UPDATE [dbo].[Simplest] SET [Simplest].[Value] = @pValue WHERE [Simplest].[Id] = @pId";
+        cmd.CommandText = "UPDATE [dbo].[Simplests] SET [Simplests].[Value] = @pValue WHERE [Simplests].[Id] = @pId";
         cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
         cmd.Parameters.Add(new SqlParameter("@pValue", SqlDbType.BigInt));
         cmd.Prepare();
@@ -262,8 +262,8 @@ namespace OrmBattle.Tests.Performance
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " +
-          "FROM [dbo].[Simplest]";
+        cmd.CommandText = "SELECT [Simplests].[Id], [Simplests].[Value] " +
+          "FROM [dbo].[Simplests]";
         cmd.Prepare();
 
         var dr = cmd.ExecuteReader();
@@ -276,7 +276,7 @@ namespace OrmBattle.Tests.Performance
 
         cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "DELETE [dbo].[Simplest] WHERE [Simplest].[Id] = @pId";
+        cmd.CommandText = "DELETE [dbo].[Simplests] WHERE [Simplests].[Id] = @pId";
         cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
         cmd.Prepare();
 
@@ -294,8 +294,8 @@ namespace OrmBattle.Tests.Performance
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " + 
-          "FROM [dbo].[Simplest] WHERE [Simplest].[Id] = @pId";
+        cmd.CommandText = "SELECT [Simplests].[Id], [Simplests].[Value] " + 
+          "FROM [dbo].[Simplests] WHERE [Simplests].[Id] = @pId";
         cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
         cmd.Prepare();
         SqlDataReader dr;
@@ -335,8 +335,8 @@ namespace OrmBattle.Tests.Performance
       using(var transaction = con.BeginTransaction()) {
         var cmd = con.CreateCommand();
         cmd.Transaction = transaction;
-        cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " + 
-          "FROM [dbo].[Simplest] WHERE [Simplest].[id] = @pId";
+        cmd.CommandText = "SELECT [Simplests].[Id], [Simplests].[Value] " + 
+          "FROM [dbo].[Simplests] WHERE [Simplests].[id] = @pId";
         cmd.Parameters.Add(new SqlParameter("@pId", SqlDbType.BigInt));
         SqlDataReader dr;
 
@@ -365,8 +365,8 @@ namespace OrmBattle.Tests.Performance
         while (i < count) {
           SqlCommand cmd = con.CreateCommand();
           cmd.Transaction = transaction;
-          cmd.CommandText = "SELECT [Simplest].[Id], [Simplest].[Value] " +
-            "FROM [dbo].[Simplest]";
+          cmd.CommandText = "SELECT [Simplests].[Id], [Simplests].[Value] " +
+            "FROM [dbo].[Simplests]";
           cmd.Prepare();
 
           SqlDataReader dr = cmd.ExecuteReader();

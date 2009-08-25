@@ -24,7 +24,6 @@ namespace OrmBattle.Tests.Performance
     protected override void SetUp()
     {
       db = new PerformanceTestDB();
-      db.Provider.MigrateToDatabase<Simplest>(Assembly.GetExecutingAssembly());
       repo = new SimplestRepository(db);
       repo.DeleteMany(s => true);
 
@@ -58,7 +57,7 @@ namespace OrmBattle.Tests.Performance
     protected override void UpdateMultipleTest()
     {
       var i = 0;
-      foreach (var simplest in db.Simplest) {
+      foreach (var simplest in db.Simplests) {
         simplest.Value++;
         repo.Update(simplest);
       }
@@ -67,7 +66,7 @@ namespace OrmBattle.Tests.Performance
     protected override void DeleteMultipleTest()
     {
       var i = 0;
-      foreach (var simplest in db.Simplest) {
+      foreach (var simplest in db.Simplests) {
         repo.Delete(simplest.Id);
       }
     }
@@ -84,7 +83,7 @@ namespace OrmBattle.Tests.Performance
     protected override void UpdateSingleTest()
     {
       var i = 0;
-      foreach (var simplest in db.Simplest) {
+      foreach (var simplest in db.Simplests) {
         simplest.Value++;
         repo.Update(simplest);
       }
@@ -93,7 +92,7 @@ namespace OrmBattle.Tests.Performance
     protected override void DeleteSingleTest()
     {
       var i = 0;
-      foreach (var simplest in db.Simplest) {
+      foreach (var simplest in db.Simplests) {
         repo.Delete(simplest.Id);
       }
     }
@@ -114,7 +113,7 @@ namespace OrmBattle.Tests.Performance
     {
       for (int i = 0; i < count; i++) {
         var id = i % instanceCount;
-        var query = db.Simplest.Where(o => o.Id == id);
+        var query = db.Simplests.Where(o => o.Id == id);
         foreach (var simplest in query) {
           // Doing nothing, just enumerate
         }
@@ -130,7 +129,7 @@ namespace OrmBattle.Tests.Performance
     {
       for (int i = 0; i < count; i++) {
         var id = i % instanceCount;
-        var query = new Select().From("Simplest").Where("Id").IsEqualTo(id);
+        var query = new Select().From("Simplests").Where("Id").IsEqualTo(id);
         foreach (var simplest in query.ExecuteTypedList<Simplest>()) {
           // Doing nothing, just enumerate
         }
@@ -139,7 +138,7 @@ namespace OrmBattle.Tests.Performance
 
     protected override void NativeMaterializeTest(int count)
     {
-      var query = new Select().From("Simplest");
+      var query = new Select().From("Simplests");
       int i = 0;
       while (i < count)
         foreach (var o in query.ExecuteTypedList<Simplest>())
@@ -151,7 +150,7 @@ namespace OrmBattle.Tests.Performance
     {
       int i = 0;
       while (i < count)
-        foreach (var o in db.Simplest)
+        foreach (var o in db.Simplests)
           if (++i >= count)
             break;
     }

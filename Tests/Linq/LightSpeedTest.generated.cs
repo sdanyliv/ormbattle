@@ -30,8 +30,6 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      ActiveProducts = db.ActiveProducts.ToList();
-      DiscontinuedProducts = db.DiscontinuedProducts.ToList();
       
       Console.Out.WriteLine("LightSpeed");
     }
@@ -46,8 +44,6 @@ namespace OrmBattle.Tests.Linq
     List<Employee> Employees;
     List<Order> Orders;
     List<Product> Products;
-    List<ActiveProduct> ActiveProducts;
-    List<DiscontinuedProduct> DiscontinuedProducts;
     
     // DTO for testing purposes.
     public class OrderDTO

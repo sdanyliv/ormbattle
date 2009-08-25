@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <model dslVersion="1.1.0.0" name="PerformanceTest" targetNamespace="LightSpeedModel" databaseProvider="SqlServer2005" connectionString="Data Source=.;Initial Catalog=PerformanceTest;Integrated Security=True;Pooling=False" pluralizedInDatabase="false" mediumTrustCompatibility="false" xmlns="http://namespaces.mindscape.co.nz/lightspeed">
   <entities>
-    <entity name="Simplest" identityType="Int64" cacheExpiry="0" identityColumnName="Id">
+    <entity name="Simplest" identityType="Int64" cacheExpiry="0" tableName="Simplests" identityColumnName="Id">
       <entityProperties>
         <entityProperty name="Value" dataType="Int64" />
       </entityProperties>

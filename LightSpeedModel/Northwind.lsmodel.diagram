@@ -113,18 +113,5 @@
         <entityShapeMoniker Id="e2b3c998-51a4-4643-9eb4-3112cb770fc0" />
       </nodes>
     </inheritanceConnector>
-    <entityShape Id="b4854f0b-3923-40a9-8d7b-c8d9f302bfbe" absoluteBounds="4.75, 9.25, 1.5, 0.51000000000000023">
-      <entityMoniker name="/Northwind/ActiveProduct" />
-      <nestedChildShapes>
-        <elementListCompartment Id="722a569b-c87c-476e-8705-3dc6bfce80a7" absoluteBounds="4.7650000000000006, 9.66, 1.4700000000000002, 0" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </entityShape>
-    <inheritanceConnector edgePoints="[(3.4062525 : 6.78543131510417); (3.4062525 : 9.3775); (4.75 : 9.3775)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="0ab4a4b5-00e2-4ccc-9ef1-8dfbea8592c8">
-      <relativeChildShapes />
-      <nodes>
-        <entityShapeMoniker Id="29ac6a38-569c-4295-997b-9305d4f70a89" />
-        <entityShapeMoniker Id="b4854f0b-3923-40a9-8d7b-c8d9f302bfbe" />
-      </nodes>
-    </inheritanceConnector>
   </nestedChildShapes>
 </minimalLanguageDiagram>
