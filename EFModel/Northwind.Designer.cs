@@ -161,6 +161,22 @@ namespace OrmBattle.EFModel
         }
         private global::System.Data.Objects.ObjectQuery<DiscontinuedProduct> _DiscontinuedProducts;
         /// <summary>
+        /// There are no comments for Products in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<ActiveProduct> ActiveProducts
+        {
+          get
+          {
+            if ((this._ActiveProducts == null))
+            {
+              this._ActiveProducts = base.CreateQuery<ActiveProduct>("[Products]");
+            }
+            return this._ActiveProducts;
+          }
+        }
+        private global::System.Data.Objects.ObjectQuery<ActiveProduct> _ActiveProducts;
+
+        /// <summary>
         /// There are no comments for Regions in the schema.
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<Region> Regions

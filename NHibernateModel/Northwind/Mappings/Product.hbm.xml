@@ -3,7 +3,7 @@
     <id name="Id" type="System.Int32" column="ProductID" unsaved-value="0">
       <generator class="native" />
     </id>
-    <discriminator column="Discontinued" type="String"/>
+    <discriminator column="Discontinued"/>
     <property name="ProductName" type="System.String" column="ProductName" not-null="true" />
     <property name="QuantityPerUnit" type="System.String" column="QuantityPerUnit" not-null="false" />
     <property name="ReorderLevel" type="System.Int16" column="ReorderLevel" not-null="false" />
@@ -22,7 +22,7 @@
     <many-to-one name="Supplier" class="OrmBattle.NHibernateModel.Northwind.Supplier, NHibernateModel" fetch="select">
       <column name="SupplierID" not-null="false" />
     </many-to-one>
-    <subclass name="OrmBattle.NHibernateModel.Northwind.DiscontinuedProduct, NHibernateModel" discriminator-value="1">
+    <subclass name="OrmBattle.NHibernateModel.Northwind.DiscontinuedProduct, NHibernateModel" discriminator-value="True">
       <property name="ProductName" type="System.String" column="ProductName" not-null="true" />
       <property name="QuantityPerUnit" type="System.String" column="QuantityPerUnit" not-null="false" />
       <property name="ReorderLevel" type="System.Int16" column="ReorderLevel" not-null="false" />
@@ -42,7 +42,7 @@
         <column name="SupplierID" not-null="false" />
       </many-to-one>
     </subclass>
-    <subclass name="OrmBattle.NHibernateModel.Northwind.ActiveProduct, NHibernateModel" discriminator-value="0">
+    <subclass name="OrmBattle.NHibernateModel.Northwind.ActiveProduct, NHibernateModel" discriminator-value="False">
       <property name="ProductName" type="System.String" column="ProductName" not-null="true" />
       <property name="QuantityPerUnit" type="System.String" column="QuantityPerUnit" not-null="false" />
       <property name="ReorderLevel" type="System.Int16" column="ReorderLevel" not-null="false" />

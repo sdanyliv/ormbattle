@@ -36,11 +36,12 @@ namespace OrmBattle.Tests.Linq
       disposables.Add(Transaction.Open());
       db = new NorthwindContext();
       
-      Categories = db.Categories.ToList();
       Customers = db.Customers.ToList();
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
-      Suppliers = db.Suppliers.ToList();
+      Products = db.Products.ToList();
+      ActiveProducts = db.ActiveProducts.ToList();
+      DiscontinuedProducts = db.DiscontinuedProducts.ToList();
       
       Console.Out.WriteLine("DataObjects.Net");
     }
@@ -67,11 +68,12 @@ namespace OrmBattle.Tests.Linq
       disposables.DisposeSafely();
     }
   
-    List<Category> Categories;
     List<Customer> Customers;
     List<Employee> Employees;
     List<Order> Orders;
-    List<Supplier> Suppliers;
+    List<Product> Products;
+    List<ActiveProduct> ActiveProducts;
+    List<DiscontinuedProduct> DiscontinuedProducts;
     
     // DTO for testing purposes.
     public class OrderDTO

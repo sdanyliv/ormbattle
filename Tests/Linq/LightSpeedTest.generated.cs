@@ -26,11 +26,12 @@ namespace OrmBattle.Tests.Linq
       context = new LightSpeedContext<NorthwindUnitOfWork>("LSNorthwind");
       db = context.CreateUnitOfWork();
       
-      Categories = db.Categories.ToList();
       Customers = db.Customers.ToList();
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
-      Suppliers = db.Suppliers.ToList();
+      Products = db.Products.ToList();
+      ActiveProducts = db.ActiveProducts.ToList();
+      DiscontinuedProducts = db.DiscontinuedProducts.ToList();
       
       Console.Out.WriteLine("LightSpeed");
     }
@@ -41,11 +42,12 @@ namespace OrmBattle.Tests.Linq
       db.Dispose();
     }
 
-    List<Category> Categories;
     List<Customer> Customers;
     List<Employee> Employees;
     List<Order> Orders;
-    List<Supplier> Suppliers;
+    List<Product> Products;
+    List<ActiveProduct> ActiveProducts;
+    List<DiscontinuedProduct> DiscontinuedProducts;
     
     // DTO for testing purposes.
     public class OrderDTO
