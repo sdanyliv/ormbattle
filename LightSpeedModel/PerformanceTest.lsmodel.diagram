@@ -5,7 +5,7 @@
     <entityShape Id="257b97c9-001c-495a-a4bd-a68b6e550d74" absoluteBounds="5.75, 1.875, 1.5, 0.67434733072916675">
       <entityMoniker name="/PerformanceTest/Simplest" />
       <nestedChildShapes>
-        <elementListCompartment Id="7872ae71-08e8-4a63-9104-66fb2f8161c6" absoluteBounds="5.765, 2.285, 1.4700000000000002, 0.16434733072916663" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7872ae71-08e8-4a63-9104-66fb2f8161c6" absoluteBounds="5.765, 2.285, 1.4700000000000002, 0.16434733072916666" name="Properties" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </entityShape>
   </nestedChildShapes>

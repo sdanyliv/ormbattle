@@ -29,8 +29,7 @@
     string[] ExcludeTables = new string[]{
     "sysdiagrams",
     "BuildVersion",
-    "KeyTable",
-    "Simplests"
+    "KeyTable"
     };
 
     string CleanUp(string tableName){
@@ -328,7 +327,6 @@
             AddUnknownCountRule("series");
             AddUnknownCountRule("fish");
             AddUnknownCountRule("sheep");
-            AddUnknownCountRule("simplest");
         }
 
         /// <summary>

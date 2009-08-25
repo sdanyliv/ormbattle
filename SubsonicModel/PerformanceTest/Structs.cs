@@ -10,13 +10,13 @@ using System.Data;
 namespace OrmBattle.SubsonicModel.PerformanceTest {
 	
         /// <summary>
-        /// Table: Simplest
+        /// Table: Simplests
         /// Primary Key: Id
         /// </summary>
 
-        public class SimplestTable: DatabaseTable {
+        public class SimplestsTable: DatabaseTable {
             
-            public SimplestTable(IDataProvider provider):base("Simplest",provider){
+            public SimplestsTable(IDataProvider provider):base("Simplests",provider){
                 ClassName = "Simplest";
                 SchemaName = "dbo";
                 

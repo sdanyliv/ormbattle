@@ -11,7 +11,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 
 // Original file name:
-// Generation date: 10.08.2009 14:49:00
+// Generation date: 25.08.2009 17:54:37
 namespace OrmBattle.EFModel
 {
     
@@ -46,26 +46,26 @@ namespace OrmBattle.EFModel
         }
         partial void OnContextCreated();
         /// <summary>
-        /// There are no comments for Simplest in the schema.
+        /// There are no comments for Simplests in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Simplest> Simplest
+        public global::System.Data.Objects.ObjectQuery<Simplest> Simplests
         {
             get
             {
-                if ((this._Simplest == null))
+                if ((this._Simplests == null))
                 {
-                    this._Simplest = base.CreateQuery<Simplest>("[Simplest]");
+                    this._Simplests = base.CreateQuery<Simplest>("[Simplests]");
                 }
-                return this._Simplest;
+                return this._Simplests;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Simplest> _Simplest;
+        private global::System.Data.Objects.ObjectQuery<Simplest> _Simplests;
         /// <summary>
-        /// There are no comments for Simplest in the schema.
+        /// There are no comments for Simplests in the schema.
         /// </summary>
-        public void AddToSimplest(Simplest simplest)
+        public void AddToSimplests(Simplest simplest)
         {
-            base.AddObject("Simplest", simplest);
+            base.AddObject("Simplests", simplest);
         }
     }
     /// <summary>

@@ -24,7 +24,7 @@ namespace OrmBattle.Tests.Performance
       using (var dataContext = new PerformanceTestEntities()) {
         dataContext.Connection.Open();
         using (var transaction = dataContext.Connection.BeginTransaction()) {
-          foreach (var s in dataContext.Simplest)
+          foreach (var s in dataContext.Simplests)
             dataContext.DeleteObject(s);
           dataContext.SaveChanges(true);
           transaction.Commit();
@@ -38,7 +38,7 @@ namespace OrmBattle.Tests.Performance
       using (var dataContext = new PerformanceTestEntities()) {
         dataContext.Connection.Open();
         using (var transaction = dataContext.Connection.BeginTransaction()) {
-          foreach (var s in dataContext.Simplest)
+          foreach (var s in dataContext.Simplests)
             dataContext.DeleteObject(s);
           dataContext.SaveChanges(true);
           transaction.Commit();
@@ -62,7 +62,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var s = Simplest.CreateSimplest(i, i);
-          dataContext.AddToSimplest(s);
+          dataContext.AddToSimplests(s);
         }
         dataContext.SaveChanges();
         transaction.Commit();
@@ -74,7 +74,7 @@ namespace OrmBattle.Tests.Performance
     {
       long sum = (long)instanceCount * (instanceCount - 1) / 2;
       using (var transaction = dataContext.Connection.BeginTransaction()) {
-        foreach (var s in dataContext.Simplest) {
+        foreach (var s in dataContext.Simplests) {
           s.Value++;
           sum -= s.Id;
         }
@@ -87,7 +87,7 @@ namespace OrmBattle.Tests.Performance
     protected override void DeleteMultipleTest()
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
-        foreach (var s in dataContext.Simplest)
+        foreach (var s in dataContext.Simplests)
           dataContext.DeleteObject(s);
         dataContext.SaveChanges();
         transaction.Commit();
@@ -99,7 +99,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var s = Simplest.CreateSimplest(i, i);
-          dataContext.AddToSimplest(s);
+          dataContext.AddToSimplests(s);
           dataContext.SaveChanges();
         }
         transaction.Commit();
@@ -111,7 +111,7 @@ namespace OrmBattle.Tests.Performance
     {
       long sum = (long)instanceCount * (instanceCount - 1) / 2;
       using (var transaction = dataContext.Connection.BeginTransaction()) {
-        foreach (var s in dataContext.Simplest) {
+        foreach (var s in dataContext.Simplests) {
           s.Value++;
           sum -= s.Id;
           dataContext.SaveChanges();
@@ -124,7 +124,7 @@ namespace OrmBattle.Tests.Performance
     protected override void DeleteSingleTest()
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
-        foreach (var s in dataContext.Simplest) {
+        foreach (var s in dataContext.Simplests) {
           dataContext.DeleteObject(s);
           dataContext.SaveChanges();
         }
@@ -137,7 +137,7 @@ namespace OrmBattle.Tests.Performance
       long sum = (long)count * (count - 1) / 2;
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
-          var s = (Simplest)dataContext.GetObjectByKey(new EntityKey("PerformanceTestEntities.Simplest", "Id", (long)i % instanceCount));
+          var s = (Simplest)dataContext.GetObjectByKey(new EntityKey("PerformanceTestEntities.Simplests", "Id", (long)i % instanceCount));
           sum -= s.Id;
         }
         transaction.Commit();
@@ -152,7 +152,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = i % instanceCount;
-          var result = dataContext.Simplest.Where(o => o.Id == id);
+          var result = dataContext.Simplests.Where(o => o.Id == id);
           foreach (var o in result) {
             // Doing nothing, just enumerate
           }
@@ -164,7 +164,7 @@ namespace OrmBattle.Tests.Performance
     protected override void CompiledLinqQueryTest(int count)
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
-        var resultQuery = System.Data.Objects.CompiledQuery.Compile((PerformanceTestEntities context, long id) => context.Simplest.Where(o => o.Id == id));
+        var resultQuery = System.Data.Objects.CompiledQuery.Compile((PerformanceTestEntities context, long id) => context.Simplests.Where(o => o.Id == id));
         for (int i = 0; i < count; i++) {
           var id = i % instanceCount;
           foreach (var o in resultQuery(dataContext, id)) {
@@ -181,7 +181,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = i % instanceCount;
-          var result = dataContext.Simplest.Where("it.Id == @id", new ObjectParameter("id", id));
+          var result = dataContext.Simplests.Where("it.Id == @id", new ObjectParameter("id", id));
           foreach (var o in result) {
             // Doing nothing, just enumerate
           }
@@ -195,7 +195,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         int i = 0;
         while (i < count)
-          foreach (var o in dataContext.Simplest.Where(s => s.Id > 0)) {
+          foreach (var o in dataContext.Simplests.Where(s => s.Id > 0)) {
             if (++i >= count)
               break;
           }
@@ -209,7 +209,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         int i = 0;
         while (i < count)
-          foreach (var o in dataContext.Simplest) {
+          foreach (var o in dataContext.Simplests) {
             if (++i >= count)
               break;
           }

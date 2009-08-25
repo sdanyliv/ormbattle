@@ -8,7 +8,7 @@ using System.Linq;
 namespace OrmBattle.SubsonicModel.PerformanceTest
 {
   /// <summary>
-  /// A class which represents the Simplest table in the PerformanceTest Database.
+  /// A class which represents the Simplests table in the PerformanceTest Database.
   /// This class is queryable through PerformanceTestDB.Simplest 
   /// </summary>
   public partial class Simplest: INotifyPropertyChanging, INotifyPropertyChanged

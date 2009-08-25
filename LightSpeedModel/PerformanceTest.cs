@@ -8,7 +8,7 @@ namespace LightSpeedModel
 {
   [Serializable]
   [System.CodeDom.Compiler.GeneratedCode("LightSpeedModelGenerator", "1.0.0.0")]
-  [Table(IdColumnName="Id")]
+  [Table("Simplests", IdColumnName="Id")]
   [System.ComponentModel.DataObject]
   public partial class Simplest : Entity<long>
   {
