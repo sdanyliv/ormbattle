@@ -130,7 +130,7 @@
     </Reference>
     <Reference Include="Xtensive.Storage.Rse, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TestRunner\bin\Release\Xtensive.Storage.Rse.dll</HintPath>
+      <HintPath>..\Lib\Xtensive.Storage.Rse.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
