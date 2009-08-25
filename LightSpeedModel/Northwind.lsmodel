@@ -219,6 +219,9 @@
         <baseToDerivedAssociation discriminatorName="Discontinued" discriminatorType="Boolean" discriminatorValue="true">
           <entityMoniker name="/Northwind/DiscontinuedProduct" />
         </baseToDerivedAssociation>
+        <baseToDerivedAssociation discriminatorName="Discontinued" discriminatorType="Boolean" discriminatorValue="false">
+          <entityMoniker name="/Northwind/ActiveProduct" />
+        </baseToDerivedAssociation>
       </derivedClasses>
       <entityProperties>
         <entityProperty name="Discontinued" dataType="Boolean" />
@@ -310,5 +313,6 @@
         </oneToManyAssociation>
       </oneToManyAssociations>
     </entity>
+    <entity name="ActiveProduct" identityType="Int32" cacheExpiry="0" />
   </entities>
 </model>

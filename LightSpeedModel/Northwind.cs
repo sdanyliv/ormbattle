@@ -983,6 +983,14 @@ namespace LightSpeedModel.Northwind
     #endregion
   }
 
+  [Serializable]
+  [System.CodeDom.Compiler.GeneratedCode("LightSpeedModelGenerator", "1.0.0.0")]
+  [Discriminator(Attribute="Discontinued", Value=false)]
+  [System.ComponentModel.DataObject]
+  public partial class ActiveProduct : Product
+  {
+  }
+
 
   [System.CodeDom.Compiler.GeneratedCode("LightSpeedModelGenerator", "1.0.0.0")]
   public partial class NorthwindUnitOfWork : Mindscape.LightSpeed.UnitOfWork
@@ -1031,6 +1039,11 @@ namespace LightSpeedModel.Northwind
     public System.Linq.IQueryable<Supplier> Suppliers
     {
       get { return this.Query<Supplier>(); }
+    }
+    
+    public System.Linq.IQueryable<ActiveProduct> ActiveProducts
+    {
+      get { return this.Query<ActiveProduct>(); }
     }
     
   }

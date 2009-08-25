@@ -27,11 +27,12 @@ namespace OrmBattle.Tests.Linq
       scope = NorthwindContext.ObjectScope();
       db = NorthwindContext.CurrentContext;
       
-      Categories = db.Categories.ToList();
       Customers = db.Customers.ToList();
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
-      Suppliers = db.Suppliers.ToList();
+      Products = db.Products.ToList();
+      ActiveProducts = db.ActiveProducts.ToList();
+      DiscontinuedProducts = db.DiscontinuedProducts.ToList();
       
       Console.Out.WriteLine("OpenAccess");
     }
@@ -42,11 +43,12 @@ namespace OrmBattle.Tests.Linq
       scope.Dispose();
     }
 
-    List<Category> Categories;
     List<Customer> Customers;
     List<Employee> Employees;
     List<Order> Orders;
-    List<Supplier> Suppliers;
+    List<Product> Products;
+    List<ActiveProduct> ActiveProducts;
+    List<DiscontinuedProduct> DiscontinuedProducts;
     
     // DTO for testing purposes.
     public class OrderDTO
