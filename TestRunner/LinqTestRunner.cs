@@ -21,7 +21,7 @@ namespace OrmBattle.TestRunner
   {
     public void Run()
     {
-      Console.Out.WriteLine("Linq tests:");
+      Console.Out.WriteLine("LINQ tests:");
       Console.Out.WriteLine();
       var tests = new List<object>
                   {
