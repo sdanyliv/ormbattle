@@ -6,6 +6,7 @@
 
 using System;
 using NUnit.Framework;
+using Xtensive.Core.Helpers;
 
 namespace OrmBattle.Tests
 {
@@ -23,7 +24,7 @@ namespace OrmBattle.Tests
     [SetUp]
     public void BaseSetup()
     {
-      Console.WriteLine("Testing: {0}", ToolName);
+      Console.WriteLine("Testing: {0} ({1})", ToolName, ShortToolName);
       Setup();
     }
 
@@ -39,8 +40,10 @@ namespace OrmBattle.Tests
     {
       if (Scorecard!=null)
         Scorecard.Add(ShortToolName, test, result);
-      else
-        Console.WriteLine("{0}: {1} {2}", test, result, unit);
+      else {
+        if (!test.IsNullOrEmpty())
+          Console.WriteLine("{0}: {1} {2}", test, result, unit);
+      }
     }
   }
 }

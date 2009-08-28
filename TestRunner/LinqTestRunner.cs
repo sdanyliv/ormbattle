@@ -36,9 +36,10 @@ namespace OrmBattle.TestRunner
         new LightSpeedTest(),
         new NHibernateTest(),
         new OpenAccessTest(),
-        new DummyTest()
+        new MaximumTest()
       };
 
+      bool firstTest = true;
       foreach (var test in tests) {
         test.Scorecard = scorecard;
         var total = 0;
@@ -51,7 +52,7 @@ namespace OrmBattle.TestRunner
           foreach (var method in type.GetMethods().Where(mi => mi.IsDefined(typeof (TestAttribute), false))) {
             try {
               total++;
-              if ((test is DummyTest)) {
+              if ((test is MaximumTest)) {
                 LogResult(test, method, true, false);
                 failed++;
                 asserted++;
@@ -79,6 +80,10 @@ namespace OrmBattle.TestRunner
           continue;
         }
         finally {
+          if (firstTest) {
+            firstTest = false;
+            scorecard.Tests.Sort();
+          }
           LogOverallResult(test, total, failed, asserted);
           var tearDown = type.GetMethod("BaseTearDown");
           try {
@@ -89,6 +94,8 @@ namespace OrmBattle.TestRunner
           }
         }
       }
+      Console.WriteLine();
+      Console.WriteLine("Scorecard:");
       Console.WriteLine(scorecard);
       Console.WriteLine();
     }
@@ -109,12 +116,14 @@ namespace OrmBattle.TestRunner
     private void LogOverallResult(ToolTestBase test, int total, int failed, int asserted)
     {
       int passed = total - failed;
-      if (test is DummyTest)
+      if (test is MaximumTest)
         passed = total;
+      scorecard.Add(test.ShortToolName, string.Empty, string.Empty);
       scorecard.Add(test.ShortToolName, "Totals:", string.Empty);
       scorecard.Add(test.ShortToolName, "  All", total);
       scorecard.Add(test.ShortToolName, "  Passed", passed);
       scorecard.Add(test.ShortToolName, "  Failed", failed);
+      scorecard.Add(test.ShortToolName, "    Properly", failed - asserted);
       scorecard.Add(test.ShortToolName, "    Asserted", asserted);
       scorecard.Add(test.ShortToolName, "  Score, %", string.Format("{0:F1}", passed * 100.0 / total));
     }

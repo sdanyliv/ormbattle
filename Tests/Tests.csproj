@@ -153,13 +153,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LinqTests.txt</LastGenOutput>
     </None>
-    <Compile Include="Linq\DummyTest.generated.cs">
-      <DependentUpon>LinqTests.tt</DependentUpon>
-    </Compile>
     <Compile Include="Linq\EFTest.generated.cs">
       <DependentUpon>LinqTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Linq\LightSpeedTest.generated.cs">
+      <DependentUpon>LinqTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Linq\MaximumTest.generated.cs">
       <DependentUpon>LinqTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Linq\NHibernateTest.generated.cs">
@@ -239,7 +239,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="True" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
+      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="True" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
