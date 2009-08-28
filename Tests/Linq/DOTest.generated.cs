@@ -430,10 +430,10 @@ namespace OrmBattle.Tests.Linq
 
     #endregion
 
-    #region Partitioning / Paging tests
+    #region Take / Skip tests
 
     [Test]
-    [Category("Partitioning/Paging")]
+    [Category("Take/Skip")]
     public void TakeTest()
     {
       var result = (from o in db.Orders
@@ -448,7 +448,7 @@ namespace OrmBattle.Tests.Linq
     }
 
     [Test]
-    [Category("Partitioning/Paging")]
+    [Category("Take/Skip")]
     public void SkipTest()
     {
       var result = (from o in db.Orders
@@ -464,7 +464,7 @@ namespace OrmBattle.Tests.Linq
     }
 
     [Test]
-    [Category("Partitioning/Paging")]
+    [Category("Take/Skip")]
     public void TakeSkipTest()
     {
       var result = (from o in db.Orders
@@ -479,7 +479,7 @@ namespace OrmBattle.Tests.Linq
     }
 
     [Test]
-    [Category("Partitioning/Paging")]
+    [Category("Take/Skip")]
     public void TakeNestedTest()
     {
       var result = 
@@ -498,7 +498,7 @@ namespace OrmBattle.Tests.Linq
     }
 
     [Test]
-    [Category("Partitioning/Paging")]
+    [Category("Take/Skip")]
     public void ComplexTakeSkipTest()
     {
       var original = db.Orders.ToList()

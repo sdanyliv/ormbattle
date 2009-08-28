@@ -27,13 +27,17 @@ namespace OrmBattle.TestRunner
         scorecard.Tests.Add(PerformanceTestBase.CreateSingle);
         scorecard.Tests.Add(PerformanceTestBase.UpdateSingle);
         scorecard.Tests.Add(PerformanceTestBase.RemoveSingle);
+        scorecard.Tests.Add(string.Empty);
         scorecard.Tests.Add(PerformanceTestBase.CreateMultiple);
         scorecard.Tests.Add(PerformanceTestBase.UpdateMultiple);
         scorecard.Tests.Add(PerformanceTestBase.RemoveMultiple);
+        scorecard.Tests.Add(string.Empty);
         scorecard.Tests.Add(PerformanceTestBase.Fetch);
+        scorecard.Tests.Add(string.Empty);
         scorecard.Tests.Add(PerformanceTestBase.LinqQuery);
         scorecard.Tests.Add(PerformanceTestBase.CompiledLinqQuery);
         scorecard.Tests.Add(PerformanceTestBase.NativeQuery);
+        scorecard.Tests.Add(string.Empty);
         scorecard.Tests.Add(PerformanceTestBase.LinqMaterialize);
         scorecard.Tests.Add(PerformanceTestBase.NativeMaterialize);
 
@@ -67,6 +71,8 @@ namespace OrmBattle.TestRunner
             }
           }
         }
+        Console.WriteLine();
+        Console.WriteLine("Scorecard:");
         Console.WriteLine(scorecard);
         Console.WriteLine();
       }

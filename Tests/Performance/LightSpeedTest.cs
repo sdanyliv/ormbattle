@@ -27,7 +27,7 @@ namespace OrmBattle.Tests.Performance
     }
 
     public override string ShortToolName {
-      get { return "LH"; }
+      get { return "LS"; }
     }
 
     protected override void Setup()

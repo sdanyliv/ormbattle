@@ -200,6 +200,8 @@ namespace OrmBattle.Tests.Performance
           if (!scope.IsCaptured(LogEventTypes.Error))
             LogResult(RemoveSingle, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
         }
+
+        LogResult(string.Empty, string.Empty, string.Empty);
       }
     }
 
