@@ -23,14 +23,13 @@ namespace OrmBattle.TestRunner
     {
       Console.Out.WriteLine("LINQ tests:");
       Console.Out.WriteLine();
-      var tests = new List<object>
-                  {
-                    new EFTest(), 
-                    new DOTest(),
-                    new LightSpeedTest(),
-                    new NHibernateTest(),
-                    new OpenAccessTest()
-                  };
+      var tests = new List<object> {
+        new EFTest(), 
+        new DOTest(),
+//        new LightSpeedTest(),
+//        new NHibernateTest(),
+//        new OpenAccessTest()
+      };
 
       foreach (var test in tests) {
         var total = 0;

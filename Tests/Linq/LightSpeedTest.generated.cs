@@ -15,13 +15,20 @@ namespace OrmBattle.Tests.Linq
   using LightSpeedModel.Northwind;
     
   [TestFixture]
-  public class LightSpeedTest
+  public class LightSpeedTest : ToolTestBase
   {
     protected LightSpeedContext<NorthwindUnitOfWork> context;
     protected NorthwindUnitOfWork db;
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    public override string ToolName {
+      get { return "LightSpeed"; }
+    }
+
+    public override string ShortToolName {
+      get { return "LH"; }
+    }
+
+    protected override void Setup()
     {
       context = new LightSpeedContext<NorthwindUnitOfWork>("LSNorthwind");
       db = context.CreateUnitOfWork();
@@ -30,12 +37,9 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("LightSpeed");
     }
 
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       db.Dispose();
     }

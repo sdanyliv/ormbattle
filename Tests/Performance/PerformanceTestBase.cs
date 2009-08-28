@@ -12,28 +12,13 @@ using Xtensive.Core.Testing;
 namespace OrmBattle.Tests.Performance
 {
   [TestFixture]
-  public abstract class TestBase
+  public abstract class PerformanceTestBase : ToolTestBase
   {
     public int BaseCount = 1000;
     public int WarmupCount = 10000;
     protected int instanceCount = 0;
     protected bool warmup;
 
-    [SetUp]
-    public void TestSetUp()
-    {
-      SetUp();
-    }
-
-    [TearDown]
-    public void TestTearDown()
-    {
-      TearDown();
-      Console.Out.WriteLine("");
-    }
-
-    protected abstract void SetUp();
-    protected abstract void TearDown();
     protected abstract void OpenSession();
     protected abstract void CloseSession();
 

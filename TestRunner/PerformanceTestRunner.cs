@@ -21,24 +21,24 @@ namespace OrmBattle.TestRunner
       {
         Console.Out.WriteLine("Performance tests ({0}):", baseCount);
         Console.Out.WriteLine();
-        var tests = new List<TestBase> {
+        var tests = new List<PerformanceTestBase> {
                       new EFTest(),
                       new DOTest(),
-                      new LightSpeedTest(),
-                      new NHibernateTest(),
-                      new OpenAccessTest(),
-                      new SubsonicTest(),
+//                      new LightSpeedTest(),
+//                      new NHibernateTest(),
+//                      new OpenAccessTest(),
+//                      new SubsonicTest(),
                       new SqlClientTest(),
                     };
 
         foreach (var test in tests) {
           try {
             test.BaseCount = baseCount;
-            test.TestSetUp();
+            test.BaseSetup();
             test.RegularTest();
           }
           finally {
-            test.TestTearDown();
+            test.BaseTearDown();
           }
         }
         Console.Out.WriteLine();

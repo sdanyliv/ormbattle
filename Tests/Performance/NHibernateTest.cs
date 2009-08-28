@@ -15,12 +15,20 @@ using NHibernate.Linq;
 
 namespace OrmBattle.Tests.Performance
 {
-  public class NHibernateTest : TestBase
+  public class NHibernateTest : PerformanceTestBase
   {
     private ISessionFactory factory;
     private ISession session;
 
-    protected override void SetUp()
+    public override string ToolName {
+      get { return "NHibernate"; }
+    }
+
+    public override string ShortToolName {
+      get { return "NH"; }
+    }
+
+    protected override void Setup()
     {
       Configuration cfg = new Configuration().Configure();
       factory = cfg.BuildSessionFactory();
@@ -28,8 +36,6 @@ namespace OrmBattle.Tests.Performance
         session.Delete("from Simplest");
         session.Flush();
       }
-
-      Console.Out.WriteLine("NHibernate");
     }
 
     protected override void TearDown()

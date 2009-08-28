@@ -17,7 +17,7 @@ using Xtensive.Core.Diagnostics;
 namespace OrmBattle.Tests.Performance
 {
   [Serializable]
-  public class SqlClientTest : TestBase
+  public class SqlClientTest : PerformanceTestBase
   {
     const int BatchLength = 25;
 
@@ -26,7 +26,15 @@ namespace OrmBattle.Tests.Performance
       + "Integrated Security=SSPI;");
 
 
-    protected override void SetUp()
+    public override string ToolName {
+      get { return "SqlClient"; }
+    }
+
+    public override string ShortToolName {
+      get { return "SQL"; }
+    }
+
+    protected override void Setup()
     {
       con.Open();
       using (var transaction = con.BeginTransaction()) {
@@ -37,8 +45,6 @@ namespace OrmBattle.Tests.Performance
         transaction.Commit();
       }
       con.Close();
-
-      Console.Out.WriteLine("SqlClient");
     }
 
     protected override void TearDown()
