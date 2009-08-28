@@ -1,724 +1,245 @@
 Performance tests (50):
 
-Entity Framework
-Create Multiple: 7760 op/s
-Update Multiple: 7315 op/s
-Remove Multiple: 9650 op/s
-Create Single: 4649 op/s
-Update Single: 4059 op/s
-Remove Single: 4813 op/s
-Fetch: 11 op/s
-LINQ Query: 471 op/s
-Compiled LINQ query: 5115 op/s
-LINQ Materialize: 28367 op/s
-Native Query: 7560 op/s
-Native Materialize: 104079 op/s
+Testing: ADO.NET Entity Framework (EF)
+Testing: DataObjects.Net (DO)
+Testing: LightSpeed (LS)
+Testing: NHibernate (NH)
+Testing: OpenAccess (OA)
+Testing: Subsonic (SS)
+Testing: SqlClient (SQL)
 
-DataObjects.Net
-Create Multiple: 21255 op/s
-Update Multiple: 14397 op/s
-Remove Multiple: 25842 op/s
-Create Single: 6457 op/s
-Update Single: 6000 op/s
-Remove Single: 5977 op/s
-Fetch: 8860 op/s
-LINQ Query: 1594 op/s
-Compiled LINQ query: 7645 op/s
-LINQ Materialize: 62879 op/s
-Native Query: 5744 op/s
-Native Materialize: 68203 op/s
-
-LightSpeed
-Create Multiple: 12363 op/s
-Update Multiple: 10197 op/s
-Remove Multiple: 21614 op/s
-Create Single: 5323 op/s
-Update Single: 5819 op/s
-Remove Single: 5745 op/s
-Fetch: 5065 op/s
-LINQ Query: 274 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 62542 op/s
-Native Query: 2037 op/s
-Native Materialize: 98328 op/s
-
-NHibernate
-Create Multiple: 15790 op/s
-Update Multiple: 13208 op/s
-Remove Multiple: 13940 op/s
-Create Single: 3360 op/s
-Update Single: 2777 op/s
-Remove Single: 3012 op/s
-Fetch: 6568 op/s
-LINQ Query: 1116 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 21513 op/s
-Native Query: 4394 op/s
-Native Materialize: 32241 op/s
-
-OpenAccess
-Create Multiple: 13536 op/s
-Update Multiple: 8042 op/s
-Remove Multiple: 31436 op/s
-Create Single: Not implemented.
-Update Single: Not implemented.
-Remove Single: Not implemented.
-Fetch: 2406 op/s
-LINQ Query: 3552 op/s
-Compiled LINQ query: 4250 op/s
-LINQ Materialize: 44755 op/s
-Native Query: 5626 op/s
-Native Materialize: 87397 op/s
-
-Subsonic
-Create Multiple: 3745 op/s
-Update Multiple: 3426 op/s
-Remove Multiple: 3613 op/s
-Create Single: 3650 op/s
-Update Single: 1897 op/s
-Remove Single: 1949 op/s
-Fetch: 8610 op/s
-LINQ Query: 355 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 13295 op/s
-Native Query: 6135 op/s
-Native Materialize: 40723 op/s
-
-SqlClient
-Create Multiple: 39197 op/s
-Update Multiple: 41284 op/s
-Remove Multiple: 44169 op/s
-Create Single: 11074 op/s
-Update Single: 10118 op/s
-Remove Single: 10390 op/s
-Fetch: 17341 op/s
-LINQ Query: not supported.
-Compiled LINQ query: not supported.
-LINQ Materialize: not supported.
-Native Query: 12394 op/s
-Native Materialize: 167448 op/s
+Scorecard:
+                              EF      DO      LS      NH      OA      SS     SQL
+Create Single               4584    6321    5244    3354     n/a    3677   10997
+Update Single               4097    5709    5876    2752     n/a    1892   10055
+Remove Single               4770    5924    5724    3003     n/a    1298   10093
+                                                                                
+Create Multiple             7809   20380   12328   15776   11874    3787   39212
+Update Multiple             7307   14042   10254   13224    8843    3473   41155
+Remove Multiple             9605   20748   21775   13771   31885    3656   44341
+                                                                                
+Fetch                         69    8598    5072    6590    2435    8597   17156
+                                                                                
+LINQ Query                   564    1467     272    1115    2843     354     n/a
+Compiled LINQ Query         5296    7394     n/a     n/a    4152     n/a     n/a
+Native Query                7487    5596    2009    4371    5610    6237   12253
+                                                                                
+LINQ Materialize           28167   60127   62012   21378   46027   13249     n/a
+Native Materialize        113224   65087   98116   32291   89381   40873  166278
 
 
 Performance tests (100):
 
-Entity Framework
-Create Multiple: 8781 op/s
-Update Multiple: 7530 op/s
-Remove Multiple: 10111 op/s
-Create Single: 4796 op/s
-Update Single: 4253 op/s
-Remove Single: 4986 op/s
-Fetch: 1116 op/s
-LINQ Query: 466 op/s
-Compiled LINQ query: 5675 op/s
-LINQ Materialize: 45323 op/s
-Native Query: 7931 op/s
-Native Materialize: 157505 op/s
+Testing: ADO.NET Entity Framework (EF)
+Testing: DataObjects.Net (DO)
+Testing: LightSpeed (LS)
+Testing: NHibernate (NH)
+Testing: OpenAccess (OA)
+Testing: Subsonic (SS)
+Testing: SqlClient (SQL)
 
-DataObjects.Net
-Create Multiple: 23812 op/s
-Update Multiple: 27575 op/s
-Remove Multiple: 28718 op/s
-Create Single: 7642 op/s
-Update Single: 7411 op/s
-Remove Single: 7612 op/s
-Fetch: 9500 op/s
-LINQ Query: 1690 op/s
-Compiled LINQ query: 7855 op/s
-LINQ Materialize: 100485 op/s
-Native Query: 7479 op/s
-Native Materialize: 116781 op/s
-
-LightSpeed
-Create Multiple: 13231 op/s
-Update Multiple: 27926 op/s
-Remove Multiple: 25714 op/s
-Create Single: 5993 op/s
-Update Single: 7150 op/s
-Remove Single: 6987 op/s
-Fetch: 5165 op/s
-LINQ Query: 263 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 105933 op/s
-Native Query: 2071 op/s
-Native Materialize: 159083 op/s
-
-NHibernate
-Create Multiple: 17722 op/s
-Update Multiple: 14999 op/s
-Remove Multiple: 16019 op/s
-Create Single: 3769 op/s
-Update Single: 2759 op/s
-Remove Single: 3197 op/s
-Fetch: 6979 op/s
-LINQ Query: 1171 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 28387 op/s
-Native Query: 4948 op/s
-Native Materialize: 40541 op/s
-
-OpenAccess
-Create Multiple: 14867 op/s
-Update Multiple: 13838 op/s
-Remove Multiple: 41445 op/s
-Create Single: Not implemented.
-Update Single: Not implemented.
-Remove Single: Not implemented.
-Fetch: 6328 op/s
-LINQ Query: 3887 op/s
-Compiled LINQ query: 4285 op/s
-LINQ Materialize: 73804 op/s
-Native Query: 6083 op/s
-Native Materialize: 132222 op/s
-
-Subsonic
-Create Multiple: 3845 op/s
-Update Multiple: 3844 op/s
-Remove Multiple: 4064 op/s
-Create Single: 3696 op/s
-Update Single: 2595 op/s
-Remove Single: 2725 op/s
-Fetch: 9009 op/s
-LINQ Query: 363 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 21409 op/s
-Native Query: 6754 op/s
-Native Materialize: 47463 op/s
-
-SqlClient
-Create Multiple: 48652 op/s
-Update Multiple: 51945 op/s
-Remove Multiple: 57323 op/s
-Create Single: 14338 op/s
-Update Single: 13085 op/s
-Remove Single: 13419 op/s
-Fetch: 19281 op/s
-LINQ Query: not supported.
-Compiled LINQ query: not supported.
-LINQ Materialize: not supported.
-Native Query: 15072 op/s
-Native Materialize: 304692 op/s
+Scorecard:
+                              EF      DO      LS      NH      OA      SS     SQL
+Create Single               4795    7389    6040    3751     n/a    3738   14352
+Update Single               4297    7268    7145    2707     n/a    2599   13210
+Remove Single               5047    7528    6935    3172     n/a    2732   13548
+                                                                                
+Create Multiple             8771   22906   13300   17664   14990    3814     485
+Update Multiple             7518   26544   27950   14794   13708    3804   51572
+Remove Multiple            10007   30713   25211   15666   41373    4005   57517
+                                                                                
+Fetch                       1290    9225    5111    6971    6322    8976   19004
+                                                                                
+LINQ Query                   572    1559     262    1160    3923     362     n/a
+Compiled LINQ Query         5817    7469     n/a     n/a    4319     n/a     n/a
+Native Query                7863    7233    2040    4957    6104    6710   14909
+                                                                                
+LINQ Materialize           44844   95556  105238   27910   75331   21259     n/a
+Native Materialize        155908  110180  156445   40475  134661   47551  297619
 
 
 Performance tests (500):
 
-Entity Framework
-Create Multiple: 6928 op/s
-Update Multiple: 7124 op/s
-Remove Multiple: 9309 op/s
-Create Single: 4635 op/s
-Update Single: 4966 op/s
-Remove Single: 5918 op/s
-Fetch: 3555 op/s
-LINQ Query: 459 op/s
-Compiled LINQ query: 6412 op/s
-LINQ Materialize: 160345 op/s
-Native Query: 9548 op/s
-Native Materialize: 350827 op/s
+Testing: ADO.NET Entity Framework (EF)
+Testing: DataObjects.Net (DO)
+Testing: LightSpeed (LS)
+Testing: NHibernate (NH)
+Testing: OpenAccess (OA)
+Testing: Subsonic (SS)
+Testing: SqlClient (SQL)
 
-DataObjects.Net
-Create Multiple: 20016 op/s
-Update Multiple: 33476 op/s
-Remove Multiple: 40167 op/s
-Create Single: 7541 op/s
-Update Single: 9807 op/s
-Remove Single: 10185 op/s
-Fetch: 10159 op/s
-LINQ Query: 1620 op/s
-Compiled LINQ query: 8071 op/s
-LINQ Materialize: 232219 op/s
-Native Query: 9926 op/s
-Native Materialize: 290646 op/s
-
-LightSpeed
-Create Multiple: 13879 op/s
-Update Multiple: 34210 op/s
-Remove Multiple: 32853 op/s
-Create Single: 6258 op/s
-Update Single: 7096 op/s
-Remove Single: 6842 op/s
-Fetch: 5386 op/s
-LINQ Query: 271 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 292768 op/s
-Native Query: 2145 op/s
-Native Materialize: 391542 op/s
-
-NHibernate
-Create Multiple: 14209 op/s
-Update Multiple: 16803 op/s
-Remove Multiple: 18098 op/s
-Create Single: 3684 op/s
-Update Single: 1399 op/s
-Remove Single: 2100 op/s
-Fetch: 7394 op/s
-LINQ Query: 1162 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 38794 op/s
-Native Query: 5439 op/s
-Native Materialize: 51148 op/s
-
-OpenAccess
-Create Multiple: 15499 op/s
-Update Multiple: 14843 op/s
-Remove Multiple: 55738 op/s
-Create Single: Not implemented.
-Update Single: Not implemented.
-Remove Single: Not implemented.
-Fetch: 6495 op/s
-LINQ Query: 4175 op/s
-Compiled LINQ query: 4170 op/s
-LINQ Materialize: 154696 op/s
-Native Query: 6446 op/s
-Native Materialize: 208376 op/s
-
-Subsonic
-Create Multiple: 2836 op/s
-Update Multiple: 4161 op/s
-Remove Multiple: 4490 op/s
-Create Single: 3058 op/s
-Update Single: 3802 op/s
-Remove Single: 4094 op/s
-Fetch: 9079 op/s
-LINQ Query: 355 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 41593 op/s
-Native Query: 7315 op/s
-Native Materialize: 54838 op/s
-
-SqlClient
-Create Multiple: 27994 op/s
-Update Multiple: 64859 op/s
-Remove Multiple: 74754 op/s
-Create Single: 11499 op/s
-Update Single: 17505 op/s
-Remove Single: 18005 op/s
-Fetch: 21175 op/s
-LINQ Query: not supported.
-Compiled LINQ query: not supported.
-LINQ Materialize: not supported.
-Native Query: 17567 op/s
-Native Materialize: 861474 op/s
+Scorecard:
+                              EF      DO      LS      NH      OA      SS     SQL
+Create Single               4642    7158    6294    3411     n/a    3045   11545
+Update Single               4956    9397    7140    1359     n/a    3812   17320
+Remove Single               5970    9839    6854    2148     n/a    4071   18052
+                                                                                
+Create Multiple             6577   19377   14225   14271   15628    2831   28269
+Update Multiple             7090   32221   34100   16443   15049    4153   64752
+Remove Multiple             9328   39482   32024   17925   56409    4580   75345
+                                                                                
+Fetch                       3878    9693    5386    7503    6495    9468   21141
+                                                                                
+LINQ Query                   561    1496     269    1154    4181     350     n/a
+Compiled LINQ Query         6435    7760     n/a     n/a    4053     n/a     n/a
+Native Query                9599    9598    2163    5497    5704    7336   17754
+                                                                                
+LINQ Materialize          161417  216378  293338   38271  159392   41244     n/a
+Native Materialize        355063  258585  389741   51376  215090   54369  861326
 
 
 Performance tests (1000):
 
-Entity Framework
-Create Multiple: 6825 op/s
-Update Multiple: 6703 op/s
-Remove Multiple: 10292 op/s
-Create Single: 4761 op/s
-Update Single: 4758 op/s
-Remove Single: 6121 op/s
-Fetch: 4902 op/s
-LINQ Query: 464 op/s
-Compiled LINQ query: 6305 op/s
-LINQ Materialize: 228617 op/s
-Native Query: 9705 op/s
-Native Materialize: 424340 op/s
+Testing: ADO.NET Entity Framework (EF)
+Testing: DataObjects.Net (DO)
+Testing: LightSpeed (LS)
+Testing: NHibernate (NH)
+Testing: OpenAccess (OA)
+Testing: Subsonic (SS)
+Testing: SqlClient (SQL)
 
-DataObjects.Net
-Create Multiple: 20105 op/s
-Update Multiple: 35018 op/s
-Remove Multiple: 42542 op/s
-Create Single: 9618 op/s
-Update Single: 9956 op/s
-Remove Single: 10530 op/s
-Fetch: 10294 op/s
-LINQ Query: 1705 op/s
-Compiled LINQ query: 7868 op/s
-LINQ Materialize: 271237 op/s
-Native Query: 10302 op/s
-Native Materialize: 348322 op/s
-
-LightSpeed
-Create Multiple: 13349 op/s
-Update Multiple: 28229 op/s
-Remove Multiple: 28722 op/s
-Create Single: 5179 op/s
-Update Single: 4946 op/s
-Remove Single: 5080 op/s
-Fetch: 5188 op/s
-LINQ Query: 272 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 352489 op/s
-Native Query: 2072 op/s
-Native Materialize: 396841 op/s
-
-NHibernate
-Create Multiple: 12617 op/s
-Update Multiple: 17148 op/s
-Remove Multiple: 18510 op/s
-Create Single: 3750 op/s
-Update Single: 881 op/s
-Remove Single: 1472 op/s
-Fetch: 7536 op/s
-LINQ Query: 1186 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 40916 op/s
-Native Query: 5512 op/s
-Native Materialize: 52702 op/s
-
-OpenAccess
-Create Multiple: 15717 op/s
-Update Multiple: 15192 op/s
-Remove Multiple: 59194 op/s
-Create Single: Not implemented.
-Update Single: Not implemented.
-Remove Single: Not implemented.
-Fetch: 6590 op/s
-LINQ Query: 4223 op/s
-Compiled LINQ query: 4221 op/s
-LINQ Materialize: 180146 op/s
-Native Query: 6089 op/s
-Native Materialize: 228969 op/s
-
-Subsonic
-Create Multiple: 2617 op/s
-Update Multiple: 4064 op/s
-Remove Multiple: 4410 op/s
-Create Single: 2974 op/s
-Update Single: 3992 op/s
-Remove Single: 4306 op/s
-Fetch: 9180 op/s
-LINQ Query: 358 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 47275 op/s
-Native Query: 7348 op/s
-Native Materialize: 56412 op/s
-
-SqlClient
-Create Multiple: 22208 op/s
-Update Multiple: 68048 op/s
-Remove Multiple: 81558 op/s
-Create Single: 11975 op/s
-Update Single: 18383 op/s
-Remove Single: 18669 op/s
-Fetch: 21400 op/s
-LINQ Query: not supported.
-Compiled LINQ query: not supported.
-LINQ Materialize: not supported.
-Native Query: 18031 op/s
-Native Materialize: 962927 op/s
+Scorecard:
+                              EF      DO      LS      NH      OA      SS     SQL
+Create Single               4770    7400    5142    3716     n/a    2875   12020
+Update Single               4743    9745    5000     839     n/a    4048   18297
+Remove Single               6181   10315    4967    1415     n/a    4316   18846
+                                                                                
+Create Multiple             6834   16851   12941   20603   15885    2626   22232
+Update Multiple             6679   34112   30036   16949   15226    4062   67788
+Remove Multiple            10267   41420   28420   18510   61516    4516   81404
+                                                                                
+Fetch                       5175    9925    5193    7502    6560    8971   21447
+                                                                                
+LINQ Query                   565    1578     270    1180    4219     356     n/a
+Compiled LINQ Query         6391    7523     n/a     n/a    4161     n/a     n/a
+Native Query                9742    9982    2066    5491    6504    7357   17900
+                                                                                
+LINQ Materialize          227362  252985  349047   40293  188009   47115     n/a
+Native Materialize        397819  310000  392958   53419  236955   55776  965623
 
 
 Performance tests (5000):
 
-Entity Framework
-Create Multiple: 5822 op/s
-Update Multiple: 6182 op/s
-Remove Multiple: 8698 op/s
-Create Single: 4721 op/s
-Update Single: 5112 op/s
-Remove Single: 6128 op/s
-Fetch: 6855 op/s
-LINQ Query: 482 op/s
-Compiled LINQ query: 6529 op/s
-LINQ Materialize: 448518 op/s
-Native Query: 9641 op/s
-Native Materialize: 589032 op/s
+Testing: ADO.NET Entity Framework (EF)
+Testing: DataObjects.Net (DO)
+Testing: LightSpeed (LS)
+Testing: NHibernate (NH)
+Testing: OpenAccess (OA)
+Testing: Subsonic (SS)
+Testing: SqlClient (SQL)
 
-DataObjects.Net
-Create Multiple: 21452 op/s
-Update Multiple: 32214 op/s
-Remove Multiple: 40543 op/s
-Create Single: 9216 op/s
-Update Single: 10070 op/s
-Remove Single: 10465 op/s
-Fetch: 10033 op/s
-LINQ Query: 1679 op/s
-Compiled LINQ query: 7922 op/s
-LINQ Materialize: 395674 op/s
-Native Query: 10099 op/s
-Native Materialize: 487073 op/s
-
-LightSpeed
-Create Multiple: 12721 op/s
-Update Multiple: 26937 op/s
-Remove Multiple: 28661 op/s
-Create Single: 2833 op/s
-Update Single: 1885 op/s
-Remove Single: 1905 op/s
-Fetch: 5314 op/s
-LINQ Query: 271 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 597543 op/s
-Native Query: 2101 op/s
-Native Materialize: 621457 op/s
-
-NHibernate
-Create Multiple: 18248 op/s
-Update Multiple: 16890 op/s
-Remove Multiple: 18127 op/s
-Create Single: 3769 op/s
-Update Single: 214 op/s
-Remove Single: 411 op/s
-Fetch: 7297 op/s
-LINQ Query: 1206 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 40131 op/s
-Native Query: 5532 op/s
-Native Materialize: 49302 op/s
-
-OpenAccess
-Create Multiple: 15417 op/s
-Update Multiple: 14724 op/s
-Remove Multiple: 56364 op/s
-Create Single: Not implemented.
-Update Single: Not implemented.
-Remove Single: Not implemented.
-Fetch: 6197 op/s
-LINQ Query: 4150 op/s
-Compiled LINQ query: 4211 op/s
-LINQ Materialize: 154181 op/s
-Native Query: 6270 op/s
-Native Materialize: 170148 op/s
-
-Subsonic
-Create Multiple: 2605 op/s
-Update Multiple: 4068 op/s
-Remove Multiple: 4381 op/s
-Create Single: 3274 op/s
-Update Single: 3988 op/s
-Remove Single: 4508 op/s
-Fetch: 9515 op/s
-LINQ Query: 359 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 53768 op/s
-Native Query: 7343 op/s
-Native Materialize: 57126 op/s
-
-SqlClient
-Create Multiple: 22303 op/s
-Update Multiple: 69374 op/s
-Remove Multiple: 87675 op/s
-Create Single: 12252 op/s
-Update Single: 19214 op/s
-Remove Single: 19845 op/s
-Fetch: 22077 op/s
-LINQ Query: not supported.
-Compiled LINQ query: not supported.
-LINQ Materialize: not supported.
-Native Query: 19414 op/s
-Native Materialize: 2006581 op/s
+Scorecard:
+                              EF      DO      LS      NH      OA      SS     SQL
+Create Single               4734    9040    2849    3726     n/a    2464   12291
+Update Single               5110    9755    1886     205     n/a    3991   19278
+Remove Single               6227   10291    1906     396     n/a    4463   20111
+                                                                                
+Create Multiple             6808   20979   12553   18222   15435    2848   22123
+Update Multiple             6168   31124   26659   16646   14763    3953   69462
+Remove Multiple             8643   39454   28451   17943   57331    4381   82448
+                                                                                
+Fetch                       6952    9748    5249    7369    6274    9377   22037
+                                                                                
+LINQ Query                   574    1559     270    1201    4128     356     n/a
+Compiled LINQ Query         6511    7655     n/a     n/a    4195     n/a     n/a
+Native Query                9701    9819    2103    5488    6185    7251   19013
+                                                                                
+LINQ Materialize          455365  352449  612522   39516  159252   53416     n/a
+Native Materialize        598272  418490  620809   49721  176634   57389 1463100
 
 
 Performance tests (10000):
 
-Entity Framework
-Create Multiple: 5805 op/s
-Update Multiple: 5893 op/s
-Remove Multiple: 8547 op/s
-Create Single: 4860 op/s
-Update Single: 5077 op/s
-Remove Single: 6238 op/s
-Fetch: 7299 op/s
-LINQ Query: 483 op/s
-Compiled LINQ query: 6493 op/s
-LINQ Materialize: 485105 op/s
-Native Query: 9814 op/s
-Native Materialize: 611157 op/s
+Testing: ADO.NET Entity Framework (EF)
+Testing: DataObjects.Net (DO)
+Testing: LightSpeed (LS)
+Testing: NHibernate (NH)
+Testing: OpenAccess (OA)
+Testing: Subsonic (SS)
+Testing: SqlClient (SQL)
 
-DataObjects.Net
-Create Multiple: 22778 op/s
-Update Multiple: 21986 op/s
-Remove Multiple: 39608 op/s
-Create Single: 9450 op/s
-Update Single: 10140 op/s
-Remove Single: 10604 op/s
-Fetch: 10135 op/s
-LINQ Query: 1633 op/s
-Compiled LINQ query: 7937 op/s
-LINQ Materialize: 274253 op/s
-Native Query: 10537 op/s
-Native Materialize: 324030 op/s
-
-LightSpeed
-Create Multiple: 11986 op/s
-Update Multiple: 24193 op/s
-Remove Multiple: 25728 op/s
-Create Single: 1786 op/s
-Update Single: 1042 op/s
-Remove Single: 1060 op/s
-Fetch: 5271 op/s
-LINQ Query: 271 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 412331 op/s
-Native Query: 2121 op/s
-Native Materialize: 433236 op/s
-
-NHibernate
-Create Multiple: 18352 op/s
-Update Multiple: 16699 op/s
-Remove Multiple: 18104 op/s
-Create Single: 3791 op/s
-Update Single: 109 op/s
-Remove Single: 215 op/s
-Fetch: 7288 op/s
-LINQ Query: 1205 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 39400 op/s
-Native Query: 5433 op/s
-Native Materialize: 51864 op/s
-
-OpenAccess
-Create Multiple: 15002 op/s
-Update Multiple: 13594 op/s
-Remove Multiple: 47368 op/s
-Create Single: Not implemented.
-Update Single: Not implemented.
-Remove Single: Not implemented.
-Fetch: 6259 op/s
-LINQ Query: 4086 op/s
-Compiled LINQ query: 4191 op/s
-LINQ Materialize: 182790 op/s
-Native Query: 6268 op/s
-Native Materialize: 208726 op/s
-
-Subsonic
-Create Multiple: 2761 op/s
-Update Multiple: 3941 op/s
-Remove Multiple: 4387 op/s
-Create Single: 2504 op/s
-Update Single: 3995 op/s
-Remove Single: 4311 op/s
-Fetch: 9600 op/s
-LINQ Query: 359 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 53766 op/s
-Native Query: 7411 op/s
-Native Materialize: 56717 op/s
-
-SqlClient
-Create Multiple: 22291 op/s
-Update Multiple: 69769 op/s
-Remove Multiple: 86068 op/s
-Create Single: 12334 op/s
-Update Single: 19769 op/s
-Remove Single: 14806 op/s
-Fetch: 22059 op/s
-LINQ Query: not supported.
-Compiled LINQ query: not supported.
-LINQ Materialize: not supported.
-Native Query: 19146 op/s
-Native Materialize: 1568184 op/s
+Scorecard:
+                              EF      DO      LS      NH      OA      SS     SQL
+Create Single               4881    9177    1679    3738     n/a    2544   12288
+Update Single               5062    9837    1039     105     n/a    3915   19511
+Remove Single               6221   10431    1061     207     n/a    4410   20203
+                                                                                
+Create Multiple             6338   22097   11997   18308   15042    2580   20270
+Update Multiple             5870   30934   19444   16646   13673    3788   69718
+Remove Multiple             8427   38267   25233   17865   47793    4205   86196
+                                                                                
+Fetch                       7316    9770    5267    7349    6233    9423   22081
+                                                                                
+LINQ Query                   484    1526     270    1199    4108     357     n/a
+Compiled LINQ Query         6487    7667     n/a     n/a    4199     n/a     n/a
+Native Query                9872   10127    2120    5439    6323    7248   18529
+                                                                                
+LINQ Materialize          493474  254731  416569   38689  189576   53039     n/a
+Native Materialize        620917  291533  411714   52223  200615   55920 2165252
 
 
 Performance tests (30000):
 
-Entity Framework
-Create Multiple: 6728 op/s
-Update Multiple: 5811 op/s
-Remove Multiple: 8349 op/s
-Create Single: 5412 op/s
-Update Single: 5088 op/s
-Remove Single: 6235 op/s
-Fetch: 7571 op/s
-LINQ Query: 484 op/s
-Compiled LINQ query: 6508 op/s
-LINQ Materialize: 470397 op/s
-Native Query: 9763 op/s
-Native Materialize: 562517 op/s
+Testing: ADO.NET Entity Framework (EF)
+Testing: DataObjects.Net (DO)
+Testing: LightSpeed (LS)
+Testing: NHibernate (NH)
+Testing: OpenAccess (OA)
+Testing: Subsonic (SS)
+Testing: SqlClient (SQL)
 
-DataObjects.Net
-Create Multiple: 25690 op/s
-Update Multiple: 30572 op/s
-Remove Multiple: 38503 op/s
-Create Single: 9570 op/s
-Update Single: 10074 op/s
-Remove Single: 10576 op/s
-Fetch: 10130 op/s
-LINQ Query: 1630 op/s
-Compiled LINQ query: 7980 op/s
-LINQ Materialize: 279464 op/s
-Native Query: 10503 op/s
-Native Materialize: 325252 op/s
-
-LightSpeed
-Create Multiple: 11819 op/s
-Update Multiple: 23701 op/s
-Remove Multiple: 25685 op/s
-Create Single: 482 op/s
-Update Single: 225 op/s
-Remove Single: 232 op/s
-Fetch: 5260 op/s
-LINQ Query: 271 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 394144 op/s
-Native Query: 2106 op/s
-Native Materialize: 393463 op/s
-
-NHibernate
-Create Multiple: 19961 op/s
-Update Multiple: 16517 op/s
-Remove Multiple: 17872 op/s
-Create Single: 3803 op/s
-Update Single: 36 op/s
-Remove Single: 73 op/s
-Fetch: 7302 op/s
-LINQ Query: 1207 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 37891 op/s
-Native Query: 5520 op/s
-Native Materialize: 47334 op/s
-
-OpenAccess
-Create Multiple: 13317 op/s
-Update Multiple: 12176 op/s
-Remove Multiple: 42510 op/s
-Create Single: Not implemented.
-Update Single: Not implemented.
-Remove Single: Not implemented.
-Fetch: 6244 op/s
-LINQ Query: 4103 op/s
-Compiled LINQ query: 4186 op/s
-LINQ Materialize: 117511 op/s
-Native Query: 6312 op/s
-Native Materialize: 122628 op/s
-
-Subsonic
-Create Multiple: 2193 op/s
-Update Multiple: 3814 op/s
-Remove Multiple: 4112 op/s
-Create Single: 3026 op/s
-Update Single: 4044 op/s
-Remove Single: 4374 op/s
-Fetch: 9592 op/s
-LINQ Query: 352 op/s
-Compiled LINQ query: not supported.
-LINQ Materialize: 54111 op/s
-Native Query: 7417 op/s
-Native Materialize: 56418 op/s
-
-SqlClient
-Create Multiple: 62197 op/s
-Update Multiple: 68602 op/s
-Remove Multiple: 87758 op/s
-Create Single: 12320 op/s
-Update Single: 19641 op/s
-Remove Single: 20227 op/s
-Fetch: 22058 op/s
-LINQ Query: not supported.
-Compiled LINQ query: not supported.
-LINQ Materialize: not supported.
-Native Query: 19518 op/s
-Native Materialize: 2300737 op/s
+Scorecard:
+                              EF      DO      LS      NH      OA      SS     SQL
+Create Single               4740    9367     512    3776     n/a    2290   12354
+Update Single               4831    9756     224      35     n/a    3995   19555
+Remove Single               6220   10305     230      70     n/a    4062   20223
+                                                                                
+Create Multiple             6203   24641   11891   19954   13271    2175   40888
+Update Multiple             5796   30850   23911   16433   12158    3725   68346
+Remove Multiple             8423   37680   25712   17779   42814    4074   85943
+                                                                                
+Fetch                       7593    9766    5243    7328    6247    9606   21981
+                                                                                
+LINQ Query                   485    1508     269    1201    4112     350     n/a
+Compiled LINQ Query         6508    7694     n/a     n/a    4179     n/a     n/a
+Native Query                9816   10279    2110    5540    6265    7375   19220
+                                                                                
+LINQ Materialize          471889  259134  392690   37426  119858   54009     n/a
+Native Materialize        560221  293501  387280   47522  124370   56096 2285801
 
 
-Linq tests:
+LINQ tests:
 
-Entity Framework
-Passed: 92 out of 123; failed with assertion: 3.
+Testing: ADO.NET Entity Framework (EF)
+Testing: DataObjects.Net (DO)
+Testing: LightSpeed (LS)
+Testing: NHibernate (NH)
+Testing: Open Access (OA)
+Testing: Maximum (Maximum)
 
-DataObjects.Net
-Passed: 122 out of 127; failed with assertion: 1.
+Scorecard:
+                              EF      DO      LS      NH      OA Maximum
+Aggregates                     0       0       3       3       1       5
+All/Any/Contains               3       2       6     4/2       4       6
+Complex                        1       0       6       6       6       6
+Element operations             4       2       6       6       5       9
+Filtering                    4/2       0     5/5     6/1       2      12
+Grouping                       1       0      10    10/2       5      10
+Join                           1       0       4       4       4       4
+Ordering                     3/2       0     5/1       6       6       8
+Projections                    2       2     9/2     6/1     8/1      13
+References                     0       0       4       3       2       4
+Set operations                 0       0     5/1     6/2       9       9
+Standard functions             9       0       8      16      11      21
+Take/Skip                      1       0     2/1     2/1       2       5
+Type casts                     1       0     3/1       4       2       5
+                                                                        
+Totals:                                                                 
+  All                        117     117     117     117     117     117
+  Passed                      87     111      41      35      50     117
+  Failed                      30       6      76      82      67     117
+    Properly                  26       6      65      73      66       0
+    Asserted                   4       0      11       9       1     117
+  Score, %                  74,4    94,9    35,0    29,9    42,7   100,0
 
-LightSpeed
-Passed: 44 out of 123; failed with assertion: 10.
-
-NHibernate
-Passed: 40 out of 123; failed with assertion: 6.
-
-OpenAccess
-Passed: 51 out of 123; failed with assertion: 1.
 
