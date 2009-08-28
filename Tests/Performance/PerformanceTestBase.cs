@@ -14,6 +14,20 @@ namespace OrmBattle.Tests.Performance
   [TestFixture]
   public abstract class PerformanceTestBase : ToolTestBase
   {
+    public const string BaseUnit = "op/s";
+    public const string CompiledLinqQuery = "Compiled LINQ Query";
+    public const string CreateMultiple = "Create Multiple";
+    public const string CreateSingle = "Create Single";
+    public const string Fetch = "Fetch";
+    public const string LinqMaterialize = "LINQ Materialize";
+    public const string LinqQuery = "LINQ Query";
+    public const string NativeMaterialize = "Native Materialize";
+    public const string NativeQuery = "Native Query";
+    public const string RemoveMultiple = "Remove Multiple";
+    public const string RemoveSingle = "Remove Single";
+    public const string UpdateMultiple = "Update Multiple";
+    public const string UpdateSingle = "Update Single";
+
     public int BaseCount = 1000;
     public int WarmupCount = 10000;
     protected int instanceCount = 0;
@@ -73,7 +87,7 @@ namespace OrmBattle.Tests.Performance
         InsertMultipleTest(count);
         measure.Complete();
         CloseSession();
-        var batchCreateString = "Create Multiple: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+        LogResult(CreateMultiple, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
 
         TestHelper.CollectGarbage();
         OpenSession();
@@ -81,17 +95,16 @@ namespace OrmBattle.Tests.Performance
         UpdateMultipleTest();
         measure.Complete();
         CloseSession();
-        var batchUpdateString = "Update Multiple: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+        LogResult(UpdateMultiple, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
 
         TestHelper.CollectGarbage();
         OpenSession();
         measure = new Measurement(MeasurementOptions.None);
-        FetchTest(count / 2);
+        FetchTest(count/2);
         measure.Complete();
         CloseSession();
-        var fetchString = "Fetch: " + GetResult(count / 2, measure.TimeSpent.TotalSeconds);
+        LogResult(Fetch, GetResult(count/2, measure.TimeSpent.TotalSeconds), BaseUnit);
 
-        var linqQueryString = "LINQ Query: not supported.";
         using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
           TestHelper.CollectGarbage();
           OpenSession();
@@ -100,10 +113,9 @@ namespace OrmBattle.Tests.Performance
           measure.Complete();
           CloseSession();
           if (!scope.IsCaptured(LogEventTypes.Error))
-            linqQueryString = "LINQ Query: " + GetResult(count/5, measure.TimeSpent.TotalSeconds);
+            LogResult(LinqQuery, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
         }
 
-        var compiledLinqQueryString = "Compiled LINQ query: not supported.";
         using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
           TestHelper.CollectGarbage();
           OpenSession();
@@ -112,10 +124,9 @@ namespace OrmBattle.Tests.Performance
           measure.Complete();
           CloseSession();
           if (!scope.IsCaptured(LogEventTypes.Error))
-            compiledLinqQueryString = "Compiled LINQ query: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+            LogResult(CompiledLinqQuery, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
         }
 
-        var linqMaterializeString = "LINQ Materialize: not supported.";
         using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
           int materializationPassCount = (count < 1000) ? 100 : 10;
           double seconds = 0;
@@ -130,16 +141,16 @@ namespace OrmBattle.Tests.Performance
             seconds += measure.TimeSpent.TotalSeconds;
           }
           if (!scope.IsCaptured(LogEventTypes.Error))
-            linqMaterializeString = "LINQ Materialize: " + GetResult(count*materializationPassCount, seconds);
+            LogResult(LinqMaterialize, GetResult(count*materializationPassCount, seconds), BaseUnit);
         }
 
         TestHelper.CollectGarbage();
         OpenSession();
         measure = new Measurement(MeasurementOptions.None);
-        NativeQueryTest(count / 5);
+        NativeQueryTest(count/5);
         measure.Complete();
         CloseSession();
-        var nativeQueryString = "Native Query: " + GetResult(count / 5, measure.TimeSpent.TotalSeconds);
+        LogResult(NativeQuery, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
 
         TestHelper.CollectGarbage();
         OpenSession();
@@ -147,7 +158,7 @@ namespace OrmBattle.Tests.Performance
         NativeMaterializeTest(count);
         measure.Complete();
         CloseSession();
-        var nativeMaterializeString = "Native Materialize: " + GetResult(count, measure.TimeSpent.TotalSeconds);
+        LogResult(NativeMaterialize, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
 
         TestHelper.CollectGarbage();
         OpenSession();
@@ -155,10 +166,8 @@ namespace OrmBattle.Tests.Performance
         DeleteMultipleTest();
         measure.Complete();
         CloseSession();
-        var batchRemoveString = "Remove Multiple: " + GetResult(count, measure.TimeSpent.TotalSeconds);
-        CloseSession();
+        LogResult(RemoveMultiple, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
 
-        var createString = "Create Single: Not implemented.";
         using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
           TestHelper.CollectGarbage();
           OpenSession();
@@ -167,10 +176,9 @@ namespace OrmBattle.Tests.Performance
           measure.Complete();
           CloseSession();
           if (!scope.IsCaptured(LogEventTypes.Error))
-            createString = "Create Single: " + GetResult(count/5, measure.TimeSpent.TotalSeconds);
+            LogResult(CreateSingle, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
         }
 
-        var updateString = "Update Single: Not implemented.";
         using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
           TestHelper.CollectGarbage();
           OpenSession();
@@ -179,10 +187,9 @@ namespace OrmBattle.Tests.Performance
           measure.Complete();
           CloseSession();
           if (!scope.IsCaptured(LogEventTypes.Error))
-            updateString = "Update Single: " + GetResult(count/5, measure.TimeSpent.TotalSeconds);
+            LogResult(UpdateSingle, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
         }
 
-        var removeString = "Remove Single: Not implemented.";
         using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
           TestHelper.CollectGarbage();
           OpenSession();
@@ -191,33 +198,14 @@ namespace OrmBattle.Tests.Performance
           measure.Complete();
           CloseSession();
           if (!scope.IsCaptured(LogEventTypes.Error))
-            removeString = "Remove Single: " + GetResult(count/5, measure.TimeSpent.TotalSeconds);
+            LogResult(RemoveSingle, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
         }
-
-        Console.Out.WriteLine(batchCreateString);
-        Console.Out.WriteLine(batchUpdateString);
-        Console.Out.WriteLine(batchRemoveString);
-
-        Console.Out.WriteLine(createString);
-        Console.Out.WriteLine(updateString);
-        Console.Out.WriteLine(removeString);
-
-        Console.Out.WriteLine(fetchString);
-
-        Console.Out.WriteLine(linqQueryString);
-        Console.Out.WriteLine(compiledLinqQueryString);
-        Console.Out.WriteLine(linqMaterializeString);
-
-        Console.Out.WriteLine(nativeQueryString);
-        Console.Out.WriteLine(nativeMaterializeString);
       }
     }
 
-    private string GetResult(long operationCount, double totalSeconds)
+    private int GetResult(long operationCount, double totalSeconds)
     {
-      var kmbBase = operationCount/totalSeconds;
-      const string kmbFormat = "{0} op/s";
-      return string.Format(kmbFormat, (long)kmbBase);
+      return (int) (operationCount / totalSeconds);
     } 
 
     protected abstract void InsertMultipleTest(int count);

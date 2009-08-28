@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using OrmBattle.Tests.Performance;
+﻿// Copyright (C) 2009 Xtensive LLC.
+// All rights reserved.
+// For conditions of distribution and use, see license.
+// Created by: Alex Yakunin
+// Created:    2009.08.28
+
+using System;
 
 namespace OrmBattle.TestRunner
 {
@@ -15,6 +17,8 @@ namespace OrmBattle.TestRunner
 
       performanceTestRunner.Run();
       linqTestRunner.Run();
+
+      // Console.ReadKey();
     }
   }
 }
