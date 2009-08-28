@@ -17,14 +17,21 @@ namespace OrmBattle.Tests.Linq
   using Xtensive.Storage.Configuration;
   
   [TestFixture]
-  public class DOTest
+  public class DOTest : ToolTestBase
   {
     protected NorthwindContext db;
     private DisposableSet disposables;
     private Domain domain;
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    public override string ToolName {
+      get { return "DataObjects.Net"; }
+    }
+
+    public override string ShortToolName {
+      get { return "DO"; }
+    }
+
+    protected override void Setup()
     {
       var config = DomainConfiguration.Load("mssql2005");
       config.Sessions.Add(new SessionConfiguration("Default"));
@@ -40,8 +47,6 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("DataObjects.Net");
     }
 
     private Domain BuildDomain(DomainConfiguration configuration)
@@ -60,8 +65,7 @@ namespace OrmBattle.Tests.Linq
       }
     }
     
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       disposables.DisposeSafely();
     }

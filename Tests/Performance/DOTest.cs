@@ -15,13 +15,21 @@ using Xtensive.Storage.Rse;
 
 namespace OrmBattle.Tests.Performance
 {
-  public class DOTest : TestBase
+  public class DOTest : PerformanceTestBase
   {
     protected Domain domain;
     private SessionConsumptionScope sessionScope;
     private Session session;
 
-    protected override void SetUp()
+    public override string ToolName {
+      get { return "DataObjects.Net"; }
+    }
+
+    public override string ShortToolName {
+      get { return "DO"; }
+    }
+
+    protected override void Setup()
     {
       var config = DomainConfiguration.Load("mssql2005");
       config.Sessions.Add(new SessionConfiguration("Default"));
@@ -36,8 +44,6 @@ namespace OrmBattle.Tests.Performance
           o.Remove();
         ts.Complete();
       }
-
-      Console.Out.WriteLine("DataObjects.Net");
     }
 
     protected override void TearDown()

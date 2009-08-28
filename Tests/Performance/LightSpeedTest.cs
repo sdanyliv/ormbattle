@@ -15,14 +15,22 @@ using NUnit.Framework;
 namespace OrmBattle.Tests.Performance
 {
   [Serializable]
-  public class LightSpeedTest : TestBase
+  public class LightSpeedTest : PerformanceTestBase
   {
     private LightSpeedContext<PerformanceTestUnitOfWork> context;
     private long minId;
     private long maxId;
     private PerformanceTestUnitOfWork db;
 
-    protected override void SetUp()
+    public override string ToolName {
+      get { return "LightSpeed"; }
+    }
+
+    public override string ShortToolName {
+      get { return "LH"; }
+    }
+
+    protected override void Setup()
     {
       context = new LightSpeedContext<PerformanceTestUnitOfWork>("PerformanceTest");
       using (var db = context.CreateUnitOfWork())
@@ -32,8 +40,6 @@ namespace OrmBattle.Tests.Performance
         db.SaveChanges();
         transaction.Commit();
       }
-
-      Console.Out.WriteLine("LightSpeed");
     }
 
     protected override void TearDown()

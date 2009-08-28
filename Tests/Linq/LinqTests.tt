@@ -29,17 +29,24 @@ namespace OrmBattle.Tests.Linq
   using Configuration=NHibernate.Cfg.Configuration;
   
   [TestFixture]
-  public class NHibernateTest
+  public class NHibernateTest : ToolTestBase
   {
     protected NorthwindContext db;
     protected ISession session;
-    protected virtual string ConnectionStringName
-    {
+    
+    public override string ToolName {
+      get { return "NHibernate"; }
+    }
+
+    public override string ShortToolName {
+      get { return "NH"; }
+    }
+
+    protected virtual string ConnectionStringName {
       get { return "Northwind"; }
     }
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    protected override void Setup()
     {
       session = CreateSession();
       db = new NorthwindContext(session);
@@ -48,8 +55,6 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("NHibernate");
     }
 
     protected virtual ISession CreateSession()
@@ -62,8 +67,7 @@ namespace OrmBattle.Tests.Linq
       return factory.OpenSession(con);
     }
 
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       session.Connection.Dispose();
       session.Dispose();
@@ -76,12 +80,19 @@ namespace OrmBattle.Tests.Linq
   using EFModel;
   
   [TestFixture]
-  public class EFTest
+  public class EFTest : ToolTestBase
   {
     protected NorthwindEntities db;
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    public override string ToolName {
+      get { return "ADO.NET Entity Framework"; }
+    }
+
+    public override string ShortToolName {
+      get { return "EF"; }
+    }
+
+    protected override void Setup()
     {
       db = new NorthwindEntities();
       
@@ -89,12 +100,9 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("Entity Framework");
     }
 
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       db.Dispose();
     }
@@ -107,13 +115,20 @@ namespace OrmBattle.Tests.Linq
   using TelerikModel.Northwind;
   
   [TestFixture]
-  public class OpenAccessTest
+  public class OpenAccessTest : ToolTestBase
   {
     protected IObjectScope scope;
     protected NorthwindContext db;
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    public override string ToolName {
+      get { return "Open Access"; }
+    }
+
+    public override string ShortToolName {
+      get { return "OA"; }
+    }
+
+    protected override void Setup()
     {
       scope = NorthwindContext.ObjectScope();
       db = NorthwindContext.CurrentContext;
@@ -122,12 +137,9 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("OpenAccess");
     }
 
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       scope.Dispose();
     }
@@ -139,13 +151,20 @@ namespace OrmBattle.Tests.Linq
   using LightSpeedModel.Northwind;
     
   [TestFixture]
-  public class LightSpeedTest
+  public class LightSpeedTest : ToolTestBase
   {
     protected LightSpeedContext<NorthwindUnitOfWork> context;
     protected NorthwindUnitOfWork db;
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    public override string ToolName {
+      get { return "LightSpeed"; }
+    }
+
+    public override string ShortToolName {
+      get { return "LH"; }
+    }
+
+    protected override void Setup()
     {
       context = new LightSpeedContext<NorthwindUnitOfWork>("LSNorthwind");
       db = context.CreateUnitOfWork();
@@ -154,12 +173,9 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("LightSpeed");
     }
 
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       db.Dispose();
     }
@@ -173,14 +189,21 @@ namespace OrmBattle.Tests.Linq
   using Xtensive.Storage.Configuration;
   
   [TestFixture]
-  public class DOTest
+  public class DOTest : ToolTestBase
   {
     protected NorthwindContext db;
     private DisposableSet disposables;
     private Domain domain;
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    public override string ToolName {
+      get { return "DataObjects.Net"; }
+    }
+
+    public override string ShortToolName {
+      get { return "DO"; }
+    }
+
+    protected override void Setup()
     {
       var config = DomainConfiguration.Load("mssql2005");
       config.Sessions.Add(new SessionConfiguration("Default"));
@@ -196,8 +219,6 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("DataObjects.Net");
     }
 
     private Domain BuildDomain(DomainConfiguration configuration)
@@ -216,8 +237,7 @@ namespace OrmBattle.Tests.Linq
       }
     }
     
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       disposables.DisposeSafely();
     }

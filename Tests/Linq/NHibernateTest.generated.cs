@@ -16,17 +16,24 @@ namespace OrmBattle.Tests.Linq
   using Configuration=NHibernate.Cfg.Configuration;
   
   [TestFixture]
-  public class NHibernateTest
+  public class NHibernateTest : ToolTestBase
   {
     protected NorthwindContext db;
     protected ISession session;
-    protected virtual string ConnectionStringName
-    {
+    
+    public override string ToolName {
+      get { return "NHibernate"; }
+    }
+
+    public override string ShortToolName {
+      get { return "NH"; }
+    }
+
+    protected virtual string ConnectionStringName {
       get { return "Northwind"; }
     }
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    protected override void Setup()
     {
       session = CreateSession();
       db = new NorthwindContext(session);
@@ -35,8 +42,6 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("NHibernate");
     }
 
     protected virtual ISession CreateSession()
@@ -49,8 +54,7 @@ namespace OrmBattle.Tests.Linq
       return factory.OpenSession(con);
     }
 
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       session.Connection.Dispose();
       session.Dispose();

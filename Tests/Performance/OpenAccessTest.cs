@@ -15,19 +15,25 @@ using OrmBattle.TelerikModel.PerformanceTest;
 namespace OrmBattle.Tests.Performance
 {
   [Serializable]
-  public class OpenAccessTest : TestBase
+  public class OpenAccessTest : PerformanceTestBase
   {
     private IObjectScope scope;
 
-    protected override void SetUp()
+    public override string ToolName {
+      get { return "OpenAccess"; }
+    }
+
+    public override string ShortToolName {
+      get { return "OA"; }
+    }
+
+    protected override void Setup()
     {
       using (var scope = PerformanceTestContext.ObjectScope()) {
         scope.Transaction.Begin();
         scope.Remove(scope.Extent<Simplest>().ToList());
         scope.Transaction.Commit();
       }
-
-      Console.Out.WriteLine("OpenAccess");
     }
 
     protected override void TearDown()

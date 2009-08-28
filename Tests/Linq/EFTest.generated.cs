@@ -14,12 +14,19 @@ namespace OrmBattle.Tests.Linq
   using EFModel;
   
   [TestFixture]
-  public class EFTest
+  public class EFTest : ToolTestBase
   {
     protected NorthwindEntities db;
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    public override string ToolName {
+      get { return "ADO.NET Entity Framework"; }
+    }
+
+    public override string ShortToolName {
+      get { return "EF"; }
+    }
+
+    protected override void Setup()
     {
       db = new NorthwindEntities();
       
@@ -27,12 +34,9 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("Entity Framework");
     }
 
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       db.Dispose();
     }

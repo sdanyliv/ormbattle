@@ -16,13 +16,20 @@ namespace OrmBattle.Tests.Linq
   using TelerikModel.Northwind;
   
   [TestFixture]
-  public class OpenAccessTest
+  public class OpenAccessTest : ToolTestBase
   {
     protected IObjectScope scope;
     protected NorthwindContext db;
 
-    [TestFixtureSetUp]
-    public virtual void Setup()
+    public override string ToolName {
+      get { return "Open Access"; }
+    }
+
+    public override string ShortToolName {
+      get { return "OA"; }
+    }
+
+    protected override void Setup()
     {
       scope = NorthwindContext.ObjectScope();
       db = NorthwindContext.CurrentContext;
@@ -31,12 +38,9 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
       Products = db.Products.ToList();
-      
-      Console.Out.WriteLine("OpenAccess");
     }
 
-    [TestFixtureTearDown]
-    public virtual void TearDown()
+    protected override void TearDown()
     {
       scope.Dispose();
     }

@@ -7,7 +7,6 @@
 using System;
 using System.Data;
 using System.Data.Objects;
-using System.Diagnostics;
 using OrmBattle.EFModel;
 using NUnit.Framework;
 using System.Linq;
@@ -15,11 +14,19 @@ using System.Linq;
 namespace OrmBattle.Tests.Performance
 {
   [Serializable]
-  public class EFTest : TestBase
+  public class EFTest : PerformanceTestBase
   {
     private PerformanceTestEntities dataContext;
 
-    protected override void SetUp()
+    public override string ToolName {
+      get { return "ADO.NET Entity Framework"; }
+    }
+
+    public override string ShortToolName {
+      get { return "EF"; }
+    }
+
+    protected override void Setup()
     {
       using (var dataContext = new PerformanceTestEntities()) {
         dataContext.Connection.Open();
@@ -30,7 +37,6 @@ namespace OrmBattle.Tests.Performance
           transaction.Commit();
         }
       }
-      Console.Out.WriteLine("Entity Framework");
     }
 
     protected override void TearDown()

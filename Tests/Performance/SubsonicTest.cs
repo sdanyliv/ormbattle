@@ -15,19 +15,25 @@ using SubSonic.Query;
 namespace OrmBattle.Tests.Performance
 {
   [Serializable]
-  public class SubsonicTest : TestBase
+  public class SubsonicTest : PerformanceTestBase
   {
     private PerformanceTestDB db;
     private SimplestRepository repo;
     private SharedDbConnectionScope scope;
 
-    protected override void SetUp()
+    public override string ToolName {
+      get { return "Subsonic"; }
+    }
+
+    public override string ShortToolName {
+      get { return "SS"; }
+    }
+
+    protected override void Setup()
     {
       db = new PerformanceTestDB();
       repo = new SimplestRepository(db);
       repo.DeleteMany(s => true);
-
-      Console.Out.WriteLine("Subsonic");
     }
 
     protected override void TearDown()
