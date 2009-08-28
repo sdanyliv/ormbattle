@@ -12,6 +12,8 @@ namespace OrmBattle.Tests
   [TestFixture]
   public abstract class ToolTestBase
   {
+    public Scorecard Scorecard { get; set; }
+
     public abstract string ToolName { get; }
     public abstract string ShortToolName { get; }
 
@@ -29,7 +31,16 @@ namespace OrmBattle.Tests
     public void BaseTearDown()
     {
       TearDown();
-      Console.WriteLine();
+      if (Scorecard==null)
+        Console.WriteLine();
+    }
+
+    protected void LogResult(string test, object result, string unit)
+    {
+      if (Scorecard!=null)
+        Scorecard.Add(ShortToolName, test, result);
+      else
+        Console.WriteLine("{0}: {1} {2}", test, result, unit);
     }
   }
 }

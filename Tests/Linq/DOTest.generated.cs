@@ -647,6 +647,7 @@ namespace OrmBattle.Tests.Linq
     }
 
     [Test]
+    [Category("Ordering")]
     public void OrderByPredicateTest()
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);

@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using OrmBattle.Tests;
 using OrmBattle.Tests.Performance;
 
 namespace OrmBattle.TestRunner
@@ -19,29 +20,55 @@ namespace OrmBattle.TestRunner
     {
       foreach (int baseCount in BaseCounts)
       {
-        Console.Out.WriteLine("Performance tests ({0}):", baseCount);
-        Console.Out.WriteLine();
+        Console.WriteLine("Performance tests ({0}):", baseCount);
+        Console.WriteLine();
+
+        var scorecard = new Scorecard();
+        scorecard.Tests.Add(PerformanceTestBase.CreateSingle);
+        scorecard.Tests.Add(PerformanceTestBase.UpdateSingle);
+        scorecard.Tests.Add(PerformanceTestBase.RemoveSingle);
+        scorecard.Tests.Add(PerformanceTestBase.CreateMultiple);
+        scorecard.Tests.Add(PerformanceTestBase.UpdateMultiple);
+        scorecard.Tests.Add(PerformanceTestBase.RemoveMultiple);
+        scorecard.Tests.Add(PerformanceTestBase.Fetch);
+        scorecard.Tests.Add(PerformanceTestBase.LinqQuery);
+        scorecard.Tests.Add(PerformanceTestBase.CompiledLinqQuery);
+        scorecard.Tests.Add(PerformanceTestBase.NativeQuery);
+        scorecard.Tests.Add(PerformanceTestBase.LinqMaterialize);
+        scorecard.Tests.Add(PerformanceTestBase.NativeMaterialize);
+
         var tests = new List<PerformanceTestBase> {
-                      new EFTest(),
-                      new DOTest(),
-//                      new LightSpeedTest(),
-//                      new NHibernateTest(),
-//                      new OpenAccessTest(),
-//                      new SubsonicTest(),
-                      new SqlClientTest(),
-                    };
+          new EFTest(),
+          new DOTest(),
+          new LightSpeedTest(),
+          new NHibernateTest(),
+          new OpenAccessTest(),
+          new SubsonicTest(),
+          new SqlClientTest(),
+        };
 
         foreach (var test in tests) {
           try {
+            test.Scorecard = scorecard;
             test.BaseCount = baseCount;
             test.BaseSetup();
             test.RegularTest();
           }
+          catch (Exception e) {
+            Console.WriteLine("Failed: {0}", e);
+            continue;
+          }
           finally {
-            test.BaseTearDown();
+            try {
+              test.BaseTearDown();
+            }
+            catch (Exception e) {
+              Console.WriteLine("BaseTearDown failed: {0}", e);
+            }
           }
         }
-        Console.Out.WriteLine();
+        Console.WriteLine(scorecard);
+        Console.WriteLine();
       }
     }
 

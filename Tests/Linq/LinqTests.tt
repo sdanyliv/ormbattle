@@ -244,6 +244,32 @@ namespace OrmBattle.Tests.Linq
   
 <# manager.EndBlock(); #>
 
+<# manager.StartBlock("DummyTest.generated.cs"); #>
+  using EFModel;
+  
+  [TestFixture]
+  public class DummyTest : ToolTestBase
+  {
+    protected NorthwindEntities db;
+
+    public override string ToolName {
+      get { return "Maximums"; }
+    }
+
+    public override string ShortToolName {
+      get { return "Max"; }
+    }
+
+    protected override void Setup()
+    {
+    }
+
+    protected override void TearDown()
+    {
+    }
+  
+<# manager.EndBlock(); #>
+
 <# manager.StartFooter(); #>
     List<Customer> Customers;
     List<Employee> Employees;
@@ -822,6 +848,7 @@ namespace OrmBattle.Tests.Linq
     }
 
     [Test]
+    [Category("Ordering")]
     public void OrderByPredicateTest()
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);

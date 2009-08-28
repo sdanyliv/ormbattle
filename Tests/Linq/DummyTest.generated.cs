@@ -14,33 +14,26 @@ namespace OrmBattle.Tests.Linq
   using EFModel;
   
   [TestFixture]
-  public class EFTest : ToolTestBase
+  public class DummyTest : ToolTestBase
   {
     protected NorthwindEntities db;
 
     public override string ToolName {
-      get { return "ADO.NET Entity Framework"; }
+      get { return "Maximums"; }
     }
 
     public override string ShortToolName {
-      get { return "EF"; }
+      get { return "Max"; }
     }
 
     protected override void Setup()
     {
-      db = new NorthwindEntities();
-      
-      Customers = db.Customers.ToList();
-      Employees = db.Employees.ToList();
-      Orders = db.Orders.ToList();
-      Products = db.Products.ToList();
     }
 
     protected override void TearDown()
     {
-      db.Dispose();
     }
-
+  
     List<Customer> Customers;
     List<Employee> Employees;
     List<Order> Orders;
