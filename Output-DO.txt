@@ -1,0 +1,219 @@
+Performance tests (50 items):
+Testing: DataObjects.Net (DO)
+Testing: ADO.NET Entity Framework (EF)
+Testing: NHibernate (NH)
+
+Performance tests (50 items) scorecard:
+                              DO      EF      NH
+CRUD performance:       
+  Fetch                     8734      85    6468
+  Single operation:     
+    Create Instance         6487    4166    3380
+    Update Instance         6197    3703    2799
+    Remove Instance         6678    4348    3024
+  Multiple operations:  
+    Create Instance        17779    8309   16091
+    Update Instance        14807    7147   13362
+    Remove Instance        25210    9259   14039
+Data access performance:
+  Query:                
+    LINQ Query              1493     463    1080
+    Compiled LINQ Query     7536    5082     n/a
+    Native Query            5993    6964    4386
+  Materialization:      
+    LINQ Materialize       70942   25099   21135
+    Native Materialize     78864   93773   32201
+                        
+
+Performance tests (100 items):
+Testing: DataObjects.Net (DO)
+Testing: ADO.NET Entity Framework (EF)
+Testing: NHibernate (NH)
+
+Performance tests (100 items) scorecard:
+                              DO      EF      NH
+CRUD performance:       
+  Fetch                     9133    1290    6982
+  Single operation:     
+    Create Instance         7572    4868    3824
+    Update Instance         7302    4242    2802
+    Remove Instance         7527    5040    3266
+  Multiple operations:  
+    Create Instance        23643    8800   18115
+    Update Instance        26894    7718   15065
+    Remove Instance        28142   10023   16075
+Data access performance:
+  Query:                
+    LINQ Query              1526     480    1150
+    Compiled LINQ Query     7593    5742     n/a
+    Native Query            7188    8190    4942
+  Materialization:      
+    LINQ Materialize       95286   46953   27718
+    Native Materialize    108108  159744   39859
+                        
+
+Performance tests (500 items):
+Testing: DataObjects.Net (DO)
+Testing: ADO.NET Entity Framework (EF)
+Testing: NHibernate (NH)
+
+Performance tests (500 items) scorecard:
+                              DO      EF      NH
+CRUD performance:       
+  Fetch                     9787    3893    7390
+  Single operation:     
+    Create Instance         7237    4665    3737
+    Update Instance         9386    4999    1455
+    Remove Instance         9927    5871    2236
+  Multiple operations:  
+    Create Instance        19622    6944   14522
+    Update Instance        32300    7100   16791
+    Remove Instance        40415    8760   18229
+Data access performance:
+  Query:                
+    LINQ Query              1486     463    1135
+    Compiled LINQ Query     7858    6444     n/a
+    Native Query            9547    9502    5485
+  Materialization:      
+    LINQ Materialize      209338  167193   37803
+    Native Materialize    252257  377729   49157
+                        
+
+Performance tests (1000 items):
+Testing: DataObjects.Net (DO)
+Testing: ADO.NET Entity Framework (EF)
+Testing: NHibernate (NH)
+
+Performance tests (1000 items) scorecard:
+                              DO      EF      NH
+CRUD performance:       
+  Fetch                     9976    5210    7443
+  Single operation:     
+    Create Instance         9591    4793    3799
+    Update Instance         9975    4645     909
+    Remove Instance        10583    6122    1499
+  Multiple operations:  
+    Create Instance        17130    6879   12726
+    Update Instance        32189    6670   17088
+    Remove Instance        40827   10267   18533
+Data access performance:
+  Query:                
+    LINQ Query              1523     468    1164
+    Compiled LINQ Query     7678    6376     n/a
+    Native Query            9946    9687    5513
+  Materialization:      
+    LINQ Materialize      241973  237192   39425
+    Native Materialize    295246  439947   51014
+                        
+
+Performance tests (5000 items):
+Testing: DataObjects.Net (DO)
+Testing: ADO.NET Entity Framework (EF)
+Testing: NHibernate (NH)
+
+Performance tests (5000 items) scorecard:
+                              DO      EF      NH
+CRUD performance:       
+  Fetch                     9736    6920    7313
+  Single operation:     
+    Create Instance         9300    4721    3760
+    Update Instance         9900    4975     219
+    Remove Instance        10406    6096     419
+  Multiple operations:  
+    Create Instance        21611    5744   18365
+    Update Instance        27240    6040   16660
+    Remove Instance        39965    8574   18075
+Data access performance:
+  Query:                
+    LINQ Query              1533     486    1181
+    Compiled LINQ Query     7752    6530     n/a
+    Native Query            9950    9552    5531
+  Materialization:      
+    LINQ Materialize      333081  472855   38793
+    Native Materialize    397813  629754   48329
+                        
+
+Performance tests (10000 items):
+Testing: DataObjects.Net (DO)
+Testing: ADO.NET Entity Framework (EF)
+Testing: NHibernate (NH)
+
+Performance tests (10000 items) scorecard:
+                              DO      EF      NH
+CRUD performance:       
+  Fetch                     9849    7362    7319
+  Single operation:     
+    Create Instance         9434    4973    3893
+    Update Instance         9835    5076     112
+    Remove Instance        10543    6189     220
+  Multiple operations:  
+    Create Instance        22701    6740   18891
+    Update Instance        31398    5899   16615
+    Remove Instance        38697    8489   17997
+Data access performance:
+  Query:                
+    LINQ Query              1496     487    1184
+    Compiled LINQ Query     7762    6548     n/a
+    Native Query           10188    9821    5473
+  Materialization:      
+    LINQ Materialize      248869  518506   37785
+    Native Materialize    281071  649662   49904
+                        
+
+Performance tests (30000 items):
+Testing: DataObjects.Net (DO)
+Testing: ADO.NET Entity Framework (EF)
+Testing: NHibernate (NH)
+
+Performance tests (30000 items) scorecard:
+                              DO      EF      NH
+CRUD performance:       
+  Fetch                     9815    7655    7274
+  Single operation:     
+    Create Instance         9420    5327    3821
+    Update Instance         9781    5056      37
+    Remove Instance        10466    6252      76
+  Multiple operations:  
+    Create Instance        26638    6303   21070
+    Update Instance        31127    5762   16398
+    Remove Instance        38094    8441   17635
+Data access performance:
+  Query:                
+    LINQ Query              1477     487    1181
+    Compiled LINQ Query     7774    6579     n/a
+    Native Query           10210    9799    5506
+  Materialization:      
+    LINQ Materialize      251309  488001   36639
+    Native Materialize    279617  570599   45764
+                        
+
+LINQ tests:
+Testing: DataObjects.Net (DO)
+Testing: ADO.NET Entity Framework (EF)
+Testing: NHibernate (NH)
+
+LINQ tests scorecard:
+                              DO      EF      NH
+LINQ Implementation:    
+  Aggregates                   0       0       3
+  All/Any/Contains             2       3     4/2
+  Complex                      0       1       6
+  Element operations           2       4       6
+  Filtering                    0     4/2     6/1
+  Grouping                     0       1    10/2
+  Join                         0       1       4
+  Ordering                     0     3/2       6
+  Projections                  2       2     6/1
+  References                   0       0       3
+  Set operations               0       0     6/2
+  Standard functions           0       9      16
+  Take/Skip                    0       1     2/1
+  Type casts                   0       1       4
+Total:                  
+  Performed                  117     117     117
+  Passed                     111      87      35
+  Failed                       6      30      82
+    Properly                   6      26      73
+    Asserted                   0       4       9
+  Score, %                  94,9    74,4    29,9
+

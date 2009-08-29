@@ -1,245 +1,234 @@
-Performance tests (50):
-
+Performance tests (50 items):
 Testing: ADO.NET Entity Framework (EF)
-Testing: DataObjects.Net (DO)
 Testing: LightSpeed (LS)
 Testing: NHibernate (NH)
 Testing: OpenAccess (OA)
 Testing: Subsonic (SS)
-Testing: SqlClient (SQL)
 
-Scorecard:
-                              EF      DO      LS      NH      OA      SS     SQL
-Create Single               4584    6321    5244    3354     n/a    3677   10997
-Update Single               4097    5709    5876    2752     n/a    1892   10055
-Remove Single               4770    5924    5724    3003     n/a    1298   10093
-                                                                                
-Create Multiple             7809   20380   12328   15776   11874    3787   39212
-Update Multiple             7307   14042   10254   13224    8843    3473   41155
-Remove Multiple             9605   20748   21775   13771   31885    3656   44341
-                                                                                
-Fetch                         69    8598    5072    6590    2435    8597   17156
-                                                                                
-LINQ Query                   564    1467     272    1115    2843     354     n/a
-Compiled LINQ Query         5296    7394     n/a     n/a    4152     n/a     n/a
-Native Query                7487    5596    2009    4371    5610    6237   12253
-                                                                                
-LINQ Materialize           28167   60127   62012   21378   46027   13249     n/a
-Native Materialize        113224   65087   98116   32291   89381   40873  166278
+Performance tests (50 items) scorecard:
+                              EF      LS      NH      OA      SS
+CRUD performance:       
+  Fetch                       69    5261    6785    2461    8458
+  Single operation:     
+    Create Instance         4572    5848    3562     n/a    3689
+    Update Instance         4018    5973    2938     n/a    1903
+    Remove Instance         4393    6726    3164     n/a    2015
+  Multiple operations:  
+    Create Instance         1471   12786   16263   13808    3800
+    Update Instance         7255   10606   13342    9070    3419
+    Remove Instance         9608   23495   14559   33944    3683
+Data access performance:
+  Query:                
+    LINQ Query               564     279    1136    3795     355
+    Compiled LINQ Query     5447     n/a     n/a    4271     n/a
+    Native Query            7491    2092    4731    5947    6275
+  Materialization:      
+    LINQ Materialize       27669   87175   23002   50456   13570
+    Native Materialize    116686  144383   35453  113378   42416
+                        
 
-
-Performance tests (100):
-
+Performance tests (100 items):
 Testing: ADO.NET Entity Framework (EF)
-Testing: DataObjects.Net (DO)
 Testing: LightSpeed (LS)
 Testing: NHibernate (NH)
 Testing: OpenAccess (OA)
 Testing: Subsonic (SS)
-Testing: SqlClient (SQL)
 
-Scorecard:
-                              EF      DO      LS      NH      OA      SS     SQL
-Create Single               4795    7389    6040    3751     n/a    3738   14352
-Update Single               4297    7268    7145    2707     n/a    2599   13210
-Remove Single               5047    7528    6935    3172     n/a    2732   13548
-                                                                                
-Create Multiple             8771   22906   13300   17664   14990    3814     485
-Update Multiple             7518   26544   27950   14794   13708    3804   51572
-Remove Multiple            10007   30713   25211   15666   41373    4005   57517
-                                                                                
-Fetch                       1290    9225    5111    6971    6322    8976   19004
-                                                                                
-LINQ Query                   572    1559     262    1160    3923     362     n/a
-Compiled LINQ Query         5817    7469     n/a     n/a    4319     n/a     n/a
-Native Query                7863    7233    2040    4957    6104    6710   14909
-                                                                                
-LINQ Materialize           44844   95556  105238   27910   75331   21259     n/a
-Native Materialize        155908  110180  156445   40475  134661   47551  297619
+Performance tests (100 items) scorecard:
+                              EF      LS      NH      OA      SS
+CRUD performance:       
+  Fetch                     1285    5200    7066    6431    8987
+  Single operation:     
+    Create Instance         4798    6197    3846     n/a    3805
+    Update Instance         4358    7570    2803     n/a    2663
+    Remove Instance         5191    6912    3233     n/a    2780
+  Multiple operations:  
+    Create Instance         8686   13123   17912   14872    3911
+    Update Instance         7599   27274   15105   13803    3363
+    Remove Instance        10184   26282   15838   43099    4094
+Data access performance:
+  Query:                
+    LINQ Query               575     267    1170    3938     363
+    Compiled LINQ Query     5863     n/a     n/a    4324     n/a
+    Native Query            8261    2079    4922    6227    6757
+  Materialization:      
+    LINQ Materialize       47810  125472   28663   80445   21619
+    Native Materialize    166168  178635   40494  149298   48190
+                        
 
-
-Performance tests (500):
-
+Performance tests (500 items):
 Testing: ADO.NET Entity Framework (EF)
-Testing: DataObjects.Net (DO)
 Testing: LightSpeed (LS)
 Testing: NHibernate (NH)
 Testing: OpenAccess (OA)
 Testing: Subsonic (SS)
-Testing: SqlClient (SQL)
 
-Scorecard:
-                              EF      DO      LS      NH      OA      SS     SQL
-Create Single               4642    7158    6294    3411     n/a    3045   11545
-Update Single               4956    9397    7140    1359     n/a    3812   17320
-Remove Single               5970    9839    6854    2148     n/a    4071   18052
-                                                                                
-Create Multiple             6577   19377   14225   14271   15628    2831   28269
-Update Multiple             7090   32221   34100   16443   15049    4153   64752
-Remove Multiple             9328   39482   32024   17925   56409    4580   75345
-                                                                                
-Fetch                       3878    9693    5386    7503    6495    9468   21141
-                                                                                
-LINQ Query                   561    1496     269    1154    4181     350     n/a
-Compiled LINQ Query         6435    7760     n/a     n/a    4053     n/a     n/a
-Native Query                9599    9598    2163    5497    5704    7336   17754
-                                                                                
-LINQ Materialize          161417  216378  293338   38271  159392   41244     n/a
-Native Materialize        355063  258585  389741   51376  215090   54369  861326
+Performance tests (500 items) scorecard:
+                              EF      LS      NH      OA      SS
+CRUD performance:       
+  Fetch                     3890    5334    7333    6569    9367
+  Single operation:     
+    Create Instance         4658    6188    3725     n/a    3146
+    Update Instance         5027    6875    1423     n/a    3824
+    Remove Instance         5998    6528    2235     n/a    4140
+  Multiple operations:  
+    Create Instance         6788   14272   14482   15259    3033
+    Update Instance         7156   34055   16915   14873    4144
+    Remove Instance         9292   32014   18204   56625    4598
+Data access performance:
+  Query:                
+    LINQ Query               559     269    1183    4179     355
+    Compiled LINQ Query     6444     n/a     n/a    4164     n/a
+    Native Query            9591    2149    5494    6488    7310
+  Materialization:      
+    LINQ Materialize      166254  296273   38158  160326   41320
+    Native Materialize    378043  349870   50003  219355   53994
+                        
 
-
-Performance tests (1000):
-
+Performance tests (1000 items):
 Testing: ADO.NET Entity Framework (EF)
-Testing: DataObjects.Net (DO)
 Testing: LightSpeed (LS)
 Testing: NHibernate (NH)
 Testing: OpenAccess (OA)
 Testing: Subsonic (SS)
-Testing: SqlClient (SQL)
 
-Scorecard:
-                              EF      DO      LS      NH      OA      SS     SQL
-Create Single               4770    7400    5142    3716     n/a    2875   12020
-Update Single               4743    9745    5000     839     n/a    4048   18297
-Remove Single               6181   10315    4967    1415     n/a    4316   18846
-                                                                                
-Create Multiple             6834   16851   12941   20603   15885    2626   22232
-Update Multiple             6679   34112   30036   16949   15226    4062   67788
-Remove Multiple            10267   41420   28420   18510   61516    4516   81404
-                                                                                
-Fetch                       5175    9925    5193    7502    6560    8971   21447
-                                                                                
-LINQ Query                   565    1578     270    1180    4219     356     n/a
-Compiled LINQ Query         6391    7523     n/a     n/a    4161     n/a     n/a
-Native Query                9742    9982    2066    5491    6504    7357   17900
-                                                                                
-LINQ Materialize          227362  252985  349047   40293  188009   47115     n/a
-Native Materialize        397819  310000  392958   53419  236955   55776  965623
+Performance tests (1000 items) scorecard:
+                              EF      LS      NH      OA      SS
+CRUD performance:       
+  Fetch                     5202    5265    7409    6611    9159
+  Single operation:     
+    Create Instance         4761    5210    3771     n/a    3072
+    Update Instance         4617    5068     893     n/a    4037
+    Remove Instance         6108    4971    1488     n/a    4417
+  Multiple operations:  
+    Create Instance         6888   12833   12576   15770    2647
+    Update Instance         6749   30625   17161   15269    4165
+    Remove Instance        10401   29485   18620   61767    4525
+Data access performance:
+  Query:                
+    LINQ Query               564     270    1201    4219     357
+    Compiled LINQ Query     6439     n/a     n/a    4187     n/a
+    Native Query            9775    2112    5477    6166    7305
+  Materialization:      
+    LINQ Materialize      232896  372015   39643  188795   47177
+    Native Materialize    437502  396353   51800  228534   54761
+                        
 
-
-Performance tests (5000):
-
+Performance tests (5000 items):
 Testing: ADO.NET Entity Framework (EF)
-Testing: DataObjects.Net (DO)
 Testing: LightSpeed (LS)
 Testing: NHibernate (NH)
 Testing: OpenAccess (OA)
 Testing: Subsonic (SS)
-Testing: SqlClient (SQL)
 
-Scorecard:
-                              EF      DO      LS      NH      OA      SS     SQL
-Create Single               4734    9040    2849    3726     n/a    2464   12291
-Update Single               5110    9755    1886     205     n/a    3991   19278
-Remove Single               6227   10291    1906     396     n/a    4463   20111
-                                                                                
-Create Multiple             6808   20979   12553   18222   15435    2848   22123
-Update Multiple             6168   31124   26659   16646   14763    3953   69462
-Remove Multiple             8643   39454   28451   17943   57331    4381   82448
-                                                                                
-Fetch                       6952    9748    5249    7369    6274    9377   22037
-                                                                                
-LINQ Query                   574    1559     270    1201    4128     356     n/a
-Compiled LINQ Query         6511    7655     n/a     n/a    4195     n/a     n/a
-Native Query                9701    9819    2103    5488    6185    7251   19013
-                                                                                
-LINQ Materialize          455365  352449  612522   39516  159252   53416     n/a
-Native Materialize        598272  418490  620809   49721  176634   57389 1463100
+Performance tests (5000 items) scorecard:
+                              EF      LS      NH      OA      SS
+CRUD performance:       
+  Fetch                     6978    5286    7253    6236    9497
+  Single operation:     
+    Create Instance         4753    2627    3803     n/a    3413
+    Update Instance         5105    1731     217     n/a    4158
+    Remove Instance         6200    1761     417     n/a    4569
+  Multiple operations:  
+    Create Instance         7263    8681   12543   15459    3107
+    Update Instance         6208   27948   16878   14939    4081
+    Remove Instance         8847   28556   18215   58567    4508
+Data access performance:
+  Query:                
+    LINQ Query               568     271    1201    4089     358
+    Compiled LINQ Query     6498     n/a     n/a    4197     n/a
+    Native Query            9755    2113    5487    6325    7394
+  Materialization:      
+    LINQ Materialize      389410  515712   39845  175668   53004
+    Native Materialize    591940  540108   49998  195132   56555
+                        
 
-
-Performance tests (10000):
-
+Performance tests (10000 items):
 Testing: ADO.NET Entity Framework (EF)
-Testing: DataObjects.Net (DO)
 Testing: LightSpeed (LS)
 Testing: NHibernate (NH)
 Testing: OpenAccess (OA)
 Testing: Subsonic (SS)
-Testing: SqlClient (SQL)
 
-Scorecard:
-                              EF      DO      LS      NH      OA      SS     SQL
-Create Single               4881    9177    1679    3738     n/a    2544   12288
-Update Single               5062    9837    1039     105     n/a    3915   19511
-Remove Single               6221   10431    1061     207     n/a    4410   20203
-                                                                                
-Create Multiple             6338   22097   11997   18308   15042    2580   20270
-Update Multiple             5870   30934   19444   16646   13673    3788   69718
-Remove Multiple             8427   38267   25233   17865   47793    4205   86196
-                                                                                
-Fetch                       7316    9770    5267    7349    6233    9423   22081
-                                                                                
-LINQ Query                   484    1526     270    1199    4108     357     n/a
-Compiled LINQ Query         6487    7667     n/a     n/a    4199     n/a     n/a
-Native Query                9872   10127    2120    5439    6323    7248   18529
-                                                                                
-LINQ Materialize          493474  254731  416569   38689  189576   53039     n/a
-Native Materialize        620917  291533  411714   52223  200615   55920 2165252
+Performance tests (10000 items) scorecard:
+                              EF      LS      NH      OA      SS
+CRUD performance:       
+  Fetch                     7358    5281    7334    6291    9503
+  Single operation:     
+    Create Instance         4868    1619    3760     n/a    3181
+    Update Instance         5098     954     112     n/a    4034
+    Remove Instance         6298     965     219     n/a    4436
+  Multiple operations:  
+    Create Instance         5727   12174   18511   15132    2828
+    Update Instance         6003   26056   16662   13420    3929
+    Remove Instance         8588   25977   18063   48411    4424
+Data access performance:
+  Query:                
+    LINQ Query               574     271    1205    4084     359
+    Compiled LINQ Query     6475     n/a     n/a    4167     n/a
+    Native Query            9883    2122    5531    6361    7460
+  Materialization:      
+    LINQ Materialize      494159  383863   38598  200299   52926
+    Native Materialize    618153  391116   51351  222367   55630
+                        
 
-
-Performance tests (30000):
-
+Performance tests (30000 items):
 Testing: ADO.NET Entity Framework (EF)
-Testing: DataObjects.Net (DO)
 Testing: LightSpeed (LS)
 Testing: NHibernate (NH)
 Testing: OpenAccess (OA)
 Testing: Subsonic (SS)
-Testing: SqlClient (SQL)
 
-Scorecard:
-                              EF      DO      LS      NH      OA      SS     SQL
-Create Single               4740    9367     512    3776     n/a    2290   12354
-Update Single               4831    9756     224      35     n/a    3995   19555
-Remove Single               6220   10305     230      70     n/a    4062   20223
-                                                                                
-Create Multiple             6203   24641   11891   19954   13271    2175   40888
-Update Multiple             5796   30850   23911   16433   12158    3725   68346
-Remove Multiple             8423   37680   25712   17779   42814    4074   85943
-                                                                                
-Fetch                       7593    9766    5243    7328    6247    9606   21981
-                                                                                
-LINQ Query                   485    1508     269    1201    4112     350     n/a
-Compiled LINQ Query         6508    7694     n/a     n/a    4179     n/a     n/a
-Native Query                9816   10279    2110    5540    6265    7375   19220
-                                                                                
-LINQ Materialize          471889  259134  392690   37426  119858   54009     n/a
-Native Materialize        560221  293501  387280   47522  124370   56096 2285801
-
+Performance tests (30000 items) scorecard:
+                              EF      LS      NH      OA      SS
+CRUD performance:       
+  Fetch                     7621    5248    7250    6279    9599
+  Single operation:     
+    Create Instance         4765     484    3813     n/a    3075
+    Update Instance         5086     227      37     n/a    4033
+    Remove Instance         6252     230      74     n/a    4412
+  Multiple operations:  
+    Create Instance         6830   11973   20057   13676    2242
+    Update Instance         5857   24647   16465   12636    3703
+    Remove Instance         8310   25732   17823   43186    4103
+Data access performance:
+  Query:                
+    LINQ Query               502     270    1200    4083     351
+    Compiled LINQ Query     6517     n/a     n/a    4166     n/a
+    Native Query            9906    2115    5525    6276    7464
+  Materialization:      
+    LINQ Materialize      480876  353547   37160  113867   53123
+    Native Materialize    575842  355264   47754  119403   54909
+                        
 
 LINQ tests:
-
 Testing: ADO.NET Entity Framework (EF)
-Testing: DataObjects.Net (DO)
 Testing: LightSpeed (LS)
 Testing: NHibernate (NH)
 Testing: Open Access (OA)
-Testing: Maximum (Maximum)
 
-Scorecard:
-                              EF      DO      LS      NH      OA Maximum
-Aggregates                     0       0       3       3       1       5
-All/Any/Contains               3       2       6     4/2       4       6
-Complex                        1       0       6       6       6       6
-Element operations             4       2       6       6       5       9
-Filtering                    4/2       0     5/5     6/1       2      12
-Grouping                       1       0      10    10/2       5      10
-Join                           1       0       4       4       4       4
-Ordering                     3/2       0     5/1       6       6       8
-Projections                    2       2     9/2     6/1     8/1      13
-References                     0       0       4       3       2       4
-Set operations                 0       0     5/1     6/2       9       9
-Standard functions             9       0       8      16      11      21
-Take/Skip                      1       0     2/1     2/1       2       5
-Type casts                     1       0     3/1       4       2       5
-                                                                        
-Totals:                                                                 
-  All                        117     117     117     117     117     117
-  Passed                      87     111      41      35      50     117
-  Failed                      30       6      76      82      67     117
-    Properly                  26       6      65      73      66       0
-    Asserted                   4       0      11       9       1     117
-  Score, %                  74,4    94,9    35,0    29,9    42,7   100,0
-
+LINQ tests scorecard:
+                              EF      LS      NH      OA
+LINQ Implementation:    
+  Aggregates                   0       3       3       1
+  All/Any/Contains             3       6     4/2       4
+  Complex                      1       6       6       6
+  Element operations           4       6       6       5
+  Filtering                  4/2     5/5     6/1       2
+  Grouping                     1      10    10/2       5
+  Join                         1       4       4       4
+  Ordering                   3/2     5/1       6       6
+  Projections                  2     9/2     6/1     8/1
+  References                   0       4       3       2
+  Set operations               0     5/1     6/2       9
+  Standard functions           9       8      16      11
+  Take/Skip                    1     2/1     2/1       2
+  Type casts                   1     3/1       4       2
+Total:                  
+  Performed                  117     117     117     117
+  Passed                      87      41      35      50
+  Failed                      30      76      82      67
+    Properly                  26      65      73      66
+    Asserted                   4      11       9       1
+  Score, %                  74,4    35,0    29,9    42,7
 
