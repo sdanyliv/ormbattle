@@ -10,7 +10,6 @@ using System.Linq;
 using OrmBattle.Tests;
 using OrmBattle.Tests.Performance;
 using Xtensive.Core.Helpers;
-using Xtensive.Core.Collections;
 
 namespace OrmBattle.TestRunner
 {
@@ -19,37 +18,43 @@ namespace OrmBattle.TestRunner
   {
     private const string PiArgMarker = "-pi:";
     private const string PtArgMarker = "-pt:";
-    public static int[] DefaultBaseCounts = new[] {50, 100, 500, 1000, 5000, 10000, 30000};
-    public int[] BaseCounts;
-    
+    private const string Indent = "  ";
+    private const string Indent2 = Indent + Indent;
+    public static int[] DefaultItemCounts = new[] {50, 100, 500, 1000, 5000, 10000, 30000};
+    public int[] ItemCounts;
+
+    /// <summary>
+    /// Runs this instance.
+    /// </summary>
     public void Run()
     {
-      HashSet<string> toolNames = Program.ToolNames;
+      var toolNames = Program.ToolNames;
       string ptArg = Program.Args.Where(a => a.StartsWith(PtArgMarker)).SingleOrDefault();
       if (ptArg!=null) {
         ptArg = ptArg.Remove(0, PtArgMarker.Length);
-        toolNames = ptArg.RevertibleSplit('/', ',').ToHashSet();
+        toolNames = ptArg.RevertibleSplit('/', ',').Distinct().ToList();
       }
 
-      foreach (int baseCount in BaseCounts)
-      {
+      foreach (int itemCount in ItemCounts) {
         var scorecard = new Scorecard();
-        scorecard.Tests.Add(PerformanceTestBase.CreateSingle);
-        scorecard.Tests.Add(PerformanceTestBase.UpdateSingle);
-        scorecard.Tests.Add(PerformanceTestBase.RemoveSingle);
-        scorecard.Tests.Add(string.Empty);
-        scorecard.Tests.Add(PerformanceTestBase.CreateMultiple);
-        scorecard.Tests.Add(PerformanceTestBase.UpdateMultiple);
-        scorecard.Tests.Add(PerformanceTestBase.RemoveMultiple);
-        scorecard.Tests.Add(string.Empty);
-        scorecard.Tests.Add(PerformanceTestBase.Fetch);
-        scorecard.Tests.Add(string.Empty);
-        scorecard.Tests.Add(PerformanceTestBase.LinqQuery);
-        scorecard.Tests.Add(PerformanceTestBase.CompiledLinqQuery);
-        scorecard.Tests.Add(PerformanceTestBase.NativeQuery);
-        scorecard.Tests.Add(string.Empty);
-        scorecard.Tests.Add(PerformanceTestBase.LinqMaterialize);
-        scorecard.Tests.Add(PerformanceTestBase.NativeMaterialize);
+        scorecard.RegisterTest("CRUD performance:");
+        scorecard.RegisterTest(Indent + PerformanceTestBase.Fetch);
+        scorecard.RegisterTest(Indent + "Single operation:");
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.CreateSingle);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.UpdateSingle);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.RemoveSingle);
+        scorecard.RegisterTest(Indent + "Multiple operations:");
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.CreateMultiple);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.UpdateMultiple);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.RemoveMultiple);
+        scorecard.RegisterTest("Data access performance:");
+        scorecard.RegisterTest(Indent + "Query:");
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQuery);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.CompiledLinqQuery);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.NativeQuery);
+        scorecard.RegisterTest(Indent + "Materialization:");
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqMaterialize);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.NativeMaterialize);
 
         var tests = new List<PerformanceTestBase> {
           new EFTest(),
@@ -61,16 +66,23 @@ namespace OrmBattle.TestRunner
           new SqlClientTest(),
         };
         if (toolNames!=null)
-          tests = tests.Where(t => toolNames.Contains(t.ShortToolName.ToLower())).ToList();
+          tests = (
+            from test in tests
+            let shortToolName = test.ShortToolName.ToLower()
+            let toolIndex = toolNames.IndexOf(shortToolName) 
+            where toolIndex>=0
+            orderby toolIndex
+            select test).ToList();
         if (tests.Count==0)
           return;
 
-        Console.WriteLine("Performance tests ({0}):", baseCount);
+        string sequenceName = string.Format("Performance tests ({0} items)", itemCount);
+        Console.WriteLine("{0}:", sequenceName);
 
         foreach (var test in tests) {
           try {
             test.Scorecard = scorecard;
-            test.BaseCount = baseCount;
+            test.BaseCount = itemCount;
             test.BaseSetup();
             test.RegularTest();
           }
@@ -88,9 +100,8 @@ namespace OrmBattle.TestRunner
           }
         }
         Console.WriteLine();
-        Console.WriteLine("Scorecard:");
+        Console.WriteLine("{0} scorecard:", sequenceName);
         Console.WriteLine(scorecard);
-        Console.WriteLine();
       }
     }
 
@@ -98,10 +109,10 @@ namespace OrmBattle.TestRunner
     {
       string piArg = Program.Args.Where(a => a.StartsWith(PiArgMarker)).SingleOrDefault();
       if (piArg==null)
-        BaseCounts = DefaultBaseCounts;
+        ItemCounts = DefaultItemCounts;
       else {
         piArg = piArg.Remove(0, PiArgMarker.Length);
-        BaseCounts = piArg.RevertibleSplit('/', ',').Select(s => int.Parse(s)).ToArray();
+        ItemCounts = piArg.RevertibleSplit('/', ',').Select(s => int.Parse(s)).ToArray();
       }
     }
   }

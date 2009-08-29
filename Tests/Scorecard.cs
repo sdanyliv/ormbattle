@@ -7,7 +7,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using Xtensive.Core;
+using Xtensive.Core.Helpers;
 
 namespace OrmBattle.Tests
 {
@@ -16,10 +18,12 @@ namespace OrmBattle.Tests
   {
     public List<string> Tools { get; private set; }
     public List<string> Tests { get; private set; }
+    public Dictionary<string, int> Indents { get; private set; }
     public Dictionary<Pair<string, string>, object> Results { get; private set; }
 
     public void Add(string tool, string test, object result)
     {
+      test = ExtractIndent(test, true);
       if (!Tools.Contains(tool))
         Tools.Add(tool);
       if (!Tests.Contains(test))
@@ -28,8 +32,14 @@ namespace OrmBattle.Tests
       Results.Add(key, result);
     }
 
+    public void RegisterTest(string test)
+    {
+      Tests.Add(ExtractIndent(test, true));
+    }
+
     public void Set(string tool, string test, object result)
     {
+      test = ExtractIndent(test, true);
       if (!Tools.Contains(tool))
         Tools.Add(tool);
       if (!Tests.Contains(test))
@@ -40,8 +50,31 @@ namespace OrmBattle.Tests
 
     public object Get(string tool, string test)
     {
+      test = ExtractIndent(test, false);
       var key = new Pair<string, string>(test, tool);
       return Results.ContainsKey(key) ? Results[key] : null;
+    }
+
+    protected string Indent(string test)
+    {
+      test = test ?? string.Empty;
+      if (!Indents.ContainsKey(test))
+        return test;
+      else
+        return test.Indent(2 * Indents[test]);
+    }
+
+    private string ExtractIndent(string test, bool setIndent)
+    {
+      test = test ?? string.Empty;
+      string trimmedTest = test.TrimStart(' ');
+      int indent = (test.Length - trimmedTest.Length) / 2;
+      int oldIndent = 0;
+      if (Indents.ContainsKey(trimmedTest))
+        oldIndent = Indents[trimmedTest];
+      if (setIndent && oldIndent<indent)
+        Indents[trimmedTest] = indent;
+      return trimmedTest;
     }
 
     public override string ToString()
@@ -52,12 +85,20 @@ namespace OrmBattle.Tests
         AppendTool(sb, tool);
       sb.AppendLine();
       foreach (var test in Tests) {
-        AppendTest(sb, test);
-        foreach (var tool in Tools)
-          AppendResult(sb, Get(tool, test));
+        AppendTest(sb, GetPrintableTestName(Indent(test)));
+        if (!(test.IsNullOrEmpty() || test.EndsWith(":")))
+          foreach (var tool in Tools)
+            AppendResult(sb, Get(tool, test));
         sb.AppendLine();
       }
       return sb.ToString();
+    }
+
+    protected virtual string GetPrintableTestName(string test)
+    {
+      var testName = (test ?? string.Empty);
+      testName = Regex.Replace(testName, @"^([^(]*)( \([^)]+\))?([^()]*)$", "${1}${3}");
+      return testName;
     }
 
     protected virtual void AppendTool(StringBuilder sb, string tool)
@@ -80,6 +121,7 @@ namespace OrmBattle.Tests
     {
       Tools = new List<string>();
       Tests = new List<string>();
+      Indents = new Dictionary<string, int>();
       Results = new Dictionary<Pair<string, string>, object>();
     }
   }
