@@ -15,18 +15,18 @@ namespace OrmBattle.Tests.Performance
   public abstract class PerformanceTestBase : ToolTestBase
   {
     public const string BaseUnit = "op/s";
-    public const string CompiledLinqQuery = "Compiled LINQ Query";
-    public const string CreateMultiple = "Create Multiple";
-    public const string CreateSingle = "Create Single";
+    public const string CreateMultiple = "Create (Multiple)";
+    public const string CreateSingle = "Create (Single)";
+    public const string UpdateMultiple = "Update (Multiple)";
+    public const string UpdateSingle = "Update (Single)";
+    public const string RemoveMultiple = "Remove (Multiple)";
+    public const string RemoveSingle = "Remove (Single)";
     public const string Fetch = "Fetch";
-    public const string LinqMaterialize = "LINQ Materialize";
     public const string LinqQuery = "LINQ Query";
-    public const string NativeMaterialize = "Native Materialize";
+    public const string CompiledLinqQuery = "Compiled LINQ Query";
     public const string NativeQuery = "Native Query";
-    public const string RemoveMultiple = "Remove Multiple";
-    public const string RemoveSingle = "Remove Single";
-    public const string UpdateMultiple = "Update Multiple";
-    public const string UpdateSingle = "Update Single";
+    public const string LinqMaterialize = "LINQ Materialize";
+    public const string NativeMaterialize = "Native Materialize";
 
     public int BaseCount = 1000;
     public int WarmupCount = 10000;

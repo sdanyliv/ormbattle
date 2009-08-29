@@ -24,15 +24,17 @@ namespace OrmBattle.TestRunner
   public class LinqTestRunner
   {
     private const string LtArgMarker = "-lt:";
+    private const string Indent = "  ";
+    private const string Indent2 = Indent + Indent;
     private LinqScorecard scorecard;
 
     public void Run()
     {
-      HashSet<string> toolNames = Program.ToolNames;
+      var toolNames = Program.ToolNames;
       string ltArg = Program.Args.Where(a => a.StartsWith(LtArgMarker)).SingleOrDefault();
       if (ltArg!=null) {
         ltArg = ltArg.Remove(0, LtArgMarker.Length);
-        toolNames = ltArg.RevertibleSplit('/', ',').ToHashSet();
+        toolNames = ltArg.RevertibleSplit('/', ',').Distinct().ToList();;
       }
 
       scorecard = new LinqScorecard();
@@ -45,11 +47,18 @@ namespace OrmBattle.TestRunner
         new MaximumTest()
       };
       if (toolNames!=null)
-        tests = tests.Where(t => toolNames.Contains(t.ShortToolName.ToLower())).ToList();
+        tests = (
+          from test in tests
+          let shortToolName = test.ShortToolName.ToLower()
+          let toolIndex = toolNames.IndexOf(shortToolName) 
+          where toolIndex>=0
+          orderby toolIndex
+          select test).ToList();
       if (tests.Count==0)
         return;
 
-      Console.WriteLine("LINQ tests:");
+      string sequenceName = "LINQ tests";
+      Console.WriteLine("{0}:", sequenceName);
 
       bool firstTest = true;
       foreach (var test in tests) {
@@ -95,6 +104,7 @@ namespace OrmBattle.TestRunner
           if (firstTest) {
             firstTest = false;
             scorecard.Tests.Sort();
+            scorecard.Tests.Insert(0, "LINQ Implementation:");
           }
           LogOverallResult(test, total, failed, asserted);
           var tearDown = type.GetMethod("BaseTearDown");
@@ -107,22 +117,22 @@ namespace OrmBattle.TestRunner
         }
       }
       Console.WriteLine();
-      Console.WriteLine("Scorecard:");
+      Console.WriteLine("{0} scorecard:", sequenceName);
       Console.WriteLine(scorecard);
-      Console.WriteLine();
     }
 
     private void LogResult(ToolTestBase test, MethodInfo method, bool failed, bool assertionFailed)
     {
-      var testName = method.GetAttribute<CategoryAttribute>(AttributeSearchOptions.InheritNone).Name;
-      object result = scorecard.Get(test.ShortToolName, testName);
+      var testName = Indent + method.GetAttribute<CategoryAttribute>(AttributeSearchOptions.InheritNone).Name;
+      var tool = test.ShortToolName;
+      object result = scorecard.Get(tool, testName);
       var pair = new Pair<int, int>();
       if (result is Pair<int, int>)
         pair = (Pair<int, int>) result;
       pair = new Pair<int, int>(
         pair.First + (failed ? 1 : 0), 
         pair.Second + (assertionFailed ? 1 : 0));
-      scorecard.Set(test.ShortToolName, testName, pair);
+      scorecard.Set(tool, testName, pair);
     }
 
     private void LogOverallResult(ToolTestBase test, int total, int failed, int asserted)
@@ -133,14 +143,15 @@ namespace OrmBattle.TestRunner
         passed = total;
         properlyFailed = failed;
       }
-      scorecard.Add(test.ShortToolName, string.Empty, string.Empty);
+      string score = string.Format("{0:F1}", passed * 100.0 / total);
+
       scorecard.Add(test.ShortToolName, "Total:", string.Empty);
-      scorecard.Add(test.ShortToolName, "  Performed", total);
-      scorecard.Add(test.ShortToolName, "  Passed", passed);
-      scorecard.Add(test.ShortToolName, "  Failed", failed);
-      scorecard.Add(test.ShortToolName, "    Properly", properlyFailed);
-      scorecard.Add(test.ShortToolName, "    Asserted", asserted);
-      scorecard.Add(test.ShortToolName, "  Score, %", string.Format("{0:F1}", passed * 100.0 / total));
+      scorecard.Add(test.ShortToolName, Indent + "Performed", total);
+      scorecard.Add(test.ShortToolName, Indent + "Passed",    passed);
+      scorecard.Add(test.ShortToolName, Indent + "Failed",    failed);
+      scorecard.Add(test.ShortToolName, Indent2 + "Properly", properlyFailed);
+      scorecard.Add(test.ShortToolName, Indent2 + "Asserted", asserted);
+      scorecard.Add(test.ShortToolName, Indent + "Score, %",  score);
     }
   }
 }

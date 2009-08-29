@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xtensive.Core.Collections;
 using Xtensive.Core.Helpers;
 
 namespace OrmBattle.TestRunner
@@ -16,7 +15,7 @@ namespace OrmBattle.TestRunner
   {
     private const string TArgMarker = "-t:";
     public static string[] Args;
-    public static HashSet<string> ToolNames = null;
+    public static List<string> ToolNames = null;
 
     private static void Main(string[] args)
     {
@@ -25,7 +24,7 @@ namespace OrmBattle.TestRunner
       string tArg = Args.Where(a => a.StartsWith(TArgMarker)).SingleOrDefault();
       if (tArg!=null) {
         tArg = tArg.Remove(0, TArgMarker.Length);
-        ToolNames = tArg.RevertibleSplit('/', ',').ToHashSet();
+        ToolNames = tArg.RevertibleSplit('/', ',').Distinct().ToList();
       }
 
       var performanceTestRunner = new PerformanceTestRunner();
