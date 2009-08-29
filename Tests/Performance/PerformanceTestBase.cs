@@ -15,12 +15,12 @@ namespace OrmBattle.Tests.Performance
   public abstract class PerformanceTestBase : ToolTestBase
   {
     public const string BaseUnit = "op/s";
-    public const string CreateMultiple = "Create (Multiple)";
-    public const string CreateSingle = "Create (Single)";
-    public const string UpdateMultiple = "Update (Multiple)";
-    public const string UpdateSingle = "Update (Single)";
-    public const string RemoveMultiple = "Remove (Multiple)";
-    public const string RemoveSingle = "Remove (Single)";
+    public const string CreateMultiple = "Create Instance (Multiple)";
+    public const string CreateSingle = "Create Instance (Single)";
+    public const string UpdateMultiple = "Update Instance (Multiple)";
+    public const string UpdateSingle = "Update Instance (Single)";
+    public const string RemoveMultiple = "Remove Instance (Multiple)";
+    public const string RemoveSingle = "Remove Instance (Single)";
     public const string Fetch = "Fetch";
     public const string LinqQuery = "LINQ Query";
     public const string CompiledLinqQuery = "Compiled LINQ Query";
