@@ -6,23 +6,33 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using OrmBattle.Tests;
 using OrmBattle.Tests.Performance;
+using Xtensive.Core.Helpers;
+using Xtensive.Core.Collections;
 
 namespace OrmBattle.TestRunner
 {
   [Serializable]
   public class PerformanceTestRunner
   {
+    private const string PiArgMarker = "-pi:";
+    private const string PtArgMarker = "-pt:";
+    public static int[] DefaultBaseCounts = new[] {50, 100, 500, 1000, 5000, 10000, 30000};
     public int[] BaseCounts;
-
+    
     public void Run()
     {
+      HashSet<string> toolNames = Program.ToolNames;
+      string ptArg = Program.Args.Where(a => a.StartsWith(PtArgMarker)).SingleOrDefault();
+      if (ptArg!=null) {
+        ptArg = ptArg.Remove(0, PtArgMarker.Length);
+        toolNames = ptArg.RevertibleSplit('/', ',').ToHashSet();
+      }
+
       foreach (int baseCount in BaseCounts)
       {
-        Console.WriteLine("Performance tests ({0}):", baseCount);
-        Console.WriteLine();
-
         var scorecard = new Scorecard();
         scorecard.Tests.Add(PerformanceTestBase.CreateSingle);
         scorecard.Tests.Add(PerformanceTestBase.UpdateSingle);
@@ -50,6 +60,12 @@ namespace OrmBattle.TestRunner
           new SubsonicTest(),
           new SqlClientTest(),
         };
+        if (toolNames!=null)
+          tests = tests.Where(t => toolNames.Contains(t.ShortToolName.ToLower())).ToList();
+        if (tests.Count==0)
+          return;
+
+        Console.WriteLine("Performance tests ({0}):", baseCount);
 
         foreach (var test in tests) {
           try {
@@ -78,9 +94,15 @@ namespace OrmBattle.TestRunner
       }
     }
 
-    public PerformanceTestRunner(params int[] baseCounts)
+    public PerformanceTestRunner()
     {
-      BaseCounts = baseCounts;
+      string piArg = Program.Args.Where(a => a.StartsWith(PiArgMarker)).SingleOrDefault();
+      if (piArg==null)
+        BaseCounts = DefaultBaseCounts;
+      else {
+        piArg = piArg.Remove(0, PiArgMarker.Length);
+        BaseCounts = piArg.RevertibleSplit('/', ',').Select(s => int.Parse(s)).ToArray();
+      }
     }
   }
 }

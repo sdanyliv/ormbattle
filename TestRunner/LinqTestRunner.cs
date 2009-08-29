@@ -14,6 +14,7 @@ using OrmBattle.Tests;
 using OrmBattle.Tests.Linq;
 using Xtensive.Core;
 using Xtensive.Core.Collections;
+using Xtensive.Core.Helpers;
 using Xtensive.Core.Reflection;
 
 
@@ -22,12 +23,17 @@ namespace OrmBattle.TestRunner
   [Serializable]
   public class LinqTestRunner
   {
+    private const string LtArgMarker = "-lt:";
     private LinqScorecard scorecard;
 
     public void Run()
     {
-      Console.WriteLine("LINQ tests:");
-      Console.WriteLine();
+      HashSet<string> toolNames = Program.ToolNames;
+      string ltArg = Program.Args.Where(a => a.StartsWith(LtArgMarker)).SingleOrDefault();
+      if (ltArg!=null) {
+        ltArg = ltArg.Remove(0, LtArgMarker.Length);
+        toolNames = ltArg.RevertibleSplit('/', ',').ToHashSet();
+      }
 
       scorecard = new LinqScorecard();
       var tests = new List<ToolTestBase> {
@@ -38,6 +44,12 @@ namespace OrmBattle.TestRunner
         new OpenAccessTest(),
         new MaximumTest()
       };
+      if (toolNames!=null)
+        tests = tests.Where(t => toolNames.Contains(t.ShortToolName.ToLower())).ToList();
+      if (tests.Count==0)
+        return;
+
+      Console.WriteLine("LINQ tests:");
 
       bool firstTest = true;
       foreach (var test in tests) {
@@ -116,14 +128,17 @@ namespace OrmBattle.TestRunner
     private void LogOverallResult(ToolTestBase test, int total, int failed, int asserted)
     {
       int passed = total - failed;
-      if (test is MaximumTest)
+      int properlyFailed = failed - asserted;
+      if (test is MaximumTest) {
         passed = total;
+        properlyFailed = failed;
+      }
       scorecard.Add(test.ShortToolName, string.Empty, string.Empty);
-      scorecard.Add(test.ShortToolName, "Totals:", string.Empty);
-      scorecard.Add(test.ShortToolName, "  All", total);
+      scorecard.Add(test.ShortToolName, "Total:", string.Empty);
+      scorecard.Add(test.ShortToolName, "  Performed", total);
       scorecard.Add(test.ShortToolName, "  Passed", passed);
       scorecard.Add(test.ShortToolName, "  Failed", failed);
-      scorecard.Add(test.ShortToolName, "    Properly", failed - asserted);
+      scorecard.Add(test.ShortToolName, "    Properly", properlyFailed);
       scorecard.Add(test.ShortToolName, "    Asserted", asserted);
       scorecard.Add(test.ShortToolName, "  Score, %", string.Format("{0:F1}", passed * 100.0 / total));
     }
