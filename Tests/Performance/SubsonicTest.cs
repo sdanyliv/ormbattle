@@ -128,7 +128,7 @@ namespace OrmBattle.Tests.Performance
 
     protected override void CompiledLinqQueryTest(int count)
     {
-      Log.Error("Compiled queries are not supported.");
+      throw new NotSupportedException();
     }
 
     protected override void NativeQueryTest(int count)

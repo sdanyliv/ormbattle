@@ -328,12 +328,12 @@ namespace OrmBattle.Tests.Performance
 
     protected override void LinqQueryTest(int count)
     {
-      Log.Error("Linq queries are not supported.");
+      throw new NotSupportedException();
     }
 
     protected override void CompiledLinqQueryTest(int count)
     {
-      Log.Error("Linq compiled queries are not supported.");
+      throw new NotSupportedException();
     }
 
     protected override void NativeQueryTest(int count)
@@ -395,7 +395,7 @@ namespace OrmBattle.Tests.Performance
 
     protected override void LinqMaterializeTest(int count)
     {
-      Log.Error("Linq materialization is not supported.");
+      throw new NotSupportedException();
     }
   }
 }

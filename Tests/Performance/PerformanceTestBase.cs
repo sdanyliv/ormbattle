@@ -8,6 +8,7 @@ using System;
 using NUnit.Framework;
 using Xtensive.Core.Diagnostics;
 using Xtensive.Core.Testing;
+using Xtensive.Core.Reflection;
 
 namespace OrmBattle.Tests.Performance
 {
@@ -21,6 +22,8 @@ namespace OrmBattle.Tests.Performance
     public const string UpdateSingle = "Update Instance (Single)";
     public const string RemoveMultiple = "Remove Instance (Multiple)";
     public const string RemoveSingle = "Remove Instance (Single)";
+    public const string CudAverageMultiple = "CUD Average (Multiple)";
+    public const string CudAverageSingle = "CUD Average (Single)";
     public const string Fetch = "Fetch";
     public const string LinqQuery = "LINQ Query";
     public const string CompiledLinqQuery = "Compiled LINQ Query";
@@ -37,190 +40,126 @@ namespace OrmBattle.Tests.Performance
     protected abstract void CloseSession();
 
     [Test]
-    public void RegularTest()
+    public void Execute()
     {
       warmup = true;
-      CombinedTest(Math.Min(BaseCount,WarmupCount));
+      Execute(Math.Min(BaseCount,WarmupCount));
+
       warmup = false;
-
-      CombinedTest(BaseCount);
+      Execute(BaseCount);
     }
 
-    [Test]
-    [Explicit]
-    [Category("Profile")]
-    public void ProfileTest()
+    private void Execute(int count)
     {
-      InsertMultipleTest(BaseCount);
-      FetchTest(BaseCount);
-      LinqMaterializeTest(BaseCount);
-      CompiledLinqQueryTest(BaseCount);
+      var im = Measure(InsertMultipleTest, count, 1);
+      var um = Measure(UpdateMultipleTest, count, 1);
+
+      Measure(FetchTest, count / 2, 1);
+      
+      Measure(LinqQueryTest, count / 5, 1);
+      Measure(CompiledLinqQueryTest, count / 5, 1);
+      Measure(NativeQueryTest, count / 5, 1);
+      
+      int materializationPassCount = (count < 1000) ? 100 : 10;
+      Measure(LinqMaterializeTest, count, materializationPassCount);
+      Measure(NativeMaterializeTest, count, materializationPassCount);
+
+      var dm = Measure(DeleteMultipleTest, count, 1);
+      if (im.HasValue && um.HasValue && dm.HasValue)
+        LogResult(CudAverageMultiple, (int) (3d / (1d / im + 1d / um + 1d / dm)), BaseUnit);
+
+      var @is = Measure(InsertSingleTest, count / 5, 1);
+      var us = Measure(UpdateSingleTest, count / 5, 1);
+      var ds = Measure(DeleteSingleTest, count / 5, 1);
+      if (@is.HasValue && us.HasValue && ds.HasValue)
+        LogResult(CudAverageSingle, (int) (3d / (1d / @is + 1d / us + 1d / ds)), BaseUnit);
     }
 
-    private void CombinedTest(int count)
+    #region Measure methods
+
+    private int? Measure(Action<int> test, string testName, int count, int passCount)
     {
-      if (warmup) {
+      double seconds = 1E+100;
+      for (int i = 0; i < passCount; i++) {
+        if (!warmup)
+          TestHelper.CollectGarbage();
         OpenSession();
-        
-        InsertMultipleTest(count);
-        UpdateMultipleTest();
-        FetchTest(count / 2);
-        LinqQueryTest(count / 5);
-        CompiledLinqQueryTest(count);
-        LinqMaterializeTest(count);
-        NativeQueryTest(count / 5);
-        NativeMaterializeTest(count);
-        DeleteMultipleTest();
-
-        InsertSingleTest(count / 5);
-        UpdateSingleTest();
-        DeleteSingleTest();
-
+        var measurement = new Measurement(MeasurementOptions.None);
+        try {
+          test.Invoke(count);
+          measurement.Complete();
+          seconds = Math.Min(seconds, measurement.TimeSpent.TotalSeconds);
+        }
+        catch (Exception e) {
+          Log.Error(e);
+          return null;
+        }
         CloseSession();
       }
-      else {
-        Measurement measure;
-
-        TestHelper.CollectGarbage();
-        OpenSession();
-        measure = new Measurement(MeasurementOptions.None);
-        InsertMultipleTest(count);
-        measure.Complete();
-        CloseSession();
-        LogResult(CreateMultiple, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
-
-        TestHelper.CollectGarbage();
-        OpenSession();
-        measure = new Measurement(MeasurementOptions.None);
-        UpdateMultipleTest();
-        measure.Complete();
-        CloseSession();
-        LogResult(UpdateMultiple, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
-
-        TestHelper.CollectGarbage();
-        OpenSession();
-        measure = new Measurement(MeasurementOptions.None);
-        FetchTest(count/2);
-        measure.Complete();
-        CloseSession();
-        LogResult(Fetch, GetResult(count/2, measure.TimeSpent.TotalSeconds), BaseUnit);
-
-        using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
-          TestHelper.CollectGarbage();
-          OpenSession();
-          measure = new Measurement(MeasurementOptions.None);
-          LinqQueryTest(count/5);
-          measure.Complete();
-          CloseSession();
-          if (!scope.IsCaptured(LogEventTypes.Error))
-            LogResult(LinqQuery, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
-        }
-
-        using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
-          TestHelper.CollectGarbage();
-          OpenSession();
-          measure = new Measurement(MeasurementOptions.None);
-          CompiledLinqQueryTest(count);
-          measure.Complete();
-          CloseSession();
-          if (!scope.IsCaptured(LogEventTypes.Error))
-            LogResult(CompiledLinqQuery, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
-        }
-
-        using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
-          int materializationPassCount = (count < 1000) ? 100 : 10;
-          double seconds = 0;
-          for (int i = 0; i < materializationPassCount; i++) {
-            TestHelper.CollectGarbage();
-            OpenSession();
-            measure = new Measurement(MeasurementOptions.None);
-            LinqMaterializeTest(count);
-            measure.Complete();
-            CloseSession();
-            // seconds = Math.Min(measure.TimeSpent.TotalSeconds, seconds);
-            seconds += measure.TimeSpent.TotalSeconds;
-          }
-          if (!scope.IsCaptured(LogEventTypes.Error))
-            LogResult(LinqMaterialize, GetResult(count*materializationPassCount, seconds), BaseUnit);
-        }
-
-        TestHelper.CollectGarbage();
-        OpenSession();
-        measure = new Measurement(MeasurementOptions.None);
-        NativeQueryTest(count/5);
-        measure.Complete();
-        CloseSession();
-        LogResult(NativeQuery, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
-
-        TestHelper.CollectGarbage();
-        OpenSession();
-        measure = new Measurement(MeasurementOptions.None);
-        NativeMaterializeTest(count);
-        measure.Complete();
-        CloseSession();
-        LogResult(NativeMaterialize, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
-
-        TestHelper.CollectGarbage();
-        OpenSession();
-        measure = new Measurement(MeasurementOptions.None);
-        DeleteMultipleTest();
-        measure.Complete();
-        CloseSession();
-        LogResult(RemoveMultiple, GetResult(count, measure.TimeSpent.TotalSeconds), BaseUnit);
-
-        using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
-          TestHelper.CollectGarbage();
-          OpenSession();
-          measure = new Measurement(MeasurementOptions.None);
-          InsertSingleTest(count/5);
-          measure.Complete();
-          CloseSession();
-          if (!scope.IsCaptured(LogEventTypes.Error))
-            LogResult(CreateSingle, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
-        }
-
-        using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
-          TestHelper.CollectGarbage();
-          OpenSession();
-          measure = new Measurement(MeasurementOptions.None);
-          UpdateSingleTest();
-          measure.Complete();
-          CloseSession();
-          if (!scope.IsCaptured(LogEventTypes.Error))
-            LogResult(UpdateSingle, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
-        }
-
-        using (var scope = new LogCaptureScope(LogProvider.NullLog)) {
-          TestHelper.CollectGarbage();
-          OpenSession();
-          measure = new Measurement(MeasurementOptions.None);
-          DeleteSingleTest();
-          measure.Complete();
-          CloseSession();
-          if (!scope.IsCaptured(LogEventTypes.Error))
-            LogResult(RemoveSingle, GetResult(count/5, measure.TimeSpent.TotalSeconds), BaseUnit);
-        }
-
-        LogResult(string.Empty, string.Empty, string.Empty);
+      if (!warmup) {
+        int result = GetResult(count, seconds);
+        LogResult(testName, result, BaseUnit);
+        return result;
       }
+      else
+        return null;
     }
+
+    private int? Measure(Action<int> test, int count, int passCount)
+    {
+      string testName = test.Method.GetAttribute<CategoryAttribute>(AttributeSearchOptions.InheritAll).Name;
+      return Measure(test, testName, count, passCount);
+    }
+
+    private int? Measure(Action test, string testName, int count, int passCount)
+    {
+      return Measure(i => test.Invoke(), testName, count, passCount);
+    }
+
+    private int? Measure(Action test, int count, int passCount)
+    {
+      string testName = test.Method.GetAttribute<CategoryAttribute>(AttributeSearchOptions.InheritAll).Name;
+      return Measure(i => test.Invoke(), testName, count, passCount);
+    }
+
+    #endregion
+
+    #region Helper methods
 
     private int GetResult(long operationCount, double totalSeconds)
     {
       return (int) (operationCount / totalSeconds);
-    } 
+    }
 
+    #endregion
+
+    #region Test methods to implement
+
+    [Category(CreateMultiple)]
     protected abstract void InsertMultipleTest(int count);
+    [Category(UpdateMultiple)]
     protected abstract void UpdateMultipleTest();
+    [Category(RemoveMultiple)]
     protected abstract void DeleteMultipleTest();
+    [Category(CreateSingle)]
     protected abstract void InsertSingleTest(int count);
+    [Category(UpdateSingle)]
     protected abstract void UpdateSingleTest();
+    [Category(RemoveSingle)]
     protected abstract void DeleteSingleTest();
+    [Category(Fetch)]
     protected abstract void FetchTest(int count);
+    [Category(LinqQuery)]
     protected abstract void LinqQueryTest(int count);
+    [Category(CompiledLinqQuery)]
     protected abstract void CompiledLinqQueryTest(int count);
+    [Category(NativeQuery)]
     protected abstract void NativeQueryTest(int count);
+    [Category(LinqMaterialize)]
     protected abstract void LinqMaterializeTest(int count);
+    [Category(NativeMaterialize)]
     protected abstract void NativeMaterializeTest(int count);
+
+    #endregion
   }
 }
