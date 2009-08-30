@@ -235,7 +235,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = db.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = minId + (i*pageSize) % InstanceCount;
-          var query = db.Find<Simplest>(Entity.Attribute("id") >= id).Take(pageSize);
+          var query = db.Simplests.Where(o => o.Id >= id).Take(pageSize);
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }
