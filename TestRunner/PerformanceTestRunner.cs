@@ -14,7 +14,6 @@ using Xtensive.Core.Helpers;
 namespace OrmBattle.TestRunner
 {
   [Serializable]
-  [Serializable]
   public class PerformanceTestRunner
   {
     private const string PiArgMarker = "-pi:";
