@@ -112,7 +112,9 @@ namespace OrmBattle.Tests.Performance
           Log.Error(e);
           return null;
         }
-        CloseSession();
+        finally {
+          CloseSession();
+        }
       }
       if (!warmup) {
         int result = GetResult(count, seconds);
