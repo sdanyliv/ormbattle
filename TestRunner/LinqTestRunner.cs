@@ -132,8 +132,8 @@ namespace OrmBattle.TestRunner
       Console.WriteLine();
       Console.WriteLine("Units:");
       Console.WriteLine("  f/a: total count of failed tests [ / count of tests failed with assertion ]");
-      Console.WriteLine("  #: count");
-      Console.WriteLine("  %: percentage (% of passed tests).");
+      Console.WriteLine("  #:   count");
+      Console.WriteLine("  %:   percentage (% of passed tests).");
       Console.WriteLine();
       Console.WriteLine();
     }

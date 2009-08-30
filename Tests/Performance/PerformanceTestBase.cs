@@ -16,6 +16,7 @@ namespace OrmBattle.Tests.Performance
   public abstract class PerformanceTestBase : ToolTestBase
   {
     public const string BaseUnit = "op/s";
+    public const string PpsUnit = "pages/s";
     public const string CreateMultiple = "Create Instance (Multiple)";
     public const string CreateSingle = "Create Instance (Single)";
     public const string UpdateMultiple = "Update Instance (Multiple)";
@@ -30,10 +31,15 @@ namespace OrmBattle.Tests.Performance
     public const string NativeQuery = "Native Query";
     public const string LinqMaterialize = "LINQ Materialize";
     public const string NativeMaterialize = "Native Materialize";
+    public const string LinqQuerySmallPage = "Get  20 items";
+    public const string LinqQueryLargePage = "Get 100 items";
+    public const int DefaultCount = 1000;
+    public const int WarmupMaxCount = 10000;
+    public const int SmallPageSize = 20;
+    public const int LargePageSize = 100;
 
-    public int BaseCount = 1000;
-    public int WarmupCount = 10000;
-    protected int instanceCount = 0;
+    public int BaseCount = 0;
+    public int InstanceCount = 0;
     protected bool warmup;
 
     protected abstract void OpenSession();
@@ -43,14 +49,15 @@ namespace OrmBattle.Tests.Performance
     public void Execute()
     {
       warmup = true;
-      Execute(Math.Min(BaseCount,WarmupCount));
+      Execute(Math.Min(DefaultCount, WarmupMaxCount));
 
       warmup = false;
-      Execute(BaseCount);
+      Execute(DefaultCount);
     }
 
     private void Execute(int count)
     {
+      BaseCount = count;
       var im = Measure(InsertMultipleTest, count, 1);
       var um = Measure(UpdateMultipleTest, count, 1);
 
@@ -63,6 +70,15 @@ namespace OrmBattle.Tests.Performance
       int materializationPassCount = (count < 1000) ? 100 : 10;
       Measure(LinqMaterializeTest, count, materializationPassCount);
       Measure(NativeMaterializeTest, count, materializationPassCount);
+
+      int minPageCount = 2;
+      int smallPageCount = count / SmallPageSize;
+      if (smallPageCount>minPageCount)
+        Measure(LinqQuerySmallPageTest, smallPageCount, 1);
+
+      int largePageCount = count / LargePageSize;
+      if (largePageCount>minPageCount)
+        Measure(LinqQueryLargePageTest, largePageCount, 1);
 
       var dm = Measure(DeleteMultipleTest, count, 1);
       if (im.HasValue && um.HasValue && dm.HasValue)
@@ -98,7 +114,7 @@ namespace OrmBattle.Tests.Performance
       }
       if (!warmup) {
         int result = GetResult(count, seconds);
-        LogResult(testName, result, BaseUnit);
+        LogResult(testName, result, testName.Contains("Page") ? PpsUnit : BaseUnit);
         return result;
       }
       else
@@ -159,6 +175,10 @@ namespace OrmBattle.Tests.Performance
     protected abstract void LinqMaterializeTest(int count);
     [Category(NativeMaterialize)]
     protected abstract void NativeMaterializeTest(int count);
+    [Category(LinqQuerySmallPage)]
+    protected abstract void LinqQuerySmallPageTest(int count);
+    [Category(LinqQueryLargePage)]
+    protected abstract void LinqQueryLargePageTest(int count);
 
     #endregion
   }

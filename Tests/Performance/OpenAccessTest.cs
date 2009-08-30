@@ -63,7 +63,7 @@ namespace OrmBattle.Tests.Performance
         scope.Add(s);
       }
       scope.Transaction.Commit();
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateMultipleTest()
@@ -93,7 +93,7 @@ namespace OrmBattle.Tests.Performance
         scope.Transaction.Flush();
       }
       scope.Transaction.Commit();
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateSingleTest()
@@ -123,14 +123,14 @@ namespace OrmBattle.Tests.Performance
       long sum = (long)count * (count - 1) / 2;
       scope.Transaction.Begin();
       for (int i = 0; i < count; i++) {
-        var id = (long)i % instanceCount;
+        var id = (long)i % InstanceCount;
         var classId = scope.PersistentMetaData.GetPersistentTypeDescriptor(typeof (Simplest)).ClassId;
         var objectId = Database.OID.ParseObjectId(null, classId + "-" + id);
         var s = (Simplest)scope.GetObjectById(objectId);
         sum -= s.Id;
       }
       scope.Transaction.Commit();
-      if (count <= instanceCount)
+      if (count <= InstanceCount)
         Assert.AreEqual(0, sum);
     }
 
@@ -138,7 +138,7 @@ namespace OrmBattle.Tests.Performance
     {
       scope.Transaction.Begin();
       for (int i = 0; i < count; i++) {
-        var id = i % instanceCount;
+        var id = i % InstanceCount;
         var query = scope.Extent<Simplest>().Where(o => o.Id == id);
         foreach (var simplest in query) {
           // Doing nothing, just enumerate
@@ -151,7 +151,7 @@ namespace OrmBattle.Tests.Performance
     {
       scope.Transaction.Begin();
       for (int i = 0; i < count; i++) {
-        var id = i % instanceCount;
+        var id = i % InstanceCount;
         var query = GetSimplest(scope, id);
         foreach (var simplest in query) {
           // Doing nothing, just enumerate
@@ -164,7 +164,7 @@ namespace OrmBattle.Tests.Performance
     {
       scope.Transaction.Begin();
       for (int i = 0; i < count; i++) {
-        var id = i % instanceCount;
+        var id = i % InstanceCount;
         var query = scope.GetOqlQuery<Simplest>("select * from SimplestExtent AS s where s.Id == $1");
         foreach (var simplest in query.ExecuteEnumerable(id)) {
           // Doing nothing, just enumerate
@@ -197,12 +197,45 @@ namespace OrmBattle.Tests.Performance
       scope.Transaction.Commit();
     }
 
+    protected override void LinqQuerySmallPageTest(int count)
+    {
+      LinqQueryPageTest(count, SmallPageSize);
+    }
+
+    protected override void LinqQueryLargePageTest(int count)
+    {
+      LinqQueryPageTest(count, LargePageSize);
+    }
+
+    protected void LinqQueryPageTest(int count, int pageSize)
+    {
+      scope.Transaction.Begin();
+      for (int i = 0; i < count; i++) {
+        var id = (i*pageSize) % InstanceCount;
+        var query = GetSimplestPage(scope, id, pageSize);
+        foreach (var simplest in query) {
+          // Doing nothing, just enumerate
+        }
+      }
+      scope.Transaction.Commit();
+    }
+
     static IQueryable GetSimplest(IObjectScope scope, long id)
     {
-      var query = from e in scope.Extent<Simplest>()
-                  where e.Id == id
-                  select e;
+      var query = 
+        from e in scope.Extent<Simplest>()
+        where e.Id == id
+        select e;
       return query;
+    }
+
+    static IQueryable GetSimplestPage(IObjectScope scope, long idFrom, int pageSize)
+    {
+      var query = 
+        from e in scope.Extent<Simplest>()
+        where e.Id >= idFrom
+        select e;
+      return query.Take(pageSize);
     }
 
     static IQueryable GetAllSimplest(IObjectScope scope)

@@ -68,7 +68,7 @@ namespace OrmBattle.Tests.Performance
         }
         transaction.Commit();
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateMultipleTest()
@@ -107,7 +107,7 @@ namespace OrmBattle.Tests.Performance
         }
         transaction.Commit();
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateSingleTest()
@@ -145,13 +145,13 @@ namespace OrmBattle.Tests.Performance
       long sum = (long)count * (count - 1) / 2;
       using (var transaction = session.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
-          var key = (long) i%instanceCount;
+          var key = (long) i%InstanceCount;
           var o = session.Get<Simplest>(key);
           sum -= o.Id;
         }
         transaction.Rollback(); // avoiding dirty checking
       }
-      if (count <= instanceCount)
+      if (count <= InstanceCount)
         Assert.AreEqual(0, sum);
     }
 
@@ -159,7 +159,7 @@ namespace OrmBattle.Tests.Performance
     {
       using (var transaction = session.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
-          var id = i%instanceCount;
+          var id = i%InstanceCount;
           var query = session.Linq<Simplest>().Where(s => s.Id == id);
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
@@ -178,7 +178,7 @@ namespace OrmBattle.Tests.Performance
     {
       using (var transaction = session.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
-          var id = i%instanceCount;
+          var id = i%InstanceCount;
           var query = session.CreateCriteria<Simplest>()
             .Add(Expression.Eq("Id", (long)id));
           foreach (var simplest in query.List()) {
@@ -211,6 +211,30 @@ namespace OrmBattle.Tests.Performance
             if (++i >= count)
               break;
           }
+        transaction.Rollback(); // avoiding dirty checking
+      }
+    }
+
+    protected override void LinqQuerySmallPageTest(int count)
+    {
+      LinqQueryPageTest(count, SmallPageSize);
+    }
+
+    protected override void LinqQueryLargePageTest(int count)
+    {
+      LinqQueryPageTest(count, LargePageSize);
+    }
+
+    protected void LinqQueryPageTest(int count, int pageSize)
+    {
+      using (var transaction = session.BeginTransaction()) {
+        for (int i = 0; i < count; i++) {
+          var id = (i*pageSize) % InstanceCount;
+          var query = session.Linq<Simplest>().Where(s => s.Id >= id).Take(pageSize);
+          foreach (var simplest in query) {
+            // Doing nothing, just enumerate
+          }
+        }
         transaction.Rollback(); // avoiding dirty checking
       }
     }

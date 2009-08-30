@@ -73,12 +73,12 @@ namespace OrmBattle.Tests.Performance
         dataContext.SaveChanges();
         transaction.Commit();
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateMultipleTest()
     {
-      long sum = (long)instanceCount * (instanceCount - 1) / 2;
+      long sum = (long)InstanceCount * (InstanceCount - 1) / 2;
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         foreach (var s in dataContext.Simplests) {
           s.Value++;
@@ -110,12 +110,12 @@ namespace OrmBattle.Tests.Performance
         }
         transaction.Commit();
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateSingleTest()
     {
-      long sum = (long)instanceCount * (instanceCount - 1) / 2;
+      long sum = (long)InstanceCount * (InstanceCount - 1) / 2;
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         foreach (var s in dataContext.Simplests) {
           s.Value++;
@@ -143,13 +143,13 @@ namespace OrmBattle.Tests.Performance
       long sum = (long)count * (count - 1) / 2;
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
-          var s = (Simplest)dataContext.GetObjectByKey(new EntityKey("PerformanceTestEntities.Simplests", "Id", (long)i % instanceCount));
+          var s = (Simplest)dataContext.GetObjectByKey(new EntityKey("PerformanceTestEntities.Simplests", "Id", (long)i % InstanceCount));
           sum -= s.Id;
         }
         transaction.Commit();
       }
       
-      if (count <= instanceCount)
+      if (count <= InstanceCount)
         Assert.AreEqual(0, sum);
     }
 
@@ -157,7 +157,7 @@ namespace OrmBattle.Tests.Performance
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
-          var id = i % instanceCount;
+          var id = i % InstanceCount;
           var result = dataContext.Simplests.Where(o => o.Id == id);
           foreach (var o in result) {
             // Doing nothing, just enumerate
@@ -170,9 +170,9 @@ namespace OrmBattle.Tests.Performance
     protected override void CompiledLinqQueryTest(int count)
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
-        var resultQuery = System.Data.Objects.CompiledQuery.Compile((PerformanceTestEntities context, long id) => context.Simplests.Where(o => o.Id == id));
+        var resultQuery = CompiledQuery.Compile((PerformanceTestEntities context, long id) => context.Simplests.Where(o => o.Id == id));
         for (int i = 0; i < count; i++) {
-          var id = i % instanceCount;
+          var id = i % InstanceCount;
           foreach (var o in resultQuery(dataContext, id)) {
             // Doing nothing, just enumerate
           }
@@ -186,7 +186,7 @@ namespace OrmBattle.Tests.Performance
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
-          var id = i % instanceCount;
+          var id = i % InstanceCount;
           var result = dataContext.Simplests.Where("it.Id == @id", new ObjectParameter("id", id));
           foreach (var o in result) {
             // Doing nothing, just enumerate
@@ -219,6 +219,33 @@ namespace OrmBattle.Tests.Performance
             if (++i >= count)
               break;
           }
+        dataContext.SaveChanges();
+        transaction.Commit();
+      }
+    }
+
+    protected override void LinqQuerySmallPageTest(int count)
+    {
+      LinqQueryPageTest(count, SmallPageSize);
+    }
+
+    protected override void LinqQueryLargePageTest(int count)
+    {
+      LinqQueryPageTest(count, LargePageSize);
+    }
+
+    protected void LinqQueryPageTest(int count, int pageSize)
+    {
+      using (var transaction = dataContext.Connection.BeginTransaction()) {
+        var resultQuery = CompiledQuery.Compile(
+          (PerformanceTestEntities context, long id, int _pageSize) => 
+            context.Simplests.Where(o => o.Id >= id).Take(_pageSize));
+        for (int i = 0; i < count; i++) {
+          var id = (i*pageSize) % InstanceCount;
+          foreach (var o in resultQuery(dataContext, id, pageSize)) {
+            // Doing nothing, just enumerate
+          }
+        }
         dataContext.SaveChanges();
         transaction.Commit();
       }

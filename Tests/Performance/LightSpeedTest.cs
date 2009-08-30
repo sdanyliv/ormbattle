@@ -79,7 +79,7 @@ namespace OrmBattle.Tests.Performance
         db.SaveChanges();
         transaction.Commit();
       }
-      instanceCount = count;
+      InstanceCount = count;
       minId = min.Id;
       maxId = max.Id;
     }
@@ -122,7 +122,7 @@ namespace OrmBattle.Tests.Performance
         db.SaveChanges();
         transaction.Commit();
       }
-      instanceCount = count;
+      InstanceCount = count;
       minId = min.Id;
       maxId = max.Id;
     }
@@ -218,6 +218,30 @@ namespace OrmBattle.Tests.Performance
             if (++i >= count)
               break;
           }
+        transaction.Commit();
+      }
+    }
+
+    protected override void LinqQuerySmallPageTest(int count)
+    {
+      LinqQueryPageTest(count, SmallPageSize);
+    }
+
+    protected override void LinqQueryLargePageTest(int count)
+    {
+      LinqQueryPageTest(count, LargePageSize);
+    }
+
+    protected void LinqQueryPageTest(int count, int pageSize)
+    {
+      using (var transaction = db.BeginTransaction()) {
+        for (int i = 0; i < count; i++) {
+          var id = minId + (i*pageSize) % InstanceCount;
+          var query = db.Find<Simplest>(Entity.Attribute("id") >= id).Take(pageSize);
+          foreach (var simplest in query) {
+            // Doing nothing, just enumerate
+          }
+        }
         transaction.Commit();
       }
     }
