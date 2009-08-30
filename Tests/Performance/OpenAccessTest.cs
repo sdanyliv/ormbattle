@@ -86,17 +86,36 @@ namespace OrmBattle.Tests.Performance
 
     protected override void InsertSingleTest(int count)
     {
-      Log.Error("Not implemented.");
+      scope.Transaction.Begin();
+      for (int i = 0; i < count; i++) {
+        var s = new Simplest(i, i);
+        scope.Add(s);
+        scope.Transaction.Flush();
+      }
+      scope.Transaction.Commit();
+      instanceCount = count;
     }
 
     protected override void UpdateSingleTest()
     {
-      Log.Error("Not implemented.");
+      scope.Transaction.Begin();
+      var query = scope.Extent<Simplest>();
+      foreach (var o in query) {
+        o.Value++;
+        scope.Transaction.Flush();
+      }
+      scope.Transaction.Commit();
     }
 
     protected override void DeleteSingleTest()
     {
-      Log.Error("Not implemented.");
+      scope.Transaction.Begin();
+      var query = scope.Extent<Simplest>();
+      foreach (var s in query) {
+        scope.Remove(s);
+        scope.Transaction.Flush();
+      }
+      scope.Transaction.Commit();
     }
 
     protected override void FetchTest(int count)

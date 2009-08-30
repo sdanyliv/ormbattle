@@ -43,10 +43,12 @@ namespace OrmBattle.TestRunner
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.CreateSingle);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.UpdateSingle);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.RemoveSingle);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.CudAverageSingle);
         scorecard.RegisterTest(Indent + "Multiple operations:");
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.CreateMultiple);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.UpdateMultiple);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.RemoveMultiple);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.CudAverageMultiple);
         scorecard.RegisterTest("Data access performance:");
         scorecard.RegisterTest(Indent + "Query:");
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQuery);
@@ -75,6 +77,9 @@ namespace OrmBattle.TestRunner
             select test).ToList();
         if (tests.Count==0)
           return;
+        foreach (var test in tests)
+          scorecard.Tools.Add(test.ShortToolName);
+        scorecard.Tools.Add(ToolTestBase.Unit);
 
         string sequenceName = string.Format("Performance tests ({0} items)", itemCount);
         Console.WriteLine("{0}:", sequenceName);
@@ -84,7 +89,7 @@ namespace OrmBattle.TestRunner
             test.Scorecard = scorecard;
             test.BaseCount = itemCount;
             test.BaseSetup();
-            test.RegularTest();
+            test.Execute();
           }
           catch (Exception e) {
             Console.WriteLine("Failed: {0}", e);
@@ -101,7 +106,10 @@ namespace OrmBattle.TestRunner
         }
         Console.WriteLine();
         Console.WriteLine("{0} scorecard:", sequenceName);
-        Console.WriteLine(scorecard);
+        Console.Write(scorecard);
+        Console.WriteLine("Units:");
+        Console.WriteLine("  op/s: operations per second.");
+        Console.WriteLine();
       }
     }
 

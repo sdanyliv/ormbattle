@@ -6,7 +6,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
@@ -23,9 +22,14 @@ namespace OrmBattle.TestRunner
   [Serializable]
   public class LinqTestRunner
   {
+    private const string BaseUnit = "f/a";
+    private const string CountUnit = "#";
+    private const string PercentageUnit = "%";
+
     private const string LtArgMarker = "-lt:";
     private const string Indent = "  ";
     private const string Indent2 = Indent + Indent;
+
     private LinqScorecard scorecard;
 
     public void Run()
@@ -44,7 +48,6 @@ namespace OrmBattle.TestRunner
         new LightSpeedTest(),
         new NHibernateTest(),
         new OpenAccessTest(),
-        new MaximumTest()
       };
       if (toolNames!=null)
         tests = (
@@ -56,6 +59,10 @@ namespace OrmBattle.TestRunner
           select test).ToList();
       if (tests.Count==0)
         return;
+      tests.Add(new MaximumTest());
+      foreach (var test in tests)
+        scorecard.Tools.Add(test.ShortToolName);
+      scorecard.Tools.Add(ToolTestBase.Unit);
 
       string sequenceName = "LINQ tests";
       Console.WriteLine("{0}:", sequenceName);
@@ -118,7 +125,12 @@ namespace OrmBattle.TestRunner
       }
       Console.WriteLine();
       Console.WriteLine("{0} scorecard:", sequenceName);
-      Console.WriteLine(scorecard);
+      Console.Write(scorecard);
+      Console.WriteLine("Units:");
+      Console.WriteLine("  f/a: count of failed tests / count of failed with assertion tests");
+      Console.WriteLine("  #: count");
+      Console.WriteLine("  %: percentage (of passed tests).");
+      Console.WriteLine();
     }
 
     private void LogResult(ToolTestBase test, MethodInfo method, bool failed, bool assertionFailed)
@@ -133,6 +145,7 @@ namespace OrmBattle.TestRunner
         pair.First + (failed ? 1 : 0), 
         pair.Second + (assertionFailed ? 1 : 0));
       scorecard.Set(tool, testName, pair);
+      scorecard.Set(ToolTestBase.Unit, testName, BaseUnit);
     }
 
     private void LogOverallResult(ToolTestBase test, int total, int failed, int asserted)
@@ -145,13 +158,19 @@ namespace OrmBattle.TestRunner
       }
       string score = string.Format("{0:F1}", passed * 100.0 / total);
 
-      scorecard.Add(test.ShortToolName, "Total:", string.Empty);
-      scorecard.Add(test.ShortToolName, Indent + "Performed", total);
-      scorecard.Add(test.ShortToolName, Indent + "Passed",    passed);
-      scorecard.Add(test.ShortToolName, Indent + "Failed",    failed);
-      scorecard.Add(test.ShortToolName, Indent2 + "Properly", properlyFailed);
-      scorecard.Add(test.ShortToolName, Indent2 + "Asserted", asserted);
-      scorecard.Add(test.ShortToolName, Indent + "Score, %",  score);
+      LogTotal(test.ShortToolName, "Total:", string.Empty, string.Empty);
+      LogTotal(test.ShortToolName, Indent + "Performed", total, CountUnit);
+      LogTotal(test.ShortToolName, Indent + "Passed",    passed, CountUnit);
+      LogTotal(test.ShortToolName, Indent + "Failed",    failed, CountUnit);
+      LogTotal(test.ShortToolName, Indent2 + "Properly", properlyFailed, CountUnit);
+      LogTotal(test.ShortToolName, Indent2 + "Asserted", asserted, CountUnit);
+      LogTotal(test.ShortToolName, Indent + "Score",  score, PercentageUnit);
+    }
+
+    private void LogTotal(string tool, string test, object result, string unit)
+    {
+      scorecard.Add(tool, test, result);
+      scorecard.Set(ToolTestBase.Unit, test, unit);
     }
   }
 }
