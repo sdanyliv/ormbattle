@@ -123,13 +123,13 @@ namespace OrmBattle.TestRunner
           }
         }
       }
-      Console.WriteLine();
+
       Console.WriteLine("{0} scorecard:", sequenceName);
       Console.Write(scorecard);
       Console.WriteLine("Units:");
-      Console.WriteLine("  f/a: count of failed tests / count of failed with assertion tests");
+      Console.WriteLine("  f/a: total count of failed tests [ / count of tests failed with assertion ]");
       Console.WriteLine("  #: count");
-      Console.WriteLine("  %: percentage (of passed tests).");
+      Console.WriteLine("  %: percentage (% of passed tests).");
       Console.WriteLine();
     }
 

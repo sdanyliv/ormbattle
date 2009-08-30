@@ -25,7 +25,7 @@ namespace OrmBattle.Tests
     [SetUp]
     public void BaseSetup()
     {
-      Console.WriteLine("Testing: {0} ({1})", ToolName, ShortToolName);
+      Console.WriteLine("  Testing: {0} ({1})", ToolName, ShortToolName);
       Setup();
     }
 
