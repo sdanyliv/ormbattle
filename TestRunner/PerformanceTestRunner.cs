@@ -105,10 +105,12 @@ namespace OrmBattle.TestRunner
           }
         }
 
+        Console.WriteLine();
         Console.WriteLine("{0} scorecard:", sequenceName);
         Console.Write(scorecard);
         Console.WriteLine("Units:");
         Console.WriteLine("  op/s: operations per second.");
+        Console.WriteLine();
         Console.WriteLine();
       }
     }
