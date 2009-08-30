@@ -76,7 +76,7 @@ namespace OrmBattle.Tests.Performance
           new Simplest(i, i);
         ts.Complete();
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateMultipleTest()
@@ -108,7 +108,7 @@ namespace OrmBattle.Tests.Performance
         }
         ts.Complete();
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateSingleTest()
@@ -140,13 +140,13 @@ namespace OrmBattle.Tests.Performance
       long sum = (long)count * (count - 1) / 2;
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
-          var id = (long) i % instanceCount;
+          var id = (long) i % InstanceCount;
           var o = Query<Simplest>.SingleOrDefault(id);
           sum -= o.Id;
         }
         ts.Complete();
       }
-      if (count <= instanceCount)
+      if (count <= InstanceCount)
         Assert.AreEqual(0, sum);
     }
 
@@ -154,7 +154,7 @@ namespace OrmBattle.Tests.Performance
     {
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
-          var id = i%instanceCount;
+          var id = i%InstanceCount;
           var query = Query<Simplest>.All.Where(o => o.Id == id);
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
@@ -168,7 +168,7 @@ namespace OrmBattle.Tests.Performance
     {
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
-          var id = i % instanceCount;
+          var id = i % InstanceCount;
           var query = Query.Execute(() => Query<Simplest>.All.Where(o => o.Id == id));
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
@@ -185,7 +185,7 @@ namespace OrmBattle.Tests.Performance
       var recordSet = primaryIndex.ToRecordSet().Filter(t => t.GetValueOrDefault<long>(0) == id);
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
-          id = i % instanceCount;
+          id = i % InstanceCount;
           foreach (var simplest in recordSet.ToEntities<Simplest>(0)) {
             // Doing nothing, just enumerate
           }
@@ -216,6 +216,31 @@ namespace OrmBattle.Tests.Performance
           foreach (var o in simplests)
             if (++i >= count)
               break;
+        }
+        ts.Complete();
+      }
+    }
+
+    protected override void LinqQuerySmallPageTest(int count)
+    {
+      LinqQueryPageTest(count, SmallPageSize);
+    }
+
+    protected override void LinqQueryLargePageTest(int count)
+    {
+      LinqQueryPageTest(count, LargePageSize);
+    }
+
+    protected void LinqQueryPageTest(int count, int pageSize)
+    {
+      using (var ts = Transaction.Open()) {
+        for (int i = 0; i < count; i++) {
+          var id = (i*pageSize) % InstanceCount;
+          var query = Query.Execute(() => 
+            Query<Simplest>.All.Where(o => o.Id >= id).Take(pageSize));
+          foreach (var simplest in query) {
+            // Doing nothing, just enumerate
+          }
         }
         ts.Complete();
       }

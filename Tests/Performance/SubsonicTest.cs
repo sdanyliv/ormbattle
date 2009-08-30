@@ -57,7 +57,7 @@ namespace OrmBattle.Tests.Performance
         var simplest = new Simplest {Id = i, Value = i};
         repo.Add(simplest);
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateMultipleTest()
@@ -83,7 +83,7 @@ namespace OrmBattle.Tests.Performance
         var simplest = new Simplest {Id = i, Value = i};
         repo.Add(simplest);
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateSingleTest()
@@ -107,18 +107,18 @@ namespace OrmBattle.Tests.Performance
     {
       long sum = (long) count*(count - 1)/2;
       for (int i = 0; i < count; i++) {
-        var id = (long) i%instanceCount;
+        var id = (long) i%InstanceCount;
         var simplest = repo.GetByKey(id);
         sum -= simplest.Id;
       }
-      if (count <= instanceCount)
+      if (count <= InstanceCount)
         Assert.AreEqual(0, sum);
     }
 
     protected override void LinqQueryTest(int count)
     {
       for (int i = 0; i < count; i++) {
-        var id = i % instanceCount;
+        var id = i % InstanceCount;
         var query = db.Simplests.Where(o => o.Id == id);
         foreach (var simplest in query) {
           // Doing nothing, just enumerate
@@ -134,7 +134,7 @@ namespace OrmBattle.Tests.Performance
     protected override void NativeQueryTest(int count)
     {
       for (int i = 0; i < count; i++) {
-        var id = i % instanceCount;
+        var id = i % InstanceCount;
         var query = new Select().From("Simplests").Where("Id").IsEqualTo(id);
         foreach (var simplest in query.ExecuteTypedList<Simplest>()) {
           // Doing nothing, just enumerate
@@ -159,6 +159,27 @@ namespace OrmBattle.Tests.Performance
         foreach (var o in db.Simplests)
           if (++i >= count)
             break;
+    }
+
+    protected override void LinqQuerySmallPageTest(int count)
+    {
+      LinqQueryPageTest(count, SmallPageSize);
+    }
+
+    protected override void LinqQueryLargePageTest(int count)
+    {
+      LinqQueryPageTest(count, LargePageSize);
+    }
+
+    protected void LinqQueryPageTest(int count, int pageSize)
+    {
+      for (int i = 0; i < count; i++) {
+        var id = (i*pageSize) % InstanceCount;
+        var query = db.Simplests.Where(o => o.Id >= id).Take(pageSize);
+        foreach (var simplest in query) {
+          // Doing nothing, just enumerate
+        }
+      }
     }
   }
 }

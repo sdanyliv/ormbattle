@@ -54,6 +54,9 @@ namespace OrmBattle.TestRunner
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQuery);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.CompiledLinqQuery);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.NativeQuery);
+        scorecard.RegisterTest(Indent + "Page query (LINQ):");
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQuerySmallPage);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQueryLargePage);
         scorecard.RegisterTest(Indent + "Materialization:");
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqMaterialize);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.NativeMaterialize);
@@ -110,7 +113,8 @@ namespace OrmBattle.TestRunner
         Console.Write(scorecard);
         Console.WriteLine();
         Console.WriteLine("Units:");
-        Console.WriteLine("  op/s: operations per second.");
+        Console.WriteLine("  op/s:    operations per second");
+        Console.WriteLine("  pages/s: pages per second.");
         Console.WriteLine();
         Console.WriteLine();
       }

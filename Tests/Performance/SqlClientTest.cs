@@ -106,7 +106,7 @@ namespace OrmBattle.Tests.Performance
 
         transaction.Commit();
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateMultipleTest()
@@ -228,7 +228,7 @@ namespace OrmBattle.Tests.Performance
 
         transaction.Commit();
       }
-      instanceCount = count;
+      InstanceCount = count;
     }
 
     protected override void UpdateSingleTest()
@@ -307,7 +307,7 @@ namespace OrmBattle.Tests.Performance
         SqlDataReader dr;
 
         for (int i = 0; i < count; i++) {
-          cmd.Parameters["@pId"].SqlValue = i % instanceCount;
+          cmd.Parameters["@pId"].SqlValue = i % InstanceCount;
           dr = cmd.ExecuteReader();
 
           var s = new Simplest();
@@ -322,7 +322,7 @@ namespace OrmBattle.Tests.Performance
         }
         transaction.Commit();
       }
-      if (count <= instanceCount)
+      if (count <= InstanceCount)
         Assert.AreEqual(0, sum);
     }
 
@@ -347,7 +347,7 @@ namespace OrmBattle.Tests.Performance
         SqlDataReader dr;
 
         for (int i = 0; i < count; i++) {
-          cmd.Parameters["@pId"].SqlValue = i % instanceCount;
+          cmd.Parameters["@pId"].SqlValue = i % InstanceCount;
           dr = cmd.ExecuteReader();
 
           var s = new Simplest();
@@ -394,6 +394,21 @@ namespace OrmBattle.Tests.Performance
     }
 
     protected override void LinqMaterializeTest(int count)
+    {
+      throw new NotSupportedException();
+    }
+
+    protected override void LinqQuerySmallPageTest(int count)
+    {
+      LinqQueryPageTest(count, SmallPageSize);
+    }
+
+    protected override void LinqQueryLargePageTest(int count)
+    {
+      LinqQueryPageTest(count, LargePageSize);
+    }
+
+    protected void LinqQueryPageTest(int count, int pageSize)
     {
       throw new NotSupportedException();
     }
