@@ -40,7 +40,7 @@ namespace OrmBattle.Tests.Performance
     public const int SmallPageSize = 20;
     public const int LargePageSize = 100;
 
-    public int BaseCount = 0;
+    public int BaseCount = DefaultCount;
     public int InstanceCount = 0;
     protected bool warmup;
 
@@ -51,15 +51,14 @@ namespace OrmBattle.Tests.Performance
     public void Execute()
     {
       warmup = true;
-      Execute(Math.Min(DefaultCount, WarmupMaxCount));
+      Execute(Math.Min(BaseCount, WarmupMaxCount));
 
       warmup = false;
-      Execute(DefaultCount);
+      Execute(BaseCount);
     }
 
     private void Execute(int count)
     {
-      BaseCount = count;
       var im = Measure(InsertMultipleTest, count, 1);
       var um = Measure(UpdateMultipleTest, count, 1);
 
@@ -74,13 +73,12 @@ namespace OrmBattle.Tests.Performance
       Measure(NativeMaterializeTest, count, materializationPassCount);
 
       int minPageCount = 2;
-      int smallPageCount = count / SmallPageSize;
-      if (smallPageCount>minPageCount)
-        Measure(LinqQuerySmallPageTest, smallPageCount, 1);
-
-      int largePageCount = count / LargePageSize;
-      if (largePageCount>minPageCount)
-        Measure(LinqQueryLargePageTest, largePageCount, 1);
+      int pageCount = count / SmallPageSize;
+      if (pageCount >= minPageCount)
+        Measure(LinqQuerySmallPageTest, pageCount, 1);
+      pageCount = count / LargePageSize;
+      if (pageCount >= minPageCount)
+        Measure(LinqQueryLargePageTest, pageCount, 1);
 
       var dm = Measure(DeleteMultipleTest, count, 1);
       if (im.HasValue && um.HasValue && dm.HasValue)
