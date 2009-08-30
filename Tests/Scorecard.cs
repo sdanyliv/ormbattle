@@ -97,7 +97,7 @@ namespace OrmBattle.Tests
     protected virtual string GetPrintableTestName(string test)
     {
       var testName = (test ?? string.Empty);
-      testName = Regex.Replace(testName, @"^([^(]*)( \([^)]+\))?([^()]*)$", "${1}${3}");
+      testName = Regex.Replace(testName, @"^([^[]*)( \[[^\]]+\])?([^[\]]*)$", "${1}${3}");
       return testName;
     }
 
@@ -108,7 +108,7 @@ namespace OrmBattle.Tests
 
     protected virtual void AppendTest(StringBuilder sb, string test)
     {
-      sb.AppendFormat("{0,-24}", test);
+      sb.AppendFormat("{0,-32}", test);
     }
 
     protected virtual void AppendResult(StringBuilder sb, object result)
