@@ -75,8 +75,10 @@ namespace OrmBattle.TestRunner
         var asserted = 0;
         var type = test.GetType();
         try {
-          var setup = type.GetMethod("BaseSetup");
-          setup.Invoke(test, ArrayUtils<object>.EmptyArray);
+          if (!(test is MaximumTest)) {
+            var setupMethod = type.GetMethod("BaseSetup");
+            setupMethod.Invoke(test, ArrayUtils<object>.EmptyArray);
+          }
           foreach (var method in type.GetMethods().Where(mi => mi.IsDefined(typeof (TestAttribute), false))) {
             try {
               total++;
@@ -114,9 +116,9 @@ namespace OrmBattle.TestRunner
             scorecard.Tests.Insert(0, "LINQ Implementation:");
           }
           LogOverallResult(test, total, failed, asserted);
-          var tearDown = type.GetMethod("BaseTearDown");
+          var tearDownMethod = type.GetMethod("BaseTearDown");
           try {
-            tearDown.Invoke(test, ArrayUtils<object>.EmptyArray);
+            tearDownMethod.Invoke(test, ArrayUtils<object>.EmptyArray);
           }
           catch (Exception e) {
             Console.WriteLine("BaseTearDown failed: {0}", e);
@@ -124,12 +126,14 @@ namespace OrmBattle.TestRunner
         }
       }
 
+      Console.WriteLine();
       Console.WriteLine("{0} scorecard:", sequenceName);
       Console.Write(scorecard);
       Console.WriteLine("Units:");
       Console.WriteLine("  f/a: total count of failed tests [ / count of tests failed with assertion ]");
       Console.WriteLine("  #: count");
       Console.WriteLine("  %: percentage (% of passed tests).");
+      Console.WriteLine();
       Console.WriteLine();
     }
 
