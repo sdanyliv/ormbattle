@@ -129,6 +129,7 @@ namespace OrmBattle.TestRunner
       Console.WriteLine();
       Console.WriteLine("{0} scorecard:", sequenceName);
       Console.Write(scorecard);
+      Console.WriteLine();
       Console.WriteLine("Units:");
       Console.WriteLine("  f/a: total count of failed tests [ / count of tests failed with assertion ]");
       Console.WriteLine("  #: count");
