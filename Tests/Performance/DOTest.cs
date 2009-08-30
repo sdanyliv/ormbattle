@@ -233,10 +233,11 @@ namespace OrmBattle.Tests.Performance
 
     protected void LinqQueryPageTest(int count, int pageSize)
     {
+      var cacheKey = "LinqQueryPageTest.Query-" + pageSize.ToString();
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
           var id = (i*pageSize) % InstanceCount;
-          var query = Query.Execute(() => 
+          var query = Query.Execute(cacheKey, () => 
             Query<Simplest>.All.Where(o => o.Id >= id).Take(pageSize));
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
