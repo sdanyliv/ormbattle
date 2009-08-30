@@ -14,6 +14,7 @@ using Xtensive.Core.Helpers;
 namespace OrmBattle.TestRunner
 {
   [Serializable]
+  [Serializable]
   public class PerformanceTestRunner
   {
     private const string PiArgMarker = "-pi:";
@@ -104,7 +105,7 @@ namespace OrmBattle.TestRunner
             }
           }
         }
-        Console.WriteLine();
+
         Console.WriteLine("{0} scorecard:", sequenceName);
         Console.Write(scorecard);
         Console.WriteLine("Units:");
