@@ -106,7 +106,7 @@ namespace OrmBattle.TestRunner
           }
         }
         catch (Exception e) {
-          Console.WriteLine("Failed: {0}", e);
+          Console.WriteLine("  Failed: {0}", e);
           continue;
         }
         finally {
@@ -121,7 +121,7 @@ namespace OrmBattle.TestRunner
             tearDownMethod.Invoke(test, ArrayUtils<object>.EmptyArray);
           }
           catch (Exception e) {
-            Console.WriteLine("BaseTearDown failed: {0}", e);
+            Console.WriteLine("  BaseTearDown failed: {0}", e);
           }
         }
       }

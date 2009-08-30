@@ -103,7 +103,7 @@ namespace OrmBattle.Tests
 
     protected virtual void AppendTool(StringBuilder sb, string tool)
     {
-      sb.AppendFormat("{0,8}", tool);
+      sb.AppendFormat("{0,10}", tool);
     }
 
     protected virtual void AppendTest(StringBuilder sb, string test)
@@ -113,7 +113,7 @@ namespace OrmBattle.Tests
 
     protected virtual void AppendResult(StringBuilder sb, object result)
     {
-      sb.AppendFormat("{0,8}", result ?? "n/a");
+      sb.AppendFormat("{0,10}", result ?? "n/a");
     }
 
 
