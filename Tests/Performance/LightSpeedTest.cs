@@ -151,9 +151,9 @@ namespace OrmBattle.Tests.Performance
 
     protected override void FetchTest(int count)
     {
-      var ids = Enumerable.Range((int) minId, (int) (maxId - minId));
       using (var transaction = db.BeginTransaction()) {
-        foreach (var id in ids) {
+        for (int i = 0; i < count; i++) {
+          var id = minId + i % InstanceCount;
           var o = db.FindOne<Simplest>(id);
         }
         transaction.Commit();
@@ -162,10 +162,9 @@ namespace OrmBattle.Tests.Performance
 
     protected override void LinqQueryTest(int count)
     {
-      var ids = Enumerable.Range((int)minId, (int)(maxId - minId));
       using (var transaction = db.BeginTransaction()) {
-        foreach (var i in ids) {
-          int id = i;
+        for (int i = 0; i < count; i++) {
+          var id = minId + i % InstanceCount;
           var query = db.Simplests.Where(o => o.Id == id);
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
@@ -182,10 +181,9 @@ namespace OrmBattle.Tests.Performance
 
     protected override void NativeQueryTest(int count)
     {
-      var ids = Enumerable.Range((int)minId, (int)(maxId - minId));
       using (var transaction = db.BeginTransaction()) {
-        foreach (var i in ids) {
-          int id = i;
+        for (int i = 0; i < count; i++) {
+          var id = minId + i % InstanceCount;
           var query = db.Find<Simplest>(Entity.Attribute("id") == id);
           foreach (var simplest in query) {
             // Doing nothing, just enumerate

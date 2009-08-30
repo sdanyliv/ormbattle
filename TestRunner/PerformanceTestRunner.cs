@@ -95,7 +95,7 @@ namespace OrmBattle.TestRunner
             test.Execute();
           }
           catch (Exception e) {
-            Console.WriteLine("Failed: {0}", e);
+            Console.WriteLine("  Failed: {0}", e);
             continue;
           }
           finally {
@@ -103,7 +103,7 @@ namespace OrmBattle.TestRunner
               test.BaseTearDown();
             }
             catch (Exception e) {
-              Console.WriteLine("BaseTearDown failed: {0}", e);
+              Console.WriteLine("  BaseTearDown failed: {0}", e);
             }
           }
         }
@@ -113,8 +113,10 @@ namespace OrmBattle.TestRunner
         Console.Write(scorecard);
         Console.WriteLine();
         Console.WriteLine("Units:");
-        Console.WriteLine("  op/s:    operations per second");
-        Console.WriteLine("  pages/s: pages per second.");
+        Console.WriteLine("  op/s:      operations per second");
+        Console.WriteLine("  queries/s: queries per second");
+        Console.WriteLine("  pages/s:   pages per second");
+        Console.WriteLine("  objects/s: instances per second.");
         Console.WriteLine();
         Console.WriteLine();
       }

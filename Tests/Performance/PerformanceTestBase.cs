@@ -17,6 +17,8 @@ namespace OrmBattle.Tests.Performance
   {
     public const string BaseUnit = "op/s";
     public const string PpsUnit = "pages/s";
+    public const string QpsUnit = "queries/s";
+    public const string OpsUnit = "objects/s";
     public const string CreateMultiple = "Create Instance (Multiple)";
     public const string CreateSingle = "Create Instance (Single)";
     public const string UpdateMultiple = "Update Instance (Multiple)";
@@ -31,8 +33,8 @@ namespace OrmBattle.Tests.Performance
     public const string NativeQuery = "Native Query";
     public const string LinqMaterialize = "LINQ Materialize";
     public const string NativeMaterialize = "Native Materialize";
-    public const string LinqQuerySmallPage = "Get  20 items";
-    public const string LinqQueryLargePage = "Get 100 items";
+    public const string LinqQuerySmallPage = "Get Small Page (20 items)";
+    public const string LinqQueryLargePage = "Get Large Page (100 items)";
     public const int DefaultCount = 1000;
     public const int WarmupMaxCount = 10000;
     public const int SmallPageSize = 20;
@@ -114,7 +116,14 @@ namespace OrmBattle.Tests.Performance
       }
       if (!warmup) {
         int result = GetResult(count, seconds);
-        LogResult(testName, result, testName.Contains("Page") ? PpsUnit : BaseUnit);
+        string unit = BaseUnit;
+        if (testName.Contains("Page"))
+          unit = PpsUnit;
+        else if (testName.Contains("Materialize"))
+          unit = OpsUnit;
+        else if (testName.Contains("Query"))
+          unit = QpsUnit;
+        LogResult(testName, result, unit);
         return result;
       }
       else
