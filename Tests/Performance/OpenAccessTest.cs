@@ -197,17 +197,7 @@ namespace OrmBattle.Tests.Performance
       scope.Transaction.Commit();
     }
 
-    protected override void LinqQuerySmallPageTest(int count)
-    {
-      LinqQueryPageTest(count, SmallPageSize);
-    }
-
-    protected override void LinqQueryLargePageTest(int count)
-    {
-      LinqQueryPageTest(count, LargePageSize);
-    }
-
-    protected void LinqQueryPageTest(int count, int pageSize)
+    protected override void LinqQueryPageTest(int count, int pageSize)
     {
       scope.Transaction.Begin();
       for (int i = 0; i < count; i++) {

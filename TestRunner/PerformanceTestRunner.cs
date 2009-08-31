@@ -56,7 +56,9 @@ namespace OrmBattle.TestRunner
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.NativeQuery);
         scorecard.RegisterTest(Indent + "Paging (LINQ only):");
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQuerySmallPage);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQueryAveragePage);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQueryLargePage);
+        scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQueryHugePage);
         scorecard.RegisterTest(Indent + "Materialization:");
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqMaterialize);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.NativeMaterialize);
