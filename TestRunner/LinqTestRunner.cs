@@ -131,9 +131,10 @@ namespace OrmBattle.TestRunner
       Console.Write(scorecard);
       Console.WriteLine();
       Console.WriteLine("Units:");
-      Console.WriteLine("  f/a: total count of failed tests [ / count of tests failed with assertion ]");
-      Console.WriteLine("  #:   count");
-      Console.WriteLine("  %:   percentage (% of passed tests).");
+      Console.WriteLine("  f/a: total count of failed tests [ / count of tests failed with assertion ],");
+      Console.WriteLine("       less is better (0 is ideal);");
+      Console.WriteLine("  #:   count;");
+      Console.WriteLine("  %:   percentage (% of passed tests), more is better.");
       Console.WriteLine();
       Console.WriteLine();
     }
