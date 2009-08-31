@@ -14,7 +14,7 @@ namespace OrmBattle.Tests.Linq
   using EFModel;
   
   [TestFixture]
-  public class MaximumTest : ToolTestBase
+  public class MaximumTest : LinqTestBase
   {
     protected NorthwindEntities db;
 
@@ -24,6 +24,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "Maximum"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"MaximumTest.generated.cs"; }
     }
 
     protected override void Setup()

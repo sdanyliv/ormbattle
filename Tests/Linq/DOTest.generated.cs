@@ -17,7 +17,7 @@ namespace OrmBattle.Tests.Linq
   using Xtensive.Storage.Configuration;
   
   [TestFixture]
-  public class DOTest : ToolTestBase
+  public class DOTest : LinqTestBase
   {
     protected NorthwindContext db;
     private DisposableSet disposables;
@@ -29,6 +29,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "DO"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"DOTest.generated.cs"; }
     }
 
     protected override void Setup()

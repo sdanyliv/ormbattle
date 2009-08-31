@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using OrmBattle.Tests;
 using OrmBattle.Tests.Linq;
@@ -26,11 +27,14 @@ namespace OrmBattle.TestRunner
     private const string CountUnit = "#";
     private const string PercentageUnit = "%";
 
-    private const string LtArgMarker = "-lt:";
+    private const string LtArgMarker  = "-lt:";
+    private const string LucArgMarker = "-luc";
+
     private const string Indent = "  ";
     private const string Indent2 = Indent + Indent;
 
     private LinqScorecard scorecard;
+    private bool updateComments;
 
     public void Run()
     {
@@ -41,8 +45,12 @@ namespace OrmBattle.TestRunner
         toolNames = ltArg.RevertibleSplit('/', ',').Distinct().ToList();;
       }
 
+      string lucArg = Program.Args.Where(a => a==LucArgMarker).SingleOrDefault();
+      if (lucArg!=null)
+        updateComments = true;
+
       scorecard = new LinqScorecard();
-      var tests = new List<ToolTestBase> {
+      var tests = new List<LinqTestBase> {
         new EFTest(), 
         new DOTest(),
         new LightSpeedTest(),
@@ -83,25 +91,21 @@ namespace OrmBattle.TestRunner
             try {
               total++;
               if ((test is MaximumTest)) {
-                LogResult(test, method, true, false);
+                LogResult(test, method, new Exception(), false);
                 failed++;
                 asserted++;
               }
               else {
                 method.Invoke(test, ArrayUtils<object>.EmptyArray);
-                LogResult(test, method, false, false);
+                LogResult(test, method, null, false);
               }
             }
-            catch(Exception e) {
+            catch (Exception error) {
               failed++;
-              var targetInvocationException = e as TargetInvocationException;
-              if (targetInvocationException!=null &&
-                targetInvocationException.InnerException.GetType()==typeof (AssertionException)) {
-                asserted++;
-                LogResult(test, method, true, true);
-              }
-              else
-                LogResult(test, method, true, false);
+              error = EnumerableUtils.Unfold(error, e => e.InnerException).Last();
+              bool isAssertion = error is AssertionException;
+              asserted += isAssertion ? 1 : 0;
+              LogResult(test, method, error, isAssertion);
             }
           }
         }
@@ -139,7 +143,7 @@ namespace OrmBattle.TestRunner
       Console.WriteLine();
     }
 
-    private void LogResult(ToolTestBase test, MethodInfo method, bool failed, bool assertionFailed)
+    private void LogResult(LinqTestBase test, MethodInfo method, Exception error, bool isAssertion)
     {
       var testName = Indent + method.GetAttribute<CategoryAttribute>(AttributeSearchOptions.InheritNone).Name;
       var tool = test.ShortToolName;
@@ -148,13 +152,33 @@ namespace OrmBattle.TestRunner
       if (result is Pair<int, int>)
         pair = (Pair<int, int>) result;
       pair = new Pair<int, int>(
-        pair.First + (failed ? 1 : 0), 
-        pair.Second + (assertionFailed ? 1 : 0));
+        pair.First + (error!=null ? 1 : 0), 
+        pair.Second + (isAssertion ? 1 : 0));
       scorecard.Set(tool, testName, pair);
       scorecard.Set(ToolTestBase.Unit, testName, BaseUnit);
+
+      if (updateComments && !(test is MaximumTest)) {
+        string comment = "Passed.";
+        if (error!=null)
+          comment = string.Format("Failed{0}, exception: {1}, message: {2}",
+            isAssertion ? " with assertion" : string.Empty,
+            error.GetType().GetShortName(),
+            error.Message ?? "none");
+        test.Source = Regex.Replace(test.Source, 
+		      @"(?<Prefix>[\r\n]{2} (?<Indent>\s+)  \[Test\] \s*
+		      [\r\n]{2} \k<Indent> \[Category\(.+\)\] *)
+		      (?<Comment>
+		      ([\r\n]{2} \s+ \\\\ (?<Text>.*))*
+		      )
+		      (?<Method>
+		      [\r\n]{2} \s+ public \s+ void \s+ " + Regex.Escape(method.Name) + @" \s* \(\s*\) \s*
+		      )", 
+		      "${Prefix}\r\n${Indent}// " + comment + "${Method}", 
+          RegexOptions.IgnorePatternWhitespace);
+      }
     }
 
-    private void LogOverallResult(ToolTestBase test, int total, int failed, int asserted)
+    private void LogOverallResult(LinqTestBase test, int total, int failed, int asserted)
     {
       int passed = total - failed;
       int properlyFailed = failed - asserted;

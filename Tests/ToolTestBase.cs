@@ -23,14 +23,14 @@ namespace OrmBattle.Tests
     protected abstract void TearDown();
 
     [SetUp]
-    public void BaseSetup()
+    public virtual void BaseSetup()
     {
       Console.WriteLine("  Testing: {0} ({1})", ToolName, ShortToolName);
       Setup();
     }
 
     [TearDown]
-    public void BaseTearDown()
+    public virtual void BaseTearDown()
     {
       TearDown();
       if (Scorecard==null)

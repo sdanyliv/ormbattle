@@ -14,7 +14,7 @@ namespace OrmBattle.Tests.Linq
   using EFModel;
   
   [TestFixture]
-  public class EFTest : ToolTestBase
+  public class EFTest : LinqTestBase
   {
     protected NorthwindEntities db;
 
@@ -24,6 +24,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "EF"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"EFTest.generated.cs"; }
     }
 
     protected override void Setup()

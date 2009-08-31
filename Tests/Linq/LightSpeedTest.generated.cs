@@ -15,7 +15,7 @@ namespace OrmBattle.Tests.Linq
   using LightSpeedModel.Northwind;
     
   [TestFixture]
-  public class LightSpeedTest : ToolTestBase
+  public class LightSpeedTest : LinqTestBase
   {
     protected LightSpeedContext<NorthwindUnitOfWork> context;
     protected NorthwindUnitOfWork db;
@@ -26,6 +26,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "LS"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"LightSpeedTest.generated.cs"; }
     }
 
     protected override void Setup()

@@ -17,9 +17,9 @@
 // Manager class records the various blocks so it can split them up
 internal class Manager
 {
-  private struct Block
+  public struct Block
   {
-    public String Name;
+    public string Name;
     public int Start, Length;
   }
 
@@ -31,6 +31,10 @@ internal class Manager
   private ManagementStrategy strategy;
   private StringBuilder template;
   public String OutputPath { get; set; }
+  
+  public Block CurrentBlock { 
+    get { return currentBlock; } 
+  }
 
   public Manager(ITextTemplatingEngineHost host, StringBuilder template, bool commonHeader)
   {
