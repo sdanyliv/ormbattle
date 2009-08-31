@@ -160,21 +160,28 @@ namespace OrmBattle.TestRunner
       if (updateComments && !(test is MaximumTest)) {
         string comment = "Passed.";
         if (error!=null)
-          comment = string.Format("Failed{0}, exception: {1}, message: {2}",
+          comment = string.Format("Failed{0}.\r\nException: {1}\r\nMessage:\r\n{2}",
             isAssertion ? " with assertion" : string.Empty,
             error.GetType().GetShortName(),
-            error.Message ?? "none");
-        test.Source = Regex.Replace(test.Source, 
-		      @"(?<Prefix>[\r\n]{2} (?<Indent>\s+)  \[Test\] \s*
+            (error.Message ?? "none").Indent(2));
+        var pattern = @"(?<Prefix>[\r\n]{2} (?<Indent>\s+)  \[Test\] \s*
 		      [\r\n]{2} \k<Indent> \[Category\(.+\)\] *)
 		      (?<Comment>
-		      ([\r\n]{2} \s+ \\\\ (?<Text>.*))*
+		      ([\r\n]{2} \s+ // \s+ .*)*
 		      )
 		      (?<Method>
 		      [\r\n]{2} \s+ public \s+ void \s+ " + Regex.Escape(method.Name) + @" \s* \(\s*\) \s*
-		      )", 
-		      "${Prefix}\r\n${Indent}// " + comment + "${Method}", 
-          RegexOptions.IgnorePatternWhitespace);
+		      )";
+        var regex = new Regex(pattern, RegexOptions.IgnorePatternWhitespace);
+        var indent = regex.Matches(test.Source).Cast<Match>().Single().Groups["Indent"].Value;
+        comment = comment.Split('\n')
+          .Select(s => s.TrimEnd(' ', '\r'))
+          .Reverse()
+          .SkipWhile(s => s.Trim().Length==0)
+          .Reverse()
+          .Select(s => indent + @"// " + s)
+          .ToDelimitedString("\r\n");
+        test.Source = regex.Replace(test.Source, "${Prefix}\r\n" + comment + "${Method}");
       }
     }
 
