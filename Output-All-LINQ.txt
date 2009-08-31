@@ -1,0 +1,39 @@
+LINQ tests:
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: Open Access (OA)
+
+LINQ tests scorecard:
+                                        EF        DO        LS        NH        OA   Maximum      Unit
+LINQ Implementation:            
+  Aggregates                             0         0         3         3         1         5       f/a
+  All/Any/Contains                       3         2         6       4/2         4         6       f/a
+  Complex                                1         0         6         6         6         6       f/a
+  Element operations                     4         2         6         6         5         9       f/a
+  Filtering                            4/2         0       5/5       6/1         2        12       f/a
+  Grouping                               1         0        10      10/2         5        10       f/a
+  Join                                   1         0         4         4         4         4       f/a
+  Ordering                             3/2         0       5/1         6         6         8       f/a
+  Projections                            2         2       9/2       6/1       8/1        13       f/a
+  References                             0         0         4         3         2         4       f/a
+  Set operations                         0         0       5/1       6/2         9         9       f/a
+  Standard functions                     9         0         8        16        11        21       f/a
+  Take/Skip                              1         0       2/1       2/1         2         5       f/a
+  Type casts                             1         0       3/1         4         2         5       f/a
+Total:                          
+  Performed                            117       117       117       117       117       117         #
+  Passed                                87       111        41        35        50       117         #
+  Failed                                30         6        76        82        67       117         #
+    Properly                            26         6        65        73        66       117         #
+    Asserted                             4         0        11         9         1       117         #
+  Score                               74,4      94,9      35,0      29,9      42,7     100,0         %
+
+Units:
+  f/a: total count of failed tests [ / count of tests failed with assertion ],
+       less is better (0 is ideal);
+  #:   count;
+  %:   percentage (% of passed tests), more is better.
+
+
