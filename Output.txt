@@ -1,234 +1,317 @@
 Performance tests (50 items):
-Testing: ADO.NET Entity Framework (EF)
-Testing: LightSpeed (LS)
-Testing: NHibernate (NH)
-Testing: OpenAccess (OA)
-Testing: Subsonic (SS)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
 
 Performance tests (50 items) scorecard:
-                              EF      LS      NH      OA      SS
-CRUD performance:       
-  Fetch                       69    5261    6785    2461    8458
-  Single operation:     
-    Create Instance         4572    5848    3562     n/a    3689
-    Update Instance         4018    5973    2938     n/a    1903
-    Remove Instance         4393    6726    3164     n/a    2015
-  Multiple operations:  
-    Create Instance         1471   12786   16263   13808    3800
-    Update Instance         7255   10606   13342    9070    3419
-    Remove Instance         9608   23495   14559   33944    3683
-Data access performance:
-  Query:                
-    LINQ Query               564     279    1136    3795     355
-    Compiled LINQ Query     5447     n/a     n/a    4271     n/a
-    Native Query            7491    2092    4731    5947    6275
-  Materialization:      
-    LINQ Materialize       27669   87175   23002   50456   13570
-    Native Materialize    116686  144383   35453  113378   42416
-                        
+                                        EF        LS        NH        OA        SS      Unit
+CRUD performance:               
+  Fetch                                705      9394      6851      6276      8453      op/s
+  Single operation:             
+    Create Instance                   4350      5882      3532      7368      3706      op/s
+    Update Instance                   4006      6762      2890      6158      1924      op/s
+    Remove Instance                   4752      6825      3188      7123      1993      op/s
+    CUD Average                       4348      6459      3181      6841      2323      op/s
+  Multiple operations:          
+    Create Instance                   8378     12556     16185     13677      3806      op/s
+    Update Instance                   7269     23233     13844     12672      3487      op/s
+    Remove Instance                   9471     21944     14407     32961      3669      op/s
+    CUD Average                       8275     17829     14747     16450      3649      op/s
+Data access performance:        
+  Query:                        
+    LINQ Query                         472      1298      1135      3703       355 queries/s
+    Compiled LINQ Query               2702       n/a       n/a      3883       n/a queries/s
+    Native Query                      7400      8231      4666      5859      6164 queries/s
+  Paging (LINQ only):           
+    Get Small Page (20 items)          706       883       624      1940       272   pages/s
+    Get Large Page (100 items)         n/a       n/a       n/a       n/a       n/a       n/a
+  Materialization:              
+    LINQ Materialize                 29591    100381     24039     50602     13827 objects/s
+    Native Materialize              130753    167392     37778    107020     44610 objects/s
+
+Units:
+  op/s:      operations per second
+  queries/s: queries per second
+  pages/s:   pages per second
+  objects/s: instances per second.
+
 
 Performance tests (100 items):
-Testing: ADO.NET Entity Framework (EF)
-Testing: LightSpeed (LS)
-Testing: NHibernate (NH)
-Testing: OpenAccess (OA)
-Testing: Subsonic (SS)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
 
 Performance tests (100 items) scorecard:
-                              EF      LS      NH      OA      SS
-CRUD performance:       
-  Fetch                     1285    5200    7066    6431    8987
-  Single operation:     
-    Create Instance         4798    6197    3846     n/a    3805
-    Update Instance         4358    7570    2803     n/a    2663
-    Remove Instance         5191    6912    3233     n/a    2780
-  Multiple operations:  
-    Create Instance         8686   13123   17912   14872    3911
-    Update Instance         7599   27274   15105   13803    3363
-    Remove Instance        10184   26282   15838   43099    4094
-Data access performance:
-  Query:                
-    LINQ Query               575     267    1170    3938     363
-    Compiled LINQ Query     5863     n/a     n/a    4324     n/a
-    Native Query            8261    2079    4922    6227    6757
-  Materialization:      
-    LINQ Materialize       47810  125472   28663   80445   21619
-    Native Materialize    166168  178635   40494  149298   48190
-                        
+                                        EF        LS        NH        OA        SS      Unit
+CRUD performance:               
+  Fetch                               1279      9816      7130      6390      9036      op/s
+  Single operation:             
+    Create Instance                   4926      6275      3844      8757      3727      op/s
+    Update Instance                   4364      7380      2808      7829      2664      op/s
+    Remove Instance                   5170      7300      3289      8649      2775      op/s
+    CUD Average                       4795      6946      3259      8390      2987      op/s
+  Multiple operations:          
+    Create Instance                   8742     13154     17608     15005      3808      op/s
+    Update Instance                   7656     27353     14913     13869      3846      op/s
+    Remove Instance                  10055     26215     15959     42459      4148      op/s
+    CUD Average                       8709     19903     16085     18484      3928      op/s
+Data access performance:        
+  Query:                        
+    LINQ Query                         478      1316      1171      3958       364 queries/s
+    Compiled LINQ Query               3718       n/a       n/a      4112       n/a queries/s
+    Native Query                      8139      8968      4949      6183      6718 queries/s
+  Paging (LINQ only):           
+    Get Small Page (20 items)         1367       702       723      2469       297   pages/s
+    Get Large Page (100 items)         n/a       n/a       n/a       n/a       n/a       n/a
+  Materialization:              
+    LINQ Materialize                 49534    141003     29919     83850     22146 objects/s
+    Native Materialize              169033    213766     43077    150105     50932 objects/s
+
+Units:
+  op/s:      operations per second
+  queries/s: queries per second
+  pages/s:   pages per second
+  objects/s: instances per second.
+
 
 Performance tests (500 items):
-Testing: ADO.NET Entity Framework (EF)
-Testing: LightSpeed (LS)
-Testing: NHibernate (NH)
-Testing: OpenAccess (OA)
-Testing: Subsonic (SS)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
 
 Performance tests (500 items) scorecard:
-                              EF      LS      NH      OA      SS
-CRUD performance:       
-  Fetch                     3890    5334    7333    6569    9367
-  Single operation:     
-    Create Instance         4658    6188    3725     n/a    3146
-    Update Instance         5027    6875    1423     n/a    3824
-    Remove Instance         5998    6528    2235     n/a    4140
-  Multiple operations:  
-    Create Instance         6788   14272   14482   15259    3033
-    Update Instance         7156   34055   16915   14873    4144
-    Remove Instance         9292   32014   18204   56625    4598
-Data access performance:
-  Query:                
-    LINQ Query               559     269    1183    4179     355
-    Compiled LINQ Query     6444     n/a     n/a    4164     n/a
-    Native Query            9591    2149    5494    6488    7310
-  Materialization:      
-    LINQ Materialize      166254  296273   38158  160326   41320
-    Native Materialize    378043  349870   50003  219355   53994
-                        
+                                        EF        LS        NH        OA        SS      Unit
+CRUD performance:               
+  Fetch                               3900     10564      7430      6580      9356      op/s
+  Single operation:             
+    Create Instance                   4631      6183      3726      9766      3223      op/s
+    Update Instance                   4948      6882      1440      9444      3842      op/s
+    Remove Instance                   5976      6570      2229     10805      4113      op/s
+    CUD Average                       5124      6532      2125      9972      3686      op/s
+  Multiple operations:          
+    Create Instance                   7008     14354     13785     15640      3088      op/s
+    Update Instance                   7170     34035     16844     14977      4153      op/s
+    Remove Instance                   9118     32800     18329     56019      4667      op/s
+    CUD Average                       7656     23159     16088     20194      3851      op/s
+Data access performance:        
+  Query:                        
+    LINQ Query                         460      1324      1181      4193       356 queries/s
+    Compiled LINQ Query               5726       n/a       n/a      4340       n/a queries/s
+    Native Query                      9508     10327      5478      6479      7259 queries/s
+  Paging (LINQ only):           
+    Get Small Page (20 items)         3126      1041       804      2931       312   pages/s
+    Get Large Page (100 items)        1146       845       355      1391       207   pages/s
+  Materialization:              
+    LINQ Materialize                174428    340947     39631    169790     43319 objects/s
+    Native Materialize              371857    434971     53259    221268     57193 objects/s
+
+Units:
+  op/s:      operations per second
+  queries/s: queries per second
+  pages/s:   pages per second
+  objects/s: instances per second.
+
 
 Performance tests (1000 items):
-Testing: ADO.NET Entity Framework (EF)
-Testing: LightSpeed (LS)
-Testing: NHibernate (NH)
-Testing: OpenAccess (OA)
-Testing: Subsonic (SS)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
 
 Performance tests (1000 items) scorecard:
-                              EF      LS      NH      OA      SS
-CRUD performance:       
-  Fetch                     5202    5265    7409    6611    9159
-  Single operation:     
-    Create Instance         4761    5210    3771     n/a    3072
-    Update Instance         4617    5068     893     n/a    4037
-    Remove Instance         6108    4971    1488     n/a    4417
-  Multiple operations:  
-    Create Instance         6888   12833   12576   15770    2647
-    Update Instance         6749   30625   17161   15269    4165
-    Remove Instance        10401   29485   18620   61767    4525
-Data access performance:
-  Query:                
-    LINQ Query               564     270    1201    4219     357
-    Compiled LINQ Query     6439     n/a     n/a    4187     n/a
-    Native Query            9775    2112    5477    6166    7305
-  Materialization:      
-    LINQ Materialize      232896  372015   39643  188795   47177
-    Native Materialize    437502  396353   51800  228534   54761
-                        
+                                        EF        LS        NH        OA        SS      Unit
+CRUD performance:               
+  Fetch                               5223     10672      7510      6617      9238      op/s
+  Single operation:             
+    Create Instance                   4734      5223      3794      9957      3087      op/s
+    Update Instance                   4847      4944       895      9394      4037      op/s
+    Remove Instance                   6147      4878      1491     10746      4201      op/s
+    CUD Average                       5170      5010      1462     10001      3705      op/s
+  Multiple operations:          
+    Create Instance                   6865     13596     12211     15859      2654      op/s
+    Update Instance                   6682     29916     17279     15085      4170      op/s
+    Remove Instance                  10439     29300     18845     60750      4657      op/s
+    CUD Average                       7670     21260     15557     20575      3608      op/s
+Data access performance:        
+  Query:                        
+    LINQ Query                         469      1348      1198      4217       358 queries/s
+    Compiled LINQ Query               6128       n/a       n/a      4354       n/a queries/s
+    Native Query                      9741     10470      5607      6535      7409 queries/s
+  Paging (LINQ only):           
+    Get Small Page (20 items)         3781      1110       758      2920       309   pages/s
+    Get Large Page (100 items)        1581       920       363      1414       212   pages/s
+  Materialization:              
+    LINQ Materialize                232147    337359     41104    189415     49422 objects/s
+    Native Materialize              451141    377600     54247    230765     58322 objects/s
+
+Units:
+  op/s:      operations per second
+  queries/s: queries per second
+  pages/s:   pages per second
+  objects/s: instances per second.
+
 
 Performance tests (5000 items):
-Testing: ADO.NET Entity Framework (EF)
-Testing: LightSpeed (LS)
-Testing: NHibernate (NH)
-Testing: OpenAccess (OA)
-Testing: Subsonic (SS)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
 
 Performance tests (5000 items) scorecard:
-                              EF      LS      NH      OA      SS
-CRUD performance:       
-  Fetch                     6978    5286    7253    6236    9497
-  Single operation:     
-    Create Instance         4753    2627    3803     n/a    3413
-    Update Instance         5105    1731     217     n/a    4158
-    Remove Instance         6200    1761     417     n/a    4569
-  Multiple operations:  
-    Create Instance         7263    8681   12543   15459    3107
-    Update Instance         6208   27948   16878   14939    4081
-    Remove Instance         8847   28556   18215   58567    4508
-Data access performance:
-  Query:                
-    LINQ Query               568     271    1201    4089     358
-    Compiled LINQ Query     6498     n/a     n/a    4197     n/a
-    Native Query            9755    2113    5487    6325    7394
-  Materialization:      
-    LINQ Materialize      389410  515712   39845  175668   53004
-    Native Materialize    591940  540108   49998  195132   56555
-                        
+                                        EF        LS        NH        OA        SS      Unit
+CRUD performance:               
+  Fetch                               7010     10716      7403      6333      9571      op/s
+  Single operation:             
+    Create Instance                   4692      2649      3790      9366      2785      op/s
+    Update Instance                   5087      1710       217      8351      4172      op/s
+    Remove Instance                   6224      1745       417     10093      4435      op/s
+    CUD Average                       5259      1953       412      9213      3639      op/s
+  Multiple operations:          
+    Create Instance                   5929     12647     18403     15542      2536      op/s
+    Update Instance                   6202     27764     16912     14875      4052      op/s
+    Remove Instance                   8780     29304     18370     58452      4397      op/s
+    CUD Average                       6759     20105     17867     20178      3454      op/s
+Data access performance:        
+  Query:                        
+    LINQ Query                         483      1363      1208      4122       358 queries/s
+    Compiled LINQ Query               6433       n/a       n/a      4267       n/a queries/s
+    Native Query                      9749     10612      5599      6346      7470 queries/s
+  Paging (LINQ only):           
+    Get Small Page (20 items)         4486      1149       789      2802       312   pages/s
+    Get Large Page (100 items)        2423       887       360      1264       214   pages/s
+  Materialization:              
+    LINQ Materialize                436677    567601     40751    175646     56036 objects/s
+    Native Materialize              560550    588983     52145    188014     59322 objects/s
+
+Units:
+  op/s:      operations per second
+  queries/s: queries per second
+  pages/s:   pages per second
+  objects/s: instances per second.
+
 
 Performance tests (10000 items):
-Testing: ADO.NET Entity Framework (EF)
-Testing: LightSpeed (LS)
-Testing: NHibernate (NH)
-Testing: OpenAccess (OA)
-Testing: Subsonic (SS)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
 
 Performance tests (10000 items) scorecard:
-                              EF      LS      NH      OA      SS
-CRUD performance:       
-  Fetch                     7358    5281    7334    6291    9503
-  Single operation:     
-    Create Instance         4868    1619    3760     n/a    3181
-    Update Instance         5098     954     112     n/a    4034
-    Remove Instance         6298     965     219     n/a    4436
-  Multiple operations:  
-    Create Instance         5727   12174   18511   15132    2828
-    Update Instance         6003   26056   16662   13420    3929
-    Remove Instance         8588   25977   18063   48411    4424
-Data access performance:
-  Query:                
-    LINQ Query               574     271    1205    4084     359
-    Compiled LINQ Query     6475     n/a     n/a    4167     n/a
-    Native Query            9883    2122    5531    6361    7460
-  Materialization:      
-    LINQ Materialize      494159  383863   38598  200299   52926
-    Native Materialize    618153  391116   51351  222367   55630
-                        
+                                        EF        LS        NH        OA        SS      Unit
+CRUD performance:               
+  Fetch                               7355     10509      7372      6289      9564      op/s
+  Single operation:             
+    Create Instance                   4892      1633      3798      9366      3118      op/s
+    Update Instance                   5057       941       111      8579      4164      op/s
+    Remove Instance                   6232       955       217     10053      4618      op/s
+    CUD Average                       5332      1102       216      9293      3858      op/s
+  Multiple operations:          
+    Create Instance                   5734     12185     18453     15205      2435      op/s
+    Update Instance                   5999     26106     16841     13498      3891      op/s
+    Remove Instance                   8728     26997     18188     48478      4365      op/s
+    CUD Average                       6583     19057     17798     18693      3345      op/s
+Data access performance:        
+  Query:                        
+    LINQ Query                         485      1361      1205      4108       359 queries/s
+    Compiled LINQ Query               6528       n/a       n/a      4219       n/a queries/s
+    Native Query                      9723     10657      5573      6387      7483 queries/s
+  Paging (LINQ only):           
+    Get Small Page (20 items)         4323      1151       792      2583       312   pages/s
+    Get Large Page (100 items)        2185       935       354      1013       215   pages/s
+  Materialization:              
+    LINQ Materialize                475968    427683     39490    202382     56087 objects/s
+    Native Materialize              577077    432060     54018    211390     58588 objects/s
+
+Units:
+  op/s:      operations per second
+  queries/s: queries per second
+  pages/s:   pages per second
+  objects/s: instances per second.
+
 
 Performance tests (30000 items):
-Testing: ADO.NET Entity Framework (EF)
-Testing: LightSpeed (LS)
-Testing: NHibernate (NH)
-Testing: OpenAccess (OA)
-Testing: Subsonic (SS)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
 
 Performance tests (30000 items) scorecard:
-                              EF      LS      NH      OA      SS
-CRUD performance:       
-  Fetch                     7621    5248    7250    6279    9599
-  Single operation:     
-    Create Instance         4765     484    3813     n/a    3075
-    Update Instance         5086     227      37     n/a    4033
-    Remove Instance         6252     230      74     n/a    4412
-  Multiple operations:  
-    Create Instance         6830   11973   20057   13676    2242
-    Update Instance         5857   24647   16465   12636    3703
-    Remove Instance         8310   25732   17823   43186    4103
-Data access performance:
-  Query:                
-    LINQ Query               502     270    1200    4083     351
-    Compiled LINQ Query     6517     n/a     n/a    4166     n/a
-    Native Query            9906    2115    5525    6276    7464
-  Materialization:      
-    LINQ Materialize      480876  353547   37160  113867   53123
-    Native Materialize    575842  355264   47754  119403   54909
-                        
+                                        EF        LS        NH        OA        SS      Unit
+CRUD performance:               
+  Fetch                               7641     10588      7303      6273      9619      op/s
+  Single operation:             
+    Create Instance                   5630       485      3834      9410      3040      op/s
+    Update Instance                   5081       226        37      8593      4012      op/s
+    Remove Instance                   6213       230        75     10140      4386      op/s
+    CUD Average                       5603       276        73      9338      3721      op/s
+  Multiple operations:          
+    Create Instance                   6399     12084     20021     13777      2241      op/s
+    Update Instance                   5845     24766     16654     12688      3745      op/s
+    Remove Instance                   8451     26421     17979     43241      4102      op/s
+    CUD Average                       6731     18635     18114     17189      3134      op/s
+Data access performance:        
+  Query:                        
+    LINQ Query                         485      1361      1202      4133       351 queries/s
+    Compiled LINQ Query               6533       n/a       n/a      4220       n/a queries/s
+    Native Query                      9886     10594      5584      6302      7471 queries/s
+  Paging (LINQ only):           
+    Get Small Page (20 items)         4317      1141       775      2466       283   pages/s
+    Get Large Page (100 items)        2556       879       344       963       201   pages/s
+  Materialization:              
+    LINQ Materialize                469175    389135     37959    112869     56203 objects/s
+    Native Materialize              522958    387974     50044    116244     58091 objects/s
+
+Units:
+  op/s:      operations per second
+  queries/s: queries per second
+  pages/s:   pages per second
+  objects/s: instances per second.
+
 
 LINQ tests:
-Testing: ADO.NET Entity Framework (EF)
-Testing: LightSpeed (LS)
-Testing: NHibernate (NH)
-Testing: Open Access (OA)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: Open Access (OA)
 
 LINQ tests scorecard:
-                              EF      LS      NH      OA
-LINQ Implementation:    
-  Aggregates                   0       3       3       1
-  All/Any/Contains             3       6     4/2       4
-  Complex                      1       6       6       6
-  Element operations           4       6       6       5
-  Filtering                  4/2     5/5     6/1       2
-  Grouping                     1      10    10/2       5
-  Join                         1       4       4       4
-  Ordering                   3/2     5/1       6       6
-  Projections                  2     9/2     6/1     8/1
-  References                   0       4       3       2
-  Set operations               0     5/1     6/2       9
-  Standard functions           9       8      16      11
-  Take/Skip                    1     2/1     2/1       2
-  Type casts                   1     3/1       4       2
-Total:                  
-  Performed                  117     117     117     117
-  Passed                      87      41      35      50
-  Failed                      30      76      82      67
-    Properly                  26      65      73      66
-    Asserted                   4      11       9       1
-  Score, %                  74,4    35,0    29,9    42,7
+                                        EF        LS        NH        OA   Maximum      Unit
+LINQ Implementation:            
+  Aggregates                             0         3         3         1         5       f/a
+  All/Any/Contains                       3         6       4/2         4         6       f/a
+  Complex                                1         6         6         6         6       f/a
+  Element operations                     4         6         6         5         9       f/a
+  Filtering                            4/2       5/5       6/1         2        12       f/a
+  Grouping                               1        10      10/2         5        10       f/a
+  Join                                   1         4         4         4         4       f/a
+  Ordering                             3/2       5/1         6         6         8       f/a
+  Projections                            2       9/2       6/1       8/1        13       f/a
+  References                             0         4         3         2         4       f/a
+  Set operations                         0       5/1       6/2         9         9       f/a
+  Standard functions                     9         8        16        11        21       f/a
+  Take/Skip                              1       2/1       2/1         2         5       f/a
+  Type casts                             1       3/1         4         2         5       f/a
+Total:                          
+  Performed                            117       117       117       117       117         #
+  Passed                                87        41        35        50       117         #
+  Failed                                30        76        82        67       117         #
+    Properly                            26        65        73        66       117         #
+    Asserted                             4        11         9         1       117         #
+  Score                               74,4      35,0      29,9      42,7     100,0         %
+
+Units:
+  f/a: total count of failed tests [ / count of tests failed with assertion ]
+  #:   count
+  %:   percentage (% of passed tests).
+
 
