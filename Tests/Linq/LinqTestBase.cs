@@ -73,7 +73,7 @@ namespace OrmBattle.Tests.Linq
 
     private void WriteText2(string path, Encoding encoding, string text)
     {
-      using (var stream = new FileStream(path, FileMode.OpenOrCreate))
+      using (var stream = new FileStream(path, FileMode.Open))
       using (var writer = new StreamWriter(stream, encoding)) {
         writer.Write(text);
         stream.SetLength(stream.Position);
