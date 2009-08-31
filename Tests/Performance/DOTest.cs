@@ -221,17 +221,7 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
-    protected override void LinqQuerySmallPageTest(int count)
-    {
-      LinqQueryPageTest(count, SmallPageSize);
-    }
-
-    protected override void LinqQueryLargePageTest(int count)
-    {
-      LinqQueryPageTest(count, LargePageSize);
-    }
-
-    protected void LinqQueryPageTest(int count, int pageSize)
+    protected override void LinqQueryPageTest(int count, int pageSize)
     {
       var cacheKey = "LinqQueryPageTest.Query-" + pageSize.ToString();
       using (var ts = Transaction.Open()) {
