@@ -27,11 +27,11 @@ namespace OrmBattle.TestRunner
         ToolNames = tArg.RevertibleSplit('/', ',').Distinct().ToList();
       }
 
-      var performanceTestRunner = new PerformanceTestRunner();
       var linqTestRunner = new LinqTestRunner();
+      var performanceTestRunner = new PerformanceTestRunner();
 
-      performanceTestRunner.Run();
       linqTestRunner.Run();
+      performanceTestRunner.Run();
 
       if (Args.Where(a => a=="-w").SingleOrDefault()!=null)
         Console.ReadKey();
