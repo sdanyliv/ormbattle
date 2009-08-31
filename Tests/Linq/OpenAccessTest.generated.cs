@@ -16,7 +16,7 @@ namespace OrmBattle.Tests.Linq
   using TelerikModel.Northwind;
   
   [TestFixture]
-  public class OpenAccessTest : ToolTestBase
+  public class OpenAccessTest : LinqTestBase
   {
     protected IObjectScope scope;
     protected NorthwindContext db;
@@ -27,6 +27,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "OA"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"OpenAccessTest.generated.cs"; }
     }
 
     protected override void Setup()

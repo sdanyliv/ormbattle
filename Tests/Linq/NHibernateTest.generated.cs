@@ -16,7 +16,7 @@ namespace OrmBattle.Tests.Linq
   using Configuration=NHibernate.Cfg.Configuration;
   
   [TestFixture]
-  public class NHibernateTest : ToolTestBase
+  public class NHibernateTest : LinqTestBase
   {
     protected NorthwindContext db;
     protected ISession session;
@@ -29,10 +29,14 @@ namespace OrmBattle.Tests.Linq
       get { return "NH"; }
     }
 
+    public override string SourceFileName {
+      get { return @"NHibernateTest.generated.cs"; }
+    }
+
     protected virtual string ConnectionStringName {
       get { return "Northwind"; }
     }
-
+    
     protected override void Setup()
     {
       session = CreateSession();

@@ -29,7 +29,7 @@ namespace OrmBattle.Tests.Linq
   using Configuration=NHibernate.Cfg.Configuration;
   
   [TestFixture]
-  public class NHibernateTest : ToolTestBase
+  public class NHibernateTest : LinqTestBase
   {
     protected NorthwindContext db;
     protected ISession session;
@@ -42,10 +42,14 @@ namespace OrmBattle.Tests.Linq
       get { return "NH"; }
     }
 
+    public override string SourceFileName {
+      get { return @"<#= manager.CurrentBlock.Name #>"; }
+    }
+
     protected virtual string ConnectionStringName {
       get { return "Northwind"; }
     }
-
+    
     protected override void Setup()
     {
       session = CreateSession();
@@ -80,7 +84,7 @@ namespace OrmBattle.Tests.Linq
   using EFModel;
   
   [TestFixture]
-  public class EFTest : ToolTestBase
+  public class EFTest : LinqTestBase
   {
     protected NorthwindEntities db;
 
@@ -90,6 +94,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "EF"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"<#= manager.CurrentBlock.Name #>"; }
     }
 
     protected override void Setup()
@@ -115,7 +123,7 @@ namespace OrmBattle.Tests.Linq
   using TelerikModel.Northwind;
   
   [TestFixture]
-  public class OpenAccessTest : ToolTestBase
+  public class OpenAccessTest : LinqTestBase
   {
     protected IObjectScope scope;
     protected NorthwindContext db;
@@ -126,6 +134,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "OA"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"<#= manager.CurrentBlock.Name #>"; }
     }
 
     protected override void Setup()
@@ -151,7 +163,7 @@ namespace OrmBattle.Tests.Linq
   using LightSpeedModel.Northwind;
     
   [TestFixture]
-  public class LightSpeedTest : ToolTestBase
+  public class LightSpeedTest : LinqTestBase
   {
     protected LightSpeedContext<NorthwindUnitOfWork> context;
     protected NorthwindUnitOfWork db;
@@ -162,6 +174,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "LS"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"<#= manager.CurrentBlock.Name #>"; }
     }
 
     protected override void Setup()
@@ -189,7 +205,7 @@ namespace OrmBattle.Tests.Linq
   using Xtensive.Storage.Configuration;
   
   [TestFixture]
-  public class DOTest : ToolTestBase
+  public class DOTest : LinqTestBase
   {
     protected NorthwindContext db;
     private DisposableSet disposables;
@@ -201,6 +217,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "DO"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"<#= manager.CurrentBlock.Name #>"; }
     }
 
     protected override void Setup()
@@ -248,7 +268,7 @@ namespace OrmBattle.Tests.Linq
   using EFModel;
   
   [TestFixture]
-  public class MaximumTest : ToolTestBase
+  public class MaximumTest : LinqTestBase
   {
     protected NorthwindEntities db;
 
@@ -258,6 +278,10 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "Maximum"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"<#= manager.CurrentBlock.Name #>"; }
     }
 
     protected override void Setup()
