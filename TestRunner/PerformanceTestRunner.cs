@@ -37,19 +37,19 @@ namespace OrmBattle.TestRunner
 
       foreach (int itemCount in ItemCounts) {
         var scorecard = new Scorecard();
-        scorecard.RegisterTest("CRUD performance:");
+        scorecard.RegisterTest("CRUD Performance:");
         scorecard.RegisterTest(Indent + PerformanceTestBase.Fetch);
-        scorecard.RegisterTest(Indent + "Single operation:");
+        scorecard.RegisterTest(Indent + "Single Operation:");
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.CreateSingle);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.UpdateSingle);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.RemoveSingle);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.CudAverageSingle);
-        scorecard.RegisterTest(Indent + "Multiple operations:");
+        scorecard.RegisterTest(Indent + "Multiple Operations:");
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.CreateMultiple);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.UpdateMultiple);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.RemoveMultiple);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.CudAverageMultiple);
-        scorecard.RegisterTest("Data access performance:");
+        scorecard.RegisterTest("Data Access Performance:");
         scorecard.RegisterTest(Indent + "Query:");
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.LinqQuery);
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.CompiledLinqQuery);
@@ -115,10 +115,10 @@ namespace OrmBattle.TestRunner
         Console.Write(scorecard);
         Console.WriteLine();
         Console.WriteLine("Units:");
-        Console.WriteLine("  op/s:      operations per second");
-        Console.WriteLine("  queries/s: queries per second");
-        Console.WriteLine("  pages/s:   pages per second");
-        Console.WriteLine("  objects/s: instances per second.");
+        Console.WriteLine("  op/s:      operations per second, more is better;");
+        Console.WriteLine("  queries/s: queries per second, more is better;");
+        Console.WriteLine("  pages/s:   pages per second, more is better;");
+        Console.WriteLine("  objects/s: # of materialized objects per second, more is better.");
         Console.WriteLine();
         Console.WriteLine();
       }
