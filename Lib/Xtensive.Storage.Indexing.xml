@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.Storage.Indexing</name>
+    </assembly>
+    <members>
+        <member name="T:Xtensive.Storage.Indexing.Command">
+            <summary>
+            Abstract base class for any command.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.Command.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.Command.#ctor(Xtensive.Storage.Indexing.CommandType)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="type">The type of the command.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Command.Type">
+            <summary>
+            Gets the type of the command.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Command.ResultType">
+            <summary>
+            Gets the type of the result.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.CommandResult`1">
+            <summary>
+            Typed version of <see cref="T:Xtensive.Storage.Indexing.CommandResult"/>.
+            </summary>
+            <typeparam name="T">The type of the <see cref="P:Xtensive.Storage.Indexing.CommandResult.Value"/></typeparam>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.CommandResult">
+            <summary>
+            An abstract base class for <see cref="T:Xtensive.Storage.Indexing.Command"/> execution result.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult.GetValueInternal">
+            <summary>
+            Gets the untyped result value.
+            </summary>
+            <returns>Untyped result value.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult.Equals(Xtensive.Storage.Indexing.CommandResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult.op_Equality(Xtensive.Storage.Indexing.CommandResult,Xtensive.Storage.Indexing.CommandResult)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult.op_Inequality(Xtensive.Storage.Indexing.CommandResult,Xtensive.Storage.Indexing.CommandResult)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.CommandResult.Value">
+            <summary>
+            Gets the result value.
+            <see langword="null"/>, if <see cref="P:Xtensive.Storage.Indexing.CommandResult.Error"/> is set.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.CommandResult.Error">
+            <summary>
+            Gets the error.
+            If set, the <see cref="P:Xtensive.Storage.Indexing.CommandResult.Value"/> is <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.CommandResult.HasError">
+            <summary>
+            Gets a value indicating whether <see cref="P:Xtensive.Storage.Indexing.CommandResult.Error"/> != <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.CommandResult.IsDefault">
+            <summary>
+            Gets a value indicating whether this result is a default one.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult`1.GetValueInternal">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult`1.Equals(Xtensive.Storage.Indexing.CommandResult{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult`1.Equals(Xtensive.Storage.Indexing.CommandResult)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult`1.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult`1.#ctor(`0)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult`1.#ctor(System.Exception)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="error">The error.</param>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.CommandResult`1.#ctor(System.Func{`0})">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            Sets <see cref="P:Xtensive.Storage.Indexing.CommandResult.Error"/> property to
+            caught exception, if <paramref name="valueGenerator"/>
+            fails.
+            </summary>
+            <param name="valueGenerator">The value generator.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.CommandResult`1.Default">
+            <summary>
+            Gets the default command result for <typeparamref name="T"/> type.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.CommandResult`1.Value">
+            <summary>
+            Gets the result value.
+            <see langword="null"/>, if <see cref="P:Xtensive.Storage.Indexing.CommandResult.Error"/> is set.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.CommandResult`1.IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.CommandType">
+            <summary>
+            Enumerates possible command types.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Indexing.CommandType.Query">
+            <summary>
+            Query command.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Indexing.CommandType.Update">
+            <summary>
+            Update command.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Indexing.CommandType.SetOption">
+            <summary>
+            Set option command.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.Command`1">
+            <summary>
+            <see cref="T:Xtensive.Storage.Indexing.CommandResult"/> with specific result type.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.Command`1.#ctor(Xtensive.Storage.Indexing.CommandType)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.IDataManager">
+            <summary>
+            Data management API (DML API).
+            Provides read-write access to any index 
+            in the <see cref="T:Xtensive.Storage.Indexing.IStorage"/>, allows to 
+            execute queries on them.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.IDataManager.Execute(Xtensive.Storage.Indexing.Command)">
+            <summary>
+            Executes the specified command.
+            </summary>
+            <param name="command">The command to execute.</param>
+            <returns>Command execution result.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.IDataManager.Execute(System.Collections.Generic.List{Xtensive.Storage.Indexing.Command})">
+            <summary>
+            Executes the specified sequence of commands.
+            </summary>
+            <param name="commands">The sequence of commands to execute.</param>
+            <returns>Command execution results (one per each command).
+            Value for the specified index exists only if its 
+            <see cref="P:Xtensive.Storage.Indexing.CommandResult.IsDefault"/> property returns <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.IModelManager">
+            <summary>
+            Model manager API (DDL API).
+            Manages the indexes stored in the <see cref="T:Xtensive.Storage.Indexing.IStorage"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.IModelManager.Update(Xtensive.Modelling.Actions.ActionSequence)">
+            <summary>
+            Updates the <see cref="P:Xtensive.Storage.Indexing.IModelManager.Model"/> by applying specified 
+            action sequence to it.
+            </summary>
+            <param name="sequence">The sequence to apply.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.IModelManager.Model">
+            <summary>
+            Gets the current storage model.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.IQueryCommand">
+            <summary>
+            Query command interface.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.IQueryCommand.Definition">
+            <summary>
+            Gets or sets the definition of the query.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.IStorage">
+            <summary>
+            Indexing storage API.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.IStorage.CreateView(System.Transactions.IsolationLevel)">
+            <summary>
+            Creates a new transactional view.
+            </summary>
+            <param name="isolationLevel">Required isolation level.</param>
+            <returns>New transactional view.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.IStorage.GetView(System.Guid)">
+            <summary>
+            Gets the transactional view.
+            </summary>
+            <param name="transactionId">The transaction identifier to get the view for.</param>
+            <returns>The transactional view;
+            <see langword="null" />, if no view is available for the specified transaction.</returns>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.IStorageView">
+            <summary>
+            Transactional storage view.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.IStorageView.GetIndex(Xtensive.Storage.Indexing.Model.IndexInfo)">
+            <summary>
+            Gets the index.
+            </summary>
+            <param name="indexInfo">The index.</param>
+            <returns>The unique ordered index.</returns>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.IStorageView.Transaction">
+            <summary>
+            Gets the transaction this view belongs to.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.Log">
+            <summary>
+            Log for this namespace.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Indexing.Log.Name">
+            <summary>
+            Gets the name of this log.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.SetOptionCommand`1">
+            <summary>
+            Set option command.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.SetOptionCommand`1.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.SetOptionCommand`1.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.SetOptionCommand`1.#ctor(System.String,`0)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.SetOptionCommand`1.Name">
+            <summary>
+            Gets or sets the name of the option.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.SetOptionCommand`1.Value">
+            <summary>
+            Gets or sets the new value.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.QueryCommand`1">
+            <summary>
+            Query command.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.QueryCommand`1.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.QueryCommand`1.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.QueryCommand`1.#ctor(System.Object)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="definition">Query definition.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.QueryCommand`1.Definition">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.NoResult">
+            <summary>
+            Void type replacement.
+            Used within particular <see cref="T:Xtensive.Storage.Indexing.CommandResult`1"/> instance as its type parameter.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Indexing.NoResult.Default">
+            <summary>
+            The only member of this enumeration.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.UpdateCommand">
+            <summary>
+            Update command.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.UpdateCommand.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Indexing.UpdateCommand.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.UpdateCommand.TableName">
+            <summary>
+            Gets or sets the name of affected table.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.UpdateCommand.Key">
+            <summary>
+            Gets or sets the key.
+            <see langword="null" /> indicates that
+            key must be generated automatically.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.UpdateCommand.KeyMustExist">
+            <summary>
+            Gets or sets a value indicating whether key must exist in the table.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.UpdateCommand.Value">
+            <summary>
+            Gets or sets the new value.
+            <see langword="null" /> indicates that row must be removed.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Indexing.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Resources.Strings.ExEmptyKeyColumnsCollection">
+            <summary>
+              Looks up a localized string similar to Empty key columns collection..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Resources.Strings.ExInvalidParentValue">
+            <summary>
+              Looks up a localized string similar to Invalid Parent value..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Resources.Strings.ExItemWithNameXAlreadyExists">
+            <summary>
+              Looks up a localized string similar to Item with name &apos;{0}&apos; already exists..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Resources.Strings.KeyMustExistsSuffix">
+            <summary>
+              Looks up a localized string similar to , key must exists.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Resources.Strings.OptionCommandFormat">
+            <summary>
+              Looks up a localized string similar to {0}: {1} = {2}.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Resources.Strings.QueryCommandFormat">
+            <summary>
+              Looks up a localized string similar to {0}: {1}.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Indexing.Resources.Strings.UpdateCommandFormat">
+            <summary>
+              Looks up a localized string similar to {0}: {1} = {2}{3}.
+            </summary>
+        </member>
+    </members>
+</doc>
