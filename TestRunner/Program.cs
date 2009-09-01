@@ -30,7 +30,7 @@ namespace OrmBattle.TestRunner
       var linqTestRunner = new LinqTestRunner();
       var performanceTestRunner = new PerformanceTestRunner();
 
-      linqTestRunner.Run();
+      //linqTestRunner.Run();
       performanceTestRunner.Run();
 
       if (Args.Where(a => a=="-w").SingleOrDefault()!=null)
