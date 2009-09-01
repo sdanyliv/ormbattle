@@ -105,11 +105,11 @@
     </Reference>
     <Reference Include="Xtensive.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bin\Latest\Xtensive.Core.dll</HintPath>
+      <HintPath>..\Lib\Xtensive.Core.dll</HintPath>
     </Reference>
     <Reference Include="Xtensive.Core.Aspects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bin\Latest\Xtensive.Core.Aspects.dll</HintPath>
+      <HintPath>..\Lib\Xtensive.Core.Aspects.dll</HintPath>
     </Reference>
     <Reference Include="Xtensive.Core.Testing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
