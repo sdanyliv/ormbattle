@@ -69,7 +69,7 @@ namespace OrmBattle.TestRunner
           new DOTest(),
           new LightSpeedTest(),
           new NHibernateTest(),
-          //new OpenAccessTest(),
+          new OpenAccessTest(),
           new SubsonicTest(),
           new SqlClientTest(),
         };
