@@ -173,7 +173,7 @@
     <Compile Include="Log.cs" />
     <None Include="Linq\Manager.tt">
     </None>
-    <None Include="Performance\BLToolkitTest.cs" />
+    <Compile Include="Performance\BLToolkitTest.cs" />
     <Compile Include="Performance\DOTest.cs" />
     <Compile Include="Performance\EFTest.cs" />
     <Compile Include="Performance\LightSpeedTest.cs" />
@@ -246,7 +246,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="True" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
+      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="True" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
