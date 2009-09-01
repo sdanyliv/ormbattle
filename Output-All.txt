@@ -3,7 +3,7 @@ LINQ tests:
   Testing: DataObjects.Net (DO)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
-  Testing: Open Access (OA)
+  Testing: OpenAccess (OA)
 
 LINQ tests scorecard:
                                         EF        DO        LS        NH        OA   Maximum      Unit

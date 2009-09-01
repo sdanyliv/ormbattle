@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2009 Xtensive LLC.
+﻿// Copyright (C) 2009 ORMBattle.NET.
 // All rights reserved.
 // For conditions of distribution and use, see license.
 // Created by: Alex Yakunin

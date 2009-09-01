@@ -1,4 +1,11 @@
-// Generated code start
+// Copyright (C) 2009 ORMBattle.NET.
+// All rights reserved.
+// For conditions of distribution and use, see license.
+// Created by: Alexis Kochetov
+// Created:    2009.07.31
+
+// This file is generated from LinqTests.tt
+
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -1604,4 +1611,3 @@ namespace OrmBattle.Tests.Linq
     #endregion
   }
 }
-// Generated code end
