@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BLToolkit.3, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\BLToolkit.3.dll</HintPath>
+    </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="EnvDTE90a, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -172,6 +176,7 @@
     <Compile Include="Log.cs" />
     <None Include="Linq\Manager.tt">
     </None>
+    <Compile Include="Performance\BLToolkitTest.cs" />
     <Compile Include="Performance\DOTest.cs" />
     <Compile Include="Performance\EFTest.cs" />
     <Compile Include="Performance\LightSpeedTest.cs" />
@@ -188,6 +193,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLToolkitModel\BLToolkitModel.csproj">
+      <Project>{21539ADC-5EF2-4ABF-989F-42CCBF84EFC1}</Project>
+      <Name>BLToolkitModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DOModel\DOModel.csproj">
       <Project>{9E177A2F-7AED-4E92-88A2-B4B689B87FF5}</Project>
       <Name>DOModel</Name>
@@ -240,7 +249,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="True" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
+      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="True" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

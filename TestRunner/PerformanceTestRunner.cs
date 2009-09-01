@@ -64,11 +64,12 @@ namespace OrmBattle.TestRunner
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.NativeMaterialize);
 
         var tests = new List<PerformanceTestBase> {
+          new BLToolkitTest(),
           new EFTest(),
           new DOTest(),
           new LightSpeedTest(),
           new NHibernateTest(),
-          new OpenAccessTest(),
+          //new OpenAccessTest(),
           new SubsonicTest(),
           new SqlClientTest(),
         };
