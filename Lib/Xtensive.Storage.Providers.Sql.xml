@@ -1,0 +1,1045 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.Storage.Providers.Sql</name>
+    </assembly>
+    <members>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlQueryParameterBindingType">
+            <summary>
+            Possible types of <see cref="T:Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding"/>.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Providers.Sql.SqlQueryParameterBindingType.Regular">
+            <summary>
+            Indicates no special handling of parameter values.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Providers.Sql.SqlQueryParameterBindingType.SmartNull">
+            <summary>
+            Indicates that special handling of null values is performed.
+            If <see cref="P:Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding.ValueAccessor"/> returns <see langword="null"/>
+            generated query with contain "something is null" check instead of "something = @p".
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Providers.Sql.SqlQueryParameterBindingType.BooleanConstant">
+            <summary>
+            Indicates that <see cref="T:System.Boolean"/> parameters is automatically propagated to constants
+            according to a value returned by <see cref="P:Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding.ValueAccessor"/>.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.HandlerFactory">
+            <summary>
+            Base handler factory for SQL storages.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.KeyGeneratorFactory">
+            <summary>
+            Generator factory.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.KeyGeneratorFactory.IsSchemaBoundGenerator(Xtensive.Storage.Model.GeneratorInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler">
+            <summary>
+            Upgrades storage schema.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.UpgradeSchema(Xtensive.Modelling.Actions.ActionSequence,Xtensive.Storage.Indexing.Model.StorageInfo,Xtensive.Storage.Indexing.Model.StorageInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.GetExtractedSchema">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.CreateTypeInfo(System.Type,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.Servers.Oracle.DomainHandler">
+            <summary>
+            A domain handler for Oracle RDBMS.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.DomainHandler">
+            <summary>
+            <see cref="T:Xtensive.Storage.Domain"/>-level handler.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.GetCompilerProviderContainerTypes">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.CreateCompiler(Xtensive.Core.Collections.BindingCollection{System.Object,Xtensive.Storage.Rse.Providers.ExecutableProvider})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.CreatePostCompiler">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.GetDataReaderAccessor(Xtensive.Core.Tuples.TupleDescriptor)">
+            <summary>
+            Creates (or retrieves from cache) <see cref="T:Xtensive.Storage.Providers.Sql.DbDataReaderAccessor"/> 
+            for the specified <see cref="T:Xtensive.Core.Tuples.TupleDescriptor"/>.
+            </summary>
+            <param name="descriptor">The descriptor.</param>
+            <returns>A <see cref="T:Xtensive.Storage.Providers.Sql.DbDataReaderAccessor"/> 
+            for the specified <see cref="T:Xtensive.Core.Tuples.TupleDescriptor"/></returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.GetPersistRequest(Xtensive.Storage.Providers.Sql.SqlRequestBuilderTask)">
+            <summary>
+            Gets the persist request for the specified <paramref name="task"/>.
+            </summary>
+            <param name="task">The task to get request from.</param>
+            <returns>A <see cref="T:Xtensive.Storage.Providers.Sql.SqlPersistRequest"/> that represents <paramref name="task"/>.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.ResolveOrderingDescriptor(Xtensive.Storage.Rse.Providers.CompilableProvider)">
+            <summary>
+            Creates <see cref="T:Xtensive.Storage.Rse.PreCompilation.Correction.ProviderOrderingDescriptor"/> for specified 
+            <see cref="T:Xtensive.Storage.Rse.Providers.CompilableProvider"/>.
+            </summary>
+            <param name="provider">The provider for which <see cref="T:Xtensive.Storage.Rse.PreCompilation.Correction.ProviderOrderingDescriptor"/> 
+            should be created.</param>
+            <returns>A newly created <see cref="T:Xtensive.Storage.Rse.PreCompilation.Correction.ProviderOrderingDescriptor"/>.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.BuildMapping">
+            <inheritdoc/>
+            <exception cref="T:Xtensive.Storage.DomainBuilderException">Somethig went wrong.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.CreatePreCompiler">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.Initialize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.DomainHandler.Schema">
+            <summary>
+            Gets the storage schema.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.DomainHandler.Mapping">
+            <summary>
+            Gets the model mapping.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.DomainHandler.RequestBuilder">
+            <summary>
+            Gets the SQL request builder.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.DomainHandler.Driver">
+            <summary>
+            Gets the SQL driver.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.Servers.Oracle.DomainHandler.CreateCompiler(Xtensive.Core.Collections.BindingCollection{System.Object,Xtensive.Storage.Rse.Providers.ExecutableProvider})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.Servers.Oracle.HandlerFactory">
+            <summary>
+            Storage provider for Oracle.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlCompiler">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.IsCompatible(Xtensive.Storage.Rse.Providers.ExecutableProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.ToCompatible(Xtensive.Storage.Rse.Providers.ExecutableProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitAggregate(Xtensive.Storage.Rse.Providers.Compilable.AggregateProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitAlias(Xtensive.Storage.Rse.Providers.Compilable.AliasProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitCalculate(Xtensive.Storage.Rse.Providers.Compilable.CalculateProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitDistinct(Xtensive.Storage.Rse.Providers.Compilable.DistinctProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitFilter(Xtensive.Storage.Rse.Providers.Compilable.FilterProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitIndex(Xtensive.Storage.Rse.Providers.Compilable.IndexProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitJoin(Xtensive.Storage.Rse.Providers.Compilable.JoinProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitPredicateJoin(Xtensive.Storage.Rse.Providers.Compilable.PredicateJoinProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitRange(Xtensive.Storage.Rse.Providers.Compilable.RangeProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitSeek(Xtensive.Storage.Rse.Providers.Compilable.SeekProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitSelect(Xtensive.Storage.Rse.Providers.Compilable.SelectProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitSort(Xtensive.Storage.Rse.Providers.Compilable.SortProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitStore(Xtensive.Storage.Rse.Providers.Compilable.StoreProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitSkip(Xtensive.Storage.Rse.Providers.Compilable.SkipProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitTake(Xtensive.Storage.Rse.Providers.Compilable.TakeProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitApply(Xtensive.Storage.Rse.Providers.Compilable.ApplyProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitExistence(Xtensive.Storage.Rse.Providers.Compilable.ExistenceProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitIntersect(Xtensive.Storage.Rse.Providers.Compilable.IntersectProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitExcept(Xtensive.Storage.Rse.Providers.Compilable.ExceptProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitConcat(Xtensive.Storage.Rse.Providers.Compilable.ConcatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitUnion(Xtensive.Storage.Rse.Providers.Compilable.UnionProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.VisitLock(Xtensive.Storage.Rse.Providers.Compilable.LockProvider)">
+            <inheritdoc/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Xtensive.Storage.Providers.Sql.SqlCompiler.ProcessAggregate(Xtensive.Storage.Providers.Sql.SqlProvider,System.Collections.Generic.List{Xtensive.Sql.Dml.SqlTableColumn},Xtensive.Storage.Rse.AggregateColumn)" -->
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.ProcessAliasedName(System.String)">
+            <summary>
+            Processes the aliased.
+            </summary>
+            <param name="name">The name to process.</param>
+            <returns>Processed name.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCompiler.#ctor(Xtensive.Storage.Providers.HandlerAccessor,Xtensive.Core.Collections.BindingCollection{System.Object,Xtensive.Storage.Rse.Providers.ExecutableProvider})">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlCompiler.Driver">
+            <summary>
+            Gets the value type mapper.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlCompiler.ProviderInfo">
+            <summary>
+            Gets the provider info.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlCompiler.Handlers">
+            <summary>
+            Gets the <see cref="T:Xtensive.Storage.Providers.HandlerAccessor"/> object providing access to available storage handlers.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.Servers.PostgreSql.DomainHandler">
+            <summary>
+            A domain handler specific to PostgreSQL RDBMS.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.Servers.PostgreSql.DomainHandler.CreateCompiler(Xtensive.Core.Collections.BindingCollection{System.Object,Xtensive.Storage.Rse.Providers.ExecutableProvider})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.Servers.PostgreSql.HandlerFactory">
+            <summary>
+            Storage provider for PostgreSQL.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlRequestBuilder">
+            <summary>
+            Builder of <see cref="T:Xtensive.Storage.Providers.Sql.SqlRequest"/>s.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlRequestBuilder.Build(Xtensive.Storage.Providers.Sql.SqlRequestBuilderTask)">
+            <summary>
+            Builds the request.
+            </summary>
+            <param name="task">The request builder task.</param>
+            <returns><see cref="T:Xtensive.Storage.Providers.Sql.SqlPersistRequest"/> instance for the specified <paramref name="task"/>.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlRequestBuilder.Initialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlRequestBuilder.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.Servers.PostgreSql.SqlRequestBuilder.GetExpectedResult(Xtensive.Sql.Dml.SqlBatch)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.Servers.SqlServer.DomainHandler">
+            <summary>
+            A domain handler specific to Microsoft SQL Server RDBMS.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.Servers.SqlServer.DomainHandler.CreateCompiler(Xtensive.Core.Collections.BindingCollection{System.Object,Xtensive.Storage.Rse.Providers.ExecutableProvider})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.Servers.SqlServer.HandlerFactory">
+            <summary>
+            Storage provider for MS SQL.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlActionTranslator">
+            <summary>
+            Translates upgrade <see cref="T:Xtensive.Modelling.Actions.NodeAction"/>s to Sql.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlActionTranslator.VisitCopyDataAction(Xtensive.Modelling.Actions.DataAction)">
+            <exception cref="T:System.InvalidOperationException">Can not create copy command 
+            with specific hint parameters.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlActionTranslator.ProcessUpdateDataAction(Xtensive.Modelling.Actions.DataAction)">
+            <exception cref="T:System.InvalidOperationException">Can not create update command 
+            with specific hint parameters.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlActionTranslator.CreateConditionalExpression(Xtensive.Modelling.Comparison.Hints.DataHint,Xtensive.Sql.Dml.SqlTableRef)">
+            <exception cref="T:System.InvalidOperationException">Can not create expression 
+            with specific hint parameters.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlActionTranslator.#ctor(Xtensive.Modelling.Actions.ActionSequence,Xtensive.Sql.Model.Schema,Xtensive.Storage.Indexing.Model.StorageInfo,Xtensive.Storage.Indexing.Model.StorageInfo,Xtensive.Storage.Providers.ProviderInfo,Xtensive.Storage.Providers.Sql.Driver,System.String,System.Collections.Generic.List{System.String},System.Func{Xtensive.Sql.ISqlCompileUnit,System.Object})">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="actions">The actions to translate.</param>
+            <param name="schema">The schema.</param>
+            <param name="sourceModel">The source model.</param>
+            <param name="targetModel">The target model.</param>
+            <param name="providerInfo">The provider info.</param>
+            <param name="driver">The driver.</param>
+            <param name="typeIdColumnName">Name of the type id column.</param>
+            <param name="enforceChangedColumns">Columns thats types must be changed 
+            enforced (without type conversion verification).</param>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlActionTranslator.PreUpgradeCommands">
+            <summary>
+            Gets the command thats must be 
+            executed before upgrade commands.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlActionTranslator.UpgradeCommands">
+            <summary>
+            Gets the translation result.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlActionTranslator.DataManipulateCommands">
+            <summary>
+            Gets the data manipulate commands.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlActionTranslator.PostUpgradeCommands">
+            <summary>
+            Gets the post upgrade commands, thats
+            must be executed after data manipulate commands.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlCachingKeyGenerator`1">
+            <summary>
+            Caching generator implementation for SQL-based storages.
+            </summary>
+            <typeparam name="TFieldType">The type of the field.</typeparam>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCachingKeyGenerator`1.CacheNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCachingKeyGenerator`1.Initialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCachingKeyGenerator`1.#ctor(Xtensive.Storage.Model.GeneratorInfo,Xtensive.Sql.ISqlCompileUnit)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="generatorInfo">The <see cref="T:Xtensive.Storage.Model.GeneratorInfo"/> instance that describes generator.</param>
+            <param name="sqlNext">The <see cref="T:Xtensive.Sql.ISqlCompileUnit"/> statement that will be used for fetching next portion of unique values from database.</param>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlCachingKeyGenerator`1.#ctor(Xtensive.Storage.Model.GeneratorInfo,Xtensive.Sql.ISqlCompileUnit,Xtensive.Sql.ISqlCompileUnit)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="generatorInfo">The <see cref="T:Xtensive.Storage.Model.GeneratorInfo"/> instance that describes generator.</param>
+            <param name="sqlNext">The <see cref="T:Xtensive.Sql.ISqlCompileUnit"/> statement that will be used for fetching next portion of unique values from database.</param>
+            <param name="sqlInitialize">The <see cref="T:Xtensive.Sql.ISqlCompileUnit"/> statement that will be used for initializing sequence in database (if necessary).</param>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlQueryRequest">
+            <summary>
+            Fetch request.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlRequest">
+            <summary>
+            Base class for any SQL request.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlRequest.Compile(Xtensive.Storage.Providers.Sql.DomainHandler)">
+            <summary>
+            Compiles the request using <see cref="T:Xtensive.Sql.SqlDriver"/> from specified <see cref="T:Xtensive.Storage.Providers.Sql.DomainHandler"/>.
+            </summary>
+            <param name="domainHandler">The domain handler.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlRequest.#ctor(Xtensive.Sql.ISqlCompileUnit)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="statement">The statement.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlRequest.Statement">
+            <summary>
+            Gets the statement.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlQueryRequest.#ctor(Xtensive.Sql.Dml.SqlSelect,Xtensive.Core.Tuples.TupleDescriptor,System.Collections.Generic.IEnumerable{Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding})">
+            <summary>
+             <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="statement">The statement.</param>
+            <param name="tupleDescriptor">The tuple descriptor.</param>
+            <param name="parameterBindings">The parameter bindings.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlQueryRequest.SelectStatement">
+            <summary>
+            Gets the select statement.
+            </summary>
+            <value>The select statement.</value>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlQueryRequest.ParameterBindings">
+            <summary>
+            Gets the parameter bindings.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlQueryRequest.TupleDescriptor">
+            <summary>
+            Gets the record set header.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExColumnXIsNotFoundInTableY">
+            <summary>
+              Looks up a localized string similar to Column &apos;{0}&apos; is not found in table &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExEnumerationIsAlreadyFinished">
+            <summary>
+              Looks up a localized string similar to Enumeration is already finished..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExEnumerationIsNotStarted">
+            <summary>
+              Looks up a localized string similar to Enumeration is not started..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExErrorOnInsert">
+            <summary>
+              Looks up a localized string similar to Unable to insert instance of type &apos;{0}&apos; with specified key. Query affected {1} tables, but expected {2} tables..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExErrorOnUpdate">
+            <summary>
+              Looks up a localized string similar to Unable to update instance of type {0} with specified key. Query affected {1} tables, but expecrted {2} tables..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExErrorX">
+            <summary>
+              Looks up a localized string similar to Error &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExErrorXWhileExecutingQueryY">
+            <summary>
+              Looks up a localized string similar to Error &apos;{0}&apos; while executing query &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExIncorrectCommandParameters">
+            <summary>
+              Looks up a localized string similar to Incorrect command parameters..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExIndexIsChanged">
+            <summary>
+              Looks up a localized string similar to Index &apos;{0}&apos; is changed..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExIndexXIsNotFound">
+            <summary>
+              Looks up a localized string similar to Index &apos;{0}&apos; is not found..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExInstanceMultipleResults">
+            <summary>
+              Looks up a localized string similar to Multiple instances of type &apos;{0}&apos; with specified key are found..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExInstanceNotFound">
+            <summary>
+              Looks up a localized string similar to Instance of type &apos;{0}&apos; with specified key is not found..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExMemberXIsNotSupported">
+            <summary>
+              Looks up a localized string similar to Member &apos;{0}&apos; is not supported..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExMultipleResults">
+            <summary>
+              Looks up a localized string similar to Specified query returns multiple results..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExOnlyEqualityRangesAreSupported">
+            <summary>
+              Looks up a localized string similar to Only equality ranges are supported..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExOrderingOfRecordsIsNotSpecifiedForRowNumberProvider">
+            <summary>
+              Looks up a localized string similar to The ordering of records is not specified for RowNumberProvider..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExReaderIsNotInConsistentState">
+            <summary>
+              Looks up a localized string similar to Reader is not in consistent state..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExRowNumberWindowFunctionIsNotSupportedOnThisVersionOfPostgreSql">
+            <summary>
+              Looks up a localized string similar to ROW_NUMBER window function is not supported on this version of PostgreSQL.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExSequenceXIsNotFoundInStorage">
+            <summary>
+              Looks up a localized string similar to Sequence &apos;{0}&apos; is not found in storage..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExStringTrimSupportedOnlyWithConstants">
+            <summary>
+              Looks up a localized string similar to String.Trim(char[]), String.TrimStart(char[]), string.TrimEnd(char[]) supported only with argument being array of constants..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExTableXIsNotFound">
+            <summary>
+              Looks up a localized string similar to Table &apos;{0}&apos; is not found in storage..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExTransactionIsAlreadyOpen">
+            <summary>
+              Looks up a localized string similar to Transaction is already open..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExTransactionIsNotOpen">
+            <summary>
+              Looks up a localized string similar to Transaction is not open..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExTypeHasNoPrimaryIndex">
+            <summary>
+              Looks up a localized string similar to Type &apos;{0}&apos; has no primary index..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExTypeXIsNotSupported">
+            <summary>
+              Looks up a localized string similar to Type &apos;{0}&apos; is not supported..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExUnableToCreateConnection">
+            <summary>
+              Looks up a localized string similar to Unable to create the connection. Check if all needed assemblies are available..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExUnableToFindColumnInPrimaryIndex">
+            <summary>
+              Looks up a localized string similar to Unable to find column &apos;{0}&apos; of index &apos;{1}&apos; in primary index..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExUnsupportedColumnType">
+            <summary>
+              Looks up a localized string similar to Type &apos;{0}&apos; is not supported by current storage provider..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.Resources.Strings.ExUnsupportedIndex">
+            <summary>
+              Looks up a localized string similar to Index &apos;{0}&apos; with attributes &apos;{1}&apos; is not supported..
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SessionHandler">
+            <summary>
+            <see cref="T:Xtensive.Storage.Session"/>-level handler for SQL storages.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SessionHandler.BeginTransaction">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SessionHandler.CommitTransaction">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SessionHandler.RollbackTransaction">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SessionHandler.Execute(Xtensive.Storage.Rse.Providers.ExecutableProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SessionHandler.ExecutePersistRequest(Xtensive.Storage.Providers.Sql.SqlPersistRequest,Xtensive.Core.Tuples.Tuple)">
+            <summary>
+            Executes the specified <see cref="T:Xtensive.Storage.Providers.Sql.SqlPersistRequest"/>.
+            </summary>
+            <param name="request">The request to execute.</param>
+            <param name="tuple">A state tuple.</param>
+            <returns>Number of modified rows.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SessionHandler.ExecuteScalarRequest(Xtensive.Storage.Providers.Sql.SqlScalarRequest)">
+            <summary>
+            Executes the specified <see cref="T:Xtensive.Storage.Providers.Sql.SqlScalarRequest"/>.
+            </summary>
+            <param name="request">The request to execute.</param>
+            <returns>The first column of the first row of executed result set.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SessionHandler.Persist(System.Collections.Generic.IEnumerable{Xtensive.Storage.Internals.PersistAction},System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SessionHandler.Initialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SessionHandler.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SessionHandler.Connection">
+            <summary>
+            Gets the connection.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SessionHandler.Transaction">
+            <summary>
+            Gets the active transaction.
+            </summary>    
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlModelConverter">
+            <summary>
+            Converts <see cref="T:Xtensive.Sql.Model.Catalog"/> to indexing storage model.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.GetConversionResult">
+            <summary>
+            Get the result of conversion specified 
+            <see cref="P:Xtensive.Storage.Providers.Sql.SqlModelConverter.Schema"/> to <see cref="P:Xtensive.Storage.Providers.Sql.SqlModelConverter.StorageInfo"/>.
+            </summary>
+            <returns>The storage model.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitSchema(Xtensive.Sql.Model.Schema)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.Visit(Xtensive.Sql.Model.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitTable(Xtensive.Sql.Model.Table)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitTableColumn(Xtensive.Sql.Model.TableColumn)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitForeignKey(Xtensive.Sql.Model.ForeignKey)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitPrimaryKey(Xtensive.Sql.Model.PrimaryKey)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitIndex(Xtensive.Sql.Model.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitSequence(Xtensive.Sql.Model.Sequence)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitGeneratorTable(Xtensive.Sql.Model.Table)">
+            <summary>
+            Visits the generator table.
+            </summary>
+            <param name="generatorTable">The generator table.</param>
+            <returns>Visit result.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.ExtractType(Xtensive.Sql.Model.TableColumn)">
+            <summary>
+            Extracts the <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo"/> from <see cref="T:Xtensive.Sql.Model.TableColumn"/>.
+            </summary>
+            <param name="column">The column.</param>
+            <returns>Data type.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.ConvertReferentialAction(Xtensive.Sql.ReferentialAction)">
+            <summary>
+            Converts the <see cref="T:Xtensive.Sql.ReferentialAction"/> to 
+            <see cref="T:Xtensive.Storage.Indexing.Model.ReferentialAction"/>.
+            </summary>
+            <param name="toConvert">The action to convert.</param>
+            <returns>Converted action.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.FindIndex(Xtensive.Storage.Indexing.Model.TableInfo,System.Collections.Generic.List{Xtensive.Storage.Indexing.Model.ColumnInfo})">
+            <summary>
+            Finds the specific index by key columns.
+            </summary>
+            <param name="table">The table.</param>
+            <param name="keyColumns">The key columns.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.IsGeneratorTable(Xtensive.Sql.Model.Table)">
+            <summary>
+            Determines whether specific table used as sequence.
+            </summary>
+            <param name="table">The table.</param>
+            <returns>
+            <see langword="true"/> if table used as sequence; 
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.#ctor(Xtensive.Sql.Model.Schema,Xtensive.Storage.Providers.ProviderInfo)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="storageSchema">The schema.</param>
+            <param name="providerInfo">The provider info.</param>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitUniqueConstraint(Xtensive.Sql.Model.UniqueConstraint)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitIndexColumn(Xtensive.Sql.Model.IndexColumn)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitCatalog(Xtensive.Sql.Model.Catalog)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitCharacterSet(Xtensive.Sql.Model.CharacterSet)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitCollation(Xtensive.Sql.Model.Collation)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitDataTable(Xtensive.Sql.Model.DataTable)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitDataTableColumn(Xtensive.Sql.Model.DataTableColumn)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitDomain(Xtensive.Sql.Model.Domain)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitHashPartition(Xtensive.Sql.Model.HashPartition)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitListPartition(Xtensive.Sql.Model.ListPartition)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitPartition(Xtensive.Sql.Model.Partition)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitPartitionDescriptor(Xtensive.Sql.Model.PartitionDescriptor)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitPartitionFunction(Xtensive.Sql.Model.PartitionFunction)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitPartitionSchema(Xtensive.Sql.Model.PartitionSchema)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitTableConstraint(Xtensive.Sql.Model.TableConstraint)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitDomainConstraint(Xtensive.Sql.Model.DomainConstraint)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitConstraint(Xtensive.Sql.Model.Constraint)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitCheckConstraint(Xtensive.Sql.Model.CheckConstraint)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitRangePartition(Xtensive.Sql.Model.RangePartition)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitSequenceDescriptor(Xtensive.Sql.Model.SequenceDescriptor)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitTemporaryTable(Xtensive.Sql.Model.TemporaryTable)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitTranslation(Xtensive.Sql.Model.Translation)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitView(Xtensive.Sql.Model.View)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlModelConverter.VisitViewColumn(Xtensive.Sql.Model.ViewColumn)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Method is not supported.</exception>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlModelConverter.StorageInfo">
+            <summary>
+            Gets the storage info.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlModelConverter.ProviderInfo">
+            <summary>
+            Gets the provider info.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlModelConverter.Schema">
+            <summary>
+            Gets the schema.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlParameterBinding.#ctor(Xtensive.Sql.ValueTypeMapping.TypeMapping)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlParameterBinding.TypeMapping">
+            <summary>
+            Gets the type mapping.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlParameterBinding.ParameterReference">
+            <summary>
+            Gets the parameter reference.
+            </summary>
+            <value>The parameter reference.</value>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlPersistParameterBinding.#ctor(System.Int32,Xtensive.Sql.ValueTypeMapping.TypeMapping)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="fieldIndex">Index of the field that contain new value.</param>
+            <param name="typeMapping">The type mapping.</param>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlPersistParameterBinding.#ctor(System.Int32,Xtensive.Sql.ValueTypeMapping.TypeMapping,Xtensive.Storage.Providers.Sql.SqlPersistParameterBindingType)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="fieldIndex">Index of the field that contain new value.</param>
+            <param name="typeMapping">The type mapping.</param>
+            <param name="bindingType">Type of the binding.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlPersistParameterBinding.BindingType">
+            <summary>
+            Gets the type of the binding.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlPersistParameterBinding.FieldIndex">
+            <summary>
+            Gets the index of the field to extract value from.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding.#ctor(System.Func{System.Object},Xtensive.Sql.ValueTypeMapping.TypeMapping,Xtensive.Storage.Providers.Sql.SqlQueryParameterBindingType)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="valueAccessor">Value for <see cref="P:Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding.ValueAccessor"/>.</param>
+            <param name="typeMapping">Value for <see cref="P:Xtensive.Storage.Providers.Sql.SqlParameterBinding.TypeMapping"/>.</param>
+            <param name="bindingType">Value for <see cref="P:Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding.BindingType"/>.</param>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding.#ctor(System.Func{System.Object},Xtensive.Sql.ValueTypeMapping.TypeMapping)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>.
+            </summary>
+            <param name="valueAccessor"></param>
+            <param name="typeMapping"></param>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding.ValueAccessor">
+            <summary>
+            Gets the value accessor.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding.BindingType">
+            <summary>
+            Gets the type of the binding.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlPersistParameterBindingType">
+            <summary>
+            Possible types of <see cref="T:Xtensive.Storage.Providers.Sql.SqlPersistParameterBinding"/>.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Providers.Sql.SqlPersistParameterBindingType.Regular">
+            <summary>
+            Indicates that no special handling of parameter is performed.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Providers.Sql.SqlPersistParameterBindingType.CharacterLob">
+            <summary>
+            Indicates that parameter is a large character object and should be persisted via <see cref="T:Xtensive.Sql.ICharacterLargeObject"/>.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Providers.Sql.SqlPersistParameterBindingType.BinaryLob">
+            <summary>
+            Indicates that parameter is a large binary object and should be persisted via <see cref="T:Xtensive.Sql.IBinaryLargeObject"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlProvider.OnEnumerate(Xtensive.Storage.Rse.Providers.EnumerationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlProvider.ParametersToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlProvider.AppendDescriptionTo(System.Text.StringBuilder,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlProvider.AppendCommandTo(Xtensive.Sql.Compiler.SqlCompilationResult,System.Text.StringBuilder,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlProvider.#ctor(Xtensive.Storage.Rse.Providers.CompilableProvider,Xtensive.Sql.Dml.SqlSelect,Xtensive.Storage.Providers.HandlerAccessor,Xtensive.Storage.Rse.Providers.ExecutableProvider[])">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="origin">The origin.</param>
+            <param name="statement">The statement.</param>
+            <param name="handlers">The handlers.</param>
+            <param name="sources">The sources.</param>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlProvider.#ctor(Xtensive.Storage.Rse.Providers.CompilableProvider,Xtensive.Sql.Dml.SqlSelect,Xtensive.Storage.Providers.HandlerAccessor,System.Collections.Generic.IEnumerable{Xtensive.Storage.Providers.Sql.SqlQueryParameterBinding},Xtensive.Storage.Rse.Providers.ExecutableProvider[])">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="origin">The origin.</param>
+            <param name="statement">The statement.</param>
+            <param name="handlers">The handlers.</param>
+            <param name="extraBindings">The extra bindings.</param>
+            <param name="sources">The sources.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlProvider.Request">
+            <summary>
+            Gets <see cref="T:Xtensive.Storage.Providers.Sql.SqlQueryRequest"/> associated with this provider.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlProvider.PermanentReference">
+            <summary>
+            Gets the permanent reference (<see cref="T:Xtensive.Sql.Dml.SqlQueryRef"/>) for <see cref="T:Xtensive.Sql.Dml.SqlSelect"/> associated with this provider.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlPersistRequest">
+            <summary>
+            Modification (insert, update, delete) request.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlPersistRequest.#ctor(Xtensive.Sql.ISqlCompileUnit,System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{Xtensive.Storage.Providers.Sql.SqlPersistParameterBinding})">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="statement">The statement.</param>
+            <param name="expectedResult">The expected result.</param>
+            <param name="parameterBindings">The parameter bindings.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlPersistRequest.ParameterBindings">
+            <summary>
+            Gets the parameter bindings.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlPersistRequest.ExpectedResult">
+            <summary>
+            Gets or sets the expected result.
+            </summary>
+            <remarks>Usually is the number of touched rows.</remarks>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlRequestBuilderTask">
+            <summary>
+            Task for <see cref="T:Xtensive.Storage.Providers.Sql.SqlRequestBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlRequestBuilderTask.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlRequestBuilderTask.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlRequestBuilderTask.Type">
+            <summary>
+            Gets the type.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlRequestBuilderTask.FieldMap">
+            <summary>
+            Gets the field map that describes updated fields.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlRequestBuilderTask.Kind">
+            <summary>
+            Gets the <see cref="T:Xtensive.Storage.Providers.Sql.SqlPersistRequestKind"/>.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlPersistRequestKind">
+            <summary>
+            Kinds of <see cref="T:Xtensive.Storage.Providers.Sql.SqlPersistRequest"/>.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Providers.Sql.SqlPersistRequestKind.Insert">
+            <summary>
+            Insert request.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Providers.Sql.SqlPersistRequestKind.Remove">
+            <summary>
+            Remove request.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Storage.Providers.Sql.SqlPersistRequestKind.Update">
+            <summary>
+            Update request.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Storage.Providers.Sql.SqlScalarRequest">
+            <summary>
+            SQL request for scalar result.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Storage.Providers.Sql.SqlScalarRequest.#ctor(Xtensive.Sql.ISqlCompileUnit)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="statement">The statement.</param>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlStoreProvider.Scope">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Storage.Providers.Sql.SqlStoreProvider.Name">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>
