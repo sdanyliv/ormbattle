@@ -1,0 +1,610 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.PluginManager</name>
+    </assembly>
+    <members>
+        <member name="T:Xtensive.PluginManager.AppDomainConstructor">
+            <summary>
+            Creates an <see cref="T:System.AppDomain"/>.
+            </summary>
+        </member>
+        <member name="T:Xtensive.PluginManager.AppDomainManager">
+            <summary>
+            Represents the object that is capable for application domain creating, managing and unloading.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.AppDomainManager.AppDomainUnload(System.Object,System.EventArgs)">
+            <remarks>Domain unloading procedure is executed in a special dedicated thread so 
+            we should not use it for application domain recreation.</remarks>
+        </member>
+        <member name="M:Xtensive.PluginManager.AppDomainManager.UnloadDomain">
+            <summary>
+            Unloads the <see cref="T:System.AppDomain"/> if it exists and is not unloaded yet.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.AppDomainManager.RecreateDomain">
+            <summary>
+            Recreates the <see cref="T:System.AppDomain"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.AppDomainManager.Dispose">
+            <summary>
+             Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.AppDomainManager.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing"><see langword="true"/> to release both managed and unmanaged resources; <see langword="false"/> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.AppDomainManager.#ctor(System.String,System.Security.Policy.Evidence,System.AppDomainSetup)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.AppDomainManager"/> class.
+            </summary>
+            <param name="friendlyName">The friendly name of the domain. This friendly name can be displayed in user interfaces to identify the domain.</param>
+            <param name="securityInfo">Evidence mapped through the security policy to establish a top-of-stack permission set.</param>
+            <param name="info">An object that contains application domain initialization information.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.AppDomainManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.AppDomainManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.AppDomainManager.#ctor(Xtensive.PluginManager.AppDomainConstructor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.AppDomainManager"/> class.
+            </summary>
+            <param name="domainConstructor">The AppDomainConstructorDelegate instance.</param>
+        </member>
+        <member name="E:Xtensive.PluginManager.AppDomainManager.DomainRecreate">
+            <summary>
+            Occurs when applicaation domain is recreated.
+            </summary>
+        </member>
+        <member name="E:Xtensive.PluginManager.AppDomainManager.DomainUnload">
+            <summary>
+            Occurs when application domain is about to be unloaded.
+            </summary>
+        </member>
+        <member name="P:Xtensive.PluginManager.AppDomainManager.Domain">
+            <summary>
+            Gets the <see cref="T:System.AppDomain"/> which is managed by this instance.
+            </summary>
+            <value>The application domain.</value>
+        </member>
+        <member name="T:Xtensive.PluginManager.AssemblyInspector">
+            <summary>
+            Represents an object that is capable for assembly inspection.
+            </summary>
+        </member>
+        <member name="T:Xtensive.PluginManager.IAssemblyInspector">
+            <summary>
+            Defines interface for assembly inspection in ternms of finding types by specific criteria.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.IAssemblyInspector.FindTypes(System.String,System.Reflection.TypeFilter,System.Object)">
+            <summary>
+            Searches for types accepted by the given filter and filter criteria. 
+            </summary>
+            <param name="file">The file.</param>
+            <param name="filter">The filter.</param>
+            <param name="filterCriteria">The filter criteria.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.IAssemblyInspector.FindTypes(System.String,System.Type)">
+            <summary>
+            Searches for types inherited from baseType.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="baseType">The base type.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.IAssemblyInspector.FindTypes(System.String,System.Type,System.Type)">
+            <summary>
+            Searches for types inherited from baseType and optionally marked with one or more attributes of attributeType.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="baseType">The base type.</param>
+            <param name="attributeType">The attribute type.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.IAssemblyInspector.FindTypes(System.Reflection.AssemblyName,System.Type,System.Type)">
+            <summary>
+            Searches for types inherited from baseType and optionally marked with attributes of attributeType.
+            </summary>
+            <param name="assemblyName">Display name of the <see cref="T:System.Reflection.Assembly"/> to analyze.</param>
+            <param name="baseType">The base type.</param>
+            <param name="attributeType">The attribute type.</param>
+        </member>
+        <member name="E:Xtensive.PluginManager.IAssemblyInspector.InspectionStart">
+            <summary>
+            Occurs when assembly inspection process starts.
+            </summary>
+        </member>
+        <member name="E:Xtensive.PluginManager.IAssemblyInspector.InspectionComplete">
+            <summary>
+            Occurs when assembly inspection process completed.
+            </summary>
+        </member>
+        <member name="E:Xtensive.PluginManager.IAssemblyInspector.TypeFound">
+            <summary>
+            Occurs when requested type is found in assembly that is being inspected.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.AssemblyInspector.FindTypes(System.String,System.Reflection.TypeFilter,System.Object)">
+            <summary>
+            Searches for types accepted by the given filter and filter criteria. 
+            </summary>
+            <param name="file">The file.</param>
+            <param name="filter">The filter.</param>
+            <param name="filterCriteria">The filter criteria.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.AssemblyInspector.FindTypes(System.String,System.Type)">
+            <summary>
+            Searches for types inherited from baseType.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="baseType">The base type.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.AssemblyInspector.FindTypes(System.String,System.Type,System.Type)">
+            <summary>
+            Searches for types inherited from baseType and optionally marked with attributes of attributeType.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="baseType">The base type.</param>
+            <param name="attributeType">The attribute type.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.AssemblyInspector.FindTypes(System.Reflection.AssemblyName,System.Type,System.Type)">
+            <summary>
+            Searches for types inherited from baseType and optionally marked with attributes of attributeType.
+            </summary>
+            <param name="assemblyName">Display name of the <see cref="T:System.Reflection.Assembly"/> to analyze.</param>
+            <param name="baseType">The base type.</param>
+            <param name="attributeType">The attribute type.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.AssemblyInspector.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:Xtensive.PluginManager.AssemblyInspector.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing"><see langword="true"/> to release both managed and unmanaged resources; <see langword="false"/> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.AssemblyInspector.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.AssemblyInspector"/> class.
+            </summary>
+        </member>
+        <member name="E:Xtensive.PluginManager.AssemblyInspector.InspectionStart">
+            <summary>
+            Occurs when assembly inspection process starts.
+            </summary>
+        </member>
+        <member name="E:Xtensive.PluginManager.AssemblyInspector.InspectionComplete">
+            <summary>
+            Occurs when assembly inspection process completed.
+            </summary>
+        </member>
+        <member name="E:Xtensive.PluginManager.AssemblyInspector.TypeFound">
+            <summary>
+            Occurs when requested type is found in assembly that is being inspected.
+            </summary>
+        </member>
+        <member name="T:Xtensive.PluginManager.PluginManager`1">
+            <summary>
+            Type that is capable for finding and loading plugins by their base <see cref="T:System.Type"/>
+            and <see cref="T:System.Attribute"/>s.
+            </summary>
+            <typeparam name="T">The type of attribute.</typeparam>
+        </member>
+        <member name="T:Xtensive.PluginManager.IPluginManager`1">
+            <summary>
+            Defines an interface for object that is capable for finding and loading plugins by their <see cref="T:System.Type"/> and <see cref="T:System.Attribute"/>s.
+            </summary>
+            <typeparam name="T">The type of attribute.</typeparam>
+        </member>
+        <member name="M:Xtensive.PluginManager.IPluginManager`1.Exists(`0)">
+            <summary>
+            Determines whether plugin with specified attribute exists.
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <returns><see langword="true"/> if a plugin <see cref="T:System.Type"/> with specified attribute exists, otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="P:Xtensive.PluginManager.IPluginManager`1.PluginType">
+            <summary>
+            Gets the base plugin type.
+            </summary>
+            <value>The base plugin type.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.IPluginManager`1.AttributeType">
+            <summary>
+            Gets the type of the plugin attribute.
+            </summary>
+            <value>The type of the attribute.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.IPluginManager`1.SearchPath">
+            <summary>
+            Gets the path to search for plugins.
+            </summary>
+            <value>The path.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.IPluginManager`1.Item(`0)">
+            <summary>
+            Gets the plugin <see cref="T:System.Type"/> by specified attribute.
+            </summary>
+            <param name="attribute">The plugin attribute.</param>
+            <returns>The plugin <see cref="T:System.Type"/> if exists, otherwise <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Xtensive.PluginManager.PluginManager`1.Find">
+            <summary>
+            Finds the plugins of specified type and marked with specified attribute.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.PluginManager`1.GetFoundTypes">
+            <summary>
+            Gets a <see cref="T:System.Collections.Generic.IDictionary`2"/> of all types found by this instance.
+            </summary>
+            <remarks>The thread that requests all types will be frozen untill the plugin discovery process will be completed.</remarks>
+            <returns>An <see cref="T:System.Collections.Generic.IDictionary`2"/> with all types found by <see cref="T:Xtensive.PluginManager.PluginManager`1"/>.</returns>
+        </member>
+        <member name="M:Xtensive.PluginManager.PluginManager`1.Exists(`0)">
+            <summary>
+            Determines whether plugin with specified attribute exists.
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <returns><see langword="true"/> if a plugin <see cref="T:System.Type"/> with specified attribute exists, otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Xtensive.PluginManager.PluginManager`1.#ctor(System.Type,System.Reflection.AssemblyName)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="pluginType">Plugin base type.</param>
+            <param name="assemblyName">Name of the assembly to analyze.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.PluginManager`1.#ctor(System.Type,System.String,System.String)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="pluginType">Plugin base type.</param>
+            <param name="searchPath">The path to search for plugins.</param>
+            <param name="searchPattern">The file search pattern.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.PluginManager`1.#ctor(System.Type,System.String)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="pluginType">Plugin base type.</param>
+            <param name="searchPath">The path to search for plugins.</param>
+        </member>
+        <member name="P:Xtensive.PluginManager.PluginManager`1.PluginType">
+            <summary>
+            Gets the base plugin type.
+            </summary>
+            <value>The base plugin type.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.PluginManager`1.AttributeType">
+            <summary>
+            Gets the type of the plugin attribute.
+            </summary>
+            <value>The type of the attribute.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.PluginManager`1.SearchPath">
+            <summary>
+            Gets the path to search for plugins.
+            </summary>
+            <value>The path.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.PluginManager`1.Item(`0)">
+            <summary>
+            Gets the plugin <see cref="T:System.Type"/> by specified attribute.
+            </summary>
+            <param name="attribute">The plugin attribute.</param>
+            <returns>The plugin <see cref="T:System.Type"/> if exists, otherwise <see langword="null"/>.</returns>
+        </member>
+        <member name="T:Xtensive.PluginManager.PluginRegistry`1">
+            <summary>
+            Represents a collection of plugin types by their attributes.
+            </summary>
+            <typeparam name="T">Attribute type.</typeparam>
+        </member>
+        <member name="M:Xtensive.PluginManager.PluginRegistry`1.Exists(`0)">
+            <summary>
+            Determines whether plugin with specified attribute exists.
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <returns><see langword="true"/> if a plugin <see cref="T:System.Type"/> with specified attribute exists, otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Xtensive.PluginManager.PluginRegistry`1.Register(`0[],Xtensive.PluginManager.ITypeInfo)">
+            <summary>
+            Registers the specified attributes.
+            </summary>
+            <param name="attributes">The attributes.</param>
+            <param name="typeInfo">The <see cref="T:Xtensive.PluginManager.ITypeInfo"/>.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.PluginRegistry`1.GetFoundTypes">
+            <summary>
+            Gets a collection of found types.
+            </summary>
+        </member>
+        <member name="P:Xtensive.PluginManager.PluginRegistry`1.Item(`0)">
+            <summary>
+            Gets the plugin <see cref="T:System.Type"/> by the specified attribute.
+            </summary>
+            <value>The plugin <see cref="T:System.Type"/></value>
+        </member>
+        <member name="T:Xtensive.PluginManager.RemoteAssemblyInspector">
+            <summary>
+            Represents an object that is capable for assembly inspection.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.RemoteAssemblyInspector.FindTypes(System.String,System.Reflection.TypeFilter,System.Object)">
+            <summary>
+            Searches for types accepted by the given filter and filter criteria. 
+            </summary>
+            <param name="file">The file.</param>
+            <param name="filter">The filter.</param>
+            <param name="filterCriteria">The filter criteria.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.RemoteAssemblyInspector.FindTypes(System.String,System.Type)">
+            <summary>
+            Searches for types inherited from baseType.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="baseType">The base type.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.RemoteAssemblyInspector.FindTypes(System.String,System.Type,System.Type)">
+            <summary>
+            Searches for types inherited from baseType and optionally marked with attributes of attributeType.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="baseType">The base type.</param>
+            <param name="attributeType">The attribute type.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.RemoteAssemblyInspector.FindTypes(System.Reflection.AssemblyName,System.Type,System.Type)">
+            <summary>
+            Searches for types inherited from baseType and optionally marked with attributes of attributeType.
+            </summary>
+            <param name="assemblyName">Display name of the <see cref="T:System.Reflection.Assembly"/> to analyze.</param>
+            <param name="baseType">The base type.</param>
+            <param name="attributeType">The attribute type.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.RemoteAssemblyInspector.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.RemoteAssemblyInspector"/> class.
+            </summary>
+        </member>
+        <member name="E:Xtensive.PluginManager.RemoteAssemblyInspector.InspectionStart">
+            <summary>
+            Occurs when assembly inspection process starts.
+            </summary>
+        </member>
+        <member name="E:Xtensive.PluginManager.RemoteAssemblyInspector.InspectionComplete">
+            <summary>
+            Occurs when assembly inspection process completed.
+            </summary>
+        </member>
+        <member name="E:Xtensive.PluginManager.RemoteAssemblyInspector.TypeFound">
+            <summary>
+            Occurs when requested type is found in assembly that is being inspected.
+            </summary>
+        </member>
+        <member name="T:Xtensive.PluginManager.AssemblyInspectorEventArgs">
+            <summary>
+            Provides data for <see cref="E:Xtensive.PluginManager.IAssemblyInspector.InspectionStart"/>, <see cref="E:Xtensive.PluginManager.IAssemblyInspector.InspectionComplete"/> 
+            events in <see cref="T:Xtensive.PluginManager.IAssemblyInspector"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.AssemblyInspectorEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.AssemblyInspectorEventArgs"/> class.
+            </summary>
+            <param name="file">The file for inspection.</param>
+        </member>
+        <member name="P:Xtensive.PluginManager.AssemblyInspectorEventArgs.File">
+            <summary>
+            Gets the file that is being inspected.
+            </summary>
+            <value>The file.</value>
+        </member>
+        <member name="T:Xtensive.PluginManager.AttributeActivator`1">
+            <summary>
+            Represents an object capable for <see cref="T:System.Attribute"/> activation (construction).
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.AttributeActivator`1.CreateInstance(Xtensive.PluginManager.IAttributeInfo)">
+            <summary>
+            Creates the instance of type T according to its <see cref="T:Xtensive.PluginManager.IAttributeInfo"/>.
+            </summary>
+            <param name="info"><see cref="T:Xtensive.PluginManager.IAttributeInfo"/>.</param>
+            <returns>Newly created instance of type T.</returns>
+        </member>
+        <member name="T:Xtensive.PluginManager.AttributeInfo">
+            <summary>
+            Represents an object that describes <see cref="T:System.Attribute"/>.
+            </summary>
+        </member>
+        <member name="T:Xtensive.PluginManager.IAttributeInfo">
+            <summary>
+            Describes <see cref="T:System.Attribute"/>.
+            </summary>
+        </member>
+        <member name="P:Xtensive.PluginManager.IAttributeInfo.Constructor">
+            <summary>
+            Returns a <see cref="T:System.Reflection.ConstructorInfo"/> object representing the constructor that would have initialized the custom attribute.
+            </summary>
+            <value>The constructor.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.IAttributeInfo.ConstructorArguments">
+            <summary>
+            Gets the list of positional arguments specified for the constructor that would have initialized the custom attribute.
+            </summary>
+            <value>The constructor arguments.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.IAttributeInfo.NamedArguments">
+            <summary>
+            Gets the list of named arguments specified for the attribute instance representes by <see cref="T:Xtensive.PluginManager.IAttributeInfo"/> object.
+            </summary>
+            <value>The named arguments.</value>
+        </member>
+        <member name="M:Xtensive.PluginManager.AttributeInfo.#ctor(System.Reflection.CustomAttributeData)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.AttributeInfo"/> class.
+            </summary>
+            <param name="data">The <see cref="T:System.Reflection.CustomAttributeData"/> instance.</param>
+        </member>
+        <member name="P:Xtensive.PluginManager.AttributeInfo.Constructor">
+            <summary>
+            Returns a <see cref="T:System.Reflection.ConstructorInfo"/> object representing the constructor that would have initialized the custom attribute.
+            </summary>
+            <value>The constructor.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.AttributeInfo.ConstructorArguments">
+            <summary>
+            Gets the list of positional arguments specified for the constructor that would have initialized the custom attribute.
+            </summary>
+            <value>The constructor arguments.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.AttributeInfo.NamedArguments">
+            <summary>
+            Gets the list of named arguments specified for the attribute instance representes by <see cref="T:Xtensive.PluginManager.IAttributeInfo"/> object.
+            </summary>
+            <value>The named arguments.</value>
+        </member>
+        <member name="T:Xtensive.PluginManager.PluginManagerState">
+            <summary>
+            Enumerates all possible <see cref="T:Xtensive.PluginManager.PluginManager`1"/> states.
+            </summary>
+        </member>
+        <member name="F:Xtensive.PluginManager.PluginManagerState.Initial">
+            <summary>
+            Initial state of <see cref="T:Xtensive.PluginManager.PluginManager`1"/>. Plugin search has not been started.
+            </summary>
+        </member>
+        <member name="F:Xtensive.PluginManager.PluginManagerState.Searching">
+            <summary>
+            <see cref="T:Xtensive.PluginManager.PluginManager`1"/> currently is searching for plugins in a background thread.
+            </summary>
+        </member>
+        <member name="F:Xtensive.PluginManager.PluginManagerState.Ready">
+            <summary>
+            Search for plugins is completed.
+            </summary>
+        </member>
+        <member name="T:Xtensive.PluginManager.TypeFoundEventArgs">
+            <summary>
+            Provides data for <see cref="E:Xtensive.PluginManager.RemoteAssemblyInspector.TypeFound"/> event in <see cref="T:Xtensive.PluginManager.RemoteAssemblyInspector"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.TypeFoundEventArgs.#ctor(Xtensive.PluginManager.ITypeInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.TypeFoundEventArgs"/> class.
+            </summary>
+            <param name="typeInfo">The type info.</param>
+        </member>
+        <member name="P:Xtensive.PluginManager.TypeFoundEventArgs.TypeInfo">
+            <summary>
+            Gets the <see cref="T:Xtensive.PluginManager.ITypeInfo"/> object.
+            </summary>
+            <value>The type info.</value>
+        </member>
+        <member name="T:Xtensive.PluginManager.ITypeInfo">
+            <summary>
+            Describes type.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.ITypeInfo.GetAttributes">
+            <summary>
+            Gets the array of <see cref="T:Xtensive.PluginManager.IAttributeInfo"/> objects for the type.
+            </summary>
+            <value>The array of <see cref="T:Xtensive.PluginManager.IAttributeInfo"/> objects for the type.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.ITypeInfo.TypeName">
+            <summary>
+            Gets the type's <see cref="P:System.Type.FullName"/>.
+            </summary>
+            <value>The full name of the type.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.ITypeInfo.AssemblyName">
+            <summary>
+            Gets the <see cref="T:System.Reflection.AssemblyName"/> for the assembly that contains this instance.
+            </summary>
+            <value>The <see cref="T:System.Reflection.AssemblyName"/>.</value>
+        </member>
+        <member name="T:Xtensive.PluginManager.Log">
+            <summary>
+            Log for this namespace.
+            </summary>
+        </member>
+        <member name="F:Xtensive.PluginManager.Log.Name">
+            <summary>
+            Log name.
+            </summary>
+        </member>
+        <member name="T:Xtensive.PluginManager.TypeInfo">
+            <summary>
+            Represents an object that describes <see cref="T:System.Type"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.PluginManager.TypeInfo.GetAttributes">
+            <summary>
+            Gets the array of <see cref="T:Xtensive.PluginManager.IAttributeInfo"/> objects for the type.
+            </summary>
+            <returns></returns>
+            <value>The array of <see cref="T:Xtensive.PluginManager.IAttributeInfo"/> objects for the type.</value>
+        </member>
+        <member name="M:Xtensive.PluginManager.TypeInfo.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.TypeInfo"/> class.
+            </summary>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:Xtensive.PluginManager.TypeInfo.#ctor(System.Type,Xtensive.PluginManager.IAttributeInfo[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.PluginManager.TypeInfo"/> class.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="attributes">The type attributes.</param>
+        </member>
+        <member name="P:Xtensive.PluginManager.TypeInfo.TypeName">
+            <summary>
+            Gets the type's <see cref="P:System.Type.FullName"/>.
+            </summary>
+            <value>The full name of the type.</value>
+        </member>
+        <member name="P:Xtensive.PluginManager.TypeInfo.AssemblyName">
+            <summary>
+            Gets the <see cref="T:System.Reflection.AssemblyName"/> for the assembly that contains this instance.
+            </summary>
+            <value>The <see cref="T:System.Reflection.AssemblyName"/>.</value>
+        </member>
+        <member name="T:Xtensive.PluginManager.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Xtensive.PluginManager.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.PluginManager.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.PluginManager.Resources.Strings.ExFileDoesNotExist">
+            <summary>
+              Looks up a localized string similar to File doesn&apos;t exist..
+            </summary>
+        </member>
+        <member name="P:Xtensive.PluginManager.Resources.Strings.Type1IsNotAssignableFromType2">
+            <summary>
+              Looks up a localized string similar to {0} is not assignable from {1}..
+            </summary>
+        </member>
+    </members>
+</doc>

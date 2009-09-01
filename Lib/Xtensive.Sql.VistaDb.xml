@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.Sql.VistaDb</name>
+    </assembly>
+    <members>
+        <member name="T:Xtensive.Sql.VistaDb.DriverFactory">
+            <summary>
+            A <see cref="T:Xtensive.Sql.SqlDriver"/> factory for VistaDB.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Sql.VistaDb.DriverFactory.CreateDriver(Xtensive.Core.UrlInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Sql.VistaDb.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.VistaDb.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.VistaDb.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Sql.VistaDb.v3.Compiler.Visit(Xtensive.Sql.Dml.SqlFunctionCall)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.VistaDb.v3.ServerInfoProvider.GetPrimaryKeyInfo">
+            <summary>
+            Gets the primary key info.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xtensive.Sql.VistaDb.v3.ServerInfoProvider.GetForeignKeyConstraintInfo">
+            <summary>
+            Gets the referential constraint info.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xtensive.Sql.VistaDb.v3.ServerInfoProvider.GetSchemaInfo">
+            <summary>
+            Gets the schema info.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

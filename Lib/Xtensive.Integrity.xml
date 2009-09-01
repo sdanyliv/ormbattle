@@ -1,0 +1,1566 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.Integrity</name>
+    </assembly>
+    <members>
+        <member name="T:Xtensive.Integrity.Aspects.Constraints.EmailConstraint">
+            <summary>
+            Ensures that email address is in correct format.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.PropertyConstraintAspect">
+            <summary>
+            Base class for all property-constraints attributes.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.ProvideAspects(System.Object,PostSharp.Laos.LaosReflectionAspectCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.CompileTimeValidate(System.Object)">
+            <summary>
+            Method called at compile-time by the weaver to validate the application of this
+            custom attribute on a specific target element.
+            </summary>
+            <param name="element">Element (<see cref="T:System.Reflection.MethodBase"/>, <see cref="T:System.Reflection.FieldInfo"/>
+            or <see cref="T:System.Type"/> on which this instance is applied.</param>
+            <returns>
+              <b>true</b> in case of success, <b>false</b> in case of error.
+            </returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.IsSupported(System.Type)">
+            <summary>
+            Determines whether the specified <paramref name="valueType"/> 
+            is supported by this constraint.
+            </summary>
+            <param name="valueType">The value type to check.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.ValidateSelf(System.Boolean)">
+            <summary>
+            Validates itself.
+            </summary>
+            <param name="compileTime">Indicates whether this method is invoked 
+            in compile time or in runtime.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.Check(Xtensive.Integrity.Validation.IValidationAware)">
+            <summary>
+            Validates the <paramref name="target"/> against this constraint.
+            </summary>
+            <param name="target">The validation target.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.CheckValue(Xtensive.Integrity.Validation.IValidationAware,System.Object)">
+            <summary>
+            Validates the specified value. 
+            Throws <see cref="T:Xtensive.Integrity.ConstraintViolationException"/> on failure.
+            </summary>
+            <param name="target">The validation target.</param>
+            <param name="value">The property value.</param>
+            <exception cref="T:Xtensive.Integrity.ConstraintViolationException">Value is not valid.</exception>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.CheckValue(System.Object)">
+            <summary>
+            Validates the specified value.
+            </summary>
+            <param name="value">The value to check.</param>
+            <returns>
+            <see langword="true"/> if the specified value is valid; 
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.GetPropertyValue(Xtensive.Integrity.Validation.IValidationAware)">
+            <summary>
+            Gets the property value.
+            </summary>
+            <param name="target">The target to get the property value of.</param>
+            <returns>Property value.</returns>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.GetDefaultMessage">
+            <summary>
+            Gets the default message.
+            </summary>
+            <returns>Default message.</returns>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.AddCustomMessageParameters(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Adds custom message parameters.
+            </summary>
+            <param name="parameters">The parameters to add to.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.Initialize">
+            <summary>
+            Initializes this instance in runtime.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.PropertyConstraintAspect.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Aspects.PropertyConstraintAspect.Property">
+            <summary>
+            Gets the validated property.
+            </summary>    
+        </member>
+        <member name="P:Xtensive.Integrity.Aspects.PropertyConstraintAspect.Mode">
+            <summary>
+            Gets or sets the <see cref="T:Xtensive.Integrity.Validation.ValidationMode"/> to be used on setting property value.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Aspects.PropertyConstraintAspect.Message">
+            <summary>
+            Gets or sets the message of exception to show if property value is invalid.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.EmailConstraint.CheckValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.EmailConstraint.IsSupported(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.EmailConstraint.GetDefaultMessage">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.EmailConstraint.Initialize">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.Constraints.FutureConstraint">
+            <summary>
+            Ensures that date value is in the future.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.FutureConstraint.CheckValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.FutureConstraint.IsSupported(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.FutureConstraint.GetDefaultMessage">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.Constraints.NotEmptyConstraint">
+            <summary>
+            Ensures that property value is not <see cref="F:System.String.Empty"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.NotEmptyConstraint.CheckValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.NotEmptyConstraint.IsSupported(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.NotEmptyConstraint.GetDefaultMessage">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.Constraints.NotNullConstraint">
+            <summary>
+            Ensures property value is not <see langword="null" />.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.NotNullConstraint.CheckValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.NotNullConstraint.IsSupported(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.NotNullConstraint.GetDefaultMessage">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.Constraints.NotNullOrEmptyConstraint">
+            <summary>
+            Ensures that property value is not 
+            <see langword="null"/> or <see cref="F:System.String.Empty"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.NotNullOrEmptyConstraint.CheckValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.NotNullOrEmptyConstraint.IsSupported(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.NotNullOrEmptyConstraint.GetDefaultMessage">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.Constraints.PastConstraint">
+            <summary>
+            Ensures that date value is in the past.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.PastConstraint.CheckValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.PastConstraint.IsSupported(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.PastConstraint.GetDefaultMessage">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.Constraints.RangeConstraint">
+            <summary>
+            Ensures field value fits in the specified range.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RangeConstraint.CheckValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RangeConstraint.IsSupported(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RangeConstraint.ValidateSelf(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RangeConstraint.GetDefaultMessage">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RangeConstraint.AddCustomMessageParameters(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RangeConstraint.Initialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RangeConstraint.System#Runtime#Serialization#IDeserializationCallback#OnDeserialization(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Integrity.Aspects.Constraints.RangeConstraint.Min">
+            <summary>
+            Gets or sets the minimal allowed value.
+            <see langword="null" /> means "ignore this boundary".
+            Default value is <see langword="null" />.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Aspects.Constraints.RangeConstraint.Max">
+            <summary>
+            Gets or sets the maximal allowed value.
+            <see langword="null" /> means "ignore this boundary".
+            Default value is <see langword="null" />.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.Constraints.LengthConstraint">
+            <summary>
+            Ensures field length (or item count) fits in specified range.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.LengthConstraint.CheckValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.LengthConstraint.IsSupported(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.LengthConstraint.ValidateSelf(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.LengthConstraint.GetDefaultMessage">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.LengthConstraint.AddCustomMessageParameters(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.LengthConstraint.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Aspects.Constraints.LengthConstraint.Min">
+            <summary>
+            Gets or sets the minimal allowed length.
+            Default is 0.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Aspects.Constraints.LengthConstraint.Max">
+            <summary>
+            Gets or sets the maximal allowed length.
+            Default is <see cref="F:System.Int64.MaxValue"/>.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.Constraints.RegexConstraint">
+            <summary>
+            Ensures property value matches specified regular expression.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RegexConstraint.CheckValue(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RegexConstraint.IsSupported(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RegexConstraint.ValidateSelf(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RegexConstraint.GetDefaultMessage">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RegexConstraint.AddCustomMessageParameters(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RegexConstraint.Initialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.Constraints.RegexConstraint.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Aspects.Constraints.RegexConstraint.Pattern">
+            <summary>
+            Gets or sets the regular expression pattern.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Aspects.Constraints.RegexConstraint.Options">
+            <summary>
+            Gets or sets the options, default value is <see cref="F:System.Text.RegularExpressions.RegexOptions.Compiled"/>.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.ConstraintRegistry">
+            <summary>
+            The registry of all applied constraints.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.ConstraintRegistry.GetConstraints(System.Type)">
+            <summary>
+            Gets all constraints targeted to the specified type and it's ancestors.
+            </summary>
+            <param name="targetType">The target type.</param>
+            <returns>Enumerable of constraints.</returns>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.AtomicityContextBase">
+            <summary>
+            The context describing current atomic operation.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.OnActivate(Xtensive.Integrity.Atomicity.AtomicityScope)">
+            <summary>
+            Called when context is being activated.
+            </summary>
+            <param name="scope">The scope.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.OnActivateRedoScope(Xtensive.Integrity.Atomicity.RedoScope)">
+            <summary>
+            Called when redo scope is being activated.
+            </summary>
+            <param name="redoScope">The redo scope.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.OnActivateUndoScope(Xtensive.Integrity.Atomicity.UndoScope)">
+            <summary>
+            Called when undo scope is being activated.
+            </summary>
+            <param name="undoScope">The undo scope.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.OnDeactivate(Xtensive.Integrity.Atomicity.AtomicityScope)">
+            <summary>
+            Called when context is being deactivated.
+            </summary>
+            <param name="scope">The scope.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.OnDeactivateRedoScope(Xtensive.Integrity.Atomicity.RedoScope)">
+            <summary>
+            Called when redo scope is being deactivated.
+            </summary>
+            <param name="redoScope">The redo scope.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.OnDeactivateUndoScope(Xtensive.Integrity.Atomicity.UndoScope)">
+            <summary>
+            Called when undo scope is being deactivated.
+            </summary>
+            <param name="undoScope">The undo scope.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.Initialize(Xtensive.Integrity.Atomicity.AtomicityContextOptions,Xtensive.Integrity.Atomicity.IOperationLog)">
+            <summary>
+            Initializes the context.
+            </summary>
+            <param name="options">The atomicity context options.</param>
+            <param name="operationLog">The operation log.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.CreateActiveScope">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.#ctor(Xtensive.Integrity.Atomicity.IOperationLog)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="operationLog">The operation log.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.#ctor(Xtensive.Integrity.Atomicity.AtomicityContextOptions)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="options">The atomicity context options.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityContextBase.#ctor(Xtensive.Integrity.Atomicity.AtomicityContextOptions,Xtensive.Integrity.Atomicity.IOperationLog)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="options">The atomicity context options.</param>
+            <param name="operationLog">The operation log.</param>
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.AtomicityContextBase.Options">
+            <summary>
+            Gets or sets the atomicity context options.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.AtomicityContextBase.OperationDescriptorFactory">
+            <summary>
+            Gets the operation descriptor factory.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.AtomicityContextBase.OperationLog">
+            <summary>
+            Gets or sets the operation log.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.AtomicityContextBase.IsActive">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.AtomicityContextOptions">
+            <summary>
+            <see cref="T:Xtensive.Integrity.Atomicity.AtomicityContextBase"/> options.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Atomicity.AtomicityContextOptions.Default">
+            <summary>
+            Default value. Actualy Undoable.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Atomicity.AtomicityContextOptions.None">
+            <summary>
+            Atomicity features are not supportet.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Atomicity.AtomicityContextOptions.Undoable">
+            <summary>
+            Undo operation is supported.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Atomicity.AtomicityContextOptions.Redoable">
+            <summary>
+            Redo operation is supported.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Atomicity.AtomicityContextOptions.Validate">
+            <summary>
+            Validation is supported.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Atomicity.AtomicityContextOptions.Full">
+            <summary>
+            All atomicity features are supported.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.AtomicityScope">
+            <summary>
+            <see cref="T:Xtensive.Integrity.Atomicity.AtomicityContextBase"/> activation scope.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityScope.#ctor(Xtensive.Integrity.Atomicity.AtomicityContextBase)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="context">The atomicity context.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityScope.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.AtomicityScope.Dispose(System.Boolean)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Dispose" copy="true"/>
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.GroupUndoDescriptor">
+            <summary>
+            Default implementation for <see cref="T:Xtensive.Integrity.Atomicity.IGroupUndoDescriptor"/>.
+            Describes group undo operation - an operation involving
+            undoing a set of nested undo operations.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.UndoDescriptor">
+            <summary>
+            Default implementation for <see cref="T:Xtensive.Integrity.Atomicity.IUndoDescriptor"/>.
+            Undo operation descriptor.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.OperationDescriptor">
+            <summary>
+            Default implementation for <see cref="T:Xtensive.Integrity.Atomicity.IOperationDescriptor"/>.
+            Base class for any operation descriptor.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.IOperationDescriptor">
+            <summary>
+            Common methods for <see cref="T:Xtensive.Integrity.Atomicity.IUndoDescriptor"/> and <see cref="T:Xtensive.Integrity.Atomicity.IRedoDescriptor"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.IOperationDescriptor.Invoke">
+            <summary>
+            Invokes the operation.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.IOperationDescriptor.Finalize(System.Boolean)">
+            <summary>
+            Finalizes the operation.
+            </summary>    
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.IOperationDescriptor.CallDescriptor">
+            <summary>
+            Gets or sets the <see cref="T:Xtensive.Integrity.Atomicity.MethodCallDescriptor"/>.
+            </summary>    
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.OperationDescriptor.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.IUndoDescriptor">
+            <summary>
+            Undo operation descriptor.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.IUndoDescriptor.Complete">
+            <summary>
+            Completes this descriptor.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.IUndoDescriptor.OppositeDescriptor">
+            <summary>
+            Gets or sets the opposite descriptor.
+            </summary>    
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.IUndoDescriptor.Group">
+            <summary>
+            Gets or sets the group undo operation.
+            </summary>    
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.IUndoDescriptor.Arguments">
+            <summary>
+            Gets the descriptor's arguments.
+            </summary>s    
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.IUndoDescriptor.IsCompleted">
+            <summary>
+            Gets a value indicating whether this descriptor is completed.
+            </summary>    
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.UndoDescriptor.Finalize(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.IGroupUndoDescriptor">
+            <summary>
+            Describes group undo operation - an operation involving
+            undoing a set of nested undo operations.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.GroupUndoDescriptor.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.IAtomicityAware">
+            <summary>
+            Implemented by objects supporting atomic operations \ atomicity framework.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.IAtomicityAware.IsCompatibleWith(Xtensive.Integrity.Atomicity.AtomicityContextBase)">
+            <summary>
+            Determines whether the specified context is compatible 
+            with the current object.
+            </summary>
+            <param name="context">The context to check for compatibility.</param>
+            <returns>
+            <see langword="true"/> if the specified context is compatible
+            with the current object; 
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.IOperationDescriptorFactory">
+            <summary>
+            <see cref="T:Xtensive.Integrity.Atomicity.IOperationDescriptor"/> factory interface - 
+            a factory used by <see cref="T:Xtensive.Integrity.Atomicity.AtomicityContextBase"/> descendants 
+            to create its own operation descriptors.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.IOperationLog">
+            <summary>
+            Operation log -
+            a log used by <see cref="T:Xtensive.Integrity.Atomicity.AtomicityContextBase"/> descendants 
+            to log created operation descriptors.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.IRedoDescriptor">
+            <summary>
+            Redo operation descriptor.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.RedoDescriptor">
+            <summary>
+            Default implementation for <see cref="T:Xtensive.Integrity.Atomicity.IRedoDescriptor"/>.
+            Redo operation descriptor.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.ConstraintViolationException">
+            <summary>
+            Thrown as the result of violation of constraint.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.ConstraintViolationException.#ctor(System.String,System.Type,System.Reflection.PropertyInfo,System.Object)">
+            <summary>
+              <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>  
+            <param name="message">The error message.</param>
+        </member>
+        <member name="P:Xtensive.Integrity.ConstraintViolationException.TargetType">
+            <summary>
+            Gets the target type.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.ConstraintViolationException.TargetProperty">
+            <summary>
+            Gets the target property.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.ConstraintViolationException.PropertyValue">
+            <summary>
+            Gets the string representation of property value.
+            </summary>
+            <value>The property value.</value>
+        </member>
+        <member name="T:Xtensive.Integrity.Relations.OneToOneRelationSyncStage">
+            <summary>
+            Possible states of linked property pair change sequence.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Relations.OneToOneRelationSyncStage.Default">
+            <summary>
+            In sync.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Relations.OneToOneRelationSyncStage.MasterSetterInvoked">
+            <summary>
+            Master setter is invoked.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Relations.OneToOneRelationSyncStage.SlaveSetterInvoked">
+            <summary>
+            Slave setter is invoked.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Relations.OneToOneRelationSyncStage.OldSlaveSetterInvoked">
+            <summary>
+            Old slave setter is invoked.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.MethodCallDescriptor">
+            <summary>
+            Describes method call operation (without arguments).
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.MethodCallDescriptor.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.MethodCallDescriptor.#ctor(System.Object,System.Reflection.MethodBase)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="target">The target.</param>
+            <param name="method">The method.</param>
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.MethodCallDescriptor.Target">
+            <summary>
+            Gets the method target.
+            </summary>    
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.MethodCallDescriptor.Method">
+            <summary>
+            Gets the method.
+            </summary>    
+        </member>
+        <member name="P:Xtensive.Integrity.Atomicity.MethodCallDescriptor.IsValid">
+            <summary>
+            Gets a value indicating whether this call descriptor is valid.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.OperationDescriptorFactory">
+            <summary>
+            Default <see cref="T:Xtensive.Integrity.Atomicity.IOperationDescriptor"/> factory - i.e. a factory
+            used by <see cref="T:Xtensive.Integrity.Atomicity.AtomicityContextBase"/>.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.RedoScope">
+            <summary>
+            Redo scope - provides access to <see cref="P:Xtensive.Integrity.Atomicity.RedoScope.CurrentDescriptor"/> 
+            (current <see cref="T:Xtensive.Integrity.Atomicity.IRedoDescriptor"/>).
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.RedoScope.#ctor(Xtensive.Integrity.Atomicity.IRedoDescriptor)">
+            <summary>
+              <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="descriptor">The redo descriptor.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.RedoScope.Dispose(System.Boolean)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Dispose" copy="true"/>
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Atomicity.UndoScope">
+            <summary>
+            Undo scope - provides access to <see cref="P:Xtensive.Integrity.Atomicity.UndoScope.CurrentDescriptor"/> 
+            (current <see cref="T:Xtensive.Integrity.Atomicity.IUndoDescriptor"/>).
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.UndoScope.#ctor(Xtensive.Integrity.Atomicity.IUndoDescriptor)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="descriptor">The descriptor.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Atomicity.UndoScope.Dispose(System.Boolean)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Dispose" copy="true"/>
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.AtomicAttribute">
+            <summary>
+            Provides undo\redo features for methods it is applied on
+            by <see cref="T:Xtensive.Integrity.Atomicity.AtomicityContextBase"/> activation.
+            Ensures results of method call will be undone in case
+            of exception.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.AtomicAttribute.CompileTimeValidate(System.Reflection.MethodBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.AtomicAttribute.CompileTimeInitialize(System.Reflection.MethodBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.AtomicAttribute.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.AtomicAttribute.#ctor(System.String)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="undoMethodName">Name of the undo method.</param>
+        </member>
+        <member name="T:Xtensive.Integrity.Aspects.InconsistentRegionAttribute">
+            <summary>
+            Wraps a method of property body into so-called "inconsistent region"
+            using <see cref="M:Xtensive.Integrity.Validation.ValidationContextBase.OpenInconsistentRegion"/> method.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.InconsistentRegionAttribute.CompileTimeValidate(System.Reflection.MethodBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.InconsistentRegionAttribute.OnEntry(PostSharp.Laos.MethodExecutionEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.InconsistentRegionAttribute.OnSuccess(PostSharp.Laos.MethodExecutionEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Integrity.Aspects.InconsistentRegionAttribute.OnExit(PostSharp.Laos.MethodExecutionEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.ConcurrencyConflictException">
+            <summary>
+            Base class for any exception thrown as result of concurrency conflict
+            (e.g. deadlock or version conflict).
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.IConcurrencyConflictException">
+            <summary>
+            Tags any concurrency conflict exception.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.ConcurrencyConflictException.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.ConcurrencyConflictException.#ctor(System.String)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="text">Text of message.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.ConcurrencyConflictException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.SerializableDocTemplate.Ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" copy="true"/>
+        </member>
+        <member name="T:Xtensive.Integrity.DeadlockException">
+            <summary>
+            Thrown as the result of a deadlock.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.DeadlockException.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.DeadlockException.#ctor(System.String)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="text">Text of message.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.DeadlockException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.SerializableDocTemplate.Ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" copy="true"/>
+        </member>
+        <member name="T:Xtensive.Integrity.VersionConflictException">
+            <summary>
+            Thrown as the result of version conflict.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.VersionConflictException.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.VersionConflictException.#ctor(System.Object,System.String,System.Object,System.Object)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="target">Initial <see cref="P:Xtensive.Integrity.VersionConflictException.Target"/> property value.</param>
+            <param name="propertyName">Initial <see cref="P:Xtensive.Integrity.VersionConflictException.PropertyName"/> property value.</param>
+            <param name="expectedValue">Initial <see cref="P:Xtensive.Integrity.VersionConflictException.ExpectedValue"/> property value.</param>
+            <param name="actualValue">Initial <see cref="P:Xtensive.Integrity.VersionConflictException.ActualValue"/> property value.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.VersionConflictException.#ctor(System.String)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="text">Text of message.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.VersionConflictException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.SerializableDocTemplate.Ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" copy="true"/>
+        </member>
+        <member name="P:Xtensive.Integrity.VersionConflictException.Target">
+            <summary>
+            An object on which version conflict was detected.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.VersionConflictException.PropertyName">
+            <summary>
+            Name of the property of the <see cref="P:Xtensive.Integrity.VersionConflictException.Target"/>, which value differs from the expected one.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.VersionConflictException.ExpectedValue">
+            <summary>
+            Expected value of the <see cref="P:Xtensive.Integrity.VersionConflictException.PropertyName"/> property of the <see cref="P:Xtensive.Integrity.VersionConflictException.Target"/>.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.VersionConflictException.ActualValue">
+            <summary>
+            Actual value of the <see cref="P:Xtensive.Integrity.VersionConflictException.PropertyName"/> property of the <see cref="P:Xtensive.Integrity.VersionConflictException.Target"/>.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Log">
+            <summary>
+            Log for this namespace.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Relations.RelationSyncScope`1">
+            <summary>
+            Relation synchronization context.
+            </summary>
+            <typeparam name="TContext">Actual scope type.</typeparam>
+        </member>
+        <member name="M:Xtensive.Integrity.Relations.RelationSyncScope`1.#ctor(`0)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="P:Xtensive.Integrity.Relations.RelationSyncScope`1.CurrentContext">
+            <summary>
+            Gets current <see cref="!:TContext"/> object in this type of scope.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Relations.RelationSyncScope`1.Context">
+            <summary>
+            Gets <see cref="!:TContext"/> object associated with this scope.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.AspectExApplyingXToPropertyYFailedZ">
+            <summary>
+              Looks up a localized string similar to Applying [{0}] to property &apos;{1}&apos; failed. {2}.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.AspectExNoComparer">
+            <summary>
+              Looks up a localized string similar to [{0}] attribute on &apos;{1}&apos; requires a comparer for type &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueCanNotBeEmpty">
+            <summary>
+              Looks up a localized string similar to {PropertyName} can not be empty..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueCanNotBeGreaterThanMax">
+            <summary>
+              Looks up a localized string similar to {PropertyName} can not be greater than {Max}..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueCanNotBeLessThanMin">
+            <summary>
+              Looks up a localized string similar to {PropertyName} can not be less than {Min}..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueCanNotBeLessThanMinOrGreaterThanMax">
+            <summary>
+              Looks up a localized string similar to {PropertyName} can not be less than {Min} or greater than {Max}..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueCanNotBeNull">
+            <summary>
+              Looks up a localized string similar to {PropertyName} can not be null..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueCanNotBeNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to {PropertyName} can not be null or empty..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueFormatIsIncorrect">
+            <summary>
+              Looks up a localized string similar to {PropertyName} format is incorrect..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueLengthCanNotBeGreaterThanMax">
+            <summary>
+              Looks up a localized string similar to {PropertyName} length can not be greater than {Max}..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueLengthCanNotBeLessThanMin">
+            <summary>
+              Looks up a localized string similar to {PropertyName} length can not be less than {Min}..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueLengthCanNotBeLessThanMinAndGreaterThenMax">
+            <summary>
+              Looks up a localized string similar to {PropertyName} length can not be less than {Min} and greater then {Max}..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueMustBeInTheFuture">
+            <summary>
+              Looks up a localized string similar to {PropertyName} must be in the future..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ConstraintMessageValueMustBeInThePast">
+            <summary>
+              Looks up a localized string similar to {PropertyName} must be in the past..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.DateMustBeInThePast">
+            <summary>
+              Looks up a localized string similar to Date must be in the past..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExAlreadyCompleted">
+            <summary>
+              Looks up a localized string similar to UndoDescriptor is already completed..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExAtomicContextIsSuspended">
+            <summary>
+              Looks up a localized string similar to AtomicContext is suspended..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExCantInvokeBlockingDescriptor">
+            <summary>
+              Looks up a localized string similar to Blocking descriptor can&apos;t be invoked..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExComparerForTypeXIsNotFound">
+            <summary>
+              Looks up a localized string similar to Comparer for type &apos;{0}&apos; is not found..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExCompleteMustBeCalledJustOnce">
+            <summary>
+              Looks up a localized string similar to Complete method must be called just once..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExConcurrencyConflict">
+            <summary>
+              Looks up a localized string similar to Concurrency conflict..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExContextMustBeActivated">
+            <summary>
+              Looks up a localized string similar to Context is not activated..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExDeadlock">
+            <summary>
+              Looks up a localized string similar to Deadlock was found..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExExpressionPatternIsNotSpecified">
+            <summary>
+              Looks up a localized string similar to Regular expression pattern is not specified..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExIncorrectStageValue">
+            <summary>
+              Looks up a localized string similar to Incorrect Stage value: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExInvalidTransactionState">
+            <summary>
+              Looks up a localized string similar to Invalid transaction state (&apos;{0}&apos;). Expected state(s) is (are) &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExMaxOrMinPropertyMustBeSpecified">
+            <summary>
+              Looks up a localized string similar to &apos;Max&apos; or &apos;Min&apos; property must be specified..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExObjectAndContextAreIncompatible">
+            <summary>
+              Looks up a localized string similar to The specified object and the context are incompatible..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExOldActiveOperationIsStillRunning">
+            <summary>
+              Looks up a localized string similar to You can&apos;t Activate new operation, since old ActiveOperation is still running..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExScopeBoundTransactionCanBeCommittedOnlyByItsScope">
+            <summary>
+              Looks up a localized string similar to Scope-bound transaction can be committed only by its scope. Use TransactionScopeBase.Complete() \  Dispose() methods of  appropriate TransactionScopeBase descendant instance to do this..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExSpecifiedRedoDescriptorCantBeLogged">
+            <summary>
+              Looks up a localized string similar to Specified RedoDescriptor can&apos;t be logged..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExTransactionIsAlreadyActivated">
+            <summary>
+              Looks up a localized string similar to Transaction is already activated..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExTransactionScopeIsCompletedCanNotBeSetToFalse">
+            <summary>
+              Looks up a localized string similar to TransactionScope.IsCompleted can not be set to &apos;false&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExValidationContextIsInvalid">
+            <summary>
+              Looks up a localized string similar to Validation context is invalid..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExValidationFailed">
+            <summary>
+              Looks up a localized string similar to Validation failed..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExVersionConflict">
+            <summary>
+              Looks up a localized string similar to Version conflict..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.ExVersionConflictEx">
+            <summary>
+              Looks up a localized string similar to Version conflict on object {0}: expected: {1} = {2}, but it is {3}..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.FieldConstraintCanNotBeAppliedToReadOnlyProperty">
+            <summary>
+              Looks up a localized string similar to Field constraint can not be applied to read only property..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.LogRelationSyncUndoError">
+            <summary>
+              Looks up a localized string similar to Error during undoing the relation synchronization..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.LogUndoError">
+            <summary>
+              Looks up a localized string similar to Error during Undo execution: descriptor {0}..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.Null">
+            <summary>
+              Looks up a localized string similar to null.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.PropertyValueCanNotBeEmpty">
+            <summary>
+              Looks up a localized string similar to {0}: value can not be empty..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.PropertyValueCanNotBeNull">
+            <summary>
+              Looks up a localized string similar to {0}: value can not be null..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.PropertyValueDoesNotMatchRegexPattern">
+            <summary>
+              Looks up a localized string similar to Property value &apos;{value}&apos; does not match regex pattern &apos;{Pattern}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.PropertyValueLengthMustBeInXYRange">
+            <summary>
+              Looks up a localized string similar to {0}: length of the value must be in [{1} ... {2}] range..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.PropertyValueMustBeInXYRange">
+            <summary>
+              Looks up a localized string similar to {0}: value must be in [{1} ... {2}] range..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.X">
+            <summary>
+              Looks up a localized string similar to {0}.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.XDoesNotSupportYValueType">
+            <summary>
+              Looks up a localized string similar to &apos;{0}&apos; does not support &apos;{1}&apos; value type..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Resources.Strings.XInterfaceShouldBeImplementedToUsePropertyConstraints">
+            <summary>
+              Looks up a localized string similar to &apos;{0}&apos; interface should be implemented to use property constraints..
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.ITransaction.Commit">
+            <summary>
+            Commits the transaction.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.ITransaction.Rollback">
+            <summary>
+            Rolls back the transaction.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.ITransaction.State">
+            <summary>
+             Gets the <see cref="T:Xtensive.Integrity.Transactions.TransactionState"/> of this instance.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.ITransaction.IsolationLevel">
+            <summary>
+            Gets the isolation level of the transaction.
+            </summary>
+            <value>The isolation level.</value>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.ITransaction.TimeStamp">
+            <summary>
+            Gets the start time of the current transaction.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Transactions.TransactionBase">
+            <summary>
+            Base class for any transaction.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionBase.Begin">
+            <summary>
+            Begins this transaction.
+            </summary>
+            <returns>Scope of this transaction.</returns>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionBase.CreateScope">
+            <summary>
+            Creates the scope for this transaction.
+            </summary>
+            <returns>Created scope.</returns>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionBase.Commit">
+            <summary>
+            Commits the transaction.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionBase.Rollback">
+            <summary>
+            Rolls back the transaction.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionBase.OnBegin">
+            <summary>
+            Called when transaction is beginning.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionBase.OnCommit">
+            <summary>
+            Called when transaction is about to commit.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionBase.OnRollback">
+            <summary>
+            Called when transaction is about to rollback.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionBase.#ctor(System.Guid,System.Transactions.IsolationLevel)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="isolationLevel">The isolation level.</param>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.TransactionBase.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.TransactionBase.Xtensive#Core#IIdentified#Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.TransactionBase.State">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.TransactionBase.IsolationLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.TransactionBase.TimeStamp">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Integrity.Transactions.TransactionScopeExtensions">
+            <summary>
+            <see cref="T:Xtensive.Integrity.Transactions.TransactionScope"/> related extension methods.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionScopeExtensions.Complete(Xtensive.Integrity.Transactions.TransactionScope)">
+            <summary>
+            Marks the scope as successfully completed 
+            (i.e. all operations within the scope are completed successfully).
+            Does nothing if scope is <see langword="null" />.
+            </summary>
+            <param name="scope">The scope to mark as completed.</param>
+        </member>
+        <member name="T:Xtensive.Integrity.Transactions.TransactionState">
+            <summary>
+            Indicates operational state of the <see cref="T:Xtensive.Integrity.Transactions.TransactionBase"/> instance.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Transactions.TransactionState.Default">
+            <summary>
+            Default transaction state (<see cref="F:Xtensive.Integrity.Transactions.TransactionState.NotActivated"/>).
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Transactions.TransactionState.NotActivated">
+            <summary>
+            The transaction state is not activated.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Transactions.TransactionState.Completed">
+            <summary>
+            The transaction is completed.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Transactions.TransactionState.Active">
+            <summary>
+            The transaction is active (is running).
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Transactions.TransactionState.Completing">
+            <summary>
+            The transaction is completing.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Transactions.TransactionState.Committed">
+            <summary>
+            The transaction has been committed successfully.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Transactions.TransactionState.Committing">
+            <summary>
+            The transaction has started <see cref="M:Xtensive.Integrity.Transactions.TransactionBase.Commit"/> method but still running.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Transactions.TransactionState.RolledBack">
+            <summary>
+            The transaction has been rolled back.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Transactions.TransactionState.RollingBack">
+            <summary>
+            The transaction has started <see cref="M:Xtensive.Integrity.Transactions.TransactionBase.Rollback"/> method but still running.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Transactions.TransactionScope">
+            <summary>
+            Transaction activation scope.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionScope.#ctor(Xtensive.Integrity.Transactions.TransactionBase)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="transaction">The transaction.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionScope.Dispose">
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Dispose" copy="true"/>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.TransactionScope.IsCompleted">
+            <summary>
+            Gets or sets a value indicating whether this scope is successfully completed.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Transactions.TransactionScope.Transaction">
+            <summary>
+            Gets the transaction this scope controls.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Transactions.TransactionStateExtensions">
+            <summary>
+            <see cref="T:Xtensive.Integrity.Transactions.TransactionState"/> related extension methods.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Transactions.TransactionStateExtensions.IsActive(Xtensive.Integrity.Transactions.TransactionState)">
+            <summary>
+            Determines whether the specified transaction state describes active transaction.
+            </summary>
+            <param name="state">The state to check.</param>
+            <returns>
+            <see langword="True"/> if the specified state describes active transaction;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="T:Xtensive.Integrity.Validation.InconsistentRegion">
+            <summary>
+            Inconsistent region implementation.
+            Returned by <see cref="M:Xtensive.Integrity.Validation.ValidationContextBase.OpenInconsistentRegion"/> method.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.InconsistentRegion.#ctor(Xtensive.Integrity.Validation.ValidationContextBase)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="context">The validation context this region belongs to.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.InconsistentRegion.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Integrity.Validation.InconsistentRegion.Context">
+            <summary>
+            Gets the <see cref="T:Xtensive.Integrity.Validation.ValidationContextBase"/> instance this region belongs to.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Validation.InconsistentRegion.IsCompleted">
+            <summary>
+            Gets a value indicating whether this inconsistency is 
+            <see cref="M:Xtensive.Integrity.Validation.InconsistentRegionExtensions.Complete(Xtensive.Integrity.Validation.InconsistentRegion)"/>d.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Integrity.Validation.InconsistentRegionExtensions">
+            <summary>
+            <see cref="T:Xtensive.Integrity.Validation.InconsistentRegion"/> related extension methods.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.InconsistentRegionExtensions.Complete(Xtensive.Integrity.Validation.InconsistentRegion)">
+            <summary>
+            Completes the specified region.
+            </summary>
+            <param name="region">The region to complete.</param>
+            <remarks>
+            <para>
+            This method must be called before disposal of
+            any <see cref="T:Xtensive.Integrity.Validation.InconsistentRegion"/>. Is invocation
+            indicates <see cref="T:Xtensive.Integrity.Validation.ValidationContextBase"/> must
+            perform validation of region disposal. 
+            </para>
+            <para>
+            If this method isn't called before region disposal, 
+            validation context will receive <see cref="P:Xtensive.Integrity.Validation.ValidationContextBase.IsValid"/>
+            status, and any further attempts to validate there will fail.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Xtensive.Integrity.Validation.IValidationAware">
+            <summary>
+            Implemented by objects supporting validation framework.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.IValidationAware.OnValidate">
+            <summary>
+            Validates the object state right now - i.e. without any delays.
+            </summary>
+            <remarks>
+            Throws an exception on validation failure.
+            </remarks>
+        </member>
+        <member name="T:Xtensive.Integrity.Validation.ValidationAwareExtensions">
+            <summary>
+            <see cref="T:Xtensive.Integrity.Validation.IValidationAware"/> related extensions methods.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationAwareExtensions.Validate(Xtensive.Integrity.Validation.IValidationAware,System.Action{Xtensive.Integrity.Validation.IValidationAware},Xtensive.Integrity.Validation.ValidationMode)">
+            <summary>
+            Partially validates the <paramref name="target"/> with specified delegate, 
+            or enqueues it for delayed validation.
+            </summary>
+            <param name="target">The object to validate.</param>
+            <param name="validator">The delegate to invoke for validation. 
+            If <paramref name="validator"/> is <see langword="null"/>, 
+            the whole object should be validated.</param>
+            <param name="mode">Validation mode to use.</param>
+            <returns>
+            <see langword="true"/> if validation was performed immediately; 
+            <see langword="false"/> if it was enqueued.
+            </returns>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationAwareExtensions.Validate(Xtensive.Integrity.Validation.IValidationAware,System.Action{Xtensive.Integrity.Validation.IValidationAware})">
+            <summary>
+            Partially validates the <paramref name="target"/> with specified delegate using default <see cref="T:Xtensive.Integrity.Validation.ValidationMode"/>.
+            </summary>
+            <param name="target">The object to validate.</param>
+            <param name="validator">The delegate to invoke for validation. 
+            If <paramref name="validator"/> is <see langword="null"/>, 
+            the whole object should be validated.</param>
+            <returns>
+            <see langword="true"/> if validation was performed immediately; 
+            <see langword="false"/> if it was enqueued.
+            </returns>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationAwareExtensions.Validate(Xtensive.Integrity.Validation.IValidationAware,Xtensive.Integrity.Validation.ValidationMode)">
+            <summary>
+            Validates the specified <paramref name="target"/>, or enqueues it for delayed validation.
+            </summary>
+            <param name="target">The object to validate.</param>        
+            <param name="mode">Validation mode to use.</param>
+            <returns>
+            <see langword="true"/> if validation was performed immediately; 
+            <see langword="false"/> if it was enqueued.
+            </returns>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationAwareExtensions.Validate(Xtensive.Integrity.Validation.IValidationAware)">
+            <summary>
+            Validates the specified <paramref name="target"/> using default <see cref="T:Xtensive.Integrity.Validation.ValidationMode"/>.
+            </summary>
+            <param name="target">The object to validate.</param>            
+            <returns>
+            <see langword="true"/> if validation was performed immediately; 
+            <see langword="false"/> if it was enqueued.
+            </returns>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationAwareExtensions.CheckConstraints(Xtensive.Integrity.Validation.IValidationAware)">
+            <summary>
+            Checks all the constraints applied to specified 
+            <see cref="T:Xtensive.Integrity.Validation.IValidationAware"/> object.
+            </summary>
+            <param name="target">The object to validate.</param>
+        </member>
+        <member name="T:Xtensive.Integrity.Validation.ValidationContextBase">
+            <summary>
+            Provides consistency validation for see <see cref="T:Xtensive.Integrity.Validation.IValidationAware"/> implementors.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationContextBase.OpenInconsistentRegion">
+            <summary>
+            Opens the "inconsistent region" - the code region, in which Validate method
+            should just queue the validation rather then perform it immediately.
+            </summary>
+            <returns>
+            <see cref="T:System.IDisposable"/> object, which disposal will identify the end of the region.
+            <see langowrd="Null"/>, if <see cref="P:Xtensive.Integrity.Validation.ValidationContextBase.IsConsistent"/> is <see langword="false"/>.
+            </returns>
+            <remarks>
+            <para>
+            The beginning of the region is the place where this method is called.
+            </para>
+            <para>
+            The end of the region is the place where returned <see cref="T:System.IDisposable"/> object is disposed.
+            The validation of all queued to-validate objects will be performed during disposal.
+            </para>
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">Context <see cref="P:Xtensive.Integrity.Validation.ValidationContextBase.IsValid">is invalid</see>.</exception>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationContextBase.Validate">
+            <summary>
+            Validates all registered instances even if inconsistent region is open.
+            </summary>
+            <exception cref="T:Xtensive.Core.AggregateException">Validation failed.</exception>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationContextBase.EnqueueValidate(Xtensive.Integrity.Validation.IValidationAware,System.Action{Xtensive.Integrity.Validation.IValidationAware})">
+            <summary>
+            Enqueues the object for delayed partial validation.
+            </summary>
+            <param name="target">The <see cref="T:Xtensive.Integrity.Validation.IValidationAware"/> object to enqueue.</param>
+            <param name="validationDelegate">The validation delegate partially validating the <paramref name="target"/>.
+            If <see langword="null"/>, whole object should be validated.
+            </param>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationContextBase.EnqueueValidate(Xtensive.Integrity.Validation.IValidationAware)">
+            <summary>
+            Enqueues the object for delayed validation.
+            </summary>
+            <param name="target">The <see cref="T:Xtensive.Integrity.Validation.IValidationAware"/> object to enqueue.</param>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationContextBase.LeaveInconsistentRegion(Xtensive.Integrity.Validation.InconsistentRegion)">
+            <summary>
+            Leaves the inconsistent region.
+            </summary>
+            <exception cref="T:Xtensive.Core.AggregateException">Validation failed.</exception>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationContextBase.Reset">
+            <summary>
+            Resets the state of this context to initial.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationContextBase.EnsureIsValid">
+            <summary>
+            Ensures the context is valid.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Context <see cref="P:Xtensive.Integrity.Validation.ValidationContextBase.IsValid">is invalid</see>.</exception>
+        </member>
+        <member name="M:Xtensive.Integrity.Validation.ValidationContextBase.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Validation.ValidationContextBase.IsConsistent">
+            <summary>
+            Gets the value indicating whether this context is in inconsistent state.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Integrity.Validation.ValidationContextBase.IsValid">
+            <summary>
+            Gets or sets a value indicating whether this context is valid.
+            </summary>
+            <remarks>
+            A context becomes invalid when validation fails there, or one of its 
+            inconsistent regions was not completed.
+            </remarks>
+        </member>
+        <member name="T:Xtensive.Integrity.Validation.ValidationMode">
+            <summary>
+            Possible validation modes.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Validation.ValidationMode.Default">
+            <summary>
+            The same as <see cref="F:Xtensive.Integrity.Validation.ValidationMode.ImmediateOrDelayed"/>.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Validation.ValidationMode.ImmediateOrDelayed">
+            <summary>
+            Immediate or delayed (if validation context is in inconsistent state) valdation.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Integrity.Validation.ValidationMode.Immediate">
+            <summary>
+            Immediate valdation.
+            </summary>
+        </member>
+    </members>
+</doc>

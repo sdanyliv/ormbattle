@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.Sql.Oracle</name>
+    </assembly>
+    <members>
+        <member name="T:Xtensive.Sql.Oracle.DriverFactory">
+            <summary>
+            A <see cref="T:Xtensive.Sql.SqlDriverFactory"/> for Oracle.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Sql.Oracle.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ExInvalidBooleanStringX">
+            <summary>
+              Looks up a localized string similar to Invalid boolean string &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ExOracleBelow9i2IsNotSupported">
+            <summary>
+              Looks up a localized string similar to Oracle below 9i2 is not supported..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ExOracleDoesNotSupportUpdateFromStatements">
+            <summary>
+              Looks up a localized string similar to Oracle does not support UPDATE FROM statements.
+            </summary>
+        </member>
+    </members>
+</doc>
