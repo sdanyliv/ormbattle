@@ -2,7 +2,7 @@ LINQ tests:
   Testing: ADO.NET Entity Framework (EF)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
-  Testing: Open Access (OA)
+  Testing: OpenAccess (OA)
 
 LINQ tests scorecard:
                                         EF        LS        NH        OA   Maximum      Unit
