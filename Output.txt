@@ -3,65 +3,31 @@ LINQ tests:
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
   Testing: OpenAccess (OA)
-  Failed: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> Telerik.OpenAccess.Exceptions.MetadataException: Field 'products' of class 'OrmBattle.TelerikModel.Northwind.Category' uses the extension 'inverse' which may only be used for collections of persistence capable instances. --> C:\Projects\ORMBattle.NET Test Suite\TestRunner\bin\Release\TelerikModel.Northwind.dll:(resource)OrmBattle.TelerikModel.Northwind.App.config:mapping-id=mssqlMapping/namespace[OrmBattle.TelerikModel.Northwind]/class[Category]/field[products]/collection/inverse="category"
-   at Telerik.OpenAccess.SPI.Backends.ThrowException(Exception e)
-   at Telerik.OpenAccess.RT.ExceptionWrapper.Throw()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createSmfForURL()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryBase.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp..ctor(IDictionary properties, Object classloader)
-   at OpenAccessRuntime.DataObjects.BootstrapPMF.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.Helper.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.AssertPersistenceManagerFactory(String usr, String password, Boolean open)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope(TransactionProvider provider)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope()
-   at Telerik.OpenAccess.Database.GetObjectScope()
-   at OrmBattle.TelerikModel.Northwind.NorthwindContext.ObjectScope() in c:\Projects\ORMBattle.NET Test Suite\TelerikModel\NorthwindContext.cs:line 106
-   at OrmBattle.Tests.Linq.OpenAccessTest.Setup() in c:\Projects\ORMBattle.NET Test Suite\Tests\Linq\OpenAccessTest.generated.cs:line 45
-   at OrmBattle.Tests.ToolTestBase.BaseSetup() in c:\Projects\ORMBattle.NET Test Suite\Tests\ToolTestBase.cs:line 29
-   --- End of inner exception stack trace ---
-   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
-   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
-   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
-   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   at OrmBattle.TestRunner.LinqTestRunner.Run() in c:\Projects\ORMBattle.NET Test Suite\TestRunner\LinqTestRunner.cs:line 88
-  BaseTearDown failed: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object.
-   at OrmBattle.Tests.Linq.OpenAccessTest.TearDown() in c:\Projects\ORMBattle.NET Test Suite\Tests\Linq\OpenAccessTest.generated.cs:line 56
-   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in c:\Projects\ORMBattle.NET Test Suite\Tests\ToolTestBase.cs:line 35
-   at OrmBattle.Tests.Linq.LinqTestBase.BaseTearDown() in c:\Projects\ORMBattle.NET Test Suite\Tests\Linq\LinqTestBase.cs:line 40
-   --- End of inner exception stack trace ---
-   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
-   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
-   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
-   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   at OrmBattle.TestRunner.LinqTestRunner.Run() in c:\Projects\ORMBattle.NET Test Suite\TestRunner\LinqTestRunner.cs:line 125
 
 LINQ tests scorecard:
                                         EF        LS        NH        OA   Maximum      Unit
 LINQ Implementation:            
-  Aggregates                             0         3         3       n/a         5       f/a
-  All/Any/Contains                       3         6       4/2       n/a         6       f/a
-  Complex                                1         6         6       n/a         6       f/a
-  Element operations                     4         6         6       n/a         9       f/a
-  Filtering                            4/2       5/5       6/1       n/a        12       f/a
-  Grouping                               1        10      10/2       n/a        10       f/a
-  Join                                   1         4         4       n/a         4       f/a
-  Ordering                             3/2       5/1         6       n/a         8       f/a
-  Projections                            2       9/2       6/1       n/a        13       f/a
-  References                             0         4         3       n/a         4       f/a
-  Set operations                         0       5/1       6/2       n/a         9       f/a
-  Standard functions                     9         8        16       n/a        21       f/a
-  Take/Skip                              1       2/1       2/1       n/a         5       f/a
-  Type casts                             1       3/1         4       n/a         5       f/a
+  Aggregates                             0         3         3         1         5       f/a
+  All/Any/Contains                       3         6       4/2         4         6       f/a
+  Complex                                1         6         6         6         6       f/a
+  Element operations                     4         6         6         5         9       f/a
+  Filtering                            4/2       5/5       6/1         2        12       f/a
+  Grouping                               1        10      10/2         5        10       f/a
+  Join                                   1         4         4         4         4       f/a
+  Ordering                             3/2       5/1         6         6         8       f/a
+  Projections                            2       9/2       6/1       8/1        13       f/a
+  References                             0         4         3         2         4       f/a
+  Set operations                         0       5/1       6/2         9         9       f/a
+  Standard functions                     9         8        16        11        21       f/a
+  Take/Skip                              1       2/1       2/1         2         5       f/a
+  Type casts                             1       3/1         4         2         5       f/a
 Total:                          
-  Performed                            117       117       117         0       117         #
-  Passed                                87        41        35         0       117         #
-  Failed                                30        76        82         0       117         #
-    Properly                            26        65        73         0       117         #
-    Asserted                             4        11         9         0       117         #
-  Score                               74,4      35,0      29,9       NaN     100,0         %
+  Performed                            117       117       117       117       117         #
+  Passed                                87        41        35        50       117         #
+  Failed                                30        76        82        67       117         #
+    Properly                            26        65        73        66       117         #
+    Asserted                             4        11         9         1       117         #
+  Score                               74,4      35,0      29,9      42,7     100,0         %
 
 Units:
   f/a: total count of failed tests [ / count of tests failed with assertion ],
@@ -76,73 +42,35 @@ Performance tests (50 items):
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
   Testing: OpenAccess (OA)
-  Failed: Telerik.OpenAccess.Exceptions.MetadataException: Field 'products' of class 'OrmBattle.TelerikModel.Northwind.Category' uses the extension 'inverse' which may only be used for collections of persistence capable instances. --> C:\Projects\ORMBattle.NET Test Suite\TestRunner\bin\Release\TelerikModel.Northwind.dll:(resource)OrmBattle.TelerikModel.Northwind.App.config:mapping-id=mssqlMapping/namespace[OrmBattle.TelerikModel.Northwind]/class[Category]/field[products]/collection/inverse="category"
-   at Telerik.OpenAccess.SPI.Backends.ThrowException(Exception e)
-   at Telerik.OpenAccess.RT.ExceptionWrapper.Throw()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createSmfForURL()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryBase.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp..ctor(IDictionary properties, Object classloader)
-   at OpenAccessRuntime.DataObjects.BootstrapPMF.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.Helper.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.AssertPersistenceManagerFactory(String usr, String password, Boolean open)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope(TransactionProvider provider)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope()
-   at Telerik.OpenAccess.Database.GetObjectScope()
-   at OrmBattle.TelerikModel.PerformanceTest.PerformanceTestContext.ObjectScope() in C:\Projects\ORMBattle.NET Test Suite\TelerikModel.PerformanceTest\PerformanceTestContext.cs:line 107
-   at OrmBattle.Tests.Performance.OpenAccessTest.Setup() in c:\Projects\ORMBattle.NET Test Suite\Tests\Performance\OpenAccessTest.cs:line 32
-   at OrmBattle.Tests.ToolTestBase.BaseSetup() in c:\Projects\ORMBattle.NET Test Suite\Tests\ToolTestBase.cs:line 29
-   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in c:\Projects\ORMBattle.NET Test Suite\TestRunner\PerformanceTestRunner.cs:line 96
-  BaseTearDown failed: Telerik.OpenAccess.Exceptions.MetadataException: Field 'products' of class 'OrmBattle.TelerikModel.Northwind.Category' uses the extension 'inverse' which may only be used for collections of persistence capable instances. --> C:\Projects\ORMBattle.NET Test Suite\TestRunner\bin\Release\TelerikModel.Northwind.dll:(resource)OrmBattle.TelerikModel.Northwind.App.config:mapping-id=mssqlMapping/namespace[OrmBattle.TelerikModel.Northwind]/class[Category]/field[products]/collection/inverse="category"
-   at Telerik.OpenAccess.SPI.Backends.ThrowException(Exception e)
-   at Telerik.OpenAccess.RT.ExceptionWrapper.Throw()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createSmfForURL()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryBase.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp..ctor(IDictionary properties, Object classloader)
-   at OpenAccessRuntime.DataObjects.BootstrapPMF.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.Helper.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.AssertPersistenceManagerFactory(String usr, String password, Boolean open)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope(TransactionProvider provider)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope()
-   at Telerik.OpenAccess.Database.GetObjectScope()
-   at OrmBattle.TelerikModel.PerformanceTest.PerformanceTestContext.ObjectScope() in C:\Projects\ORMBattle.NET Test Suite\TelerikModel.PerformanceTest\PerformanceTestContext.cs:line 107
-   at OrmBattle.Tests.Performance.OpenAccessTest.TearDown() in c:\Projects\ORMBattle.NET Test Suite\Tests\Performance\OpenAccessTest.cs:line 41
-   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in c:\Projects\ORMBattle.NET Test Suite\Tests\ToolTestBase.cs:line 35
-   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in c:\Projects\ORMBattle.NET Test Suite\TestRunner\PerformanceTestRunner.cs:line 105
   Testing: Subsonic (SS)
 
 Performance tests (50 items) scorecard:
                                        SQL        EF        LS        NH        OA        SS      Unit
 CRUD Performance:               
-  Fetch                              14240       698      7826      5915       n/a      7496      op/s
+  Fetch                              16999       677      8912      6522      6187      8389      op/s
   Single Operation:             
-    Create Instance                   9343      3789      4563      3137       n/a      3355      op/s
-    Update Instance                   8473      3385      5125      2603       n/a      1790      op/s
-    Remove Instance                   8781      3865      4984      2822       n/a      1877      op/s
-    CUD Average                       8851      3667      4878      2837       n/a      2159      op/s
+    Create Instance                  11114      4092      5157      3325      7115      3593      op/s
+    Update Instance                   9870      3621      5685      2740      5989      1877      op/s
+    Remove Instance                  10267      4149      5458      2978      6563      1917      op/s
+    CUD Average                      10391      3939      5424      2995      6523      2251      op/s
   Multiple Operations:          
-    Create Instance                  35117      7344     10975     13070       n/a      3565      op/s
-    Update Instance                  37950      6350     20454     11170       n/a      3283      op/s
-    Remove Instance                  49140      7930     18502     11558       n/a      3433      op/s
-    CUD Average                      39905      7147     15459     11878       n/a      3423      op/s
+    Create Instance                    351      8110     12044     15819     13339      3858      op/s
+    Update Instance                  41387      6890     20560     11213     12507      3423      op/s
+    Remove Instance                  43959      8990     19974     13896     31752      3602      op/s
+    CUD Average                       1035      7901     16507     13371     16092      3618      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                         n/a       450      1194      1063       n/a       350 queries/s
-    Compiled LINQ Query                n/a      2499       n/a       n/a       n/a       n/a queries/s
-    Native Query                     10206      5886      6515      4077       n/a      5231 queries/s
+    LINQ Query                         n/a       458      1215      1096      3620       351 queries/s
+    Compiled LINQ Query                n/a      2579       n/a       n/a      3744       n/a queries/s
+    Native Query                     12212      6744      7380      4408      5625      6064 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)        n/a      1364       818       796       n/a       310   pages/s
-    Get Average Page (20 items)        n/a       650       779       584       n/a       267   pages/s
+    Get Small Page   (10 items)        n/a      1389      1014       802      2570       310   pages/s
+    Get Average Page (20 items)        n/a       656       782       591      1849       263   pages/s
     Get Large Page   (50 items)        n/a       n/a       n/a       n/a       n/a       n/a       n/a
     Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a
   Materialization:              
-    LINQ Materialize                   n/a     23538     57696     21041       n/a     13306 objects/s
-    Native Materialize              135354     88090     86043     31845       n/a     39513 objects/s
+    LINQ Materialize                   n/a     24124     59403     21787     45504     13211 objects/s
+    Native Materialize              165180     91575     95438     33300     92558     41050 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -157,73 +85,35 @@ Performance tests (100 items):
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
   Testing: OpenAccess (OA)
-  Failed: Telerik.OpenAccess.Exceptions.MetadataException: Field 'products' of class 'OrmBattle.TelerikModel.Northwind.Category' uses the extension 'inverse' which may only be used for collections of persistence capable instances. --> C:\Projects\ORMBattle.NET Test Suite\TestRunner\bin\Release\TelerikModel.Northwind.dll:(resource)OrmBattle.TelerikModel.Northwind.App.config:mapping-id=mssqlMapping/namespace[OrmBattle.TelerikModel.Northwind]/class[Category]/field[products]/collection/inverse="category"
-   at Telerik.OpenAccess.SPI.Backends.ThrowException(Exception e)
-   at Telerik.OpenAccess.RT.ExceptionWrapper.Throw()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createSmfForURL()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryBase.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp..ctor(IDictionary properties, Object classloader)
-   at OpenAccessRuntime.DataObjects.BootstrapPMF.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.Helper.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.AssertPersistenceManagerFactory(String usr, String password, Boolean open)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope(TransactionProvider provider)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope()
-   at Telerik.OpenAccess.Database.GetObjectScope()
-   at OrmBattle.TelerikModel.PerformanceTest.PerformanceTestContext.ObjectScope() in C:\Projects\ORMBattle.NET Test Suite\TelerikModel.PerformanceTest\PerformanceTestContext.cs:line 107
-   at OrmBattle.Tests.Performance.OpenAccessTest.Setup() in c:\Projects\ORMBattle.NET Test Suite\Tests\Performance\OpenAccessTest.cs:line 32
-   at OrmBattle.Tests.ToolTestBase.BaseSetup() in c:\Projects\ORMBattle.NET Test Suite\Tests\ToolTestBase.cs:line 29
-   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in c:\Projects\ORMBattle.NET Test Suite\TestRunner\PerformanceTestRunner.cs:line 96
-  BaseTearDown failed: Telerik.OpenAccess.Exceptions.MetadataException: Field 'products' of class 'OrmBattle.TelerikModel.Northwind.Category' uses the extension 'inverse' which may only be used for collections of persistence capable instances. --> C:\Projects\ORMBattle.NET Test Suite\TestRunner\bin\Release\TelerikModel.Northwind.dll:(resource)OrmBattle.TelerikModel.Northwind.App.config:mapping-id=mssqlMapping/namespace[OrmBattle.TelerikModel.Northwind]/class[Category]/field[products]/collection/inverse="category"
-   at Telerik.OpenAccess.SPI.Backends.ThrowException(Exception e)
-   at Telerik.OpenAccess.RT.ExceptionWrapper.Throw()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createSmfForURL()
-   at OpenAccessRuntime.storagemanager.StorageManagerFactoryBuilder.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.createStorageManagerFactory()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryBase.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp.init()
-   at OpenAccessRuntime.DataObjects.PersistenceManagerFactoryImp..ctor(IDictionary properties, Object classloader)
-   at OpenAccessRuntime.DataObjects.BootstrapPMF.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.Helper.getPersistenceManagerFactory(IDictionary props)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.AssertPersistenceManagerFactory(String usr, String password, Boolean open)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope(TransactionProvider provider)
-   at Telerik.OpenAccess.RT.DatabaseAdapter.GetObjectScope()
-   at Telerik.OpenAccess.Database.GetObjectScope()
-   at OrmBattle.TelerikModel.PerformanceTest.PerformanceTestContext.ObjectScope() in C:\Projects\ORMBattle.NET Test Suite\TelerikModel.PerformanceTest\PerformanceTestContext.cs:line 107
-   at OrmBattle.Tests.Performance.OpenAccessTest.TearDown() in c:\Projects\ORMBattle.NET Test Suite\Tests\Performance\OpenAccessTest.cs:line 41
-   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in c:\Projects\ORMBattle.NET Test Suite\Tests\ToolTestBase.cs:line 35
-   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in c:\Projects\ORMBattle.NET Test Suite\TestRunner\PerformanceTestRunner.cs:line 105
   Testing: Subsonic (SS)
 
 Performance tests (100 items) scorecard:
                                        SQL        EF        LS        NH        OA        SS      Unit
 CRUD Performance:               
-  Fetch                              16274      1269      8546      6296       n/a      7676      op/s
+  Fetch                              19109      1248      9586      6924      6262      8880      op/s
   Single Operation:             
-    Create Instance                  12075      4346      5329      3521       n/a      3384      op/s
-    Update Instance                  11361      3944      6330      2619       n/a      2510      op/s
-    Remove Instance                  11560      4560      6135      3013       n/a      2603      op/s
-    CUD Average                      11657      4267      5898      3006       n/a      2782      op/s
+    Create Instance                  14117      4667      5527      3728      8557      3659      op/s
+    Update Instance                  13201      4183      6973      2753      7569      2603      op/s
+    Remove Instance                  13449      4914      6772      3174      8372      2698      op/s
+    CUD Average                      13578      4567      6355      3169      8142      2917      op/s
   Multiple Operations:          
-    Create Instance                  45134      7603     12002      3318       n/a      3536      op/s
-    Update Instance                  48007      6748     24773      2140       n/a      3579      op/s
-    Remove Instance                  61561      8525     23030     13118       n/a      3864      op/s
-    CUD Average                      50649      7556     17952      3550       n/a      3654      op/s
+    Create Instance                  48883      8501     12941     17715     14985      3786      op/s
+    Update Instance                  51714      7307     26949     14871     13633      3832      op/s
+    Remove Instance                  56468      9615     24881     15734     39742      4039      op/s
+    CUD Average                      52170      8368     19408     16021     18154      3882      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                         n/a       450      1253      1139       n/a       350 queries/s
-    Compiled LINQ Query                n/a      3849       n/a       n/a       n/a       n/a queries/s
-    Native Query                     12591      7077      7674      4546       n/a      6003 queries/s
+    LINQ Query                         n/a       467      1289      1143      3828       354 queries/s
+    Compiled LINQ Query                n/a      3700       n/a       n/a      3970       n/a queries/s
+    Native Query                     14673      7903      8738      4844      6019      6638 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)        n/a      2354      1088       863       n/a       318   pages/s
-    Get Average Page (20 items)        n/a      1535       973       702       n/a       291   pages/s
-    Get Large Page   (50 items)        n/a       763       731       441       n/a       230   pages/s
+    Get Small Page   (10 items)        n/a      2171       886       876      2931       319   pages/s
+    Get Average Page (20 items)        n/a      1355       975       688      2413       288   pages/s
+    Get Large Page   (50 items)        n/a       626       734       442      1556       230   pages/s
     Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a
   Materialization:              
-    LINQ Materialize                   n/a     45514    100070     28214       n/a     21395 objects/s
-    Native Materialize              264690    148257    145306     40498       n/a     47032 objects/s
+    LINQ Materialize                   n/a     46360    105318     28853     77863     21196 objects/s
+    Native Materialize              306466    157803    160076     41604    140864     47977 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -236,3 +126,214 @@ Performance tests (500 items):
   Testing: SqlClient (SQL)
   Testing: ADO.NET Entity Framework (EF)
   Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+
+Performance tests (500 items) scorecard:
+                                       SQL        EF        LS        NH        OA        SS      Unit
+CRUD Performance:               
+  Fetch                              21073      3791     10499      7389      5449      9414      op/s
+  Single Operation:             
+    Create Instance                  11564      4519      6120      3679      9769      3029      op/s
+    Update Instance                  17459      4789      6845      1401      9427      3821      op/s
+    Remove Instance                  18036      5812      6737      2240     10595      4063      op/s
+    CUD Average                      15060      4982      6551      2094      9906      3580      op/s
+  Multiple Operations:          
+    Create Instance                  28033      6640     14303     14311     15522      2967      op/s
+    Update Instance                  64741      6805     32837     16615     14811      4161      op/s
+    Remove Instance                  75790      8702     31061     18166     56415      4533      op/s
+    CUD Average                      46647      7273     22630     16206     20044      3759      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                         n/a       452      1265      1140      4112       348 queries/s
+    Compiled LINQ Query                n/a      5686       n/a       n/a      4216       n/a queries/s
+    Native Query                     17573      9463     10229      5508      6396      7274 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)        n/a      4030      1135       912      3289       317   pages/s
+    Get Average Page (20 items)        n/a      3122      1143       791      2839       307   pages/s
+    Get Large Page   (50 items)        n/a      1867       999       544      2017       257   pages/s
+    Get Huge Page    (100 items)       n/a      1108       827       355      1380       203   pages/s
+  Materialization:              
+    LINQ Materialize                   n/a    169796    316295     39294    172354     42289 objects/s
+    Native Materialize              878734    382643    409031     53348    230181     55343 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (1000 items):
+  Testing: SqlClient (SQL)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+
+Performance tests (1000 items) scorecard:
+                                       SQL        EF        LS        NH        OA        SS      Unit
+CRUD Performance:               
+  Fetch                              21457      5130     10680      7408      6538      8980      op/s
+  Single Operation:             
+    Create Instance                  12014      4627      5074      3733      9955      2916      op/s
+    Update Instance                  18333      4494      5030       870      9403      4037      op/s
+    Remove Instance                  18939      5965      4859      1474     10507      4283      op/s
+    CUD Average                      15741      4948      4985      1431      9934      3640      op/s
+  Multiple Operations:          
+    Create Instance                  22113      8315     13282     12569     15774      2094      op/s
+    Update Instance                  68395      6474     29038     17123     15179      3987      op/s
+    Remove Instance                  81692      9831     27061     18839     60364      4445      op/s
+    CUD Average                      41617      7969     20452     15703     20570      3146      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                         n/a       459      1307      1171      4112       352 queries/s
+    Compiled LINQ Query                n/a      6119       n/a       n/a      4257       n/a queries/s
+    Native Query                     18023      9629     10431      5598      6473      7278 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)        n/a      4446      1128       913      3266       324   pages/s
+    Get Average Page (20 items)        n/a      3665      1170       734      2836       300   pages/s
+    Get Large Page   (50 items)        n/a      2359      1061       552      2056       256   pages/s
+    Get Huge Page    (100 items)       n/a      1499       918       361      1426       210   pages/s
+  Materialization:              
+    LINQ Materialize                   n/a    230696    393174     40763    193520     48066 objects/s
+    Native Materialize              969461    445136    449034     54767    237631     56457 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (5000 items):
+  Testing: SqlClient (SQL)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+
+Performance tests (5000 items) scorecard:
+                                       SQL        EF        LS        NH        OA        SS      Unit
+CRUD Performance:               
+  Fetch                              22272      6938     10579      7263      6233      9603      op/s
+  Single Operation:             
+    Create Instance                  12069      4589      2820      3743      9206      2647      op/s
+    Update Instance                  19294      4917      1873       218      8285      4040      op/s
+    Remove Instance                  20528      5984      1765       419     10053      4277      op/s
+    CUD Average                      16357      5098      2061       414      9124      3491      op/s
+  Multiple Operations:          
+    Create Instance                  21961      5617     12734     18267     15438      2525      op/s
+    Update Instance                  69983      5892     26689     16687     14735      4062      op/s
+    Remove Instance                  87479      8266     27646     18070     56112      4391      op/s
+    CUD Average                      42101      6400     19714     17645     19938      3448      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                         n/a       475      1339      1190      4033       354 queries/s
+    Compiled LINQ Query                n/a      6358       n/a       n/a      4116       n/a queries/s
+    Native Query                     19338      9550     10349      5498      5973      7355 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)        n/a      4722      1189       922      3136       324   pages/s
+    Get Average Page (20 items)        n/a      4492      1136       774      2709       307   pages/s
+    Get Large Page   (50 items)        n/a      3466      1038       534      1840       262   pages/s
+    Get Huge Page    (100 items)       n/a      2486       859       350      1222       210   pages/s
+  Materialization:              
+    LINQ Materialize                   n/a    463899    596615     39725    165767     54709 objects/s
+    Native Materialize             1501050    619195    618559     51307    176305     58149 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (10000 items):
+  Testing: SqlClient (SQL)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+
+Performance tests (10000 items) scorecard:
+                                       SQL        EF        LS        NH        OA        SS      Unit
+CRUD Performance:               
+  Fetch                              22228      7326     10586      7335      6220      9560      op/s
+  Single Operation:             
+    Create Instance                  12307      4756      1775      3778      9256      2503      op/s
+    Update Instance                  19396      4902      1028       112      8565      4000      op/s
+    Remove Instance                  20151      6049      1042       219     10084      4399      op/s
+    CUD Average                      16444      5176      1202       218      9260      3421      op/s
+  Multiple Operations:          
+    Create Instance                  22274      5600     12083     18237     15209      2445      op/s
+    Update Instance                  69773      5750     25071     16699     13614      3925      op/s
+    Remove Instance                  87920      8177     25243     18108     47945      4309      op/s
+    CUD Average                      42491      6318     18488     17653     18742      3348      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                         n/a       477      1340      1193      4050       353 queries/s
+    Compiled LINQ Query                n/a      6501       n/a       n/a      4131       n/a queries/s
+    Native Query                     19405      9717     10511      5512      6236      7255 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)        n/a      4916      1191       921      2918       326   pages/s
+    Get Average Page (20 items)        n/a      4286      1150       781      2548       308   pages/s
+    Get Large Page   (50 items)        n/a      3070      1026       529      1603       262   pages/s
+    Get Huge Page    (100 items)       n/a      2286       918       348      1006       210   pages/s
+  Materialization:              
+    LINQ Materialize                   n/a    511941    409014     38993    198122     54406 objects/s
+    Native Materialize             1587629    639918    421823     53741    208163     56803 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (30000 items):
+  Testing: SqlClient (SQL)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LightSpeed (LS)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+
+Performance tests (30000 items) scorecard:
+                                       SQL        EF        LS        NH        OA        SS      Unit
+CRUD Performance:               
+  Fetch                              22232      7574     10577      7260      6171      9613      op/s
+  Single Operation:             
+    Create Instance                  12347      4615       492      3789      9343      2918      op/s
+    Update Instance                  20023      4948       228        37      8527      3898      op/s
+    Remove Instance                  20610      5961       233        74     10192      4391      op/s
+    CUD Average                      16717      5114       280        73      9304      3627      op/s
+  Multiple Operations:          
+    Create Instance                  61465      6530     11901     19728     13619      2200      op/s
+    Update Instance                  68199      5611     24357     16443     12647      3718      op/s
+    Remove Instance                  84861      8099     25100     17802     43248      3893      op/s
+    CUD Average                      70230      6595     18190     17891     17082      3060      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                         n/a       477      1340      1195      4038       347 queries/s
+    Compiled LINQ Query                n/a      6499       n/a       n/a      4143       n/a queries/s
+    Native Query                     19307      9743     10559      5501      6274      7424 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)        n/a      4854      1186       914      2913       298   pages/s
+    Get Average Page (20 items)        n/a      4324      1142       765      2408       283   pages/s
+    Get Large Page   (50 items)        n/a      3061      1012       518      1564       245   pages/s
+    Get Huge Page    (100 items)       n/a      2597       858       342       958       200   pages/s
+  Materialization:              
+    LINQ Materialize                   n/a    473506    398074     37616    121415     55387 objects/s
+    Native Materialize             1710824    557631    396565     49956    126372     57153 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
