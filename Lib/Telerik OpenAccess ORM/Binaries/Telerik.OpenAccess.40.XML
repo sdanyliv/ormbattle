@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.OpenAccess.40</name>
+    </assembly>
+    <members>
+        <member name="P:DataContext.ContextImplementation.ContextExceptionEventArgs.Exception">
+            <summary>
+            Gets the exception that was thrown during the query.
+            </summary>
+            <value>The exception, if an error occurred; otherwise, a null reference (Nothing in Visual Basic).</value>
+        </member>
+        <member name="P:DataContext.ContextImplementation.ContextExceptionEventArgs.ExceptionHandled">
+            <summary>
+            Gets or sets a value that indicates whether the exception was handled and that it should not be thrown again.
+            </summary>
+            <value>true if the exception was handled; otherwise, false.</value>
+        </member>
+        <member name="T:Telerik.OpenAccess.Helper.OpenAccessDataContext">
+            <summary>
+            Context base class to use OpenAccess scope inside a DataService
+            </summary>
+            <remarks>
+            <para>
+            First implement your own derivation to add the service points and set the ObjectScope
+            <example>
+            <code>
+            public class MyOADataContext : OpenAccessDataContext
+            {
+                public MyOADataContext()
+                {
+                    ObjectScopeProvider1.AdjustForDynamicLoad();
+                    Scope = ObjectScopeProvider1.GetNewObjectScope();
+                }
+                public IQueryable&lt;Product&gt; Products
+                {
+                    get { return GetAll&lt;Product&gt;(); }
+                }
+            }
+            </code>
+            </example>
+            </para>
+            <para>
+            Then add a dataservice using this entry points
+            <example>
+            <code>
+            [System.ServiceModel.ServiceBehavior(IncludeExceptionDetailInFaults = true)]
+            public class OADataService : DataService&lt;MyOADataContext&gt;
+            {
+                protected override void HandleException(HandleExceptionArgs args)
+                {
+                    base.HandleException(args); // for debug only
+                }
+                public static void InitializeService(IDataServiceConfiguration config)
+                {
+                    config.SetEntitySetAccessRule("*", EntitySetRights.All);
+                }
+            }
+            </code>
+            </example>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Telerik.OpenAccess.Helper.OpenAccessDataContext.OnContextException(DataContext.ContextImplementation.ContextExceptionEventArgs)">
+            <summary>hidden</summary>
+        </member>
+    </members>
+</doc>

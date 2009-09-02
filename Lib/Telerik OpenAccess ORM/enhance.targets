@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <Target Name="EnhanceAssembly" Condition="'$(_AssemblyTimestampBeforeCompile)'!='$(_AssemblyTimestampAfterCompile)'">
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles ="$(TargetPath).notenhanced"/>
+    <Copy SourceFiles="$(PdbFile)" DestinationFiles ="$(PdbFile).notenhanced"/>
+    <Exec IgnoreExitCode="false" 
+          WorkingDirectory="$(TargetDir)" 
+          Command="&quot;$(SolutionDir)\Lib\Telerik OpenAccess ORM\Binaries\venhance.exe&quot; -verboseMode:2 -signAssembly &quot;-keyFile:$(ProjectDir)$(AssemblyOriginatorKeyFile)&quot; &quot;-assembly:$(TargetPath)&quot;" 
+          Condition="'$(AssemblyOriginatorKeyFile)'!=''" />
+    <Exec IgnoreExitCode="false"
+          WorkingDirectory="$(TargetDir)"
+          Command="&quot;$(SolutionDir)\Lib\Telerik OpenAccess ORM\Binaries\venhance.exe&quot; -verboseMode:2 &quot;-assembly:$(TargetPath)&quot;"
+          Condition="'$(AssemblyOriginatorKeyFile)'==''" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder ="$(IntermediateOutputPath)"/>
+    <Copy SourceFiles="$(PdbFile)" DestinationFolder ="$(IntermediateOutputPath)"/>
+  </Target>
+
+  <Target Name="PeVerify" Condition="'$(_AssemblyTimestampBeforeCompile)'!='$(_AssemblyTimestampAfterCompile)'">
+    <GetFrameworkSdkPath>
+      <Output TaskParameter="Path" PropertyName="SdkPath" />
+    </GetFrameworkSdkPath>
+    <Exec WorkingDirectory="$(SdkPath)bin" Command="peverify.exe /nologo &quot;$(TargetPath)&quot;" />
+  </Target>
+
+  <PropertyGroup>
+    <PdbFile>$(OutputPath)\$(AssemblyName).pdb</PdbFile>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <PrepareForRunDependsOn>
+      $(PrepareForRunDependsOn);
+      EnhanceAssembly;
+      PeVerify
+    </PrepareForRunDependsOn>
+  </PropertyGroup>
+
+</Project>

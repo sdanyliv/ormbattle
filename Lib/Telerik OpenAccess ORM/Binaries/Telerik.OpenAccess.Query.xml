@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.OpenAccess.Query</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.OpenAccess.Query.ExtensionMethods">
+            <summary>
+            Extension methods for Telerik.OpenAccess
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExtensionMethods.Extent``1(Telerik.OpenAccess.IObjectScope)">
+            <summary>
+            Returns an IQueryable instance usable for Linq queries.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExtensionMethods.Matches(System.String,System.String)">
+            <summary>
+            Returns true when the string matches a certain regular expression using * and ? wildcards.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.IObjectScopeQuery`1">
+            <summary>
+            Tagging interface so that the compiler can keep
+            better track of whom to call in presence of all the
+            Queryable extension methods.
+            This allows Telerik.OpenAccess Linq queries to be compile-time
+            checked and allows to produce warning messages for inefficient
+            expressions.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.IObjectScopeQuery`1.ToList">
+            <summary>
+            Executes the query and returns a typed result list.
+            </summary>
+            <remarks>
+            This method is mostly useful for use with anonymous types.
+            </remarks>
+        </member>
+        <member name="P:Telerik.OpenAccess.Query.IObjectScopeQuery`1.BackendQuery">
+            <summary>
+            Returns the query for as generated for the given backend (SQL).
+            </summary>
+            <remarks>
+            The query needs to be performed before this property contains a meaningful value.
+            </remarks>
+        </member>
+        <member name="P:Telerik.OpenAccess.Query.IObjectScopeQuery`1.ParallelFetch">
+            <summary>
+            Controls whether parallel fetches are permitted or not.
+            </summary>
+            <remarks>
+            Default value is False and parallel fetches must explicitly turned on.
+            </remarks>
+        </member>
+        <member name="P:Telerik.OpenAccess.Query.IObjectScopeQuery`1.IgnoreUncommitted">
+             <summary>
+             Controls whether uncommitted data is ignored by the query.
+             </summary>
+             <remarks>
+             Default value is True : all uncommitted data is ignored.
+             <para>
+             Persistence by reachability is maintained for the time of Flush(),
+             but not for the time of Commit().
+             </para>
+             </remarks>
+            <seealso cref="M:Telerik.OpenAccess.ITransaction.Flush">IObjectScope.Transaction.Flush()</seealso>
+             <value>True when the all changed data is flushed to the backend server prior to execution of this query.</value>
+        </member>
+        <member name="P:Telerik.OpenAccess.Query.IObjectScopeQuery`1.ForwardsOnly">
+             <summary>
+             Controls whether the returned result is only forward iterable or allows random access.
+             </summary>
+             <remarks>
+             Using ForwardsOnly=True can be more performant in certain situations where large result sets 
+             must be returned.
+            
+             Default is False; random access is allowed.
+             </remarks>
+        </member>
+        <member name="P:Telerik.OpenAccess.Query.IObjectScopeQuery`1.Debug">
+            <summary>
+            Controls whether the debug information is given.
+            </summary>
+            <remarks>
+            When set to <c>True</c>, the Linq Expression tree is presented in graphical form.
+            </remarks>
+            <value>
+            Default: <c>False</c>
+            </value>
+        </member>
+        <member name="F:Telerik.OpenAccess.Query.FormTreeDisplay.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.FormTreeDisplay.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.FormTreeDisplay.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ParamPos">
+            <summary>
+            Names or references a parameter expression.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.LinqParameter2QueryParameter">
+            <summary>
+            Walks the Linq expression tree and finds all parameters. 
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.QueryContext.ResolveGroup``2(``1)">
+            <summary>
+            Resolves the IGroupable produced by this query for the given key.
+            </summary>
+            <typeparam name="TElement">Extent type (PC)</typeparam>
+            <typeparam name="TKey">Grouping type (the key of the group)</typeparam>
+            <param name="key">Group key value</param>
+            <returns>Enumerable of PC</returns>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ScopingNames">
+            <summary>
+            Implements a scoped name resolution for nested lambda expressions and parameters.
+            </summary>
+        </member>
+    </members>
+</doc>
