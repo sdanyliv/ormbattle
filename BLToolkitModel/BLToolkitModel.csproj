@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="BLToolkit.3, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\BLToolkit.3.dll</HintPath>
+      <HintPath>..\Lib\BLToolkit\Binaries\BLToolkit.3.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
