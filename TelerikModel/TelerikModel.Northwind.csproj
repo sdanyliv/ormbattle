@@ -43,17 +43,17 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.OpenAccess, Version=2009.2.701.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik.OpenAccess.dll</HintPath>
+      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.40, Version=2009.2.701.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.40, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik.OpenAccess.40.dll</HintPath>
+      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.40.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Query, Version=2009.2.701.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.Query, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik.OpenAccess.Query.dll</HintPath>
+      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.Query.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -116,9 +116,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="..\Lib\Telerik OpenAccess ORM\enhance.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="false" OpenAccess_Enhancing="true" OpenAccess_ConnectionId="NorthwindConnection" OpenAccess_ConfigFile="App.config" />
+      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="NorthwindConnection" OpenAccess_Enhancing="true" OpenAccess_UpdateDatabase="false" OpenAccess_EnhancementOutputLevel="1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
