@@ -31,38 +31,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BLToolkit.3, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\BLToolkit\Binaries\BLToolkit.3.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\log4net.dll</HintPath>
+      <HintPath>..\Lib\NHibernate\Binaries\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Mindscape.LightSpeed, Version=2.2.1216.11796, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
+    <Reference Include="Mindscape.LightSpeed, Version=2.2.1253.11978, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Mindscape.LightSpeed.dll</HintPath>
+      <HintPath>..\Lib\LightSpeed\Binaries\Mindscape.LightSpeed.dll</HintPath>
     </Reference>
-    <Reference Include="Mindscape.LightSpeed.Linq, Version=2.2.1216.11796, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
+    <Reference Include="Mindscape.LightSpeed.Linq, Version=2.2.1253.11978, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Mindscape.LightSpeed.Linq.dll</HintPath>
+      <HintPath>..\Lib\LightSpeed\Binaries\Mindscape.LightSpeed.Linq.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\NHibernate.dll</HintPath>
+      <HintPath>..\Lib\NHibernate\Binaries\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\NHibernate.ByteCode.Castle.dll</HintPath>
+      <HintPath>..\Lib\NHibernate\Binaries\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.Linq, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NHibernate.Linq, Version=1.0.0.4000, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\NHibernate.Linq.dll</HintPath>
+      <HintPath>..\Lib\NHibernate\Binaries\NHibernate.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.core, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="nunit.core, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\nunit net-2.0\bin\nunit.core.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="SubSonic.Core, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\SubSonic.Core.dll</HintPath>
+      <HintPath>..\Lib\nunit net-2.0\bin\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -88,17 +91,17 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.OpenAccess, Version=2009.2.701.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik.OpenAccess.dll</HintPath>
+      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.40, Version=2009.2.701.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.40, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik.OpenAccess.40.dll</HintPath>
+      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.40.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Query, Version=2009.2.701.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.Query, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik.OpenAccess.Query.dll</HintPath>
+      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.Query.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -197,6 +200,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterBuild">
+    <!-- Here we copy all required for XCopy deployment and running of DataObjects.Net -->
+    <ItemGroup>
+      <XtensiveFiles Include="$(SolutionDir)\Lib\Xtensive.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(XtensiveFiles)" DestinationFolder="$(TargetDir)" />
+  </Target>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="False" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
