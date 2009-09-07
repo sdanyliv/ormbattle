@@ -31,13 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mindscape.LightSpeed, Version=2.2.1216.11796, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
+    <Reference Include="Mindscape.LightSpeed, Version=2.2.1253.11978, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Mindscape.LightSpeed.dll</HintPath>
+      <HintPath>..\Lib\LightSpeed\Binaries\Mindscape.LightSpeed.dll</HintPath>
     </Reference>
-    <Reference Include="Mindscape.LightSpeed.Linq, Version=2.2.1216.11796, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
+    <Reference Include="Mindscape.LightSpeed.Linq, Version=2.2.1253.11978, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Mindscape.LightSpeed.Linq.dll</HintPath>
+      <HintPath>..\Lib\LightSpeed\Binaries\Mindscape.LightSpeed.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
