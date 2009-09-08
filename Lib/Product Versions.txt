@@ -1,19 +1,27 @@
 PostSharp		1.5.6.629
 ------------------------------------
-folder: \Binaries\PostSharp
+folder: \Lib\PostSharp
 Files: (the structure resembles what is found in the binary zipped download form the PostSharp project site)
+
+------------------------------------
+MoreLinq 	(http://code.google.com/p/morelinq/)
+------------------------------------
+folder: \Lib\MoreLinq
+Files: 
+
+MoreLinq.dll
 
 ------------------------------------
 
 NUnit			2.4.8.0
 ------------------------------------
-folder: \Binaries\nunit net-2.0\ 
+folder: \Lib\nunit net-2.0\ 
 Files: (the structure resembles what is found in the binary zipped download form the NUnit project site)
 
 nunit.exe
 ...
 
-path: \Binaries\nunit net-2.0\framework
+path: \Lib\nunit net-2.0\framework
 nunit.framework.dll
 
 path: \Binaries\nunit net-2.0\lib
@@ -25,7 +33,7 @@ log4net.dll
 
 Telerik OpenAccess ORM	2009.2.826.1
 ------------------------------------
-folder: \Binaries\Telerik OpenAccess ORM\Binaries
+folder: \Lib\Telerik OpenAccess ORM\Binaries
 Files:(all files are trial versions)
 
 ICSharpCode.SharpZipLib.dll
@@ -49,7 +57,7 @@ VSchema.exe
 ------------------------------------
 LightSpeed		2.2.1253.11978
 ------------------------------------
-folder: \Binaries\LightSpeed\Binaries
+folder: \Lib\LightSpeed\Binaries
 Files:
 
 Mindscape.LightSpeed.dll
@@ -58,7 +66,7 @@ Mindscape.LightSpeed.Linq.dll
 ------------------------------------
 SubSonic		3.0.0.3
 ------------------------------------
-folder: \Binaries\SubSonic\Binaries
+folder: \Lib\SubSonic\Binaries
 Files:
 
 SubSonic.Core.dll
@@ -67,7 +75,7 @@ SubSonic.Core.dll
 NHibernate		2.1.0.GA
 NHibernate.Linq		1.0.0.GA
 ------------------------------------
-folder: \Binaries\NHibernate\Binaries
+folder: \Lib\NHibernate\Binaries
 Files:
 
 Antlr3.Runtime.dll
