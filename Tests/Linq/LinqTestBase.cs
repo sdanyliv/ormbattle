@@ -7,7 +7,6 @@
 using System;
 using System.IO;
 using System.Text;
-using Xtensive.Core;
 
 namespace OrmBattle.Tests.Linq
 {
@@ -48,7 +47,7 @@ namespace OrmBattle.Tests.Linq
         encoding = Encoding.GetEncoding(1251, new EncoderExceptionFallback(), new DecoderExceptionFallback());
         return ReadText2(path, encoding);
       }
-      catch (DecoderFallbackException e1) {
+      catch (DecoderFallbackException) {
         encoding = Encoding.UTF8;
         return ReadText2(path, encoding);
       }
@@ -66,7 +65,7 @@ namespace OrmBattle.Tests.Linq
       try {
         WriteText2(path, encoding, text);
       }
-      catch (EncoderFallbackException e) {
+      catch (EncoderFallbackException) {
         WriteText2(path, Encoding.UTF8, text);
       }
     }

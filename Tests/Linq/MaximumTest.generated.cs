@@ -39,6 +39,11 @@ namespace OrmBattle.Tests.Linq
 
     protected override void Setup()
     {
+      Customers = new List<Customer>();
+      Employees = new List<Employee>();
+      Orders    = new List<Order>();
+      Products  = new List<Product>();
+      Products.Reverse();
     }
 
     protected override void TearDown()
