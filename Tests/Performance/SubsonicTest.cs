@@ -62,7 +62,6 @@ namespace OrmBattle.Tests.Performance
 
     protected override void UpdateMultipleTest()
     {
-      var i = 0;
       foreach (var simplest in db.Simplests) {
         simplest.Value++;
         repo.Update(simplest);
@@ -71,7 +70,6 @@ namespace OrmBattle.Tests.Performance
 
     protected override void DeleteMultipleTest()
     {
-      var i = 0;
       foreach (var simplest in db.Simplests) {
         repo.Delete(simplest.Id);
       }
@@ -88,7 +86,6 @@ namespace OrmBattle.Tests.Performance
 
     protected override void UpdateSingleTest()
     {
-      var i = 0;
       foreach (var simplest in db.Simplests) {
         simplest.Value++;
         repo.Update(simplest);
@@ -97,7 +94,6 @@ namespace OrmBattle.Tests.Performance
 
     protected override void DeleteSingleTest()
     {
-      var i = 0;
       foreach (var simplest in db.Simplests) {
         repo.Delete(simplest.Id);
       }
