@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="PerformanceTest" Class="PerformanceTestDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DADDY;Initial Catalog=PerformanceTest;Integrated Security=True" SettingsObjectName="Linq2SqlModel.Properties.Settings" SettingsPropertyName="PerformanceTestConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Simplests" Member="Simplests">
+    <Type Name="Simplest">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Value" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KeyTable" Member="KeyTables">
+    <Type Name="KeyTable">
+      <Column Name="NextId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
