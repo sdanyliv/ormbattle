@@ -271,6 +271,43 @@ namespace OrmBattle.Tests.Linq
   
 <# manager.EndBlock(); #>
 
+<# manager.StartBlock("BLToolkit.generated.cs"); #>
+  using BLToolkitModel;
+
+  [TestFixture]
+  public class BLToolkitTest : LinqTestBase
+  {
+    protected NorthwindDB db;
+
+    public override string ToolName {
+      get { return "BLToolkit"; }
+    }
+
+    public override string ShortToolName {
+      get { return "BLT"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"<#= manager.CurrentBlock.Name #>"; }
+    }
+
+    protected override void Setup()
+    {
+      db = new NorthwindDB();
+
+      Customers = db.Customers.ToList();
+      Employees = db.Employees.ToList();
+      Orders    = db.Orders.   ToList();
+      Products  = db.Products. ToList();
+    }
+
+    protected override void TearDown()
+    {
+      db.Dispose();
+    }
+
+<# manager.EndBlock(); #>
+
 <# manager.StartBlock("MaximumTest.generated.cs"); #>
   using EFModel;
   

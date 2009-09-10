@@ -7,6 +7,21 @@ using BLToolkit.Mapping;
 
 namespace OrmBattle.BLToolkitModel
 {
+	public abstract class ComparableEntity
+	{
+		public override bool Equals(object obj)
+		{
+			return obj != null && GetType() == obj.GetType() && GetKey().Equals(((ComparableEntity)obj).GetKey());
+		}
+
+		protected abstract object GetKey();
+
+		public override int GetHashCode()
+		{
+			return GetKey().GetHashCode();
+		}
+	}
+
 	[TableName("Categories")]
 	public class Category
 	{
@@ -130,7 +145,7 @@ namespace OrmBattle.BLToolkitModel
 	}
 
 	[TableName("Orders")]
-	public class Order
+	public class Order : ComparableEntity
 	{
 		[MapField("OrderID")] public int       Id;
 		                      public string    CustomerID;
@@ -143,7 +158,7 @@ namespace OrmBattle.BLToolkitModel
 		                      public string    ShipName;
 		                      public string    ShipAddress;
 		                      public string    ShipCity;
-		                      public string    ShipRegion;
+		[Nullable]            public string    ShipRegion;
 		                      public string    ShipPostalCode;
 		                      public string    ShipCountry;
 
@@ -158,6 +173,11 @@ namespace OrmBattle.BLToolkitModel
 
 		[Association(Name="Shipper_Order", ThisKey="ShipVia", OtherKey="ShipperID", IsForeignKey=true)]
 		public Shipper Shipper;
+
+		protected override object GetKey()
+		{
+			return Id;
+		}
 	}
 
 	[TableName("Products")]
