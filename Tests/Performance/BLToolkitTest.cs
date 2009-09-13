@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
+using BLToolkit.Data.Linq;
 using NUnit.Framework;
 
 using BLToolkit.Data;
@@ -154,7 +154,7 @@ namespace OrmBattle.Tests.Performance
 
 			for (var i = 0; i < count; i++)
 			{
-				var id     = i % InstanceCount;
+				var id     = (long)i % InstanceCount;
 				var result = db.GetTable<Simplests>().Where(o => o.Id == id);
 
 				foreach (var o in result)
@@ -166,9 +166,23 @@ namespace OrmBattle.Tests.Performance
 			db.CommitTransaction();
 		}
 
+		static readonly Func<DbManager,long,IQueryable<Simplests>> _compiledQuery = CompiledQuery.Compile(
+			(DbManager db, long id) => db.GetTable<Simplests>().Where(o => o.Id == id));
+
 		protected override void CompiledLinqQueryTest(int count)
 		{
-			throw new NotSupportedException();
+			db.BeginTransaction();
+
+			for (var i = 0; i < count; i++)
+			{
+				var id = (long)i % InstanceCount;
+				foreach (var o in _compiledQuery(db, id))
+				{
+					// Doing nothing, just enumerate
+				}
+			}
+
+			db.CommitTransaction();
 		}
 
 		protected override void NativeQueryTest(int count)
@@ -218,6 +232,9 @@ namespace OrmBattle.Tests.Performance
 			db.CommitTransaction();
 		}
 
+		static readonly Func<DbManager,long,int,IQueryable<Simplests>> _pageQuery = CompiledQuery.Compile(
+			(DbManager db, long id, int pgSize) => db.GetTable<Simplests>().Where(o => o.Id >= id).Take(pgSize));
+
 		protected override void LinqQueryPageTest(int count, int pageSize)
 		{
 			db.BeginTransaction();
@@ -226,7 +243,7 @@ namespace OrmBattle.Tests.Performance
 			{
 				var id = (i * pageSize) % InstanceCount;
 
-				foreach (var o in db.GetTable<Simplests>().Where(o => o.Id >= id).Take(pageSize))
+				foreach (var o in _pageQuery(db, id, pageSize))
 				{
 					// Doing nothing, just enumerate
 				}
