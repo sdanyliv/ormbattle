@@ -167,17 +167,18 @@ namespace OrmBattle.Tests.Performance
       }
     }
 
+    static readonly Func<PerformanceTestEntities, long, IQueryable<Simplest>> _compiledQuery =
+		CompiledQuery.Compile((PerformanceTestEntities context, long id) => context.Simplests.Where(o => o.Id == id));
+
     protected override void CompiledLinqQueryTest(int count)
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
-        var resultQuery = CompiledQuery.Compile((PerformanceTestEntities context, long id) => context.Simplests.Where(o => o.Id == id));
         for (int i = 0; i < count; i++) {
           var id = i % InstanceCount;
-          foreach (var o in resultQuery(dataContext, id)) {
+          foreach (var o in _compiledQuery(dataContext, id)) {
             // Doing nothing, just enumerate
           }
         }
-        dataContext.SaveChanges();
         transaction.Commit();
       }
     }
@@ -205,7 +206,6 @@ namespace OrmBattle.Tests.Performance
             if (++i >= count)
               break;
           }
-        dataContext.SaveChanges();
         transaction.Commit();
       }
     }
@@ -219,24 +219,22 @@ namespace OrmBattle.Tests.Performance
             if (++i >= count)
               break;
           }
-        dataContext.SaveChanges();
         transaction.Commit();
       }
     }
 
+    static readonly Func<PerformanceTestEntities, long, int, IQueryable<Simplest>> _pageQuery =
+        CompiledQuery.Compile((PerformanceTestEntities context, long id, int pageSize) => context.Simplests.Where(o => o.Id >= id).Take(pageSize));
+
     protected override void LinqQueryPageTest(int count, int pageSize)
     {
       using (var transaction = dataContext.Connection.BeginTransaction()) {
-        var resultQuery = CompiledQuery.Compile(
-          (PerformanceTestEntities context, long id, int _pageSize) => 
-            context.Simplests.Where(o => o.Id >= id).Take(_pageSize));
         for (int i = 0; i < count; i++) {
           var id = (i*pageSize) % InstanceCount;
-          foreach (var o in resultQuery(dataContext, id, pageSize)) {
+          foreach (var o in _pageQuery(dataContext, id, pageSize)) {
             // Doing nothing, just enumerate
           }
         }
-        dataContext.SaveChanges();
         transaction.Commit();
       }
     }

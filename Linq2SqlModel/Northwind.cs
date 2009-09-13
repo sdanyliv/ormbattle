@@ -35,11 +35,11 @@ namespace Linq2SqlModel
 		}
 	}
 
-	partial class Order : ComparableEntity
-	{
-		protected override object GetKey()
-		{
-			return Id;
-		}
-	}
+	//partial class Order : ComparableEntity
+	//{
+	//    protected override object GetKey()
+	//    {
+	//        return Id;
+	//    }
+	//}
 }
