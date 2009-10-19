@@ -6,11 +6,11 @@
     <Copy SourceFiles="$(PdbFile)" DestinationFiles ="$(PdbFile).notenhanced"/>
     <Exec IgnoreExitCode="false" 
           WorkingDirectory="$(TargetDir)" 
-          Command="&quot;$(SolutionDir)\Lib\Telerik OpenAccess ORM\Binaries\venhance.exe&quot; -verboseMode:2 -signAssembly &quot;-keyFile:$(ProjectDir)$(AssemblyOriginatorKeyFile)&quot; &quot;-assembly:$(TargetPath)&quot;" 
+          Command="&quot;$(ProjectDir)\..\Lib\Telerik OpenAccess ORM\Binaries\venhance.exe&quot; -verboseMode:2 -signAssembly &quot;-keyFile:$(ProjectDir)$(AssemblyOriginatorKeyFile)&quot; &quot;-assembly:$(TargetPath)&quot;" 
           Condition="'$(AssemblyOriginatorKeyFile)'!=''" />
     <Exec IgnoreExitCode="false"
           WorkingDirectory="$(TargetDir)"
-          Command="&quot;$(SolutionDir)\Lib\Telerik OpenAccess ORM\Binaries\venhance.exe&quot; -verboseMode:2 &quot;-assembly:$(TargetPath)&quot;"
+          Command="&quot;$(ProjectDir)\..\Lib\Telerik OpenAccess ORM\Binaries\venhance.exe&quot; -verboseMode:2 &quot;-assembly:$(TargetPath)&quot;"
           Condition="'$(AssemblyOriginatorKeyFile)'==''" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder ="$(IntermediateOutputPath)"/>
     <Copy SourceFiles="$(PdbFile)" DestinationFolder ="$(IntermediateOutputPath)"/>
