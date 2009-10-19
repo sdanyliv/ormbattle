@@ -1,2 +1,2 @@
 @echo off
-msbuild /p:Configuration=Release
+msbuild /p:Configuration=Release 

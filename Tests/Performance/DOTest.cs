@@ -4,7 +4,6 @@
 // Created by: Alexis Kochetov
 // Created:    2009.07.29
 
-using System;
 using System.Linq;
 using OrmBattle.DOModel;
 using NUnit.Framework;
@@ -12,13 +11,13 @@ using Xtensive.Core.Disposing;
 using Xtensive.Storage;
 using Xtensive.Storage.Configuration;
 using Xtensive.Storage.Rse;
+using Xtensive.Storage.Linq;
 
 namespace OrmBattle.Tests.Performance
 {
   public class DOTest : PerformanceTestBase
   {
     protected Domain domain;
-    private SessionConsumptionScope sessionScope;
     private Session session;
 
     public override string ToolName {
@@ -60,13 +59,12 @@ namespace OrmBattle.Tests.Performance
 
     protected override void OpenSession()
     {
-      sessionScope = Session.Open(domain);
-      session = sessionScope.Session;
+      session = Session.Open(domain);
     }
 
     protected override void CloseSession()
     {
-      sessionScope.DisposeSafely();
+      session.DisposeSafely();
     }
 
     protected override void InsertMultipleTest(int count)
@@ -227,8 +225,9 @@ namespace OrmBattle.Tests.Performance
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
           var id = (i*pageSize) % InstanceCount;
+          var ps = pageSize;
           var query = Query.Execute(cacheKey, () => 
-            Query<Simplest>.All.Where(o => o.Id >= id).Take(pageSize));
+            Query<Simplest>.All.Where(o => o.Id >= id).Take(() => pageSize));
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }
