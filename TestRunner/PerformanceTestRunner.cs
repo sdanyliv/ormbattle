@@ -64,9 +64,9 @@ namespace OrmBattle.TestRunner
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.NativeMaterialize);
 
         var tests = new List<PerformanceTestBase> {
-          new BLToolkitTest(),
-          new Linq2SqlTest(),
           new EFTest(),
+          new Linq2SqlTest(),
+          new BLToolkitTest(),
           new DOTest(),
           new LightSpeedTest(),
           new NHibernateTest(),

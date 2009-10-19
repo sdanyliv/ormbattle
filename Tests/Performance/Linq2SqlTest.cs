@@ -21,7 +21,7 @@ namespace OrmBattle.Tests.Performance
 
 		public override string ToolName
 		{
-			get { return "Linq2Sql"; }
+			get { return "LINQ to SQL"; }
 		}
 
 		public override string ShortToolName

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask AssemblyFile="$(PostSharpPath)\PostSharp.MSBuild.dll"
+             TaskName="PostSharp.MSBuild.PostSharp"
+             Condition="'$(PostSharpUseCommandLine)'!='True'"/>
+
+  <UsingTask AssemblyFile="$(PostSharpPath)\PostSharp.MSBuild.dll"
+             TaskName="PostSharp.MSBuild.TouchWithDelay"/>
+
+  <UsingTask AssemblyFile="$(PostSharpPath)\PostSharp.MSBuild.dll"
+             TaskName="PostSharp.MSBuild.CheckPfx"/>
+
+  <UsingTask AssemblyFile="$(PostSharpPath)\PostSharp.MSBuild.dll"
+             TaskName="PostSharp.MSBuild.Sign"/>
+
+  <UsingTask AssemblyFile="$(PostSharpPath)\PostSharp.MSBuild.dll"
+             TaskName="PostSharp.MSBuild.GetCurrentProjectDirectory"/>
+  
+  <UsingTask AssemblyFile="$(PostSharpPath)\PostSharp.MSBuild.dll"
+             TaskName="PostSharp.MSBuild.MoveWithRetry"/>
+
+  <!-- 
+  <UsingTask AssemblyFile="$(PostSharpPath)\PostSharp.MSBuild.dll"
+             TaskName="PostSharp.MSBuild.LockFile"/>
+  -->
+
+  <PropertyGroup>
+    <PostSharpProject>$(PostSharpPath)\Default.psproj</PostSharpProject>
+
+    <!-- PostSharp properties -->
+    <PostSharpAutoUpdateDisable Condition="$(PostSharpAutoUpdateDisable)==''">False</PostSharpAutoUpdateDisable>
+    <PostSharpConfiguration Condition="'$(PostSharpConfiguration)'==''">$(Configuration)</PostSharpConfiguration>
+    <PostSharpPlatform Condition="'$(PostSharpPlatform)'==''">$(Platform)</PostSharpPlatform>
+    <PostSharpIntermediateDirectory Condition="'$(PostSharpIntermediateDirectory)'==''">$(IntermediateOutputPath)PostSharp</PostSharpIntermediateDirectory>
+    <PostSharpCleanIntermediate Condition="'$(PostSharpCleanIntermediate)'==''">True</PostSharpCleanIntermediate>
+    <PostSharpSignAssembly Condition="'$(PostSharpSignAssembly)'=='' AND '$(SignAssembly)'!=''">$(SignAssembly)</PostSharpSignAssembly>
+    <PostSharpSignAssembly Condition="'$(PostSharpSignAssembly)'==''">True</PostSharpSignAssembly>
+    <PostSharpVerify Condition="'$(PostSharpVerify)'==''">True</PostSharpVerify>
+    <PostSharpAttachDebugger Condition="'$(PostSharpAttachDebugger)'==''">False</PostSharpAttachDebugger>
+    <PostSharpUseCommandLine Condition="'$(PostSharpUseCommandLine)'==''">False</PostSharpUseCommandLine>
+    <!-- <PostSharpVerbose Condition="'$(PostSharpVerbose)'=='' And $(WarningLevel)&gt;=3">True</PostSharpVerbose> -->
+    <PostSharpVerbose Condition="'$(PostSharpVerbose)'==''">False</PostSharpVerbose>
+    <_PostSharpVerboseCmdLine Condition="'$(PostSharpVerbose)'=='true'">/v</_PostSharpVerboseCmdLine>
+    <_PostSharpAttachDebuggerCmdLine Condition="'$(PostSharpAttachDebugger)'=='True' Or '$(PostSharpAttachDebugger)'=='true'">/Attach</_PostSharpAttachDebuggerCmdLine>
+    <_PostSharpSkipAutoUpdateCmdLine Condition="'$(PostSharpAutoUpdateDisable)'=='True'">/SkipAutoUpdate</_PostSharpSkipAutoUpdateCmdLine>
+  </PropertyGroup>
+
+  <Target Name="PostSharpILMerge"
+          DependsOnTargets="ILMerge"
+          Inputs="$(ILMergeOutput).dll"
+          Outputs="$(ILMergeOutput).dll.postsharp')"
+          Condition="'$(ILMergeAssembliesRegex)'!='' and '$(PostSharpILMergeResult)'!=''">
+    
+    <CreateProperty Value="$(TargetDir)$(ILMergeOutput).dll">
+      <Output TaskParameter="Value" PropertyName="_PostSharpInputBin"/>
+    </CreateProperty>
+
+    <CreateProperty Value="$(TargetDir)$(ILMergeOutput).pdb">
+      <Output TaskParameter="Value" PropertyName="_PostSharpInputPdb"/>
+    </CreateProperty>
+
+    <CreateItem Include="$(ReferencePath);$(PostSharpSearchPath)">
+      <Output TaskParameter="Include" ItemName="_ReferencePathAsItem"/>
+    </CreateItem>
+    <CreateProperty Value="@(_ReferencePathAsItem->'%(Identity)', ',')">
+      <Output TaskParameter="Value" PropertyName="_ReferencePathAsCommaSeparatedList"/>
+    </CreateProperty>
+
+    <CreateProperty Value="$(_PostSharpInputBin)">
+      <Output TaskParameter="Value" PropertyName="_PostSharpOutput"/>
+    </CreateProperty>
+
+    <!-- If the private key is a PFX, we extract the public key into an SNK file,
+         because ILASM does not support PFX. ILASM will delay-sign the assembly
+         using the SNK, and we will resign it after. -->
+    <CheckPfx KeyFile="$(AssemblyOriginatorKeyFile)"
+              Condition="'$(SignAssembly)' == 'true' And '$(AssemblyOriginatorKeyFile)' != ''">
+      <Output TaskParameter="PostSharpKeyFile" PropertyName="_PostSharpKeyFile"/>
+      <Output TaskParameter="SignAfterPostSharp" PropertyName="_SignAfterPostSharp"/>
+    </CheckPfx>
+
+    <CreateItem Include="
+                Output=$(_PostSharpOutput);
+                ReferenceDirectory=$(MSBuildProjectDirectory);
+                Configuration=$(PostSharpConfiguration);
+                Platform=$(PostSharpPlatform);
+                SearchPath=$(OutDir),$(IntermediateOutputPath),$(_ReferencePathAsCommaSeparatedList);
+                IntermediateDirectory=$(PostSharpIntermediateDirectory);
+                CleanIntermediate=$(PostSharpCleanIntermediate);
+                MSBuildProjectFullPath=$(MSBuildProjectFullPath);
+                SignAssembly=$(PostSharpSignAssembly);
+                PrivateKeyLocation=$(_PostSharpKeyFile);
+                $(PostSharpParameters)">
+      <Output TaskParameter="Include" ItemName="_PostSharpParameters"/>
+    </CreateItem>
+
+    <MakeDir Directories="$(PostSharpIntermediateDirectory)"/>
+
+    <Message Importance="high" Text="PostSharp parameters: @(_PostSharpParameters)" />
+
+    <PostSharp Project="$(PostSharpProject)"
+               Input="$(_PostSharpInputBin)"
+               AutoUpdateDisabled="$(PostSharpAutoUpdateDisable)"
+               Parameters="@(_PostSharpParameters)"
+               Condition="'$(PostSharpUseCommandLine)'!='True'"
+               AttachDebugger="$(PostSharpAttachDebugger)"
+               Verbose="$(PostSharpVerbose)"
+               />
+
+    <Exec Condition="'$(PostSharpUseCommandLine)'=='True'"
+          IgnoreExitCode="true"
+          Command="&quot;$(_PostSharpDirectory)\PostSharp.exe&quot; $(_PostSharpAttachDebuggerCmdLine) $(_PostSharpVerboseCmdLine) $(_PostSharpSkipAutoUpdateCmdLine) &quot;$(PostSharpProject)&quot; &quot;$(_PostSharpInputBin)&quot; @(_PostSharpParameters->'&quot;/P:%(Identity) &quot;', ' ' )">
+      <Output TaskParameter="ExitCode" PropertyName="_PostSharpExitCode"/>
+    </Exec>
+
+    <Error Text="The PostSharp build step failed (exit code $(_PostSharpExitCode)). See previous errors or the Build Output window for details."
+           Condition="'$(PostSharpUseCommandLine)'=='True' And '$(_PostSharpExitCode)'!='0'"/>
+    
+    <Sign Assembly="@(IntermediateAssembly)"
+          KeyFile="$(AssemblyOriginatorKeyFile)"
+          Condition="'$(_SignAfterPostSharp)'=='True'"/> 
+        
+    <TouchWithDelay Files="@(IntermediateAssembly->'%(FullPath).postsharp')"
+                    ReferenceFile="@(IntermediateAssembly)"
+                    Delay="100"/>
+  </Target>
+
+  <Target Name="PostSharpVerify" DependsOnTargets="GetFrameworkPaths;PostSharpILMerge" 
+          Condition="'$(PostSharpVerify)'!='' And '$(_PostSharpOutput)'!=''">
+    <Exec Command="&quot;$(FrameworkSDKDir)bin\peverify&quot; &quot;$(OutDir)$(TargetFileName)&quot; /nologo /verbose"
+          Condition="'$(FrameworkSDKDir)'!=''"/>
+    <Warning Text="PostSharp could not be verified because the .NET Framework SDK is not installed."
+             Condition="'$(FrameworkSDKDir)'==''"/>
+  </Target>
+
+  <PropertyGroup>
+    <CoreBuildDependsOn>
+      $(CoreBuildDependsOn);
+      PostSharpILMerge;
+      PostSharpVerify
+    </CoreBuildDependsOn>
+    <UpdateSharedBinariesDependsOn>
+      $(UpdateSharedBinariesDependsOn);
+      PostSharpILMerge
+    </UpdateSharedBinariesDependsOn>
+  </PropertyGroup>
+
+</Project>

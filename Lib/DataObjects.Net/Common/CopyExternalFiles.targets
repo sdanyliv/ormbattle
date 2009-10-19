@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <ExternalFilesDir Condition="'$(ExternalFilesDir)' == ''">\\192.168.0.2\SvnShared\_Releases\</ExternalFilesDir>
+  </PropertyGroup>
+
+
+  <!-- BuildXxx part -->
+
+  <Target Name="CopyExternalFiles" Condition="@(ExternalFile)!=''" >
+    <Message Importance="low" Text="Getting ExternalFile items..." />
+    <Copy Condition="Exists('%(ExternalFile.FullPath)')"
+        SourceFiles="%(ExternalFile.FullPath)" 
+        DestinationFolder="%(ExternalFile.DestinationFolder)" 
+        SkipUnchangedFiles="true" >
+      <Output
+          TaskParameter="CopiedFiles"
+          ItemName="ExternalFileCopy" />
+    </Copy>
+    <Error   Condition="!Exists('%(ExternalFile.FullPath)') and !Exists('$(ExternalFileDir)%(ExternalFile.Filename)%(ExternalFile.Extension)')"
+        Text="Source ExternalFile file '%(ExternalFile.FullPath)' abstents." />
+    <Warning Condition="!Exists('%(ExternalFile.FullPath)') and Exists('$(ExternalFileDir)%(ExternalFile.Filename)%(ExternalFile.Extension)')"
+        Text="Source ExternalFile file '%(ExternalFile.FullPath)' abstents, but its copy in DestinationFolder is found: '$(ExternalFileDir)%(ExternalFile.Filename)%(ExternalFile.Extension)'." />
+    <Message Condition="Exists('%(ExternalFile.FullPath)')"
+        Text="ExternalFile file found: '%(ExternalFile.FullPath)'." />
+    <Message Text="ExternalFile file is copied to: '%(ExternalFileCopy.FullPath)'." />
+  </Target>
+
+
+  <!-- CleanXxx part -->
+
+  <Target Name="CleanExternalFiles" Condition="@(ExternalFile)!=''">
+    <Warning Condition="!Exists('%(ExternalFile.FullPath)')"
+        Text="ExternalFile file '$(ExternalFileDir)%(ExternalFile.Filename)%(ExternalFile.Extension)' is not removed from the DestinationFolder (source file '%(ExternalFile.FullPath)' absents, so it can't be restored on build)." />
+    <Delete Condition="Exists('%(ExternalFile.FullPath)')" 
+        Files="$(ExternalFileDir)%(ExternalFile.Filename)%(ExternalFile.Extension)" />
+  </Target>
+
+
+  <!-- Build sequence modification -->
+
+  <PropertyGroup>
+    <CoreBuildDependsOn>
+      $(CoreBuildDependsOn);
+      CopyExternalFiles
+    </CoreBuildDependsOn>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      CleanExternalFiles
+    </CleanDependsOn>
+  </PropertyGroup>
+</Project>
