@@ -225,9 +225,9 @@ namespace OrmBattle.Tests.Performance
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
           var id = (i*pageSize) % InstanceCount;
-          var ps = pageSize;
+          var localPageSize = pageSize;
           var query = Query.Execute(cacheKey, () => 
-            Query<Simplest>.All.Where(o => o.Id >= id).Take(() => pageSize));
+            Query<Simplest>.All.Where(o => o.Id >= id).Take(() => localPageSize));
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }
