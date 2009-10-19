@@ -12,6 +12,7 @@
     <AssemblyName>Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <UsePostSharp>false</UsePostSharp>
     <DontImportPostSharp>true</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -186,7 +187,8 @@
     <Compile Include="ToolTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App.config" />
+    <None Include="App.config" />
+    <EmbeddedResource Include=".\App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLToolkitModel\BLToolkitModel.csproj">
@@ -251,7 +253,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="True" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
+      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="False" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
