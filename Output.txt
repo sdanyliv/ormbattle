@@ -1,33 +1,35 @@
 LINQ tests:
   Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
+  Testing: BLToolkit (BLT)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
   Testing: OpenAccess (OA)
 
 LINQ tests scorecard:
-                                        EF        LS        NH        OA   Maximum      Unit
+                                        EF       L2S       BLT        LS        NH        OA   Maximum      Unit
 LINQ Implementation:            
-  Aggregates                             0         3         3         1         5       f/a
-  All/Any/Contains                       3         6       4/2         4         6       f/a
-  Complex                                1         6         6         6         6       f/a
-  Element operations                     4         6         6         5         9       f/a
-  Filtering                            4/2       5/5       6/1         2        12       f/a
-  Grouping                               1        10      10/2         5        10       f/a
-  Join                                   1         4         4         4         4       f/a
-  Ordering                             3/2       5/1         6         6         8       f/a
-  Projections                            2       9/2       6/1       8/1        13       f/a
-  References                             0         4         3         2         4       f/a
-  Set operations                         0       5/1       6/2         9         9       f/a
-  Standard functions                     9         8        16        11        21       f/a
-  Take/Skip                              1       2/1       2/1         2         5       f/a
-  Type casts                             1       3/1         4         2         5       f/a
+  Aggregates                             0         0         5         3         3         2         5       f/a
+  All/Any/Contains                       3         1         6         6       4/2         4         6       f/a
+  Complex                                1         0         6         6         6         6         6       f/a
+  Element operations                     4         2         6         6         6         5         9       f/a
+  Filtering                            4/2       2/2         2       5/5       6/1         2        12       f/a
+  Grouping                               1         1         8        10      10/2         5        10       f/a
+  Join                                   1         0         4         4         4         0         4       f/a
+  Ordering                             3/2         2         2       5/1         6         6         8       f/a
+  Projections                            2         1         8       9/2       6/1       8/1        13       f/a
+  References                             0         0         4         4         3         1         4       f/a
+  Set operations                         0         0       5/1       5/1       6/2       5/1         9       f/a
+  Standard functions                     9         1        13         8        16        11        21       f/a
+  Take/Skip                              1         0         1       2/1       2/1         2         5       f/a
+  Type casts                             1       3/2         5       3/1         4         2         5       f/a
 Total:                          
-  Performed                            117       117       117       117       117         #
-  Passed                                87        41        35        50       117         #
-  Failed                                30        76        82        67       117         #
-    Properly                            26        65        73        66       117         #
-    Asserted                             4        11         9         1       117         #
-  Score                               74,4      35,0      29,9      42,7     100,0         %
+  Performed                            117       117       117       117       117       117       117         #
+  Passed                                87       104        42        41        35        58       117         #
+  Failed                                30        13        75        76        82        59       117         #
+    Properly                            26         9        74        65        73        57       117         #
+    Asserted                             4         4         1        11         9         2       117         #
+  Score                               74,4      88,9      35,9      35,0      29,9      49,6     100,0         %
 
 Units:
   f/a: total count of failed tests [ / count of tests failed with assertion ],
@@ -39,6 +41,7 @@ Units:
 Performance tests (50 items):
   Testing: SqlClient (SQL)
   Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
   Testing: BLToolkit (BLT)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
@@ -46,32 +49,32 @@ Performance tests (50 items):
   Testing: Subsonic (SS)
 
 Performance tests (50 items) scorecard:
-                                       SQL        EF       BLT        LS        NH        OA        SS      Unit
+                                       SQL        EF       L2S       BLT        LS        NH        OA        SS      Unit
 CRUD Performance:               
-  Fetch                              14137       669     10531      8022      5855      6194      7561      op/s
+  Fetch                              16953       699       855     10461      8787      6481      6097      8251      op/s
   Single Operation:             
-    Create Instance                   9475      3779      7374      4571      3147      6971      3382      op/s
-    Update Instance                   8528      3355      6653      4988      2592      5944      1811      op/s
-    Remove Instance                   8697      3832      6826      4921      2801      6540      1849      op/s
-    CUD Average                       8881      3642      6937      4819      2828      6457      2160      op/s
+    Create Instance                    486      4054      3994      7522      5045      3441      6931      3583      op/s
+    Update Instance                  10017      3616      1420      6740      5614      2802      5913       n/a      op/s
+    Remove Instance                  10379      4151      1518      6838      5310      3067      6536      1905      op/s
+    CUD Average                       1331      3926      1859      7016      5312      3081      6432       n/a      op/s
   Multiple Operations:          
-    Create Instance                  35865      7204     32918     11219     13108     13330      3669      op/s
-    Update Instance                  37232      6290     30022     20796     11086     12553      3322      op/s
-    Remove Instance                  46842      7916     34270     19043     11715     30833      3466      op/s
-    CUD Average                      39427      7073     32304     15811     11911     16033      3479      op/s
+    Create Instance                  38883      8129      5516     35201      8518     15619     13558       182      op/s
+    Update Instance                  40387      6990      1684     31895     21659     13250     12471       n/a      op/s
+    Remove Instance                  43565      9029      1814     35803     19745     13578     35466      3574      op/s
+    CUD Average                      40853      7961      2261     34210     14004     14074     16470       n/a      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                         n/a       538      5773      1200      1072      3616       350 queries/s
-    Compiled LINQ Query                n/a      2824       n/a       n/a       n/a      3752       n/a queries/s
-    Native Query                     10217      6021      8805      6504      4007      5605      5481 queries/s
+    LINQ Query                         n/a       453       796      6494      1217      1089      3548       342 queries/s
+    Compiled LINQ Query                n/a      4900      6268      9239       n/a       n/a      2969       n/a queries/s
+    Native Query                     12172      6779       n/a     10208      7301      4372      5571      5985 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)        n/a      1598      3920       991       799      2609       309   pages/s
-    Get Average Page (20 items)        n/a       784      2422       763       577      1893       264   pages/s
-    Get Large Page   (50 items)        n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
-    Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
+    Get Small Page   (10 items)        n/a      3423      4627      6304      1006       812      2524       306   pages/s
+    Get Average Page (20 items)        n/a      2205      2794      3495       751       588      1825       261   pages/s
+    Get Large Page   (50 items)        n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
+    Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
   Materialization:              
-    LINQ Materialize                   n/a     23336     66216     56401     20594     47063     13067 objects/s
-    Native Materialize              134734     83444     87611     87047     31796     95438     39856 objects/s
+    LINQ Materialize                   n/a     24165     37956     71428     58969     21643     47205     13016 objects/s
+    Native Materialize              156152     95950       n/a       n/a     94553     33424     94144     39910 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -83,6 +86,7 @@ Units:
 Performance tests (100 items):
   Testing: SqlClient (SQL)
   Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
   Testing: BLToolkit (BLT)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
@@ -90,32 +94,32 @@ Performance tests (100 items):
   Testing: Subsonic (SS)
 
 Performance tests (100 items) scorecard:
-                                       SQL        EF       BLT        LS        NH        OA        SS      Unit
+                                       SQL        EF       L2S       BLT        LS        NH        OA        SS      Unit
 CRUD Performance:               
-  Fetch                              15815      1222     11201      8668      6226      6329      7908      op/s
+  Fetch                              18830      1267       870     11859      9802      6942      6387      8806      op/s
   Single Operation:             
-    Create Instance                  12025      4338      8986      5298      3524      8393      3446      op/s
-    Update Instance                  11137      3902      8589      6285      2631      7513      2509      op/s
-    Remove Instance                  11400      4527      8920      6116      2981      8321      2590      op/s
-    CUD Average                      11508      4239      8828      5866      3002      8055      2791      op/s
+    Create Instance                  14056      4673      4642      9246      5924      3867      8390      3613      op/s
+    Update Instance                  12764      4183      1613      8466      6946      2772      7538       n/a      op/s
+    Remove Instance                  13607      4904      1741      8944      6678      3252      7488      2694      op/s
+    CUD Average                      13454      4566      2128      8873      6486      3236      7784       n/a      op/s
   Multiple Operations:          
-    Create Instance                  44980      7573     44718     11970     14614     14870      3676      op/s
-    Update Instance                  47725      6630     40333     26122     12506     13504      3653      op/s
-    Remove Instance                  61225      8504     47707     23253     13242     41220      3865      op/s
-    CUD Average                      50404      7491     44041     18200     13398     18120      3728      op/s
+    Create Instance                  48489      8480      5769     45972     13228     17657     15005      3816      op/s
+    Update Instance                  51279      7365      1753     42007     27533     15101     13661       n/a      op/s
+    Remove Instance                  57012      9618      1925     49046     24080     15502     45653      4028      op/s
+    CUD Average                      52025      8387      2374     45491     19550     16011     18547       n/a      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                         n/a       546      6869      1217      1124      3839       352 queries/s
-    Compiled LINQ Query                n/a      3765       n/a       n/a       n/a      3985       n/a queries/s
-    Native Query                     12242      7148     11170      7708      4436      5989      6004 queries/s
+    LINQ Query                         n/a       466       843      7582      1286      1114      3798       351 queries/s
+    Compiled LINQ Query                n/a      5715      7495     10890       n/a       n/a      3912       n/a queries/s
+    Native Query                     14518      8051       n/a     12745      8506      4822      5945      6567 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)        n/a      2360      4852      1096       863      2936       319   pages/s
-    Get Average Page (20 items)        n/a      1524      3721       964       693      2432       291   pages/s
-    Get Large Page   (50 items)        n/a       740      2256       728       433      1550       229   pages/s
-    Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
+    Get Small Page   (10 items)        n/a      4085      5747      8135      1100       875      2902       317   pages/s
+    Get Average Page (20 items)        n/a      3238      4388      5943       980       705      2366       289   pages/s
+    Get Large Page   (50 items)        n/a      2005      2622      3257       728       444      1507       230   pages/s
+    Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
   Materialization:              
-    LINQ Materialize                   n/a     44263    123274    101832     27905     77972     21105 objects/s
-    Native Materialize              266169    146412    163800    150511     40201    138600     47418 objects/s
+    LINQ Materialize                   n/a     46561     72859    131665    106022     28820     78284     20935 objects/s
+    Native Materialize              307692    166251       n/a       n/a    157183     41786    138140     46554 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -127,6 +131,7 @@ Units:
 Performance tests (500 items):
   Testing: SqlClient (SQL)
   Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
   Testing: BLToolkit (BLT)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
@@ -134,32 +139,32 @@ Performance tests (500 items):
   Testing: Subsonic (SS)
 
 Performance tests (500 items) scorecard:
-                                       SQL        EF       BLT        LS        NH        OA        SS      Unit
+                                       SQL        EF       L2S       BLT        LS        NH        OA        SS      Unit
 CRUD Performance:               
-  Fetch                              17343      3599     12719      9099      6663      6542      8393      op/s
+  Fetch                              21059      3865       864     12845     10550      7423      6544      9340      op/s
   Single Operation:             
-    Create Instance                  10297      4253      8273      5518      3479      9490      2713      op/s
-    Update Instance                  14502      4474     10907      6271      1382      9349      3570      op/s
-    Remove Instance                  15082      5346     11361      6215      2155     10736      3809      op/s
-    CUD Average                      12910      4646      9980      5980      2033      9820      3292      op/s
+    Create Instance                  11570      4578      4210      8362      5999      3828      7265      3086      op/s
+    Update Instance                   2397      4800      1565     11066      6710      1389      9299       n/a      op/s
+    Remove Instance                   4015      5742      1851     11403      6390      2224     10488      4027      op/s
+    CUD Average                       3985      4992      2117     10078      6352      2096      8809       n/a      op/s
   Multiple Operations:          
-    Create Instance                  27164      6131     27848     12943     12294     15517      2716      op/s
-    Update Instance                  60865      6220     54742     31475     13791     14750      3947      op/s
-    Remove Instance                  34433      7751     63224     29214     14967     54692      4275      op/s
-    CUD Average                      36458      6624     42861     20940     13595     19930      3506      op/s
+    Create Instance                  28006      6617      4994     28596      2117     14391     11498      2831      op/s
+    Update Instance                  64795      6724      1760     58629     34005     17128      9015       n/a      op/s
+    Remove Instance                  75376      8608      1913     71792     29603     18376     28481      4431      op/s
+    CUD Average                      46578      7211      2323     45485      5601     16457     12875       n/a      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                         n/a       446      8002      1260      1127      4134       346 queries/s
-    Compiled LINQ Query                n/a      4779       n/a       n/a       n/a      4239       n/a queries/s
-    Native Query                     14402      8326     14188      9046      5130      6379      6635 queries/s
+    LINQ Query                         n/a       446       819      8926      1258      1129      4100       347 queries/s
+    Compiled LINQ Query                n/a      6376      8808     13547       n/a       n/a      4186       n/a queries/s
+    Native Query                     17299      9477       n/a     16285     10207      5464      6383      7188 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)        n/a      3785      6119      1117       935      3282       321   pages/s
-    Get Average Page (20 items)        n/a      2934      5436      1134       780      2844       308   pages/s
-    Get Large Page   (50 items)        n/a      1768      4195       995       533      2078       259   pages/s
-    Get Huge Page    (100 items)       n/a      1075      3012       821       348      1388       204   pages/s
+    Get Small Page   (10 items)        n/a      4848      7387     11314      1126       909      3253       314   pages/s
+    Get Average Page (20 items)        n/a      4327      6505      9476      1143       755      2810       306   pages/s
+    Get Large Page   (50 items)        n/a      3195      4774      6316       999       540      2012       255   pages/s
+    Get Huge Page    (100 items)       n/a      2235      3294      4235       836       353      1381       200   pages/s
   Materialization:              
-    LINQ Materialize                   n/a    163110    408663    315139     38680    173088     42569 objects/s
-    Native Materialize              807754    362950    541418    397804     52002    221483     56016 objects/s
+    LINQ Materialize                   n/a    169946    276258    423119    315716     40341    172980     41128 objects/s
+    Native Materialize              875810    384911       n/a       n/a    391175     54051    226357     53798 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -171,6 +176,7 @@ Units:
 Performance tests (1000 items):
   Testing: SqlClient (SQL)
   Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
   Testing: BLToolkit (BLT)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
@@ -178,32 +184,32 @@ Performance tests (1000 items):
   Testing: Subsonic (SS)
 
 Performance tests (1000 items) scorecard:
-                                       SQL        EF       BLT        LS        NH        OA        SS      Unit
+                                       SQL        EF       L2S       BLT        LS        NH        OA        SS      Unit
 CRUD Performance:               
-  Fetch                              18738      4819     15478     10717      7358      6512      8949      op/s
+  Fetch                              20908      5177       871     12943     10546      7419      6526      8695      op/s
   Single Operation:             
-    Create Instance                  10688      4629      9590      5063      3695      9923      2920      op/s
-    Update Instance                  15379      4407     13207      4968       898      9189      4047      op/s
-    Remove Instance                  16281      5916     14104      4823      1473     10946      4315      op/s
-    CUD Average                      13635      4902     11957      4949      1454      9968      3652      op/s
+    Create Instance                  12019      4419      3687      8584       369      3848      6966      2876      op/s
+    Update Instance                  18286      4413      1594     11294      4754       880      9344       n/a      op/s
+    Remove Instance                  18908      5978      1770     11854      4804      1456     10624      4274      op/s
+    CUD Average                      15725      4837      2049     10366       958      1440      8703       n/a      op/s
   Multiple Operations:          
-    Create Instance                  21779      6097     22605     12600     12433     15898      2699      op/s
-    Update Instance                  64662      5954     63917     28472     16890     15140      4055      op/s
-    Remove Instance                  24219      9844     78010     26553     17837     60533      4433      op/s
-    CUD Average                      29219      6919     41264     19717     15329     20622      3559      op/s
+    Create Instance                  22216      8321      4963     22749     13799     12625     10046      2751      op/s
+    Update Instance                  67923      6493      1793     64756     28109     17365     15155       n/a      op/s
+    Remove Instance                  83790      9700      1958     78909     16058     18739     22759      4416      op/s
+    CUD Average                      41858      7951      2362     41624     17613     15776     14322       n/a      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                         n/a       457      9021      1321      1170      4164       353 queries/s
-    Compiled LINQ Query                n/a      5750       n/a       n/a       n/a      4278       n/a queries/s
-    Native Query                     15828      9737     17139     10397      5534      6383      7320 queries/s
+    LINQ Query                         n/a       454       838      9147      1279      1161      4120       350 queries/s
+    Compiled LINQ Query                n/a      6497      9061     13959       n/a       n/a      4218       n/a queries/s
+    Native Query                     17821      9747       n/a     17222     10371      5513      6129      7311 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)        n/a      4470      6912      1135       921      3312       326   pages/s
-    Get Average Page (20 items)        n/a      3741      6335      1179       733      2839       302   pages/s
-    Get Large Page   (50 items)        n/a      2445      5046      1075       553      2025       266   pages/s
-    Get Huge Page    (100 items)       n/a      1577      3796       921       363      1400       212   pages/s
+    Get Small Page   (10 items)        n/a      4950      7726     11075       929       890      3304       321   pages/s
+    Get Average Page (20 items)        n/a      4331      7017      9394      1167       731      2930       298   pages/s
+    Get Large Page   (50 items)        n/a      3204      5226      6048      1046       562      2112       259   pages/s
+    Get Huge Page    (100 items)       n/a      2279      3936      3952       892       369      1472       206   pages/s
   Materialization:              
-    LINQ Materialize                   n/a    254939    480122    369467     40131    188068     48628 objects/s
-    Native Materialize             1207146    465073    751879    422332     53329    234329     57411 objects/s
+    LINQ Materialize                   n/a    234527    454400    467967    357334     41750    210106     46954 objects/s
+    Native Materialize              954198    449276       n/a       n/a    392757     55614    249981     54525 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -215,6 +221,7 @@ Units:
 Performance tests (5000 items):
   Testing: SqlClient (SQL)
   Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
   Testing: BLToolkit (BLT)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
@@ -222,32 +229,32 @@ Performance tests (5000 items):
   Testing: Subsonic (SS)
 
 Performance tests (5000 items) scorecard:
-                                       SQL        EF       BLT        LS        NH        OA        SS      Unit
+                                       SQL        EF       L2S       BLT        LS        NH        OA        SS      Unit
 CRUD Performance:               
-  Fetch                              21849      6914     15280     10599      7284      6221      9538      op/s
+  Fetch                              22816      6946       871     12862     10335      7306      6026      9354      op/s
   Single Operation:             
-    Create Instance                  12302      4579      9902      2789      3699      9139      3281      op/s
-    Update Instance                  19302      4893     13989      1889       223      8278      4035      op/s
-    Remove Instance                  20006      5901     14836      1924       424     10107      4455      op/s
-    CUD Average                      16386      5065     12506      2131       421      9113      3860      op/s
+    Create Instance                  12365      4607      2594      8809      2279      3857      6729      2568      op/s
+    Update Instance                  20064      4898      1339     11819      1762       213      8587       n/a      op/s
+    Remove Instance                  20323      5924      1678     12386      1798       412      9852      4549      op/s
+    CUD Average                      16674      5084      1735     10757      1920       406      8184       n/a      op/s
   Multiple Operations:          
-    Create Instance                  21998      6714     22882     12606     18148     15550      3039      op/s
-    Update Instance                  69646      5873     67331     26635     16674     13868      4029      op/s
-    Remove Instance                  85911      8306     85372     27544     17641     56590      3171      op/s
-    CUD Average                      41983      6824     42693     19585     17466     19469      3360      op/s
+    Create Instance                  22341      5606      5755     22895     12813     18152     13451      2863      op/s
+    Update Instance                  69922      5868      1796     69313     27106     16865     14470       n/a      op/s
+    Remove Instance                  87588      8869      1965     86941     26129     18158     56157      3485      op/s
+    CUD Average                      42565      6499      2420     43099     19581     17703     18603       n/a      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                         n/a       474      8789      1349      1194      4028       355 queries/s
-    Compiled LINQ Query                n/a      6344       n/a       n/a       n/a      4156       n/a queries/s
-    Native Query                     18561      9547     17706     10414      5469      6164      7268 queries/s
+    LINQ Query                         n/a       472       857      8706      1331      1183      4014       353 queries/s
+    Compiled LINQ Query                n/a      6380      9241     12979       n/a       n/a      4060       n/a queries/s
+    Native Query                     20076      9479       n/a     17724      9930      5459      5851      7345 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)        n/a      4673      6623      1196       927      3138       328   pages/s
-    Get Average Page (20 items)        n/a      4446      6648      1157       771      2709       308   pages/s
-    Get Large Page   (50 items)        n/a      3403      5573      1044       537      1834       263   pages/s
-    Get Huge Page    (100 items)       n/a      2445      4481       865       351      1212       210   pages/s
+    Get Small Page   (10 items)        n/a      4745      7881     10238      1187       917      3121       324   pages/s
+    Get Average Page (20 items)        n/a      4713      7289      9667      1145       773      2658       305   pages/s
+    Get Large Page   (50 items)        n/a      3709      5955      6915      1017       538      1790       257   pages/s
+    Get Huge Page    (100 items)       n/a      2829      4596      4809       844       356      1110       205   pages/s
   Materialization:              
-    LINQ Materialize                   n/a    444322   1036119    619018     39092    162564     55501 objects/s
-    Native Materialize             2021590    587557   1431557    669532     50420    171987     58699 objects/s
+    LINQ Materialize                   n/a    464973    854920    715502    590430     40762    155495     53006 objects/s
+    Native Materialize             1514463    620332       n/a       n/a    606759     51756    166586     55733 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -259,6 +266,7 @@ Units:
 Performance tests (10000 items):
   Testing: SqlClient (SQL)
   Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
   Testing: BLToolkit (BLT)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
@@ -266,32 +274,32 @@ Performance tests (10000 items):
   Testing: Subsonic (SS)
 
 Performance tests (10000 items) scorecard:
-                                       SQL        EF       BLT        LS        NH        OA        SS      Unit
+                                       SQL        EF       L2S       BLT        LS        NH        OA        SS      Unit
 CRUD Performance:               
-  Fetch                              22222      7320     15482     10570      7306      6261      9546      op/s
+  Fetch                              22236      7264       878     12813     10448      7273      6218      9450      op/s
   Single Operation:             
-    Create Instance                  12335      4624      9912      1766      3737      9154      2843      op/s
-    Update Instance                  19946      4895     14174      1036       114      8506      4165      op/s
-    Remove Instance                  20627      6043     14974      1046       222     10151      4637      op/s
-    CUD Average                      16695      5119     12593      1206       221      9221      3715      op/s
+    Create Instance                  12331      4758      1803      8841      1270      3890      9205      2393      op/s
+    Update Instance                  19546      4913      1091     11927       985       109      8198       n/a      op/s
+    Remove Instance                  20247      6026      1509     11188       989       214     10392      2438      op/s
+    CUD Average                      16515      5175      1405     10477      1066       212      9178       n/a      op/s
   Multiple Operations:          
-    Create Instance                  22288      6811     22663     12044     18246     15048      2857      op/s
-    Update Instance                  69574      5856     69020     24760     16664     13595      3949      op/s
-    Remove Instance                  87679      8161     84740     25064     17870     46285      4179      op/s
-    CUD Average                      42465      6816     42605     18369     17566     18562      3560      op/s
+    Create Instance                  49168      5595      5851     52743     11938     18227     14961      3002      op/s
+    Update Instance                  69258      5695      1805     34214     26408     16773     13184       n/a      op/s
+    Remove Instance                  87846      7518      1958     86894     24428     18126     46913      4285      op/s
+    CUD Average                      64990      6155      2427     50254     18453     17683     18292       n/a      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                         n/a       475      8521      1354      1195      4038       356 queries/s
-    Compiled LINQ Query                n/a      6451       n/a       n/a       n/a      4167       n/a queries/s
-    Native Query                     19433      9660     17788     10478      5470      6216      7382 queries/s
+    LINQ Query                         n/a       474       867      8463      1334      1185      4002       353 queries/s
+    Compiled LINQ Query                n/a      6392      8893     12400       n/a       n/a      4056       n/a queries/s
+    Native Query                     19351      9759       n/a     17789     10362      5473      6280      7305 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)        n/a      4895      6503      1201       926      2925       329   pages/s
-    Get Average Page (20 items)        n/a      4265      5997      1160       779      2542       311   pages/s
-    Get Large Page   (50 items)        n/a      3036      5084      1039       525      1601       265   pages/s
-    Get Huge Page    (100 items)       n/a      2236      3836       923       347      1002       214   pages/s
+    Get Small Page   (10 items)        n/a      4931      7659     10306      1192       918      2735       326   pages/s
+    Get Average Page (20 items)        n/a      4196      7399      8612      1146       784      2499       306   pages/s
+    Get Large Page   (50 items)        n/a      3123      6080      6931      1019       533      1575       259   pages/s
+    Get Huge Page    (100 items)       n/a      2345      4672      4546       901       350      1343       208   pages/s
   Materialization:              
-    LINQ Materialize                   n/a    493524    795633    420355     38470    191654     55646 objects/s
-    Native Materialize             1606993    603085   1455943    419266     52813    203150     58448 objects/s
+    LINQ Materialize                   n/a    512854    979345    785928    394689     39870    193466     53361 objects/s
+    Native Materialize             1558117    646095       n/a       n/a    398511     54584    201511     55449 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -303,6 +311,7 @@ Units:
 Performance tests (30000 items):
   Testing: SqlClient (SQL)
   Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
   Testing: BLToolkit (BLT)
   Testing: LightSpeed (LS)
   Testing: NHibernate (NH)
@@ -310,32 +319,32 @@ Performance tests (30000 items):
   Testing: Subsonic (SS)
 
 Performance tests (30000 items) scorecard:
-                                       SQL        EF       BLT        LS        NH        OA        SS      Unit
+                                       SQL        EF       L2S       BLT        LS        NH        OA        SS      Unit
 CRUD Performance:               
-  Fetch                              22099      7582     15566     10478      7254      6210      9629      op/s
+  Fetch                              21913      7486       876     13115     10367      7073      6218      9430      op/s
   Single Operation:             
-    Create Instance                  12348      4665      9319       506      4152      9367      3010      op/s
-    Update Instance                  19623      4920     14165       228        38      8388      4016      op/s
-    Remove Instance                  20364      5985     15139       234        75      9775      4364      op/s
-    CUD Average                      16569      5130     12297       282        75      9138      3701      op/s
+    Create Instance                  12616      4660       841      8796       464      3915      7211      3016      op/s
+    Update Instance                  19681      4959       628     12013       213        36      8165       n/a      op/s
+    Remove Instance                  20417      5996      1076     12596       221        73     10114      4352      op/s
+    CUD Average                      16754      5145       808     10856       263        71      8332       n/a      op/s
   Multiple Operations:          
-    Create Instance                  40795      6087     43006     11891     19800     13641      2185      op/s
-    Update Instance                  68350      5617     68775     23943     16416     12695      3699      op/s
-    Remove Instance                  85950      8205     86143     24909     17679     42846      4055      op/s
-    CUD Average                      59080      6462     60727     18071     17858     17101      3078      op/s
+    Create Instance                  41972      6253      6057     43008     10441     19921     12077      2182      op/s
+    Update Instance                  68866      5640      1804     68422     23670     16498     12098       n/a      op/s
+    Remove Instance                  85765      8067      1958     84240     23882     17828     40575      4086      op/s
+    CUD Average                      59992      6504      2438     60316     16676     17974     15780       n/a      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                         n/a       476      7847      1351      1197      4071       349 queries/s
-    Compiled LINQ Query                n/a      6510       n/a       n/a       n/a      4150       n/a queries/s
-    Native Query                     19252      9808     17521     10436      5517      6292      7443 queries/s
+    LINQ Query                         n/a       474       866      7903      1335      1181      3962       346 queries/s
+    Compiled LINQ Query                n/a      6475      9205     11424       n/a       n/a      4097       n/a queries/s
+    Native Query                     19155      9747       n/a     17967     10433      5496      6242      7384 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)        n/a      4830      6610      1199       915      2945       297   pages/s
-    Get Average Page (20 items)        n/a      4297      6406      1153       763      2428       281   pages/s
-    Get Large Page   (50 items)        n/a      3256      5496      1021       507      1567       244   pages/s
-    Get Huge Page    (100 items)       n/a      2508      4420       865       338       912       200   pages/s
+    Get Small Page   (10 items)        n/a      4870      7784     10276      1180       908      2899       292   pages/s
+    Get Average Page (20 items)        n/a      4349      7226      9136      1114       767      2402       277   pages/s
+    Get Large Page   (50 items)        n/a      3085      5015      7119      1004       519      1546       240   pages/s
+    Get Huge Page    (100 items)       n/a      2645      4852      5299       849       343      1079       196   pages/s
   Materialization:              
-    LINQ Materialize                   n/a    474745    818911    401312     37319    120902     55699 objects/s
-    Native Materialize             1698129    534446   1628885    400483     49371    124819     57578 objects/s
+    LINQ Materialize                   n/a    478809   1064369   1142574    389956     38386    118709     53291 objects/s
+    Native Materialize             2290111    551036       n/a       n/a    384451     50759    122959     55152 objects/s
 
 Units:
   op/s:      operations per second, more is better;
