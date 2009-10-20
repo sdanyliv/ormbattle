@@ -728,7 +728,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: OpenAccessException
     // Message:
-    //   Invalid node in orders: AndNode@3bfbcd5
+    //   Invalid node in orders: AndNode@2ca534
     public void OrderByPredicateTest()
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);
