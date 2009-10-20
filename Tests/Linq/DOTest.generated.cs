@@ -1141,10 +1141,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   LINQ translator does not support method 'ElementAt'.
+    // Passed.
     public void ElementAtTest()
     {
       var customer = db.Customers.OrderBy(c => c.Id).ElementAt(15);
@@ -1154,10 +1151,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   LINQ translator does not support method 'ElementAt'.
+    // Passed.
     public void NestedElementAtTest()
     {
       var result = 
