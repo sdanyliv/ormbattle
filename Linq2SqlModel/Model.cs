@@ -1,6 +1,5 @@
-using System;
+﻿using System;
 using System.Data.Linq;
-using System.Data.Linq.Mapping;
 
 namespace Linq2SqlModel
 {
@@ -8,16 +7,6 @@ namespace Linq2SqlModel
 	{
 		public Table<ActiveProduct>       ActiveProducts       { get { return GetTable<ActiveProduct>();       } }
 		public Table<DiscontinuedProduct> DiscontinuedProducts { get { return GetTable<DiscontinuedProduct>(); } }
-	}
-
-	[Table(Name="dbo.Products")]
-	public partial class ActiveProduct
-	{
-	}
-
-	[Table(Name="dbo.Products")]
-	public partial class DiscontinuedProduct
-	{
 	}
 
 	public abstract class ComparableEntity

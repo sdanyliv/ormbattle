@@ -293,6 +293,8 @@ namespace OrmBattle.Tests.Linq
 
     protected override void Setup()
     {
+      //using (new DbManager("PerformanceTest"))
+      //{}
       db = new NorthwindDB();
 
       Customers = db.Customers.ToList();

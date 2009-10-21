@@ -49,9 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Northwind.cs">
-      <DependentUpon>Northwind.dbml</DependentUpon>
-    </Compile>
+    <Compile Include="Model.cs" />
     <Compile Include="Northwind.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

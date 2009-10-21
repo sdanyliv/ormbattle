@@ -39,6 +39,7 @@ namespace OrmBattle.Tests.Performance
 
 		protected override void OpenSession()
 		{
+			DbManager.DefaultConfiguration = "PerformanceTest";
 			db    = new DbManager("PerformanceTest");
 			query = new SqlQuery<Simplests>();
 		}
@@ -225,7 +226,7 @@ namespace OrmBattle.Tests.Performance
 			var i = 0;
 
 			while (i < count)
-				foreach (var o in query.SelectAll())
+				foreach (var o in query.SelectAll(db))
 					if (++i >= count)
 						break;
 

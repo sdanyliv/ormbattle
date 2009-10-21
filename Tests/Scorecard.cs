@@ -29,7 +29,14 @@ namespace OrmBattle.Tests
       if (!Tests.Contains(test))
         Tests.Add(test);
       var key = new Pair<string, string>(test, tool);
-      Results.Add(key, result);
+      object prevResult;
+      if (Results.TryGetValue(key, out prevResult))
+      {
+        if (prevResult is int && result is int)
+          Results[key] = Math.Max((int)prevResult, (int)result);
+      }
+      else
+        Results.Add(key, result);
     }
 
     public void RegisterTest(string test)
