@@ -14,6 +14,7 @@ namespace OrmBattle.TestRunner
   internal class Program
   {
     private const string TArgMarker = "-t:";
+    private const string WArgMarker = "-w";
     public static string[] Args;
     public static List<string> ToolNames = null;
 
@@ -33,7 +34,7 @@ namespace OrmBattle.TestRunner
       linqTestRunner.Run();
       performanceTestRunner.Run();
 
-      if (Args.Where(a => a=="-w").SingleOrDefault()!=null)
+      if (Args.Where(a => a==WArgMarker).SingleOrDefault()!=null)
         Console.ReadKey();
     }
   }
