@@ -75,7 +75,7 @@ namespace OrmBattle.Tests.Performance
       Measure(CompiledLinqQueryTest, count / 5, 1);
       Measure(NativeQueryTest, count / 5, 1);
       
-      int materializationPassCount = (count < 1000) ? 100 : 10;
+      int materializationPassCount = (count < 1000) ? 50 : 5;
       Measure(LinqMaterializeTest, count, materializationPassCount);
       Measure(NativeMaterializeTest, count, materializationPassCount);
 

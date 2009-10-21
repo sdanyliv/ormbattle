@@ -64,9 +64,9 @@ namespace OrmBattle.TestRunner
         scorecard.RegisterTest(Indent2 + PerformanceTestBase.NativeMaterialize);
 
         var tests = new List<PerformanceTestBase> {
+          new BLToolkitTest(),
           new EFTest(),
           new Linq2SqlTest(),
-          new BLToolkitTest(),
           new DOTest(),
           new LightSpeedTest(),
           new NHibernateTest(),
@@ -91,26 +91,27 @@ namespace OrmBattle.TestRunner
         string sequenceName = string.Format("Performance tests ({0} items)", itemCount);
         Console.WriteLine("{0}:", sequenceName);
 
-        foreach (var test in tests) {
-          try {
-            test.Scorecard = scorecard;
-            test.BaseCount = itemCount;
-            test.BaseSetup();
-            test.Execute();
-          }
-          catch (Exception e) {
-            Console.WriteLine("  Failed: {0}", e);
-            continue;
-          }
-          finally {
+        for (var i = 0; i < 2; i++)
+          foreach (var test in tests) {
             try {
-              test.BaseTearDown();
+              test.Scorecard = scorecard;
+              test.BaseCount = itemCount;
+              test.BaseSetup();
+              test.Execute();
             }
             catch (Exception e) {
-              Console.WriteLine("  BaseTearDown failed: {0}", e);
+              Console.WriteLine("  Failed: {0}", e);
+              continue;
+            }
+            finally {
+              try {
+                test.BaseTearDown();
+              }
+              catch (Exception e) {
+                Console.WriteLine("  BaseTearDown failed: {0}", e);
+              }
             }
           }
-        }
 
         Console.WriteLine();
         Console.WriteLine("{0} scorecard:", sequenceName);

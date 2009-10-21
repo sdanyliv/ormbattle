@@ -53,12 +53,12 @@
       <Column Name="UnitsInStock" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="UnitsOnOrder" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="ReorderLevel" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="Discontinued" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Discontinued" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" IsDiscriminator="true" />
       <Association Name="Product_OrderDetail" Member="OrderDetails" ThisKey="Id" OtherKey="ProductID" Type="OrderDetail" />
       <Association Name="Supplier_Product" Member="Supplier" ThisKey="SupplierID" OtherKey="Id" Type="Supplier" IsForeignKey="true" />
       <Association Name="Category_Product" Member="Category" ThisKey="CategoryID" OtherKey="Id" Type="Category" IsForeignKey="true" />
-      <Type Name="DiscontinuedProduct" />
-      <Type Name="ActiveProduct" />
+      <Type Name="DiscontinuedProduct" InheritanceCode="True" />
+      <Type Name="ActiveProduct" InheritanceCode="False" IsInheritanceDefault="true" />
     </Type>
   </Table>
   <Table Name="dbo.Orders" Member="Orders">

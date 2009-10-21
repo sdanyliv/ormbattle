@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Data.Linq;
-using System.Data.Linq.Mapping;
 
 using BLToolkit.DataAccess;
 using BLToolkit.Mapping;
+
+using AssociationAttribute = BLToolkit.Mapping.AssociationAttribute;
 
 namespace OrmBattle.BLToolkitModel
 {
@@ -31,7 +32,7 @@ namespace OrmBattle.BLToolkitModel
 		public string Description;
 		public Binary Picture;
 
-		[Association(Name="Category_Product", ThisKey="CategoryID", OtherKey="CategoryID")]
+		[Association(ThisKey="CategoryID", OtherKey="CategoryID")]
 		public EntitySet<Product> Products;
 	}
 
@@ -41,10 +42,10 @@ namespace OrmBattle.BLToolkitModel
 		public string CustomerID;
 		public string CustomerTypeID;
 
-		[Association(Name="CustomerDemographic_CustomerCustomerDemo", ThisKey="CustomerTypeID", OtherKey="CustomerTypeID", IsForeignKey=true)]
+		[Association(ThisKey="CustomerTypeID", OtherKey="CustomerTypeID")]
 		public CustomerDemographic CustomerDemographics;
 
-		[Association(Name="Customer_CustomerCustomerDemo", ThisKey="CustomerID", OtherKey="CustomerID", IsForeignKey=true)]
+		[Association(ThisKey="CustomerID", OtherKey="CustomerID")]
 		public Customer Customers;
 	}
 
@@ -54,7 +55,7 @@ namespace OrmBattle.BLToolkitModel
 		public string CustomerTypeID;
 		public string CustomerDesc;
 		
-		[Association(Name="CustomerDemographic_CustomerCustomerDemo", ThisKey="CustomerTypeID", OtherKey="CustomerTypeID")]
+		[Association(ThisKey="CustomerTypeID", OtherKey="CustomerTypeID")]
 		public EntitySet<CustomerCustomerDemo> CustomerCustomerDemos;
 	}
 
@@ -73,10 +74,10 @@ namespace OrmBattle.BLToolkitModel
 		                         public string Phone;
 		                         public string Fax;
 
-		[Association(Name="Customer_CustomerCustomerDemo", ThisKey="CustomerID", OtherKey="CustomerID")]
+		[Association(ThisKey="CustomerID", OtherKey="CustomerID")]
 		public EntitySet<CustomerCustomerDemo> CustomerCustomerDemos;
 
-		[Association(Name="Customer_Order", ThisKey="CustomerID", OtherKey="CustomerID")]
+		[Association(ThisKey="CustomerID", OtherKey="CustomerID")]
 		public EntitySet<Order> Orders;
 	}
 
@@ -102,16 +103,16 @@ namespace OrmBattle.BLToolkitModel
 		public int?      ReportsTo;
 		public string    PhotoPath;
 
-		[Association(Name="Employee_Employee", ThisKey="EmployeeID", OtherKey="ReportsTo")]
+		[Association(ThisKey="EmployeeID", OtherKey="ReportsTo")]
 		public EntitySet<Employee> Employees;
 
-		[Association(Name="Employee_EmployeeTerritory", ThisKey="EmployeeID", OtherKey="EmployeeID")]
+		[Association(ThisKey="EmployeeID", OtherKey="EmployeeID")]
 		public EntitySet<EmployeeTerritory> EmployeeTerritories;
 
-		[Association(Name="Employee_Order", ThisKey="EmployeeID", OtherKey="EmployeeID")]
+		[Association(ThisKey="EmployeeID", OtherKey="EmployeeID")]
 		public EntitySet<Order> Orders;
 		
-		[Association(Name="Employee_Employee", ThisKey="ReportsTo", OtherKey="EmployeeID", IsForeignKey=true)]
+		[Association(ThisKey="ReportsTo", OtherKey="EmployeeID")]
 		public Employee ReportsToEmployee;
 	}
 
@@ -121,10 +122,10 @@ namespace OrmBattle.BLToolkitModel
 		public int    EmployeeID;
 		public string TerritoryID;
 
-		[Association(Name="Employee_EmployeeTerritory", ThisKey="EmployeeID", OtherKey="EmployeeID", IsForeignKey=true)]
+		[Association(ThisKey="EmployeeID", OtherKey="EmployeeID")]
 		public Employee Employee;
 		
-		[Association(Name="Territory_EmployeeTerritory", ThisKey="TerritoryID", OtherKey="TerritoryID", IsForeignKey=true)]
+		[Association(ThisKey="TerritoryID", OtherKey="TerritoryID")]
 		public Territory Territory;
 	}
 
@@ -137,10 +138,10 @@ namespace OrmBattle.BLToolkitModel
 		public short   Quantity;
 		public float   Discount;
 
-		[Association(Name="Order_Order_Detail", ThisKey="OrderID", OtherKey="OrderID", IsForeignKey=true)]
+		[Association(ThisKey="OrderID", OtherKey="OrderID")]
 		public Order Order;
 		
-		[Association(Name="Product_Order_Detail", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		[Association(ThisKey="ProductID", OtherKey="ProductID")]
 		public Product Product;
 	}
 
@@ -162,16 +163,16 @@ namespace OrmBattle.BLToolkitModel
 		                      public string    ShipPostalCode;
 		                      public string    ShipCountry;
 
-		[Association(Name="Order_Order_Detail", ThisKey="OrderID", OtherKey="OrderID")]
+		[Association(ThisKey="OrderID", OtherKey="OrderID")]
 		public EntitySet<OrderDetail> OrderDetails;
 
-		[Association(Name="Customer_Order", ThisKey="CustomerID", OtherKey="CustomerID", IsForeignKey=true)]
+		[Association(ThisKey="CustomerID", OtherKey="CustomerID")]
 		public Customer Customer;
 
-		[Association(Name="Employee_Order", ThisKey="EmployeeID", OtherKey="EmployeeID", IsForeignKey=true)]
+		[Association(ThisKey="EmployeeID", OtherKey="EmployeeID")]
 		public Employee Employee;
 
-		[Association(Name="Shipper_Order", ThisKey="ShipVia", OtherKey="ShipperID", IsForeignKey=true)]
+		[Association(ThisKey="ShipVia", OtherKey="ShipperID")]
 		public Shipper Shipper;
 
 		protected override object GetKey()
@@ -194,13 +195,13 @@ namespace OrmBattle.BLToolkitModel
 		                        public short?   ReorderLevel;
 		                        public bool     Discontinued;
 
-		[Association(Name="Product_Order_Detail", ThisKey="ProductID", OtherKey="ProductID")]
+		[Association(ThisKey="ProductID", OtherKey="ProductID")]
 		public EntitySet<OrderDetail> OrderDetails;
 
-		[Association(Name="Category_Product", ThisKey="CategoryID", OtherKey="CategoryID", IsForeignKey=true)]
+		[Association(ThisKey="CategoryID", OtherKey="CategoryID")]
 		public Category Category;
 
-		[Association(Name="Supplier_Product", ThisKey="SupplierID", OtherKey="SupplierID", IsForeignKey=true)]
+		[Association(ThisKey="SupplierID", OtherKey="SupplierID")]
 		public Supplier Supplier;
 	}
 
@@ -218,7 +219,7 @@ namespace OrmBattle.BLToolkitModel
 		public int    RegionID;
 		public string RegionDescription;
 
-		[Association(Name="Region_Territory", ThisKey="RegionID", OtherKey="RegionID")]
+		[Association(ThisKey="RegionID", OtherKey="RegionID")]
 		public EntitySet<Territory> Territories;
 	}
 
@@ -229,7 +230,7 @@ namespace OrmBattle.BLToolkitModel
 		public string CompanyName;
 		public string Phone;
 
-		[Association(Name="Shipper_Order", ThisKey="ShipperID", OtherKey="ShipVia")]
+		[Association(ThisKey="ShipperID", OtherKey="ShipVia")]
 		public EntitySet<Order> Orders;
 	}
 
@@ -249,7 +250,7 @@ namespace OrmBattle.BLToolkitModel
 		                         public string Fax;
 		                         public string HomePage;
 
-		[Association(Name="Supplier_Product", ThisKey="SupplierID", OtherKey="SupplierID")]
+		[Association(ThisKey="SupplierID", OtherKey="SupplierID")]
 		public EntitySet<Product> Products;
 	}
 
@@ -260,10 +261,10 @@ namespace OrmBattle.BLToolkitModel
 		public string TerritoryDescription;
 		public int    RegionID;
 
-		[Association(Name="Territory_EmployeeTerritory", ThisKey="TerritoryID", OtherKey="TerritoryID")]
+		[Association(ThisKey="TerritoryID", OtherKey="TerritoryID")]
 		public EntitySet<EmployeeTerritory> EmployeeTerritories;
 
-		[Association(Name="Region_Territory", ThisKey="RegionID", OtherKey="RegionID", IsForeignKey=true)]
+		[Association(ThisKey="RegionID", OtherKey="RegionID")]
 		public Region Region;
 	}
 }
