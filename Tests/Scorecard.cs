@@ -30,8 +30,9 @@ namespace OrmBattle.Tests
         Tests.Add(test);
       var key = new Pair<string, string>(test, tool);
       object prevResult;
-      if (Results.TryGetValue(key, out prevResult))
-      {
+      if (Results.TryGetValue(key, out prevResult)) {
+        // This allows to run the same test for multiple times
+        // and pick up the best result.
         if (prevResult is int && result is int)
           Results[key] = Math.Max((int)prevResult, (int)result);
       }

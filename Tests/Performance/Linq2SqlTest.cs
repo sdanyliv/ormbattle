@@ -164,7 +164,10 @@ namespace OrmBattle.Tests.Performance
 			}
 		}
 
-		protected override void FetchTest(int count)
+		static readonly Func<PerformanceTestDataContext,long,Simplest> _compiledFetcher =
+			CompiledQuery.Compile((PerformanceTestDataContext context, long id) => context.Simplests.SingleOrDefault(o => o.Id == id));
+
+    protected override void FetchTest(int count)
 		{
 			var sum = (long)count * (count - 1) / 2;
 
@@ -173,7 +176,7 @@ namespace OrmBattle.Tests.Performance
 				for (var i = 0; i < count; i++)
 				{
 					var id = (long)i % InstanceCount;
-					var s  = _db.Simplests.SingleOrDefault(o => o.Id == id);
+					var s  = _compiledFetcher(_db, id);
 					sum -= s.Id;
 				}
 

@@ -16,18 +16,25 @@ namespace OrmBattle.TestRunner
   [Serializable]
   public class PerformanceTestRunner
   {
+    private const string PpcArgMarker = "-ppc:";
     private const string PiArgMarker = "-pi:";
     private const string PtArgMarker = "-pt:";
     private const string Indent = "  ";
     private const string Indent2 = Indent + Indent;
     public static int[] DefaultItemCounts = new[] {50, 100, 500, 1000, 5000, 10000, 30000};
     public int[] ItemCounts;
+    private int passCount = 1;
 
     /// <summary>
     /// Runs this instance.
     /// </summary>
     public void Run()
     {
+      string ppcArg = Program.Args.Where(a => a.StartsWith(PpcArgMarker)).SingleOrDefault();
+      if (ppcArg!=null) {
+        ppcArg = ppcArg.Remove(0, PpcArgMarker.Length);
+        passCount = int.Parse(ppcArg);
+      }
       var toolNames = Program.ToolNames;
       string ptArg = Program.Args.Where(a => a.StartsWith(PtArgMarker)).SingleOrDefault();
       if (ptArg!=null) {
@@ -66,9 +73,9 @@ namespace OrmBattle.TestRunner
         var tests = new List<PerformanceTestBase> {
           new BLToolkitTest(),
           new EFTest(),
-          new Linq2SqlTest(),
           new DOTest(),
           new LightSpeedTest(),
+          new Linq2SqlTest(),
           new NHibernateTest(),
           new OpenAccessTest(),
           new SubsonicTest(),
@@ -91,7 +98,9 @@ namespace OrmBattle.TestRunner
         string sequenceName = string.Format("Performance tests ({0} items)", itemCount);
         Console.WriteLine("{0}:", sequenceName);
 
-        for (var i = 0; i < 2; i++)
+        for (var i = 0; i < passCount; i++) {
+          if (passCount > 1)
+            Console.WriteLine("Pass {0} out of {1}...", i + 1, passCount);
           foreach (var test in tests) {
             try {
               test.Scorecard = scorecard;
@@ -112,6 +121,7 @@ namespace OrmBattle.TestRunner
               }
             }
           }
+        }
 
         Console.WriteLine();
         Console.WriteLine("{0} scorecard:", sequenceName);

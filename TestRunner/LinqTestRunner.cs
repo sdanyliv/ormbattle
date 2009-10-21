@@ -51,11 +51,11 @@ namespace OrmBattle.TestRunner
 
       scorecard = new LinqScorecard();
       var tests = new List<LinqTestBase> {
-        new EFTest(), 
-        new Linq2SqlTest(),
         new BLToolkitTest(),
+        new EFTest(), 
         new DOTest(),
         new LightSpeedTest(),
+        new Linq2SqlTest(),
         new NHibernateTest(),
         new OpenAccessTest(),
       };
