@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq2SqlModel", "Linq2SqlModel\Linq2SqlModel.csproj", "{DC754380-02AB-4DE8-AC47-881B6D09513D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntitySpacesModel", "EntitySpacesModel\EntitySpacesModel.csproj", "{8CF4DE14-5D1B-4E75-99A0-98757B96F28F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{DC754380-02AB-4DE8-AC47-881B6D09513D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC754380-02AB-4DE8-AC47-881B6D09513D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC754380-02AB-4DE8-AC47-881B6D09513D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CF4DE14-5D1B-4E75-99A0-98757B96F28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CF4DE14-5D1B-4E75-99A0-98757B96F28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CF4DE14-5D1B-4E75-99A0-98757B96F28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CF4DE14-5D1B-4E75-99A0-98757B96F28F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
