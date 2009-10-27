@@ -80,6 +80,7 @@ namespace OrmBattle.TestRunner
           new OpenAccessTest(),
           new SubsonicTest(),
           new SqlClientTest(),
+          new EntitySpacesTest()
         };
         if (toolNames!=null)
           tests = (
