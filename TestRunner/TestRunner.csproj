@@ -163,6 +163,10 @@
       <Project>{A26B0BCD-92A2-45EF-9F5F-EE31CE9F3EF7}</Project>
       <Name>EFModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EntitySpacesModel\EntitySpacesModel.csproj">
+      <Project>{8CF4DE14-5D1B-4E75-99A0-98757B96F28F}</Project>
+      <Name>EntitySpacesModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LightSpeedModel\LightSpeedModel.csproj">
       <Project>{2961A24F-A9D7-433C-87B2-1DBC29EBCFEF}</Project>
       <Name>LightSpeedModel</Name>
@@ -208,7 +212,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="False" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
+      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="False" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
