@@ -258,6 +258,94 @@
             Blob was closed before.</exception>
       <value>The byte position. (zero-based)</value>
     </member>
+    <member name="T:Telerik.OpenAccess.MetaData.AssociationType">
+      <summary>
+            Defines the type of associations available in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.AssociationType.Reference">
+      <summary>
+            Specifies an unary association (that has a 'role' only on one of the ends), and the 'end role' is implemented as 
+            a reference property.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.AssociationType.PolymorphicReference">
+      <summary>
+            Specifies an unary association (that has a 'role' only on one of the ends), and the 'end role' is implemented as 
+            a reference to a class hierarchy or interface.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.AssociationType.Collection">
+      <summary>
+            Specifies an unary association (that has a 'role' only on one of the ends), and the 'end role' is implemented as 
+            a collection property.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.AssociationType.OneToMany">
+      <summary>
+            Specifies a binary association that has both ends of the association set: one is reference property and the other is the 
+            corresponding collection (calculated).
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.AssociationType.OneToManyJointable">
+      <summary>
+            Specifies a binary association that has both ends of the association set: one is reference property and the other is the 
+            corresponding collection. The association is implemented using a join table.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.AssociationType.ManyToManyJointable">
+      <summary>
+            Specifies a binary association that has both ends of the association set: both sides are implemented as collection properties. 
+            The association is implemented using a join table.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.AssociationType.DictionaryJointable">
+      <summary>
+            Specifies a binary association that has both ends of the association set: one is the dictionary and the other can be a reference
+            or a key value property to another dictionary.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.AssociationType.StructReference">
+      <summary>
+            Specifies an unary association (that has a 'role' only on one of the ends), and the 'end role' is implemented as 
+            a structure (value object) property. NOT SUPPORTED currently.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.DatabaseLevelCache">
+      <summary>
+            Level two cache controlling
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.DatabaseLevelCache.EvictAll(System.Type,System.Boolean)">
+      <summary> Evict all information for all persistent instances of a Class from the
+            second level cache.
+            </summary>
+      <param name="type">Type of persistent instances to be evicted
+            </param>
+      <param name="includeSubclasses">If true then instances of derived are also
+            evicted
+            </param>
+    </member>
+    <member name="M:Telerik.OpenAccess.DatabaseLevelCache.Evict(Telerik.OpenAccess.IObjectId)">
+      <summary> Evict all information for an IObjectId instance from the second level cache. This is a NOP
+            if there is no information in the cache for the IObjectId instance.
+            </summary>
+      <param name="oid">IObjectId of the persistent instance to be evicted
+            </param>
+    </member>
+    <member name="M:Telerik.OpenAccess.DatabaseLevelCache.EvictAll(System.Collections.Generic.IEnumerable{Telerik.OpenAccess.IObjectId})">
+      <summary> Evict all information for a collection of IObjectId instances from the second level cache.
+            </summary>
+      <param name="oids">Collection of IObjectId of the persistent instances to be evicted
+            </param>
+    </member>
+    <member name="M:Telerik.OpenAccess.DatabaseLevelCache.EvictAll">
+      <summary> Evict all persistent instances from the second level cache.</summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.DatabaseLevelCache.IsCached(Telerik.OpenAccess.IObjectId)">
+      <summary>True if object is cached, false if not.</summary>
+      <param name="oid">IObjectId instance of the persistent object that should be checked.</param>
+    </member>
     <member name="T:Telerik.OpenAccess.MetaData.IColumnDescriptor">
       <summary>
             Description of a mapped column
@@ -277,9 +365,53 @@
             Description of the table
             </value>
     </member>
+    <member name="T:Telerik.OpenAccess.MetaData.IdentityType">
+      <summary>
+            Defines identifiers for types of entities identity provided by the Telerik OpenAccess ORM.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.IdentityType.Internal">
+      <summary>
+            Specifies that the identity is managed internally for the type by Telerik OpenAccess ORM and it is not visible as a field in the type.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.IdentityType.SingleField">
+      <summary>
+            Specifies that a single field in the respective type will hold the identity information.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.IdentityType.MultipleField">
+      <summary>
+            Specifies that a multiple fields in the respective type will hold the identity information.
+            Also one needs to provide a class that implements the IOblectId and manages the identity information.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.InheritanceStrategy">
+      <summary>
+            Defines identifiers for types of inheritance provided by the Telerik OpenAccess ORM.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.InheritanceStrategy.Flat">
+      <summary>
+            Defines an inheritance strategy where all classes share a single table. 
+            Discriminator column is required for the complete definition.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.InheritanceStrategy.Vertical">
+      <summary>
+            Defines an inheritance strategy where each type has its own table. The table contains only the members defined for the respective type.
+            The root base type table must contain a discriminator column.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.InheritanceStrategy.Horizontal">
+      <summary>
+            Defines an inheritance strategy where each type has its own table. As the base types should be abstract, they will not have tables mapped to 
+            them and every concrete type will have columns that contain base class fields information.
+            </summary>
+    </member>
     <member name="T:Telerik.OpenAccess.MetaData.ITableDescriptor">
       <summary>
-            Description of a mapped table
+            Contains a description of a mapped table .
             </summary>
     </member>
     <member name="P:Telerik.OpenAccess.MetaData.ITableDescriptor.Name">
@@ -287,6 +419,938 @@
             Gets the complete name of the table in delimited form.
             </summary>
       <value>Delimited name of the column</value>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaAssociation">
+      <summary>
+            Represents an association in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaItem">
+      <summary>
+            Represents the base item class for all the metadata in the Telerik OpenAccess ORM metadata model. 
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaItem.#ctor">
+      <summary>
+      </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaItem.ToString">
+      <summary>
+            Converts the value of this instance to its equivalent string representation.
+            </summary>
+      <returns>A string representation of value of this instance.</returns>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaItem.MetaDataProperties">
+      <summary>
+            Gets the list of properties of the current type.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaAssociation.#ctor(Telerik.OpenAccess.MetaData.AssociationType)">
+      <summary>
+            Initializes a new instance of the MetaAssociation class with the association type as a parameter.
+            </summary>
+      <param name="type">defines the association type of associations available in the Telerik OpenAccess ORM meta model.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaAssociation.AssociationType">
+      <summary>
+            Gets the association type of associations available in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaAssociation.AssociationEnds">
+      <summary>
+            Gets the list of ends for this association type.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetadataContainer">
+      <summary>
+             On the conceptual level, the MetaDataContainer class represents a container that will be mapped to a 
+             database object in the storage. The MetaDataContainer class can describe all persisant storage artifacts like tables, views, 
+             stored procedures, indexes, constraints, etc. It also can describe all conceptual level artifacts like classes, properties, fields, 
+             relationships, etc.
+             </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetadataContainer.#ctor">
+      <summary>
+            Initializes a new instance of the MetadataContainer class.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetadataContainer.PersistentTypes">
+      <summary>
+            Gets a list of types that are mapped to the corresponding artifacts like tables available in the relational store.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetadataContainer.Tables">
+      <summary>
+            Gets a list of tables that are available in the current container instance.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetadataContainer.Views">
+      <summary>
+            Gets a list of views that are available in the current container instance.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetadataContainer.Constraints">
+      <summary>
+            Gets a list of constraints that are available in the current container instance.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetadataContainer.Indexes">
+      <summary>
+            Gets a list of indexes that are available in the current container instance.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetadataContainer.StoredProcedures">
+      <summary>
+            Gets a list of stored procedures that are available in the current container instance.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetadataContainer.Schemas">
+      <summary>
+            Gets a list of schema names that are available in the current container instance.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaForeignKeyAssociation">
+      <summary>
+            Represents a foreign key association in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaForeignKeyAssociation.#ctor(Telerik.OpenAccess.MetaData.AssociationType,System.Collections.Generic.List{Telerik.OpenAccess.MetaData.Relational.MetaColumn},System.Boolean,Telerik.OpenAccess.MetaData.Relational.MetaConstraint)">
+      <summary>
+            Initializes a new instance of the MetaForeignKeyAssociation class with the association type as a parameter.
+            </summary>
+      <param name="type">defines the association type of associations available in the Telerik OpenAccess ORM meta model.</param>
+      <param name="columns">defines a list of columns that define the foreign keys involved in the current association.</param>
+      <param name="hasDiscriminatorColumn">defines whether the association requires a discriminator column.</param>
+      <param name="constraint">defines the constraint applied to the current association. If no constraint is applied, null is returned.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaForeignKeyAssociation.Columns">
+      <summary>
+            Gets a list of columns that define the foreign keys involved in the current association.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaForeignKeyAssociation.HasDicriminatorColumn">
+      <summary>
+            Gets whether the association requires a discriminator column. If the corresponding end in the association is represented by a type
+            stored in a table that is polymorphic (contains multiple types)in the datastore
+            
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaForeignKeyAssociation.Constraint">
+      <summary>
+            Gets the constraint applied to the current association. If no constraint is applied, null is returned.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaItemAttribute">
+      <summary>
+            Provides additional information about types and their members. In the Telerik OpenAccess ORM metadata type hierarchy, 
+            MetaItemAttribute instances provide additional information about members through the declared type for the member.
+            The attributes can be accessed via the MetaDataProperties collection of the base MetaItem type.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaItemAttribute.#ctor(System.String,System.Object)">
+      <summary>
+            Initializes a new instance of the MetaItemAttribute with a key and value as parameters.
+            </summary>
+      <param name="key">defines the key value</param>
+      <param name="value">defines the value</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaItemAttribute.Key">
+      <summary>
+            Gets or sets the name of this meta item attribute.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaItemAttribute.Value">
+      <summary>
+            Gets or sets the value of this meta item attribute.        
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaJoinTableAssociation">
+      <summary>
+            Represents a join table association in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaJoinTableAssociation.#ctor(Telerik.OpenAccess.MetaData.AssociationType,System.Collections.Generic.List{Telerik.OpenAccess.MetaData.Relational.MetaColumn},System.Collections.Generic.List{Telerik.OpenAccess.MetaData.Relational.MetaColumn},System.Collections.Generic.List{Telerik.OpenAccess.MetaData.Relational.MetaColumn},Telerik.OpenAccess.MetaData.Relational.MetaColumn,Telerik.OpenAccess.MetaData.Relational.MetaTable,System.Boolean)">
+      <summary>
+            Initializes a new instance of the MetaJoinTableAssociation class with the association type as a parameter.
+            </summary>
+      <param name="type">defines the association type of associations available in the Telerik OpenAccess ORM meta model.</param>
+      <param name="fromColumns">defines a list of columns in the join table that define the 'from end' role in the association.</param>
+      <param name="toColumns">defines a list of columns in the join table that define the 'to end' role in the association.</param>
+      <param name="toKeyColumns">defines a list of columns in  in the join table that define the keys for the 'to end' role in the association.</param>
+      <param name="sequenceColumn">defines the sequence column for the join table used by the current association.</param>
+      <param name="joinTable">defines the join table used by the current association.</param>
+      <param name="shouldUpdateSchema">defines a value indicating whether the relational store definition for the current type requires modification.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaJoinTableAssociation.FromColumns">
+      <summary>
+            Gets a list of columns in the join table that define the 'from end' role in the association.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaJoinTableAssociation.ToColumns">
+      <summary>
+            Gets a list of columns in the join table that define the 'to end' role in the association.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaJoinTableAssociation.ToKeyColumns">
+      <summary>
+            Gets a list of columns in  in the join table that define the keys for the 'to end' role in the association, 
+            in a case of dictionaries or maps.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaJoinTableAssociation.SequenceColumn">
+      <summary>
+            Gets the sequence column for the join table used by the current association.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaJoinTableAssociation.JoinTable">
+      <summary>
+            Gets the join table used by the current association.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaJoinTableAssociation.ShouldUpdateSchema">
+      <summary>
+            Gets a value indicating whether the relational store definition for the current type requires modification.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaMember">
+      <summary>
+            Represents a member that can be declared in any MetaType. 
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaMember.#ctor(System.String,System.String,System.Type,System.Boolean,System.Boolean)">
+      <summary>
+            Initializes a new instance of the MetaMember class with the required parameters.
+            </summary>
+      <param name="fieldName">defines the field name that is associated with this member on the conceptual level.</param>
+      <param name="propertyName">defines the property name that is associated with this member on the conceptual level.</param>
+      <param name="fieldType">defines the type of the member.</param>
+      <param name="visible">defines a value indicating whether the meta member is visible on the declaring type level or only associated with it.</param>
+      <param name="artificial">defines whether this field is marked as artificial.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaMember.FieldName">
+      <summary>
+            Gets the field name that is associated with this member on the conceptual level.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaMember.PropertyName">
+      <summary>
+            Gets the property name that is associated with this member on the conceptual level.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaMember.MemberType">
+      <summary>
+            Contains the type of the member.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaMember.IsVisible">
+      <summary>
+            Gets a value indicating whether the meta member is visible on the declaring type level or only associated with it.
+            For example such are the internal identity meta members - they are bound ot each entity, but they are not visible as a
+            customer browsable member of the class.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaMember.DeclaringType">
+      <summary>
+            Gets the type on which this member is declared.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaMember.IsArtificial">
+      <summary>
+            Gets whether this field is marked as artificial.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaNavigationMember">
+      <summary>
+            Represents a MetaNavigationMember in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaNavigationMember.#ctor(System.String,System.String,System.Type,System.Boolean,Telerik.OpenAccess.MetaData.Multiplicity,Telerik.OpenAccess.MetaData.MetaType,Telerik.OpenAccess.MetaData.MetaAssociation,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+      <summary>
+            Initializes a new instance of the MetaNavigationMember class with the required parameters.
+            </summary>
+      <param name="fieldName">defines the field name that is associated with this member on the conceptual level.</param>
+      <param name="propertyName">defines the property name that is associated with this member on the conceptual level.</param>
+      <param name="fieldType">defines the type of the member.</param>
+      <param name="visible">defines a value indicating whether the meta member is visible on the declaring type level or only associated 
+            with it.</param>
+      <param name="artificial">defines whether this field is marked as artificial.</param>
+      <param name="multiplicity">defines the multiplicity information about the relationship's end represented by the current type. </param>
+      <param name="referencedType">defines the type that is accessed on the corresponding end of the association.</param>
+      <param name="association">defines the association that manages the 'end' represented by the current type.</param>
+      <param name="master">defines the information whether the current type represents the 'master role' end of a association</param>
+      <param name="managed">defines whether association's end integrity is managed by Telerik OpenAccess ORM</param>
+      <param name="depend">defines whether the state of association's end that the current member represents is dependent on the 
+            operations applied on the corresponding end of the association.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaNavigationMember.Multiplicity">
+      <summary>
+            Gets the multiplicity information about the relationship's end represented by the current type. 
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaNavigationMember.ReferencedType">
+      <summary>
+            Gets the type that is accessed on the corresponding end of the association.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaNavigationMember.Association">
+      <summary>
+            Gets the association that manages the 'end' represented by the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaNavigationMember.Master">
+      <summary>
+            Gets the information whether the current type represents the 'master role' end of a association.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaNavigationMember.IsManaged">
+      <summary>
+            Gets whether association's end integrity is managed by Telerik OpenAccess ORM.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaNavigationMember.IsDependent">
+      <summary>
+            Gets whether the state of association's end that the current member represents is dependent on the operations applied on the 
+            corresponding end of the association. It allows operations like cascading deletes to be executed.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaPrimitiveMember">
+      <summary>
+            Represents a member that can be declared in any MetaType. 
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaPrimitiveMember.#ctor(System.String,System.String,System.Type,System.Boolean,Telerik.OpenAccess.MetaData.Relational.MetaColumn,System.Boolean,System.Boolean,System.Boolean)">
+      <summary>
+            Initializes a new instance of the MetaPrimitiveMember class with the required parameters.
+            </summary>
+      <param name="fieldName">defines the field name that is associated with this member on the conceptual level.</param>
+      <param name="propertyName">defines the property name that is associated with this member on the conceptual level.</param>
+      <param name="fieldType">defines the type of the member.</param>
+      <param name="visible">defines a value indicating whether the meta member is visible on the declaring type level or only associated with it.</param>
+      <param name="artificial">defines whether this field is marked as artificial.</param>
+      <param name="column">defines the name of the column within the data source to map from.</param>
+      <param name="identity">defines whether the current type represents the owner's type identity.</param>
+      <param name="structMember">defines whether the current type represents a member of a structure value type.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaPrimitiveMember.Column">
+      <summary>
+            Gets the name of the column within the data source to map from.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaPrimitiveMember.IsIdentity">
+      <summary>
+            Gets whether the current type represents the owner's type identity.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaPrimitiveMember.IsStructMember">
+      <summary>
+            Gets whether the current type represents a member of a structure value type.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaScopedItem">
+      <summary>
+            Represents the base item class for all the metadata in the Telerik OpenAccess ORM metadata type hierarchy that is a part of a 
+            relational schema. 
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaScopedItem.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the MetaScopedItem class with the required schema name as a parameter.
+            </summary>
+      <param name="schemaName">defines schema name</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaScopedItem.SchemaName">
+      <summary>
+            Gets the name of the schema of the current type.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.MetaType">
+      <summary>
+            Represents a persistent type in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.MetaType.#ctor(System.String,System.String,System.String,System.Type,Telerik.OpenAccess.MetaData.MetadataContainer,System.Collections.Generic.List{Telerik.OpenAccess.MetaData.MetaMember},Telerik.OpenAccess.MetaData.Relational.MetaTable,Telerik.OpenAccess.MetaData.InheritanceStrategy,System.String,System.Int32,System.String,Telerik.OpenAccess.MetaData.OptimisticConcurrencyControlStrategy,System.Boolean,System.Boolean,Telerik.OpenAccess.MetaData.IdentityType,Telerik.OpenAccess.MetaData.DataAccessKind)">
+      <summary>
+            Initializes a new instance of the MetaType class with the required parameters.
+            </summary>
+      <param name="name">defines the name of the type</param>
+      <param name="nameSpace">defines the namespace of the type</param>
+      <param name="fullName">defines the full name of the type</param>
+      <param name="t">
+      </param>
+      <param name="container">defines the root container that contains the whole metadata model.</param>
+      <param name="members">defines the members collection</param>
+      <param name="table">defines the table mapped to the current type</param>
+      <param name="inheritanceStrategy">defines the inheritance strategy</param>
+      <param name="keyGenerator">defines the key generator used</param>
+      <param name="classId">defines the class Id</param>
+      <param name="discriminatorValue">
+      </param>
+      <param name="optimisticConcurrencyControlStrategy">defines the concurrency control mechanism.</param>
+      <param name="updateSchema">defines whether the relational store definition for the current type requires modification.</param>
+      <param name="artificial">defines value that represents if the current type is artificial.</param>
+      <param name="identityType">defines the identity type of the current type.</param>
+      <param name="accessKind">defines the type of access to user data for the current type.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.Name">
+      <summary>
+            Gets the name of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.Namespace">
+      <summary>
+            Gets the namespace of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.FullName">
+      <summary>
+            Gets the full name that includes both namespace and name of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.ElementType">
+      <summary>
+            Gets a common language runtime (CLR) object that represents a concrete class defined by the 
+            current meta type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.MetaDataContainer">
+      <summary>
+            The root instance containing the meta model where the current type is defined.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.Members">
+      <summary>
+            Gets a list of the current type members.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.Table">
+      <summary>
+            Gets the MetaTable instance that is mapped to the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.BaseType">
+      <summary>
+            Gets the type from which the current type directly inherits.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.DerivedTypes">
+      <summary>
+            Gets a list of types that have the current type as their base type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.InheritanceStrategy">
+      <summary>
+            Gets the inheritance strategy for the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.KeyGeneratorName">
+      <summary>
+            Gets the name of the key generator used.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.ClassId">
+      <summary>
+            The in-memory Id used to distinguish a particular instance.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.OptimisticConcurrencyControlStrategy">
+      <summary>
+            Gets the concurency control strategy used during write time.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.ShouldUpdateSchema">
+      <summary>
+            Gets a value indicating whether the relational store definition for the current type requires modification.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.IsArtificial">
+      <summary>
+            Gets whether this field is marked as artificial.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.IdentityType">
+      <summary>
+            Gets the identity type of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.DataAccessKind">
+      <summary>
+            Gets the type of access to user data for the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.MetaType.FetchGroups">
+      <summary>
+            Gets the fetch groups defined for the current type.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Multiplicity">
+      <summary>
+            Represents the multiplicity information about the End of a relationship type. 
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.Multiplicity.ZeroOrOne">
+      <summary>
+            A lower bound is zero and an upper bound is one.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.Multiplicity.One">
+      <summary>
+            A lower bound is one and an upper bound is one.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.Multiplicity.Many">
+      <summary>
+            A lower bound is zero and an upper bound is N (one or more).
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.OptimisticConcurrencyControlStrategy">
+      <summary>
+            Specifies the concurrency control options for the persistent types in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.OptimisticConcurrencyControlStrategy.None">
+      <summary>
+            Nothing is validated at write time.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.OptimisticConcurrencyControlStrategy.Version">
+      <summary>
+            Defines that a version column is used to detect concurrent updates. The version number is incremented on every update and the previous version 
+            number is included in the where clause. This is the fastest and safest optimistic concurrency control mode. 
+            This is the default and suggested concurrency mode.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.OptimisticConcurrencyControlStrategy.Timestamp">
+      <summary>
+            Defines that a timestamp column is to be used to detect concurrent updates. The timestamp is set on every update and the previous value 
+            is included in the where clause. This may not be safe if updates happen quicker than the resolution of the timestamp field. 
+            It is included to support legacy database schemas.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.OptimisticConcurrencyControlStrategy.Changed">
+      <summary>
+            Defines that previous values of all changed columns will be included in the where clause. This provides more fine-grained optimistic 
+            concurrency control as different transactions may modify different fields of the same instance. This mode can be used when the database 
+            schema allows no modifications (adding a version column for example). Float and double fields are excluded as they are not exact (rounding procedures are different across databases and also
+            differ from the way .NET is handling it).
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.OptimisticConcurrencyControlStrategy.Backend">
+      <summary>
+            Defines that a backend speciffic concurency control mechanism is used.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.OptimisticConcurrencyControlStrategy.All">
+      <summary>
+            Defines that the values of all columns (changed or not) will be included in the where clause.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Relational.MetaColumn">
+      <summary>
+      </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.Relational.MetaColumn.#ctor(System.String,System.String,System.Boolean,System.Int32,System.Int32,Telerik.OpenAccess.MetaData.Relational.MetaTable,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+      <summary>
+            Initializes a new instance of the MetaColumn class with the required parameters.
+            </summary>
+      <param name="name">defines the name of the current type.</param>
+      <param name="sqlType">defines the type of data stored in the column.</param>
+      <param name="nullable">defines or sets a value that indicates whether the column accepts null values.</param>
+      <param name="precision">defines the maximum number of digits used to represent the column contents.</param>
+      <param name="scale">defines the number of decimal places to which the values are resolved.</param>
+      <param name="table">defines the table that is associated with the current column.</param>
+      <param name="primaryKey">defines a value indicating whether or not the current column is a primary key in a constraint.</param>
+      <param name="foreignKey">defines a value indicating whether or not the current column is a foreign key in a constraint.</param>
+      <param name="autoInc">defines a value that indicates whether the column automatically increments the value of the column for new rows added to the table.</param>
+      <param name="shared">defines if the current column is shared.</param>
+      <param name="adoType">defines the internal type mapping.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.Name">
+      <summary>
+            Gets the name of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.SqlType">
+      <summary>
+            Gets the type of data stored in the column.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.IsNullable">
+      <summary>
+            Gets or sets a value that indicates whether the column accepts null values.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.Precision">
+      <summary>
+            Gets the maximum number of digits used to represent the column contents.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.Scale">
+      <summary>
+            Gets the number of decimal places to which the values are resolved.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.Table">
+      <summary>
+            Gets the table that is associated with the current column.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.IsPrimaryKey">
+      <summary>
+            Gets a value indicating whether or not the current column is a primary key in a constraint.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.IsForeignKey">
+      <summary>
+            Gets a value indicating whether or not the current column is a foreign key in a constraint.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.AutoIncrement">
+      <summary>
+            Gets a value that indicates whether the column automatically increments the value of the column for new rows added to the table.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.IsShared">
+      <summary>
+            Gets if the current column is shared.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaColumn.AdoType">
+      <summary>
+            The internal type mapping.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Relational.MetaConstraint">
+      <summary>
+            Represents a constraint definition in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.Relational.MetaConstraint.#ctor(System.String,System.String,System.String,Telerik.OpenAccess.MetaData.Relational.MetaTable,Telerik.OpenAccess.MetaData.Relational.MetaTable,System.Collections.Generic.List{Telerik.OpenAccess.MetaData.Relational.MetaColumn})">
+      <summary>
+            Itializes a new instance of the MetaConstraint class with the required parameters.
+            </summary>
+      <param name="name">defines the name of the current type.</param>
+      <param name="schemaName">defines the schema of the current type.</param>
+      <param name="fullName">defines the full name of the type</param>
+      <param name="source">defines the "source table" that takes part in this constraint.</param>
+      <param name="destination">defines the "destination table" that takes part in this constraint.</param>
+      <param name="columns">defines the list of source columns for the "source table" on which this constraint is defined.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaConstraint.Name">
+      <summary>
+            Gets the name of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaConstraint.FullName">
+      <summary>
+            Gets the full name that includes both schema and name of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaConstraint.SourceTable">
+      <summary>
+            Gets the "source table" that takes part in this constraint.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaConstraint.DestinationTable">
+      <summary>
+            Gets the "destination table" that takes part in this constraint.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaConstraint.SourceColumns">
+      <summary>
+            Gets the list of source columns for the "source table" on which this constraint is defined.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Relational.MetaFetchGroup">
+      <summary>
+            Represents a fetch group in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.Relational.MetaFetchGroup.#ctor(System.String,System.Boolean)">
+      <summary>
+            Creates a new MetaFetchGroup instance based on the name and the user-defined condition passed 
+            as arguments.
+            </summary>
+      <param name="name">The name of the fetch group.</param>
+      <param name="userDefined">Indicates whether the current fetch group is defined by the user.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaFetchGroup.Name">
+      <summary>
+            Gets the name of the fetch group that is represented by the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaFetchGroup.IsUserDefined">
+      <summary>
+            Indicates whether the current fetch group is defined by the user.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaFetchGroup.FetchGroupMembers">
+      <summary>
+            Gets a list of fetch group members, represented by the current fetch group. 
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Relational.MetaFetchGroupMember">
+      <summary>
+             Represents a fetch group member in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.Relational.MetaFetchGroupMember.#ctor(Telerik.OpenAccess.MetaData.MetaMember)">
+      <summary>
+            Creates a new MetaFetchGroupMember instance based on the MetaMember instance passed as an argument.
+            </summary>
+      <param name="member">A MetaMember instance.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaFetchGroupMember.Member">
+      <summary>
+            Represents a concrete meta member used in the current fetch group.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Relational.MetaIndex">
+      <summary>
+            Represents an index definition in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.Relational.MetaIndex.#ctor(System.String,System.Boolean,System.Boolean,System.Collections.Generic.List{Telerik.OpenAccess.MetaData.Relational.MetaColumn},Telerik.OpenAccess.MetaData.Relational.MetaTable)">
+      <summary>
+            Itializes a new instance of the MetaIndex class with the required parameters.
+            </summary>
+      <param name="name">defines the name of the current type.</param>
+      <param name="clustered">defines whether the index is clustered.</param>
+      <param name="unique">defines whether the index is uniqe.</param>
+      <param name="columns">defines the list of columns included in the index.</param>
+      <param name="table">defines the table that is associated with the current index.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaIndex.Name">
+      <summary>
+            Gets the name of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaIndex.Clustered">
+      <summary>
+            Gets whether the index is clustered.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaIndex.Unique">
+      <summary>
+            Gets whether the index is uniqe.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaIndex.Columns">
+      <summary>
+            Gets the list of columns included in the index.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaIndex.Table">
+      <summary>
+            Gets the table that is associated with the current index.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure">
+      <summary>
+             Represents a stored procedure in the Telerik OpenAccess ORM meta model.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure.#ctor(System.String,System.String,System.String)">
+      <summary>
+            Itializes a new instance of the MetaStoredProcedure class
+            </summary>
+      <param name="name">defines the name of the current type.</param>
+      <param name="schemaName">defines the schema name of the current type.</param>
+      <param name="fullName">defines the full name that includes both the schema and the name of the current type.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure.Name">
+      <summary>
+            Gets the name of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure.FullName">
+      <summary>
+            Gets the full name that includes both the schema and the name of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure.Parameter">
+      <summary>
+            Gets the parameters list of the stored procedure. The default is an empty collection.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure.ShouldUpdateSchema">
+      <summary>
+            Gets a value indicating whether the relational store definition for the current type requires modification.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedureParameter">
+      <summary>
+            Describes the parameters of an MetaStoredProcedure class.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedureParameter.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the MetaStoredProcedureParameter class with the name of the 
+            parameter.
+            </summary>
+      <param name="name">defines the name of the current type.</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedureParameter.Name">
+      <summary>
+            Gets the name of the current type.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedureParameter.DeclaringProcedure">
+      <summary>
+            Gets or sets the MetaStoredProcedure on which this parameter is declared.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Relational.MetaTable">
+      <summary>
+            Describes a database table.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.Relational.MetaTable.#ctor(System.String,System.String,System.String,System.Boolean,System.String,Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure,Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure,Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure,Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure)">
+      <summary>
+            Constructs a table instance.
+            </summary>
+      <param name="name">Table name</param>
+      <param name="schemaName">Name of database schema to which the table belongs.</param>
+      <param name="fullName">Table name with schema and database prefix, should be delimited.</param>
+      <param name="readOnly">true if table does not accept insert, update or delete operations</param>
+      <param name="pkConstraintName">The name of the primary key constraint</param>
+      <param name="insertProcedure">Procedure used for insert operations</param>
+      <param name="updateProcedure">Procedure used for update operations</param>
+      <param name="deleteProcedure">Procedure used for delete operations</param>
+      <param name="removeRowsProcedure">Procedure to delete all rows in a join table for a specific collection</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.Name">
+      <summary>
+            Gets the name of the database table.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.FullName">
+      <summary>
+            Gets the full name of the database table, prefixed with schema and database name if valid. 
+            If the backend support delimitation it is delimeted.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.Columns">
+      <summary>
+            Gets the list of columns in this table.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.ReadOnly">
+      <summary>
+            Gets the read only state of the table
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.PKConstraintName">
+      <summary>
+            Gets the name of the primary key constraint of this table.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.Constraints">
+      <summary>
+            Gets a list of constraints that are defined on this table.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.Indexes">
+      <summary>
+            Gets a list of indexes that are defined on this table.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.InsertStoredProcedure">
+      <summary>
+            Gets the stored procedure used for all insert operations. This can be null.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.UpdateStoredProcedure">
+      <summary>
+            Gets the stored procedure used for all update operations. This can be null.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.DeleteStoredProcedure">
+      <summary>
+            Gets the stored procedure used for all delete operations. This can be null.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaTable.RemoveRowsStoredProcedure">
+      <summary>
+            Gets the stored procedure used for all join table operations to delete a specific collection content. This can be null.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.Relational.MetaView">
+      <summary>
+            Describes a database view.
+            </summary>
+    </member>
+    <member name="M:Telerik.OpenAccess.MetaData.Relational.MetaView.#ctor(System.String,System.String,System.String,System.Boolean,Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure,Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure,Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure,Telerik.OpenAccess.MetaData.Relational.MetaStoredProcedure)">
+      <summary>
+            Constructs a view instance.
+            </summary>
+      <param name="name">View name</param>
+      <param name="schemaName">Name of database schema to which the view belongs.</param>
+      <param name="fullName">View name with schema and database prefix (usual equals to name)</param>
+      <param name="readOnly">true if the view does not accept insert, update or delete operations</param>
+      <param name="insertProcedure">Procedure used for insert operations</param>
+      <param name="updateProcedure">Procedure used for update operations</param>
+      <param name="deleteProcedure">Procedure used for delete operations</param>
+      <param name="removeRowsProcedure">Procedure to delete all rows in a join table for a specific collection</param>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaView.Name">
+      <summary>
+            Gets the name of the database view.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaView.FullName">
+      <summary>
+            Gets the full name of the database view, prefixed with schema and database name if valid. Usually equals to the Name.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaView.Columns">
+      <summary>
+            Gets the list of columns in this view.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaView.ReadOnly">
+      <summary>
+            Gets the read only state of the view
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaView.PKConstraintName">
+      <summary>
+            Gets the name of the primary key constraint of this view.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaView.Constraints">
+      <summary>
+            Gets a list of constraints that are defined on this view.
+            </summary>
+    </member>
+    <member name="P:Telerik.OpenAccess.MetaData.Relational.MetaView.Indexes">
+      <summary>
+            Gets a list of indexes that are defined on this view.
+            </summary>
+    </member>
+    <member name="T:Telerik.OpenAccess.MetaData.DataAccessKind">
+      <summary>
+            Describes the type of access to user data for a persistent type.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.DataAccessKind.ReadWrite">
+      <summary>
+            The type or field allows full access to user data. All CRUD modifications are allowed.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.DataAccessKind.InsertOnly">
+      <summary>
+            The type or field allows only reading and inserting user data. No modifications (update or delete) are allowed.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.DataAccessKind.ReadOnly">
+      <summary>
+            The type or field allows only reading user data. No CUD modifications (create, update or delete) are allowed.
+            </summary>
+    </member>
+    <member name="F:Telerik.OpenAccess.MetaData.DataAccessKind.None">
+      <summary>
+            The type or field does not access user data.
+            </summary>
     </member>
     <member name="T:Telerik.OpenAccess.DefaultFetchGroupAttribute">
       <summary>
@@ -1111,6 +2175,17 @@
             Gets the default properties for the transactions.
             </summary>
       <value>Transaction properties instance with the default values.</value>
+    </member>
+    <member name="P:Telerik.OpenAccess.Database.MetaData">
+      <summary>
+            Gets the metadata tree for this database.
+            </summary>
+      <returns>Returns the metadata tree for the actual database connection.</returns>
+    </member>
+    <member name="P:Telerik.OpenAccess.Database.Cache">
+      <summary>
+            Level two cache controlling
+            </summary>
     </member>
     <member name="T:Telerik.OpenAccess.IDatabaseProperties">
       <summary>
@@ -2573,7 +3648,7 @@
       <param name="serializationInfo">The SerializationInfo object.</param>
       <param name="context">The StreamingContext object.</param>
     </member>
-    <member name="M:Telerik.OpenAccess.Exceptions.QueryException.#ctor(System.String,System.Exception,Telerik.OpenAccess.OpenAccessException.Failure)">
+    <member name="M:Telerik.OpenAccess.Exceptions.QueryException.#ctor(System.String,System.Exception,Telerik.OpenAccess.OpenAccessException.Failure,System.String)">
       <summary>SPI</summary>
     </member>
     <member name="T:Telerik.OpenAccess.Exceptions.ConfigurationException">
@@ -3311,6 +4386,24 @@
             Transaction is not running (IObjectScope implementation).
             </exception>
     </member>
+    <member name="M:Telerik.OpenAccess.IObjectContext.IsDirty(System.Object,System.String)">
+      <summary>
+            Indicates whether the state of a field of a persistent object in 
+            this context is 'dirty' / to be updated.
+            </summary>
+      <param name="persistentObject">The object to be checked.</param>
+      <param name="fieldName">The name of the field to be checked</param>
+      <returns>
+        <c>true</c> if the object was modified (marked as dirty); 
+            <c>false</c> otherwise.</returns>
+      <exception cref="T:Telerik.OpenAccess.Exceptions.ObjectNotEnhancedException">
+            The type of <paramref name="persistentObject" /> was not marked as 
+            [Persistent] or is not enhanced.
+            </exception>
+      <exception cref="T:Telerik.OpenAccess.Exceptions.TransactionNotActiveException">
+            Transaction is not running (IObjectScope implementation).
+            </exception>
+    </member>
     <member name="M:Telerik.OpenAccess.IObjectContext.IsRemoved(System.Object)">
       <summary>
              Indicates whether the state of a persistent object in 
@@ -3574,12 +4667,12 @@
             Defines how add and remove on a list should be handled with regards to the database.
             </summary>
     </member>
-    <member name="P:Telerik.OpenAccess.IPersistentBehavior.AddBehaviour">
+    <member name="P:Telerik.OpenAccess.IPersistentBehavior.AddBehavior">
       <summary>
             Defines how add on a list should be handled with regards to the database.
             </summary>
     </member>
-    <member name="P:Telerik.OpenAccess.IPersistentBehavior.DeleteBehaviour">
+    <member name="P:Telerik.OpenAccess.IPersistentBehavior.DeleteBehavior">
       <summary>
             Defines how remove on a list should be handled with regards to the database.
             </summary>
@@ -4372,6 +5465,24 @@
              persistence-capable class (not marked with the [Persistent]
              attribute or not enhanced).</exception>
     </member>
+    <member name="M:Telerik.OpenAccess.ObjectContainer.IsDirty(System.Object,System.String)">
+      <summary>
+            Checks if a field of a persistent object is in the 'DIRTY' state.
+            </summary>
+      <param name="persistentObject">The object to be checked; 
+            must be managed by this
+            ObjectContainer.</param>
+      <param name="fieldName">The name of the field to be checked.</param>
+      <returns>Value <c>true</c> if field has been modified or has been 
+             marked dirty explicitly; otherwise <c>false</c>.</returns>
+      <exception cref="T:System.ArgumentException">
+             When <paramref name="persistentObject" /> is not contained in this
+             ObjectContainer.</exception>
+      <exception cref="T:System.InvalidCastException">When 
+             <paramref name="persistentObject" /> is not an instance of a
+             persistence-capable class (not marked with the [Persistent]
+             attribute or not enhanced).</exception>
+    </member>
     <member name="M:Telerik.OpenAccess.ObjectContainer.IsRemoved(System.Object)">
       <summary>
             Checks if a persistent object is in the 'DELETED' state.
@@ -4802,6 +5913,11 @@
       <param name="sinfo">The SerializationInfo object.</param>
       <param name="context">The StreamingContext object.</param>
     </member>
+    <member name="M:Telerik.OpenAccess.ObjectContainer.MarkContentAsNew">
+      <summary>
+            Marks the complete container content as new.
+            </summary>
+    </member>
     <member name="P:Telerik.OpenAccess.ObjectContainer.Transaction">
       <summary>
             Gets the associated transaction instance.
@@ -4816,7 +5932,7 @@
     </member>
     <member name="P:Telerik.OpenAccess.ObjectContainer.AutoSync">
       <summary>
-            Controls the transactional behaviour of the database connection.
+            Controls the transactional behavior of the database connection.
             </summary>
       <value>An instance of IDBConnection.</value>
     </member>
@@ -5936,13 +7052,13 @@
             Removes any sort applied.
             </summary>
     </member>
-    <member name="P:Telerik.OpenAccess.QueryResultBindingList`1.DeleteBehaviour">
+    <member name="P:Telerik.OpenAccess.QueryResultBindingList`1.DeleteBehavior">
       <summary>
             Defines how remove on a list should be handled with regards to the database.
             </summary>
       <value>The value if the list remove operations should delete the database data.</value>
     </member>
-    <member name="P:Telerik.OpenAccess.QueryResultBindingList`1.AddBehaviour">
+    <member name="P:Telerik.OpenAccess.QueryResultBindingList`1.AddBehavior">
       <summary>
             Defines how add on a list should be handled with regards to the database.
             </summary>
