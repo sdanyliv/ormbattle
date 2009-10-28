@@ -3,6 +3,7 @@
 // For conditions of distribution and use, see license.
 // Created by: Alexis Kochetov
 // Created:    2009.10.27
+
 using System;
 using System.Data.Linq;
 using System.Linq;
