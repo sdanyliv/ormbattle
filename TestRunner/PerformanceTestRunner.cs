@@ -73,6 +73,7 @@ namespace OrmBattle.TestRunner
         var tests = new List<PerformanceTestBase> {
           new BLToolkitTest(),
           new EFTest(),
+          new EntitySpacesTest(),
           new DOTest(),
           new LightSpeedTest(),
           new Linq2SqlTest(),
