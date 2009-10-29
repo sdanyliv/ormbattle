@@ -267,10 +267,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: OpenAccessException
-    // Message:
-    //   Invalid projection type used. (OpenAccessRuntime.DataObjects.query.EqualNode)
+    // Passed.
     public void SelectBooleanTest()
     {
       var result = from o in db.Orders
@@ -392,10 +389,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   CustomerExtent.SelectMany(c => c.Orders, (c, o) => new <>f__AnonymousType2`2(c = c, o = o)).Where(<>h__TransparentIdentifier23 => (<>h__TransparentIdentifier23.o.Freight < 500,00))
+    // Passed.
     public void SelectManyAnonymousTest()
     {
       var result = from c in db.Customers
@@ -408,10 +402,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   CustomerExtent.SelectMany(c => c.Orders, (c, o) => new <>f__AnonymousType2`2(c = c, o = o)).Select(<>h__TransparentIdentifier24 => new <>f__AnonymousType4`2(<>h__TransparentIdentifier24 = <>h__TransparentIdentifier24, freight = <>h__TransparentIdentifier24.o.Freight)).Where(<>h__TransparentIdentifier25 => (<>h__TransparentIdentifier25.freight < 500,00))
+    // Passed.
     public void SelectManyLetTest()
     {
       var result = from c in db.Customers
@@ -442,11 +433,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 830
-    //     But was:  91
+    // Passed.
     public void SelectManyOuterProjectionTest()
     {
       var result = db.Customers.SelectMany(i => i.Orders.Select(t => i));
@@ -457,10 +444,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Object must implement IConvertible.
+    // Passed.
     public void SelectManyLeftJoinTest()
     {
       var result =
@@ -624,10 +608,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Not implemented: VisitBinary Multiply
+    // Passed.
     public void OrderByCalculatedColumnTest()
     {
       var result =
@@ -643,10 +624,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
+    // Passed.
     public void OrderByEntityTest()
     {
       var result =
@@ -663,9 +641,11 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Ordering")]
     // Failed.
-    // Exception: InvalidCastException
+    // Exception: ArgumentOutOfRangeException
     // Message:
-    //   Unable to cast object of type 'System.Linq.Expressions.NewExpression' to type 'OpenAccessRuntime.DataObjects.query.Node'.
+    //   Using the variable or parameter not possible in this context.
+    //   Parameter name: name
+    //   Actual value was o.
     public void OrderByAnonymousTest()
     {
       var result =
@@ -704,10 +684,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   CustomerExtent.OrderBy(c => c.ContactName).SelectMany(c => value(OrmBattle.Tests.Linq.OpenAccessTest).db.Orders.OrderBy(o => o.OrderDate), (c, o) => new <>f__AnonymousType2`2(c = c, o = o)).Where(<>h__TransparentIdentifier5b => (<>h__TransparentIdentifier5b.c = <>h__TransparentIdentifier5b.o.Customer))
+    // Passed.
     public void OrderBySelectManyTest()
     {
       var result =
@@ -728,7 +705,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: OpenAccessException
     // Message:
-    //   Invalid node in orders: AndNode@6e7158
+    //   Invalid node in orders: AndNode@231d2a3
     public void OrderByPredicateTest()
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);
@@ -810,9 +787,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Grouping")]
     // Failed.
-    // Exception: InvalidCastException
+    // Exception: TargetParameterCountException
     // Message:
-    //   Unable to cast object of type 'System.String' to type 'OrmBattle.TelerikModel.Northwind.Customer'.
+    //   Parameter count mismatch.
     public void GroupBySelectManyTest()
     {
       var result = db.Customers
@@ -910,10 +887,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   CustomerExtent.Where(c => (c.Orders.Count <= 1)).Concat(CustomerExtent.Where(c => (c.Orders.Count > 1)))
+    // Passed.
     public void ConcatTest()
     {
       var result = db.Customers.Where(c => c.Orders.Count <= 1).Concat(db.Customers.Where(c => c.Orders.Count > 1));
@@ -926,7 +900,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: NotSupportedException
     // Message:
-    //   CustomerExtent.Select(c => c.Phone).Union(CustomerExtent.Select(c => c.Fax))
+    //   The last accepted query piece is not from the this query.
     public void UnionTest()
     {
       var result = (
@@ -949,7 +923,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: NotSupportedException
     // Message:
-    //   CustomerExtent.Except(CustomerExtent.Where(c => (c.Orders.Count() > 0)))
+    //   The last accepted query piece is not from the this query.
     public void ExceptTest()
     {
       var result =
@@ -963,7 +937,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: NotSupportedException
     // Message:
-    //   CustomerExtent.Intersect(CustomerExtent.Where(c => (c.Orders.Count() > 0)))
+    //   The last accepted query piece is not from the this query.
     public void IntersectTest()
     {
       var result =
@@ -1413,9 +1387,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Aggregates")]
     // Failed.
-    // Exception: InvalidCastException
+    // Exception: NotSupportedException
     // Message:
-    //   Unable to cast object of type 'System.Linq.Expressions.UnaryExpression' to type 'System.Linq.Expressions.Expression`1[System.Func`2[OrmBattle.TelerikModel.Northwind.Customer,System.Int32]]'.
+    //   Execution of 'System.Linq.Queryable:Count(IQueryable`1,Expression`1)' on the database server side currently not implemented.
     public void MaxCountTest()
     {
       var max = db.Customers.Max(c => db.Orders.Count(o => o.Customer.Id == c.Id));
@@ -1446,7 +1420,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Passed.
+    // Failed.
+    // Exception: InvalidCastException
+    // Message:
+    //   Unable to cast object of type 'OpenAccessRuntime.DataObjects.query.FieldNavNode' to type 'OpenAccessRuntime.DataObjects.query.FieldNode'.
     public void JoinTest()
     {
       var result =
@@ -1460,7 +1437,12 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Passed.
+    // Failed.
+    // Exception: ArgumentOutOfRangeException
+    // Message:
+    //   Left join key not an extent bound iterator
+    //   Parameter name: leftField
+    //   Actual value was System.Object[].
     public void JoinByAnonymousTest()
     {
       var result =
@@ -1494,7 +1476,12 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Passed.
+    // Failed.
+    // Exception: ArgumentOutOfRangeException
+    // Message:
+    //   Left join key not an extent bound iterator
+    //   Parameter name: leftField
+    //   Actual value was System.Object[].
     public void JoinByReferenceTest()
     {
       var result =
@@ -1508,10 +1495,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   CustomerExtent.SelectMany(c => value(OrmBattle.Tests.Linq.OpenAccessTest).db.Orders, (c, o) => new <>f__AnonymousType2`2(c = c, o = o)).Where(<>h__TransparentIdentifiera3 => (<>h__TransparentIdentifiera3.c = <>h__TransparentIdentifiera3.o.Customer))
+    // Passed.
     public void CompareReferenceTest()
     {
       var result =
@@ -1582,10 +1566,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   GroupBy with restrictions on group not implemented yet.
+    // Passed.
     public void ComplexTest2()
     {
       var result = db.Customers
@@ -1791,10 +1772,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Execution of 'System.Math:Abs(Int32)' on the database server side currently not implemented.
+    // Passed.
     public void MathAbsTest()
     {
       var order = db.Orders.Where(o => Math.Abs(o.Id) == 10 || o.Id > 0).First();
@@ -1803,10 +1781,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Execution of 'System.Math:Asin(Double)' on the database server side currently not implemented.
+    // Passed.
     public void MathTrignometricTest()
     {
       var order = db.Orders.Where(o => Math.Asin(Math.Cos(o.Id)) == 0 || o.Id > 0).First();
@@ -1815,10 +1790,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Execution of 'System.Math:Floor(Decimal)' on the database server side currently not implemented.
+    // Passed.
     public void MathFloorTest()
     {
       var result = db.Orders.Where(o => Math.Floor(o.Freight) == 140);
@@ -1828,10 +1800,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Execution of 'System.Math:Ceiling(Decimal)' on the database server side currently not implemented.
+    // Passed.
     public void MathCeilingTest()
     {
       var result = db.Orders.Where(o => Math.Ceiling(o.Freight) == 141);
@@ -1841,10 +1810,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Execution of 'System.Math:Truncate(Decimal)' on the database server side currently not implemented.
+    // Passed.
     public void MathTruncateTest()
     {
       var result = db.Orders.Where(o => Math.Truncate(o.Freight) == 141);
@@ -1880,10 +1846,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: NotSupportedException
+    // Failed with assertion.
+    // Exception: AssertionException
     // Message:
-    //   Execution of 'System.Math:Round(Decimal,Int32)' on the database server side currently not implemented.
+    //     Expected: 6
+    //     But was:  7
     public void MathRoundDefaultTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1) == 6.5m);

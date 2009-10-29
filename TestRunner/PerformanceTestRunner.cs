@@ -80,8 +80,7 @@ namespace OrmBattle.TestRunner
           new NHibernateTest(),
           new OpenAccessTest(),
           new SubsonicTest(),
-          new SqlClientTest(),
-          new EntitySpacesTest()
+          new SqlClientTest()
         };
         if (toolNames!=null)
           tests = (
