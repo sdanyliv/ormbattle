@@ -70,40 +70,31 @@ namespace OrmBattle.Tests.Performance
 
     protected override void InsertMultipleTest(int count)
     {
-      using (var ts = new esTransactionScope()) {
-        var simplests = new SimplestsCollection();
-        for (int i = 0; i < count; i++) {
-          var simplest = simplests.AddNew();
-          simplest.Id = i;
-          simplest.Value = i;
-        }
-        simplests.Save();
-        ts.Complete();
+      var simplests = new SimplestsCollection();
+      for (int i = 0; i < count; i++) {
+        var simplest = simplests.AddNew();
+        simplest.Id = i;
+        simplest.Value = i;
       }
+      simplests.Save();
       InstanceCount = count;
     }
 
     protected override void UpdateMultipleTest()
     {
-      using (var ts = new esTransactionScope()) {
-        var simplests = new SimplestsCollection();
-        simplests.LoadAll();
-        foreach (var o in simplests)
-          o.Value++;
-        simplests.Save();
-        ts.Complete();
-      }
+      var simplests = new SimplestsCollection();
+      simplests.LoadAll();
+      foreach (var o in simplests)
+        o.Value++;
+      simplests.Save();
     }
 
     protected override void DeleteMultipleTest()
     {
-      using (var ts = new esTransactionScope()) {
-        var simplests = new SimplestsCollection();
-        simplests.LoadAll();
-        simplests.MarkAllAsDeleted();
-        simplests.Save();
-        ts.Complete();
-      }
+      var simplests = new SimplestsCollection();
+      simplests.LoadAll();
+      simplests.MarkAllAsDeleted();
+      simplests.Save();
     }
 
     protected override void InsertSingleTest(int count)

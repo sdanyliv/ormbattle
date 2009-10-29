@@ -604,7 +604,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Passed.
+    // Failed with assertion.
+    // Exception: AssertionException
+    // Message:
+    //     Expected: True
+    //     But was:  False
     public void OrderByCalculatedColumnTest()
     {
       var result =
