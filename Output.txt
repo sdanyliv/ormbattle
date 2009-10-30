@@ -1,11 +1,14 @@
-LINQ tests:
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
+Tested tools:
+  BLToolkit (BLT)
+  ADO.NET Entity Framework (EF)
+  EntitySpaces (ES)
+  DataObjects.Net (DO)
+  LightSpeed (LS)
+  LINQ to SQL (L2S)
+  NHibernate (NH)
+  OpenAccess (OA)
+  Subsonic (SS)
+  SqlClient (SQL)
 
 LINQ tests scorecard:
                                        BLT        EF        DO        LS       L2S        NH        OA   Maximum      Unit
