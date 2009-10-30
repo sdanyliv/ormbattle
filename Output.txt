@@ -39,63 +39,6 @@ Units:
   %:   percentage (% of passed tests), more is better.
 
 
-Performance tests (50 items):
-Pass 1 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 2 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 3 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 4 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 5 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-
 Performance tests (50 items) scorecard:
                                        BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
 CRUD Performance:               
@@ -130,63 +73,6 @@ Units:
   pages/s:   pages per second, more is better;
   objects/s: # of materialized objects per second, more is better.
 
-
-Performance tests (100 items):
-Pass 1 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 2 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 3 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 4 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 5 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
 
 Performance tests (100 items) scorecard:
                                        BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
@@ -223,63 +109,6 @@ Units:
   objects/s: # of materialized objects per second, more is better.
 
 
-Performance tests (500 items):
-Pass 1 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 2 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 3 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 4 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 5 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-
 Performance tests (500 items) scorecard:
                                        BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
 CRUD Performance:               
@@ -314,63 +143,6 @@ Units:
   pages/s:   pages per second, more is better;
   objects/s: # of materialized objects per second, more is better.
 
-
-Performance tests (1000 items):
-Pass 1 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 2 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 3 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 4 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 5 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
 
 Performance tests (1000 items) scorecard:
                                        BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
@@ -407,63 +179,6 @@ Units:
   objects/s: # of materialized objects per second, more is better.
 
 
-Performance tests (5000 items):
-Pass 1 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 2 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 3 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 4 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 5 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-
 Performance tests (5000 items) scorecard:
                                        BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
 CRUD Performance:               
@@ -499,63 +214,6 @@ Units:
   objects/s: # of materialized objects per second, more is better.
 
 
-Performance tests (10000 items):
-Pass 1 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 2 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 3 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 4 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 5 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-
 Performance tests (10000 items) scorecard:
                                        BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
 CRUD Performance:               
@@ -590,63 +248,6 @@ Units:
   pages/s:   pages per second, more is better;
   objects/s: # of materialized objects per second, more is better.
 
-
-Performance tests (30000 items):
-Pass 1 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 2 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 3 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 4 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
-Pass 5 out of 5...
-  Testing: BLToolkit (BLT)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: EntitySpaces (ES)
-  Testing: DataObjects.Net (DO)
-  Testing: LightSpeed (LS)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-  Testing: OpenAccess (OA)
-  Testing: Subsonic (SS)
-  Testing: SqlClient (SQL)
 
 Performance tests (30000 items) scorecard:
                                        BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
