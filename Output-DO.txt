@@ -36,33 +36,6 @@ Units:
   %:   percentage (% of passed tests), more is better.
 
 
-Performance tests (50 items):
-Pass 1 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 2 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 3 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 4 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 5 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-
 Performance tests (50 items) scorecard:
                                         DO        EF       L2S        NH      Unit
 CRUD Performance:               
@@ -97,33 +70,6 @@ Units:
   pages/s:   pages per second, more is better;
   objects/s: # of materialized objects per second, more is better.
 
-
-Performance tests (100 items):
-Pass 1 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 2 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 3 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 4 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 5 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
 
 Performance tests (100 items) scorecard:
                                         DO        EF       L2S        NH      Unit
@@ -160,33 +106,6 @@ Units:
   objects/s: # of materialized objects per second, more is better.
 
 
-Performance tests (500 items):
-Pass 1 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 2 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 3 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 4 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 5 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-
 Performance tests (500 items) scorecard:
                                         DO        EF       L2S        NH      Unit
 CRUD Performance:               
@@ -221,33 +140,6 @@ Units:
   pages/s:   pages per second, more is better;
   objects/s: # of materialized objects per second, more is better.
 
-
-Performance tests (1000 items):
-Pass 1 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 2 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 3 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 4 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 5 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
 
 Performance tests (1000 items) scorecard:
                                         DO        EF       L2S        NH      Unit
@@ -284,33 +176,6 @@ Units:
   objects/s: # of materialized objects per second, more is better.
 
 
-Performance tests (5000 items):
-Pass 1 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 2 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 3 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 4 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 5 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-
 Performance tests (5000 items) scorecard:
                                         DO        EF       L2S        NH      Unit
 CRUD Performance:               
@@ -346,33 +211,6 @@ Units:
   objects/s: # of materialized objects per second, more is better.
 
 
-Performance tests (10000 items):
-Pass 1 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 2 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 3 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 4 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 5 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-
 Performance tests (10000 items) scorecard:
                                         DO        EF       L2S        NH      Unit
 CRUD Performance:               
@@ -407,33 +245,6 @@ Units:
   pages/s:   pages per second, more is better;
   objects/s: # of materialized objects per second, more is better.
 
-
-Performance tests (30000 items):
-Pass 1 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 2 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 3 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 4 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
-Pass 5 out of 5...
-  Testing: DataObjects.Net (DO)
-  Testing: ADO.NET Entity Framework (EF)
-  Testing: LINQ to SQL (L2S)
-  Testing: NHibernate (NH)
 
 Performance tests (30000 items) scorecard:
                                         DO        EF       L2S        NH      Unit
