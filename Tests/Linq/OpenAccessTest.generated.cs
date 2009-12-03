@@ -693,8 +693,8 @@ namespace OrmBattle.Tests.Linq
         where c == o.Customer
         select new { c.ContactName, o.OrderDate };
       var expected =
-        from c in db.Customers.ToList().OrderBy(c => c.ContactName)
-        from o in db.Orders.ToList().OrderBy(o => o.OrderDate)
+        from c in Customers.OrderBy(c => c.ContactName)
+        from o in Orders.OrderBy(o => o.OrderDate)
         where c == o.Customer
         select new { c.ContactName, o.OrderDate };
       Assert.IsTrue(expected.SequenceEqual(result));
@@ -705,7 +705,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: OpenAccessException
     // Message:
-    //   Invalid node in orders: AndNode@6efa3
+    //   Invalid node in orders: AndNode@11ea67d
     public void OrderByPredicateTest()
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);
@@ -1720,6 +1720,39 @@ namespace OrmBattle.Tests.Linq
     public void StringRemoveTest()
     {
       var customer = db.Customers.Where(c => c.City.Remove(3) == "Sea").First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Passed.
+    public void StringIndexOfTest()
+    {
+      var customer = db.Customers.Where(c => c.City.IndexOf("tt") == 3).First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   Execution of 'System.String:LastIndexOf(String,Int32,Int32)' on the database server side currently not implemented.
+    public void StringLastIndexOfTest()
+    {
+      var customer = db.Customers.Where(c => c.City.LastIndexOf("t", 1, 3) == 3).First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   Execution of 'System.String:PadLeft(Int32)' on the database server side currently not implemented.
+    public void StringPadLeftTest()
+    {
+      var customer = db.Customers.Where(c => "123" + c.City.PadLeft(8) == "123 Seattle").First();
       Assert.IsNotNull(customer);
     }
 

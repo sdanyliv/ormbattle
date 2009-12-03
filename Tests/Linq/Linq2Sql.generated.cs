@@ -675,8 +675,8 @@ namespace OrmBattle.Tests.Linq
         where c == o.Customer
         select new { c.ContactName, o.OrderDate };
       var expected =
-        from c in db.Customers.ToList().OrderBy(c => c.ContactName)
-        from o in db.Orders.ToList().OrderBy(o => o.OrderDate)
+        from c in Customers.OrderBy(c => c.ContactName)
+        from o in Orders.OrderBy(o => o.OrderDate)
         where c == o.Customer
         select new { c.ContactName, o.OrderDate };
       Assert.IsTrue(expected.SequenceEqual(result));
@@ -1619,6 +1619,36 @@ namespace OrmBattle.Tests.Linq
     public void StringRemoveTest()
     {
       var customer = db.Customers.Where(c => c.City.Remove(3) == "Sea").First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Passed.
+    public void StringIndexOfTest()
+    {
+      var customer = db.Customers.Where(c => c.City.IndexOf("tt") == 3).First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Failed.
+    // Exception: InvalidOperationException
+    // Message:
+    //   Sequence contains no elements
+    public void StringLastIndexOfTest()
+    {
+      var customer = db.Customers.Where(c => c.City.LastIndexOf("t", 1, 3) == 3).First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Passed.
+    public void StringPadLeftTest()
+    {
+      var customer = db.Customers.Where(c => "123" + c.City.PadLeft(8) == "123 Seattle").First();
       Assert.IsNotNull(customer);
     }
 

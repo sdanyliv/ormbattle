@@ -604,11 +604,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: True
-    //     But was:  False
+    // Passed.
     public void OrderByCalculatedColumnTest()
     {
       var result =
@@ -693,8 +689,8 @@ namespace OrmBattle.Tests.Linq
         where c == o.Customer
         select new { c.ContactName, o.OrderDate };
       var expected =
-        from c in db.Customers.ToList().OrderBy(c => c.ContactName)
-        from o in db.Orders.ToList().OrderBy(o => o.OrderDate)
+        from c in Customers.OrderBy(c => c.ContactName)
+        from o in Orders.OrderBy(o => o.OrderDate)
         where c == o.Customer
         select new { c.ContactName, o.OrderDate };
       Assert.IsTrue(expected.SequenceEqual(result));
@@ -1655,6 +1651,39 @@ namespace OrmBattle.Tests.Linq
     public void StringRemoveTest()
     {
       var customer = db.Customers.Where(c => c.City.Remove(3) == "Sea").First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Passed.
+    public void StringIndexOfTest()
+    {
+      var customer = db.Customers.Where(c => c.City.IndexOf("tt") == 3).First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'Int32 LastIndexOf(System.String, Int32, Int32)' method, and this method cannot be translated into a store expression.
+    public void StringLastIndexOfTest()
+    {
+      var customer = db.Customers.Where(c => c.City.LastIndexOf("t", 1, 3) == 3).First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'System.String PadLeft(Int32)' method, and this method cannot be translated into a store expression.
+    public void StringPadLeftTest()
+    {
+      var customer = db.Customers.Where(c => "123" + c.City.PadLeft(8) == "123 Seattle").First();
       Assert.IsNotNull(customer);
     }
 

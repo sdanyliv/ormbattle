@@ -1,25 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Linq;
 
 using BLToolkit.DataAccess;
 using BLToolkit.Mapping;
-
+using BLToolkit.Reflection;
 using AssociationAttribute = BLToolkit.Mapping.AssociationAttribute;
 
 namespace OrmBattle.BLToolkitModel
 {
-	public abstract class ComparableEntity
+	interface IIdentity<T>
 	{
-		public override bool Equals(object obj)
-		{
-			return obj != null && GetType() == obj.GetType() && GetKey().Equals(((ComparableEntity)obj).GetKey());
-		}
+		T Id { get; }
+	}
 
-		protected abstract object GetKey();
+	class ObjectFactory<TK,TE> : IObjectFactory
+		where TE : IIdentity<TK>
+	{
+		static readonly Dictionary<TK,TE> _objects = new Dictionary<TK,TE>();
 
-		public override int GetHashCode()
+		public object CreateInstance(TypeAccessor typeAccessor, InitContext context)
 		{
-			return GetKey().GetHashCode();
+			var id  = (TK)context.DataSource.GetValue(context.SourceObject, "Id");
+			TE  obj;
+
+			if (_objects.TryGetValue(id, out obj))
+				return obj;
+
+			obj = (TE)context.ObjectMapper.TypeAccessor.CreateInstance(context);
+
+			_objects.Add(id, obj);
+
+			return obj;
 		}
 	}
 
@@ -32,7 +44,7 @@ namespace OrmBattle.BLToolkitModel
 		public string Description;
 		public Binary Picture;
 
-		[Association(ThisKey="CategoryID", OtherKey="CategoryID")]
+		[Association(ThisKey="Id", OtherKey="CategoryID")]
 		public EntitySet<Product> Products;
 	}
 
@@ -45,7 +57,7 @@ namespace OrmBattle.BLToolkitModel
 		[Association(ThisKey="CustomerTypeID", OtherKey="CustomerTypeID")]
 		public CustomerDemographic CustomerDemographics;
 
-		[Association(ThisKey="CustomerID", OtherKey="CustomerID")]
+		[Association(ThisKey="CustomerID", OtherKey="Id")]
 		public Customer Customers;
 	}
 
@@ -59,25 +71,26 @@ namespace OrmBattle.BLToolkitModel
 		public EntitySet<CustomerCustomerDemo> CustomerCustomerDemos;
 	}
 
-	[TableName("Customers")]
-	public class Customer
+	[TableName("Customers"), ObjectFactory(typeof(ObjectFactory<string,Customer>))]
+	public class Customer : IIdentity<string>
 	{
-		[MapField("CustomerID")] public string Id;
-		                         public string CompanyName;
-		                         public string ContactName;
-		                         public string ContactTitle;
-		                         public string Address;
-		                         public string City;
-		                         public string Region;
-		                         public string PostalCode;
-		                         public string Country;
-		                         public string Phone;
-		                         public string Fax;
+		[MapField("CustomerID"), PrimaryKey]
+		public string Id { get; set; }
+		public string CompanyName;
+		public string ContactName;
+		public string ContactTitle;
+		public string Address;
+		public string City;
+		public string Region;
+		public string PostalCode;
+		public string Country;
+		public string Phone;
+		public string Fax;
 
-		[Association(ThisKey="CustomerID", OtherKey="CustomerID")]
+		[Association(ThisKey="Id", OtherKey="CustomerID")]
 		public EntitySet<CustomerCustomerDemo> CustomerCustomerDemos;
 
-		[Association(ThisKey="CustomerID", OtherKey="CustomerID")]
+		[Association(ThisKey="Id", OtherKey="CustomerID")]
 		public EntitySet<Order> Orders;
 	}
 
@@ -138,35 +151,38 @@ namespace OrmBattle.BLToolkitModel
 		public short   Quantity;
 		public float   Discount;
 
-		[Association(ThisKey="OrderID", OtherKey="OrderID")]
+		[Association(ThisKey="OrderID", OtherKey="Id")]
 		public Order Order;
 		
-		[Association(ThisKey="ProductID", OtherKey="ProductID")]
+		[Association(ThisKey="ProductID", OtherKey="Id")]
 		public Product Product;
 	}
 
-	[TableName("Orders")]
-	public class Order : ComparableEntity
+	[TableName("Orders"), ObjectFactory(typeof(ObjectFactory<int,Order>))]
+	public class Order : IIdentity<int>
 	{
-		[MapField("OrderID")] public int       Id;
-		                      public string    CustomerID;
-		                      public int?      EmployeeID;
-		                      public DateTime? OrderDate;
-		                      public DateTime? RequiredDate;
-		                      public DateTime? ShippedDate;
-		                      public int?      ShipVia;
-		                      public decimal   Freight;
-		                      public string    ShipName;
-		                      public string    ShipAddress;
-		                      public string    ShipCity;
-		[Nullable]            public string    ShipRegion;
-		                      public string    ShipPostalCode;
-		                      public string    ShipCountry;
+		[PrimaryKey]
+		[MapField("OrderID")]
+		public int       Id { get; set; }
+		public string    CustomerID;
+		public int?      EmployeeID;
+		public DateTime? OrderDate;
+		public DateTime? RequiredDate;
+		public DateTime? ShippedDate;
+		public int?      ShipVia;
+		public decimal   Freight;
+		public string    ShipName;
+		public string    ShipAddress;
+		public string    ShipCity;
+		[Nullable]
+		public string    ShipRegion;
+		public string    ShipPostalCode;
+		public string    ShipCountry;
 
-		[Association(ThisKey="OrderID", OtherKey="OrderID")]
+		[Association(ThisKey="Id", OtherKey="OrderID")]
 		public EntitySet<OrderDetail> OrderDetails;
 
-		[Association(ThisKey="CustomerID", OtherKey="CustomerID")]
+		[Association(CanBeNull = false, ThisKey="CustomerID", OtherKey="Id")]
 		public Customer Customer;
 
 		[Association(ThisKey="EmployeeID", OtherKey="EmployeeID")]
@@ -174,34 +190,33 @@ namespace OrmBattle.BLToolkitModel
 
 		[Association(ThisKey="ShipVia", OtherKey="ShipperID")]
 		public Shipper Shipper;
-
-		protected override object GetKey()
-		{
-			return Id;
-		}
 	}
 
 	[TableName("Products")]
+	[InheritanceMapping(Code="True",  Type=typeof(DiscontinuedProduct))]
+	[InheritanceMapping(Code="False", Type=typeof(ActiveProduct), IsDefault=true)]
 	public class Product
 	{
-		[MapField("ProductID")] public int      Id;
-		                        public string   ProductName;
-		                        public int?     SupplierID;
-		                        public int?     CategoryID;
-		                        public string   QuantityPerUnit;
-		                        public decimal? UnitPrice;
-		                        public short?   UnitsInStock;
-		                        public short?   UnitsOnOrder;
-		                        public short?   ReorderLevel;
-		                        public bool     Discontinued;
+		[MapField("ProductID")]
+		public int      Id;
+		public string   ProductName;
+		public int?     SupplierID;
+		public int?     CategoryID;
+		public string   QuantityPerUnit;
+		public decimal? UnitPrice;
+		public short?   UnitsInStock;
+		public short?   UnitsOnOrder;
+		public short?   ReorderLevel;
+		[MapField("Discontinued", IsInheritanceDiscriminator=true)]
+		public bool     Discontinued;
 
-		[Association(ThisKey="ProductID", OtherKey="ProductID")]
+		[Association(ThisKey="Id", OtherKey="ProductID")]
 		public EntitySet<OrderDetail> OrderDetails;
 
-		[Association(ThisKey="CategoryID", OtherKey="CategoryID")]
+		[Association(ThisKey="CategoryID", OtherKey="Id")]
 		public Category Category;
 
-		[Association(ThisKey="SupplierID", OtherKey="SupplierID")]
+		[Association(ThisKey="SupplierID", OtherKey="Id")]
 		public Supplier Supplier;
 	}
 
@@ -237,20 +252,21 @@ namespace OrmBattle.BLToolkitModel
 	[TableName("Suppliers")]
 	public class Supplier
 	{
-		[MapField("SupplierID")] public int    Id;
-		                         public string CompanyName;
-		                         public string ContactName;
-		                         public string ContactTitle;
-		                         public string Address;
-		                         public string City;
-		                         public string Region;
-		                         public string PostalCode;
-		                         public string Country;
-		                         public string Phone;
-		                         public string Fax;
-		                         public string HomePage;
+		[MapField("SupplierID")]
+		public int    Id;
+		public string CompanyName;
+		public string ContactName;
+		public string ContactTitle;
+		public string Address;
+		public string City;
+		public string Region;
+		public string PostalCode;
+		public string Country;
+		public string Phone;
+		public string Fax;
+		public string HomePage;
 
-		[Association(ThisKey="SupplierID", OtherKey="SupplierID")]
+		[Association(ThisKey="Id", OtherKey="SupplierID")]
 		public EntitySet<Product> Products;
 	}
 
