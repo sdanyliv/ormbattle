@@ -47,6 +47,9 @@ namespace OrmBattle.Tests.Linq
       Employees = db.Employees.ToList();
       Orders    = db.Orders.   ToList();
       Products  = db.Products. ToList();
+
+      foreach (var o in Orders)
+        o.Customer = Customers.SingleOrDefault(c => c.Id == o.CustomerID);
     }
 
     protected override void TearDown()
@@ -224,10 +227,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'o' cannot be converted to SQL.
+    // Passed.
     public void WhereEntityParameterTest()
     {
       var order = db.Orders.OrderBy(o => o.OrderDate).First();
@@ -336,7 +336,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: LinqException
     // Message:
-    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.NorthwindDB' type.
+    //   Cannot find converter for the 'System.Linq.IQueryable`1[[OrmBattle.BLToolkitModel.Customer, BLToolkitModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' type.
     public void SelectSubqueryTest()
     {
       var result = from o in db.Orders
@@ -354,10 +354,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    // Passed.
     public void SelectDtoTest()
     {
       var result = from o in db.Orders
@@ -368,10 +365,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    // Passed.
     public void SelectNestedDtoTest()
     {
       var result = from r in
@@ -385,11 +379,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'c.Orders'.
-    //   Parameter name: info
+    // Passed.
     public void SelectManyAnonymousTest()
     {
       var result = from c in db.Customers
@@ -402,11 +392,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'c.Orders'.
-    //   Parameter name: info
+    // Passed.
     public void SelectManyLetTest()
     {
       var result = from c in db.Customers
@@ -420,10 +406,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: LinqException
+    // Failed with assertion.
+    // Exception: AssertionException
     // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    //     Expected: 89
+    //     But was:  3
     public void SelectManyGroupByTest()
     {
       var result = db.Orders
@@ -437,11 +424,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'i.Orders.Select(t => i)'.
-    //   Parameter name: info
+    // Passed.
     public void SelectManyOuterProjectionTest()
     {
       var result = db.Customers.SelectMany(i => i.Orders.Select(t => i));
@@ -524,9 +507,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Take/Skip")]
     // Failed.
-    // Exception: NotImplementedException
+    // Exception: InvalidCastException
     // Message:
-    //   SubQueries are not supported yet.
+    //   Unable to cast object of type 'System.Linq.Expressions.MemberExpression' to type 'System.Linq.Expressions.MethodCallExpression'.
     public void TakeNestedTest()
     {
       var result = 
@@ -685,10 +668,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    // Passed.
     public void OrderBySelectManyTest()
     {
       var result =
@@ -697,8 +677,8 @@ namespace OrmBattle.Tests.Linq
         where c == o.Customer
         select new { c.ContactName, o.OrderDate };
       var expected =
-        from c in db.Customers.ToList().OrderBy(c => c.ContactName)
-        from o in db.Orders.ToList().OrderBy(o => o.OrderDate)
+        from c in Customers.OrderBy(c => c.ContactName)
+        from o in Orders.OrderBy(o => o.OrderDate)
         where c == o.Customer
         select new { c.ContactName, o.OrderDate };
       Assert.IsTrue(expected.SequenceEqual(result));
@@ -732,10 +712,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    // Passed.
     public void GroupByReferenceTest()
     {
       var result = from o in db.Orders
@@ -787,8 +764,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: ArgumentException
     // Message:
-    //   Queryable method call expected. Got 'g'.
-    //   Parameter name: info
+    //   Expression of type 'System.Linq.IGrouping`2[System.String,OrmBattle.BLToolkitModel.Customer]' cannot be used for return type 'OrmBattle.BLToolkitModel.Customer'
     public void GroupBySelectManyTest()
     {
       var result = db.Customers
@@ -801,10 +777,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    // Passed.
     public void GroupByCalculateAggregateTest()
     {
       var result = 
@@ -818,10 +791,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    // Passed.
     public void GroupByCalculateManyAggreagetes()
     {
       var result = 
@@ -841,10 +811,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    // Passed.
     public void GroupByAggregate()
     {
       var result = 
@@ -859,9 +826,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Grouping")]
     // Failed.
-    // Exception: NotImplementedException
+    // Exception: InvalidCastException
     // Message:
-    //   SubQueries are not supported yet.
+    //   Unable to cast object of type 'System.Linq.Expressions.MemberExpression' to type 'System.Linq.Expressions.MethodCallExpression'.
     public void ComplexGroupingTest()
     {
       var result = 
@@ -892,11 +859,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'Table(Customer).Where(c => (c.Orders.Count <= 1)).Concat(Table(Customer).Where(c => (c.Orders.Count > 1)))'.
-    //   Parameter name: info
+    // Passed.
     public void ConcatTest()
     {
       var result = db.Customers.Where(c => c.Orders.Count <= 1).Concat(db.Customers.Where(c => c.Orders.Count > 1));
@@ -906,11 +869,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'Table(Customer).Select(c => c.Phone).Union(Table(Customer).Select(c => c.Fax)).Union(Table(Employee).Select(e => e.HomePhone))'.
-    //   Parameter name: info
+    // Passed.
     public void UnionTest()
     {
       var result = (
@@ -930,11 +889,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'Table(Customer).Except(Table(Customer).Where(c => (c.Orders.Count() > 0)))'.
-    //   Parameter name: info
+    // Passed.
     public void ExceptTest()
     {
       var result =
@@ -945,11 +900,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'Table(Customer).Intersect(Table(Customer).Where(c => (c.Orders.Count() > 0)))'.
-    //   Parameter name: info
+    // Passed.
     public void IntersectTest()
     {
       var result =
@@ -983,11 +934,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 4
-    //     But was:  5
+    // Passed.
     public void DistinctTakeFirstTest()
     {
       var result =
@@ -1024,10 +971,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   '(p Is DiscontinuedProduct)' cannot be converted to SQL.
+    // Passed.
     public void TypeCastIsChildTest()
     {
       var result = db.Products.Where(p => p is DiscontinuedProduct);
@@ -1039,10 +983,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   '(p Is Product)' cannot be converted to SQL.
+    // Passed.
     public void TypeCastIsParentTest()
     {
       var result = db.Products.Where(p => p is Product);
@@ -1076,11 +1017,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'Table(Product).OfType()'.
-    //   Parameter name: info
+    // Passed.
     public void TypeCastOfTypeTest()
     {
       var result = db.Products.OfType<DiscontinuedProduct>();
@@ -1149,10 +1086,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Element operations")]
     // Failed.
-    // Exception: ArgumentNullException
+    // Exception: LinqException
     // Message:
-    //   Value cannot be null.
-    //   Parameter name: parameter
+    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.OrderDetail' type.
     public void NestedFirstOrDefaultTest()
     {
       var result =
@@ -1173,9 +1109,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Element operations")]
     // Failed.
-    // Exception: NotImplementedException
+    // Exception: LinqException
     // Message:
-    //   SubQueries are not supported yet.
+    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.Order' type.
     public void FirstOrDefaultEntitySetTest()
     {
       var customersCount = Customers.Count;
@@ -1187,9 +1123,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Element operations")]
     // Failed.
-    // Exception: NotImplementedException
+    // Exception: LinqException
     // Message:
-    //   SubQueries are not supported yet.
+    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.Order' type.
     public void NestedSingleOrDefaultTest()
     {
       var customersCount = Customers.Count;
@@ -1203,7 +1139,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: LinqException
     // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.Order' type.
     public void NestedSingleTest()
     {
       var result = db.Customers.Where(c => c.Orders.Count() > 0).Select(c => c.Orders.Take(1).Single());
@@ -1228,9 +1164,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Element operations")]
     // Failed.
-    // Exception: LinqException
+    // Exception: ArgumentException
     // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    //   Queryable method call expected. Got 'c.Orders.ElementAt(3)'.
+    //   Parameter name: info
     public void NestedElementAtTest()
     {
       var result = 
@@ -1250,9 +1187,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("All/Any/Contains")]
     // Failed.
-    // Exception: LinqException
+    // Exception: ArgumentException
     // Message:
-    //   'value(OrmBattle.Tests.Linq.BLToolkitTest).db.Orders.Where(o => (o.Customer = c)).All(o => value(OrmBattle.Tests.Linq.BLToolkitTest).db.Employees.Where(e => (o.Employee = e)).Any(e => e.FirstName.StartsWith("A")))' cannot be converted to SQL.
+    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest).db.Orders.Where(o => (o.Customer = c)).All(o => value(OrmBattle.Tests.Linq.BLToolkitTest).db.Employees.Where(e => (o.Employee = e)).Any(e => e.FirstName.StartsWith("A")))'.
+    //   Parameter name: info
     public void AllNestedTest()
     {
       var result =
@@ -1266,9 +1204,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("All/Any/Contains")]
     // Failed.
-    // Exception: LinqException
+    // Exception: ArgumentException
     // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest).db.Customers.Where(c => (c = o.Customer)).All(c => c.CompanyName.StartsWith("A"))'.
+    //   Parameter name: info
     public void ComplexAllTest()
     {
       var result =
@@ -1291,10 +1230,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("All/Any/Contains")]
     // Failed.
-    // Exception: ArgumentNullException
+    // Exception: ArgumentException
     // Message:
-    //   Value cannot be null.
-    //   Parameter name: parameter
+    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest).db.Orders.Where(o => (o.OrderDate > Convert(new DateTime(2001, 1, 1)))).Select(o => o.Customer).Contains(c)'.
+    //   Parameter name: info
     public void ContainsNestedTest()
     {
       var result = from c in db.Customers
@@ -1324,9 +1263,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("All/Any/Contains")]
     // Failed.
-    // Exception: LinqException
+    // Exception: ArgumentException
     // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    //   Queryable method call expected. Got 'c.Orders.Any(o => (o.Freight > 400))'.
+    //   Parameter name: info
     public void AnyTest()
     {
       var result = db.Customers.Where(c => c.Orders.Any(o => o.Freight > 400));
@@ -1338,9 +1278,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("All/Any/Contains")]
     // Failed.
-    // Exception: LinqException
+    // Exception: ArgumentException
     // Message:
-    //   'value(OrmBattle.Tests.Linq.BLToolkitTest+<>c__DisplayClass8c).ids.Any(id => (c.Id = id))' cannot be converted to SQL.
+    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest+<>c__DisplayClass8f).ids.Any(id => (c.Id = id))'.
+    //   Parameter name: info
     public void AnyParameterizedTest()
     {
       var ids = new[] { "ABCDE", "ALFKI" };
@@ -1351,10 +1292,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    // Passed.
     public void ContainsParameterizedTest()
     {
       var customerIDs = new[] { "ALFKI", "ANATR", "AROUT", "BERGS" };
@@ -1394,10 +1332,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'value(OrmBattle.Tests.Linq.BLToolkitTest).db.Orders.Count(o => (o.Customer.Id = c.Id))' cannot be converted to SQL.
+    // Passed.
     public void NestedCountTest()
     {
       var result = db.Customers.Where(c => db.Orders.Count(o => o.Customer.Id == c.Id) > 5);
@@ -1423,9 +1358,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Aggregates")]
     // Failed.
-    // Exception: LinqException
+    // Exception: SqlException
     // Message:
-    //   'value(OrmBattle.Tests.Linq.BLToolkitTest).db.Orders.Count(o => (o.Customer.Id = c.Id))' cannot be converted to SQL.
+    //   Incorrect syntax near the keyword 'SELECT'.
+    //   Incorrect syntax near ')'.
     public void MaxCountTest()
     {
       var max = db.Customers.Max(c => db.Orders.Count(o => o.Customer.Id == c.Id));
@@ -1442,7 +1378,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: LinqException
     // Message:
-    //   'o.Customer.Id' cannot be converted to SQL.
+    //   '<>h__TransparentIdentifier9f.go.Count()' cannot be converted to SQL.
     public void GroupJoinTest()
     {
       var result = 
@@ -1459,10 +1395,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'p.Supplier.Id' cannot be converted to SQL.
+    // Passed.
     public void JoinTest()
     {
       var result =
@@ -1494,10 +1427,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'p.Category.Id' cannot be converted to SQL.
+    // Passed.
     public void LeftJoinTest()
     {
       var result = 
@@ -1533,10 +1463,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    // Passed.
     public void CompareReferenceTest()
     {
       var result =
@@ -1551,10 +1478,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'ProductID' not found for type 'OrmBattle.BLToolkitModel.Product.
+    // Passed.
     public void ReferenceNavigationTestTest()
     {
       var result =
@@ -1573,10 +1497,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   Association key 'CategoryID' not found for type 'OrmBattle.BLToolkitModel.Category.
+    // Passed.
     public void EntitySetCountTest()
     {
       var result = db.Categories.Where(c => c.Products.Count > 10);
@@ -1594,7 +1515,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: LinqException
     // Message:
-    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.NorthwindDB' type.
+    //   Cannot find converter for the 'System.Linq.IQueryable`1[[System.Linq.IQueryable`1[[OrmBattle.BLToolkitModel.Product, BLToolkitModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]' type.
     public void ComplexTest1()
     {
       var result = db.Suppliers.Select(
@@ -1616,7 +1537,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: ArgumentException
     // Message:
-    //   Queryable method call expected. Got 'k'.
+    //   Queryable method call expected. Got 'customers'.
     //   Parameter name: info
     public void ComplexTest2()
     {
@@ -1635,7 +1556,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: LinqException
     // Message:
-    //   Association key 'SupplierID' not found for type 'OrmBattle.BLToolkitModel.Supplier.
+    //   Cannot find converter for the 'System.Linq.IQueryable`1[[System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]' type.
     public void ComplexTest3()
     {
       var products = db.Products;
@@ -1658,9 +1579,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: LinqException
+    // Exception: ArgumentException
     // Message:
-    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.NorthwindDB' type.
+    //   Queryable method call expected. Got 'o'.
+    //   Parameter name: info
     public void ComplexTest4()
     {
       var result = db.Customers
@@ -1678,9 +1600,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: LinqException
+    // Exception: ArgumentOutOfRangeException
     // Message:
-    //   Association key 'CustomerID' not found for type 'OrmBattle.BLToolkitModel.Customer.
+    //   Index was out of range. Must be non-negative and less than the size of the collection.
+    //   Parameter name: index
     public void ComplexTest5()
     {
       var result = db.Customers
@@ -1771,6 +1694,33 @@ namespace OrmBattle.Tests.Linq
     public void StringRemoveTest()
     {
       var customer = db.Customers.Where(c => c.City.Remove(3) == "Sea").First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Passed.
+    public void StringIndexOfTest()
+    {
+      var customer = db.Customers.Where(c => c.City.IndexOf("tt") == 3).First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Passed.
+    public void StringLastIndexOfTest()
+    {
+      var customer = db.Customers.Where(c => c.City.LastIndexOf("t", 1, 3) == 3).First();
+      Assert.IsNotNull(customer);
+    }
+
+    [Test]
+    [Category("Standard functions")]
+    // Passed.
+    public void StringPadLeftTest()
+    {
+      var customer = db.Customers.Where(c => "123" + c.City.PadLeft(8) == "123 Seattle").First();
       Assert.IsNotNull(customer);
     }
 
@@ -1945,10 +1895,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'c.Address.Equals(null)' cannot be converted to SQL.
+    // Passed.
     public void EqualsWithNullTest()
     {
       var customer = db.Customers.Where(c => !c.Address.Equals(null)).First();

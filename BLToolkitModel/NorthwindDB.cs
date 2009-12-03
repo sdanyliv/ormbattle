@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 using BLToolkit.Data;
 using BLToolkit.Data.Linq;
@@ -10,6 +11,7 @@ namespace OrmBattle.BLToolkitModel
 		public NorthwindDB()
 			: base("Northwind")
 		{
+			TraceSwitch = new TraceSwitch("DbManager", "DbManager trace switch", "Info");
 		}
 
 		public Table<Category>            Categories           { get { return GetTable<Category>();            } }
