@@ -599,11 +599,13 @@ namespace OrmBattle.Tests.Linq
       var expectedList = expected.ToList();
       list.Sort();
       expectedList.Sort();
-      Assert.AreEqual(expectedList.Count, list.Count);
-      expectedList.Zip(list, (i, j) => {
-                               Assert.AreEqual(i,j);
-                               return true;
-                             });
+      
+	  // Assert.AreEqual(expectedList.Count, list.Count);
+      // expectedList.Zip(list, (i, j) => {
+      //                       Assert.AreEqual(i,j);
+      //                       return true;
+      //                     });
+	  CollectionAssert.AreEquivalent(expectedList, list);
     }
 
     [Test]
@@ -623,11 +625,12 @@ namespace OrmBattle.Tests.Linq
       list.Sort();
       expectedList.Sort();
       Assert.AreEqual(187, list.Count);
-      Assert.AreEqual(expectedList.Count, list.Count);
-      expectedList.Zip(list, (i, j) => {
-                               Assert.AreEqual(i,j);
-                               return true;
-                             });
+	  // Assert.AreEqual(expectedList.Count, list.Count);
+      // expectedList.Zip(list, (i, j) => {
+      //                       Assert.AreEqual(i,j);
+      //                       return true;
+      //                     });
+	  CollectionAssert.AreEquivalent(expectedList, list);
     }
 
     [Test]
@@ -652,12 +655,16 @@ namespace OrmBattle.Tests.Linq
       var expected = from o in Orders
                      select Customers.Where(c => c.Id == o.Customer.Id);
       var list = result.ToList();
-      Assert.AreEqual(expected.Count(), list.Count);
-      expected.Zip(result, (expectedCustomers, actualCustomers) => {
-                             Assert.AreEqual(expectedCustomers.Count(), actualCustomers.Count());
-                             Assert.AreEqual(0, expectedCustomers.Except(actualCustomers));
-                             return true;
-                           });
+	  
+	  var expectedList = expected.ToList();
+	  CollectionAssert.AreEquivalent(expectedList, list);
+
+	  //Assert.AreEqual(expected.Count(), list.Count);
+	  //expected.Zip(result, (expectedCustomers, actualCustomers) => {
+      //                       Assert.AreEqual(expectedCustomers.Count(), actualCustomers.Count());
+      //                       Assert.AreEqual(0, expectedCustomers.Except(actualCustomers));
+      //                       return true;
+      //                     });
     }
 
     [Test]
@@ -928,22 +935,22 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    public void OrderByDistinctTest()
-    {
-      var result = db.Customers
-        .OrderBy(c => c.CompanyName)
-        .Select(c => c.City)
-        .Distinct()
-        .OrderBy(c => c)
-        .Select(c => c);
-      var expected = db.Customers
-        .ToList()
-        .Select(c => c.City)
-        .Distinct()
-        .OrderBy(c => c)
-        .Select(c => c);
-      Assert.IsTrue(expected.SequenceEqual(result));
-    }
+        public void OrderByDistinctTest()
+        {
+            var result = db.Customers
+              .OrderBy(c => c.CompanyName)
+              .Select(c => c.City)
+              .Distinct()
+              .OrderBy(c => c)
+              .Select(c => c);
+            var expected = Customers
+              .OrderBy(c => c.CompanyName)
+              .Select(c => c.City)
+              .Distinct()
+              .OrderBy(c => c)
+              .Select(c => c);
+            Assert.IsTrue(expected.SequenceEqual(result));
+        }
 
     [Test]
     [Category("Ordering")]
