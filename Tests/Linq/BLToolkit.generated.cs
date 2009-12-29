@@ -285,11 +285,13 @@ namespace OrmBattle.Tests.Linq
       var expectedList = expected.ToList();
       list.Sort();
       expectedList.Sort();
-      Assert.AreEqual(expectedList.Count, list.Count);
-      expectedList.Zip(list, (i, j) => {
-                               Assert.AreEqual(i,j);
-                               return true;
-                             });
+      
+	  // Assert.AreEqual(expectedList.Count, list.Count);
+      // expectedList.Zip(list, (i, j) => {
+      //                       Assert.AreEqual(i,j);
+      //                       return true;
+      //                     });
+	  CollectionAssert.AreEquivalent(expectedList, list);
     }
 
     [Test]
@@ -310,11 +312,12 @@ namespace OrmBattle.Tests.Linq
       list.Sort();
       expectedList.Sort();
       Assert.AreEqual(187, list.Count);
-      Assert.AreEqual(expectedList.Count, list.Count);
-      expectedList.Zip(list, (i, j) => {
-                               Assert.AreEqual(i,j);
-                               return true;
-                             });
+	  // Assert.AreEqual(expectedList.Count, list.Count);
+      // expectedList.Zip(list, (i, j) => {
+      //                       Assert.AreEqual(i,j);
+      //                       return true;
+      //                     });
+	  CollectionAssert.AreEquivalent(expectedList, list);
     }
 
     [Test]
@@ -344,12 +347,16 @@ namespace OrmBattle.Tests.Linq
       var expected = from o in Orders
                      select Customers.Where(c => c.Id == o.Customer.Id);
       var list = result.ToList();
-      Assert.AreEqual(expected.Count(), list.Count);
-      expected.Zip(result, (expectedCustomers, actualCustomers) => {
-                             Assert.AreEqual(expectedCustomers.Count(), actualCustomers.Count());
-                             Assert.AreEqual(0, expectedCustomers.Except(actualCustomers));
-                             return true;
-                           });
+	  
+	  var expectedList = expected.ToList();
+	  CollectionAssert.AreEquivalent(expectedList, list);
+
+	  //Assert.AreEqual(expected.Count(), list.Count);
+	  //expected.Zip(result, (expectedCustomers, actualCustomers) => {
+      //                       Assert.AreEqual(expectedCustomers.Count(), actualCustomers.Count());
+      //                       Assert.AreEqual(0, expectedCustomers.Except(actualCustomers));
+      //                       return true;
+      //                     });
     }
 
     [Test]
@@ -649,22 +656,22 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Ordering")]
     // Passed.
-    public void OrderByDistinctTest()
-    {
-      var result = db.Customers
-        .OrderBy(c => c.CompanyName)
-        .Select(c => c.City)
-        .Distinct()
-        .OrderBy(c => c)
-        .Select(c => c);
-      var expected = db.Customers
-        .ToList()
-        .Select(c => c.City)
-        .Distinct()
-        .OrderBy(c => c)
-        .Select(c => c);
-      Assert.IsTrue(expected.SequenceEqual(result));
-    }
+        public void OrderByDistinctTest()
+        {
+            var result = db.Customers
+              .OrderBy(c => c.CompanyName)
+              .Select(c => c.City)
+              .Distinct()
+              .OrderBy(c => c)
+              .Select(c => c);
+            var expected = Customers
+              .OrderBy(c => c.CompanyName)
+              .Select(c => c.City)
+              .Distinct()
+              .OrderBy(c => c)
+              .Select(c => c);
+            Assert.IsTrue(expected.SequenceEqual(result));
+        }
 
     [Test]
     [Category("Ordering")]
@@ -1094,14 +1101,14 @@ namespace OrmBattle.Tests.Linq
       var result =
         from p in db.Products
         select new
-               {
-                 ProductID = p.Id,
-                 MaxOrder = db.OrderDetails
-          .Where(od => od.Product == p)
-          .OrderByDescending(od => od.UnitPrice * od.Quantity)
-          .FirstOrDefault()
-          .Order
-               };
+        {
+          ProductID = p.Id,
+          MaxOrder = db.OrderDetails
+            .Where(od => od.Product == p)
+            .OrderByDescending(od => od.UnitPrice * od.Quantity)
+            .FirstOrDefault()
+            .Order
+        };
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
     }
@@ -1149,11 +1156,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'Table(Customer).OrderBy(c => c.Id).ElementAt(15)'.
-    //   Parameter name: info
+    // Passed.
     public void ElementAtTest()
     {
       var customer = db.Customers.OrderBy(c => c.Id).ElementAt(15);
@@ -1164,10 +1167,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Element operations")]
     // Failed.
-    // Exception: ArgumentException
+    // Exception: LinqException
     // Message:
-    //   Queryable method call expected. Got 'c.Orders.ElementAt(3)'.
-    //   Parameter name: info
+    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.Order' type.
     public void NestedElementAtTest()
     {
       var result = 
@@ -1280,7 +1282,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: ArgumentException
     // Message:
-    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest+<>c__DisplayClass8f).ids.Any(id => (c.Id = id))'.
+    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest+<>c__DisplayClass8b).ids.Any(id => (c.Id = id))'.
     //   Parameter name: info
     public void AnyParameterizedTest()
     {
@@ -1378,7 +1380,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: LinqException
     // Message:
-    //   '<>h__TransparentIdentifier9f.go.Count()' cannot be converted to SQL.
+    //   '<>h__TransparentIdentifier9b.go.Count()' cannot be converted to SQL.
     public void GroupJoinTest()
     {
       var result = 
@@ -1726,10 +1728,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'new DateTime(o.OrderDate.Value.Year, 1, 1)' cannot be converted to SQL.
+    // Passed.
     public void DateTimeTest()
     {
       var order = db.Orders.Where(o => o.OrderDate >= new DateTime(o.OrderDate.Value.Year, 1, 1)).First();
@@ -1738,10 +1737,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'o.OrderDate.Value.Day' cannot be converted to SQL.
+    // Passed.
     public void DateTimeDayTest()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.Day == 5).First();
@@ -1750,10 +1746,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'o.OrderDate.Value.DayOfWeek' cannot be converted to SQL.
+    // Passed.
     public void DateTimeDayOfWeek()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfWeek == DayOfWeek.Friday).First();
@@ -1762,10 +1755,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'o.OrderDate.Value.DayOfYear' cannot be converted to SQL.
+    // Passed.
     public void DateTimeDayOfYear()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfYear == 360).First();
@@ -1774,10 +1764,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'Abs(o.Id)' cannot be converted to SQL.
+    // Passed.
     public void MathAbsTest()
     {
       var order = db.Orders.Where(o => Math.Abs(o.Id) == 10 || o.Id > 0).First();
@@ -1786,10 +1773,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'Asin(Cos(Convert(o.Id)))' cannot be converted to SQL.
+    // Passed.
     public void MathTrignometricTest()
     {
       var order = db.Orders.Where(o => Math.Asin(Math.Cos(o.Id)) == 0 || o.Id > 0).First();
@@ -1798,10 +1782,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'Floor(o.Freight)' cannot be converted to SQL.
+    // Passed.
     public void MathFloorTest()
     {
       var result = db.Orders.Where(o => Math.Floor(o.Freight) == 140);
@@ -1811,10 +1792,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'Ceiling(o.Freight)' cannot be converted to SQL.
+    // Passed.
     public void MathCeilingTest()
     {
       var result = db.Orders.Where(o => Math.Ceiling(o.Freight) == 141);
@@ -1824,10 +1802,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'Truncate(o.Freight)' cannot be converted to SQL.
+    // Passed.
     public void MathTruncateTest()
     {
       var result = db.Orders.Where(o => Math.Truncate(o.Freight) == 141);
@@ -1837,10 +1812,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'Round((o.Freight / 10), 1, AwayFromZero)' cannot be converted to SQL.
+    // Passed.
     public void MathRoundAwayFromZeroTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight/10, 1, MidpointRounding.AwayFromZero) == 6.5m );
@@ -1850,10 +1822,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'Round((o.Freight / 10), 1, ToEven)' cannot be converted to SQL.
+    // Passed.
     public void MathRoundToEvenTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1, MidpointRounding.ToEven) == 6.5m);
@@ -1863,17 +1832,24 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'Round((o.Freight / 10), 1)' cannot be converted to SQL.
+    // Passed.
     public void MathRoundDefaultTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1) == 6.5m);
       var list = result.ToList();
       Assert.AreEqual(6, list.Count);
     }
-
+    
+    [Test]
+    [Category("Standard functions")]
+    // Passed.
+    public void ConvertToInt32()
+    {
+      var expected =    Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);
+      var result   = db.Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);
+      var list = result.ToList();
+      Assert.AreEqual(expected.Count(), list.Count);
+    }
 
     [Test]
     [Category("Standard functions")]
