@@ -1341,14 +1341,14 @@ namespace OrmBattle.Tests.Linq
       var result =
         from p in db.Products
         select new
-               {
-                 ProductID = p.Id,
-                 MaxOrder = db.OrderDetails
-          .Where(od => od.Product == p)
-          .OrderByDescending(od => od.UnitPrice * od.Quantity)
-          .FirstOrDefault()
-          .Order
-               };
+        {
+          ProductID = p.Id,
+          MaxOrder = db.OrderDetails
+            .Where(od => od.Product == p)
+            .OrderByDescending(od => od.UnitPrice * od.Quantity)
+            .FirstOrDefault()
+            .Order
+        };
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
     }
@@ -1954,7 +1954,16 @@ namespace OrmBattle.Tests.Linq
       var list = result.ToList();
       Assert.AreEqual(6, list.Count);
     }
-
+    
+    [Test]
+    [Category("Standard functions")]
+    public void ConvertToInt32()
+    {
+      var expected =    Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);
+      var result   = db.Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);
+      var list = result.ToList();
+      Assert.AreEqual(expected.Count(), list.Count);
+    }
 
     [Test]
     [Category("Standard functions")]

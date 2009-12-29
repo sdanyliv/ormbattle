@@ -311,11 +311,13 @@ namespace OrmBattle.Tests.Linq
       var expectedList = expected.ToList();
       list.Sort();
       expectedList.Sort();
-      Assert.AreEqual(expectedList.Count, list.Count);
-      expectedList.Zip(list, (i, j) => {
-                               Assert.AreEqual(i,j);
-                               return true;
-                             });
+      
+	  // Assert.AreEqual(expectedList.Count, list.Count);
+      // expectedList.Zip(list, (i, j) => {
+      //                       Assert.AreEqual(i,j);
+      //                       return true;
+      //                     });
+	  CollectionAssert.AreEquivalent(expectedList, list);
     }
 
     [Test]
@@ -339,11 +341,12 @@ namespace OrmBattle.Tests.Linq
       list.Sort();
       expectedList.Sort();
       Assert.AreEqual(187, list.Count);
-      Assert.AreEqual(expectedList.Count, list.Count);
-      expectedList.Zip(list, (i, j) => {
-                               Assert.AreEqual(i,j);
-                               return true;
-                             });
+	  // Assert.AreEqual(expectedList.Count, list.Count);
+      // expectedList.Zip(list, (i, j) => {
+      //                       Assert.AreEqual(i,j);
+      //                       return true;
+      //                     });
+	  CollectionAssert.AreEquivalent(expectedList, list);
     }
 
     [Test]
@@ -373,12 +376,16 @@ namespace OrmBattle.Tests.Linq
       var expected = from o in Orders
                      select Customers.Where(c => c.Id == o.Customer.Id);
       var list = result.ToList();
-      Assert.AreEqual(expected.Count(), list.Count);
-      expected.Zip(result, (expectedCustomers, actualCustomers) => {
-                             Assert.AreEqual(expectedCustomers.Count(), actualCustomers.Count());
-                             Assert.AreEqual(0, expectedCustomers.Except(actualCustomers));
-                             return true;
-                           });
+	  
+	  var expectedList = expected.ToList();
+	  CollectionAssert.AreEquivalent(expectedList, list);
+
+	  //Assert.AreEqual(expected.Count(), list.Count);
+	  //expected.Zip(result, (expectedCustomers, actualCustomers) => {
+      //                       Assert.AreEqual(expectedCustomers.Count(), actualCustomers.Count());
+      //                       Assert.AreEqual(0, expectedCustomers.Except(actualCustomers));
+      //                       return true;
+      //                     });
     }
 
     [Test]
@@ -700,22 +707,22 @@ namespace OrmBattle.Tests.Linq
     // Exception: NullReferenceException
     // Message:
     //   Object reference not set to an instance of an object.
-    public void OrderByDistinctTest()
-    {
-      var result = db.Customers
-        .OrderBy(c => c.CompanyName)
-        .Select(c => c.City)
-        .Distinct()
-        .OrderBy(c => c)
-        .Select(c => c);
-      var expected = db.Customers
-        .ToList()
-        .Select(c => c.City)
-        .Distinct()
-        .OrderBy(c => c)
-        .Select(c => c);
-      Assert.IsTrue(expected.SequenceEqual(result));
-    }
+        public void OrderByDistinctTest()
+        {
+            var result = db.Customers
+              .OrderBy(c => c.CompanyName)
+              .Select(c => c.City)
+              .Distinct()
+              .OrderBy(c => c)
+              .Select(c => c);
+            var expected = Customers
+              .OrderBy(c => c.CompanyName)
+              .Select(c => c.City)
+              .Distinct()
+              .OrderBy(c => c)
+              .Select(c => c);
+            Assert.IsTrue(expected.SequenceEqual(result));
+        }
 
     [Test]
     [Category("Ordering")]
@@ -1202,14 +1209,14 @@ namespace OrmBattle.Tests.Linq
       var result =
         from p in db.Products
         select new
-               {
-                 ProductID = p.Id,
-                 MaxOrder = db.OrderDetails
-          .Where(od => od.Product == p)
-          .OrderByDescending(od => od.UnitPrice * od.Quantity)
-          .FirstOrDefault()
-          .Order
-               };
+        {
+          ProductID = p.Id,
+          MaxOrder = db.OrderDetails
+            .Where(od => od.Product == p)
+            .OrderByDescending(od => od.UnitPrice * od.Quantity)
+            .FirstOrDefault()
+            .Order
+        };
       var list = result.ToList();
       Assert.Greater(list.Count, 0);
     }
@@ -1984,7 +1991,20 @@ namespace OrmBattle.Tests.Linq
       var list = result.ToList();
       Assert.AreEqual(6, list.Count);
     }
-
+    
+    [Test]
+    [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   The method 'ToInt32' is not supported.
+    public void ConvertToInt32()
+    {
+      var expected =    Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);
+      var result   = db.Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);
+      var list = result.ToList();
+      Assert.AreEqual(expected.Count(), list.Count);
+    }
 
     [Test]
     [Category("Standard functions")]

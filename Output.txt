@@ -1,39 +1,36 @@
-Tested tools:
-  BLToolkit (BLT)
-  ADO.NET Entity Framework (EF)
-  EntitySpaces (ES)
-  DataObjects.Net (DO)
-  LightSpeed (LS)
-  LINQ to SQL (L2S)
-  NHibernate (NH)
-  OpenAccess (OA)
-  Subsonic (SS)
-  SqlClient (SQL)
+LINQ tests:
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
 
 LINQ tests scorecard:
                                        BLT        EF        DO        LS       L2S        NH        OA   Maximum      Unit
 LINQ Implementation:            
-  Aggregates                             4         0         0         3         0         3         2         5       f/a
-  All/Any/Contains                       6         3         0         6         1       4/2         4         6       f/a
+  Aggregates                             3         0         0         3         0         3         2         5       f/a
+  All/Any/Contains                       5         3         0         6         1       4/2         4         6       f/a
   Complex                                6         1         0         6         0         6         5         6       f/a
   Element operations                     6         4         0         6         2         6         5         9       f/a
-  Filtering                              1       4/2         0       5/5       2/2       6/1         2        12       f/a
-  Grouping                               6         1         0        10         1      10/2         5        10       f/a
-  Join                                   4         1         0         4         0         4         2         4       f/a
-  Ordering                               1       3/2         0       5/1         2         6         3         8       f/a
-  Projections                            8         2         0       9/2         1       6/1         3        13       f/a
-  References                             4         0         0         4         0         3         1         4       f/a
-  Set operations                       5/1         0         0       5/1         0       6/2       4/1         9       f/a
-  Standard functions                    13         9         0         8         1        16       6/1        21       f/a
+  Filtering                              0       4/2         0       5/5       2/2       6/1         2        12       f/a
+  Grouping                               2         1         0        10         1      10/2         5        10       f/a
+  Join                                   2         1         0         4         0         4         2         4       f/a
+  Ordering                               0       2/1         0       5/1         2         6         3         8       f/a
+  Projections                          3/1         2         0       9/2         1       6/1         3        13       f/a
+  References                             1         0         0         4         0         3         1         4       f/a
+  Set operations                         0         0         0       5/1         0       6/2       4/1         9       f/a
+  Standard functions                    13        11         1        11         2        19       8/1        24       f/a
   Take/Skip                              1         1         0       2/1         0       2/1         2         5       f/a
-  Type casts                             3         1         0       3/1         1         4         2         5       f/a
+  Type casts                             0         1         0       3/1         1         4         2         5       f/a
 Total:                          
-  Performed                            117       117       117       117       117       117       117       117         #
-  Passed                                49        87       117        41       106        35        71       117         #
-  Failed                                68        30         0        76        11        82        46       117         #
-    Properly                            67        26         0        65         9        73        44       117         #
-    Asserted                             1         4         0        11         2         9         2       117         #
-  Score                               41,9      74,4     100,0      35,0      90,6      29,9      60,7     100,0         %
+  Performed                            120       120       120       120       120       120       120       120         #
+  Passed                                78        89       119        41       108        35        72       120         #
+  Failed                                42        31         1        79        12        85        48       120         #
+    Properly                            41        28         1        68        10        76        46       120         #
+    Asserted                             1         3         0        11         2         9         2       120         #
+  Score                               65.0      74.2      99.2      34.2      90.0      29.2      60.0     100.0         %
 
 Units:
   f/a: total count of failed tests [ / count of tests failed with assertion ],
@@ -42,33 +39,165 @@ Units:
   %:   percentage (% of passed tests), more is better.
 
 
+Performance tests (50 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 4 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 5 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+
 Performance tests (50 items) scorecard:
                                        BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
 CRUD Performance:               
-  Fetch                              10793       531      7846      7881      9035      8064      6450      6270      8417     18467      op/s
+  Fetch                               6631       n/a       n/a      4720      5473      4977      4174      3727      5790     10720      op/s
   Single Operation:             
-    Create Instance                   7387      4095      5244      6065      5157      4051      3338      7323      3719     11410      op/s
-    Update Instance                   6878      3614      4931      5683      5648      1408      2760      6196      1876     10435      op/s
-    Remove Instance                   7011      4135      4868      5950      5496      1512      2980      6762      1916     10578      op/s
-    CUD Average                       7062      3930      4982      5864      5407      1851      2989      6728      2255     10632      op/s
+    Create Instance                   4703      2598       n/a      3636      3029      2000      2161      4141      2360      6447      op/s
+    Update Instance                   4250      2317       n/a      3406      3329       605      1860      3779      1025      5900      op/s
+    Remove Instance                   4408      2560       n/a      3635      3137       676      2053      3979      1041      6158      op/s
+    CUD Average                       4379      2319       n/a      3455      3040       802      1993      3943      1250      6127      op/s
   Multiple Operations:          
-    Create Instance                  35463      8058      8461     19369     12286      5569     15912     14241      4126     39404      op/s
-    Update Instance                  31635      7024      9103     21118     22260      1692     13344     12840      3469     41921      op/s
-    Remove Instance                  36469      8881     10981     24530     20959      1792     14031     38756      3648     44891      op/s
-    CUD Average                      34392      7911      9382     20510     17106      2254     14320     17244      3723     41669      op/s
+    Create Instance                  17938      5121       n/a     10173      7624      2465     10328      8469      2714     19346      op/s
+    Update Instance                  14756      4396       n/a     12508     11690       485      8269      7595      2207     21526      op/s
+    Remove Instance                  20777      5446       n/a     15269     11417       373      8825     19322      2310     31790      op/s
+    CUD Average                      17477      4779       n/a     11890      9021       556      8905      9574      2340     21708      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                        6442       462       903      1445      1216       803      1093      3597       342       n/a queries/s
-    Compiled LINQ Query               9247      5097      2362      5837       n/a      6519       n/a      3725       n/a       n/a queries/s
-    Native Query                     10145      6857      6567      5451      7346       n/a      4365      5724      6044     13283 queries/s
+    LINQ Query                        2946        76       n/a       564       377       289       390      1619       132       n/a queries/s
+    Compiled LINQ Query               5877      3233       n/a      3857       n/a      4107       n/a      1646       n/a       n/a queries/s
+    Native Query                      6282      4266       n/a      3363      4457       n/a      2772      3414      4189      8036 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)       6162      3479      2023      3920       720      4619       814      2774       308       n/a   pages/s
-    Get Average Page (20 items)       3471      2262      1559      2331       782      2782       596      1993       260       n/a   pages/s
+    Get Small Page   (10 items)       4115      2212       n/a      2553       353      2634       318      1333       120       n/a   pages/s
+    Get Average Page (20 items)       2146      1426       n/a      1473       300      1708       262      1044       115       n/a   pages/s
     Get Large Page   (50 items)        n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
     Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
   Materialization:              
-    LINQ Materialize                 70911     24427     24058     60488     57850     37257     22186     50246     13083       n/a objects/s
-    Native Materialize              112057     96024     85704     64053     94126       n/a     34106    106700     42724    169548 objects/s
+    LINQ Materialize                 40856     12942       n/a     41322     31748     18058     13077     28405      7695       n/a objects/s
+    Native Materialize               77808     59887       n/a     42412     59988       n/a     22753     74371     40170    113301 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -76,34 +205,166 @@ Units:
   pages/s:   pages per second, more is better;
   objects/s: # of materialized objects per second, more is better.
 
+
+Performance tests (100 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 4 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 5 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
 
 Performance tests (100 items) scorecard:
                                        BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
 CRUD Performance:               
-  Fetch                              11872       988      8051      8606      9721      8579      6877      6414      8840     20578      op/s
+  Fetch                               7076       n/a       n/a      4829      5348      4457      4284      3635      5914     12293      op/s
   Single Operation:             
-    Create Instance                   9272      4702      5521      7445      5932      4588      3765      8511      3912     14257      op/s
-    Update Instance                   8574      4183      5142      7145      6975      1499      2738      7666      2604     13367      op/s
-    Remove Instance                   8914      4908      5325      7710      6744      1629      3171      8525      2703     13696      op/s
-    CUD Average                       8894      4568      5317      7411      6499      1996      3167      8213      2969     13755      op/s
+    Create Instance                   6012      2909       n/a      4521      3398      2093      2618      4960      2621      8296      op/s
+    Update Instance                   5378      2339       n/a      4386      3831       598      1838      3928      1445      8114      op/s
+    Remove Instance                   5701      2956       n/a      4697      3972       647      2191      4862      1484      7977      op/s
+    CUD Average                       5685      2652       n/a      4368      3508       811      2063      4344      1613      7070      op/s
   Multiple Operations:          
-    Create Instance                  47194      8570      8404     22398     13231      5710     17828     15144      4181     49297      op/s
-    Update Instance                  42347      7305      9488     25820     27247      1655     15048     14001      3872     52331      op/s
-    Remove Instance                  50304      9615     11790     30776     25464      1808     15950     48351      4089     57981      op/s
-    CUD Average                      46297      8369      9681     25844     19590      2250     16194     18924      4016     52744      op/s
+    Create Instance                  18967      5205       n/a     11341      8673      2542     11741      8287      2658     24218      op/s
+    Update Instance                  21596      4559       n/a     15154     14320       567      9711      7848      2499     25734      op/s
+    Remove Instance                  29094      5906       n/a     19674     13735       626      8841     20279      2614     41946      op/s
+    CUD Average                      21971      4604       n/a     13388     10374       754      9067     10087      2586     28707      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                        7551       468       923      1559      1289       830      1151      3847       349       n/a queries/s
-    Compiled LINQ Query              11237      5748      2400      6827       n/a      7584       n/a      3986       n/a       n/a queries/s
-    Native Query                     13008      8099      7208      7259      8677       n/a      4895      6161      6626     15883 queries/s
+    LINQ Query                        3435       142       n/a       601       386       274       384      1758       125       n/a queries/s
+    Compiled LINQ Query               7212      3572       n/a      4605       n/a      4707       n/a      1860       n/a       n/a queries/s
+    Native Query                      8183      5136       n/a      4361      5185       n/a      3095      3585      4712      9819 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)       8108      4164      2191      4849      1116      5811       882      3054       316       n/a   pages/s
-    Get Average Page (20 items)       5876      3270      1958      3500       993      4429       711      2569       288       n/a   pages/s
-    Get Large Page   (50 items)       3146      2022      1474      1969       739      2594       452      1725       227       n/a   pages/s
+    Get Small Page   (10 items)       5180      2520       n/a      3006       317      3516       312      1412       120       n/a   pages/s
+    Get Average Page (20 items)       3919      2052       n/a      2280       326      2747       271      1249       115       n/a   pages/s
+    Get Large Page   (50 items)       2185      1249       n/a      1325       274      1657       218       932       104       n/a   pages/s
     Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
   Materialization:              
-    LINQ Materialize                133904     46138     40426    102030    107503     71326     29454     86737     21186       n/a objects/s
-    Native Materialize              203169    164826    130039    110265    167813       n/a     42448    164068     48051    307314 objects/s
+    LINQ Materialize                 79484     24365       n/a     71362     58109     36419     18320     50875     13650       n/a objects/s
+    Native Materialize              149767    101688       n/a     75403     99621       n/a     28966    112195     50771    217344 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -112,178 +373,80 @@ Units:
   objects/s: # of materialized objects per second, more is better.
 
 
-Performance tests (500 items) scorecard:
-                                       BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
-CRUD Performance:               
-  Fetch                              12865      3272      8733      9274     10435      9254      7315      6620      9366     22253      op/s
-  Single Operation:             
-    Create Instance                   8310      4573      3452      7234      6155      4222      3782      9761      4008     17822      op/s
-    Update Instance                  11080      4787      2897      9460      6865      1457      1360      9658      3817     17492      op/s
-    Remove Instance                  11601      5752      4036     10191      6521      1763      2200     10816      4056     18328      op/s
-    CUD Average                      10089      4974      3395      8767      6465      2008      2059      9948      3930     17188      op/s
-  Multiple Operations:          
-    Create Instance                  28834      7118      6497     18879     14189      5534     20421     15758      4044     55790      op/s
-    Update Instance                  58487      6342      9570     31762     32859      1667     16897     15134      4268     65241      op/s
-    Remove Instance                  72334      7983     12174     39846     30098      1822     18090     29975      4777     76984      op/s
-    CUD Average                      45689      7022      8805     27302     22308      2247     18303     18280      4321     64274      op/s
-Data Access Performance:        
-  Query:                        
-    LINQ Query                        8866       437       912      1467      1252       820      1137      4140       348       n/a queries/s
-    Compiled LINQ Query              13507      6402      2274      7902       n/a      8861       n/a      4231       n/a       n/a queries/s
-    Native Query                     16619      9524      8347      9940     10148       n/a      5453      6516      7276     18570 queries/s
-  Paging (LINQ only):           
-    Get Small Page   (10 items)      10857      4884      2348      5975      1123      7373       942      3420       315       n/a   pages/s
-    Get Average Page (20 items)       9002      4308      2235      4849      1143      6557       796      3071       308       n/a   pages/s
-    Get Large Page   (50 items)       6196      3194      1915      3186       997      4874       543      2348       257       n/a   pages/s
-    Get Huge Page    (100 items)      4050      2235      1570      2038       823      3443       355      1678       203       n/a   pages/s
-  Materialization:              
-    LINQ Materialize                408897    170322     89766    250777    302810    281056     40208    215852     41829       n/a objects/s
-    Native Materialize              632751    382116    216141    272479    388259       n/a     53495    299616     55426    932314 objects/s
-
-Units:
-  op/s:      operations per second, more is better;
-  queries/s: queries per second, more is better;
-  pages/s:   pages per second, more is better;
-  objects/s: # of materialized objects per second, more is better.
-
-
-Performance tests (1000 items) scorecard:
-                                       BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
-CRUD Performance:               
-  Fetch                              13001      4634      7952      9433     10444      9280      7289      6611      8765     21854      op/s
-  Single Operation:             
-    Create Instance                  11832      4566      2292      7441      4851      3670      3741      9848      4167     19043      op/s
-    Update Instance                  11507      3898      1681      9948      4955      1493       871      9609      4099     18749      op/s
-    Remove Instance                  12047      5955      2646     10785      4776      1670      1440     10936      4354     19334      op/s
-    CUD Average                      11777      4641      2128      9147      4859      1942      1421      9959      4105     18655      op/s
-  Multiple Operations:          
-    Create Instance                  22748      7915      5463     14988     12649      4879     20587     10197      4010     61981      op/s
-    Update Instance                  64451      6199      8808     33320     27537      1687     17259     15497      4154     68567      op/s
-    Remove Instance                  79514      9365     12084     42499     26199      1841     18551     24022      4472     82155      op/s
-    CUD Average                      41583      6997      7880     24729     19538      2232     18623     14579      4167     69274      op/s
-Data Access Performance:        
-  Query:                        
-    LINQ Query                        8749       450       933      1559      1290       835      1156      4168       351       n/a queries/s
-    Compiled LINQ Query              13222      6501      2395      8046       n/a      9114       n/a      4269       n/a       n/a queries/s
-    Native Query                     17187      9728      8465     10335     10424       n/a      5494      6590      7312     18645 queries/s
-  Paging (LINQ only):           
-    Get Small Page   (10 items)      10625      5009      2107      6199      1105      7736       907      3458       322       n/a   pages/s
-    Get Average Page (20 items)       9009      4494      2312      5051      1175      7014       726      3130       298       n/a   pages/s
-    Get Large Page   (50 items)       6132      3445      1988      3410      1043      5551       564      2447       262       n/a   pages/s
-    Get Huge Page    (100 items)      4732      2493      1649      2236       892      4108       369      1803       208       n/a   pages/s
-  Materialization:              
-    LINQ Materialize                451752    257884    105362    276556    390747    462149     41555    279126     47665       n/a objects/s
-    Native Materialize              752841    476553    231577    350029    437196       n/a     55515    343666     56430   1276161 objects/s
-
-Units:
-  op/s:      operations per second, more is better;
-  queries/s: queries per second, more is better;
-  pages/s:   pages per second, more is better;
-  objects/s: # of materialized objects per second, more is better.
-
-
-Performance tests (5000 items) scorecard:
-                                       BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
-CRUD Performance:               
-  Fetch                              12783      6620      8573      9168     10291      9247      7157      6314      9357     22137      op/s
-  Single Operation:             
-    Create Instance                   8793      4450       749      9129      2842      2618      3738      7147      3593     12458      op/s
-    Update Instance                  11908      4717       411      9764      1931      1294       214      9061      4157     19432      op/s
-    Remove Instance                  12555      5659       792     10702      1906      1603       411     10385      4436     20031      op/s
-    CUD Average                      10816      4868       595      9803      2150      1686       406      8566      4014     16514      op/s
-  Multiple Operations:          
-    Create Instance                  49847      6261      5490     18641     13316      5266     20459     14272      3874     46079      op/s
-    Update Instance                  69046      5659      8394     30548     26465      1711     16754     15120      4191     69386      op/s
-    Remove Instance                  85913      8802     11034     23714     27199      1866     17918     59769      4441     88114      op/s
-    CUD Average                      64835      6548      7644     23222     20046      2282     18238     19532      4095     62742      op/s
-Data Access Performance:        
-  Query:                        
-    LINQ Query                        7931       466       961      1548      1331       857      1184      4094       353       n/a queries/s
-    Compiled LINQ Query              11806      6144      2538      7854       n/a      9262       n/a      4144       n/a       n/a queries/s
-    Native Query                     17737      8925      8113     10286      9968       n/a      5492      6322      7189     19081 queries/s
-  Paging (LINQ only):           
-    Get Small Page   (10 items)       9646      4483      2366      5705      1181      7914       923      3274       325       n/a   pages/s
-    Get Average Page (20 items)       8070      4692      2215      5332      1135      7334       772      2768       306       n/a   pages/s
-    Get Large Page   (50 items)       7536      3704      1852      3655      1007      6088       546      2017       259       n/a   pages/s
-    Get Huge Page    (100 items)      5630      2756      1736      2426       819      4722       352      1895       206       n/a   pages/s
-  Materialization:              
-    LINQ Materialize                926389    469545     98870    400914    554366    893894     40749    341941     53959       n/a objects/s
-    Native Materialize             1363661    606244    235856    437908    579952       n/a     51838    388678     57871   1507204 objects/s
-
-Units:
-  op/s:      operations per second, more is better;
-  queries/s: queries per second, more is better;
-  pages/s:   pages per second, more is better;
-  objects/s: # of materialized objects per second, more is better.
-
-
-Performance tests (10000 items) scorecard:
-                                       BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
-CRUD Performance:               
-  Fetch                              12972      7120      8644      9172     10361      9306      7201      6299      9407     22066      op/s
-  Single Operation:             
-    Create Instance                   8810      4670       394      9346      1757      1966      3784      7434      3978     13134      op/s
-    Update Instance                  12126      4855       205      9826      1045      1070       110      9117      4132     19458      op/s
-    Remove Instance                  12849      5904       409     10988      1051      1453       215     10534      4578     20172      op/s
-    CUD Average                      10956      5076       304      9978      1207      1398       214      8838      4155     16936      op/s
-  Multiple Operations:          
-    Create Instance                  78138      6612      5035     24998     12223      5979     20627     13934      3915     22762      op/s
-    Update Instance                  69111      5749      8116     30473     25576      1713     16759     14493      4185     69424      op/s
-    Remove Instance                  86440      8020     10326     38606     21079      1868     17873     63256      4424     88363      op/s
-    CUD Average                      77209      6649      7147     30388     17474      2327     18252     19136      4074     43069      op/s
-Data Access Performance:        
-  Query:                        
-    LINQ Query                        7197       558       964      1532      1338       859      1187      4081       353       n/a queries/s
-    Compiled LINQ Query              10346      6340      2570      7978       n/a      8980       n/a      4157       n/a       n/a queries/s
-    Native Query                     17973      9493      8283     10505     10359       n/a      5399      6332      7202     19447 queries/s
-  Paging (LINQ only):           
-    Get Small Page   (10 items)       9322      4806      2402      5981      1188      7529       920      3253       326       n/a   pages/s
-    Get Average Page (20 items)       8063      4136      2291      4751      1140      7450       779      2984       307       n/a   pages/s
-    Get Large Page   (50 items)       5963      2902      1971      3052      1019      6158       529      2146       261       n/a   pages/s
-    Get Huge Page    (100 items)      4134      2159      1531      1895       893      4827       355      1607       209       n/a   pages/s
-  Materialization:              
-    LINQ Materialize                998731    514742    105467    278685    437575   1019004     40264    258442     52464       n/a objects/s
-    Native Materialize             1461347    643931    196793    282556    441514       n/a     55001    275997     55240   2188566 objects/s
-
-Units:
-  op/s:      operations per second, more is better;
-  queries/s: queries per second, more is better;
-  pages/s:   pages per second, more is better;
-  objects/s: # of materialized objects per second, more is better.
-
-
-Performance tests (30000 items) scorecard:
-                                       BLT        EF        ES        DO        LS       L2S        NH        OA        SS       SQL      Unit
-CRUD Performance:               
-  Fetch                              13154      7493      8713      9265     10357      9349      7161      6360      9571     22384      op/s
-  Single Operation:             
-    Create Instance                   8792      5390       127      9480       494       847      3799      9467      4030     20675      op/s
-    Update Instance                  12086      4921        60     10056       216       625        36      9271      4187     20170      op/s
-    Remove Instance                  12811      6000       130     10887       219      1051        73     10728      4358     20943      op/s
-    CUD Average                      10927      5385        93     10067       265       803        71      9750      3931     20483      op/s
-  Multiple Operations:          
-    Create Instance                  65977      6529      4379     23318     11649      6019     20777     14290      3758     41054      op/s
-    Update Instance                  68014      5595      7742     29671     23421      1715     16629     13808      3955     69117      op/s
-    Remove Instance                  85838      8090      8354     38174     23755      1863     17888     55490      4127     85900      op/s
-    CUD Average                      71443      6568      6278     29044     17487      2328     18228     18545      3861     59389      op/s
-Data Access Performance:        
-  Query:                        
-    LINQ Query                        2249       470       965      1519      1337       860      1183      4120       353       n/a queries/s
-    Compiled LINQ Query               2015      6413      2570      8082       n/a      9120       n/a      4190       n/a       n/a queries/s
-    Native Query                     17820      9635      8423     10834     10391       n/a      5516      6367      7359     19462 queries/s
-  Paging (LINQ only):           
-    Get Small Page   (10 items)       2665      4782      2430      5890      1190      7760       914      3191       326       n/a   pages/s
-    Get Average Page (20 items)       2804      4302      2312      4732      1140      7277       772      2844       308       n/a   pages/s
-    Get Large Page   (50 items)       3004      3191      2044      3223      1010      5753       522      2066       262       n/a   pages/s
-    Get Huge Page    (100 items)      2159      2577      1687      2009       852      5008       347      1396       211       n/a   pages/s
-  Materialization:              
-    LINQ Materialize               1053659    460074     91582    293124    393349   1140346     38868    233440     53841       n/a objects/s
-    Native Materialize             1552304    524618    189828    299380    403612       n/a     50955    249223     56202   2319342 objects/s
-
-Units:
-  op/s:      operations per second, more is better;
-  queries/s: queries per second, more is better;
-  pages/s:   pages per second, more is better;
-  objects/s: # of materialized objects per second, more is better.
-
-
+Performance tests (500 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.Setup() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 48
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 110
+  BaseTearDown failed: System.Exception: Trial Expired
+   at EntitySpaces.Interfaces.esDynamicQuery..ctor()
+   at OrmBattle.EntitySpacesModel.SimplestsQuery..ctor() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsQuery.cs:line 30
+   at OrmBattle.EntitySpacesModel.SimplestsCollection.GetDynamicQuery() in e:\Projects\SVN\OrmBattle\trunk\EntitySpacesModel\SimplestsCollection.cs:line 70
+   at EntitySpaces.Core.esEntityCollection.LoadAll()
+   at OrmBattle.Tests.Performance.EntitySpacesTest.TearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\Performance\EntitySpacesTest.cs:line 56
+   at OrmBattle.Tests.ToolTestBase.BaseTearDown() in e:\Projects\SVN\OrmBattle\trunk\Tests\ToolTestBase.cs:line 36
+   at OrmBattle.TestRunner.PerformanceTestRunner.Run() in e:\Projects\SVN\OrmBattle\trunk\TestRunner\PerformanceTestRunner.cs:line 118
+  Testing: DataObjects.Net (DO)
+  Testing: LightSpeed (LS)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
