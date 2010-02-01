@@ -91,12 +91,13 @@ namespace OrmBattle.BLToolkitModel
 		public EntitySet<CustomerCustomerDemo> CustomerCustomerDemos;
 
 		[Association(ThisKey="Id", OtherKey="CustomerID")]
-		public EntitySet<Order> Orders;
+		public List<Order> Orders;
 	}
 
 	[TableName("Employees")]
 	public class Employee
 	{
+		[PrimaryKey]
 		public int       EmployeeID;
 		public string    LastName;
 		public string    FirstName;
