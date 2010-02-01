@@ -303,7 +303,13 @@ namespace OrmBattle.Tests.Linq
       Products  = db.Products. ToList();
 
       foreach (var o in Orders)
+      {
         o.Customer = Customers.SingleOrDefault(c => c.Id == o.CustomerID);
+        o.Employee = Employees.SingleOrDefault(e => e.EmployeeID == o.EmployeeID);
+      }
+
+      foreach (var c in Customers)
+        c.Orders = Orders.Where(o => c.Id == o.CustomerID).ToList();
     }
 
     protected override void TearDown()

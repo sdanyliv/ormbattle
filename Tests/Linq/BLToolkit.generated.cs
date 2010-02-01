@@ -49,7 +49,13 @@ namespace OrmBattle.Tests.Linq
       Products  = db.Products. ToList();
 
       foreach (var o in Orders)
+      {
         o.Customer = Customers.SingleOrDefault(c => c.Id == o.CustomerID);
+        o.Employee = Employees.SingleOrDefault(e => e.EmployeeID == o.EmployeeID);
+      }
+
+      foreach (var c in Customers)
+        c.Orders = Orders.Where(o => c.Id == o.CustomerID).ToList();
     }
 
     protected override void TearDown()
@@ -442,11 +448,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'c.Orders.Select(o => new <>f__AnonymousType6`2(Id = o.Id, CompanyName = c.CompanyName)).DefaultIfEmpty()'.
-    //   Parameter name: info
+    // Passed.
     public void SelectManyLeftJoinTest()
     {
       var result =
@@ -514,9 +516,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Take/Skip")]
     // Failed.
-    // Exception: InvalidCastException
+    // Exception: LinqException
     // Message:
-    //   Unable to cast object of type 'System.Linq.Expressions.MemberExpression' to type 'System.Linq.Expressions.MethodCallExpression'.
+    //   Cannot find converter for the 'System.Collections.Generic.IEnumerable`1[[OrmBattle.BLToolkitModel.Order, BLToolkitModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' type.
     public void TakeNestedTest()
     {
       var result = 
@@ -833,9 +835,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Grouping")]
     // Failed.
-    // Exception: InvalidCastException
+    // Exception: LinqException
     // Message:
-    //   Unable to cast object of type 'System.Linq.Expressions.MemberExpression' to type 'System.Linq.Expressions.MethodCallExpression'.
+    //   Cannot find converter for the 'System.Collections.Generic.IEnumerable`1[[<>f__AnonymousTypee`2[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Collections.Generic.IEnumerable`1[[<>f__AnonymousTyped`2[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Linq.IGrouping`2[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[OrmBattle.BLToolkitModel.Order, BLToolkitModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' type.
     public void ComplexGroupingTest()
     {
       var result = 
@@ -1095,7 +1097,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: LinqException
     // Message:
-    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.OrderDetail' type.
+    //   Cannot find converter for the 'OrmBattle.BLToolkitModel.Order' type.
     public void NestedFirstOrDefaultTest()
     {
       var result =
@@ -1188,11 +1190,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest).db.Orders.Where(o => (o.Customer = c)).All(o => value(OrmBattle.Tests.Linq.BLToolkitTest).db.Employees.Where(e => (o.Employee = e)).Any(e => e.FirstName.StartsWith("A")))'.
-    //   Parameter name: info
+    // Passed.
     public void AllNestedTest()
     {
       var result =
@@ -1205,11 +1203,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest).db.Customers.Where(c => (c = o.Customer)).All(c => c.CompanyName.StartsWith("A"))'.
-    //   Parameter name: info
+    // Passed.
     public void ComplexAllTest()
     {
       var result =
@@ -1231,11 +1225,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest).db.Orders.Where(o => (o.OrderDate > Convert(new DateTime(2001, 1, 1)))).Select(o => o.Customer).Contains(c)'.
-    //   Parameter name: info
+    // Passed.
     public void ContainsNestedTest()
     {
       var result = from c in db.Customers
@@ -1264,11 +1254,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'c.Orders.Any(o => (o.Freight > 400))'.
-    //   Parameter name: info
+    // Passed.
     public void AnyTest()
     {
       var result = db.Customers.Where(c => c.Orders.Any(o => o.Freight > 400));
@@ -1280,10 +1266,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("All/Any/Contains")]
     // Failed.
-    // Exception: ArgumentException
+    // Exception: InvalidCastException
     // Message:
-    //   Queryable method call expected. Got 'value(OrmBattle.Tests.Linq.BLToolkitTest+<>c__DisplayClass8b).ids.Any(id => (c.Id = id))'.
-    //   Parameter name: info
+    //   Unable to cast object of type 'System.Linq.Expressions.MemberExpression' to type 'System.Linq.Expressions.MethodCallExpression'.
     public void AnyParameterizedTest()
     {
       var ids = new[] { "ABCDE", "ALFKI" };
@@ -1310,11 +1295,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'Table(Order).Select(o => o.Freight).Sum()'.
-    //   Parameter name: info
+    // Passed.
     public void SumTest()
     {
       var sum = db.Orders.Select(o => o.Freight).Sum();
@@ -1345,11 +1326,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
-    // Failed.
-    // Exception: ArgumentException
-    // Message:
-    //   Queryable method call expected. Got 'Table(Order).Select(o => Convert(o.Id)).Sum()'.
-    //   Parameter name: info
+    // Passed.
     public void NullableSumTest()
     {
       var sum = db.Orders.Select(o => (int?)o.Id).Sum();
@@ -1377,10 +1354,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   '<>h__TransparentIdentifier9b.go.Count()' cannot be converted to SQL.
+    // Passed.
     public void GroupJoinTest()
     {
       var result = 
@@ -1411,10 +1385,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'c' cannot be converted to SQL.
+    // Passed.
     public void JoinByAnonymousTest()
     {
       var result =
@@ -1448,10 +1419,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Failed.
-    // Exception: LinqException
-    // Message:
-    //   'c' cannot be converted to SQL.
+    // Passed.
     public void JoinByReferenceTest()
     {
       var result =
@@ -1537,10 +1505,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: ArgumentException
+    // Exception: InvalidOperationException
     // Message:
-    //   Queryable method call expected. Got 'customers'.
-    //   Parameter name: info
+    //   Operation is not valid due to the current state of the object.
     public void ComplexTest2()
     {
       var result = db.Customers
@@ -1581,10 +1548,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: ArgumentException
+    // Exception: LinqException
     // Message:
-    //   Queryable method call expected. Got 'o'.
-    //   Parameter name: info
+    //   'o.Count()' cannot be converted to SQL.
     public void ComplexTest4()
     {
       var result = db.Customers
@@ -1602,10 +1568,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: ArgumentOutOfRangeException
+    // Exception: ArgumentException
     // Message:
-    //   Index was out of range. Must be non-negative and less than the size of the collection.
-    //   Parameter name: index
+    //   Expression of type 'OrmBattle.BLToolkitModel.Order' cannot be used for return type 'System.Collections.Generic.List`1[OrmBattle.BLToolkitModel.Order]'
     public void ComplexTest5()
     {
       var result = db.Customers
