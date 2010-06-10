@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OrmBattle.LinqConnectModel</RootNamespace>
     <AssemblyName>LinqConnectModel</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -118,16 +119,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Net\Data\Linq\Common\Src\Devart.Data.Linq.csproj">
-      <Project>{E204B77A-79B0-4EB2-9A36-39DF11131E5C}</Project>
-      <Name>Devart.Data.Linq</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Net\Data\Linq\SqlClient\Src\Devart.Data.SqlServer.Linq.csproj">
-      <Project>{98A05637-5CB5-48D5-A6CC-7645CFECAA81}</Project>
-      <Name>Devart.Data.SqlServer.Linq</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

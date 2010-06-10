@@ -5,7 +5,6 @@
 
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
-    <Subconfig  Condition="'$(BuildForILMerge)'=='true'">NoAspects</Subconfig>
     <Fullconfig>$(Configuration)</Fullconfig>
     <Fullconfig Condition="'$(Subconfig)'!=''">$(Configuration)-$(Subconfig)</Fullconfig>
     <RootDir Condition="'$(RootDir)'==''">$(MSBuildProjectDirectory)\..\</RootDir>
@@ -16,12 +15,16 @@
     <TestProjectFile>$(TestProject).csproj</TestProjectFile>
     <TestProjectOutputDir>$(TestProject)\bin\$(Configuration)\</TestProjectOutputDir>
     <BackupFolderName>Backup</BackupFolderName>
+    <BuildProjRunning>true</BuildProjRunning>
   </PropertyGroup>
  
-  <!-- Always use FiXml for Build.proj files -->
+  <!-- FiXml properties -->
   
   <PropertyGroup>
-    <UseFiXml     Condition="'$(UseFiXml)'==''">true</UseFiXml>
+    <UseFiXml 
+      Condition="'$(UseFiXml)'==''">false</UseFiXml>
+    <UseFiXml 
+      Condition="'$(ForceUseFiXml)'=='true'">true</UseFiXml>
   </PropertyGroup>
 
   <!-- Common configuration & imports -->

@@ -16,10 +16,6 @@
       Condition="'$(BinLatestDir)'==''">$(RootDir)Bin\Latest\</BinLatestDir>
     <BinOutputDir 
       Condition="'$(BinOutputDir)'==''">$(RootDir)Bin\$(Configuration)\</BinOutputDir>
-    <SolutionBinLatestDir 
-      Condition="'$(SolutionBinLatestDir)'==''">$(SolutionDir)Bin\Latest\</SolutionBinLatestDir>
-    <SolutionBinOutputDir 
-      Condition="'$(SolutionBinOutputDir)'==''">$(SolutionDir)Bin\$(Configuration)\</SolutionBinOutputDir>
   </PropertyGroup>
  
   

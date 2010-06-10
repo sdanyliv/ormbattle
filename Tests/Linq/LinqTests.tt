@@ -8,7 +8,7 @@
 <# var manager = new Manager(Host, GenerationEnvironment, true) { OutputPath = Path.GetDirectoryName(Host.TemplateFile) }; #>
 
 <# manager.StartHeader(); #>
-// Copyright (C) 2009 ORMBattle.NET.
+// Copyright (C) 2009-2010 ORMBattle.NET.
 // All rights reserved.
 // For conditions of distribution and use, see license.
 // Created by: Alexis Kochetov
@@ -23,6 +23,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
+using Xtensive.Core;
 using Xtensive.Core.Disposing;
 using Xtensive.Core.Collections;
 
@@ -318,6 +319,45 @@ namespace OrmBattle.Tests.Linq
     }
 
 <# manager.EndBlock(); #>
+
+<# manager.StartBlock("LinqConnect.generated.cs"); #>
+  using LinqConnectModel;
+  using OrmBattle.LinqConnectModel;
+
+  [TestFixture]
+  public class LinqConnectTest : LinqTestBase
+  {
+    protected NorthwindDataContext db;
+
+    public override string ToolName {
+      get { return "LinqConnect"; }
+    }
+
+    public override string ShortToolName {
+      get { return "LC"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"<#= manager.CurrentBlock.Name #>"; }
+    }
+
+    protected override void Setup()
+    {
+      db = new NorthwindDataContext();
+
+      Customers = db.Customers.ToList();
+      Employees = db.Employees.ToList();
+      Orders    = db.Orders.   ToList();
+      Products  = db.Products. ToList();
+    }
+
+    protected override void TearDown()
+    {
+      db.Dispose();
+    }
+
+<# manager.EndBlock(); #>
+
 
 <# manager.StartBlock("Linq2Sql.generated.cs"); #>
   using Linq2SqlModel;
