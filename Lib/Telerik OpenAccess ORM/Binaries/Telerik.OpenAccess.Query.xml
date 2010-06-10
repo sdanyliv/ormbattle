@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.OpenAccess.Query</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.OpenAccess.Query.ExpressionVisitor">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.#ctor">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)">
+            <summary>
+            </summary>
+            <param name="exp"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitBinding(System.Linq.Expressions.MemberBinding)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitElementInitializer(System.Linq.Expressions.ElementInit)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitUnary(System.Linq.Expressions.UnaryExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitTypeIs(System.Linq.Expressions.TypeBinaryExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitConditional(System.Linq.Expressions.ConditionalExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitParameter(System.Linq.Expressions.ParameterExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitMemberAccess(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitExpressionList(System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression})">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitMemberAssignment(System.Linq.Expressions.MemberAssignment)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitMemberMemberBinding(System.Linq.Expressions.MemberMemberBinding)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitMemberListBinding(System.Linq.Expressions.MemberListBinding)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitBindingList(System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.MemberBinding})">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitElementInitializerList(System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.ElementInit})">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitLambda(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitNew(System.Linq.Expressions.NewExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitMemberInit(System.Linq.Expressions.MemberInitExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitListInit(System.Linq.Expressions.ListInitExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitNewArray(System.Linq.Expressions.NewArrayExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionVisitor.VisitInvocation(System.Linq.Expressions.InvocationExpression)">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.ExtensionMethods">
+            <summary>
+            Extension methods for Telerik.OpenAccess
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtensionMethods.Extent``1(Telerik.OpenAccess.IObjectScope)">
+            <summary>
+            Returns an IQueryable instance usable for Linq queries.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtensionMethods.Matches(System.String,System.String)">
+            <summary>
+            Returns true when the string matches a certain regular expression using * and ? wildcards.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.ExtentQuery`1">
+            <summary>
+            Represents a typed query in an OpenAccess context.
+            </summary>
+            <typeparam name="T">Type of the results set elements</typeparam>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.IObjectScopeQuery`1">
+            <summary>
+            Tagging interface so that the compiler can keep
+            better track of whom to call in presence of all the
+            Queryable extension methods.
+            This allows Telerik.OpenAccess Linq queries to be compile-time
+            checked and allows to produce warning messages for inefficient
+            expressions.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerator`1"/> object that can be 
+            used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator"/> object that can be 
+            used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.GetHashCode">
+            <summary>hidden</summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.ParallelFetch(System.Boolean)">
+            <summary>
+            Controls whether parallel result fetching is allowed.
+            </summary>
+            <param name="val"><c>True</c> when parallel fetching is to be allowed (Default: False)</param>
+            <returns>Query instance</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.IgnoreUncommitted(System.Boolean)">
+            <summary>
+            This property determines whether the query execution is allowed to ignore the
+            changes made in the current transaction, e.g. return objects which have been 
+            deleted in the current transaction.
+            </summary>
+            <param name="val"><c>True</c> when uncommitted changes are ignored. (Default: True)</param>
+            <returns>Query instance</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.ForwardsOnly(System.Boolean)">
+            <summary>
+            Determines whether the query result can be traversed forwards only, or if random access is possible.
+            </summary>
+            <param name="val"><c>True</c> when the result set is accessed in a forward iterating manner only. (Default: True></param>
+            <returns>Query instance</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.Debug(System.Boolean)">
+            <summary>
+            Controls additional query tracing and execution debugging aids.
+            </summary>
+            <remarks>
+            This method is for internal debugging methods only and should not be relied upon in production code.
+            </remarks>
+            <param name="val"><c>True</c> for additional information. (Default: False)</param>
+            <returns>Query instance</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.ToList">
+            <summary>
+            Creates a List{T} from the query.
+            </summary>
+            <returns>A List<typeparamref name="T"/> that contains the query result elements.</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.ToString">
+            <summary>
+            Returns the SQL that is generated for query execution.
+            </summary>
+            <returns>SQL statement</returns>
+        </member>
+        <member name="P:Telerik.OpenAccess.ExtentQuery`1.ElementType">
+            <summary>
+            Gets the type of the element(s) that are returned when the expression 
+            tree associated with this instance of IQueryable is executed.
+            </summary>
+            <value>
+            A <see cref="T:System.Type"/> that represents the type of the element(s) that are 
+            returned when the expression tree associated with this object is executed. 
+            </value>
+            <seealso cref="T:System.Linq.IQueryable"/>
+        </member>
+        <member name="P:Telerik.OpenAccess.ExtentQuery`1.Expression">
+            <summary>
+            Gets the expression tree that is associated with the instance of IQueryable. 
+            </summary>
+            <value>
+            The Expression that is associated with this instance of <see cref="T:System.Linq.IQueryable"/>. 
+            </value>
+        </member>
+        <member name="P:Telerik.OpenAccess.ExtentQuery`1.Provider">
+            <summary>
+            Gets the query provider that is associated with this data source.
+            </summary>
+            <value>
+            The <see cref="T:System.Linq.IQueryProvider"/> that is associated with this data source. 
+            </value>
+        </member>
+        <member name="F:Telerik.OpenAccess.Query.FormTreeDisplay.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.FormTreeDisplay.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.FormTreeDisplay.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ParamPos">
+            <summary>
+            Names or references a parameter expression.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.LinqParameter2QueryParameter">
+            <summary>
+            Walks the Linq expression tree and finds all parameters. 
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.QueryContext.ResolveGroup``2(``1)">
+            <summary>
+            Resolves the IGroupable produced by this query for the given key.
+            </summary>
+            <typeparam name="TElement">Extent type (PC)</typeparam>
+            <typeparam name="TKey">Grouping type (the key of the group)</typeparam>
+            <param name="key">Group key value</param>
+            <returns>Enumerable of PC</returns>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ScopingNames">
+            <summary>
+            Implements a scoped name resolution for nested lambda expressions and parameters.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,8 @@
+Performance tests (50 items):
+Pass 1 out of 2...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
+Pass 2 out of 2...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
