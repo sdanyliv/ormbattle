@@ -1,10 +1,20 @@
 @echo off
 pushd "%~dp0"
+  if not "%EnvironmentReady%"=="" goto :End
   call :Start %*
 popd
 goto :End
 
 :Start
+rem Windows XP+ 64-bit mode detection
+if not "%PROCESSOR_ARCHITEW6432%"=="" set Is64Bit=true
+rem Windows 7 64-bit mode detection
+if not "%ProgramW6432%"=="" (
+  if not "%ProgramFiles%"=="%ProgramW6432%" set Is64Bit=true
+)
+rem Conditional variables
+if "%Is64Bit%"=="true" set Wow6432Key=Wow6432Node\
+
 rem DataObjects.Net path
 pushd ..
   set DataObjectsDotNetPath=%cd%
@@ -12,31 +22,36 @@ popd
 
 rem Tool paths (manual)
 set HtmlHelp1SDKPath=%ProgramFiles%\Microsoft Help 1.0 SDK
-set HtmlHelp2SDKPath=%ProgramFiles%\Microsoft Help 2.0 SDK 2008
+set HtmlHelp2SDKPath=%ProgramFiles%\Microsoft Help 2.0 SDK
 set SandcastlePath=%ProgramFiles%\Sandcastle
 set HeatFixPath=Bin\Latest\HeatFix.exe
 
 rem Tool paths (automatic)
-call :SetRegPath MSBuildPath "HKLM\SOFTWARE\Microsoft\MSBuild\ToolsVersions\3.5" /v MSBuildToolsPath 2>nul
+call :SetRegPath MSBuildPath "HKLM\SOFTWARE\%Wow6432Key%Microsoft\MSBuild\ToolsVersions\4.0" /v MSBuildToolsPath 2>nul
 call :DotPath MSBuildPath
-rem call :SetRegPath PostSharpPath "HKLM\SOFTWARE\postsharp.org\PostSharp 1.0" /v Location 2>nul
+rem call :SetRegPath PostSharpPath "HKLM\SOFTWARE\%Wow6432Key%SharpCrafters\PostSharp 2.0" /v Location 2>nul
 rem call :DotPath PostSharpPath
-rem call :SetRegCmdPath SandcastleBuilderPath "HKLM\SOFTWARE\Classes\Sandcastle Help File Builder Project\shell\open\command" /ve 2>nul
+rem call :SetRegCmdPath SandcastleBuilderPath "HKLM\SOFTWARE\%Wow6432Key%Classes\Sandcastle Help File Builder Project\shell\open\command" /ve 2>nul
 rem call :DotPath SandcastleBuilderPath
 set SandcastleBuilderPath=%SHFBROOT%.
-call :SetRegPath InnoSetupPath "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Inno Setup 5_is1" /v "InstallLocation" 2>nul
+call :SetRegPath InnoSetupPath "HKLM\SOFTWARE\%Wow6432Key%Microsoft\Windows\CurrentVersion\Uninstall\Inno Setup 5_is1" /v "InstallLocation" 2>nul
 call :DotPath InnoSetupPath
-call :SetRegSrvPath TortoiseSVNPath "HKLM\SOFTWARE\Classes\CLSID\{30351346-7B7D-4FCC-81B4-1E394CA267EB}\InProcServer32" /ve 2>nul
+call :SetRegSrvPath TortoiseSVNPath "HKLM\SOFTWARE\%Wow6432Key%Classes\CLSID\{30351346-7B7D-4FCC-81B4-1E394CA267EB}\InProcServer32" /ve 2>nul
 call :DotPath TortoiseSVNPath
 set SubWCRevPath=%TortoiseSVNPath%\SubWCRev.exe
 set WixPath=%WIX%bin
 
 rem Visual Studio 2008 & .NET paths (automatic)
-call :SetRegPath DevEnv2008Path "HKLM\SOFTWARE\Microsoft\VisualStudio\9.0" /v InstallDir 2>nul
+call :SetRegPath DevEnv2008Path "HKLM\SOFTWARE\%Wow6432Key%Microsoft\VisualStudio\9.0" /v InstallDir 2>nul
 call :DotPath DevEnv2008Path
-set TextTransformPath=%ProgramFiles%\Common Files\Microsoft Shared\TextTemplating\1.2
+call :SetRegPath DevEnv2010Path "HKLM\SOFTWARE\%Wow6432Key%Microsoft\VisualStudio\10.0" /v InstallDir 2>nul
+call :DotPath DevEnv2010Path
+set TextTransformPath=%CommonProgramFiles%\Microsoft Shared\TextTemplating\10.0
 set DotNetFramework20Path=%SystemRoot%\Microsoft.NET\Framework\v2.0.50727 
 set DotNetFramework35Path=%SystemRoot%\Microsoft.NET\Framework\v3.5
+set DotNetFramework40Path=%SystemRoot%\Microsoft.NET\Framework\v4.0.30319
+call :SetRegPath DotNetSdk20Path "HKLM\SOFTWARE\%Wow6432Key%Microsoft\.NETFramework" /v sdkInstallRootv2.0 2>nul
+call :DotPath DotNetSdk20Path
 
 rem This allows to override the envorinment for a particular PC\User\Domain
 set LocalEnvironment1=Environment.%COMPUTERNAME%.bat
@@ -44,13 +59,8 @@ set LocalEnvironment2=Environment.%COMPUTERNAME%-%USERNAME%@%USERDOMAIN%.bat
 if exist "%LocalEnvironment1%" call "%LocalEnvironment1%"
 if exist "%LocalEnvironment2%" call "%LocalEnvironment2%"
 
-rem Detecting BuildFor
-if exist "ReleaseFilter.txt" set BuildFor=Xtensive
-if "%BuildFor%"=="" if exist "..\Xtensive.Storage.Samples" set BuildFor=I-DO4
-if "%BuildFor%"=="" if exist "..\Xtensive.MSBuildTasks" set BuildFor=I-XMT
-
 set EnvironmentReady=true
-echo Environment is ready (%BuildFor%).
+echo Environment is ready.
 goto :End
 
 :SetRegPath

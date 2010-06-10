@@ -10,6 +10,742 @@ using System.Data;
 namespace OrmBattle.SubsonicModel.Northwind {
 	
         /// <summary>
+        /// Table: Categories
+        /// Primary Key: CategoryID
+        /// </summary>
+
+        public class CategoriesTable: DatabaseTable {
+            
+            public CategoriesTable(IDataProvider provider):base("Categories",provider){
+                ClassName = "Category";
+                SchemaName = "dbo";
+                
+
+                Columns.Add(new DatabaseColumn("CategoryID", this)
+                {
+	                IsPrimaryKey = true,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = true,
+	                IsForeignKey = true,
+	                MaxLength = 0
+                });
+
+                Columns.Add(new DatabaseColumn("CategoryName", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 15
+                });
+
+                Columns.Add(new DatabaseColumn("Description", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 1073741823
+                });
+
+                Columns.Add(new DatabaseColumn("Picture", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.Binary,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 2147483647
+                });
+                    
+                
+                
+            }
+            
+            public IColumn CategoryID{
+                get{
+                    return this.GetColumn("CategoryID");
+                }
+            }
+            				
+   			public static string CategoryIDColumn{
+			      get{
+        			return "CategoryID";
+      			}
+		    }
+           
+            public IColumn CategoryName{
+                get{
+                    return this.GetColumn("CategoryName");
+                }
+            }
+            				
+   			public static string CategoryNameColumn{
+			      get{
+        			return "CategoryName";
+      			}
+		    }
+           
+            public IColumn Description{
+                get{
+                    return this.GetColumn("Description");
+                }
+            }
+            				
+   			public static string DescriptionColumn{
+			      get{
+        			return "Description";
+      			}
+		    }
+           
+            public IColumn Picture{
+                get{
+                    return this.GetColumn("Picture");
+                }
+            }
+            				
+   			public static string PictureColumn{
+			      get{
+        			return "Picture";
+      			}
+		    }
+           
+                    
+        }
+        
+        /// <summary>
+        /// Table: Customers
+        /// Primary Key: CustomerID
+        /// </summary>
+
+        public class CustomersTable: DatabaseTable {
+            
+            public CustomersTable(IDataProvider provider):base("Customers",provider){
+                ClassName = "Customer";
+                SchemaName = "dbo";
+                
+
+                Columns.Add(new DatabaseColumn("CustomerID", this)
+                {
+	                IsPrimaryKey = true,
+	                DataType = DbType.String,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = true,
+	                MaxLength = 5
+                });
+
+                Columns.Add(new DatabaseColumn("CompanyName", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 40
+                });
+
+                Columns.Add(new DatabaseColumn("ContactName", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 30
+                });
+
+                Columns.Add(new DatabaseColumn("ContactTitle", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 30
+                });
+
+                Columns.Add(new DatabaseColumn("Address", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 60
+                });
+
+                Columns.Add(new DatabaseColumn("City", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 15
+                });
+
+                Columns.Add(new DatabaseColumn("Region", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 15
+                });
+
+                Columns.Add(new DatabaseColumn("PostalCode", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10
+                });
+
+                Columns.Add(new DatabaseColumn("Country", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 15
+                });
+
+                Columns.Add(new DatabaseColumn("Phone", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 24
+                });
+
+                Columns.Add(new DatabaseColumn("Fax", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 24
+                });
+                    
+                
+                
+            }
+            
+            public IColumn CustomerID{
+                get{
+                    return this.GetColumn("CustomerID");
+                }
+            }
+            				
+   			public static string CustomerIDColumn{
+			      get{
+        			return "CustomerID";
+      			}
+		    }
+           
+            public IColumn CompanyName{
+                get{
+                    return this.GetColumn("CompanyName");
+                }
+            }
+            				
+   			public static string CompanyNameColumn{
+			      get{
+        			return "CompanyName";
+      			}
+		    }
+           
+            public IColumn ContactName{
+                get{
+                    return this.GetColumn("ContactName");
+                }
+            }
+            				
+   			public static string ContactNameColumn{
+			      get{
+        			return "ContactName";
+      			}
+		    }
+           
+            public IColumn ContactTitle{
+                get{
+                    return this.GetColumn("ContactTitle");
+                }
+            }
+            				
+   			public static string ContactTitleColumn{
+			      get{
+        			return "ContactTitle";
+      			}
+		    }
+           
+            public IColumn Address{
+                get{
+                    return this.GetColumn("Address");
+                }
+            }
+            				
+   			public static string AddressColumn{
+			      get{
+        			return "Address";
+      			}
+		    }
+           
+            public IColumn City{
+                get{
+                    return this.GetColumn("City");
+                }
+            }
+            				
+   			public static string CityColumn{
+			      get{
+        			return "City";
+      			}
+		    }
+           
+            public IColumn Region{
+                get{
+                    return this.GetColumn("Region");
+                }
+            }
+            				
+   			public static string RegionColumn{
+			      get{
+        			return "Region";
+      			}
+		    }
+           
+            public IColumn PostalCode{
+                get{
+                    return this.GetColumn("PostalCode");
+                }
+            }
+            				
+   			public static string PostalCodeColumn{
+			      get{
+        			return "PostalCode";
+      			}
+		    }
+           
+            public IColumn Country{
+                get{
+                    return this.GetColumn("Country");
+                }
+            }
+            				
+   			public static string CountryColumn{
+			      get{
+        			return "Country";
+      			}
+		    }
+           
+            public IColumn Phone{
+                get{
+                    return this.GetColumn("Phone");
+                }
+            }
+            				
+   			public static string PhoneColumn{
+			      get{
+        			return "Phone";
+      			}
+		    }
+           
+            public IColumn Fax{
+                get{
+                    return this.GetColumn("Fax");
+                }
+            }
+            				
+   			public static string FaxColumn{
+			      get{
+        			return "Fax";
+      			}
+		    }
+           
+                    
+        }
+        
+        /// <summary>
+        /// Table: Shippers
+        /// Primary Key: ShipperID
+        /// </summary>
+
+        public class ShippersTable: DatabaseTable {
+            
+            public ShippersTable(IDataProvider provider):base("Shippers",provider){
+                ClassName = "Shipper";
+                SchemaName = "dbo";
+                
+
+                Columns.Add(new DatabaseColumn("ShipperID", this)
+                {
+	                IsPrimaryKey = true,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = true,
+	                IsForeignKey = true,
+	                MaxLength = 0
+                });
+
+                Columns.Add(new DatabaseColumn("CompanyName", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 40
+                });
+
+                Columns.Add(new DatabaseColumn("Phone", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 24
+                });
+                    
+                
+                
+            }
+            
+            public IColumn ShipperID{
+                get{
+                    return this.GetColumn("ShipperID");
+                }
+            }
+            				
+   			public static string ShipperIDColumn{
+			      get{
+        			return "ShipperID";
+      			}
+		    }
+           
+            public IColumn CompanyName{
+                get{
+                    return this.GetColumn("CompanyName");
+                }
+            }
+            				
+   			public static string CompanyNameColumn{
+			      get{
+        			return "CompanyName";
+      			}
+		    }
+           
+            public IColumn Phone{
+                get{
+                    return this.GetColumn("Phone");
+                }
+            }
+            				
+   			public static string PhoneColumn{
+			      get{
+        			return "Phone";
+      			}
+		    }
+           
+                    
+        }
+        
+        /// <summary>
+        /// Table: Suppliers
+        /// Primary Key: SupplierID
+        /// </summary>
+
+        public class SuppliersTable: DatabaseTable {
+            
+            public SuppliersTable(IDataProvider provider):base("Suppliers",provider){
+                ClassName = "Supplier";
+                SchemaName = "dbo";
+                
+
+                Columns.Add(new DatabaseColumn("SupplierID", this)
+                {
+	                IsPrimaryKey = true,
+	                DataType = DbType.Int32,
+	                IsNullable = false,
+	                AutoIncrement = true,
+	                IsForeignKey = true,
+	                MaxLength = 0
+                });
+
+                Columns.Add(new DatabaseColumn("CompanyName", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = false,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 40
+                });
+
+                Columns.Add(new DatabaseColumn("ContactName", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 30
+                });
+
+                Columns.Add(new DatabaseColumn("ContactTitle", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 30
+                });
+
+                Columns.Add(new DatabaseColumn("Address", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 60
+                });
+
+                Columns.Add(new DatabaseColumn("City", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 15
+                });
+
+                Columns.Add(new DatabaseColumn("Region", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 15
+                });
+
+                Columns.Add(new DatabaseColumn("PostalCode", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 10
+                });
+
+                Columns.Add(new DatabaseColumn("Country", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 15
+                });
+
+                Columns.Add(new DatabaseColumn("Phone", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 24
+                });
+
+                Columns.Add(new DatabaseColumn("Fax", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 24
+                });
+
+                Columns.Add(new DatabaseColumn("HomePage", this)
+                {
+	                IsPrimaryKey = false,
+	                DataType = DbType.String,
+	                IsNullable = true,
+	                AutoIncrement = false,
+	                IsForeignKey = false,
+	                MaxLength = 1073741823
+                });
+                    
+                
+                
+            }
+            
+            public IColumn SupplierID{
+                get{
+                    return this.GetColumn("SupplierID");
+                }
+            }
+            				
+   			public static string SupplierIDColumn{
+			      get{
+        			return "SupplierID";
+      			}
+		    }
+           
+            public IColumn CompanyName{
+                get{
+                    return this.GetColumn("CompanyName");
+                }
+            }
+            				
+   			public static string CompanyNameColumn{
+			      get{
+        			return "CompanyName";
+      			}
+		    }
+           
+            public IColumn ContactName{
+                get{
+                    return this.GetColumn("ContactName");
+                }
+            }
+            				
+   			public static string ContactNameColumn{
+			      get{
+        			return "ContactName";
+      			}
+		    }
+           
+            public IColumn ContactTitle{
+                get{
+                    return this.GetColumn("ContactTitle");
+                }
+            }
+            				
+   			public static string ContactTitleColumn{
+			      get{
+        			return "ContactTitle";
+      			}
+		    }
+           
+            public IColumn Address{
+                get{
+                    return this.GetColumn("Address");
+                }
+            }
+            				
+   			public static string AddressColumn{
+			      get{
+        			return "Address";
+      			}
+		    }
+           
+            public IColumn City{
+                get{
+                    return this.GetColumn("City");
+                }
+            }
+            				
+   			public static string CityColumn{
+			      get{
+        			return "City";
+      			}
+		    }
+           
+            public IColumn Region{
+                get{
+                    return this.GetColumn("Region");
+                }
+            }
+            				
+   			public static string RegionColumn{
+			      get{
+        			return "Region";
+      			}
+		    }
+           
+            public IColumn PostalCode{
+                get{
+                    return this.GetColumn("PostalCode");
+                }
+            }
+            				
+   			public static string PostalCodeColumn{
+			      get{
+        			return "PostalCode";
+      			}
+		    }
+           
+            public IColumn Country{
+                get{
+                    return this.GetColumn("Country");
+                }
+            }
+            				
+   			public static string CountryColumn{
+			      get{
+        			return "Country";
+      			}
+		    }
+           
+            public IColumn Phone{
+                get{
+                    return this.GetColumn("Phone");
+                }
+            }
+            				
+   			public static string PhoneColumn{
+			      get{
+        			return "Phone";
+      			}
+		    }
+           
+            public IColumn Fax{
+                get{
+                    return this.GetColumn("Fax");
+                }
+            }
+            				
+   			public static string FaxColumn{
+			      get{
+        			return "Fax";
+      			}
+		    }
+           
+            public IColumn HomePage{
+                get{
+                    return this.GetColumn("HomePage");
+                }
+            }
+            				
+   			public static string HomePageColumn{
+			      get{
+        			return "HomePage";
+      			}
+		    }
+           
+                    
+        }
+        
+        /// <summary>
         /// Table: Orders
         /// Primary Key: OrderID
         /// </summary>
@@ -1176,742 +1912,6 @@ namespace OrmBattle.SubsonicModel.Northwind {
    			public static string PhotoPathColumn{
 			      get{
         			return "PhotoPath";
-      			}
-		    }
-           
-                    
-        }
-        
-        /// <summary>
-        /// Table: Categories
-        /// Primary Key: CategoryID
-        /// </summary>
-
-        public class CategoriesTable: DatabaseTable {
-            
-            public CategoriesTable(IDataProvider provider):base("Categories",provider){
-                ClassName = "Category";
-                SchemaName = "dbo";
-                
-
-                Columns.Add(new DatabaseColumn("CategoryID", this)
-                {
-	                IsPrimaryKey = true,
-	                DataType = DbType.Int32,
-	                IsNullable = false,
-	                AutoIncrement = true,
-	                IsForeignKey = true,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CategoryName", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 15
-                });
-
-                Columns.Add(new DatabaseColumn("Description", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 1073741823
-                });
-
-                Columns.Add(new DatabaseColumn("Picture", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.Binary,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 2147483647
-                });
-                    
-                
-                
-            }
-            
-            public IColumn CategoryID{
-                get{
-                    return this.GetColumn("CategoryID");
-                }
-            }
-            				
-   			public static string CategoryIDColumn{
-			      get{
-        			return "CategoryID";
-      			}
-		    }
-           
-            public IColumn CategoryName{
-                get{
-                    return this.GetColumn("CategoryName");
-                }
-            }
-            				
-   			public static string CategoryNameColumn{
-			      get{
-        			return "CategoryName";
-      			}
-		    }
-           
-            public IColumn Description{
-                get{
-                    return this.GetColumn("Description");
-                }
-            }
-            				
-   			public static string DescriptionColumn{
-			      get{
-        			return "Description";
-      			}
-		    }
-           
-            public IColumn Picture{
-                get{
-                    return this.GetColumn("Picture");
-                }
-            }
-            				
-   			public static string PictureColumn{
-			      get{
-        			return "Picture";
-      			}
-		    }
-           
-                    
-        }
-        
-        /// <summary>
-        /// Table: Customers
-        /// Primary Key: CustomerID
-        /// </summary>
-
-        public class CustomersTable: DatabaseTable {
-            
-            public CustomersTable(IDataProvider provider):base("Customers",provider){
-                ClassName = "Customer";
-                SchemaName = "dbo";
-                
-
-                Columns.Add(new DatabaseColumn("CustomerID", this)
-                {
-	                IsPrimaryKey = true,
-	                DataType = DbType.String,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = true,
-	                MaxLength = 5
-                });
-
-                Columns.Add(new DatabaseColumn("CompanyName", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 40
-                });
-
-                Columns.Add(new DatabaseColumn("ContactName", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 30
-                });
-
-                Columns.Add(new DatabaseColumn("ContactTitle", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 30
-                });
-
-                Columns.Add(new DatabaseColumn("Address", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 60
-                });
-
-                Columns.Add(new DatabaseColumn("City", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 15
-                });
-
-                Columns.Add(new DatabaseColumn("Region", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 15
-                });
-
-                Columns.Add(new DatabaseColumn("PostalCode", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 10
-                });
-
-                Columns.Add(new DatabaseColumn("Country", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 15
-                });
-
-                Columns.Add(new DatabaseColumn("Phone", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 24
-                });
-
-                Columns.Add(new DatabaseColumn("Fax", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 24
-                });
-                    
-                
-                
-            }
-            
-            public IColumn CustomerID{
-                get{
-                    return this.GetColumn("CustomerID");
-                }
-            }
-            				
-   			public static string CustomerIDColumn{
-			      get{
-        			return "CustomerID";
-      			}
-		    }
-           
-            public IColumn CompanyName{
-                get{
-                    return this.GetColumn("CompanyName");
-                }
-            }
-            				
-   			public static string CompanyNameColumn{
-			      get{
-        			return "CompanyName";
-      			}
-		    }
-           
-            public IColumn ContactName{
-                get{
-                    return this.GetColumn("ContactName");
-                }
-            }
-            				
-   			public static string ContactNameColumn{
-			      get{
-        			return "ContactName";
-      			}
-		    }
-           
-            public IColumn ContactTitle{
-                get{
-                    return this.GetColumn("ContactTitle");
-                }
-            }
-            				
-   			public static string ContactTitleColumn{
-			      get{
-        			return "ContactTitle";
-      			}
-		    }
-           
-            public IColumn Address{
-                get{
-                    return this.GetColumn("Address");
-                }
-            }
-            				
-   			public static string AddressColumn{
-			      get{
-        			return "Address";
-      			}
-		    }
-           
-            public IColumn City{
-                get{
-                    return this.GetColumn("City");
-                }
-            }
-            				
-   			public static string CityColumn{
-			      get{
-        			return "City";
-      			}
-		    }
-           
-            public IColumn Region{
-                get{
-                    return this.GetColumn("Region");
-                }
-            }
-            				
-   			public static string RegionColumn{
-			      get{
-        			return "Region";
-      			}
-		    }
-           
-            public IColumn PostalCode{
-                get{
-                    return this.GetColumn("PostalCode");
-                }
-            }
-            				
-   			public static string PostalCodeColumn{
-			      get{
-        			return "PostalCode";
-      			}
-		    }
-           
-            public IColumn Country{
-                get{
-                    return this.GetColumn("Country");
-                }
-            }
-            				
-   			public static string CountryColumn{
-			      get{
-        			return "Country";
-      			}
-		    }
-           
-            public IColumn Phone{
-                get{
-                    return this.GetColumn("Phone");
-                }
-            }
-            				
-   			public static string PhoneColumn{
-			      get{
-        			return "Phone";
-      			}
-		    }
-           
-            public IColumn Fax{
-                get{
-                    return this.GetColumn("Fax");
-                }
-            }
-            				
-   			public static string FaxColumn{
-			      get{
-        			return "Fax";
-      			}
-		    }
-           
-                    
-        }
-        
-        /// <summary>
-        /// Table: Shippers
-        /// Primary Key: ShipperID
-        /// </summary>
-
-        public class ShippersTable: DatabaseTable {
-            
-            public ShippersTable(IDataProvider provider):base("Shippers",provider){
-                ClassName = "Shipper";
-                SchemaName = "dbo";
-                
-
-                Columns.Add(new DatabaseColumn("ShipperID", this)
-                {
-	                IsPrimaryKey = true,
-	                DataType = DbType.Int32,
-	                IsNullable = false,
-	                AutoIncrement = true,
-	                IsForeignKey = true,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CompanyName", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 40
-                });
-
-                Columns.Add(new DatabaseColumn("Phone", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 24
-                });
-                    
-                
-                
-            }
-            
-            public IColumn ShipperID{
-                get{
-                    return this.GetColumn("ShipperID");
-                }
-            }
-            				
-   			public static string ShipperIDColumn{
-			      get{
-        			return "ShipperID";
-      			}
-		    }
-           
-            public IColumn CompanyName{
-                get{
-                    return this.GetColumn("CompanyName");
-                }
-            }
-            				
-   			public static string CompanyNameColumn{
-			      get{
-        			return "CompanyName";
-      			}
-		    }
-           
-            public IColumn Phone{
-                get{
-                    return this.GetColumn("Phone");
-                }
-            }
-            				
-   			public static string PhoneColumn{
-			      get{
-        			return "Phone";
-      			}
-		    }
-           
-                    
-        }
-        
-        /// <summary>
-        /// Table: Suppliers
-        /// Primary Key: SupplierID
-        /// </summary>
-
-        public class SuppliersTable: DatabaseTable {
-            
-            public SuppliersTable(IDataProvider provider):base("Suppliers",provider){
-                ClassName = "Supplier";
-                SchemaName = "dbo";
-                
-
-                Columns.Add(new DatabaseColumn("SupplierID", this)
-                {
-	                IsPrimaryKey = true,
-	                DataType = DbType.Int32,
-	                IsNullable = false,
-	                AutoIncrement = true,
-	                IsForeignKey = true,
-	                MaxLength = 0
-                });
-
-                Columns.Add(new DatabaseColumn("CompanyName", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = false,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 40
-                });
-
-                Columns.Add(new DatabaseColumn("ContactName", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 30
-                });
-
-                Columns.Add(new DatabaseColumn("ContactTitle", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 30
-                });
-
-                Columns.Add(new DatabaseColumn("Address", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 60
-                });
-
-                Columns.Add(new DatabaseColumn("City", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 15
-                });
-
-                Columns.Add(new DatabaseColumn("Region", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 15
-                });
-
-                Columns.Add(new DatabaseColumn("PostalCode", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 10
-                });
-
-                Columns.Add(new DatabaseColumn("Country", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 15
-                });
-
-                Columns.Add(new DatabaseColumn("Phone", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 24
-                });
-
-                Columns.Add(new DatabaseColumn("Fax", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 24
-                });
-
-                Columns.Add(new DatabaseColumn("HomePage", this)
-                {
-	                IsPrimaryKey = false,
-	                DataType = DbType.String,
-	                IsNullable = true,
-	                AutoIncrement = false,
-	                IsForeignKey = false,
-	                MaxLength = 1073741823
-                });
-                    
-                
-                
-            }
-            
-            public IColumn SupplierID{
-                get{
-                    return this.GetColumn("SupplierID");
-                }
-            }
-            				
-   			public static string SupplierIDColumn{
-			      get{
-        			return "SupplierID";
-      			}
-		    }
-           
-            public IColumn CompanyName{
-                get{
-                    return this.GetColumn("CompanyName");
-                }
-            }
-            				
-   			public static string CompanyNameColumn{
-			      get{
-        			return "CompanyName";
-      			}
-		    }
-           
-            public IColumn ContactName{
-                get{
-                    return this.GetColumn("ContactName");
-                }
-            }
-            				
-   			public static string ContactNameColumn{
-			      get{
-        			return "ContactName";
-      			}
-		    }
-           
-            public IColumn ContactTitle{
-                get{
-                    return this.GetColumn("ContactTitle");
-                }
-            }
-            				
-   			public static string ContactTitleColumn{
-			      get{
-        			return "ContactTitle";
-      			}
-		    }
-           
-            public IColumn Address{
-                get{
-                    return this.GetColumn("Address");
-                }
-            }
-            				
-   			public static string AddressColumn{
-			      get{
-        			return "Address";
-      			}
-		    }
-           
-            public IColumn City{
-                get{
-                    return this.GetColumn("City");
-                }
-            }
-            				
-   			public static string CityColumn{
-			      get{
-        			return "City";
-      			}
-		    }
-           
-            public IColumn Region{
-                get{
-                    return this.GetColumn("Region");
-                }
-            }
-            				
-   			public static string RegionColumn{
-			      get{
-        			return "Region";
-      			}
-		    }
-           
-            public IColumn PostalCode{
-                get{
-                    return this.GetColumn("PostalCode");
-                }
-            }
-            				
-   			public static string PostalCodeColumn{
-			      get{
-        			return "PostalCode";
-      			}
-		    }
-           
-            public IColumn Country{
-                get{
-                    return this.GetColumn("Country");
-                }
-            }
-            				
-   			public static string CountryColumn{
-			      get{
-        			return "Country";
-      			}
-		    }
-           
-            public IColumn Phone{
-                get{
-                    return this.GetColumn("Phone");
-                }
-            }
-            				
-   			public static string PhoneColumn{
-			      get{
-        			return "Phone";
-      			}
-		    }
-           
-            public IColumn Fax{
-                get{
-                    return this.GetColumn("Fax");
-                }
-            }
-            				
-   			public static string FaxColumn{
-			      get{
-        			return "Fax";
-      			}
-		    }
-           
-            public IColumn HomePage{
-                get{
-                    return this.GetColumn("HomePage");
-                }
-            }
-            				
-   			public static string HomePageColumn{
-			      get{
-        			return "HomePage";
       			}
 		    }
            

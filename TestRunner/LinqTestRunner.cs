@@ -1,4 +1,4 @@
-// Copyright (C) 2009 ORMBattle.NET.
+// Copyright (C) 2009-2010 ORMBattle.NET.
 // All rights reserved.
 // For conditions of distribution and use, see license.
 // Created by: Alexis Kochetov
@@ -55,6 +55,7 @@ namespace OrmBattle.TestRunner
         new EFTest(), 
         new DOTest(),
         new LightSpeedTest(),
+        new LinqConnectTest(),
         new Linq2SqlTest(),
         new NHibernateTest(),
         new OpenAccessTest(),

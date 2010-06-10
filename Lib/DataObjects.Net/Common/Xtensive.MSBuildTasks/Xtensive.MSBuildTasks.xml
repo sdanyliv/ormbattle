@@ -1,0 +1,838 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.MSBuildTasks</name>
+    </assembly>
+    <members>
+        <member name="M:Xtensive.MSBuildTasks.DocumentNotFoundException.#ctor(System.String)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.DocumentNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Deserialization constructor.
+            </summary>
+            <param name="info"><see cref="T:System.Runtime.Serialization.SerializationInfo"/> object.</param>
+            <param name="context"><see cref="T:System.Runtime.Serialization.StreamingContext"/> object.</param>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.FtpAction">
+            <summary>
+            Types of actions supported by <see cref="T:Xtensive.MSBuildTasks.FtpTask"/>.
+            </summary>
+        </member>
+        <member name="F:Xtensive.MSBuildTasks.FtpAction.None">
+            <summary>
+            Do nothing.
+            </summary>
+        </member>
+        <member name="F:Xtensive.MSBuildTasks.FtpAction.Cleanup">
+            <summary>
+            Delete everything from the remote directory.
+            </summary>
+        </member>
+        <member name="F:Xtensive.MSBuildTasks.FtpAction.Upload">
+            <summary>
+            Upload local directory to the remote directory by FTP.
+            </summary>
+        </member>
+        <member name="F:Xtensive.MSBuildTasks.FtpAction.CleanupAndUpload">
+            <summary>
+            Cleanup remote directory and upload the local directory to it.
+            </summary>
+        </member>
+        <member name="F:Xtensive.MSBuildTasks.FtpAction.UploadFile">
+            <summary>
+            Upload local file to remote directory.
+            </summary>
+        </member>
+        <member name="F:Xtensive.MSBuildTasks.FtpAction.RemoveFile">
+            <summary>
+            Remove the remote file.
+            </summary>
+        </member>
+        <member name="F:Xtensive.MSBuildTasks.FtpAction.RenameFile">
+            <summary>
+            Rename the remote file.
+            </summary>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.FtpTask">
+            <summary>
+            An MSBuild task to work with FTP.
+            </summary>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.FtpTask.Execute">
+            <summary>
+            Execute is part of the Microsoft.Build.Framework.ITask interface.
+            When it's called, any input parameters have already been set on the task's properties.
+            </summary>
+            <returns>returns true or false to indicate success or failure</returns>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.FtpTask.ftpClient_FtpMessage(System.Object,Digizzle.FtpMessageEventArgs)">
+            <summary>
+            Handles the FtpMessage event of the ftpClient control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:Digizzle.FtpMessageEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.FtpTask.Cleanup">
+            <summary>
+            Is the remote directory should be cleaned up before the upload
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.FtpTask.LocalPath">
+            <summary>
+            Local directory to upload
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.FtpTask.ExcludeFromClear">
+            <summary>
+            Paths that excluded from clear.
+            </summary>
+        </member>
+        <member name="T:Digizzle.FtpDirectory">
+            <summary>
+            Contents of FTP directory
+            </summary>
+        </member>
+        <member name="M:Digizzle.FtpDirectory.#ctor(System.String)">
+            <summary>
+            Constructor. Parses LIST response from FTP.
+            </summary>
+            <param name="responseLIST">LIST response from ftp</param>
+        </member>
+        <member name="M:Digizzle.FtpDirectory.ProcessLIST(System.String)">
+            <summary>
+            Process LIST response
+            </summary>
+            <param name="responseLIST">What FTP answered on LIST</param>
+        </member>
+        <member name="P:Digizzle.FtpDirectory.Files">
+            <summary>
+            Files in the directory
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpDirectory.Directories">
+            <summary>
+            Subdirectories
+            </summary>
+        </member>
+        <member name="T:Digizzle.FtpAnswer">
+            <summary>
+            Response from ftp server
+            </summary>
+        </member>
+        <member name="M:Digizzle.FtpAnswer.#ctor(System.String)">
+            <summary>
+            Сonstructor
+            </summary>
+            <param name="status"></param>
+        </member>
+        <member name="M:Digizzle.FtpAnswer.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="status"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:Digizzle.FtpAnswer.IsValid">
+            <summary>
+            Determines whether this instance is valid.
+            </summary>
+            <returns>
+              <c>true</c> if this instance is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Digizzle.FtpMessageEventArgs">
+            <summary>
+            Event data for FTP client
+            </summary>
+        </member>
+        <member name="M:Digizzle.FtpMessageEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Digizzle.FtpMessageEventArgs"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="P:Digizzle.FtpMessageEventArgs.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="T:Digizzle.FtpClient">
+            <summary>
+            Class to work with ftp
+            </summary>
+        </member>
+        <member name="M:Digizzle.FtpClient.Cleanup">
+            <summary>
+            Delete all files and directories from the remote directory
+            </summary>
+        </member>
+        <member name="M:Digizzle.FtpClient.Upload">
+            <summary>
+            Upload local directory to the ftp
+            </summary>
+        </member>
+        <member name="M:Digizzle.FtpClient.UploadFile">
+            <summary>
+            Upload local file to the ftp
+            </summary>
+        </member>
+        <member name="M:Digizzle.FtpClient.RemoveFile">
+            <summary>
+            Remove file from the ftp
+            </summary>
+        </member>
+        <member name="M:Digizzle.FtpClient.LogAnswer(Digizzle.FtpAnswer)">
+            <summary>
+            Logs the answer.
+            </summary>
+            <param name="answer">The ftp answer.</param>
+        </member>
+        <member name="M:Digizzle.FtpClient.Log(System.String)">
+            <summary>
+            Logs the specified message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Digizzle.FtpClient.LogFormat(System.String,System.Object[])">
+            <summary>
+            Logs a formatted message.
+            </summary>
+            <param name="template">Template of the message.</param>
+            <param name="args">Template arguments.</param>
+        </member>
+        <member name="M:Digizzle.FtpClient.LogFormat(System.String,System.Object)">
+            <summary>
+            Logs a formatted message.
+            </summary>
+            <param name="template">Template of the message.</param>
+            <param name="arg">Template arguments.</param>
+        </member>
+        <member name="M:Digizzle.FtpClient.DeleteRemoteDir(System.String)">
+            <summary>
+            Delete remote directory recursively
+            </summary>
+            <param name="dir">Pathname of the remote directory</param>
+        </member>
+        <member name="M:Digizzle.FtpClient.EnumerateFtpDir(System.String)">
+            <summary>
+            Get contents of the ftp directory
+            </summary>
+            <param name="remoteDir">Remote directory to enumerate</param>
+            <returns>Contents of the directory</returns>
+        </member>
+        <member name="M:Digizzle.FtpClient.UploadDir(System.String)">
+            <summary>
+            Upload directory to the ftp server recursively
+            </summary>
+            <param name="baseDir">Path relative to the LocalPath</param>
+        </member>
+        <member name="M:Digizzle.FtpClient.UrlCombine(System.String,System.String)">
+            <summary>
+            Combine Uri parts
+            </summary>
+            <param name="url1">The first url</param>
+            <param name="url2">The second url</param>
+            <returns>Combined Url (as string)</returns>
+            <remarks>Maybe there is a framework function to perform the same</remarks>
+        </member>
+        <member name="M:Digizzle.FtpClient.DeleteFileOnServer(System.Uri)">
+            <summary>
+            Delete remote file
+            </summary>
+            <param name="serverUri">Uri of the file</param>
+            <returns>Response from the server</returns>
+        </member>
+        <member name="M:Digizzle.FtpClient.RemoveDirectoryOnServer(System.Uri)">
+            <summary>
+            Delete remote directory
+            </summary>
+            <param name="serverUri">Uri of the directory</param>
+            <returns>Response from the server</returns>
+        </member>
+        <member name="M:Digizzle.FtpClient.CreateRemoteDir(System.Uri)">
+            <summary>
+            Create remote directory
+            </summary>
+            <param name="serverUri">Uri of the directory to create</param>
+            <returns>Response from the server</returns>
+        </member>
+        <member name="M:Digizzle.FtpClient.DoOnServer(System.Uri,System.String)">
+            <summary>
+            Perform an action of the server
+            </summary>
+            <param name="serverUri">Uri of the server</param>
+            <param name="action">Action to perform</param>
+            <returns>Response from the server</returns>
+        </member>
+        <member name="M:Digizzle.FtpClient.CreateRequest(System.Uri,System.String)">
+            <summary>
+            Create ftp request and initialize credentials
+            </summary>
+            <param name="serverUri">Uri to connect</param>
+            <param name="action">Action to perform</param>
+            <returns>FTP request</returns>
+        </member>
+        <member name="M:Digizzle.FtpClient.UploadFile(System.String,System.Uri)">
+            <summary>
+            Upload file for the ftp server
+            </summary>
+            <param name="filename">Full pathname of local file</param>
+            <param name="remoteFilename">Uri with remote filename</param>
+            <returns>Response from ftp server</returns>
+        </member>
+        <member name="M:Digizzle.FtpClient.GetResponseData(System.Net.FtpWebResponse)">
+            <summary>
+            Get data from ftp response
+            </summary>
+            <param name="response">FTP response to read</param>
+            <returns>Structure with FTP response</returns>
+        </member>
+        <member name="P:Digizzle.FtpClient.Address">
+            <summary>
+            Url of the FTP site
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpClient.Port">
+            <summary>
+            Port of the FTP site
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpClient.UserName">
+            <summary>
+            Login name
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpClient.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpClient.RemotePath">
+            <summary>
+            Remote directory
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpClient.LocalPath">
+            <summary>
+            Local directory to upload
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpClient.ExcludeFromClear">
+            <summary>
+            Paths that excluded from clear.
+            </summary>
+        </member>
+        <member name="T:Digizzle.FtpParse">
+            <summary>
+            Based on ftpparse.c, ftpparse.h: library for parsing FTP LIST responses
+            20001223
+            D. J. Bernstein, djb@cr.yp.to
+            http://cr.yp.to/ftpparse.html
+            
+            Commercial use is fine, if you let me know what programs you're using this in.
+            
+            Currently covered formats:
+            EPLF.
+            UNIX ls, with or without gid.
+            Microsoft FTP Service.
+            Windows NT FTP Server.
+            VMS.
+            WFTPD.
+            NetPresenz (Mac).
+            NetWare.
+            MSDOS.
+            
+            Definitely not covered: 
+            Long VMS filenames, with information split across two lines.
+            NCSA Telnet FTP server. Has LIST = NLST (and bad NLST for directories).
+            </summary>
+        </member>
+        <member name="M:Digizzle.FtpParse.check(System.String,System.String)">
+            <summary>
+            UNIX ls does not show the year for dates in the last six months.
+            So we have to guess the year.
+            Apparently NetWare uses ``twelve months'' instead of ``six months''; ugh.
+            Some versions of ls also fail to show the year for future dates.
+            </summary>
+            <param name="month">Current month</param>
+            <param name="mday">Current day of the month</param>
+            <returns>Guessed year</returns>
+        </member>
+        <member name="M:Digizzle.FtpParse.Parse(System.String)">
+            <summary>
+            Tries to parse one line of LIST output.
+            
+            The line is an array of len characters stored in buf.
+            It should not include the terminating CR LF; so buf[len] is typically CR.
+            
+            If ftpparse() can find a filename, it fills in fp and returns it.
+            fp is a struct ftpparse, defined below.
+            The name is an array of fp.namelen characters stored in fp.name;
+            fp.name points somewhere within buf.
+            </summary>
+            <param name="line">String to parse</param>
+            <returns>Structure with parsed info. null if filename is not found unsucceeded</returns>
+        </member>
+        <member name="M:Digizzle.FtpParse.ftpparse(System.Char[],System.Int32)">
+            <summary>
+            Ported original ftpparse function
+            </summary>
+            <param name="buf"></param>
+            <param name="len"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Digizzle.FtpParse.#ctor">
+            <summary>
+            Don't allow to create it from the outside
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpParse.IsDirectory">
+            <summary>
+            true if item is a directory
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpParse.IsFile">
+            <summary>
+            Is it a file
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpParse.Name">
+            <summary>
+            Gets the name of the item.
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpParse.ItemType">
+            <summary>
+            Gets type of the item.
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpParse.MTimeType">
+            <summary>
+            Gets type of the modification time.
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpParse.Size">
+            <summary>
+            Gets size of the item.
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpParse.Id">
+            <summary>
+            ID of the item
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpParse.IdType">
+            <summary>
+            Type of ID of the item.
+            </summary>
+        </member>
+        <member name="P:Digizzle.FtpParse.ItemSizeType">
+            <summary>
+            Type of size of the item
+            </summary>
+        </member>
+        <member name="T:Digizzle.FtpParse.SizeType">
+            <summary>
+            Size type of the item
+            </summary>
+        </member>
+        <member name="F:Digizzle.FtpParse.SizeType.Binary">
+            <summary>
+            size is the number of octets in TYPE I
+            </summary>
+        </member>
+        <member name="F:Digizzle.FtpParse.SizeType.ASCII">
+            <summary>
+            size is the number of octets in TYPE A
+            </summary>
+        </member>
+        <member name="T:Digizzle.FtpParse.TimeType">
+            <summary>
+            When a time zone is unknown, it is assumed to be GMT. You may want
+            to use localtime() for LOCAL times, along with an indication that the
+            time is correct in the local time zone, and gmtime() for REMOTE* times.
+            </summary>
+        </member>
+        <member name="F:Digizzle.FtpParse.TimeType.Local">
+            <summary>
+            time is correct
+            </summary>
+        </member>
+        <member name="F:Digizzle.FtpParse.TimeType.RemoteMinute">
+            <summary>
+            time zone and secs are unknown
+            </summary>
+        </member>
+        <member name="F:Digizzle.FtpParse.TimeType.RemoteDay">
+            <summary>
+            time zone and time of day are unknown
+            </summary>
+        </member>
+        <member name="T:Digizzle.FtpParse.ID">
+            <summary>
+            ID of the item
+            </summary>
+        </member>
+        <member name="F:Digizzle.FtpParse.ID.Full">
+            <summary>
+            unique identifier for files on this FTP server
+            </summary>
+        </member>
+        <member name="T:Digizzle.FtpParse.Type">
+            <summary>
+            Type of the item
+            </summary>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.ArgumentValidator">
+            <summary>
+            Helper class validation most common error conditions.
+            </summary>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.ArgumentValidator.EnsureArgumentNotNull(System.Object,System.String)">
+            <summary>
+            Ensures argument (<paramref name="value"/>) is not
+            <see langoword="null"/>.
+            </summary>
+            <param name="value">Value to compare with <see langword="null"/>.</param>
+            <param name="parameterName">Name of the method parameter.</param>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.ArgumentValidator.EnsureArgumentNotNullOrEmpty(System.String,System.String)">
+            <summary>
+            Ensures argument (<paramref name="value"/>) is not
+            <see langoword="null"/> or <see cref="F:System.String.Empty"/> string.
+            </summary>
+            <param name="value">Value to check.</param>
+            <param name="parameterName">Name of the method parameter.</param>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.ArgumentValidator.EnsureArgumentIs``1(System.Object,System.String)">
+            <summary>
+            Ensures argument (<paramref name="value"/>) is not <see langword="null"/> 
+            and of <typeparamref name="T"/> type.
+            </summary>
+            <param name="value">Value to compare check.</param>
+            <param name="parameterName">Name of the method parameter.</param>
+            <typeparam name="T">The expected type of value.</typeparam>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.ArgumentValidator.EnsureArgumentIs(System.Object,System.Type,System.String)">
+            <summary>
+            Ensures argument (<paramref name="value"/>) is not <see langword="null"/> 
+            and of <paramref name="type"/> type.
+            </summary>
+            <param name="value">Value to compare check.</param>
+            <param name="type">The expected type of value.</param>
+            <param name="parameterName">Name of the method parameter.</param>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.ArgumentValidator.EnsureArgumentIsNullOr``1(System.Object,System.String)">
+            <summary>
+            Ensures argument (<paramref name="value"/>) is either <see langword="null"/>,
+            or of <typeparamref name="T"/> type.
+            </summary>
+            <param name="value">Value to compare check.</param>
+            <param name="parameterName">Name of the method parameter.</param>
+            <typeparam name="T">The expected type of value.</typeparam>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.ArrayUtils`1">
+            <summary>
+            <see cref="T:System.Array"/>-related utilities.
+            </summary>
+            <typeparam name="TItem">Type of array item.</typeparam>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.ArrayUtils`1.Create(System.Int32)">
+            <summary>
+            Creates a new 1-dimensional array of specified <paramref name="size"/>,
+            if <paramref name="size"/> isn't <see langword="0"/>;
+            otherwise, returns <see cref="P:Xtensive.MSBuildTasks.ArrayUtils`1.EmptyArray"/>.
+            </summary>
+            <param name="size">Size of the array to create.</param>
+            <returns>Created array, if <paramref name="size"/> isn't <see langword="0"/>;
+            otherwise, <see cref="P:Xtensive.MSBuildTasks.ArrayUtils`1.EmptyArray"/>.</returns>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.ArrayUtils`1.EmptyArray">
+            <summary>
+            Gets empty array of items of <typeparamref name="TItem"/> type.
+            </summary>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.SimpleScope`1">
+            <summary>
+            Provides access to the thread-bound stack of contextual information
+            (<typeparamref name="TVariator"/>).
+            </summary>
+            <typeparam name="TVariator">The type of the variator. Must be an internal type.</typeparam>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.SimpleScope`1.#ctor">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <exception cref="T:System.Security.SecurityException">Only one ancestor of each instance 
+            of this generic type is allowed.</exception>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.SimpleScope`1.Dispose(System.Boolean)">
+            <summary>
+            <see cref="M:Xtensive.Core.Internals.DocTemplates.DisposableDocTemplate.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.SimpleScope`1.Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Scope can't be disposed.</exception>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.SimpleScope`1.Current">
+            <summary>
+            Gets the current scope.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.SimpleScope`1.Outer">
+            <summary>
+            Gets the outer <see cref="!:Scope&lt;TContext&gt;"/> of this instance.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.SimpleScope`1.IsNested">
+            <summary>
+            Gets a value indicating whether this scope is nested to another one.
+            </summary>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.FiXml">
+            <summary>
+            Processed a set of non-standard XML documentation tags -
+            by replacing them to standard XML documentation equivalents.
+            </summary>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.FiXml.Execute">
+            <inheritdoc/>
+            <summary>
+            Executes <see cref="T:Xtensive.MSBuildTasks.FiXml"/> task.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.FiXml.AssemblyFile">
+            <summary>
+            Source assembly file to process.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.FiXml.XmlFile">
+            <summary>
+            Source XML documentation file to process.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.FiXml.DestinationXmlFile">
+            <summary>
+            Destination XML documentation file.
+            If not set, <see cref="P:Xtensive.MSBuildTasks.FiXml.XmlFile"/> property value is used instead.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.FiXml.DocumentationPaths">
+            <summary>
+            Additional assembly search paths.
+            </summary>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.LockUtility">
+            <summary>
+            Lock utility - helper class providing more convenient ways for dealing
+            with various locks (<see cref="T:System.Threading.Monitor"/>, <see cref="T:System.Threading.ReaderWriterLockSlim"/>,
+            <see cref="T:System.Threading.ReaderWriterLockSlim"/>).
+            </summary>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.LockUtility.ExecuteReader(System.Object,System.Action)">
+            <summary>
+            Executes a <paramref name="reader"/> delegate
+            with lock on <paramref name="toLock"/> object.
+            If <paramref name="toLock"/> is <see cref="T:System.Threading.ReaderWriterLockSlim"/>
+            object then its AcquireReaderLock method is using.
+            </summary>
+            <param name="toLock">An object to lock.</param>
+            <param name="reader">A reader delegate.</param>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.LockUtility.ExecuteReader``1(System.Object,System.Func{``0})">
+            <summary>
+            Executes a <paramref name="reader"/> delegate
+            with lock on <paramref name="toLock"/> object.
+            If <paramref name="toLock"/> is <see cref="T:System.Threading.ReaderWriterLockSlim"/>
+            object then its AcquireReaderLock method is using.
+            </summary>
+            <typeparam name="T">A delegate return type.</typeparam>
+            <param name="toLock">An object to lock.</param>
+            <param name="reader">A reader delegate.</param>
+            <returns>An object that <paramref name="reader"/> returns.
+            </returns>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.LockUtility.ExecuteWriter(System.Object,System.Action)">
+            <summary>
+            Executes a <paramref name="writer"/> delegate
+            with lock on <paramref name="toLock"/> object.
+            If <paramref name="toLock"/> is <see cref="T:System.Threading.ReaderWriterLockSlim"/>
+            object then its AcquireWriterLock method is using.
+            </summary>
+            <param name="toLock">An object to lock.</param>
+            <param name="writer">A writer delegate.</param>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.LockUtility.ExecuteWriter``1(System.Object,System.Func{``0})">
+            <summary>
+            Executes a <paramref name="writer"/> delegate
+            with lock on <paramref name="toLock"/> object.
+            If <paramref name="toLock"/> is <see cref="T:System.Threading.ReaderWriterLockSlim"/>
+            object then its AcquireWriterLock method is using.
+            </summary>
+            <typeparam name="T">A delegate return type.</typeparam>
+            <param name="toLock">An object to lock.</param>
+            <param name="writer">A writer delegate.</param>
+            <returns>An object that <paramref name="writer"/> returns.
+            </returns>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.LockUtility.BeginRead(System.Object)">
+            <summary>
+            Attempts to acquire the lock in read mode.
+            </summary>
+            <param name="toLock"></param>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.PathUtils">
+            <summary>
+            Useful path processing methods.
+            </summary>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.PathUtils.ResolveEnvironmentVariables(System.String)">
+            <summary>
+            Replaces references to environment variables in the
+            specified <paramref name="path"/> string to their
+            actual values.
+            </summary>
+            <param name="path">Path to resolve the environment variables in.</param>
+            <returns>Replacement result.</returns>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.PathUtils.ChangeExtension(System.String,System.String)">
+            <summary>
+            Changes the extension of the specified <paramref name="path"/>
+            string to the specified one.
+            </summary>
+            <param name="path">Path to change the extension of.</param>
+            <param name="newExtension">New extension.</param>
+            <returns>Extension change result.</returns>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.AmbiguousTagXInCommentsYInBaseForZ">
+            <summary>
+              Looks up a localized string similar to Ambiguous tag &lt;{0}&gt; in comments: &apos;{1}&apos; in base for &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.CommentForXIsEmpty">
+            <summary>
+              Looks up a localized string similar to Comment for &apos;{0}&apos; is empty..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.CrossReferenceXToY">
+            <summary>
+              Looks up a localized string similar to Member &apos;{0}&apos; has a cross-reference to &apos;{1}&apos;. Comments are ignored..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.ErrorX">
+            <summary>
+              Looks up a localized string similar to Error: {0}.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.ExArgumentXCannotBeEmptyString">
+            <summary>
+              Looks up a localized string similar to Argument &apos;{0}&apos; can not be empty string..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.ExFileDoesNotExist">
+            <summary>
+              Looks up a localized string similar to File &apos;{0}&apos; does not exist..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.ExInvalidArgumentTypeX">
+            <summary>
+              Looks up a localized string similar to Invalid argument type &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.ExPathXIsIncorrect">
+            <summary>
+              Looks up a localized string similar to The string &apos;{0}&apos; is not a valid path..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.ExPropertyIsAlreadyInitialized">
+            <summary>
+              Looks up a localized string similar to Property is already initialized..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.ExScopeCannotBeDisposed">
+            <summary>
+              Looks up a localized string similar to Scope cannot be disposed..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.GetEventExceptionX">
+            <summary>
+              Looks up a localized string similar to Type.GetEvent call has thrown an exception: {0}.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.GetMethodExceptionX">
+            <summary>
+              Looks up a localized string similar to Type.GetMethod call has thrown an exception: {0}.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.GetPropertyExceptionX">
+            <summary>
+              Looks up a localized string similar to Type.GetProperty call has thrown an exception: {0}.
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.InvalidInheritanceStructure">
+            <summary>
+              Looks up a localized string similar to Invalid documentation inheritance structure. Unresolved &lt;inheritdoc&gt; element count: {0}..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.NoInheritableCommentsAreFoundForX">
+            <summary>
+              Looks up a localized string similar to No inherited comments were found for &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.NoInheritableCommentsAreFoundForXInY">
+            <summary>
+              Looks up a localized string similar to No appropriate inheritable comments are found for {0} element in documentation to &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.ReferenceNotFoundX">
+            <summary>
+              Looks up a localized string similar to Reference not found: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.TypeXNotFoundInAssemblyY">
+            <summary>
+              Looks up a localized string similar to Type &apos;{0}&apos; not found in assembly &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.MSBuildTasks.Resources.Strings.WarningX">
+            <summary>
+              Looks up a localized string similar to Warning: {0}.
+            </summary>
+        </member>
+        <member name="T:Xtensive.MSBuildTasks.StringUtils">
+            <summary>
+            Various <see cref="T:System.String"/> utilities.
+            </summary>
+        </member>
+        <member name="M:Xtensive.MSBuildTasks.StringUtils.ShrinkWhiteSpaces(System.String)">
+            <summary>
+            "Shrinks" all white space character sequences in the string 
+            by replacing them to a single space character.
+            </summary>
+            <param name="source">The string to process.</param>
+            <returns>Shrink result.</returns>
+        </member>
+    </members>
+</doc>

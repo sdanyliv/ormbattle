@@ -10,33 +10,31 @@
 
   <!-- Importing PostSharp targets, if necessary -->
   
-  <Import Condition="'$(UsePostSharp)'=='true' and '$(BuildForILMerge)'!='true'" 
-                    Project="$(PostSharpPath)\PostSharp.targets" />
+  <Import Condition="'$(PostSharp20Imported)'=='' and $(BuildProjRunning)!='true'" 
+          Project="$(PostSharpPath)\..\PostSharp.targets" />
 
 
   <!-- Importing MSBuild Community Tasks, if exists -->
 
   <Import Condition="Exists('$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets')" 
-                    Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
+          Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
 
 
   <!-- Importing Xtensive MSBuild Tasks, if exists -->
   
   <Import Condition="Exists('$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets')" 
-                    Project="$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets" />
+          Project="$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets" />
   <Import Condition="!Exists('$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets')" 
-                    Project="Xtensive.MSBuildTasks.Absents.targets" />
+          Project="Xtensive.MSBuildTasks.Absents.targets" />
 
   
   <!-- Importing common targets -->
   
   <Import Project="UpdateReferenceSearchPaths.targets" />
-  <!-- <Import Project="GetLibraries.targets" /> -->
-  <Import Project="ILMerge.targets"                  Condition="'$(ILMergeAssembliesRegex)'!=''"/>
-  <Import Project="PostSharpILMerge.targets"         Condition="'$(PostSharpILMergeResult)'!=''"/>
-  <Import Project="UpdateSharedBinaries.targets"     Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
-  <Import Project="CopyExternalFiles.targets"        Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
-  <Import Project="CopyIndirectDependencies.targets" Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
+  <Import Project="UpdateSharedBinaries.targets"          Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
+  <Import Project="CopyExternalFiles.targets"             Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
+  <Import Project="CopyIndirectDependencies.targets"      Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
+  <Import Project="RemoveInstallableDependencies.targets" Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
 
 
   <!-- Validation targets -->

@@ -5,7 +5,6 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
-using OrmBattle.SubsonicModel.Northwind;
 using SubSonic.DataProviders;
 using SubSonic.Extensions;
 using SubSonic.Linq.Structure;
@@ -122,15 +121,15 @@ namespace OrmBattle.SubsonicModel.Northwind
             return null;
         }
 			
+        public Query<Category> Categories { get; set; }
+        public Query<Customer> Customers { get; set; }
+        public Query<Shipper> Shippers { get; set; }
+        public Query<Supplier> Suppliers { get; set; }
         public Query<Order> Orders { get; set; }
         public Query<Product> Products { get; set; }
         public Query<OrderDetail> OrderDetails { get; set; }
         public Query<Region> Regions { get; set; }
         public Query<Employee> Employees { get; set; }
-        public Query<Category> Categories { get; set; }
-        public Query<Customer> Customers { get; set; }
-        public Query<Shipper> Shippers { get; set; }
-        public Query<Supplier> Suppliers { get; set; }
 
 			
 
@@ -234,30 +233,30 @@ namespace OrmBattle.SubsonicModel.Northwind
             provider = new DbQueryProvider(this.Provider);
 
             #region ' Query Defs '
+            Categories = new Query<Category>(provider);
+            Customers = new Query<Customer>(provider);
+            Shippers = new Query<Shipper>(provider);
+            Suppliers = new Query<Supplier>(provider);
             Orders = new Query<Order>(provider);
             Products = new Query<Product>(provider);
             OrderDetails = new Query<OrderDetail>(provider);
             Regions = new Query<Region>(provider);
             Employees = new Query<Employee>(provider);
-            Categories = new Query<Category>(provider);
-            Customers = new Query<Customer>(provider);
-            Shippers = new Query<Shipper>(provider);
-            Suppliers = new Query<Supplier>(provider);
             #endregion
 
 
             #region ' Schemas '
         	if(DataProvider.Schema.Tables.Count == 0)
 			{
+            	DataProvider.Schema.Tables.Add(new CategoriesTable(DataProvider));
+            	DataProvider.Schema.Tables.Add(new CustomersTable(DataProvider));
+            	DataProvider.Schema.Tables.Add(new ShippersTable(DataProvider));
+            	DataProvider.Schema.Tables.Add(new SuppliersTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new OrdersTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new ProductsTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new OrderDetailsTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new RegionTable(DataProvider));
             	DataProvider.Schema.Tables.Add(new EmployeesTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new CategoriesTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new CustomersTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new ShippersTable(DataProvider));
-            	DataProvider.Schema.Tables.Add(new SuppliersTable(DataProvider));
             }
             #endregion
         }

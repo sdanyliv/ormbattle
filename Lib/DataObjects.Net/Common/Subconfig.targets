@@ -5,7 +5,6 @@
 
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
-    <Subconfig  Condition="'$(BuildForILMerge)'=='true'">NoAspects</Subconfig>
     <Fullconfig>$(Configuration)</Fullconfig>
     <Fullconfig Condition="'$(Subconfig)'!=''">$(Configuration)-$(Subconfig)</Fullconfig>
     <RootDir Condition="'$(RootDir)'==''">$(MSBuildProjectDirectory)\..\..\</RootDir>
@@ -16,6 +15,8 @@
       Condition="'$(DocumentationFile)'!='' and '$(Subconfig)'!=''">bin\$(Fullconfig)\$(AssemblyName).xml</DocumentationFile>
     <BinOutputDir Condition="'$(BinOutputDir)'==''">$(RootDir)Bin\$(Fullconfig)\</BinOutputDir>
     <SolutionBinOutputDir Condition="'$(SolutionBinOutputDir)'==''">$(SolutionDir)Bin\$(Fullconfig)\</SolutionBinOutputDir>
+
+    <!-- Ensures integrated version of PostSharp is used on builds -->    
     <DontImportPostSharp>true</DontImportPostSharp>
   </PropertyGroup>
 
