@@ -55,9 +55,16 @@
               ItemName="_IndirectDependency"/>
     </CreateItem>
 
+    <!-- Filtering indirect dependency list by excluded ones -->
+    <CreateItem Include="@(_IndirectDependency)"
+                Exclude="@(ExcludedIndirectDependency)">
+      <Output TaskParameter="Include" 
+              ItemName="__IndirectDependency"/>
+    </CreateItem>
+
     <!-- Filtering indirect dependency list by existence -->
-    <CreateItem Include="%(_IndirectDependency.FullPath)"
-                Condition="Exists('%(_IndirectDependency.FullPath)')">
+    <CreateItem Include="%(__IndirectDependency.FullPath)"
+                Condition="Exists('%(__IndirectDependency.FullPath)')">
       <Output TaskParameter="Include" 
               ItemName="IndirectDependency"/>
     </CreateItem>

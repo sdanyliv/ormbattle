@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NorthwindModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="NorthwindModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="NorthwindModelStoreContainer">
-          <EntitySet Name="Categories" EntityType="NorthwindModel.Store.Categories" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Customers" EntityType="NorthwindModel.Store.Customers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Employees" EntityType="NorthwindModel.Store.Employees" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="EmployeeTerritories" EntityType="NorthwindModel.Store.EmployeeTerritories" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Order Details" EntityType="NorthwindModel.Store.Order Details" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Orders" EntityType="NorthwindModel.Store.Orders" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Products" EntityType="NorthwindModel.Store.Products" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Region" EntityType="NorthwindModel.Store.Region" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Shippers" EntityType="NorthwindModel.Store.Shippers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Suppliers" EntityType="NorthwindModel.Store.Suppliers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Territories" EntityType="NorthwindModel.Store.Territories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Categories" EntityType="NorthwindModel.Store.Categories" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Customers" EntityType="NorthwindModel.Store.Customers" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Employees" EntityType="NorthwindModel.Store.Employees" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="EmployeeTerritories" EntityType="NorthwindModel.Store.EmployeeTerritories" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Order Details" EntityType="NorthwindModel.Store.Order Details" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Orders" EntityType="NorthwindModel.Store.Orders" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Products" EntityType="NorthwindModel.Store.Products" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Region" EntityType="NorthwindModel.Store.Region" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Shippers" EntityType="NorthwindModel.Store.Shippers" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Suppliers" EntityType="NorthwindModel.Store.Suppliers" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Territories" EntityType="NorthwindModel.Store.Territories" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
           <AssociationSet Name="FK_Employees_Employees" Association="NorthwindModel.Store.FK_Employees_Employees">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Employees1" EntitySet="Employees" />
@@ -338,7 +338,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NorthwindModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <Schema Namespace="NorthwindModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="NorthwindEntities">
           <EntitySet Name="Categories" EntityType="NorthwindModel.Category" />
           <EntitySet Name="Customers" EntityType="NorthwindModel.Customer" />
@@ -588,7 +588,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NorthwindModelStoreContainer" CdmEntityContainer="NorthwindEntities">
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="IsTypeOf(NorthwindModel.Category)">
@@ -681,11 +681,11 @@
               </MappingFragment>
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(NorthwindModel.ActiveProduct)">
-              <MappingFragment StoreEntitySet="Products" >
+              <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Id" ColumnName="ProductID" />
                 <Condition ColumnName="Discontinued" Value="0" /></MappingFragment></EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(NorthwindModel.DiscontinuedProduct)">
-              <MappingFragment StoreEntitySet="Products" >
+              <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Id" ColumnName="ProductID" />
                 <Condition ColumnName="Discontinued" Value="1" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Regions">
@@ -811,7 +811,7 @@
               <ScalarProperty Name="Id" ColumnName="TerritoryID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="EmployeeTerritories" TypeName="NorthwindModel.EmployeeTerritories" StoreEntitySet="EmployeeTerritories" >
+          <AssociationSetMapping Name="EmployeeTerritories" TypeName="NorthwindModel.EmployeeTerritories" StoreEntitySet="EmployeeTerritories">
             <EndProperty Name="Employees">
               <ScalarProperty Name="Id" ColumnName="EmployeeID" /></EndProperty>
             <EndProperty Name="Territories">
@@ -820,20 +820,20 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:Designer>
     <edmx:Connection>
-      <DesignerInfoPropertySet>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
       </DesignerInfoPropertySet>
     </edmx:Connection>
     <edmx:Options>
-      <DesignerInfoPropertySet>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="Northwind" ZoomLevel="100">
+      <Diagram Name="Northwind" ZoomLevel="100" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <EntityTypeShape EntityType="NorthwindModel.Category" Width="1.5" PointX="7.5" PointY="6" Height="1.7566536458333317" IsExpanded="true" />
         <EntityTypeShape EntityType="NorthwindModel.Customer" Width="1.5" PointX="0.75" PointY="2.75" Height="2.9070849609374996" IsExpanded="true" />
         <EntityTypeShape EntityType="NorthwindModel.Employee" Width="1.5" PointX="0.75" PointY="5.875" Height="4.2218636067708317" IsExpanded="true" />

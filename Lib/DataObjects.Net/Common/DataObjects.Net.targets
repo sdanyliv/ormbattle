@@ -7,7 +7,13 @@
     <UseDataObjectsDotNet
       Condition="'$(UseDataObjectsDotNet)'==''">true</UseDataObjectsDotNet>
     <DataObjectsDotNetDir
-      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(MSBuildProjectDirectory)\..\Lib\DataObjects.Net\</DataObjectsDotNetDir>
+      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(DataObjectsDotNetPath)\</DataObjectsDotNetDir>
+    <DataObjectsDotNetDir
+      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\X-tensive.com\DataObjects.Net@LatestInstallLocation)\</DataObjectsDotNetDir>
+    <DataObjectsDotNetDir
+      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\X-tensive.com\DataObjects.Net@LatestInstallLocation)\</DataObjectsDotNetDir>
+    <DataObjectsDotNetDir
+      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(MSBuildProjectDirectory)\..\..\</DataObjectsDotNetDir>
     <DataObjectsDotNetLibDir 
       Condition="'$(DataObjectsDotNetLibDir)'==''">$(DataObjectsDotNetDir)Lib\</DataObjectsDotNetLibDir>
     <DataObjectsDotNetBinDir 
@@ -17,7 +23,7 @@
     <XtensiveMSBuildTasksPath 
       Condition="$(XtensiveMSBuildTasksPath)==''">$(DataObjectsDotNetCommonDir)Xtensive.MSBuildTasks</XtensiveMSBuildTasksPath>
     <PostSharpPath
-      Condition="$(PostSharpPath)==''">$(DataObjectsDotNetLibDir)PostSharp</PostSharpPath>
+      Condition="$(PostSharpPath)==''">$(DataObjectsDotNetLibDir)PostSharp\Release</PostSharpPath>
     <PostSharpPluginsPath
       Condition="$(PostSharpPluginsPath)==''">$(DataObjectsDotNetBinDir).</PostSharpPluginsPath>
   </PropertyGroup>
@@ -30,15 +36,21 @@
     <UseFiXml Condition="'$(UseFiXml)'==''">false</UseFiXml>
   </PropertyGroup>
 
+  <ItemGroup>
+    <RemoveInstallableDependency Include="$(DataObjectsDotNetLibDir)Oracle\Oracle*.*" />
+    <RemoveInstallableDependency Include="$(DataObjectsDotNetLibDir)VistaDB\VistaDB*.*" />
+  </ItemGroup>
+
   
   <!-- Importing targets -->
 
-  <Import Condition="Exists('$(PostSharpPath)\PostSharp.targets') and '$(UsePostSharp)'=='true'" 
-                    Project="$(PostSharpPath)\PostSharp.targets" />
+  <Import Condition="'$(PostSharp20Imported)'==''" 
+          Project="$(PostSharpPath)\..\PostSharp.targets" />
   <Import Condition="Exists('$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets')" 
                     Project="$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets" />
   <Import Project="UpdateReferenceSearchPaths.targets" />
   <Import Project="CopyIndirectDependencies.targets" />
+  <Import Project="RemoveInstallableDependencies.targets" />
   <Import Project="ValidateRequirements.targets" />
 
 

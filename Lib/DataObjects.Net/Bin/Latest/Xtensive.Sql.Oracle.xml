@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.Sql.Oracle</name>
+    </assembly>
+    <members>
+        <member name="M:Xtensive.Sql.Oracle.Connection.CreateParameter">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.CreateCursorParameter">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.CreateBinaryLargeObject">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.CreateCharacterLargeObject">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.BeginTransaction">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.BeginTransaction(System.Data.IsolationLevel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.MakeSavepoint(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.RollbackToSavepoint(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.ReleaseSavepoint(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.ClearActiveTransaction">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.Connection.CreateNativeCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Connection.UnderlyingConnection">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Connection.ActiveTransaction">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Sql.Oracle.DriverFactory">
+            <summary>
+            A <see cref="T:Xtensive.Sql.SqlDriver"/> factory for Oracle.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Sql.Oracle.DriverFactory.CreateDriver(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xtensive.Sql.Oracle.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ExAlterSequenceRestartWithIsNotSupported">
+            <summary>
+              Looks up a localized string similar to ALTER SEQUENCE RESTART WITH is not supported.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ExInvalidBooleanStringX">
+            <summary>
+              Looks up a localized string similar to Invalid boolean string &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ExOracleBelow9i2IsNotSupported">
+            <summary>
+              Looks up a localized string similar to Oracle below 9i2 is not supported..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ExOracleDoesNotSupportLocalTemporaryTables">
+            <summary>
+              Looks up a localized string similar to Oracle does not support local temporary tables.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ExOracleDoesNotSupportTrimmingMoreThatOneCharacterAtOnce">
+            <summary>
+              Looks up a localized string similar to Oracle does not support trimming more that one character at once.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Sql.Oracle.Resources.Strings.ExOracleDoesNotSupportUpdateFromStatements">
+            <summary>
+              Looks up a localized string similar to Oracle does not support UPDATE FROM statements.
+            </summary>
+        </member>
+    </members>
+</doc>

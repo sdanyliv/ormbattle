@@ -1,4 +1,4 @@
-// Copyright (C) 2009 ORMBattle.NET.
+// Copyright (C) 2009-2010 ORMBattle.NET.
 // All rights reserved.
 // For conditions of distribution and use, see license.
 // Created by: Alexis Kochetov
@@ -8,8 +8,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using OrmBattle.Tests;
+using OrmBattle.Tests.Linq;
 using OrmBattle.Tests.Performance;
-using Xtensive.Core.Helpers;
+using Xtensive.Core;
+using BLToolkitTest = OrmBattle.Tests.Performance.BLToolkitTest;
+using DOTest = OrmBattle.Tests.Performance.DOTest;
+using EFTest = OrmBattle.Tests.Performance.EFTest;
+using LightSpeedTest = OrmBattle.Tests.Performance.LightSpeedTest;
+using Linq2SqlTest = OrmBattle.Tests.Performance.Linq2SqlTest;
+using NHibernateTest = OrmBattle.Tests.Performance.NHibernateTest;
+using OpenAccessTest = OrmBattle.Tests.Performance.OpenAccessTest;
 
 namespace OrmBattle.TestRunner
 {

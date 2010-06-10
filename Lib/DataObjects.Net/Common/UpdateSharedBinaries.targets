@@ -2,13 +2,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <ItemGroup>
-    <SharedBinaryDir Include="$(SolutionBinLatestDir)">
-      <Shared>false</Shared>
-    </SharedBinaryDir>
-    <SharedBinaryDir Condition="$(SolutionBinOutputDir)!=''"
-                     Include="$(SolutionBinOutputDir)">
-      <Shared>false</Shared>
-    </SharedBinaryDir>
     <SharedBinaryDir Include="$(BinLatestDir)" />
     <SharedBinaryDir Condition="$(BinOutputDir)!=''" 
                      Include="$(BinOutputDir)" />
@@ -94,7 +87,15 @@
   </Target>
 
   <Target Name="GetProjectBinaries" Condition="$(ShareBinaries)=='true'">
+    <CreateItem Condition="$(OutputPath)!='' and $(AssemblyName)!=''"
+        Include="$(ProjectDir)$(OutputPath)$(AssemblyName).exe.config">
+      <Output TaskParameter="Include" ItemName="ProjectBinary" />
+    </CreateItem>
     <CreateItem Condition="$(OutputPath)!='' and $(AssemblyName)!='' and $(OutputType)=='Exe'"
+        Include="$(ProjectDir)$(OutputPath)$(AssemblyName).exe">
+      <Output TaskParameter="Include" ItemName="ProjectBinary" />
+    </CreateItem>
+    <CreateItem Condition="$(OutputPath)!='' and $(AssemblyName)!='' and $(OutputType)=='WinExe'"
         Include="$(ProjectDir)$(OutputPath)$(AssemblyName).exe">
       <Output TaskParameter="Include" ItemName="ProjectBinary" />
     </CreateItem>
