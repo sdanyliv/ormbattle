@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.Storage.All</name>
+    </assembly>
+    <members>
+        <member name="T:Xtensive.Storage.All.Referencer">
+            <summary>
+            Does nothing, but references types from all Storage assemblies.
+            </summary>
+        </member>
+    </members>
+</doc>
