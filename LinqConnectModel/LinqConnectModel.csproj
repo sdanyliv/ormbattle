@@ -35,6 +35,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\LinqConnect\Binaries\Devart.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Devart.Data.Linq, Version=5.0.93.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\LinqConnect\Binaries\Devart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.SqlServer.Linq, Version=5.0.93.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\LinqConnect\Binaries\Devart.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
