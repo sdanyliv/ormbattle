@@ -222,6 +222,7 @@
     <Compile Include="Performance\BLToolkitTest.cs" />
     <Compile Include="Performance\EntitySpacesTest.cs" />
     <Compile Include="Performance\Linq2SqlTest.cs" />
+    <Compile Include="Performance\LinqConnectTest.cs" />
     <Compile Include="Performance\DOTest.cs" />
     <Compile Include="Performance\EFTest.cs" />
     <Compile Include="Performance\LightSpeedTest.cs" />

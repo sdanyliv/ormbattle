@@ -15,6 +15,7 @@ using BLToolkitTest = OrmBattle.Tests.Performance.BLToolkitTest;
 using DOTest = OrmBattle.Tests.Performance.DOTest;
 using EFTest = OrmBattle.Tests.Performance.EFTest;
 using LightSpeedTest = OrmBattle.Tests.Performance.LightSpeedTest;
+using LinqConnectTest = OrmBattle.Tests.Performance.LinqConnectTest;
 using Linq2SqlTest = OrmBattle.Tests.Performance.Linq2SqlTest;
 using NHibernateTest = OrmBattle.Tests.Performance.NHibernateTest;
 using OpenAccessTest = OrmBattle.Tests.Performance.OpenAccessTest;
@@ -94,7 +95,6 @@ namespace OrmBattle.TestRunner
         if (toolNames!=null)
           tests = (
             from test in tests
-
             let shortToolName = test.ShortToolName.ToLower()
             let toolIndex = toolNames.IndexOf(shortToolName) 
             where toolIndex>=0
