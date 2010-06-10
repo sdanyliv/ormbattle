@@ -22,12 +22,15 @@
     <FiXmlDocumentationPath Include="$(SystemRoot)\Microsoft.NET\Framework\v2.0.50727\en" />
   </ItemGroup>
 
-  <Target Name="FiXml" Condition="'$(DocumentationFile)' != ''" DependsOnTargets="RequiresXtensiveMSBuildTasks;CoreCompile">
-    <Message Condition="'$(UseFiXml)' != 'true'"
+  <Target Name="FiXml" Condition="'$(DocumentationFile)' != ''" DependsOnTargets="RequiresXtensiveMSBuildTasks;GetFrameworkPaths;CoreCompile">
+    <Message Condition="'$(UseFiXml)'!='true'"
       Importance="high"
       Text="FiXml is disabled. Set UseFiXml property to 'true' to enable it." />
+    <Message Condition="'$(UseFiXml)'=='true' and $(TargetFrameworkSDKDirectory) == ''"
+      Importance="high"
+      Text="FiXml is disabled: .NET Framework SDK is not found." />
     <CallTarget Targets="_FiXml" 
-      Condition="'$(UseFiXml)' == 'true'" />
+      Condition="'$(UseFiXml)'=='true' and $(TargetFrameworkSDKDirectory)!=''" />
   </Target>
 
   <Target Name="_FiXml"

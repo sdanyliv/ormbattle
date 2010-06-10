@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2009 ORMBattle.NET.
+﻿// Copyright (C) 2009-2010 ORMBattle.NET.
 // All rights reserved.
 // For conditions of distribution and use, see license.
 // Created by: Alex Yakunin
@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xtensive.Core.Helpers;
+using Xtensive.Core;
 
 namespace OrmBattle.TestRunner
 {

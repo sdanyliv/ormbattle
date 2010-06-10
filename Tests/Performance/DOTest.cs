@@ -1,4 +1,4 @@
-// Copyright (C) 2009 ORMBattle.NET.
+// Copyright (C) 2009-2010 ORMBattle.NET.
 // All rights reserved.
 // For conditions of distribution and use, see license.
 // Created by: Alexis Kochetov
@@ -7,6 +7,7 @@
 using System.Linq;
 using OrmBattle.DOModel;
 using NUnit.Framework;
+using Xtensive.Core;
 using Xtensive.Core.Disposing;
 using Xtensive.Storage;
 using Xtensive.Storage.Configuration;
@@ -38,7 +39,7 @@ namespace OrmBattle.Tests.Performance
       domain = Domain.Build(config);
       using (Session.Open(domain))
       using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query<Simplest>.All);
+        var query = Query.Execute(() => Query.All<Simplest>());
         foreach (var o in query)
           o.Remove();
         ts.Complete();
@@ -49,7 +50,7 @@ namespace OrmBattle.Tests.Performance
     {
       using (Session.Open(domain))
       using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query<Simplest>.All);
+        var query = Query.Execute(() => Query.All<Simplest>());
         foreach (var o in query)
           o.Remove();
         ts.Complete();
@@ -80,7 +81,7 @@ namespace OrmBattle.Tests.Performance
     protected override void UpdateMultipleTest()
     {
       using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query<Simplest>.All);
+        var query = Query.Execute(() => Query.All<Simplest>());
         foreach (var o in query)
           o.Value++;
         ts.Complete();
@@ -90,7 +91,7 @@ namespace OrmBattle.Tests.Performance
     protected override void DeleteMultipleTest()
     {
       using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query<Simplest>.All);
+        var query = Query.Execute(() => Query.All<Simplest>());
         foreach (var o in query)
           o.Remove();
         ts.Complete();
@@ -112,7 +113,7 @@ namespace OrmBattle.Tests.Performance
     protected override void UpdateSingleTest()
     {
       using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query<Simplest>.All);
+        var query = Query.Execute(() => Query.All<Simplest>());
         foreach (var o in query) {
           o.Value++;
           session.Persist();
@@ -124,7 +125,7 @@ namespace OrmBattle.Tests.Performance
     protected override void DeleteSingleTest()
     {
       using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query<Simplest>.All);
+        var query = Query.Execute(() => Query.All<Simplest>());
         foreach (var o in query) {
           o.Remove();
           session.Persist();
@@ -139,7 +140,7 @@ namespace OrmBattle.Tests.Performance
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
           var id = (long) i % InstanceCount;
-          var o = Query<Simplest>.SingleOrDefault(id);
+          var o = Query.SingleOrDefault<Simplest>(id);
           sum -= o.Id;
         }
         ts.Complete();
@@ -153,7 +154,7 @@ namespace OrmBattle.Tests.Performance
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
           var id = i%InstanceCount;
-          var query = Query<Simplest>.All.Where(o => o.Id == id);
+          var query = Query.All<Simplest>().Where(o => o.Id == id);
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }
@@ -167,7 +168,7 @@ namespace OrmBattle.Tests.Performance
       using (var ts = Transaction.Open()) {
         for (int i = 0; i < count; i++) {
           var id = i % InstanceCount;
-          var query = Query.Execute(() => Query<Simplest>.All.Where(o => o.Id == id));
+          var query = Query.Execute(() => Query.All<Simplest>().Where(o => o.Id == id));
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }
@@ -197,7 +198,7 @@ namespace OrmBattle.Tests.Performance
       using (var ts = Transaction.Open()) {
         int i = 0;
         while (i < count)
-          foreach (var o in Query.Execute(() => Query<Simplest>.All.Where(s => s.Id > 0)))
+          foreach (var o in Query.Execute(() => Query.All<Simplest>().Where(s => s.Id > 0)))
             if (++i >= count)
               break;
         ts.Complete();
@@ -227,7 +228,7 @@ namespace OrmBattle.Tests.Performance
           var id = (i*pageSize) % InstanceCount;
           var localPageSize = pageSize;
           var query = Query.Execute(cacheKey, () => 
-            Query<Simplest>.All.Where(o => o.Id >= id).Take(() => localPageSize));
+            Query.All<Simplest>().Where(o => o.Id >= id).Take(() => localPageSize));
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }

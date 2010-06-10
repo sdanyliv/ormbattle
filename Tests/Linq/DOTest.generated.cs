@@ -1,4 +1,4 @@
-// Copyright (C) 2009 ORMBattle.NET.
+// Copyright (C) 2009-2010 ORMBattle.NET.
 // All rights reserved.
 // For conditions of distribution and use, see license.
 // Created by: Alexis Kochetov
@@ -13,6 +13,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
+using Xtensive.Core;
 using Xtensive.Core.Disposing;
 using Xtensive.Core.Collections;
 

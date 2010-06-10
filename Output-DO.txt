@@ -1,8 +1,115 @@
-Performance tests (50 items):
-Pass 1 out of 2...
-  Testing: BLToolkit (BLT)
+LINQ tests:
+  Testing: DataObjects.Net (DO)
   Testing: ADO.NET Entity Framework (EF)
   Testing: LINQ to SQL (L2S)
-Pass 2 out of 2...
-  Testing: BLToolkit (BLT)
+  Testing: NHibernate (NH)
+
+LINQ tests scorecard:
+                                        DO        EF       L2S        NH   Maximum      Unit
+LINQ Implementation:            
+  Aggregates                           3/1         0         0         3         5       f/a
+  All/Any/Contains                     5/5         3         1       4/2         6       f/a
+  Complex                              5/5         1         0         6         6       f/a
+  Element operations                   7/4         4         2         6         9       f/a
+  Filtering                          12/11       4/2       2/2       6/1        12       f/a
+  Grouping                             9/9         1         1      10/2        10       f/a
+  Join                                 4/4         1         0         4         4       f/a
+  Ordering                             1/1       2/1         2         6         8       f/a
+  Projections                          7/7       3/1       2/1       6/1        13       f/a
+  References                           4/4         0         0         3         4       f/a
+  Set operations                       9/9         0         0       6/2         9       f/a
+  Standard functions                  25/8        12       3/1        20        25       f/a
+  Take/Skip                            3/3         1         0       2/1         5       f/a
+  Type casts                           5/5         1         1         4         5       f/a
+Total:                          
+  Performed                            121       121       121       121       121         #
+  Passed                                22        88       107        35       121         #
+  Failed                                99        33        14        86       121         #
+    Properly                            23        29        10        77       121         #
+    Asserted                            76         4         4         9       121         #
+  Score                               18,2      72,7      88,4      28,9     100,0         %
+
+Units:
+  f/a: total count of failed tests [ / count of tests failed with assertion ],
+       less is better (0 is ideal);
+  #:   count;
+  %:   percentage (% of passed tests), more is better.
+
+
+Performance tests (50 items):
+Pass 1 out of 5...
+  Testing: DataObjects.Net (DO)
   Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+Pass 2 out of 5...
+  Testing: DataObjects.Net (DO)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+Pass 3 out of 5...
+  Testing: DataObjects.Net (DO)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+Pass 4 out of 5...
+  Testing: DataObjects.Net (DO)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+Pass 5 out of 5...
+  Testing: DataObjects.Net (DO)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+
+Performance tests (50 items) scorecard:
+                                        DO        EF       L2S        NH      Unit
+CRUD Performance:               
+  Fetch                               6638       n/a      6630      5527      op/s
+  Single Operation:             
+    Create Instance                   4894      3249      3274      2776      op/s
+    Update Instance                   4433      2895      1170      2328      op/s
+    Remove Instance                   4649      3330      1254      2508      op/s
+    CUD Average                       4411      3101      1521      2439      op/s
+  Multiple Operations:          
+    Create Instance                  13650      6520      4496     13147      op/s
+    Update Instance                  15550      5661      1400     11125      op/s
+    Remove Instance                  18141      7326      1519     11663      op/s
+    CUD Average                      15537      6428      1867     11899      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        1141       343       662       926 queries/s
+    Compiled LINQ Query               4842      4161      5168       n/a queries/s
+    Native Query                      4407      5556       n/a      3762 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)       3197      2821      3730       662   pages/s
+    Get Average Page (20 items)       1878      1796      2343       501   pages/s
+    Get Large Page   (50 items)        n/a       n/a       n/a       n/a       n/a
+    Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a
+  Materialization:              
+    LINQ Materialize                 49925     19154     32204     19231 objects/s
+    Native Materialize               52842     76698       n/a     29824 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (100 items):
+Pass 1 out of 5...
+  Testing: DataObjects.Net (DO)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+Pass 2 out of 5...
+  Testing: DataObjects.Net (DO)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+Pass 3 out of 5...
+  Testing: DataObjects.Net (DO)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: LINQ to SQL (L2S)

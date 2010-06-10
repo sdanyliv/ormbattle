@@ -1,4 +1,4 @@
-// Copyright (C) 2009 ORMBattle.NET.
+// Copyright (C) 2009-2010 ORMBattle.NET.
 // All rights reserved.
 // For conditions of distribution and use, see license.
 // Created by: Alexis Kochetov
@@ -17,62 +17,62 @@ namespace OrmBattle.DOModel
   {
     public IQueryable<Category> Categories
     {
-      get { return Query<Category>.All; }
+      get { return Query.All<Category>(); }
     }
 
     public IQueryable<Customer> Customers
     {
-      get { return Query<Customer>.All; }
+      get { return Query.All<Customer>(); }
     }
 
     public IQueryable<Employee> Employees
     {
-      get { return Query<Employee>.All; }
+      get { return Query.All<Employee>(); }
     }
 
     public IQueryable<Order> Orders
     {
-      get { return Query<Order>.All; }
+      get { return Query.All<Order>(); }
     }
 
     public IQueryable<OrderDetail> OrderDetails
     {
-      get { return Query<OrderDetail>.All; }
+      get { return Query.All<OrderDetail>(); }
     }
 
     public IQueryable<Product> Products
     {
-      get { return Query<Product>.All; }
+      get { return Query.All<Product>(); }
     }
 
     public IQueryable<ActiveProduct> ActiveProducts
     {
-      get { return Query<ActiveProduct>.All; }
+      get { return Query.All<ActiveProduct>(); }
     }
 
     public IQueryable<DiscontinuedProduct> DiscontinuedProducts
     {
-      get { return Query<DiscontinuedProduct>.All; }
+      get { return Query.All<DiscontinuedProduct>(); }
     }
 
     public IQueryable<Region> Regions
     {
-      get { return Query<Region>.All; }
+      get { return Query.All<Region>(); }
     }
 
     public IQueryable<Shipper> Shippers
     {
-      get { return Query<Shipper>.All; }
+      get { return Query.All<Shipper>(); }
     }
 
     public IQueryable<Supplier> Suppliers
     {
-      get { return Query<Supplier>.All; }
+      get { return Query.All<Supplier>(); }
     }
 
     public IQueryable<Territory> Territories
     {
-      get { return Query<Territory>.All; }
+      get { return Query.All<Territory>(); }
     }
   }
 }

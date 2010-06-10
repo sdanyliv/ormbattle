@@ -15,7 +15,7 @@
   </Target>
   <Target Name="RequiresPostSharp">
     <Error Text="Cannot locate PostSharp. Install this software and indicate its location in the 'Config.[MachineName].targets' file." 
-    Condition="!Exists('$(PostSharpPath)\PostSharp.exe')"/>
+    Condition="!Exists('$(PostSharpPath)\PostSharp.dll')"/>
   </Target>
   <Target Name="RequiresILMerge">
     <Error Text="Cannot locate ILMerge. Install this software and indicate its location in the 'Config.[MachineName].targets' file." 
