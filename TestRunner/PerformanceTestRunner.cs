@@ -76,6 +76,7 @@ namespace OrmBattle.TestRunner
           new EntitySpacesTest(),
           new DOTest(),
           new LightSpeedTest(),
+          new LinqConnectTest(), 
           new Linq2SqlTest(),
           new NHibernateTest(),
           new OpenAccessTest(),
@@ -85,6 +86,7 @@ namespace OrmBattle.TestRunner
         if (toolNames!=null)
           tests = (
             from test in tests
+
             let shortToolName = test.ShortToolName.ToLower()
             let toolIndex = toolNames.IndexOf(shortToolName) 
             where toolIndex>=0
