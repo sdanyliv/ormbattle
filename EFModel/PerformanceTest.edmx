@@ -4,18 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PerformanceTestModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="PerformanceTestModelStoreContainer">
-          <EntitySet Name="Simplests" EntityType="PerformanceTestModel.Store.Simplests" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-        </EntityContainer>
-        <EntityType Name="Simplests">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" />
-          <Property Name="Value" Type="bigint" Nullable="false" />
-        </EntityType>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="PerformanceTestModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="PerformanceTestModelStoreContainer">
+    <EntitySet Name="Simplests" EntityType="PerformanceTestModel.Store.Simplests" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Simplests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" />
+    <Property Name="Value" Type="bigint" Nullable="false" />
+  </EntityType>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PerformanceTestModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -29,15 +29,18 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PerformanceTestModelStoreContainer" CdmEntityContainer="PerformanceTestEntities">
-          <EntitySetMapping Name="Simplests">
-            <EntityTypeMapping TypeName="IsTypeOf(PerformanceTestModel.Simplest)">
-              <MappingFragment StoreEntitySet="Simplests">
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PerformanceTestModelStoreContainer" CdmEntityContainer="PerformanceTestEntities">
+    <EntitySetMapping Name="Simplests">
+      <EntityTypeMapping TypeName="IsTypeOf(PerformanceTestModel.Simplest)">
+        <MappingFragment StoreEntitySet="Simplests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer>
