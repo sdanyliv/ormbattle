@@ -55,8 +55,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BLToolkit.3, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BLToolkit.4, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b1d3f6ab3aadaca3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\BLToolkit\Binaries\BLToolkit.4.dll</HintPath>
     </Reference>
     <Reference Include="Devart.Data, Version=5.0.93.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -70,19 +71,37 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\LinqConnect\Binaries\Devart.Data.SqlServer.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.LoaderMT, Version=2009.2.1012.0, Culture=neutral, PublicKeyToken=79073dc052c106ac, processorArchitecture=MSIL">
+    <Reference Include="EntitySpaces.Core, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntitySpaces.DynamicQuery, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.DynamicQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="EntitySpaces.Interfaces, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EntitySpaces.LoaderMT, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.LoaderMT.dll</HintPath>
+    </Reference>
+    <Reference Include="EntitySpaces.SqlClientProvider, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.SqlClientProvider.dll</HintPath>
     </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="EnvDTE90a, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Mindscape.LightSpeed, Version=2.2.1253.11978, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
+    <Reference Include="Mindscape.LightSpeed, Version=3.1.1540.13882, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\LightSpeed\Binaries\Mindscape.LightSpeed.dll</HintPath>
     </Reference>
-    <Reference Include="Mindscape.LightSpeed.Linq, Version=2.2.1253.11978, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
+    <Reference Include="Mindscape.LightSpeed.Linq, Version=3.1.1540.13882, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\LightSpeed\Binaries\Mindscape.LightSpeed.Linq.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -97,15 +116,6 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="SubSonic.Core, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="EntitySpaces.Core, Version=2009.2.1012.0, Culture=neutral, PublicKeyToken=79073dc052c106ac, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="EntitySpaces.DynamicQuery, Version=2009.2.1012.0, Culture=neutral, PublicKeyToken=79073dc052c106ac, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="EntitySpaces.Interfaces, Version=2009.2.1012.0, Culture=neutral, PublicKeyToken=79073dc052c106ac, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
@@ -236,6 +246,7 @@
     <Compile Include="ToolTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <None Include="App.config" />
     <EmbeddedResource Include=".\App.config" />
   </ItemGroup>
