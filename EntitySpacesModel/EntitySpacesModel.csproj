@@ -53,25 +53,28 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntitySpaces.Core, Version=2009.2.1012.0, Culture=neutral, PublicKeyToken=79073dc052c106ac, processorArchitecture=MSIL">
+    <Reference Include="EntitySpaces.Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.DynamicQuery, Version=2009.2.1012.0, Culture=neutral, PublicKeyToken=79073dc052c106ac, processorArchitecture=MSIL">
+    <Reference Include="EntitySpaces.DynamicQuery">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.DynamicQuery.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.Interfaces, Version=2009.2.1012.0, Culture=neutral, PublicKeyToken=79073dc052c106ac, processorArchitecture=MSIL">
+    <Reference Include="EntitySpaces.Interfaces">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="EntitySpaces.Loader">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Loader.dll</HintPath>
     </Reference>
     <Reference Include="EntitySpaces.LoaderMT">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.LoaderMT.dll</HintPath>
     </Reference>
     <Reference Include="EntitySpaces.SqlClientProvider">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.SqlClientProvider.dll</HintPath>
     </Reference>
     <Reference Include="System" />
