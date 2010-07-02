@@ -54,39 +54,43 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BLToolkit.4, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b1d3f6ab3aadaca3, processorArchitecture=MSIL">
+    <Reference Include="BLToolkit.4">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\BLToolkit\Binaries\BLToolkit.4.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data, Version=5.0.93.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\LinqConnect\Binaries\Devart.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.Linq, Version=1.0.37.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data.Linq">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\LinqConnect\Binaries\Devart.Data.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.SqlServer.Linq, Version=1.0.37.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data.SqlServer.Linq">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\LinqConnect\Binaries\Devart.Data.SqlServer.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.Core, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
+    <Reference Include="EntitySpaces.Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.DynamicQuery, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
+    <Reference Include="EntitySpaces.DynamicQuery">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.DynamicQuery.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.Interfaces, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
+    <Reference Include="EntitySpaces.Interfaces">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.Loader, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
+    <Reference Include="EntitySpaces.Loader">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Loader.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.SqlClientProvider, Version=2010.1.601.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=AMD64">
+    <Reference Include="EntitySpaces.LoaderMT">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.LoaderMT.dll</HintPath>
+    </Reference>
+    <Reference Include="EntitySpaces.SqlClientProvider">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.SqlClientProvider.dll</HintPath>
     </Reference>
@@ -94,30 +98,30 @@
     <Reference Include="EnvDTE90a, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Mindscape.LightSpeed, Version=3.1.1540.13882, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
+    <Reference Include="Mindscape.LightSpeed">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\LightSpeed\Binaries\Mindscape.LightSpeed.dll</HintPath>
     </Reference>
-    <Reference Include="Mindscape.LightSpeed.Linq, Version=3.1.1540.13882, Culture=neutral, PublicKeyToken=360c8f37b466ebb2, processorArchitecture=MSIL">
+    <Reference Include="Mindscape.LightSpeed.Linq">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\LightSpeed\Binaries\Mindscape.LightSpeed.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="NHibernate">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="NHibernate.ByteCode.Castle">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="NHibernate.Linq, Version=1.0.0.4000, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
+    <Reference Include="NHibernate.Linq">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="nunit.core, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="SubSonic.Core, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SubSonic.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
@@ -146,22 +150,22 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.OpenAccess, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.40, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.40">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.AdoNet2, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.AdoNet2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Config, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.Config">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Query, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.Query">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Runtime, Version=2009.2.826.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.Runtime">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="WindowsBase">

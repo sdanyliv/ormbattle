@@ -10,6 +10,17 @@
   <!-- Users may install an override file on their machine. Properties set in this file
        will take precedence on the default values. -->
   <Import Project="PostSharp-2.0.Override.targets" Condition="Exists('PostSharp-2.0.Override.targets')"/>
+  
+  <!-- Import project overrides -->
+  <Import Project="$(MSBuildProjectDirectory)\..\..\..\..\..\..\..\..\PostSharp.Custom.targets" Condition="Exists('$(MSBuildProjectDirectory)\..\..\..\..\..\..\..\..\PostSharp.Custom.targets')"/>
+  <Import Project="$(MSBuildProjectDirectory)\..\..\..\..\..\..\..\PostSharp.Custom.targets" Condition="Exists('$(MSBuildProjectDirectory)\..\..\..\..\..\..\..\PostSharp.Custom.targets')"/>
+  <Import Project="$(MSBuildProjectDirectory)\..\..\..\..\..\..\PostSharp.Custom.targets" Condition="Exists('$(MSBuildProjectDirectory)\..\..\..\..\..\..\PostSharp.Custom.targets')"/>
+  <Import Project="$(MSBuildProjectDirectory)\..\..\..\..\..\PostSharp.Custom.targets" Condition="Exists('$(MSBuildProjectDirectory)\..\..\..\..\..\PostSharp.Custom.targets')"/>
+  <Import Project="$(MSBuildProjectDirectory)\..\..\..\..\PostSharp.Custom.targets" Condition="Exists('$(MSBuildProjectDirectory)\..\..\..\..\PostSharp.Custom.targets')"/>
+  <Import Project="$(MSBuildProjectDirectory)\..\..\..\PostSharp.Custom.targets" Condition="Exists('$(MSBuildProjectDirectory)\..\..\..\PostSharp.Custom.targets')"/>
+  <Import Project="$(MSBuildProjectDirectory)\..\..\PostSharp.Custom.targets" Condition="Exists('$(MSBuildProjectDirectory)\..\..\PostSharp.Custom.targets')"/>
+  <Import Project="$(MSBuildProjectDirectory)\..\PostSharp.Custom.targets" Condition="Exists('$(MSBuildProjectDirectory)\..\PostSharp.Custom.targets')"/>
+  <Import Project="$(MSBuildProjectDirectory)\PostSharp.Custom.targets" Condition="Exists('$(MSBuildProjectDirectory)\PostSharp.Custom.targets')"/>
 
   <PropertyGroup>
     <_PostSharp20ImportedTwice Condition="'$(PostSharp20Imported)'=='True'">True</_PostSharp20ImportedTwice>
@@ -24,8 +35,6 @@
     <PostSharpBuild Condition="'$(PostSharpBuild)'==''">Release</PostSharpBuild>
     <PostSharpIgnoreError Condition="'$(PostSharpIgnoreError)'==''">False</PostSharpIgnoreError>
     <PostSharpFailOnUnexpectedMessage Condition="'$(PostSharpFailOnUnexpectedMessage)'==''">False</PostSharpFailOnUnexpectedMessage>
-    <PostSharpUpdateCheckDisabled Condition="'$(PostSharpUpdateCheckDisabled)'==''">False</PostSharpUpdateCheckDisabled>
-    <PostSharpConfiguration Condition="'$(PostSharpConfiguration)'==''">$(Configuration)</PostSharpConfiguration>
     <PostSharpIntermediateDirectory Condition="'$(PostSharpIntermediateDirectory)'==''">$(IntermediateOutputPath)PostSharp</PostSharpIntermediateDirectory>
     <PostSharpBackupDirectory Condition="'$(PostSharpBackupDirectory)'==''">$(IntermediateOutputPath)Before-PostSharp</PostSharpBackupDirectory>
     <PostSharpCleanIntermediate Condition="'$(PostSharpCleanIntermediate)'==''">False</PostSharpCleanIntermediate>
@@ -211,9 +220,12 @@
     <PostSharp20MoveWithRetry Source="@(IntermediateAssembly->'%(RelativeDir)%(Filename).pdb')" Destination="$(_PostSharpInputPdb)"
           Condition="Exists('@(IntermediateAssembly->'%(RelativeDir)%(Filename).pdb')')"/>
 
-    <!-- Redefine the property where FxCop expects the location of the source file. -->
+    <!-- Redefine the properties where FxCop expects the location of the source file. -->
     <CreateProperty Value="$(_PostSharpInputBin)">
       <Output TaskParameter="Value" PropertyName="CodeAnalysisInputAssemblyForTask"/>
+    </CreateProperty>
+    <CreateProperty Value="$(_PostSharpInputBin)">
+      <Output TaskParameter="Value" PropertyName="CodeAnalysisInputAssembly"/>
     </CreateProperty>
 
 
@@ -252,7 +264,8 @@
     <CreateProperty Value="
               Output=$(_PostSharpOutput);
               ReferenceDirectory=$(MSBuildProjectDirectory);
-							Configuration=$(PostSharpConfiguration);
+							Configuration=$(Configuration);
+              Platform=$(Platform);
 							SearchPath=$(OutDir),$(IntermediateOutputPath),$(_ReferencePathAsCommaSeparatedList);
 							IntermediateDirectory=$(PostSharpIntermediateDirectory);
 							CleanIntermediate=$(PostSharpCleanIntermediate);
@@ -283,7 +296,7 @@
       <Output TaskParameter="Value" PropertyName="_PostSharpLicenseFile"/>
     </CreateProperty>
 
-    <Message Text="Reading license from file '$()'." Importance="Low" Condition="'$(_PostSharpLicenseFile)'!='' AND '$(PostSharpLicenseKey)'==''"/>
+    <Message Text="Reading license from file '$(_PostSharpLicenseFile)'." Importance="Low" Condition="'$(_PostSharpLicenseFile)'!='' AND '$(PostSharpLicenseKey)'==''"/>
     <ReadLinesFromFile File="$(_PostSharpLicenseFile)" Condition="'$(_PostSharpLicenseFile)'!='' AND '$(PostSharpLicenseKey)'==''">
       <Output TaskParameter="Lines" ItemName="_PostSharpLicenseLines"/>
     </ReadLinesFromFile>
@@ -299,7 +312,6 @@
 
     <PostSharp20	Project="$(PostSharp20Project)"
 					      Input="$(_PostSharpInputBin)"
-					      UpdateCheckDisabled="$(PostSharpUpdateCheckDisabled)"
 					      Properties="$(PostSharpProperties)"
                 AttachDebugger="$(PostSharpAttachDebugger)"
                 ClientAttachDebugger="$(PostSharpClientAttachDebugger)"
