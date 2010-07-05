@@ -13,7 +13,7 @@
     <DataObjectsDotNetDir
       Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\X-tensive.com\DataObjects.Net@LatestInstallLocation)\</DataObjectsDotNetDir>
     <DataObjectsDotNetDir
-      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(MSBuildProjectDirectory)\..\..\</DataObjectsDotNetDir>
+      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(MSBuildProjectDirectory)\..\Lib\DataObjects.Net\</DataObjectsDotNetDir>
     <DataObjectsDotNetLibDir 
       Condition="'$(DataObjectsDotNetLibDir)'==''">$(DataObjectsDotNetDir)Lib\</DataObjectsDotNetLibDir>
     <DataObjectsDotNetBinDir 
