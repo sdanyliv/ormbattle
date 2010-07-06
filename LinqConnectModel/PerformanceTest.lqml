@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="PerformanceTest" EntityNamespace="OrmBattle.LinqConnectModel" ContextNamespace="OrmBattle.LinqConnectModel" Class="PerformanceTestDataContext" BaseType="System.Data.Linq.DataContext" FilePerClass="false" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=.;Initial Catalog=PerformanceTest;Integrated Security=True;Persist Security Info=True" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.KeyTable" Member="KeyTables">
+    <Type Name="KeyTable">
+      <Column Name="NextId" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Simplests" Member="Simplests">
+    <Type Name="Simplest">
+      <Column Name="Id" Type="System.Int64" DbType="bigint NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Value" Type="System.Int64" DbType="bigint NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

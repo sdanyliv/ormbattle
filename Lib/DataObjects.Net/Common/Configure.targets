@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Importing machine config, if exists -->
+  <Import Condition="Exists('$(CommonDir)Config.$(COMPUTERNAME).targets')"
+          Project="Config.$(COMPUTERNAME).targets" />
+  <!-- Importing base config -->
+  <Import Project="Config.Base.targets" />
+
+
+  <!-- Importing PostSharp targets, if necessary -->
+  
+  <Import Condition="'$(PostSharp20Imported)'=='' and $(BuildProjRunning)!='true'" 
+          Project="$(PostSharpPath)\..\PostSharp.targets" />
+
+
+  <!-- Importing MSBuild Community Tasks, if exists -->
+
+  <Import Condition="Exists('$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets')" 
+          Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
+
+
+  <!-- Importing Xtensive MSBuild Tasks, if exists -->
+  
+  <Import Condition="Exists('$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets')" 
+          Project="$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets" />
+  <Import Condition="!Exists('$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets')" 
+          Project="Xtensive.MSBuildTasks.Absents.targets" />
+
+  
+  <!-- Importing common targets -->
+  
+  <Import Project="UpdateReferenceSearchPaths.targets" />
+  <Import Project="UpdateSharedBinaries.targets"          Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
+  <Import Project="CopyExternalFiles.targets"             Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
+  <Import Project="CopyIndirectDependencies.targets"      Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
+  <Import Project="RemoveInstallableDependencies.targets" Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
+
+
+  <!-- Validation targets -->
+
+  <Import Project="ValidateRequirements.targets"/>
+
+</Project>
