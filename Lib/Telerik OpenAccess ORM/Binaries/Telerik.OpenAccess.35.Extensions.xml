@@ -1,0 +1,1295 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.OpenAccess.35.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.OpenAccess.OpenAccessContext">
+            <summary>
+            OpenAccess context class for .NET 3.5 usage.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.OpenAccessContext.#ctor(System.String,Telerik.OpenAccess.BackendConfiguration,Telerik.OpenAccess.Metadata.MetadataSource)">
+            <summary>
+            OpenAccessContext Constructor with MetadataSource
+            </summary>
+            <param name="connectionString">The connection string name or the connection string. This is a required parameter</param>
+            <param name="backendConfiguration">
+            A backend configuration instance. If the parameter is null the default settings are used.
+            For some backends the backend type cannot be derived from the connetcion string, the backend type must be set.
+            </param>
+            <param name="metadataSource">A metadata source. If non is specified the metadata is derived from the context itself.</param>
+        </member>
+        <member name="M:Telerik.OpenAccess.OpenAccessContext.#ctor(System.String,Telerik.OpenAccess.BackendConfiguration,Telerik.OpenAccess.Metadata.MetadataContainer)">
+            <summary>
+            OpenAccessContext Constructor with MetadataContainer
+            </summary>
+            <param name="connectionString">The connection string name or the connection string. This is a required parameter</param>
+            <param name="backendConfiguration">
+            A backend configuration instance. If the parameter is null the default settings are used.
+            For some backends the backend type cannot be derived from the connetcion string. The backend type must be set then.
+            </param>
+            <param name="metadataContainer">A metadata container. If non is specified the metadata is derived from the context itself.</param>
+        </member>
+        <member name="M:Telerik.OpenAccess.OpenAccessContext.#ctor(System.String,Telerik.OpenAccess.BackendConfiguration,Telerik.OpenAccess.Metadata.MetadataContainer,System.Reflection.Assembly)">
+            <summary>
+            OpenAccessContext Constructor with MetadataContainer
+            </summary>
+            <param name="connectionString">The connection string name or the connection string. This is a required parameter</param>
+            <param name="backendConfiguration">
+            A backend configuration instance. If the parameter is null the default settings are used.
+            For some backends the backend type cannot be derived from the connetcion string. The backend type must be set then.
+            </param>
+            <param name="metadataContainer">A metadata container. If non is specified the metadata is derived from the context itself.</param>
+            <param name="callingAssembly">The assembly to search for the attribute mapping if no metadata is specified.</param>
+        </member>
+        <member name="M:Telerik.OpenAccess.OpenAccessContext.#ctor(System.String,Telerik.OpenAccess.BackendConfiguration,Telerik.OpenAccess.Metadata.MetadataSource,System.Reflection.Assembly)">
+            <summary>
+            OpenAccessContext Constructor with MetadataSource
+            </summary>
+            <param name="connectionString">The connection string name or the connection string. This is a required parameter</param>
+            <param name="backendConfiguration">
+            A backend configuration instance. If the parameter is null the default settings are used.
+            For some backends the backend type cannot be derived from the connetcion string. The backend type must be set then.
+            </param>
+            <param name="metadataSource">A metadata source. If non is specified the metadata is derived from the context itself.</param>
+            <param name="callingAssembly">The assembly to search for the attribute mapping if no metadata is specified.</param>
+        </member>
+        <member name="M:Telerik.OpenAccess.OpenAccessContext.#ctor(Telerik.OpenAccess.OpenAccessContextBase)">
+            <summary>
+            Copy constructor, the same database connection and configuration will be used.
+            </summary>
+            <param name="otherContext">An existing not disposed context</param>
+        </member>
+        <member name="M:Telerik.OpenAccess.OpenAccessContext.GetAll``1">
+            <summary>
+            Provides an IQueryable instance usable for Linq queries.
+            </summary>
+            <remarks>
+            This is the main entry point for constructing LINQ queries with OpenAccess.
+            </remarks>
+            <typeparam name="T">The type of the persistent objects that should be queried.</typeparam>
+            <returns>IQueryable instance that can be used to express queries.</returns>
+            <seealso cref="F:ExtensionMethods.Matches"/>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetQueryExpression(IQToolkit.Data.Common.MappingEntity)">
+            <summary>
+            Get a query expression that selects all entities from a table
+            </summary> 
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetEntityExpression(System.Linq.Expressions.Expression,IQToolkit.Data.Common.MappingEntity)">
+            <summary>
+            Gets an expression that constructs an entity instance relative to a root.
+            The root is most often a TableExpression, but may be any other experssion such as
+            a ConstantExpression.
+            </summary>
+            <param name="root"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetMemberExpression(System.Linq.Expressions.Expression,IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Get an expression for a mapped property relative to a root expression. 
+            The root is either a TableExpression or an expression defining an entity instance.
+            </summary>
+            <param name="root"></param>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetInsertExpression(IQToolkit.Data.Common.MappingEntity,System.Linq.Expressions.Expression,System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Get an expression that represents the insert operation for the specified instance.
+            </summary>
+            <param name="entity"></param>
+            <param name="instance">The instance to insert.</param>
+            <param name="selector">A lambda expression that computes a return value from the operation.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetUpdateExpression(IQToolkit.Data.Common.MappingEntity,System.Linq.Expressions.Expression,System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.Expression)">
+            <summary>
+            Get an expression that represents the update operation for the specified instance.
+            </summary>
+            <param name="entity"></param>
+            <param name="instance"></param>
+            <param name="updateCheck"></param>
+            <param name="selector"></param>
+            <param name="else"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetInsertOrUpdateExpression(IQToolkit.Data.Common.MappingEntity,System.Linq.Expressions.Expression,System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Get an expression that represents the insert-or-update operation for the specified instance.
+            </summary>
+            <param name="entity"></param>
+            <param name="instance"></param>
+            <param name="updateCheck"></param>
+            <param name="resultSelector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetDeleteExpression(IQToolkit.Data.Common.MappingEntity,System.Linq.Expressions.Expression,System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Get an expression that represents the delete operation for the specified instance.
+            </summary>
+            <param name="entity"></param>
+            <param name="instance"></param>
+            <param name="deleteCheck"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.IncludeMembers(IQToolkit.Data.Common.EntityExpression,System.Func{System.Reflection.MemberInfo,System.Boolean})">
+            <summary>
+            Recreate the type projection with the additional members included
+            </summary>
+            <param name="entity"></param>
+            <param name="fnIsIncluded"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.HasIncludedMembers(IQToolkit.Data.Common.EntityExpression)">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.ApplyMapping(System.Linq.Expressions.Expression)">
+            <summary>
+            Apply mapping to a sub query expression
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.IsParameterMethod(System.Linq.Expressions.Expression)">
+            <summary>
+            Tests if the given expression is a paramter to the query
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.IsProviderMethod(System.Linq.Expressions.Expression)">
+            <summary>
+            Tests if the given expression is the actual provider for the query
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.Translate(System.Linq.Expressions.Expression)">
+            <summary>
+            Apply mapping translations to this expression
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapper.GetColumnType(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            The query language specific type for the column
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.OpenAccessExecutionBuilder">
+            <summary>
+            Builds an execution plan for a query expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionVisitor">
+            <summary>
+            An extended expression visitor including custom DbExpression nodes
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.OpenAccessExecutionBuilder.OuterParameterizer">
+            <summary>
+            columns referencing the outer alias are turned into special named-value parameters
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.OpenAccessGrouping`2">
+            <summary>
+            Simple implementation of the IGrouping interface
+            </summary>
+            <typeparam name="TKey">Grouping key type</typeparam>
+            <typeparam name="TElement">Grouped element type</typeparam>
+        </member>
+        <member name="T:IQToolkit.QueryProvider">
+            <summary>
+            A basic abstract LINQ query provider
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:IQToolkit.IQueryText" -->
+        <member name="M:Telerik.OpenAccess.Query.ExpressionWalker.CanBeEvaluatedLocally(System.Linq.Expressions.Expression)">
+            <summary>
+            Determines whether a given expression can be executed locally. 
+            (It contains no parts that should be translated to the target environment.)
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ExpressionExecution">
+            <summary>
+            Execution methods for LINQ queries. 
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionExecution.PerformDatabaseQuery``1(Telerik.OpenAccess.Query.Piece{``0},System.Object[])">
+            <summary>
+            Main method to execute a query that should return multiple results.
+            </summary>
+            <typeparam name="T">Type of result elements</typeparam>
+            <param name="piece">Last part of the LINQ expression chain</param>
+            <param name="grpVals">When a grouping query is to be resolved, this are the grouping key values.</param>
+            <returns>Result set iterator</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionExecution.PerformDatabaseQuerySingle``2(Telerik.OpenAccess.Query.Piece{``1},System.Int32@,System.Int32)">
+            <summary>
+            Performs a database query that should return only one result.
+            </summary>
+            <typeparam name="TResult">Type of result</typeparam>
+            <typeparam name="T">Type of last LINQ expression</typeparam>
+            <param name="piece">Last LINQ expression</param>
+            <param name="found">Number of results found</param>
+            <param name="elemAt">Element position when >= 0; ignored otherwise</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionExecution.PerformQuerySingle``2(Telerik.OpenAccess.Query.Piece{``0},System.Linq.Expressions.Expression)">
+            <summary>
+            Performs a LINQ query that should return a single result.
+            </summary>
+            <typeparam name="T">Type of last LINQ expression piece</typeparam>
+            <typeparam name="TResult">Result type</typeparam>
+            <param name="piece">Last LINQ expression</param>
+            <param name="expression">Expression that is causing the execution on top of the last LINQ expression</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionExecution.PerformQueryCount``1(Telerik.OpenAccess.Query.Piece{``0})">
+            <summary>
+            Performs a database query to obtain the number of result elements.
+            </summary>
+            <typeparam name="T">Type of last LINQ expression piece</typeparam>
+            <param name="piece">Last LINQ expression piece</param>
+            <returns>Number of result elements as calculated by the database server</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionExecution.PerformQueryGroupResolve``2(Telerik.OpenAccess.Query.ExpressionCompiler,``1)">
+            <summary>
+            Resolves the IGroupable produced by this query for the given key.
+            </summary>
+            <typeparam name="TElement">Extent type (PC)</typeparam>
+            <typeparam name="TKey">Grouping type (the key of the group)</typeparam>
+            <param name="key">Group key value</param>
+            <param name="origQuery">Original query (with grouping)</param>
+            <returns>Enumerable of PC</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionExecution.PerformQueryCompilation``1(Telerik.OpenAccess.Query.Piece{``0})">
+            <summary>
+            Returns the backend query that would be used for exececution.
+            </summary>
+            <typeparam name="T">Type of last LINQ query expression</typeparam>
+            <param name="piece">Last LINQ query expression</param>
+            <returns>Relational backend query</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionExecution.CheckQueryPiece``2(Telerik.OpenAccess.Query.Piece{``0},Telerik.OpenAccess.Query.Piece{``1})">
+            <summary>
+            Checks the created piece if the resulting query can be run on the server or not.
+            </summary>
+            <typeparam name="TResult">Result element type</typeparam>
+            <typeparam name="T">Existing, accepted query element type</typeparam>
+            <param name="created">Newly created query piece</param>
+            <param name="prev">Existing, accepted query epiece</param>
+            <returns><c>Null</c> when the transition to in-memory-query has to be made</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExpressionExecution.GetCategory(Telerik.OpenAccess.Query.QueryableToken,System.Linq.Expressions.Expression)">
+            <summary>
+            Classifies an expression with regard to its effects on a simple query.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.ExtensionMethods">
+            <summary>
+            Extension methods for Telerik.OpenAccess that provide the entries for LINQ.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtensionMethods.Extent``1(Telerik.OpenAccess.IObjectScope)">
+            <summary>
+            Provides an IQueryable instance usable for Linq queries.
+            </summary>
+            <remarks>
+            This is the main entry point for constructing LINQ queries with OpenAccess.
+            </remarks>
+            <param name="scope">The object scope this LINQ query is bound to</param>
+            <typeparam name="T">The type of the persistent objects that should be queried.</typeparam>
+            <returns>IQueryable instance that can be used to express queries.</returns>
+            <seealso cref="M:Telerik.OpenAccess.ExtensionMethods.Matches(System.String,System.String)"/>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtensionMethods.Matches(System.String,System.String)">
+            <summary>
+            Returns true when the string matches a certain regular expression using * and ? wildcards.
+            </summary>
+            <remarks>
+            This is a tagging method that will be translated into the correct SQL LIKE statements where
+            the * and ? wildcards need to be translated into backend specific wildcards (typically % and _).
+            You can escape the * and ? characters by prefixing them with a single backslash.
+            </remarks>
+            <param name="left">The string that should match the <paramref name="wildcardPattern">wildcard pattern</paramref>.</param>
+            <param name="wildcardPattern">The wildcard pattern with the * and ? wildcards.</param>
+            <returns><c>True</c> when a match is found.</returns>
+        </member>
+        <member name="T:Telerik.OpenAccess.ExtentQuery`1">
+            <summary>
+            Represents a typed LINQ query in an OpenAccess context.
+            </summary>
+            <remarks>
+            This interface allows to configure the dynamic behavior of a LINQ query.
+            </remarks>
+            <typeparam name="T">Type of the results set elements</typeparam>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.ParallelFetch(System.Boolean)">
+            <summary>
+            Determines whether parallel result fetching is allowed.
+            </summary>
+            <remarks>
+            Parallel fetching allow the efficient retrieval of a single collection field from the result set elements.
+            </remarks>
+            <param name="allowParallelFetch"><c>True</c> when parallel fetching is to be allowed (Default: False)</param>
+            <returns>New query instance</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.IgnoreUncommitted(System.Boolean)">
+            <summary>
+            Determines whether the query execution is allowed to ignore the
+            changes made in the current transaction.
+            </summary>
+            <remarks>
+            When the query is set to not ignore uncommitted changes, the content of the current 
+            transaction will be flushed (but not yet committed) to the database server. After that,
+            objects deleted, changed or inserted in the current transaction will be visible to the
+            query and the result will reflect the (uncommitted) changes.
+            </remarks>
+            <param name="doNotFlush"><c>True</c> when uncommitted changes are ignored. (Default: True)</param>
+            <returns>New query instance</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.ForwardsOnly(System.Boolean)">
+            <summary>
+            Determines whether the query result can be traversed forwards only, or if random access is possible.
+            </summary>
+            <remarks>
+            Normal LINQ applications rarely have the need to change the behavior to random access as LINQ queries
+            tend to favor forward reading.
+            </remarks>
+            <param name="noRandomAccess"><c>True</c> when the result set is accessed in a forward iterating manner only. (Default: True></param>
+            <returns>Query instance</returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.ExtentQuery`1.Debug(System.Boolean)">
+            <summary>
+            Controls additional query tracing and execution debugging aids.
+            </summary>
+            <remarks>
+            This method is for internal debugging methods only and should not be relied upon in production code.
+            </remarks>
+            <param name="show"><c>True</c> for additional information. (Default: False)</param>
+            <returns>Query instance</returns>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.Piece`1">
+            <summary>
+            A LINQ query expression piece for OpenAccess.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ChainedContext">
+            <summary>
+            Base class of all queryable pieces that are given out to the LINQ user.
+            </summary>
+            <remarks>
+            Exists to have a non-generic base class for easy handling.
+            </remarks>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.Piece`1.ToString">
+            <summary>
+            Returns the SQL that is generated for query execution.
+            </summary>
+            <returns>SQL statement</returns>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ExecutionSettings">
+            <summary>
+            Provides the settings for the execution of a LINQ query.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.ExtentQueryImpl`1.ToString">
+            <summary>
+            Returns the SQL that is generated for query execution.
+            </summary>
+            <returns>SQL statement</returns>
+        </member>
+        <member name="F:Telerik.OpenAccess.Query.FormTreeDisplay.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.FormTreeDisplay.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.FormTreeDisplay.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ExecutionBuilder">
+            <summary>
+            Builds an execution plan for a query expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ExecutionBuilder.OuterParameterizer">
+            <summary>
+            columns referencing the outer alias are turned into special named-value parameters
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.Aggregator.GetAggregator(System.Type,System.Type)">
+            <summary>
+            Get a function that coerces a sequence of one type into another type.
+            This is primarily used for aggregators stored in ProjectionExpression's, which are used to represent the 
+            final transformation of the entire result set of a query.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionComparer">
+            <summary>
+            Determines if two expressions are equivalent. Supports DbExpression nodes.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.ExpressionComparer">
+            <summary>
+            Compare two expressions to determine if they are equivalent
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionReplacer">
+            <summary>
+            Replaces references to one specific instance of an expression node with another node.
+            Supports DbExpression nodes
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionType">
+            <summary>
+            Extended node types for custom expressions
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.TableExpression">
+            <summary>
+            A custom expression node that represents a table reference in a SQL query
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnExpression">
+            <summary>
+            A custom expression node that represents a reference to a column in a SQL query
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnDeclaration">
+            <summary>
+            A declaration of a column in a SQL SELECT expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.OrderType">
+            <summary>
+            An SQL OrderBy order type 
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.OrderExpression">
+            <summary>
+            A pairing of an expression and an order type for use in a SQL Order By clause
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SelectExpression">
+            <summary>
+            A custom expression node used to represent a SQL SELECT expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.JoinType">
+            <summary>
+            A kind of SQL join
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.JoinExpression">
+            <summary>
+            A custom expression node representing a SQL join clause
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.IsNullExpression">
+            <summary>
+            Allows is-null tests against value-types like int and float
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ProjectionExpression">
+            <summary>
+            A custom expression representing the construction of one or more result objects from a 
+            SQL select expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionWriter">
+            <summary>
+            Writes out an expression tree (including DbExpression nodes) in a C#-ish syntax
+            </summary>
+        </member>
+        <member name="T:IQToolkit.ExpressionWriter">
+            <summary>
+            Writes out an expression tree in a C#-ish syntax
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.QueryLanguage">
+            <summary>
+            Defines the language rules for the query provider
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLanguage.IsScalar(System.Type)">
+            <summary>
+            Determines whether the CLR type corresponds to a scalar data type in the query language
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLanguage.CanBeColumn(System.Linq.Expressions.Expression)">
+            <summary>
+            Determines whether the given expression can be represented as a column in a select expressionss
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLinguist.Translate(System.Linq.Expressions.Expression)">
+            <summary>
+            Provides language specific query translation.  Use this to apply language specific rewrites or
+            to make assertions/validations about the query.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLinguist.Format(System.Linq.Expressions.Expression)">
+            <summary>
+            Converts the query expression into text of this query language
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLinguist.Parameterize(System.Linq.Expressions.Expression)">
+            <summary>
+            Determine which sub-expressions must be parameters
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SqlFormatter">
+            <summary>
+            Formats a query expression into common SQL language syntax
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:IQToolkit.Data.Common.QueryMapping" -->
+        <member name="M:IQToolkit.Data.Common.QueryMapping.GetTableId(System.Type)">
+            <summary>
+            Determines the entity Id based on the type of the entity alone
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.GetEntity(System.Type)">
+            <summary>
+            Get the meta entity directly corresponding to the CLR type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.GetEntity(System.Type,System.String)">
+            <summary>
+            Get the meta entity that maps between the CLR type 'entityType' and the database table, yet
+            is represented publicly as 'elementType'.
+            </summary>
+            <param name="elementType"></param>
+            <param name="entityID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.GetEntity(System.Reflection.MemberInfo)">
+            <summary>
+            Get the meta entity represented by the IQueryable context member
+            </summary>
+            <param name="contextMember"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.IsRelationship(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property is mapped as a relationship
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.IsSingletonRelationship(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a relationship property refers to a single entity (as opposed to a collection.)
+            </summary>      
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.CanBeEvaluatedLocally(System.Linq.Expressions.Expression)">
+            <summary>
+            Determines whether a given expression can be executed locally. 
+            (It contains no parts that should be translated to the target environment.)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsMapped(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Deterimines is a property is mapped onto a column or relationship
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsColumn(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property is mapped onto a column
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetColumnDbType(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            The type declaration for the column in the provider's syntax
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns>a string representing the type declaration or null</returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsPrimaryKey(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property represents or is part of the entities unique identity (often primary key)
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsComputed(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property is computed after insert or update
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsGenerated(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property is generated on the server during insert
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsUpdatable(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property can be part of an update operation
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetRelatedEntity(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            The type of the entity on the other side of the relationship
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsAssociationRelationship(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if the property is an assocation relationship.
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetAssociationKeyMembers(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Returns the key members on this side of the association
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetAssociationRelatedKeyMembers(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Returns the key members on the other side (related side) of the association
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetTableName(IQToolkit.Data.Common.MappingEntity)">
+            <summary>
+            The name of the corresponding database table
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetColumnName(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            The name of the corresponding table column
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetMappedMembers(IQToolkit.Data.Common.MappingEntity)">
+            <summary>
+            A sequence of all the mapped members
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:IQToolkit.Data.Common.QueryPolicy" -->
+        <member name="M:IQToolkit.Data.Common.QueryPolicy.IsIncluded(System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a relationship property is to be included in the results of the query
+            </summary>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryPolicy.IsDeferLoaded(System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a relationship property is included, but the query for the related data is 
+            deferred until the property is first accessed.
+            </summary>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryPolice.Translate(System.Linq.Expressions.Expression)">
+            <summary>
+            Provides policy specific query translations.  This is where choices about inclusion of related objects and how
+            heirarchies are materialized affect the definition of the queries.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryPolice.BuildExecutionPlan(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            Converts a query into an execution plan.  The plan is an function that executes the query and builds the
+            resulting objects.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:IQToolkit.Data.Common.QueryTranslator" -->
+        <member name="T:IQToolkit.Data.Common.AggregateChecker">
+            <summary>
+            Determines if a SelectExpression contains any aggregate expressions
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.AggregateRewriter">
+            <summary>
+            Rewrite aggregate expressions, moving them into same select expression that has the group-by clause
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ClientJoinedProjectionRewriter">
+            <summary>
+            rewrites nested projections into client-side joins
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnMapper">
+            <summary>
+            Rewrite all column references to one or more aliases to a new single alias
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ProjectedColumns">
+            <summary>
+            Result from calling ColumnProjector.ProjectColumns
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnProjector">
+            <summary>
+            Splits an expression into two parts
+              1) a list of column declarations for sub-expressions that must be evaluated on the server
+              2) a expression that describes how to combine/project the columns back together into the correct result
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnProjector.Nominator">
+            <summary>
+            Nominator is a class that walks an expression tree bottom up, determining the set of 
+            candidate expressions that are possible columns of a select expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.CrossApplyRewriter">
+            <summary>
+            Attempts to rewrite cross-apply and outer-apply joins as inner and left-outer joins
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.CrossJoinIsolator">
+            <summary>
+            Isolates cross joins from other types of joins using nested sub queries
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.CrossJoinRewriter">
+            <summary>
+            Attempt to rewrite cross joins as inner joins
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DeclaredAliasGatherer">
+            <summary>
+             returns the set of all aliases produced by a query source
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.OrderByRewriter">
+            <summary>
+            Moves order-bys to the outermost select if possible
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.OrderByRewriter.PrependOrderings(System.Collections.Generic.IList{IQToolkit.Data.Common.OrderExpression})">
+            <summary>
+            Add a sequence of order expressions to an accumulated list, prepending so as
+            to give precedence to the new expressions over any previous expressions
+            </summary>
+            <param name="newOrderings"></param>
+        </member>
+        <member name="M:IQToolkit.Data.Common.OrderByRewriter.RebindOrderings(System.Collections.Generic.IEnumerable{IQToolkit.Data.Common.OrderExpression},IQToolkit.Data.Common.TableAlias,System.Collections.Generic.HashSet{IQToolkit.Data.Common.TableAlias},System.Collections.Generic.IEnumerable{IQToolkit.Data.Common.ColumnDeclaration})">
+            <summary>
+            Rebind order expressions to reference a new alias and add to column declarations if necessary
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.Parameterizer">
+            <summary>
+            Converts user arguments into named-value parameters
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.QueryBinder">
+            <summary>
+            Converts LINQ query operators to into custom DbExpression's
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.QueryDuplicator">
+            <summary>
+            Duplicate the query expression by making a copy with new table aliases
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RedundantColumnRemover">
+            <summary>
+            Removes duplicate column declarations that refer to the same underlying column
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RedundantJoinRemover">
+            <summary>
+            Removes joins expressions that are identical to joins that already exist
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RedundantSubqueryRemover">
+            <summary>
+            Removes select expressions that don't add any additional semantic value
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ReferencedAliasGatherer">
+            <summary>
+             returns the set of all aliases produced by a query source
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ReferencedColumnGatherer">
+            <summary>
+            Gathers all columns referenced by the given expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RelationshipBinder">
+            <summary>
+            Translates accesses to relationship members into projections or joins
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RelationshipIncluder">
+            <summary>
+            Adds relationship to query results depending on policy
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SelectGatherer">
+            <summary>
+            returns the list of SelectExpressions accessible from the source expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SingletonProjectionRewriter">
+            <summary>
+            Rewrites nested singleton projection into server-side joins
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:IQToolkit.Data.Common.SkipToNestedOrderByRewriter" -->
+        <!-- Badly formed XML comment ignored for member "T:IQToolkit.Data.Common.SkipToRowNumberRewriter" -->
+        <member name="T:IQToolkit.Data.Common.SubqueryRemover">
+            <summary>
+            Removes one or more SelectExpression's by rewriting the expression tree to not include them, promoting
+            their from clause expressions and rewriting any column expressions that may have referenced them to now
+            reference the underlying data directly.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.UnusedColumnRemover">
+            <summary>
+            Removes column declarations in SelectExpression's that are not referenced
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.EntityProvider">
+            <summary>
+            A LINQ IQueryable query provider that executes database queries over a DbConnection
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.EntityProvider.Execute(System.Linq.Expressions.Expression)">
+            <summary>
+            Execute the query expression (does translation, etc.)
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.EntityProvider.GetExecutionPlan(System.Linq.Expressions.Expression)">
+            <summary>
+            Convert the query expression into an execution plan
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.Query`1">
+            <summary>
+            A default implementation of IQueryable for use with QueryProvider
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.DbEntityProvider.Executor.GetCommand(IQToolkit.Data.Common.QueryCommand,System.Object[])">
+            <summary>
+            Get an ADO command object initialized with the command-text and parameters
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:IQToolkit.Data.DbEntityProvider.Executor.LogCommand(IQToolkit.Data.Common.QueryCommand,System.Object[])" -->
+        <member name="T:IQToolkit.Data.Mapping.ImplicitMapping">
+            <summary>
+            A simple query mapping that attempts to infer mapping from naming conventions
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.TSqlLanguage">
+            <summary>
+            TSQL specific QueryLanguage
+            </summary>
+        </member>
+        <member name="T:IQToolkit.IDeferLoadable">
+            <summary>
+            Common interface for controlling defer-loadable types
+            </summary>
+        </member>
+        <member name="T:IQToolkit.DeferredList`1">
+            <summary>
+            A list implementation that is loaded the first time the contents are examined
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:IQToolkit.ExpressionReplacer">
+            <summary>
+            Replaces references to one specific instance of an expression node with another node
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:IQToolkit.Grouping`2" -->
+        <member name="T:IQToolkit.MostRecentlyUsedCache`1">
+            <summary>
+            Implements a cache over a most recently used list
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:IQToolkit.PartialEvaluator">
+            <summary>
+            Rewrites an expression tree so that locally isolatable sub-expressions are evaluated and converted into ConstantExpression nodes.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:IQToolkit.PartialEvaluator.Eval(System.Linq.Expressions.Expression)" -->
+        <!-- Badly formed XML comment ignored for member "M:IQToolkit.PartialEvaluator.Eval(System.Linq.Expressions.Expression,System.Func{System.Linq.Expressions.Expression,System.Boolean})" -->
+        <!-- Badly formed XML comment ignored for member "T:IQToolkit.PartialEvaluator.SubtreeEvaluator" -->
+        <member name="T:IQToolkit.PartialEvaluator.Nominator">
+            <summary>
+            Performs bottom-up analysis to determine which nodes can possibly
+            be part of an evaluated sub-tree.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.QueryCompiler">
+            <summary>
+            Creates a reusable, parameterized representation of a query that caches the execution plan
+            </summary>
+        </member>
+        <member name="T:IQToolkit.StrongDelegate">
+            <summary>
+            Make a strongly-typed delegate to a weakly typed method (one that takes single object[] argument)
+            (up to 8 arguments)
+            </summary>
+        </member>
+        <member name="M:IQToolkit.StrongDelegate.CreateDelegate(System.Type,System.Object,System.Reflection.MethodInfo)">
+            <summary>
+            Create a strongly typed delegate over a method with a weak signature
+            </summary>
+            <param name="delegateType">The strongly typed delegate's type</param>
+            <param name="target"></param>
+            <param name="method">Any method that takes a single array of objects and returns an object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.StrongDelegate.CreateDelegate(System.Type,System.Func{System.Object[],System.Object})">
+            <summary>
+            Create a strongly typed delegate over a Func delegate with weak signature
+            </summary>
+            <param name="delegateType"></param>
+            <param name="fn"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.TypedSubtreeFinder">
+            <summary>
+            Finds the first sub-expression that is of a specified type
+            </summary>
+        </member>
+        <member name="T:IQToolkit.TypeHelper">
+            <summary>
+            Type related helper methods
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Updatable.Insert``2(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Insert an copy of the instance into the updatable collection and produce a result if the insert succeeds.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="S">The type of the result.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert.</param>
+            <param name="resultSelector">The function that produces the result.</param>
+            <returns>The value of the result if the insert succeed, otherwise null.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Insert``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Insert a copy of the instance into an updatable collection.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert.</param>
+            <returns>The value 1 if the insert succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Update``2(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Update the object in the updatable collection with the values in this instance only if the update check passes and produce
+            a result based on the updated object if the update succeeds.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="S">The type of the result.</typeparam>
+            <param name="collection">The updatable collection</param>
+            <param name="instance">The instance to update.</param>
+            <param name="updateCheck">A predicate testing the suitability of the object in the collection (often used that make sure assumptions have not changed.)</param>
+            <param name="resultSelector">A function that produces a result based on the object in the collection after the update succeeds.</param>
+            <returns>The value of the result function if the update succeeds, otherwise null.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Update``1(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Update the object in the updatable collection with the values in this instance only if the update check passes.
+            </summary>
+            <typeparam name="T">The type of the instance</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to update.</param>
+            <param name="updateCheck">A predicate testing the suitability of the object in the collection.</param>
+            <returns>The value 1 if the update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Update``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Update the object in the updatable collection with the values in this instance.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to update.</param>
+            <returns>The value 1 if the update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.InsertOrUpdate``2(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Insert a copy of the instance if it does not exist in the collection or update the object in the collection with the values in this instance. 
+            Produce a result based on the object in the collection after the insert or update succeeds.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="S">The type of the result.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert or update.</param>
+            <param name="updateCheck">A predicate testing the suitablilty of the object in the collection if an update is required.</param>
+            <param name="resultSelector">A function producing a result based on the object in the collection after the insert or update succeeds.</param>
+            <returns>The value of the result if the insert or update succeeds, otherwise null.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.InsertOrUpdate``1(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Insert a copy of the instance if it does not exist in the collection or update the object in the collection with the values in this instance. 
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert or update.</param>
+            <param name="updateCheck">A function producing a result based on the object in the collection after the insert or update succeeds.</param>
+            <returns>The value 1 if the insert or update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.InsertOrUpdate``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Insert a copy of the instance if it does not exist in the collection or update the object in the collection with the values in this instance. 
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert or update.</param>
+            <returns>The value 1 if the insert or update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Delete``1(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Delete the object in the collection that matches the instance only if the delete check passes.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to delete.</param>
+            <param name="deleteCheck">A predicate testing the suitability of the corresponding object in the collection.</param>
+            <returns>The value 1 if the delete succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Delete``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Delete the object in the collection that matches the instance.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to delete.</param>
+            <returns>The value 1 if the Delete succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Delete``1(IQToolkit.IUpdatable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Delete all the objects in the collection that match the predicate.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="predicate">The predicate.</param>
+            <returns>The number of objects deleted.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Batch``3(IQToolkit.IUpdatable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{IQToolkit.IUpdatable{``0},``1,``2}},System.Int32,System.Boolean)">
+            <summary>
+            Apply an Insert, Update, InsertOrUpdate or Delete operation over a set of items and produce a set of results per invocation.
+            </summary>
+            <typeparam name="T">The type of the instances.</typeparam>
+            <typeparam name="S">The type of each result</typeparam>
+            <typeparam name="U"></typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instances">The instances to apply the operation to.</param>
+            <param name="fnOperation">The operation to apply.</param>
+            <param name="batchSize">The maximum size of each batch.</param>
+            <param name="stream">If true then execution is deferred until the resulting sequence is enumerated.</param>
+            <returns>A sequence of results cooresponding to each invocation.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Batch``3(IQToolkit.IUpdatable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{IQToolkit.IUpdatable{``0},``1,``2}})">
+            <summary>
+            Apply an Insert, Update, InsertOrUpdate or Delete operation over a set of items and produce a set of result per invocation.
+            </summary>
+            <typeparam name="T">The type of the items.</typeparam>
+            <typeparam name="S">The type of each result.</typeparam>
+            <typeparam name="U"></typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instances">The instances to apply the operation to.</param>
+            <param name="fnOperation">The operation to apply.</param>
+            <returns>A sequence of results corresponding to each invocation.</returns>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ParamPos">
+            <summary>
+            Names or references a parameter expression.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.Morpher">
+            <summary>
+            Converts LINQ query operators to into custom expression's
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.OpenAccessEntityProvider.Execute(System.Linq.Expressions.Expression)">
+            <summary>
+            Execute the query expression (does translation, etc.)
+            </summary>   
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.OpenAccessQueryMapping.GetMappedMembers(IQToolkit.Data.Common.MappingEntity)">
+            <summary>
+            A sequence of all the mapped members
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.OpenAccessQueryMapping.IsAssociationRelationship(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if the property is an assocation relationship.
+            </summary>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.OpenAccessQueryMapping.GetEntity(System.Type)">
+            <summary>
+            Get the meta entity directly corresponding to the CLR type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.OpenAccessQueryPolice.Translate(System.Linq.Expressions.Expression)">
+            <summary>
+            Provides policy specific query translations.  This is where choices about inclusion of related objects and how
+            heirarchies are materialized affect the definition of the queries.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Telerik.OpenAccess.Query.OpenAccessQueryExecutor.LogCommand(IQToolkit.Data.Common.QueryCommand,System.Object[])" -->
+        <member name="T:Telerik.OpenAccess.Query.ResultData">
+            <summary>
+            Holds the query result data that the fixed result converters are working on.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ResultConverter">
+            <summary>
+            Provides a method to obtain the values of a specific type from the ResultData.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.RetrieveConverter">
+            <summary>
+            Retrieves a value from the aggregator
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.PropertyConverter">
+            <summary>
+            Sets a value to a property.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.FieldConverter">
+            <summary>
+            Sets a value to a field.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ObjectConstructor">
+            <summary>
+            Construct an instance by calling the ctor with the right amount of data.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.GroupKeyConstructor">
+            <summary>
+            Constructs a group key instance
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ObjectConstructorNoArgsInvoke">
+            <summary>
+            Construct an instance where a no-args constructor is to be used.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ObjectInitializer">
+            <summary>
+            Create an instance by calling the constructor and initializing the members.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ArrayConverter`1">
+            <summary>
+            Converts array elements to an array.
+            </summary>
+            <typeparam name="S">Array Element Type</typeparam>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.BasicConverter`1">
+            <summary>
+            Obtain a strongly typed value from the result data.
+            </summary>
+            <typeparam name="S">Target type</typeparam>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.NullableConverter`1">
+            <summary>
+            Obtain a strongly typed value from the result data.
+            </summary>
+            <typeparam name="S">Target type</typeparam>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.EnumConverter`1">
+            <summary>
+            Obtain a strongly typed value from the result data.
+            </summary>
+            <typeparam name="S">Target type</typeparam>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.TypeAsConverter`1">
+            <summary>
+            Obtain a strongly typed value from the result data.
+            </summary>
+            <typeparam name="S">Target type</typeparam>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.PCRefConverter`1">
+            <summary>
+            Obtain a strongly typed PC value from the result data.
+            </summary>
+            <typeparam name="S">Target type, must be pc</typeparam>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.ToStringConverter">
+            <summary>
+            Obtain a value and call ToString() on it.
+            </summary>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.GroupingConverter`1">
+            <summary>
+            Obtain a grouping from the result data.
+            </summary>
+            <typeparam name="S">Target type</typeparam>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.EnumerableConverter`1">
+            <summary>
+            Obtain a enumerable from the result data.
+            </summary>
+            <typeparam name="S">Target element type</typeparam>
+        </member>
+        <member name="M:Telerik.OpenAccess.Query.Translator.DescendJoin(Telerik.OpenAccess.Query.ChainedContext)">
+            <summary>
+            Figure out a join. The first argument has already been descended to and provides
+            the scope and settings. The second argument is the right side of the join, and that
+            expression needs to be descended to first before we build up further.
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.OpenAccess.Query.TypedEnumerableWrapper`1">
+            <summary>
+            Creates a pure enumerable by wrapping another enumerable.
+            </summary>
+            <remarks>
+            Using this class can avoid that the using code calls the Count property
+            which happens when the enumerable is actually a collection or list.
+            </remarks>
+        </member>
+    </members>
+</doc>

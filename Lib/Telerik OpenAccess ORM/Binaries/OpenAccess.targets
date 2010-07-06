@@ -24,25 +24,98 @@ Copyright (C) 2007-2009 Telerik Inc. All rights reserved.
 	Defines the location of the helper assemblies. 
     -->
 	<PropertyGroup>
-		<UseOpenAccessTargets Condition="'$(UseOpenAccessTargets)'==''"
-						 >true</UseOpenAccessTargets>
-		<OpenAccessPath Condition="'$(OpenAccessPath)'==''"
-						 >C:\Program Files\Telerik\OpenAccess ORM\</OpenAccessPath>
-		<VEnhanceAssembly Condition="Exists('$(OpenAccessPath)\sdk\venhance.exe')"
-						 >$(OpenAccessPath)\sdk\venhance.exe</VEnhanceAssembly>
-		<VSchemaAssembly Condition="Exists('$(OpenAccessPath)\bin\vschema.exe')"
-						 >$(OpenAccessPath)\bin\vschema.exe</VSchemaAssembly>
-		<VEnhanceAssembly Condition="'$(VEnhanceAssembly)'==''"
-                         >$(OpenAccessPath)\venhance.exe</VEnhanceAssembly>
-		<VSchemaAssembly Condition="'$(VSchemaAssembly)'==''"
-                         >$(OpenAccessPath)\vschema.exe</VSchemaAssembly>
+		<UseOpenAccessTargets Condition="'$(UseOpenAccessTargets)'==''">true</UseOpenAccessTargets>
+		<OpenAccessPath Condition="'$(OpenAccessPath)'==''">c:\Program Files\Telerik\OpenAccess ORM\\</OpenAccessPath>
+		<EnhancerAssembly>$(OpenAccessPath)\sdk\enhancer.exe</EnhancerAssembly>
 	</PropertyGroup>
 
 
+  <!-- This .targets file can be used by updating Microsoft.Common.targets to 
+         include the line below (as the last import element just before the end project tag)
+      <Import Condition="Exists('$(MSBuildExtensionsPath)\OpenAccess.targets')
+              Project="$(MSBuildExtensionsPath)\OpenAccess.targets" "/>
+	
+	    $(OpenAccessPath)\enhancer.exe -->
+  
+  <!-- The below ensures that "OpenAccessDeploy" is available in the VS Build Action dropdown -->
+	<ItemGroup>
+		<AvailableItemName Include="OpenAccessDeploy" />
+  </ItemGroup>
+
+	<UsingTask TaskName="OpenAccessEnhancer" AssemblyFile="$(EnhancerAssembly)" />
+	<UsingTask TaskName="OpenAccessDeploy" AssemblyFile="$(EnhancerAssembly)" />
+	<UsingTask TaskName="OpenAccessClean" AssemblyFile="$(EnhancerAssembly)" />
+	<UsingTask TaskName="CurrentProjectDirectory" AssemblyFile="$(EnhancerAssembly)" />
+
+	<PropertyGroup>
+    <CalculatedAttributeMapping>True</CalculatedAttributeMapping>
+		<!-- OpenAccessDeployDependsOn deliberately left empty so others can override this -->
+		<OpenAccessDeployDependsOn></OpenAccessDeployDependsOn>
+		<BuildDependsOn>
+			OpenAccessDeploy;
+			$(BuildDependsOn)
+		</BuildDependsOn>
+
+		<!--Clean intermediate resource files during normal clean-->
+		<CleanDependsOn>
+			$(CleanDependsOn);
+			OpenAccessClean;
+		</CleanDependsOn>
+
+		<!--Execute enhancer right after compile-->
+		<OpenAccessEnhancementDependsOn></OpenAccessEnhancementDependsOn>
+		<CompileDependsOn>
+			$(CompileDependsOn);
+			OpenAccessEnhancer;
+		</CompileDependsOn>
+	</PropertyGroup>
+
+	<Target Name="CurrentProjectDirectory">
+		<CurrentProjectDirectory>
+			<Output ItemName="CurrentDir" TaskParameter="CurrentDirectory" />
+		</CurrentProjectDirectory>
+		<!--<Message Text="Inside the Telerik.Data.OpenAccess.targets" Importance="low"/>
+		<Message Text="Location: @(CurrentDir->'%(Fullpath)')"/>
+		<Message Text="Standard Location: $(MSBuildProjectDirectory)"/>-->
+	</Target>
+
+	<Target Name="OpenAccessDeploy" DependsOnTargets="$(OpenAccessDeployDependsOn)" >
+		<OpenAccessDeploy Sources="@(OpenAccessDeploy)" OutputPath="$(OutputPath)">
+			<Output TaskParameter="OpenAccessEmbeddedResources" ItemName="EmbeddedResource"/>
+      <!--<Output TaskParameter="RequiresAttributeMapping" PropertyName="CalculatedAttributeMapping"/>-->
+		</OpenAccessDeploy>
+	</Target>
+
+	<Target Name="OpenAccessClean">
+		<OpenAccessClean
+			Sources="@(OpenAccessDeploy)"
+			OutputPath="$(OutputPath)" />
+	</Target>
+
+	<Target Name="OpenAccessEnhancer">
+		<OpenAccessEnhancer VerboseMode="3"
+						  Assembly="@(IntermediateAssembly->'%(FullPath)')"
+						  XmlMapping="@(EmbeddedResource)"
+              AttributeMapping="$(CalculatedAttributeMapping)" 
+						  KeyFile="$(AssemblyOriginatorKeyFile)"
+						  KeyContainer="$(KeyContainerName)"
+        			References="@(ReferencePath)"
+			        ProjectReferences="@(ProjectReference)"
+              TargetFramework="$(TargetFrameworkVersion)">
+			<Output TaskParameter="Version" ItemName="EV"/>
+		</OpenAccessEnhancer>
+		<Touch AlwaysCreate="true" 
+           Files="$(IntermediateOutputPath)$(TargetName).oa" 
+           Time="%(IntermediateAssembly.ModifiedTime)" />
+		<Message Text="@(EV)" />
+	</Target>
+  
+	<!--Old contents starts here-->
+	
 	<!-- 
 	Defines the default values for OpenAccess properties. 
 	-->
-	<PropertyGroup>
+	<!--<PropertyGroup>
 		<UseMSBuildFlag>false</UseMSBuildFlag>
 		<EnhancementRequiredFlag>false</EnhancementRequiredFlag>
 		<UpdateDatabaseFlag>false</UpdateDatabaseFlag>
@@ -52,22 +125,22 @@ Copyright (C) 2007-2009 Telerik Inc. All rights reserved.
 		<ConfigFile/>
 		<DB_URL/>
 		<OpenAccessGeneratedScriptFileName/>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 
 	<!-- 
 	Defines the names of the auxiliary files for timestamp checking. 
 	-->
-	<ItemGroup>
+	<!--<ItemGroup>
         <EnhancementInfoFile Include="$(IntermediateOutputPath)$(TargetName).oa"/>
         <DatabaseMigrationInfoFile Include="$(OutputPath)$(TargetName).oa"/>
-	</ItemGroup>
+	</ItemGroup>-->
 
 
 	<!-- 
 	Modifies the dependencies to that the OpenAccess tasks are called at the right time during build. 
 	-->
-	<PropertyGroup>
+	<!--<PropertyGroup>
 		<CompileDependsOn>
 			$(CompileDependsOn);
 			CheckOpenAccess;
@@ -84,23 +157,23 @@ Copyright (C) 2007-2009 Telerik Inc. All rights reserved.
 			$(CoreCleanDependsOn);
 			OpenAccessClean;
 		</CoreCleanDependsOn>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<!-- 
 	Declares the OpenAccess specific tasks when needed.
 	-->
-	<UsingTask TaskName="OpenAccessEnhancer"     
+	<!--<UsingTask TaskName="OpenAccessEnhancer"     
 				Condition=" '$(UseOpenAccessTargets)' == 'true' " AssemblyFile="$(VEnhanceAssembly)"/>
 	<UsingTask TaskName="OpenAccessProperties"   
 				Condition=" '$(UseOpenAccessTargets)' == 'true' " AssemblyFile="$(VEnhanceAssembly)"/>
 	<UsingTask TaskName="OpenAccessSchemaTool"   
-				Condition=" '$(UseOpenAccessTargets)' == 'true' " AssemblyFile="$(VSchemaAssembly)"/>
+				Condition=" '$(UseOpenAccessTargets)' == 'true' " AssemblyFile="$(VSchemaAssembly)"/>-->
 	
 
     <!--
     Checks the user settings for enhancement / migrate schema to be done.
     -->
-	<Target Name="CheckOpenAccess"
+	<!--<Target Name="CheckOpenAccess"
 			Condition="$(UseOpenAccessTargets)">
 		<OpenAccessProperties ProjectFile="$(ProjectFileName)">
 			<Output TaskParameter="UseMSBuild" PropertyName="UseMSBuildFlag"/>
@@ -110,14 +183,14 @@ Copyright (C) 2007-2009 Telerik Inc. All rights reserved.
 			<Output TaskParameter="ConnectionId" PropertyName="ConnectionId"/>
 			<Output TaskParameter="ConfigFile" ItemName="ConfigFile"/>
 		</OpenAccessProperties>
-	</Target>
+	</Target>-->
 
 
     <!--
     Calls the OpenAccess enhancer tool on the target assembly to enhance the field 
     access code for persistence awareness. This is done only when necessary.
     -->
-	<Target Name="OpenAccessEnhancement"
+	<!--<Target Name="OpenAccessEnhancement"
 			Condition="$(EnhancementRequiredFlag) AND $(UseMSBuildFlag)"
 			Inputs="@(IntermediateAssembly)"
 			Outputs="@(EnhancementInfoFile)">
@@ -130,29 +203,29 @@ Copyright (C) 2007-2009 Telerik Inc. All rights reserved.
 			References="@(ReferencePath)"
 			ProjectReferences="@(ProjectReference)">
 			<Output TaskParameter="Version" PropertyName="OpenAccessEnhancerVersion" />
-		</OpenAccessEnhancer>
+		</OpenAccessEnhancer>-->
 		<!-- Because we enhance the existing assembly, we must have another file
              to hold the old timestamp. -->
-		<Touch AlwaysCreate="true" Files="@(EnhancementInfoFile)" 
+		<!--<Touch AlwaysCreate="true" Files="@(EnhancementInfoFile)" 
                                    Time="%(IntermediateAssembly.ModifiedTime)" />
-	</Target>
+	</Target>-->
 	
 
 	<!--
 	Assures, that the main assembly does exist when it is needed.
     -->
-	<Target Name="OpenAccessAssureMainAssembly"
+	<!--<Target Name="OpenAccessAssureMainAssembly"
 			Condition="$(UpdateDatabaseFlag) AND $(UseMSBuildFlag)">
 		<Error Condition="! Exists(@(MainAssembly->'%(FullPath)'))"
 			Text="Main Assembly does not exist, but is required for database migration."
 			HelpKeyword="OpenAccess Schema Tool" />
-	</Target>
+	</Target>-->
 
 	
 	<!--
 	Assures, that the database exists. When it does not, attempts to create one with the given name.
 	-->
-	<Target Name="OpenAccessAssureDatabaseExistence"
+	<!--<Target Name="OpenAccessAssureDatabaseExistence"
 			Condition="$(UpdateDatabaseFlag) AND $(UseMSBuildFlag)"
 			Inputs="@(IntermediateAssembly)"
 			Outputs="@(DatabaseMigrationInfoFile)"
@@ -175,14 +248,14 @@ Copyright (C) 2007-2009 Telerik Inc. All rights reserved.
 	<Target Name="OpenAccessAssureDatabaseExistenceError">
 		<Error Text="Check, that the provided username/password allows to create and open the database."
                HelpKeyword="OpenAccess Schema Tool"/>
-	</Target>
+	</Target>-->
 
 
 	<!--
 	Calculates the required changes for the database schema. The output parameter of ScriptName contains the
     name of the generated file when changes are necessary.
 	-->
-	<Target Name="OpenAccessCalculateChanges"
+	<!--<Target Name="OpenAccessCalculateChanges"
 			Condition="$(UpdateDatabaseFlag) AND $(UseMSBuildFlag)" 
 			Inputs="@(IntermediateAssembly)"
 			Outputs="@(DatabaseMigrationInfoFile)"
@@ -205,14 +278,14 @@ Copyright (C) 2007-2009 Telerik Inc. All rights reserved.
 	<Target Name="OpenAccessCalculateChangesError">
 		<Error Text="Check, that the provided username/password allows to read the schema of the database."
                HelpKeyword="OpenAccess Schema Tool"/>
-	</Target>
+	</Target>-->
 
 
 	<!-- 
 	Executes the changes recorded in the generated sql script file to adopt the database schema.
     This will only be done when necessary.
 	-->
-	<Target Name="OpenAccessDatabaseMigration"
+	<!--<Target Name="OpenAccessDatabaseMigration"
 			Condition="$(UpdateDatabaseFlag) AND $(UseMSBuildFlag)" 
 			Inputs="@(IntermediateAssembly)"
 			Outputs="@(DatabaseMigrationInfoFile)"
@@ -226,28 +299,28 @@ Copyright (C) 2007-2009 Telerik Inc. All rights reserved.
 			Config="@(ConfigFile->'%(FullPath)')"
 			ConnectionId="$(ConnectionId)"
 			References="@(ReferencePath)">
-		</OpenAccessSchemaTool>
+		</OpenAccessSchemaTool>-->
 		<!-- 
 			Because we don't want to migrate the database every time, we do so only when the 
 		 	intermediate assembly was freshly build and touch the info file then. 
         -->
-		<Touch AlwaysCreate="true" Files="@(DatabaseMigrationInfoFile)" 
+		<!--<Touch AlwaysCreate="true" Files="@(DatabaseMigrationInfoFile)" 
                                    Time="%(IntermediateAssembly.ModifiedTime)" />
 		<OnError ExecuteTargets="OpenAccessDatabaseMigrationError" />
 	</Target>
 	<Target Name="OpenAccessDatabaseMigrationError">
 		<Error Text="Check, that the provided username/password allows to open the existing database for schema modification." 
                HelpKeyword="OpenAccess Schema Tool"/>
-	</Target>
+	</Target>-->
 
 
 	<!--
 	Cleans up files generated by OpenAccess.
 	-->
-	<Target Name="OpenAccessClean" >
+	<!--<Target Name="OpenAccessClean" >
 		<Delete Condition="Exists(@(EnhancementInfoFile))" Files="@(EnhancementInfoFile)" />
 		<Delete Condition="Exists(@(DatabaseMigrationInfoFile))" Files="@(DatabaseMigrationInfoFile)" />
-	</Target>
+	</Target>-->
 	
   <Target Name="Initial">
      <Message Text="Using definitions of OpenAccess.targets" Importance="normal" />
