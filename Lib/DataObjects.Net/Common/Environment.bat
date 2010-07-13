@@ -10,10 +10,12 @@ rem Windows XP+ 64-bit mode detection
 if not "%PROCESSOR_ARCHITEW6432%"=="" set Is64Bit=true
 rem Windows 7 64-bit mode detection
 if not "%ProgramW6432%"=="" (
-  if not "%ProgramFiles%"=="%ProgramW6432%" set Is64Bit=true
+  if "%ProgramFiles%"=="%ProgramW6432%" set Is64Bit=true
 )
 rem Conditional variables
+set CommonFiles=%CommonProgramFiles%
 if "%Is64Bit%"=="true" set Wow6432Key=Wow6432Node\
+if "%Is64Bit%"=="true" set CommonFiles=%CommonProgramFiles(x86)%
 
 rem DataObjects.Net path
 pushd ..
@@ -46,7 +48,7 @@ call :SetRegPath DevEnv2008Path "HKLM\SOFTWARE\%Wow6432Key%Microsoft\VisualStudi
 call :DotPath DevEnv2008Path
 call :SetRegPath DevEnv2010Path "HKLM\SOFTWARE\%Wow6432Key%Microsoft\VisualStudio\10.0" /v InstallDir 2>nul
 call :DotPath DevEnv2010Path
-set TextTransformPath=%CommonProgramFiles%\Microsoft Shared\TextTemplating\10.0
+set TextTransformPath=%CommonFiles%\Microsoft Shared\TextTemplating\10.0
 set DotNetFramework20Path=%SystemRoot%\Microsoft.NET\Framework\v2.0.50727 
 set DotNetFramework35Path=%SystemRoot%\Microsoft.NET\Framework\v3.5
 set DotNetFramework40Path=%SystemRoot%\Microsoft.NET\Framework\v4.0.30319
