@@ -59,11 +59,11 @@
 
   <!-- Import tasks -->
   <UsingTask	AssemblyFile="$(PostSharpBuild)\PostSharp.MSBuild.dll"
-				TaskName="PostSharp.MSBuild.PostSharp20" />
+        TaskName="PostSharp.MSBuild.PostSharp20" />
 
   <UsingTask	AssemblyFile="$(PostSharpBuild)\PostSharp.MSBuild.dll"
-				TaskName="PostSharp.MSBuild.PostSharp20TouchWithDelay"
-				/>
+        TaskName="PostSharp.MSBuild.PostSharp20TouchWithDelay"
+        />
 
   <UsingTask	AssemblyFile="$(PostSharpBuild)\PostSharp.MSBuild.dll"
          TaskName="PostSharp.MSBuild.PostSharp20CheckPfx"
@@ -92,11 +92,11 @@
 
   <!-- Inspect project references for PostSharp.dll -->
   <Target Name="PostSharp20InspectReferences"
-			Condition="'$(BuildingProject)'=='true' And '$(SkipPostSharp)'!='True' And '$(PostSharp20Project)'=='' "
-			DependsOnTargets="ResolveAssemblyReferences;PostSharp20InspectConstants">
+      Condition="'$(BuildingProject)'=='true' And '$(SkipPostSharp)'!='True' And '$(PostSharp20Project)'=='' "
+      DependsOnTargets="ResolveAssemblyReferences;PostSharp20InspectConstants">
 
     <Message Text="PostSharp parses the following references: @(ReferencePath -> '%(Filename)')."
-		    Importance="low"/>
+        Importance="low"/>
 
     <!-- Check that all references have strict version -->
     <Warning Text="For side-by-side compatibility, the reference to assembly PostSharp should be version-specific."
@@ -132,7 +132,7 @@
 
   <!-- Determines whether the SkipPostSharp or PostSharpVerify constant has been defined -->
   <Target Name="PostSharp20InspectConstants"
-			Condition="'$(BuildingProject)'=='true' And '$(SkipPostSharp)'!='True'"
+      Condition="'$(BuildingProject)'=='true' And '$(SkipPostSharp)'!='True'"
       DependsOnTargets="PostSharp20GetDirectory"
           >
 
@@ -145,8 +145,8 @@
     </CreateProperty>
 
     <Message	Condition="'$(SkipPostSharp)'=='True'"
-					Importance="low"
-					Text="SkipPostSharp constant detected. The PostSharp target will be ignored." />
+          Importance="low"
+          Text="SkipPostSharp constant detected. The PostSharp target will be ignored." />
 
     <CreateProperty Condition="'%(_DefineConstants.Identity)'=='PostSharpVerify'" Value="True">
       <Output TaskParameter="Value" PropertyName="PostSharpVerify" />
@@ -169,10 +169,10 @@
 
   <!-- Task PostSharp: executes PostSharp if the PostSharp20Project is defined. -->
   <Target	Name="PostSharp20"
-			Condition="'$(BuildingProject)'=='true' AND '$(PostSharp20Project)'!='' AND '$(SkipPostSharp)'!='True' AND Exists('$(_IntermediateAssemblyFullPath)')"
-			Inputs="$(PostSharp20Project);@(IntermediateAssembly->'%(FullPath)')"
-			Outputs="@(IntermediateAssembly->'%(FullPath).postsharp')"
-			DependsOnTargets="_CopyFilesMarkedCopyLocal;ResolveKeySource">
+      Condition="'$(BuildingProject)'=='true' AND '$(PostSharp20Project)'!='' AND '$(SkipPostSharp)'!='True' AND Exists('$(_IntermediateAssemblyFullPath)')"
+      Inputs="$(PostSharp20Project);@(IntermediateAssembly->'%(FullPath)')"
+      Outputs="@(IntermediateAssembly->'%(FullPath).postsharp')"
+      DependsOnTargets="_CopyFilesMarkedCopyLocal;ResolveKeySource">
 
     <!-- Check that PostSharp targets have not been imported twice. -->
     <Error Text="PostSharp targets have been imported twice in the project. Be sure to set the 'DontImportPostSharp' property to 'True' when you import PostSharp manually, so that it does not get imported automatically."
@@ -264,19 +264,19 @@
     <CreateProperty Value="
               Output=$(_PostSharpOutput);
               ReferenceDirectory=$(MSBuildProjectDirectory);
-							Configuration=$(Configuration);
+              Configuration=$(Configuration);
               Platform=$(Platform);
-							SearchPath=$(OutDir),$(IntermediateOutputPath),$(_ReferencePathAsCommaSeparatedList);
-							IntermediateDirectory=$(PostSharpIntermediateDirectory);
-							CleanIntermediate=$(PostSharpCleanIntermediate);
-							MSBuildProjectFullPath=$(MSBuildProjectFullPath);
-							SignAssembly=$(PostSharpSignAssembly);
-							PrivateKeyLocation=$(_PostSharpKeyFile);
+              SearchPath=$(OutDir),$(IntermediateOutputPath),$(_ReferencePathAsCommaSeparatedList);
+              IntermediateDirectory=$(PostSharpIntermediateDirectory);
+              CleanIntermediate=$(PostSharpCleanIntermediate);
+              MSBuildProjectFullPath=$(MSBuildProjectFullPath);
+              SignAssembly=$(PostSharpSignAssembly);
+              PrivateKeyLocation=$(_PostSharpKeyFile);
               ResolvedReferences=$(_ResolveAssemblyReferenceResolvedFilesAbsoluteAsCommaSeparatedList);
               MapFile=$(PostSharpSymbolFile);
               WriteWeavingSymbols=$(PostSharpWriteWeavingSymbols);
               AssemblyBindingPolicySet=$(PostSharpAssemblyBindingPolicySet);
-							$(PostSharpProperties)">
+              $(PostSharpProperties)">
       <Output TaskParameter="Value" PropertyName="PostSharpProperties"/>
     </CreateProperty>
     
@@ -311,8 +311,8 @@
     <Message Text="Passing parameters: $(PostSharpProperties)" Importance="low"/>
 
     <PostSharp20	Project="$(PostSharp20Project)"
-					      Input="$(_PostSharpInputBin)"
-					      Properties="$(PostSharpProperties)"
+                Input="$(_PostSharpInputBin)"
+                Properties="$(PostSharpProperties)"
                 AttachDebugger="$(PostSharpAttachDebugger)"
                 ClientAttachDebugger="$(PostSharpClientAttachDebugger)"
                 TraceCategories="$(PostSharpTrace)"
@@ -324,7 +324,7 @@
                 IgnoreError="$(PostSharpIgnoreError)"
                 FailOnUnexpectedMessage="$(PostSharpFailOnUnexpectedMessage)"
                 LicenseKey="$(PostSharpLicenseKey)"
-					>
+          >
       <Output TaskParameter="ExitCode" PropertyName="PostSharpExitCode"/>
     </PostSharp20>
 
@@ -341,10 +341,10 @@
 
 
     <!-- Touch the semaphore file to enable incremental building (with a delay of 1 s
-		     to avoid to post-compile the result of post-compilation during incremental rebuild   -->
+         to avoid to post-compile the result of post-compilation during incremental rebuild   -->
     <PostSharp20TouchWithDelay Files="@(IntermediateAssembly->'%(FullPath).postsharp')"
-						ReferenceFile="@(IntermediateAssembly)"
-						Delay="100"
+            ReferenceFile="@(IntermediateAssembly)"
+            Delay="100"
             Condition="'$(PostSharpExitCode)'=='0'"/>
 
     <!-- Create a property to remember we are done. -->

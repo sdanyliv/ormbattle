@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>  
+    <!-- Excluding non-release PostSharp libraries. Its redistribution conditions require redistributing it only as whole -->
     <LibFiles Condition="'$(UseDataObjectsDotNet)'=='true'"
-              Include="$(DataObjectsDotNetLibDir)**\*.dll" />
+              Include="$(DataObjectsDotNetLibDir)**\*.dll"
+              Exclude="$(DataObjectsDotNetLibDir)PostSharp\Diag\*.dll;$(DataObjectsDotNetLibDir)PostSharp\Reference Assemblies\**\*.dll;$(DataObjectsDotNetLibDir)PostSharp\Samples\**\*.dll" />
     <LibFiles Condition="'$(UseDataObjectsDotNet)'=='true'"
               Include="$(DataObjectsDotNetBinDir)*.dll" />
 
