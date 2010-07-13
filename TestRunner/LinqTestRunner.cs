@@ -54,7 +54,7 @@ namespace OrmBattle.TestRunner
         new BLToolkitTest(),
         new EFTest(), 
         new DOTest(),
-        new LightSpeedTest(),
+        // new LightSpeedTest(),
         new LinqConnectTest(),
         new Linq2SqlTest(),
         new NHibernateTest(),
