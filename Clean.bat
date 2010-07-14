@@ -7,7 +7,7 @@ goto :End
 
 :Start
 "%MSBuildPath%\MSBuild.exe" /t:Clean
-"%MSBuildPath%\MSBuild.exe" /t:Clean /p:Configuration=Release 
+"%MSBuildPath%\MSBuild.exe" /t:Clean /p:Configuration=Release /v:m %*
 goto :End
 
 :End
