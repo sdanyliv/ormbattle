@@ -12,9 +12,6 @@
     <AssemblyName>DOModel</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <UsePostSharp>true</UsePostSharp>
-    <DontImportPostSharp>true</DontImportPostSharp>
-    <CopyIndirectDependencies>false</CopyIndirectDependencies>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -36,6 +33,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
     <DataObjectsDotNetPath>$(MSBuildProjectDirectory)\..\Lib\DataObjects.Net</DataObjectsDotNetPath>
+    <CopyIndirectDependencies>false</CopyIndirectDependencies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
