@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Common properties -->
+
+  <PropertyGroup>
+    <Configuration 
+      Condition="'$(Configuration)'==''">Debug</Configuration>
+    <RootDir 
+      Condition="'$(RootDir)'==''">$(MSBuildProjectDirectory)\..\..\</RootDir>
+    <CommonDir 
+      Condition="'$(CommonDir)'==''">$(RootDir)Common\</CommonDir>
+    <LibDir 
+      Condition="'$(LibDir)'==''">$(RootDir)Lib\</LibDir>
+    <BinLatestDir 
+      Condition="'$(BinLatestDir)'==''">$(RootDir)Bin\Latest\</BinLatestDir>
+    <BinOutputDir 
+      Condition="'$(BinOutputDir)'==''">$(RootDir)Bin\$(Configuration)\</BinOutputDir>
+  </PropertyGroup>
+ 
+  
+  <!-- PostSharp properties -->
+  
+  <PropertyGroup>
+    <PostSharpAutoUpdateDisable 
+      Condition="$(PostSharpAutoUpdateDisable)==''">true</PostSharpAutoUpdateDisable>
+  </PropertyGroup>
+
+
+  <!-- FiXml properties -->
+  
+  <PropertyGroup>
+    <UseFiXml 
+      Condition="'$(UseFiXml)'==''">false</UseFiXml>
+    <UseFiXml 
+      Condition="'$(ForceUseFiXml)'=='true'">true</UseFiXml>
+  </PropertyGroup>
+
+
+  <!-- Other properties -->
+
+  <PropertyGroup>
+    <CopyIndirectDependenciesPdb 
+      Condition="'$(CopyIndirectDependenciesPdb)'==''">true</CopyIndirectDependenciesPdb>
+    <CopyIndirectDependenciesXml 
+      Condition="'$(CopyIndirectDependenciesXml)'==''">true</CopyIndirectDependenciesXml>
+  </PropertyGroup>
+
+  
+  <!-- Common configuration & imports -->
+
+  <Import Project="Configure.targets" />
+
+
+  <!-- FiXml properties -->
+  
+  <ItemGroup>
+    <FiXmlDocumentationPath Include="$(PostSharpPath)" />
+  </ItemGroup>
+
+</Project>
