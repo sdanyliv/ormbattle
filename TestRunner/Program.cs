@@ -13,10 +13,23 @@ namespace OrmBattle.TestRunner
 {
   internal class Program
   {
+    private const string JSONArgMarker = "-json";
     private const string TArgMarker = "-t:";
     private const string WArgMarker = "-w";
+    private const string JSONOutFile = "Output.htm";
     public static string[] Args;
     public static List<string> ToolNames = null;
+    private static System.IO.StreamWriter jsonOutput = null;
+
+    public static void JSONOutput(string jsonSTR)
+    {
+        if (jsonOutput != null)
+        {
+            jsonOutput.Write(jsonSTR);
+            jsonOutput.Flush();
+        }
+    }
+
 
     private static void Main(string[] args)
     {
@@ -27,6 +40,11 @@ namespace OrmBattle.TestRunner
         tArg = tArg.Remove(0, TArgMarker.Length);
         ToolNames = tArg.RevertibleSplit('/', ',').Distinct().ToList();
       }
+      string outArg = Program.Args.Where(a => a.StartsWith(JSONArgMarker)).SingleOrDefault();
+      if (outArg != null)
+      {
+          jsonOutput = new System.IO.StreamWriter(JSONOutFile);
+      }
 
       var linqTestRunner = new LinqTestRunner();
       var performanceTestRunner = new PerformanceTestRunner();
@@ -34,8 +52,12 @@ namespace OrmBattle.TestRunner
       linqTestRunner.Run();
       performanceTestRunner.Run();
 
+      jsonOutput.Close();
+
       if (Args.Where(a => a==WArgMarker).SingleOrDefault()!=null)
         Console.ReadKey();
     }
+
+
   }
 }

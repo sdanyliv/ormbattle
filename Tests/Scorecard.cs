@@ -7,9 +7,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Xtensive.Core;
 using Xtensive.Core.Helpers;
+using Newtonsoft.Json.Linq;
 
 namespace OrmBattle.Tests
 {
@@ -124,6 +126,45 @@ namespace OrmBattle.Tests
       sb.AppendFormat("{0,10}", result ?? "n/a");
     }
 
+    public string ToJSON(ToolTestBase[] toolTests,string  cardName)
+    {
+        var result = new JObject();
+        result.Add("Name", cardName);
+        result.Add("Tests",new JArray());
+        foreach (var test in Tests)
+            JSONAppTest(result,test.ToString());
+        result.Add("Tools",new JArray());
+        foreach (var tool in toolTests)
+            JSONAppTool(result, tool);
+
+        return result.ToString();
+    }
+
+    protected virtual void JSONAppTest(JObject jsonOut, string testName)
+    {
+        if ((testName.IsNullOrEmpty() || testName.EndsWith(":"))) return;
+        string unit = ToolTestBase.Unit;
+        var test = new JObject();
+        test.Add("Name", testName);
+        test.Add("Unit",new JValue(Get(unit,testName)));
+        ((JArray)jsonOut["Tests"]).Add(test);
+    }
+
+    protected virtual void JSONAppTool(JObject jsonOut,ToolTestBase tooldata)
+    {
+        var tool = new JObject();
+        tool.Add("ShortName",tooldata.ShortToolName);
+        tool.Add("Name",tooldata.ToolName);
+        ((JArray)jsonOut["Tools"]).Add(tool);
+        tool.Add("Results", new JArray());
+        foreach (var test in jsonOut["Tests"])
+            JSONAppResult(tool, Get(tooldata.ShortToolName,((string)test["Name"]) ));
+    }
+
+    protected virtual void JSONAppResult(JObject jsonTool, object result)
+    {
+        ((JArray)jsonTool["Results"]).Add(result);
+    }
 
     public Scorecard()
     {
