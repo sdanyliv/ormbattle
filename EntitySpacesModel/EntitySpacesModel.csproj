@@ -53,27 +53,27 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntitySpaces.Core">
+    <Reference Include="EntitySpaces.Core, Version=2010.1.628.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.DynamicQuery">
+    <Reference Include="EntitySpaces.DynamicQuery, Version=2010.1.628.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.DynamicQuery.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.Interfaces">
+    <Reference Include="EntitySpaces.Interfaces, Version=2010.1.628.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.Loader">
+    <Reference Include="EntitySpaces.Loader, Version=2010.1.628.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.Loader.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.LoaderMT">
+    <Reference Include="EntitySpaces.LoaderMT, Version=2010.1.628.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.LoaderMT.dll</HintPath>
     </Reference>
-    <Reference Include="EntitySpaces.SqlClientProvider">
+    <Reference Include="EntitySpaces.SqlClientProvider, Version=2010.1.628.0, Culture=neutral, PublicKeyToken=127bcb8ceedbe220, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\EntitySpaces\Binaries\EntitySpaces.SqlClientProvider.dll</HintPath>
     </Reference>
