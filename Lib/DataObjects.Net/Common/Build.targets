@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Common properties -->
+
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
+    <Fullconfig>$(Configuration)</Fullconfig>
+    <Fullconfig Condition="'$(Subconfig)'!=''">$(Configuration)-$(Subconfig)</Fullconfig>
+    <RootDir Condition="'$(RootDir)'==''">$(MSBuildProjectDirectory)\..\</RootDir>
+    <CommonDir Condition="'$(CommonDir)'==''">$(RootDir)Common\</CommonDir>
+    <SolutionDir>$(MSBuildProjectDirectory)\</SolutionDir>
+    <SolutionFile>$(Solution).sln</SolutionFile>
+    <TestProject>$(Solution).Tests</TestProject>
+    <TestProjectFile>$(TestProject).csproj</TestProjectFile>
+    <TestProjectOutputDir>$(TestProject)\bin\$(Configuration)\</TestProjectOutputDir>
+    <BackupFolderName>Backup</BackupFolderName>
+    <BuildProjRunning>true</BuildProjRunning>
+  </PropertyGroup>
+ 
+  <!-- FiXml properties -->
+  
+  <PropertyGroup>
+    <UseFiXml 
+      Condition="'$(UseFiXml)'==''">false</UseFiXml>
+    <UseFiXml 
+      Condition="'$(ForceUseFiXml)'=='true'">true</UseFiXml>
+  </PropertyGroup>
+
+  <!-- Common configuration & imports -->
+
+  <Import Project="Common.targets" />
+
+  <PropertyGroup>
+    <MSBuildCommonProperties>UseFiXml=$(UseFiXml);BuildForILMerge=$(BuildForILMerge)</MSBuildCommonProperties>
+  </PropertyGroup>
+
+
+  <!-- Targets -->
+
+  <Target Name="Build" 
+          DependsOnTargets="EnsureDependsOnSolutionsAreBuilt">
+    <MSBuild Projects="$(SolutionFile)" 
+             Targets="Build"   
+             Properties="$(MSBuildCommonProperties)" />
+    <!--
+    <Exec Command="$(MSBuildBinPath)\MSBuild.exe /nologo &quot;$(SolutionFile)&quot; /t:Build &quot;/p:Configuration=$(Configuration);$(MSBuildCommonProperties)&quot;" />
+    -->
+  </Target>
+  
+  <Target Name="Rebuild" 
+          DependsOnTargets="EnsureDependsOnSolutionsAreBuilt">
+    <MSBuild Projects="$(SolutionFile)" 
+             Targets="Rebuild" 
+             Properties="$(MSBuildCommonProperties)" />
+  </Target>
+  
+  <Target Name="Clean" 
+          DependsOnTargets="EnsureDependsOnSolutionsAreBuilt">
+    <MSBuild Projects="$(SolutionFile)" 
+             Targets="Clean"   
+             Properties="Configuration=Debug;  $(MSBuildCommonProperties)" />
+    <MSBuild Projects="$(SolutionFile)" 
+             Targets="Clean"   
+             Properties="Configuration=Release;$(MSBuildCommonProperties)" />
+  </Target>
+
+  <Target Name="EnsureDependsOnSolutionsAreBuilt">
+    <CreateItem Condition=" '%(DependsOnSolution.Filename)' != '' " 
+                Include="$(RootDir)%(DependsOnSolution.Filename)%(DependsOnSolution.Extension)\Build.proj">
+      <Output TaskParameter="Include" ItemName="DependsOnBuildFile" />
+    </CreateItem>
+    <MSBuild Condition=" '$(teamcity_projectName)' == '' " 
+             Projects="@(DependsOnBuildFile)"
+             Properties="$(MSBuildCommonProperties)" />
+  </Target>
+
+  <!--
+  <Target Name="DetectBinPaths">
+    <CreateItem Include="$(BinLatestDir)" AdditionalMetadata="FolderName=Latest">
+      <Output TaskParameter="Include" ItemName="BinFolderPaths"/>
+    </CreateItem>
+    <CreateItem Include="$(BinOutputDir)" AdditionalMetadata="FolderName=$(Configuration)">
+      <Output TaskParameter="Include" ItemName="BinFolderPaths"/>
+    </CreateItem>
+    <CreateItem Include="%(BinFolderPaths.FullPath)*.*" 
+                AdditionalMetadata="FolderName=%(BinFolderPaths.FolderName)">
+      <Output TaskParameter="Include" ItemName="BinFilePaths"/>
+    </CreateItem>
+    <CreateItem Include="%(BinFolderPaths.FullPath)..\$(BackupFolderName)\%(BinFolderPaths.FolderName)\*.*"
+                AdditionalMetadata="FolderName=%(BinFolderPaths.FolderName)">
+      <Output TaskParameter="Include" ItemName="BackupFilePaths"/>
+    </CreateItem>
+  </Target>
+
+  <Target Name="BackupBin" DependsOnTargets="DetectBinPaths">
+    <MakeDir Directories="%(BinFolderPaths.FullPath)..\$(BackupFolderName)\%(BinFolderPaths.FolderName)"/>
+    <Delete Files="@(BackupFilePaths)"/>
+    <Move SourceFiles="%(BinFilePaths.FullPath)"
+          DestinationFolder="%(BinFilePaths.RootDir)%(BinFilePaths.Directory)..\$(BackupFolderName)\%(BinFilePaths.FolderName)">
+      <Output TaskParameter="MovedFiles" ItemName="BackedUpFiles"/>
+    </Move>
+    <Message Importance="high" Text="Backup completed."/>
+  </Target>
+
+  <Target Name="RestoreBin" DependsOnTargets="DetectBinPaths">
+    <MakeDir Directories="%(BinFolderPaths.FullPath)"/>
+    <Delete Files="@(BinFilePaths)"/>
+    <Move SourceFiles="%(BackupFilePaths.FullPath)"
+          DestinationFolder="%(BackupFilePaths.RootDir)%(BackupFilePaths.Directory)..\..\%(BackupFilePaths.FolderName)">
+      <Output TaskParameter="MovedFiles" ItemName="RestoredFiles"/>
+    </Move>
+    <Exec Command="rmdir /S /Q &quot;%(BinFolderPaths.FullPath)..\$(BackupFolderName)&quot;" 
+          Condition="Exists('%(BinFolderPaths.FullPath)..\$(BackupFolderName)')" />
+    <Message Importance="high" Text="Restore completed."/>
+  </Target>
+  -->
+
+</Project>
