@@ -130,9 +130,9 @@ namespace OrmBattle.Tests.Performance
       using (var ts = new esTransactionScope()) {
         var simplests = new SimplestsCollection();
         simplests.LoadAll();
-        foreach (var o in simplests) {
-          o.MarkAsDeleted();
-          simplests.Save();
+        for (int i = simplests.Count - 1; i >= 0; i--) {
+            simplests.FindByPrimaryKey(i).MarkAsDeleted();
+            simplests.Save();
         }
         ts.Complete();
       }

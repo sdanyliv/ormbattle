@@ -1,14 +1,14 @@
 
 /*
 ===============================================================================
-                    EntitySpaces 2009 by EntitySpaces, LLC
+                    EntitySpaces 2010 by EntitySpaces, LLC
              Persistence Layer and Business Objects for Microsoft .NET
              EntitySpaces(TM) is a legal trademark of EntitySpaces, LLC
                           http://www.entityspaces.net
 ===============================================================================
-EntitySpaces Version : 2010.1.0601.0
+EntitySpaces Version : 2010.1.0720.0
 EntitySpaces Driver  : SQL
-Date Generated       : 11.06.2010 14:55:40
+Date Generated       : 20.07.2010 17:01:41
 ===============================================================================
 */
 
@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Linq;
 using System.Data;
+using System.Data.Linq.Mapping;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -37,7 +38,8 @@ namespace OrmBattle.EntitySpacesModel
 
     [DebuggerDisplay("Data = {Debug}")]
 	[Serializable]
-	[XmlType("Simplests")]	
+	[XmlType("Simplests")]
+	[Table(Name="Simplests")]	
 	public partial class Simplests : esSimplests
 	{	
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden | DebuggerBrowsableState.Never)]
@@ -71,6 +73,8 @@ namespace OrmBattle.EntitySpacesModel
         }
         #endregion		
 
+		
+					
 	}
 
 
@@ -85,6 +89,8 @@ namespace OrmBattle.EntitySpacesModel
 			return this.SingleOrDefault(e => e.Id == id);
 		}
 
+		
+				
 	}
 
 
@@ -98,14 +104,16 @@ namespace OrmBattle.EntitySpacesModel
 			this.es.JoinAlias = joinAlias;
 		}
 
-      public SimplestsQuery()
-      {
-      }
+        public SimplestsQuery()
+        {
+        }	
 
-      override protected string GetQueryName()
+        override protected string GetQueryName()
         {
             return "SimplestsQuery";
         }
+		
+					
 	
         #region Explicit Casts
 		
@@ -120,7 +128,6 @@ namespace OrmBattle.EntitySpacesModel
         }
 		
         #endregion		
-		
 	}
 
 
@@ -212,10 +219,10 @@ namespace OrmBattle.EntitySpacesModel
 					}
 				}
 			}
-//			else if(this.Row.Table.Columns.Contains(name))
-//			{
-//				this.Row[name] = value;
-//			}
+            else if (this.ContainsColumn(name))
+            {
+                this.SetColumn(name, value);
+            }
 			else
 			{
 				throw new Exception("SetProperty Error: '" + name + "' not found");
@@ -364,7 +371,11 @@ namespace OrmBattle.EntitySpacesModel
         protected void InitQuery(SimplestsQuery query)
         {
             query.OnLoadDelegate = this.OnQueryLoaded;
-            query.es2.Connection = ((IEntity)this).Connection;
+			
+            if (!query.es2.HasConnection)
+            {
+                query.es2.Connection = ((IEntity)this).Connection;
+            }			
         }
 
         #endregion
@@ -435,7 +446,11 @@ namespace OrmBattle.EntitySpacesModel
         protected void InitQuery(SimplestsQuery query)
         {
             query.OnLoadDelegate = this.OnQueryLoaded;
-            query.es2.Connection = ((IEntityCollection)this).Connection;
+			
+            if (!query.es2.HasConnection)
+            {
+                query.es2.Connection = ((IEntityCollection)this).Connection;
+            }			
         }
 
         protected override void HookupQuery(esDynamicQuery query)
@@ -481,49 +496,6 @@ namespace OrmBattle.EntitySpacesModel
 	}
 
 
-	
-	public partial class Simplests : esSimplests
-	{
-
-		
-		/// <summary>
-		/// Used internally by the entity's hierarchical properties.
-		/// </summary>
-		protected override List<esPropertyDescriptor> GetHierarchicalProperties()
-		{
-			List<esPropertyDescriptor> props = new List<esPropertyDescriptor>();
-			
-		
-			return props;
-		}	
-		
-		/// <summary>
-		/// Used internally for retrieving AutoIncrementing keys
-		/// during hierarchical PreSave.
-		/// </summary>
-		protected override void ApplyPreSaveKeys()
-		{
-		}
-		
-		/// <summary>
-		/// Used internally for retrieving AutoIncrementing keys
-		/// during hierarchical PostSave.
-		/// </summary>
-		protected override void ApplyPostSaveKeys()
-		{
-		}
-		
-		/// <summary>
-		/// Used internally for retrieving AutoIncrementing keys
-		/// during hierarchical PostOneToOneSave.
-		/// </summary>
-		protected override void ApplyPostOneSaveKeys()
-		{
-		}
-		
-	}
-
-
 
 	[Serializable]
 	public partial class SimplestsMetadata : esMetadata, IMetadata
@@ -543,6 +515,8 @@ namespace OrmBattle.EntitySpacesModel
 			c = new esColumnMetadata(SimplestsMetadata.ColumnNames.Value, 1, typeof(System.Int64), esSystemType.Int64);
 			c.PropertyName = SimplestsMetadata.PropertyNames.Value;
 			c.NumericPrecision = 19;
+			c.HasDefault = true;
+			c.Default = @"((0))";
 			m_columns.Add(c);
 				
 		}
@@ -627,8 +601,8 @@ namespace OrmBattle.EntitySpacesModel
 
 				meta.AddTypeMap("Id", new esTypeMap("bigint", "System.Int64"));
 				meta.AddTypeMap("Value", new esTypeMap("bigint", "System.Int64"));			
-				
-				
+				meta.Catalog = "PerformanceTest";
+				meta.Schema = "dbo";
 				
 				meta.Source = "Simplests";
 				meta.Destination = "Simplests";
