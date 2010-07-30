@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Xtensive.Sql.SqlServer</name>
+  </assembly>
+  <members>
+    <member name="M:Xtensive.Sql.SqlServer.Connection.CreateParameter">
+      <summary>
+            Creates the parameter.
+            </summary>
+      <returns>Created parameter.</returns>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.Connection.BeginTransaction">
+      <summary>
+            Begins the transaction.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.Connection.BeginTransaction(System.Data.IsolationLevel)">
+      <summary>
+            Begins the transaction with the specified <see cref="T:System.Data.IsolationLevel" />.
+            </summary>
+      <param name="isolationLevel">The isolation level.</param>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.Connection.MakeSavepoint(System.String)">
+      <summary>
+            Makes the transaction savepoint.
+            </summary>
+      <param name="name">The name of the savepoint.</param>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.Connection.RollbackToSavepoint(System.String)">
+      <summary>
+            Rollbacks current transaction to the specified savepoint.
+            </summary>
+      <param name="name">The name of the savepoint.</param>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.Connection.ReleaseSavepoint(System.String)">
+      <summary>
+            Releases the savepoint with the specfied name.
+            </summary>
+      <param name="name">The name of the savepoint.</param>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.Connection.ClearActiveTransaction">
+      <summary>
+            Clears the active transaction (i.e. sets <see cref="P:Xtensive.Sql.SqlConnection.ActiveTransaction" /> to <see langword="null" />.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Sql.SqlServer.Connection.UnderlyingConnection">
+      <summary>
+            Gets the underlying connection.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Sql.SqlServer.Connection.ActiveTransaction">
+      <summary>
+            Gets the active transaction.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Sql.SqlServer.DriverFactory">
+      <summary>
+            A <see cref="T:Xtensive.Sql.SqlDriver" /> factory for Microsoft SQL Server.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.DriverFactory.BuildConnectionString(Xtensive.Core.UrlInfo)">
+      <summary>
+            Builds the connection string from the specified URL.
+            </summary>
+      <param name="url">The connection URL.</param>
+      <returns>Built connection string</returns>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.DriverFactory.CreateDriver(System.String)">
+      <summary>
+            Creates the driver from the specified <see cref="T:Xtensive.Core.ConnectionInfo" />.
+            </summary>
+      <param name="connectionString">The connection string to create driver from.</param>
+      <returns>Created driver.</returns>
+    </member>
+    <member name="T:Xtensive.Sql.SqlServer.Resources.Strings">
+      <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Sql.SqlServer.Resources.Strings.ResourceManager">
+      <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Sql.SqlServer.Resources.Strings.Culture">
+      <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Sql.SqlServer.Resources.Strings.ExInvalidBooleanStringX">
+      <summary>
+              Looks up a localized string similar to Invalid boolean string '{0}'..
+            </summary>
+    </member>
+    <member name="P:Xtensive.Sql.SqlServer.Resources.Strings.ExMultipleLanguagesNotSupportedForFulltextColumnXOfIndexY">
+      <summary>
+              Looks up a localized string similar to Multiple languages not supported for fulltext column {0} of index {1}..
+            </summary>
+    </member>
+    <member name="P:Xtensive.Sql.SqlServer.Resources.Strings.ExOperationXIsNotSupported">
+      <summary>
+              Looks up a localized string similar to Operation '{0}' is not supported.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Sql.SqlServer.Resources.Strings.ExSqlServerBelow2005IsNotSupported">
+      <summary>
+              Looks up a localized string similar to SQL Server below 2005 is not supported..
+            </summary>
+    </member>
+    <member name="P:Xtensive.Sql.SqlServer.Resources.Strings.ExSqlServerSupportsTrimmingOfSpaceCharactersOnly">
+      <summary>
+              Looks up a localized string similar to SQL Server supports trimming of space characters only..
+            </summary>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.v09.Compiler.Visit(Xtensive.Sql.Ddl.SqlAlterTable)">
+      <inheritdoc />
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.v09.Compiler.Visit(Xtensive.Sql.Dml.SqlFunctionCall)">
+      <inheritdoc />
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.v09.Compiler.#ctor(Xtensive.Sql.SqlDriver)">
+      <param name="driver">The driver.</param>
+    </member>
+    <member name="M:Xtensive.Sql.SqlServer.v09.Translator.#ctor(Xtensive.Sql.SqlDriver)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Sql.SqlServer.v09.Translator" /> class.
+            </summary>
+      <param name="driver">The driver.</param>
+    </member>
+  </members>
+</doc>
