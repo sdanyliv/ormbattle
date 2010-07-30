@@ -19,30 +19,28 @@ namespace AssemblyExplorer
         private object currentObject;
         private object msilRenderedObject;
         private readonly Domain domain;
-        private AssemblyResolver resolver;
 
         public MainForm()
         {
             // We don't have a host license key, so we will load the user key, if
             // stored at the expected location.
             string licenseFile = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData ), @"PostSharp 2.0\PostSharp.license" );
-            if ( !File.Exists( licenseFile ) )
+            string licenseKey = null;
+            if ( File.Exists( licenseFile ) )
             {
-                MessageBox.Show( "The PostSharp license file was not found." );
-                Environment.Exit( 1 );
+                licenseKey = File.ReadAllText( licenseFile );
             }
 
-            if ( !LicenseManager.Initialize( File.ReadAllText( licenseFile ) ) )
+            if ( !LicenseManager.Initialize( licenseKey ) )
             {
                 MessageBox.Show( "Invalid license." );
-                Environment.Exit( 2 );
+                Environment.Exit( 1 );
             }
 
 
             InitializeComponent();
 
             this.domain = new Domain();
-            this.resolver = new AssemblyResolver( this.domain );
 
 
             // Load assemblies.
