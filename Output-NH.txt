@@ -1,0 +1,199 @@
+LINQ tests:
+  Testing: NHibernate (NH)
+  Failed: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.IO.FileLoadException: Could not load file or assembly 'NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+   at OrmBattle.NHibernateModel.Northwind.NorthwindContext..ctor(ISession session)
+   at OrmBattle.Tests.Linq.NHibernateTest.Setup() in e:\My Projects\Hg\OrmBattle\Tests\Linq\NHibernateTest.generated.cs:line 51
+   at OrmBattle.Tests.ToolTestBase.BaseSetup() in e:\My Projects\Hg\OrmBattle\Tests\ToolTestBase.cs:line 29
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at OrmBattle.TestRunner.LinqTestRunner.Run() in e:\My Projects\Hg\OrmBattle\TestRunner\LinqTestRunner.cs:line 90
+
+LINQ tests scorecard:
+                                        NH   Maximum      Unit
+LINQ Implementation:            
+Total:                          
+  Performed                              0       121         #
+  Passed                                 0       121         #
+  Failed                                 0       121         #
+    Properly                             0       121         #
+    Asserted                             0       121         #
+  Score                                NaN     100,0         %
+  Join                                 n/a         4       f/a
+  References                           n/a         4       f/a
+  Complex                              n/a         6       f/a
+  Standard functions                   n/a        25       f/a
+  Filtering                            n/a        12       f/a
+  Projections                          n/a        13       f/a
+  Take/Skip                            n/a         5       f/a
+  Ordering                             n/a         8       f/a
+  Grouping                             n/a        10       f/a
+  Set operations                       n/a         9       f/a
+  Type casts                           n/a         5       f/a
+  Element operations                   n/a         9       f/a
+  All/Any/Contains                     n/a         6       f/a
+  Aggregates                           n/a         5       f/a
+
+Units:
+  f/a: total count of failed tests [ / count of tests failed with assertion ],
+       less is better (0 is ideal);
+  #:   count;
+  %:   percentage (% of passed tests), more is better.
+
+
+Performance tests (50 items):
+  Testing: NHibernate (NH)
+
+Performance tests (50 items) scorecard:
+                                        NH      Unit
+CRUD Performance:               
+  Fetch                               5399      op/s
+  Single Operation:             
+    Create Instance                   2557      op/s
+    Update Instance                   2247      op/s
+    Remove Instance                   2414      op/s
+    CUD Average                       2399      op/s
+  Multiple Operations:          
+    Create Instance                   9720      op/s
+    Update Instance                  10937      op/s
+    Remove Instance                  12051      op/s
+    CUD Average                      10818      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                         n/a       n/a
+    Compiled LINQ Query                n/a       n/a
+    Native Query                      3404 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)        n/a       n/a
+    Get Average Page (20 items)        n/a       n/a
+    Get Large Page   (50 items)        n/a       n/a
+    Get Huge Page    (100 items)       n/a       n/a
+  Materialization:              
+    LINQ Materialize                   n/a       n/a
+    Native Materialize               32045 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (100 items):
+  Testing: NHibernate (NH)
+
+Performance tests (100 items) scorecard:
+                                        NH      Unit
+CRUD Performance:               
+  Fetch                               5858      op/s
+  Single Operation:             
+    Create Instance                   2852      op/s
+    Update Instance                   2342      op/s
+    Remove Instance                   2728      op/s
+    CUD Average                       2621      op/s
+  Multiple Operations:          
+    Create Instance                   9968      op/s
+    Update Instance                  12822      op/s
+    Remove Instance                  13926      op/s
+    CUD Average                      11994      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                         n/a       n/a
+    Compiled LINQ Query                n/a       n/a
+    Native Query                      3841 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)        n/a       n/a
+    Get Average Page (20 items)        n/a       n/a
+    Get Large Page   (50 items)        n/a       n/a
+    Get Huge Page    (100 items)       n/a       n/a
+  Materialization:              
+    LINQ Materialize                   n/a       n/a
+    Native Materialize               43125 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (500 items):
+  Testing: NHibernate (NH)
+
+Performance tests (500 items) scorecard:
+                                        NH      Unit
+CRUD Performance:               
+  Fetch                               6190      op/s
+  Single Operation:             
+    Create Instance                   3126      op/s
+    Update Instance                   1288      op/s
+    Remove Instance                   1948      op/s
+    CUD Average                       1863      op/s
+  Multiple Operations:          
+    Create Instance                  13197      op/s
+    Update Instance                  15254      op/s
+    Remove Instance                  17140      op/s
+    CUD Average                      15024      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                         n/a       n/a
+    Compiled LINQ Query                n/a       n/a
+    Native Query                      4241 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)        n/a       n/a
+    Get Average Page (20 items)        n/a       n/a
+    Get Large Page   (50 items)        n/a       n/a
+    Get Huge Page    (100 items)       n/a       n/a
+  Materialization:              
+    LINQ Materialize                   n/a       n/a
+    Native Materialize               62336 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (1000 items):
+  Testing: NHibernate (NH)
+
+Performance tests (1000 items) scorecard:
+                                        NH      Unit
+CRUD Performance:               
+  Fetch                               5639      op/s
+  Single Operation:             
+    Create Instance                   3162      op/s
+    Update Instance                    865      op/s
+    Remove Instance                   1409      op/s
+    CUD Average                       1374      op/s
+  Multiple Operations:          
+    Create Instance                  11251      op/s
+    Update Instance                  14718      op/s
+    Remove Instance                  17032      op/s
+    CUD Average                      13918      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                         n/a       n/a
+    Compiled LINQ Query                n/a       n/a
+    Native Query                      3765 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)        n/a       n/a
+    Get Average Page (20 items)        n/a       n/a
+    Get Large Page   (50 items)        n/a       n/a
+    Get Huge Page    (100 items)       n/a       n/a
+  Materialization:              
+    LINQ Materialize                   n/a       n/a
+    Native Materialize               63290 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (5000 items):
+  Testing: NHibernate (NH)
