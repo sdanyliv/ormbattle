@@ -14,19 +14,13 @@ namespace OrmBattle.TestRunner
 {
   internal class Program
   {
-    private const string JSONArgMarker = "-json";
     private const string TArgMarker = "-t:";
     private const string WArgMarker = "-w";
-    private const string JSONOutFile = "../../../Results/json/Output.json";
+    private const string JsonArgMarker = "-json:";
+    private const string JsonOutputFile = "../../../Results/json/Output.json";
+
     public static string[] Args;
     public static List<string> ToolNames = null;
-    private static JsonWriter jsonOutput = null;
-
-    public static void TryAppendJson(string json)
-    {
-      if (jsonOutput!=null)
-        jsonOutput.Write(json);
-    }
 
     private static void Main(string[] args)
     {
@@ -37,18 +31,23 @@ namespace OrmBattle.TestRunner
         tArg = tArg.Remove(0, TArgMarker.Length);
         ToolNames = tArg.RevertibleSplit('/', ',').Distinct().ToList();
       }
-      string outArg = Program.Args.Where(a => a.StartsWith(JSONArgMarker)).SingleOrDefault();
-      if (outArg!=null) {
-        jsonOutput = new JsonWriter(File.Create(JSONOutFile));
+
+      IDisposable jsonWriterScope = null;
+      string jsonArg = args.Where(a => a.ToLower().StartsWith(JsonArgMarker)).SingleOrDefault();
+      if (jsonArg!=null) {
+        jsonArg = jsonArg.Remove(0, Math.Min(JsonArgMarker.Length, jsonArg.Length));
+        if (jsonArg.IsNullOrEmpty())
+          jsonWriterScope = JsonWriter.Initialize(JsonOutputFile);
+        else
+          jsonWriterScope = JsonWriter.Initialize(jsonArg);
       }
 
-      var linqTestRunner = new LinqTestRunner();
-      var performanceTestRunner = new PerformanceTestRunner();
-
-      linqTestRunner.Run();
-      performanceTestRunner.Run();
-
-      jsonOutput.Close();
+      using (jsonWriterScope) {
+        var linqTestRunner = new LinqTestRunner();
+        var performanceTestRunner = new PerformanceTestRunner();
+        linqTestRunner.Run();
+        performanceTestRunner.Run();
+      }
 
       if (Args.Where(a => a==WArgMarker).SingleOrDefault()!=null)
         Console.ReadKey();

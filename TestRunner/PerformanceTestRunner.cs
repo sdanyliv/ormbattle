@@ -136,11 +136,11 @@ namespace OrmBattle.TestRunner
 
         Console.WriteLine();        
         Console.WriteLine("{0} scorecard:", sequenceName);
+
         Console.Write(scorecard);
-
-        Program.TryAppendJson(scorecard.ToJson(sequenceName, tests.ToArray<ToolTestBase>()));
+        JsonWriter.Write(scorecard.ToJson(sequenceName, tests.ToArray<ToolTestBase>()));
+        
         Console.WriteLine();
-
         Console.WriteLine("Units:");
         Console.WriteLine("  op/s:      operations per second, more is better;");
         Console.WriteLine("  queries/s: queries per second, more is better;");

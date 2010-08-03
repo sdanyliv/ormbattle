@@ -70,6 +70,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Passed.
     public void WhereTest()
     {
       var result = from o in db.Orders
@@ -85,6 +86,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Passed.
     public void WhereParameterTest()
     {
       var city = "Seattle";
@@ -106,6 +108,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Passed.
     public void WhereConditionsTest()
     {
       var result = from p in db.Products
@@ -117,6 +120,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Passed.
     public void WhereNullTest()
     {
       var result = from o in db.Orders
@@ -128,6 +132,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Failed with assertion.
+    // Exception: AssertionException
+    // Message:
+    //     Expected: 507
+    //     But was:  0
     public void WhereNullParameterTest()
     {
       string region = null;
@@ -144,6 +153,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Passed.
     public void WhereNullableTest()
     {
       var result = from o in db.Orders
@@ -155,6 +165,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Failed with assertion.
+    // Exception: AssertionException
+    // Message:
+    //     Expected: 21
+    //     But was:  0
     public void WhereNullableParameterTest()
     {
       DateTime? shippedDate = null;
@@ -167,6 +182,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Passed.
     public void WhereCoalesceTest()
     {
       var result = from o in db.Orders
@@ -178,6 +194,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Passed.
     public void WhereConditionalTest()
     {
       var result = from o in db.Orders
@@ -189,6 +206,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Passed.
     public void WhereConditionalBooleanTest()
     {
       var result = from o in db.Orders
@@ -200,6 +218,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   Unable to create a constant value of type 'Anonymous type'. Only primitive types ('such as Int32, String, and Guid') are supported in this context.
     public void WhereAnonymousParameterTest()
     {
       var cityRegion = new {City = "Seattle", Region = "WA"};
@@ -212,6 +234,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   Unable to create a constant value of type 'OrmBattle.EFModel.Order'. Only primitive types ('such as Int32, String, and Guid') are supported in this context.
     public void WhereEntityParameterTest()
     {
       var order = db.Orders.OrderBy(o => o.OrderDate).First();
@@ -230,6 +256,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectTest()
     {
       var result = from o in db.Orders
@@ -243,6 +270,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Failed.
+    // Exception: InvalidOperationException
+    // Message:
+    //   The cast to value type 'Boolean' failed because the materialized value is null. Either the result type's generic parameter or the query must use a nullable type.
     public void SelectBooleanTest()
     {
       var result = from o in db.Orders
@@ -256,6 +287,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectCalculatedTest()
     {
       var result = from o in db.Orders
@@ -277,6 +309,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectNestedCalculatedTest()
     {
       var result = from r in
@@ -302,6 +335,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectAnonymousTest()
     {
       var result = from o in db.Orders
@@ -315,6 +349,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectSubqueryTest()
     {
       var result = from o in db.Orders
@@ -336,6 +371,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectDtoTest()
     {
       var result = from o in db.Orders
@@ -346,6 +382,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectNestedDtoTest()
     {
       var result = from r in
@@ -359,6 +396,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectManyAnonymousTest()
     {
       var result = from c in db.Customers
@@ -371,6 +409,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectManyLetTest()
     {
       var result = from c in db.Customers
@@ -384,6 +423,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectManyGroupByTest()
     {
       var result = db.Orders
@@ -397,6 +437,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectManyOuterProjectionTest()
     {
       var result = db.Customers.SelectMany(i => i.Orders.Select(t => i));
@@ -407,6 +448,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
+    // Passed.
     public void SelectManyLeftJoinTest()
     {
       var result =
@@ -424,6 +466,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
+    // Passed.
     public void TakeTest()
     {
       var result = (from o in db.Orders
@@ -439,6 +482,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
+    // Passed.
     public void SkipTest()
     {
       var result = (from o in db.Orders
@@ -455,6 +499,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
+    // Passed.
     public void TakeSkipTest()
     {
       var result = (from o in db.Orders
@@ -470,6 +515,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
+    // Passed.
     public void TakeNestedTest()
     {
       var result = 
@@ -489,6 +535,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   The method 'Skip' is only supported for sorted input in LINQ to Entities. The method 'OrderBy' must be called before the method 'Skip'.
     public void ComplexTakeSkipTest()
     {
       var original = db.Orders.ToList()
@@ -521,6 +571,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
+    // Passed.
     public void OrderByTest()
     {
       var result = 
@@ -540,6 +591,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
+    // Passed.
     public void OrderByWhereTest()
     {
       var result = (from o in db.Orders
@@ -557,6 +609,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
+    // Passed.
     public void OrderByCalculatedColumnTest()
     {
       var result =
@@ -572,6 +625,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
+    // Failed.
+    // Exception: ArgumentException
+    // Message:
+    //   DbSortClause expressions must have a type that is order comparable.
+    //   Parameter name: key
     public void OrderByEntityTest()
     {
       var result =
@@ -587,6 +645,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
+    // Passed.
     public void OrderByAnonymousTest()
     {
       var result =
@@ -602,6 +661,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
+    // Passed.
         public void OrderByDistinctTest()
         {
             var result = db.Customers
@@ -621,6 +681,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
+    // Failed with assertion.
+    // Exception: AssertionException
+    // Message:
+    //     Expected: True
+    //     But was:  False
     public void OrderBySelectManyTest()
     {
       var result =
@@ -638,6 +703,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
+    // Passed.
     public void OrderByPredicateTest()
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);
@@ -652,6 +718,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Passed.
     public void GroupByTest()
     {
       var result = from o in db.Orders
@@ -662,6 +729,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Passed.
     public void GroupByReferenceTest()
     {
       var result = from o in db.Orders
@@ -672,6 +740,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Passed.
     public void GroupByWhereTest()
     {
       var result = 
@@ -685,6 +754,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Passed.
     public void GroupByTestAnonymous()
     {
       var result = from c in db.Customers
@@ -695,6 +765,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Passed.
     public void GroupByCalculatedTest()
     {
       var result =
@@ -707,6 +778,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Passed.
     public void GroupBySelectManyTest()
     {
       var result = db.Customers
@@ -719,6 +791,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Passed.
     public void GroupByCalculateAggregateTest()
     {
       var result = 
@@ -732,6 +805,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Passed.
     public void GroupByCalculateManyAggreagetes()
     {
       var result = 
@@ -751,6 +825,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Failed.
+    // Exception: InvalidOperationException
+    // Message:
+    //   The cast to value type 'Boolean' failed because the materialized value is null. Either the result type's generic parameter or the query must use a nullable type.
     public void GroupByAggregate()
     {
       var result = 
@@ -764,6 +842,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
+    // Passed.
     public void ComplexGroupingTest()
     {
       var result = 
@@ -794,6 +873,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
+    // Passed.
     public void ConcatTest()
     {
       var result = db.Customers.Where(c => c.Orders.Count <= 1).Concat(db.Customers.Where(c => c.Orders.Count > 1));
@@ -803,6 +883,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
+    // Passed.
     public void UnionTest()
     {
       var result = (
@@ -822,6 +903,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
+    // Passed.
     public void ExceptTest()
     {
       var result =
@@ -832,6 +914,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
+    // Passed.
     public void IntersectTest()
     {
       var result =
@@ -842,6 +925,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
+    // Passed.
     public void DistinctTest()
     {
       var result = db.Orders.Select(c => c.Freight).Distinct();
@@ -851,6 +935,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
+    // Passed.
     public void DistinctTakeLastTest()
     {
       var result = 
@@ -863,6 +948,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
+    // Passed.
     public void DistinctTakeFirstTest()
     {
       var result =
@@ -875,6 +961,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
+    // Passed.
     public void DistinctEntityTest()
     {
       var result = db.Customers.Distinct();
@@ -884,6 +971,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
+    // Passed.
     public void DistinctAnonymousTest()
     {
       var result = db.Customers.Select(c => new {c.Region, c.City}).Distinct();
@@ -897,6 +985,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
+    // Passed.
     public void TypeCastIsChildTest()
     {
       var result = db.Products.Where(p => p is DiscontinuedProduct);
@@ -908,6 +997,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
+    // Passed.
     public void TypeCastIsParentTest()
     {
       var result = db.Products.Where(p => p is Product);
@@ -919,6 +1009,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
+    // Passed.
     public void TypeCastIsChildConditionalTest()
     {
       var result = db.Products
@@ -940,6 +1031,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
+    // Passed.
     public void TypeCastOfTypeTest()
     {
       var result = db.Products.OfType<DiscontinuedProduct>();
@@ -951,6 +1043,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
+    // Failed.
+    // Exception: InvalidOperationException
+    // Message:
+    //   The specified cast from a materialized 'OrmBattle.EFModel.ActiveProduct' type to the 'OrmBattle.EFModel.DiscontinuedProduct' type is not valid.
     public void TypeCastAsTest()
     {
       var result = db.DiscontinuedProducts
@@ -979,6 +1075,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
+    // Passed.
     public void FirstTest()
     {
       var customer = db.Customers.First();
@@ -987,6 +1084,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
+    // Passed.
     public void FirstOrDefaultTest()
     {
       var customer = db.Customers.Where(c => c.Id == "ALFKI").FirstOrDefault();
@@ -995,6 +1093,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
+    // Passed.
     public void FirstPredicateTest()
     {
       var customer = db.Customers.First(c => c.Id == "ALFKI");
@@ -1003,6 +1102,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
+    // Passed.
     public void NestedFirstOrDefaultTest()
     {
       var result =
@@ -1022,6 +1122,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
+    // Passed.
     public void FirstOrDefaultEntitySetTest()
     {
       var customersCount = Customers.Count;
@@ -1032,6 +1133,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   The methods 'Single' and 'SingleOrDefault' can only be used as a final query operation. Consider using the method 'FirstOrDefault' in this instance instead.
     public void NestedSingleOrDefaultTest()
     {
       var customersCount = Customers.Count;
@@ -1042,6 +1147,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   The methods 'Single' and 'SingleOrDefault' can only be used as a final query operation. Consider using the method 'FirstOrDefault' in this instance instead.
     public void NestedSingleTest()
     {
       var result = db.Customers.Where(c => c.Orders.Count() > 0).Select(c => c.Orders.Take(1).Single());
@@ -1051,6 +1160,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'OrmBattle.EFModel.Customer ElementAt[Customer](System.Linq.IQueryable`1[OrmBattle.EFModel.Customer], Int32)' method, and this method cannot be translated into a store expression.
     public void ElementAtTest()
     {
       var customer = db.Customers.OrderBy(c => c.Id).ElementAt(15);
@@ -1060,6 +1173,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'OrmBattle.EFModel.Order ElementAt[Order](System.Collections.Generic.IEnumerable`1[OrmBattle.EFModel.Order], Int32)' method, and this method cannot be translated into a store expression.
     public void NestedElementAtTest()
     {
       var result = 
@@ -1078,6 +1195,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
+    // Passed.
     public void AllNestedTest()
     {
       var result =
@@ -1090,6 +1208,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
+    // Passed.
     public void ComplexAllTest()
     {
       var result =
@@ -1111,6 +1230,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
+    // Passed.
     public void ContainsNestedTest()
     {
       var result = from c in db.Customers
@@ -1139,6 +1259,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
+    // Passed.
     public void AnyTest()
     {
       var result = db.Customers.Where(c => c.Orders.Any(o => o.Freight > 400));
@@ -1149,6 +1270,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
+    // Passed.
     public void AnyParameterizedTest()
     {
       var ids = new[] { "ABCDE", "ALFKI" };
@@ -1159,6 +1281,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
+    // Passed.
     public void ContainsParameterizedTest()
     {
       var customerIDs = new[] { "ALFKI", "ANATR", "AROUT", "BERGS" };
@@ -1174,6 +1297,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
+    // Passed.
     public void SumTest()
     {
       var sum = db.Orders.Select(o => o.Freight).Sum();
@@ -1183,6 +1307,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
+    // Passed.
     public void CountPredicateTest()
     {
       var count = db.Orders.Count(o => o.Id > 10);
@@ -1192,6 +1317,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
+    // Passed.
     public void NestedCountTest()
     {
       var result = db.Customers.Where(c => db.Orders.Count(o => o.Customer.Id == c.Id) > 5);
@@ -1202,6 +1328,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
+    // Passed.
     public void NullableSumTest()
     {
       var sum = db.Orders.Select(o => (int?)o.Id).Sum();
@@ -1211,6 +1338,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
+    // Passed.
     public void MaxCountTest()
     {
       var max = db.Customers.Max(c => db.Orders.Count(o => o.Customer.Id == c.Id));
@@ -1224,6 +1352,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
+    // Passed.
     public void GroupJoinTest()
     {
       var result = 
@@ -1240,6 +1369,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
+    // Passed.
     public void JoinTest()
     {
       var result =
@@ -1253,6 +1383,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
+    // Passed.
     public void JoinByAnonymousTest()
     {
       var result =
@@ -1267,6 +1398,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
+    // Passed.
     public void LeftJoinTest()
     {
       var result = 
@@ -1285,6 +1417,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
+    // Passed.
     public void JoinByReferenceTest()
     {
       var result =
@@ -1298,6 +1431,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
+    // Passed.
     public void CompareReferenceTest()
     {
       var result =
@@ -1312,6 +1446,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
+    // Passed.
     public void ReferenceNavigationTestTest()
     {
       var result =
@@ -1330,6 +1465,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
+    // Passed.
     public void EntitySetCountTest()
     {
       var result = db.Categories.Where(c => c.Products.Count > 10);
@@ -1344,6 +1480,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
+    // Passed.
     public void ComplexTest1()
     {
       var result = db.Suppliers.Select(
@@ -1362,6 +1499,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
+    // Passed.
     public void ComplexTest2()
     {
       var result = db.Customers
@@ -1376,6 +1514,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
+    // Passed.
     public void ComplexTest3()
     {
       var products = db.Products;
@@ -1397,6 +1536,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
+    // Passed.
     public void ComplexTest4()
     {
       var result = db.Customers
@@ -1413,6 +1553,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
+    // Passed.
     public void ComplexTest5()
     {
       var result = db.Customers
@@ -1428,6 +1569,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
+    // Passed.
     public void ComplexTest6()
     {
       var result = db.Customers
@@ -1444,6 +1586,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void StringStartsWithTest()
     {
       var result = db.Customers.Where(c => c.Id.StartsWith("A") || c.Id.StartsWith("L"));
@@ -1454,6 +1597,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void StringStartsWithParameterizedTest()
     {
       var likeA = "A";
@@ -1466,6 +1610,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void StringLengthTest()
     {
       var customer = db.Customers.Where(c => c.City.Length == 7).First();
@@ -1474,6 +1619,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void StringContainsTest()
     {
       var customer = db.Customers.Where(c => c.ContactName.Contains("and")).First();
@@ -1482,6 +1628,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void StringToLowerTest()
     {
       var customer = db.Customers.Where(c => c.City.ToLower() == "seattle").First();
@@ -1490,6 +1637,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void StringRemoveTest()
     {
       var customer = db.Customers.Where(c => c.City.Remove(3) == "Sea").First();
@@ -1498,6 +1646,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void StringIndexOfTest()
     {
       var customer = db.Customers.Where(c => c.City.IndexOf("tt") == 3).First();
@@ -1506,6 +1655,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'Int32 LastIndexOf(System.String, Int32, Int32)' method, and this method cannot be translated into a store expression.
     public void StringLastIndexOfTest()
     {
       var customer = db.Customers.Where(c => c.City.LastIndexOf("t", 1, 3) == 3).First();
@@ -1514,6 +1667,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'System.String PadLeft(Int32)' method, and this method cannot be translated into a store expression.
     public void StringPadLeftTest()
     {
       var customer = db.Customers.Where(c => "123" + c.City.PadLeft(8) == "123 Seattle").First();
@@ -1522,6 +1679,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   Only parameterless constructors and initializers are supported in LINQ to Entities.
     public void DateTimeTest()
     {
       var order = db.Orders.Where(o => o.OrderDate >= new DateTime(o.OrderDate.Value.Year, 1, 1)).First();
@@ -1530,6 +1691,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void DateTimeDayTest()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.Day == 5).First();
@@ -1538,6 +1700,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   The specified type member 'DayOfWeek' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
     public void DateTimeDayOfWeek()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfWeek == DayOfWeek.Friday).First();
@@ -1546,6 +1712,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   The specified type member 'DayOfYear' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
     public void DateTimeDayOfYear()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfYear == 360).First();
@@ -1554,6 +1724,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void MathAbsTest()
     {
       var order = db.Orders.Where(o => Math.Abs(o.Id) == 10 || o.Id > 0).First();
@@ -1562,6 +1733,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'Double Asin(Double)' method, and this method cannot be translated into a store expression.
     public void MathTrignometricTest()
     {
       var order = db.Orders.Where(o => Math.Asin(Math.Cos(o.Id)) == 0 || o.Id > 0).First();
@@ -1570,6 +1745,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void MathFloorTest()
     {
       var result = db.Orders.Where(o => Math.Floor(o.Freight) == 140);
@@ -1579,6 +1755,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void MathCeilingTest()
     {
       var result = db.Orders.Where(o => Math.Ceiling(o.Freight) == 141);
@@ -1588,6 +1765,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'System.Decimal Truncate(System.Decimal)' method, and this method cannot be translated into a store expression.
     public void MathTruncateTest()
     {
       var result = db.Orders.Where(o => Math.Truncate(o.Freight) == 141);
@@ -1597,6 +1778,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'System.Decimal Round(System.Decimal, Int32, System.MidpointRounding)' method, and this method cannot be translated into a store expression.
     public void MathRoundAwayFromZeroTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight/10, 1, MidpointRounding.AwayFromZero) == 6.5m );
@@ -1606,6 +1791,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'System.Decimal Round(System.Decimal, Int32, System.MidpointRounding)' method, and this method cannot be translated into a store expression.
     public void MathRoundToEvenTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1, MidpointRounding.ToEven) == 6.5m);
@@ -1615,6 +1804,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Failed with assertion.
+    // Exception: AssertionException
+    // Message:
+    //     Expected: 6
+    //     But was:  7
     public void MathRoundDefaultTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1) == 6.5m);
@@ -1624,6 +1818,10 @@ namespace OrmBattle.Tests.Linq
     
     [Test]
     [Category("Standard functions")]
+    // Failed.
+    // Exception: NotSupportedException
+    // Message:
+    //   LINQ to Entities does not recognize the method 'Int32 ToInt32(System.Decimal)' method, and this method cannot be translated into a store expression.
     public void ConvertToInt32()
     {
       var expected =    Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);
@@ -1634,6 +1832,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void StringCompareToTest()
     {
       var customer = db.Customers.Where(c => c.City.CompareTo("Seattle") >= 0).First();
@@ -1642,6 +1841,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void ComparisonWithNullTest()
     {
       var customer = db.Customers.Where(c => null != c.City).First();
@@ -1650,6 +1850,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
+    // Passed.
     public void EqualsWithNullTest()
     {
       var customer = db.Customers.Where(c => !c.Address.Equals(null)).First();
