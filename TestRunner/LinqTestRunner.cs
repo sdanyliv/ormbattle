@@ -139,7 +139,7 @@ namespace OrmBattle.TestRunner
       Console.WriteLine("{0} scorecard:", sequenceName);
       Console.Write(scorecard);
 
-      Program.JSONOutput(scorecard.ToJSON(tests.ToArray<ToolTestBase>(), sequenceName));
+      Program.TryAppendJson(scorecard.ToJson(sequenceName, tests.ToArray<ToolTestBase>()));
 
       Console.WriteLine();
       Console.WriteLine("Units:");

@@ -6,6 +6,7 @@
 
 using System;
 using System.Text;
+using Newtonsoft.Json;
 using OrmBattle.Tests;
 using Xtensive.Core;
 using Newtonsoft.Json.Linq;
@@ -31,50 +32,47 @@ namespace OrmBattle.TestRunner
         base.AppendResult(sb, string.Format("{0}/{1}", pair.First, pair.Second));
     }
 
-    protected override void JSONAppTest(JObject jsonOut, string testName)
+    protected override void TestToJson(string testName, JObject output)
     {
-        var score = new List<string> { "Performed", "Passed", "Failed", "Score", "Properly", "Asserted" };
-        foreach (var item in score)
-            if (testName == item) return;
-        base.JSONAppTest(jsonOut, testName);
+      var score = new List<string> {"Performed", "Passed", "Failed", "Score", "Properly", "Asserted"};
+
+      foreach (var item in score)
+        if (testName==item)
+          return;
+
+      base.TestToJson(testName, output);
     }
 
-    protected override void JSONAppTool(JObject jsonOut, ToolTestBase tooldata)
+    protected override void ToolTestToJson(ToolTestBase toolTest, JObject output)
     {
-        if (!(tooldata is Tests.Linq.MaximumTest))
-            JSONFillScore(jsonOut, tooldata);
-        else
-            foreach (JObject test in (JArray)jsonOut["Tests"])
-            {
-                object tmp = Get(tooldata.ShortToolName, ((string)test["Name"]));
-                tmp = JObject.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(tmp));
-                test.Add("Maximum", (JObject)tmp);
-            }
+      if (!(toolTest is Tests.Linq.MaximumTest))
+        ToolTestScoreToJson(toolTest, output);
+      else {
+        foreach (JObject test in (JArray) output["Tests"]) {
+          object maximum = Get(toolTest.ShortToolName, ((string) test["Name"]));
+          maximum = JObject.Parse(JsonConvert.SerializeObject(maximum));
+          test.Add("Maximum", (JObject) maximum);
+        }
+      }
     }
 
-    private void JSONFillScore(JObject jsonOut, ToolTestBase tooldata)
-    { 
-        base.JSONAppTool(jsonOut, tooldata);
-        JObject tool = (JObject)jsonOut["Tools"].Last;
-        string toolName = tooldata.ShortToolName;
-        tool.Add("Performed",new JValue( Get(toolName,"Performed")));
-        tool.Add("Passed",new JValue( Get(toolName,"Passed")));
-        tool.Add("Failed",new JValue( Get(toolName,"Failed")));
-        tool.Add("Score",new JValue( Get(toolName,"Score")));
-    }
-
-
-
-    protected override void JSONAppResult(JObject jsonTool, object result)
+    private void ToolTestScoreToJson(ToolTestBase toolTest, JObject output)
     {
-        if (result is Pair<int, int>)
-            result = JObject.Parse( Newtonsoft.Json.JsonConvert.SerializeObject(result));
-        base.JSONAppResult(jsonTool, result);
+      base.ToolTestToJson(toolTest, output);
+      var tool = (JObject) output["Tools"].Last;
+      string toolName = toolTest.ShortToolName;
+
+      tool.Add("Performed", new JValue(Get(toolName, "Performed")));
+      tool.Add("Passed", new JValue(Get(toolName, "Passed")));
+      tool.Add("Failed", new JValue(Get(toolName, "Failed")));
+      tool.Add("Score", new JValue(Get(toolName, "Score")));
     }
 
-
-
-
-
+    protected override void ToolTestResultToJson(object result, JObject output)
+    {
+      if (result is Pair<int, int>)
+        result = JObject.Parse(JsonConvert.SerializeObject(result));
+      base.ToolTestResultToJson(result, output);
+    }
   }
 }

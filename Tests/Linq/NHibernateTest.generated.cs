@@ -90,7 +90,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Passed.
     public void WhereTest()
     {
       var result = from o in db.Orders
@@ -106,7 +105,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Passed.
     public void WhereParameterTest()
     {
       var city = "Seattle";
@@ -128,7 +126,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Passed.
     public void WhereConditionsTest()
     {
       var result = from p in db.Products
@@ -140,7 +137,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Passed.
     public void WhereNullTest()
     {
       var result = from o in db.Orders
@@ -152,7 +148,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Passed.
     public void WhereNullParameterTest()
     {
       string region = null;
@@ -169,10 +164,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: ShippedDate.HasValue of: OrmBattle.NHibernateModel.Northwind.Order
     public void WhereNullableTest()
     {
       var result = from o in db.Orders
@@ -184,7 +175,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Passed.
     public void WhereNullableParameterTest()
     {
       DateTime? shippedDate = null;
@@ -197,10 +187,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
     public void WhereCoalesceTest()
     {
       var result = from o in db.Orders
@@ -212,10 +198,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
     public void WhereConditionalTest()
     {
       var result = from o in db.Orders
@@ -227,11 +209,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 14
-    //     But was:  0
     public void WhereConditionalBooleanTest()
     {
       var result = from o in db.Orders
@@ -243,10 +220,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Type mismatch in NHibernate.Criterion.SimpleExpression: ShipRegion expected type System.String, actual type <>f__AnonymousType0`2[System.String,System.String]
     public void WhereAnonymousParameterTest()
     {
       var cityRegion = new {City = "Seattle", Region = "WA"};
@@ -259,10 +232,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
     public void WhereEntityParameterTest()
     {
       var order = db.Orders.OrderBy(o => o.OrderDate).First();
@@ -281,7 +250,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Passed.
     public void SelectTest()
     {
       var result = from o in db.Orders
@@ -295,7 +263,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Passed.
     public void SelectBooleanTest()
     {
       var result = from o in db.Orders
@@ -309,7 +276,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Passed.
     public void SelectCalculatedTest()
     {
       var result = from o in db.Orders
@@ -331,10 +297,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Could not understand: (r > 100000)
     public void SelectNestedCalculatedTest()
     {
       var result = from r in
@@ -360,7 +322,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Passed.
     public void SelectAnonymousTest()
     {
       var result = from o in db.Orders
@@ -374,10 +335,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'Where' is not implemented.
     public void SelectSubqueryTest()
     {
       var result = from o in db.Orders
@@ -399,7 +356,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Passed.
     public void SelectDtoTest()
     {
       var result = from o in db.Orders
@@ -410,7 +366,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Passed.
     public void SelectNestedDtoTest()
     {
       var result = from r in
@@ -424,7 +379,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Passed.
     public void SelectManyAnonymousTest()
     {
       var result = from c in db.Customers
@@ -437,10 +391,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: freight of: OrmBattle.NHibernateModel.Northwind.Customer
     public void SelectManyLetTest()
     {
       var result = from c in db.Customers
@@ -454,10 +404,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'OrmBattle.NHibernateModel.Northwind.Order' to type 'OrmBattle.NHibernateModel.Northwind.Customer'.
     public void SelectManyGroupByTest()
     {
       var result = db.Orders
@@ -471,11 +417,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 830
-    //     But was:  91
     public void SelectManyOuterProjectionTest()
     {
       var result = db.Customers.SelectMany(i => i.Orders.Select(t => i));
@@ -486,10 +427,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: IndexOutOfRangeException
-    // Message:
-    //   Index was outside the bounds of the array.
     public void SelectManyLeftJoinTest()
     {
       var result =
@@ -507,7 +444,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
-    // Passed.
     public void TakeTest()
     {
       var result = (from o in db.Orders
@@ -523,7 +459,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
-    // Passed.
     public void SkipTest()
     {
       var result = (from o in db.Orders
@@ -540,7 +475,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
-    // Passed.
     public void TakeSkipTest()
     {
       var result = (from o in db.Orders
@@ -556,10 +490,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'Take' is not implemented.
     public void TakeNestedTest()
     {
       var result = 
@@ -579,11 +509,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 27
-    //     But was:  50
     public void ComplexTakeSkipTest()
     {
       var original = db.Orders.ToList()
@@ -616,7 +541,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Passed.
     public void OrderByTest()
     {
       var result = 
@@ -636,7 +560,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Passed.
     public void OrderByWhereTest()
     {
       var result = (from o in db.Orders
@@ -654,10 +577,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: Freight.Id of: OrmBattle.NHibernateModel.Northwind.Order
     public void OrderByCalculatedColumnTest()
     {
       var result =
@@ -673,10 +592,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
     public void OrderByEntityTest()
     {
       var result =
@@ -692,10 +607,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: OrderDate.ShippedDate.Id of: OrmBattle.NHibernateModel.Northwind.Order
     public void OrderByAnonymousTest()
     {
       var result =
@@ -711,10 +622,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
         public void OrderByDistinctTest()
         {
             var result = db.Customers
@@ -734,10 +641,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: o of: OrmBattle.NHibernateModel.Northwind.Customer
     public void OrderBySelectManyTest()
     {
       var result =
@@ -755,10 +658,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: Freight.ShippedDate of: OrmBattle.NHibernateModel.Northwind.Order
     public void OrderByPredicateTest()
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);
@@ -773,10 +672,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'System.DateTime' to type 'System.Linq.IGrouping`2[System.Nullable`1[System.DateTime],OrmBattle.NHibernateModel.Northwind.Order]'.
     public void GroupByTest()
     {
       var result = from o in db.Orders
@@ -787,10 +682,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'OrmBattle.NHibernateModel.Northwind.Order' to type 'System.Linq.IGrouping`2[OrmBattle.NHibernateModel.Northwind.Customer,OrmBattle.NHibernateModel.Northwind.Order]'.
     public void GroupByReferenceTest()
     {
       var result = from o in db.Orders
@@ -801,10 +692,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'System.DateTime' to type 'System.Linq.IGrouping`2[System.Nullable`1[System.DateTime],OrmBattle.NHibernateModel.Northwind.Order]'.
     public void GroupByWhereTest()
     {
       var result = 
@@ -818,10 +705,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'System.Object[]' to type 'System.Linq.IGrouping`2[<>f__AnonymousTypeb`2[System.String,System.String],OrmBattle.NHibernateModel.Northwind.Customer]'.
     public void GroupByTestAnonymous()
     {
       var result = from c in db.Customers
@@ -832,10 +715,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'System.Decimal' to type 'System.Linq.IGrouping`2[System.String,OrmBattle.NHibernateModel.Northwind.Order]'.
     public void GroupByCalculatedTest()
     {
       var result =
@@ -848,10 +727,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'System.String' to type 'OrmBattle.NHibernateModel.Northwind.Customer'.
     public void GroupBySelectManyTest()
     {
       var result = db.Customers
@@ -864,11 +739,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 89
-    //     But was:  1
     public void GroupByCalculateAggregateTest()
     {
       var result = 
@@ -882,11 +752,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 89
-    //     But was:  1
     public void GroupByCalculateManyAggreagetes()
     {
       var result = 
@@ -906,10 +771,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: o.Freight of: OrmBattle.NHibernateModel.Northwind.Customer
     public void GroupByAggregate()
     {
       var result = 
@@ -923,10 +784,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: OrderDate.Value of: OrmBattle.NHibernateModel.Northwind.Order
     public void ComplexGroupingTest()
     {
       var result = 
@@ -957,10 +814,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method Concat is not implemented.
     public void ConcatTest()
     {
       var result = db.Customers.Where(c => c.Orders.Count <= 1).Concat(db.Customers.Where(c => c.Orders.Count > 1));
@@ -970,10 +823,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method Union is not implemented.
     public void UnionTest()
     {
       var result = (
@@ -993,10 +842,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method Except is not implemented.
     public void ExceptTest()
     {
       var result =
@@ -1007,10 +852,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method Intersect is not implemented.
     public void IntersectTest()
     {
       var result =
@@ -1021,7 +862,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Passed.
     public void DistinctTest()
     {
       var result = db.Orders.Select(c => c.Freight).Distinct();
@@ -1031,7 +871,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Passed.
     public void DistinctTakeLastTest()
     {
       var result = 
@@ -1044,11 +883,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 4
-    //     But was:  5
     public void DistinctTakeFirstTest()
     {
       var result =
@@ -1061,7 +895,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Passed.
     public void DistinctEntityTest()
     {
       var result = db.Customers.Distinct();
@@ -1071,11 +904,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 69
-    //     But was:  91
     public void DistinctAnonymousTest()
     {
       var result = db.Customers.Select(c => new {c.Region, c.City}).Distinct();
@@ -1089,10 +917,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property:  of: OrmBattle.NHibernateModel.Northwind.Product
     public void TypeCastIsChildTest()
     {
       var result = db.Products.Where(p => p is DiscontinuedProduct);
@@ -1104,10 +928,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property:  of: OrmBattle.NHibernateModel.Northwind.Product
     public void TypeCastIsParentTest()
     {
       var result = db.Products.Where(p => p is Product);
@@ -1119,10 +939,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
     public void TypeCastIsChildConditionalTest()
     {
       var result = db.Products
@@ -1144,7 +960,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Passed.
     public void TypeCastOfTypeTest()
     {
       var result = db.Products.OfType<DiscontinuedProduct>();
@@ -1156,10 +971,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: product.ProductName of: OrmBattle.NHibernateModel.Northwind.DiscontinuedProduct
     public void TypeCastAsTest()
     {
       var result = db.DiscontinuedProducts
@@ -1188,7 +999,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Passed.
     public void FirstTest()
     {
       var customer = db.Customers.First();
@@ -1197,7 +1007,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Passed.
     public void FirstOrDefaultTest()
     {
       var customer = db.Customers.Where(c => c.Id == "ALFKI").FirstOrDefault();
@@ -1206,7 +1015,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Passed.
     public void FirstPredicateTest()
     {
       var customer = db.Customers.First(c => c.Id == "ALFKI");
@@ -1215,10 +1023,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Failed.
-    // Exception: IndexOutOfRangeException
-    // Message:
-    //   Index was outside the bounds of the array.
     public void NestedFirstOrDefaultTest()
     {
       var result =
@@ -1238,10 +1042,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'FirstOrDefault' is not implemented.
     public void FirstOrDefaultEntitySetTest()
     {
       var customersCount = Customers.Count;
@@ -1252,10 +1052,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'SingleOrDefault' is not implemented.
     public void NestedSingleOrDefaultTest()
     {
       var customersCount = Customers.Count;
@@ -1266,10 +1062,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'Single' is not implemented.
     public void NestedSingleTest()
     {
       var result = db.Customers.Where(c => c.Orders.Count() > 0).Select(c => c.Orders.Take(1).Single());
@@ -1279,10 +1071,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method ElementAt is not implemented.
     public void ElementAtTest()
     {
       var customer = db.Customers.OrderBy(c => c.Id).ElementAt(15);
@@ -1292,10 +1080,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Element operations")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'ElementAt' is not implemented.
     public void NestedElementAtTest()
     {
       var result = 
@@ -1314,11 +1098,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 2
-    //     But was:  91
     public void AllNestedTest()
     {
       var result =
@@ -1331,11 +1110,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 0
-    //     But was:  366
     public void ComplexAllTest()
     {
       var result =
@@ -1357,10 +1131,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed.
-    // Exception: InvalidOperationException
-    // Message:
-    //   Code supposed to be unreachable
     public void ContainsNestedTest()
     {
       var result = from c in db.Customers
@@ -1389,7 +1159,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Passed.
     public void AnyTest()
     {
       var result = db.Customers.Where(c => c.Orders.Any(o => o.Freight > 400));
@@ -1400,10 +1169,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
     public void AnyParameterizedTest()
     {
       var ids = new[] { "ABCDE", "ALFKI" };
@@ -1414,7 +1179,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Passed.
     public void ContainsParameterizedTest()
     {
       var customerIDs = new[] { "ALFKI", "ANATR", "AROUT", "BERGS" };
@@ -1430,7 +1194,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
-    // Passed.
     public void SumTest()
     {
       var sum = db.Orders.Select(o => o.Freight).Sum();
@@ -1440,7 +1203,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
-    // Passed.
     public void CountPredicateTest()
     {
       var count = db.Orders.Count(o => o.Id > 10);
@@ -1450,10 +1212,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: Customer of: OrmBattle.NHibernateModel.Northwind.Customer
     public void NestedCountTest()
     {
       var result = db.Customers.Where(c => db.Orders.Count(o => o.Customer.Id == c.Id) > 5);
@@ -1464,10 +1222,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
     public void NullableSumTest()
     {
       var sum = db.Orders.Select(o => (int?)o.Id).Sum();
@@ -1477,10 +1231,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
     public void MaxCountTest()
     {
       var max = db.Customers.Max(c => db.Orders.Count(o => o.Customer.Id == c.Id));
@@ -1494,10 +1244,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method GroupJoin is not implemented.
     public void GroupJoinTest()
     {
       var result = 
@@ -1514,10 +1260,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method Join is not implemented.
     public void JoinTest()
     {
       var result =
@@ -1531,10 +1273,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method Join is not implemented.
     public void JoinByAnonymousTest()
     {
       var result =
@@ -1549,10 +1287,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method GroupJoin is not implemented.
     public void LeftJoinTest()
     {
       var result = 
@@ -1571,10 +1305,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method Join is not implemented.
     public void JoinByReferenceTest()
     {
       var result =
@@ -1588,10 +1318,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'System.Linq.Expressions.ConstantExpression' to type 'System.Linq.Expressions.LambdaExpression'.
     public void CompareReferenceTest()
     {
       var result =
@@ -1606,10 +1332,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Failed.
-    // Exception: SqlException
-    // Message:
-    //   The multi-part identifier "category2_.CategoryName" could not be bound.
     public void ReferenceNavigationTestTest()
     {
       var result =
@@ -1628,7 +1350,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Passed.
     public void EntitySetCountTest()
     {
       var result = db.Categories.Where(c => c.Products.Count > 10);
@@ -1643,10 +1364,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'Select' is not implemented.
     public void ComplexTest1()
     {
       var result = db.Suppliers.Select(
@@ -1665,10 +1382,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'System.String' to type 'OrmBattle.NHibernateModel.Northwind.Customer'.
     public void ComplexTest2()
     {
       var result = db.Customers
@@ -1683,10 +1396,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'Select' is not implemented.
     public void ComplexTest3()
     {
       var products = db.Products;
@@ -1708,10 +1417,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'Where' is not implemented.
     public void ComplexTest4()
     {
       var result = db.Customers
@@ -1728,10 +1433,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'OrmBattle.NHibernateModel.Northwind.Customer' to type 'System.Collections.Generic.IList`1[OrmBattle.NHibernateModel.Northwind.Order]'.
     public void ComplexTest5()
     {
       var result = db.Customers
@@ -1747,10 +1448,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
-    // Failed.
-    // Exception: NotImplementedException
-    // Message:
-    //   The method 'Where' is not implemented.
     public void ComplexTest6()
     {
       var result = db.Customers
@@ -1767,7 +1464,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Passed.
     public void StringStartsWithTest()
     {
       var result = db.Customers.Where(c => c.Id.StartsWith("A") || c.Id.StartsWith("L"));
@@ -1778,7 +1474,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Passed.
     public void StringStartsWithParameterizedTest()
     {
       var likeA = "A";
@@ -1791,10 +1486,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: City.Length of: OrmBattle.NHibernateModel.Northwind.Customer
     public void StringLengthTest()
     {
       var customer = db.Customers.Where(c => c.City.Length == 7).First();
@@ -1803,7 +1494,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Passed.
     public void StringContainsTest()
     {
       var customer = db.Customers.Where(c => c.ContactName.Contains("and")).First();
@@ -1812,11 +1502,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: ArgumentOutOfRangeException
-    // Message:
-    //   Index was out of range. Must be non-negative and less than the size of the collection.
-    //   Parameter name: index
     public void StringToLowerTest()
     {
       var customer = db.Customers.Where(c => c.City.ToLower() == "seattle").First();
@@ -1825,10 +1510,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void StringRemoveTest()
     {
       var customer = db.Customers.Where(c => c.City.Remove(3) == "Sea").First();
@@ -1837,10 +1518,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void StringIndexOfTest()
     {
       var customer = db.Customers.Where(c => c.City.IndexOf("tt") == 3).First();
@@ -1849,10 +1526,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void StringLastIndexOfTest()
     {
       var customer = db.Customers.Where(c => c.City.LastIndexOf("t", 1, 3) == 3).First();
@@ -1861,10 +1534,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Could not understand: (("123" + c.City.PadLeft(8)) == "123 Seattle")
     public void StringPadLeftTest()
     {
       var customer = db.Customers.Where(c => "123" + c.City.PadLeft(8) == "123 Seattle").First();
@@ -1873,10 +1542,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: OrderDate.Value of: OrmBattle.NHibernateModel.Northwind.Order
     public void DateTimeTest()
     {
       var order = db.Orders.Where(o => o.OrderDate >= new DateTime(o.OrderDate.Value.Year, 1, 1)).First();
@@ -1885,10 +1550,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: OrderDate.Value of: OrmBattle.NHibernateModel.Northwind.Order
     public void DateTimeDayTest()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.Day == 5).First();
@@ -1897,10 +1558,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: OrderDate.Value of: OrmBattle.NHibernateModel.Northwind.Order
     public void DateTimeDayOfWeek()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfWeek == DayOfWeek.Friday).First();
@@ -1909,10 +1566,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: OrderDate.Value of: OrmBattle.NHibernateModel.Northwind.Order
     public void DateTimeDayOfYear()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfYear == 360).First();
@@ -1921,10 +1574,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void MathAbsTest()
     {
       var order = db.Orders.Where(o => Math.Abs(o.Id) == 10 || o.Id > 0).First();
@@ -1933,10 +1582,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void MathTrignometricTest()
     {
       var order = db.Orders.Where(o => Math.Asin(Math.Cos(o.Id)) == 0 || o.Id > 0).First();
@@ -1945,10 +1590,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void MathFloorTest()
     {
       var result = db.Orders.Where(o => Math.Floor(o.Freight) == 140);
@@ -1958,10 +1599,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void MathCeilingTest()
     {
       var result = db.Orders.Where(o => Math.Ceiling(o.Freight) == 141);
@@ -1971,10 +1608,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void MathTruncateTest()
     {
       var result = db.Orders.Where(o => Math.Truncate(o.Freight) == 141);
@@ -1984,10 +1617,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void MathRoundAwayFromZeroTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight/10, 1, MidpointRounding.AwayFromZero) == 6.5m );
@@ -1997,10 +1626,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void MathRoundToEvenTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1, MidpointRounding.ToEven) == 6.5m);
@@ -2010,10 +1635,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void MathRoundDefaultTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1) == 6.5m);
@@ -2023,10 +1644,6 @@ namespace OrmBattle.Tests.Linq
     
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void ConvertToInt32()
     {
       var expected =    Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);
@@ -2037,10 +1654,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   Cannot use subqueries on a criteria without a projection.
     public void StringCompareToTest()
     {
       var customer = db.Customers.Where(c => c.City.CompareTo("Seattle") >= 0).First();
@@ -2049,7 +1662,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Passed.
     public void ComparisonWithNullTest()
     {
       var customer = db.Customers.Where(c => null != c.City).First();
@@ -2058,7 +1670,6 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Passed.
     public void EqualsWithNullTest()
     {
       var customer = db.Customers.Where(c => !c.Address.Equals(null)).First();
