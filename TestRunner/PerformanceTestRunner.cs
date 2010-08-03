@@ -51,6 +51,7 @@ namespace OrmBattle.TestRunner
         toolNames = ptArg.RevertibleSplit('/', ',').Distinct().ToList();
       }
 
+
       foreach (int itemCount in ItemCounts) {
         var scorecard = new Scorecard();
         scorecard.RegisterTest("CRUD Performance:");
@@ -82,9 +83,9 @@ namespace OrmBattle.TestRunner
         var tests = new List<PerformanceTestBase> {
           new BLToolkitTest(),
           new EFTest(),
-          // new EntitySpacesTest(),
+          //new EntitySpacesTest(),
           new DOTest(),
-          // new LightSpeedTest(),
+          //new LightSpeedTest(),
           new LinqConnectTest(), 
           new Linq2SqlTest(),
           new NHibernateTest(),
@@ -134,10 +135,15 @@ namespace OrmBattle.TestRunner
           }
         }
 
-        Console.WriteLine();
+
+     
+        Console.WriteLine();        
         Console.WriteLine("{0} scorecard:", sequenceName);
         Console.Write(scorecard);
+
+        Program.JSONOutput(scorecard.ToJSON(tests.ToArray<ToolTestBase>(), sequenceName));
         Console.WriteLine();
+
         Console.WriteLine("Units:");
         Console.WriteLine("  op/s:      operations per second, more is better;");
         Console.WriteLine("  queries/s: queries per second, more is better;");
