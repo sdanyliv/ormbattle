@@ -51,7 +51,6 @@ namespace OrmBattle.TestRunner
         toolNames = ptArg.RevertibleSplit('/', ',').Distinct().ToList();
       }
 
-
       foreach (int itemCount in ItemCounts) {
         var scorecard = new Scorecard();
         scorecard.RegisterTest("CRUD Performance:");
@@ -135,13 +134,11 @@ namespace OrmBattle.TestRunner
           }
         }
 
-
-     
         Console.WriteLine();        
         Console.WriteLine("{0} scorecard:", sequenceName);
         Console.Write(scorecard);
 
-        Program.JSONOutput(scorecard.ToJSON(tests.ToArray<ToolTestBase>(), sequenceName));
+        Program.TryAppendJson(scorecard.ToJson(sequenceName, tests.ToArray<ToolTestBase>()));
         Console.WriteLine();
 
         Console.WriteLine("Units:");
@@ -153,6 +150,9 @@ namespace OrmBattle.TestRunner
         Console.WriteLine();
       }
     }
+
+
+    // Consturctors
 
     public PerformanceTestRunner()
     {

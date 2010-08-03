@@ -1,29 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 
 namespace OrmBattle.TestRunner
 {
-    class JsonWriter:BinaryWriter
+  internal class JsonWriter : BinaryWriter
+  {
+    private readonly static Encoding encoding = new UTF8Encoding();
+
+    public override void Write(string value)
     {
-        UTF8Encoding Enc;
-        public JsonWriter(Stream file):base(file)
-        {
-            Enc = new UTF8Encoding();
-            base.Write(Enc.GetBytes(" "));
-            this.Write("[");
-        }
-
-
-
-        public override void Write(string value)
-        {
-            this.BaseStream.Position = BaseStream.Position - 1;
-            base.Write(Enc.GetBytes(value));
-            base.Write(Enc.GetBytes("]"));
-            Flush();
-        }
+      BaseStream.Position = BaseStream.Position - 1;
+      base.Write(encoding.GetBytes(value));
+      base.Write(encoding.GetBytes("]"));
+      Flush();
     }
+
+
+    // Constructors
+
+    public JsonWriter(Stream file)
+      : base(file)
+    {
+      base.Write(encoding.GetBytes(" "));
+      Write("[");
+    }
+  }
 }

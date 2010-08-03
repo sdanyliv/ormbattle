@@ -22,14 +22,11 @@ namespace OrmBattle.TestRunner
     public static List<string> ToolNames = null;
     private static JsonWriter jsonOutput = null;
 
-    public static void JSONOutput(string jsonSTR)
+    public static void TryAppendJson(string json)
     {
-        if (jsonOutput != null)
-        {
-            jsonOutput.Write(jsonSTR);
-        }
+      if (jsonOutput!=null)
+        jsonOutput.Write(json);
     }
-
 
     private static void Main(string[] args)
     {
@@ -41,9 +38,8 @@ namespace OrmBattle.TestRunner
         ToolNames = tArg.RevertibleSplit('/', ',').Distinct().ToList();
       }
       string outArg = Program.Args.Where(a => a.StartsWith(JSONArgMarker)).SingleOrDefault();
-      if (outArg != null)
-      {
-          jsonOutput = new JsonWriter(File.Create(JSONOutFile));
+      if (outArg!=null) {
+        jsonOutput = new JsonWriter(File.Create(JSONOutFile));
       }
 
       var linqTestRunner = new LinqTestRunner();
@@ -57,7 +53,5 @@ namespace OrmBattle.TestRunner
       if (Args.Where(a => a==WArgMarker).SingleOrDefault()!=null)
         Console.ReadKey();
     }
-
-
   }
 }
