@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <XtensiveMSBuildTasksPath 
+      Condition="$(XtensiveMSBuildTasksPath)==''">$(CommonDir)Xtensive.MSBuildTasks</XtensiveMSBuildTasksPath>
+    <MSBuildCommunityTasksPath
+      Condition="$(MSBuildCommunityTasksPath)==''">$(CommonDir)MSBuildCommunityTasks</MSBuildCommunityTasksPath>
+    <PostSharpPath
+      Condition="$(PostSharpPath)=='' or $(PostSharpPath)=='.'">$(LibDir)PostSharp\Release</PostSharpPath>
+    <PostSharpPluginsPath
+      Condition="$(PostSharpPluginsPath)==''">$(BinLatestDir).</PostSharpPluginsPath>
+    <SandcastleBuilderPath
+      Condition="$(SandcastleBuilderPath)==''">C:\Program Files\EWSoftware\Sandcastle Help File Builder</SandcastleBuilderPath>
+    <SandcastlePath
+      Condition="$(SandcastlePath)==''">C:\Program Files\Sandcastle</SandcastlePath>
+    <MSHelpPath
+      Condition="$(MSHelpPath)==''">C:\Program Files\DevTools\Microsoft Help 1.0 SDK</MSHelpPath>
+    <MSHelp2Path
+      Condition="$(MSHelp2Path)==''">C:\Program Files\DevTools\Microsoft Help 2.0 SDK 2008</MSHelp2Path>
+  </PropertyGroup>
+
+
+  <!-- PostSharp settings update  -->
+
+  <PropertyGroup>
+    <PostSharpPath Condition="$(PostSharpPath)=='.'"></PostSharpPath>
+    <PostSharpLicenseFile>$(LibDir)PostSharp-Site.license</PostSharpLicenseFile>
+  </PropertyGroup>
+
+
+  <!-- Installable dependencies removal -->
+
+  <ItemGroup Condition="$(AssemblyName)!='Xtensive.Sql.Oracle'">
+    <RemoveInstallableDependency Include="$(LibDir)Oracle\Oracle*.*" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- BuildXxx part -->
+
+  <Target Name="RemoveInstallableDependencies" 
+          DependsOnTargets="CopyIndirectDependencies">
+
+    <Message Importance="low"
+             Text="Installable dependencies to remove: %(RemoveInstallableDependency.Filename)%(RemoveInstallableDependency.Extension)" />
+
+    <CreateItem Include="@(RemoveInstallableDependency->'$(OutputPath)%(Filename)%(Extension)')">
+      <Output TaskParameter="Include"
+              ItemName="_RemoveInstallableDependency"/>
+    </CreateItem>
+
+    <Delete Files="@(_RemoveInstallableDependency)">
+      <Output TaskParameter="DeletedFiles" 
+              ItemName="RemovedInstallableDependency" />
+    </Delete>
+
+    <Message Text="Installable dependency removed: %(RemovedInstallableDependency.Filename)%(RemovedInstallableDependency.Extension)" />
+  </Target>
+
+
+  <!-- Build sequence modification -->
+
+  <PropertyGroup>
+    <CoreBuildDependsOn>
+      $(CoreBuildDependsOn);
+      RemoveInstallableDependencies
+    </CoreBuildDependsOn>
+  </PropertyGroup>
+</Project>
