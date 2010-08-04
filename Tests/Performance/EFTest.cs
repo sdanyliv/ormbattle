@@ -142,12 +142,11 @@ namespace OrmBattle.Tests.Performance
     {
       long sum = (long)count * (count - 1) / 2;
       using (var transaction = dataContext.Connection.BeginTransaction()) {
-      for (int i = 0; i < count; i++) {
-        var s = (Simplest) dataContext.GetObjectByKey(
-        new EntityKey("PerformanceTestEntities.Simplests", "Id", ((long) i) % InstanceCount));
-        sum -= s.Id;
-      }
-      transaction.Commit();
+        for (int i = 0; i < count; i++) {
+          var s = Simplest.GetById(dataContext, ((long) i) % InstanceCount);
+          sum -= s.Id;
+        }
+        transaction.Commit();
       }
     
       if (count <= InstanceCount)
