@@ -6,7 +6,7 @@ popd
 goto :End
 
 :Start
-"%MSBuildPath%\MSBuild.exe" /t:Clean
+"%MSBuildPath%\MSBuild.exe" /t:Clean /v:m %*
 "%MSBuildPath%\MSBuild.exe" /t:Clean /p:Configuration=Release /v:m %*
 goto :End
 

@@ -202,10 +202,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: SQLException
-    // Message:
-    //   Incorrect syntax near '='.
+    // Passed.
     public void WhereConditionalBooleanTest()
     {
       var result = from o in db.Orders
@@ -217,12 +214,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: ArgumentOutOfRangeException
-    // Message:
-    //   Using the variable or parameter not possible in this context.
-    //   Parameter name: name
-    //   Actual value was o.
+    // Passed.
     public void WhereAnonymousParameterTest()
     {
       var cityRegion = new {City = "Seattle", Region = "WA"};
@@ -304,10 +296,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Second Select not implemented: OrderExtent.Select(o => (o.Freight * 1000)).Where(r => (r > 100000)).Select(r => (r / 1000))
+    // Passed.
     public void SelectNestedCalculatedTest()
     {
       var result = from r in
@@ -347,10 +336,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: NotSupportedException
+    // Failed with assertion.
+    // Exception: AssertionException
     // Message:
-    //   Execution of 'System.Linq.Queryable:Where(IQueryable`1,Expression`1)' on the database server side currently not implemented.
+    //     Expected: equivalent to < <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Linq.Enumerable+WhereListIterator`1[OrmBattle.TelerikModel.Northwind.Customer]>... >
+    //     But was:  < <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>, <System.Collections.Generic.List`1[OrmBattle.TelerikModel.Northwind.Customer]>... >
     public void SelectSubqueryTest()
     {
       var result = from o in db.Orders
@@ -424,10 +414,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Having clauses not implemented yet: OrderExtent.GroupBy(o => o.Customer).Where(g => (g.Count() > 20))
+    // Passed.
     public void SelectManyGroupByTest()
     {
       var result = db.Orders
@@ -542,10 +529,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Take/Skip")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Second Skip not implemented: OrderExtent.OrderBy(o => o.OrderDate).Skip(100).Take(50).OrderBy(o => o.RequiredDate).Where(o => (o.OrderDate != Convert(null))).Select(o => o.RequiredDate).Distinct().Skip(10)
+    // Passed.
     public void ComplexTakeSkipTest()
     {
       var original = db.Orders.ToList()
@@ -648,12 +632,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: ArgumentOutOfRangeException
-    // Message:
-    //   Using the variable or parameter not possible in this context.
-    //   Parameter name: name
-    //   Actual value was o.
+    // Passed.
     public void OrderByAnonymousTest()
     {
       var result =
@@ -669,10 +648,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Second Select not implemented: CustomerExtent.OrderBy(c => c.CompanyName).Select(c => c.City).Distinct().OrderBy(c => c).Select(c => c)
+    // Passed.
         public void OrderByDistinctTest()
         {
             var result = db.Customers
@@ -692,7 +668,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Passed.
+    // Failed with assertion.
+    // Exception: AssertionException
+    // Message:
+    //     Expected: True
+    //     But was:  False
     public void OrderBySelectManyTest()
     {
       var result =
@@ -710,10 +690,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: OpenAccessException
-    // Message:
-    //   Invalid node in orders: AndNode@2487245
+    // Passed.
     public void OrderByPredicateTest()
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);
@@ -750,10 +727,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Having clauses not implemented yet: OrderExtent.GroupBy(o => o.OrderDate).Where(g => (g.Count() > 5))
+    // Passed.
     public void GroupByWhereTest()
     {
       var result = 
@@ -778,10 +752,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: InvalidOperationException
-    // Message:
-    //   The query contains a 'Group By' expression but no aggregates.
+    // Passed.
     public void GroupByCalculatedTest()
     {
       var result =
@@ -794,10 +765,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Failed.
-    // Exception: TargetParameterCountException
-    // Message:
-    //   Parameter count mismatch.
+    // Passed.
     public void GroupBySelectManyTest()
     {
       var result = db.Customers
@@ -845,9 +813,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Grouping")]
     // Failed.
-    // Exception: OpenAccessException
+    // Exception: InvalidOperationException
     // Message:
-    //   Identifier 'Freight' is not a parameter or variable or field of 'OrmBattle.TelerikModel.Northwind.Customer'. If 'Freight' is a property please add the FieldAlias attribute to it.
+    //   Grouping in a subquery currently not possible
     public void GroupByAggregate()
     {
       var result = 
@@ -862,9 +830,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Grouping")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: ArgumentException
     // Message:
-    //   Execution of 'System.Linq.Enumerable:Select(IEnumerable`1,Func`2)' on the database server side currently not implemented.
+    //   Expression of type 'System.Linq.EnumerableQuery`1[OrmBattle.TelerikModel.Northwind.Customer]' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[OrmBattle.TelerikModel.Northwind.Order]' of method 'System.Collections.Generic.IEnumerable`1[System.Linq.IGrouping`2[System.Int32,OrmBattle.TelerikModel.Northwind.Order]] GroupBy[Order,Int32](System.Collections.Generic.IEnumerable`1[OrmBattle.TelerikModel.Northwind.Order], System.Func`2[OrmBattle.TelerikModel.Northwind.Order,System.Int32])'
     public void ComplexGroupingTest()
     {
       var result = 
@@ -905,10 +873,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   The last accepted query piece is not from the this query.
+    // Passed.
     public void UnionTest()
     {
       var result = (
@@ -928,10 +893,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   The last accepted query piece is not from the this query.
+    // Passed.
     public void ExceptTest()
     {
       var result =
@@ -942,10 +904,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   The last accepted query piece is not from the this query.
+    // Passed.
     public void IntersectTest()
     {
       var result =
@@ -979,11 +938,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed with assertion.
-    // Exception: AssertionException
-    // Message:
-    //     Expected: 4
-    //     But was:  5
+    // Passed.
     public void DistinctTakeFirstTest()
     {
       var result =
@@ -1044,10 +999,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed.
-    // Exception: NullReferenceException
-    // Message:
-    //   Object reference not set to an instance of an object.
+    // Passed.
     public void TypeCastIsChildConditionalTest()
     {
       var result = db.Products
@@ -1081,10 +1033,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Second Select not implemented: DiscontinuedProductExtent.Select(discontinuedProduct => (discontinuedProduct As Product)).Select(product => IIF((product == null), "NULL", product.ProductName))
+    // Passed.
     public void TypeCastAsTest()
     {
       var result = db.DiscontinuedProducts
@@ -1141,9 +1090,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Element operations")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: ArgumentException
     // Message:
-    //   Execution of 'System.Linq.Queryable:FirstOrDefault(IQueryable`1)' on the database server side currently not implemented.
+    //   Argument expression is not valid
     public void NestedFirstOrDefaultTest()
     {
       var result =
@@ -1237,9 +1186,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("All/Any/Contains")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: ArgumentOutOfRangeException
     // Message:
-    //   Execution of 'System.Linq.Queryable:All(IQueryable`1,Expression`1)' on the database server side currently not implemented.
+    //   Specified argument was out of the range of valid values.
+    //   Parameter name: Unknown sub query '#SQ0' encountered.
     public void AllNestedTest()
     {
       var result =
@@ -1253,9 +1203,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("All/Any/Contains")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: SQLException
     // Message:
-    //   Execution of 'System.Linq.Queryable:All(IQueryable`1,Expression`1)' on the database server side currently not implemented.
+    //   An expression of non-boolean type specified in a context where a condition is expected, near 'OR'.
     public void ComplexAllTest()
     {
       var result =
@@ -1277,10 +1227,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Execution of 'System.Linq.Queryable:Contains(IQueryable`1,Customer)' on the database server side currently not implemented.
+    // Passed.
     public void ContainsNestedTest()
     {
       var result = from c in db.Customers
@@ -1323,7 +1270,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: InvalidOperationException
     // Message:
-    //   Must specify parameter on right side of operation.
+    //   Must specify parameter on right side of operation. ({value(OrmBattle.Tests.Linq.OpenAccessTest+<>c__DisplayClass88).ids})
     public void AnyParameterizedTest()
     {
       var ids = new[] { "ABCDE", "ALFKI" };
@@ -1370,10 +1317,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Aggregates")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Execution of 'System.Linq.Queryable:Count(IQueryable`1,Expression`1)' on the database server side currently not implemented.
+    // Passed.
     public void NestedCountTest()
     {
       var result = db.Customers.Where(c => db.Orders.Count(o => o.Customer.Id == c.Id) > 5);
@@ -1395,9 +1339,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Aggregates")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: SQLException
     // Message:
-    //   Execution of 'System.Linq.Queryable:Count(IQueryable`1,Expression`1)' on the database server side currently not implemented.
+    //   Cannot perform an aggregate function on an expression containing an aggregate or a subquery.
+    //   Statement(s) could not be prepared.
     public void MaxCountTest()
     {
       var max = db.Customers.Max(c => db.Orders.Count(o => o.Customer.Id == c.Id));
@@ -1428,10 +1373,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: InvalidCastException
-    // Message:
-    //   Unable to cast object of type 'OpenAccessRuntime.DataObjects.query.FieldNavNode' to type 'OpenAccessRuntime.DataObjects.query.FieldNode'.
+    // Passed.
     public void JoinTest()
     {
       var result =
@@ -1446,11 +1388,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Join")]
     // Failed.
-    // Exception: ArgumentOutOfRangeException
+    // Exception: NotSupportedException
     // Message:
-    //   Left join key not an extent bound iterator
-    //   Parameter name: leftField
-    //   Actual value was System.Object[].
+    //   Joining to multiple target tables not supported
     public void JoinByAnonymousTest()
     {
       var result =
@@ -1484,12 +1424,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("References")]
-    // Failed.
-    // Exception: ArgumentOutOfRangeException
-    // Message:
-    //   Left join key not an extent bound iterator
-    //   Parameter name: leftField
-    //   Actual value was System.Object[].
+    // Passed.
     public void JoinByReferenceTest()
     {
       var result =
@@ -1553,9 +1488,10 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: ArgumentOutOfRangeException
     // Message:
-    //   Execution of 'System.Linq.Queryable:Select(IQueryable`1,Expression`1)' on the database server side currently not implemented.
+    //   Specified argument was out of the range of valid values.
+    //   Parameter name: Unknown sub query '#SQ0' encountered.
     public void ComplexTest1()
     {
       var result = db.Suppliers.Select(
@@ -1589,10 +1525,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Complex")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Execution of 'System.Linq.Queryable:Select(IQueryable`1,Expression`1)' on the database server side currently not implemented.
+    // Passed.
     public void ComplexTest3()
     {
       var products = db.Products;
@@ -1615,9 +1548,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: NullReferenceException
     // Message:
-    //   Second Select not implemented: CustomerExtent.Take(2).Select(c => value(OrmBattle.Tests.Linq.OpenAccessTest).db.Orders.Select(o => value(OrmBattle.Tests.Linq.OpenAccessTest).db.Employees.Take(2).Where(e => e.Orders.Contains(o))).Where(o => (o.Count() > 0))).Select(os => os)
+    //   Object reference not set to an instance of an object.
     public void ComplexTest4()
     {
       var result = db.Customers
@@ -1635,9 +1568,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: InvalidOperationException
     // Message:
-    //   Second Select not implemented: CustomerExtent.Select(c => new <>f__AnonymousType1a`2(Customer = c, Orders = value(OrmBattle.Tests.Linq.OpenAccessTest).db.Orders)).Select(i => i.Customer.Orders)
+    //   Must specify parameter on right side of operation. ({value(OrmBattle.Tests.Linq.OpenAccessTest).db.Orders})
     public void ComplexTest5()
     {
       var result = db.Customers
@@ -1654,9 +1587,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: SQLException
     // Message:
-    //   Execution of 'System.Linq.Queryable:Where(IQueryable`1,Expression`1)' on the database server side currently not implemented.
+    //   Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.
     public void ComplexTest6()
     {
       var result = db.Customers
@@ -1766,12 +1699,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: ArgumentOutOfRangeException
-    // Message:
-    //   Using the variable or parameter not possible in this context.
-    //   Parameter name: name
-    //   Actual value was o.
+    // Passed.
     public void DateTimeTest()
     {
       var order = db.Orders.Where(o => o.OrderDate >= new DateTime(o.OrderDate.Value.Year, 1, 1)).First();

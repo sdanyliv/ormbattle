@@ -82,7 +82,7 @@ namespace OrmBattle.TestRunner
         var tests = new List<PerformanceTestBase> {
           new BLToolkitTest(),
           new EFTest(),
-          // new EntitySpacesTest(),
+          new EntitySpacesTest(),
           new DOTest(),
           // new LightSpeedTest(),
           new LinqConnectTest(), 
@@ -134,9 +134,12 @@ namespace OrmBattle.TestRunner
           }
         }
 
-        Console.WriteLine();
+        Console.WriteLine();        
         Console.WriteLine("{0} scorecard:", sequenceName);
+
         Console.Write(scorecard);
+        JsonWriter.Write(scorecard.ToJson(sequenceName, tests.ToArray<ToolTestBase>()));
+        
         Console.WriteLine();
         Console.WriteLine("Units:");
         Console.WriteLine("  op/s:      operations per second, more is better;");
@@ -147,6 +150,9 @@ namespace OrmBattle.TestRunner
         Console.WriteLine();
       }
     }
+
+
+    // Consturctors
 
     public PerformanceTestRunner()
     {

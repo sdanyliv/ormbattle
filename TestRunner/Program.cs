@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xtensive.Core;
+using System.IO;
 
 namespace OrmBattle.TestRunner
 {
@@ -15,6 +16,9 @@ namespace OrmBattle.TestRunner
   {
     private const string TArgMarker = "-t:";
     private const string WArgMarker = "-w";
+    private const string JsonArgMarker = "-json:";
+    private const string JsonOutputFile = "../../../Results/json/Output.json";
+
     public static string[] Args;
     public static List<string> ToolNames = null;
 
@@ -28,11 +32,22 @@ namespace OrmBattle.TestRunner
         ToolNames = tArg.RevertibleSplit('/', ',').Distinct().ToList();
       }
 
-      var linqTestRunner = new LinqTestRunner();
-      var performanceTestRunner = new PerformanceTestRunner();
+      IDisposable jsonWriterScope = null;
+      string jsonArg = args.Where(a => a.ToLower().StartsWith(JsonArgMarker)).SingleOrDefault();
+      if (jsonArg!=null) {
+        jsonArg = jsonArg.Remove(0, Math.Min(JsonArgMarker.Length, jsonArg.Length));
+        if (jsonArg.IsNullOrEmpty())
+          jsonWriterScope = JsonWriter.Initialize(JsonOutputFile);
+        else
+          jsonWriterScope = JsonWriter.Initialize(jsonArg);
+      }
 
-      linqTestRunner.Run();
-      performanceTestRunner.Run();
+      using (jsonWriterScope) {
+        var linqTestRunner = new LinqTestRunner();
+        var performanceTestRunner = new PerformanceTestRunner();
+        linqTestRunner.Run();
+        performanceTestRunner.Run();
+      }
 
       if (Args.Where(a => a==WArgMarker).SingleOrDefault()!=null)
         Console.ReadKey();

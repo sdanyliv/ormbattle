@@ -49,12 +49,13 @@ namespace OrmBattle.TestRunner
       if (lucArg!=null)
         updateComments = true;
 
+
       scorecard = new LinqScorecard();
       var tests = new List<LinqTestBase> {
         new BLToolkitTest(),
         new EFTest(), 
         new DOTest(),
-        // new LightSpeedTest(),
+        //new LightSpeedTest(),
         new LinqConnectTest(),
         new Linq2SqlTest(),
         new NHibernateTest(),
@@ -133,9 +134,13 @@ namespace OrmBattle.TestRunner
         }
       }
 
+      
       Console.WriteLine();
       Console.WriteLine("{0} scorecard:", sequenceName);
+      
       Console.Write(scorecard);
+      JsonWriter.Write(scorecard.ToJson(sequenceName, tests.ToArray<ToolTestBase>()));
+
       Console.WriteLine();
       Console.WriteLine("Units:");
       Console.WriteLine("  f/a: total count of failed tests [ / count of tests failed with assertion ],");
