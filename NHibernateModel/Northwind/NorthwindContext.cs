@@ -4,71 +4,73 @@ using NHibernate.Linq;
 
 namespace OrmBattle.NHibernateModel.Northwind
 {
-  public class NorthwindContext : NHibernateContext
+  public class NorthwindContext 
   {
+    public ISession Session { get; private set; }
+
     public NorthwindContext(ISession session)
-      : base(session)
     {
+      Session = session;
     }
 
-    public IOrderedQueryable<Category> Categories
+    public IQueryable<Category> Categories
     {
-      get { return Session.Linq<Category>(); }
+      get { return Session.Query<Category>(); }
     }
 
-    public IOrderedQueryable<Customer> Customers
+    public IQueryable<Customer> Customers
     {
-      get { return Session.Linq<Customer>(); }
+      get { return Session.Query<Customer>(); }
     }
 
-    public IOrderedQueryable<Employee> Employees
+    public IQueryable<Employee> Employees
     {
-      get { return Session.Linq<Employee>(); }
+      get { return Session.Query<Employee>(); }
     }
 
-    public IOrderedQueryable<Order> Orders
+    public IQueryable<Order> Orders
     {
-      get { return Session.Linq<Order>(); }
+      get { return Session.Query<Order>(); }
     }
 
-    public IOrderedQueryable<OrderDetail> OrderDetails
+    public IQueryable<OrderDetail> OrderDetails
     {
-      get { return Session.Linq<OrderDetail>(); }
+      get { return Session.Query<OrderDetail>(); }
     }
 
-    public IOrderedQueryable<Product> Products
+    public IQueryable<Product> Products
     {
-      get { return Session.Linq<Product>(); }
+      get { return Session.Query<Product>(); }
     }
 
-    public IOrderedQueryable<ActiveProduct> ActiveProducts
+    public IQueryable<ActiveProduct> ActiveProducts
     {
-      get { return Session.Linq<ActiveProduct>(); }
+      get { return Session.Query<ActiveProduct>(); }
     }
 
-    public IOrderedQueryable<DiscontinuedProduct> DiscontinuedProducts
+    public IQueryable<DiscontinuedProduct> DiscontinuedProducts
     {
-      get { return Session.Linq<DiscontinuedProduct>(); }
+      get { return Session.Query<DiscontinuedProduct>(); }
     }
 
-    public IOrderedQueryable<Region> Regions
+    public IQueryable<Region> Regions
     {
-      get { return Session.Linq<Region>(); }
+      get { return Session.Query<Region>(); }
     }
 
-    public IOrderedQueryable<Shipper> Shippers
+    public IQueryable<Shipper> Shippers
     {
-      get { return Session.Linq<Shipper>(); }
+      get { return Session.Query<Shipper>(); }
     }
 
-    public IOrderedQueryable<Supplier> Suppliers
+    public IQueryable<Supplier> Suppliers
     {
-      get { return Session.Linq<Supplier>(); }
+      get { return Session.Query<Supplier>(); }
     }
 
-    public IOrderedQueryable<Territory> Territories
+    public IQueryable<Territory> Territories
     {
-      get { return Session.Linq<Territory>(); }
+      get { return Session.Query<Territory>(); }
     }
   }
 }
