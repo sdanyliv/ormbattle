@@ -87,6 +87,7 @@
       <DependentUpon>PerformanceTest.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Simplest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
