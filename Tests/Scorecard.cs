@@ -7,11 +7,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Linq;
 using System.Text.RegularExpressions;
-using JetBrains.Annotations;
 using Xtensive.Core;
-using Xtensive.Core.Helpers;
 using Newtonsoft.Json.Linq;
 
 namespace OrmBattle.Tests
