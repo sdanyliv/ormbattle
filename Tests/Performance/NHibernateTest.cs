@@ -160,7 +160,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = session.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = i%InstanceCount;
-          var query = session.Linq<Simplest>().Where(s => s.Id == id);
+          var query = session.Query<Simplest>().Where(s => s.Id == id);
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }
@@ -194,7 +194,7 @@ namespace OrmBattle.Tests.Performance
       int i = 0;
       using (var transaction = session.BeginTransaction()) {
         while (i < count)
-          foreach (var o in session.Linq<Simplest>().Where(s => s.Id > 0)) {
+          foreach (var o in session.Query<Simplest>().Where(s => s.Id > 0)) {
             if (++i >= count)
               break;
           }
@@ -220,7 +220,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = session.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = (i*pageSize) % InstanceCount;
-          var query = session.Linq<Simplest>().Where(s => s.Id >= id).Take(pageSize);
+          var query = session.Query<Simplest>().Where(s => s.Id >= id).Take(pageSize);
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }
