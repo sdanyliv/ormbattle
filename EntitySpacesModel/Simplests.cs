@@ -6,9 +6,9 @@
              EntitySpaces(TM) is a legal trademark of EntitySpaces, LLC
                           http://www.entityspaces.net
 ===============================================================================
-EntitySpaces Version : 2010.1.0720.0
+EntitySpaces Version : 2010.1.0802.0
 EntitySpaces Driver  : SQL
-Date Generated       : 20.07.2010 17:01:41
+Date Generated       : 04.08.2010 21:50:57
 ===============================================================================
 */
 
@@ -75,6 +75,29 @@ namespace OrmBattle.EntitySpacesModel
 
 		
 					
+		
+
+		#region LINQtoSQL overrides (shame but we must do this)
+
+			
+		[Column(IsPrimaryKey = true, CanBeNull = false)]
+		public override System.Int64? Id
+		{
+			get { return base.Id;  }
+			set { base.Id = value; }
+		}
+
+			
+		[Column(IsPrimaryKey = false, CanBeNull = false)]
+		public override System.Int64? Value
+		{
+			get { return base.Value;  }
+			set { base.Value = value; }
+		}
+
+
+		#endregion
+		
 	}
 
 
@@ -496,6 +519,49 @@ namespace OrmBattle.EntitySpacesModel
 	}
 
 
+	
+	public partial class Simplests : esSimplests
+	{
+
+		
+		/// <summary>
+		/// Used internally by the entity's hierarchical properties.
+		/// </summary>
+		protected override List<esPropertyDescriptor> GetHierarchicalProperties()
+		{
+			List<esPropertyDescriptor> props = new List<esPropertyDescriptor>();
+			
+		
+			return props;
+		}	
+		
+		/// <summary>
+		/// Used internally for retrieving AutoIncrementing keys
+		/// during hierarchical PreSave.
+		/// </summary>
+		protected override void ApplyPreSaveKeys()
+		{
+		}
+		
+		/// <summary>
+		/// Used internally for retrieving AutoIncrementing keys
+		/// during hierarchical PostSave.
+		/// </summary>
+		protected override void ApplyPostSaveKeys()
+		{
+		}
+		
+		/// <summary>
+		/// Used internally for retrieving AutoIncrementing keys
+		/// during hierarchical PostOneToOneSave.
+		/// </summary>
+		protected override void ApplyPostOneSaveKeys()
+		{
+		}
+		
+	}
+
+
 
 	[Serializable]
 	public partial class SimplestsMetadata : esMetadata, IMetadata
@@ -601,8 +667,8 @@ namespace OrmBattle.EntitySpacesModel
 
 				meta.AddTypeMap("Id", new esTypeMap("bigint", "System.Int64"));
 				meta.AddTypeMap("Value", new esTypeMap("bigint", "System.Int64"));			
-				meta.Catalog = "PerformanceTest";
-				meta.Schema = "dbo";
+				
+				
 				
 				meta.Source = "Simplests";
 				meta.Destination = "Simplests";

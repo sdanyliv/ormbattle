@@ -1,0 +1,110 @@
+[
+ {
+    "Title":"CRUD Perfomance:"
+ },
+ {
+    "Title":"Fetch",
+    "TestName":"Fetch"
+ },
+ {
+    "Title":"Single Operation:",
+    "TestName":" "
+},
+ {
+    "Title":"Create Instance",
+    "TestName":"Create Instance [Single]"
+ }
+,
+ {
+    "Title":"Update Instance",
+    "TestName":"Update Instance [Single]"
+ },
+ {
+    "Title":"Remove Instance",
+    "TestName":"Remove Instance [Single]"
+ },
+ {
+    "Title":"CUD Average",
+    "TestName":"CUD Average [Single]"
+ },
+ {
+     "Title":"Multiple Operations",
+    "TestName":" "
+ },
+ {
+    "Title":"Create Instance [Multiple]",
+    "TestName":"Create Instance [Multiple]"
+ },
+ {
+    "Title":"Update Instance [Multiple]",
+    "TestName":"Update Instance [Multiple]"
+ },
+ {
+    "Title":"Remove Instance [Multiple]",
+    "TestName":"Remove Instance [Multiple]"
+ },
+ {
+    "Title":"CUD Average [Multiple]",
+    "TestName":"CUD Average [Multiple]"
+ },
+ {
+    "Title":" ",
+  "TestName":"_"
+ },
+ {
+    "Title":"Data Access Perfomance:"
+ },
+ {
+    "Title":"Query:",
+    "TestName":" "
+ },
+ {
+    "Title":"Fetch",
+    "TestName":"LINQ Query"
+ },
+ {
+    "Title":"Fetch",
+    "TestName":"Compiled LINQ Query"
+ },
+ {
+    "Title":"Native Query",
+    "TestName":"Native Query"
+ },
+ {
+    "Title":"Paging (LINQ only):",
+    "TestName":" "
+ },
+ {
+    "Title":"Get Small Page   (10 items)",
+    "TestName":"Get Small Page   (10 items)"
+ },
+ {
+    "Title":"Get Average Page (20 items)",
+    "TestName":"Get Average Page (20 items)"
+ },
+ {
+    "Title":"Get Large Page   (50 items)",
+    "TestName":"Get Large Page   (50 items)"
+ },
+ {
+    "Title":"Get Huge Page    (100 items)",
+    "TestName":"Get Huge Page    (100 items)"
+ },
+ {
+    "Title":"Materialisation:",
+    "TestName":" "
+ },
+ {
+    "Title":"LINQ Materialize",
+    "TestName":"LINQ Materialize"
+ },
+ {
+    "Title":"Native Materialize",
+    "TestName":"Native Materialize"
+ },
+ {
+    "Title":" ",
+  "TestName":"_"
+ }
+
+]

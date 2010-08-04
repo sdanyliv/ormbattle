@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using Xtensive.Core;
-using Xtensive.Core.Helpers;
+using Newtonsoft.Json.Linq;
 
 namespace OrmBattle.Tests
 {
@@ -34,7 +34,7 @@ namespace OrmBattle.Tests
         // This allows to run the same test for multiple times
         // and pick up the best result.
         if (prevResult is int && result is int)
-          Results[key] = Math.Max((int)prevResult, (int)result);
+          Results[key] = Math.Max((int) prevResult, (int) result);
       }
       else
         Results.Add(key, result);
@@ -80,7 +80,7 @@ namespace OrmBattle.Tests
       int oldIndent = 0;
       if (Indents.ContainsKey(trimmedTest))
         oldIndent = Indents[trimmedTest];
-      if (setIndent && oldIndent<indent)
+      if (setIndent && oldIndent < indent)
         Indents[trimmedTest] = indent;
       return trimmedTest;
     }
@@ -124,6 +124,54 @@ namespace OrmBattle.Tests
       sb.AppendFormat("{0,10}", result ?? "n/a");
     }
 
+    public string ToJson(string cardName, ToolTestBase[] toolTests)
+    {
+      var result = new JObject();
+      result.Add("Name", cardName);
+      result.Add("Tests", new JArray());
+
+      foreach (var test in Tests)
+        TestToJson(test.ToString(), result);
+
+      result.Add("Tools", new JArray());
+
+      foreach (var toolTest in toolTests)
+        ToolTestToJson(toolTest, result);
+
+      return result.ToString();
+    }
+
+    protected virtual void TestToJson(string testName, JObject output)
+    {
+      if ((testName.IsNullOrEmpty() || testName.EndsWith(":")))
+        return;
+
+      string unit = ToolTestBase.Unit;
+      var test = new JObject();
+      test.Add("Name", testName);
+      test.Add("Unit", new JValue(Get(unit, testName)));
+      ((JArray) output["Tests"]).Add(test);
+    }
+
+    protected virtual void ToolTestToJson(ToolTestBase toolTest, JObject output)
+    {
+      var tool = new JObject();
+      tool.Add("ShortName", toolTest.ShortToolName);
+      tool.Add("Name", toolTest.ToolName);
+      ((JArray) output["Tools"]).Add(tool);
+      tool.Add("Results", new JArray());
+
+      foreach (var test in output["Tests"])
+        ToolTestResultToJson(Get(toolTest.ShortToolName, ((string) test["Name"])), tool);
+    }
+
+    protected virtual void ToolTestResultToJson(object result, JObject output)
+    {
+      ((JArray) output["Results"]).Add(result);
+    }
+
+
+    // Constructors
 
     public Scorecard()
     {

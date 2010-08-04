@@ -839,9 +839,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Grouping")]
     // Failed.
-    // Exception: LinqException
+    // Exception: ArgumentException
     // Message:
-    //   Cannot find converter for the 'System.Collections.Generic.IEnumerable`1[[<>f__AnonymousTypee`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Collections.Generic.IEnumerable`1[[<>f__AnonymousTyped`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Linq.IGrouping`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[OrmBattle.BLToolkitModel.Order, BLToolkitModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' type.
+    //   An item with the same key has already been added.
     public void ComplexGroupingTest()
     {
       var result = 
@@ -1343,8 +1343,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: SqlException
     // Message:
-    //   Incorrect syntax near the keyword 'SELECT'.
-    //   Incorrect syntax near ')'.
+    //   Cannot perform an aggregate function on an expression containing an aggregate or a subquery.
     public void MaxCountTest()
     {
       var max = db.Customers.Max(c => db.Orders.Count(o => o.Customer.Id == c.Id));
@@ -1509,9 +1508,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: InvalidOperationException
+    // Exception: LinqException
     // Message:
-    //   Operation is not valid due to the current state of the object.
+    //   Cannot find converter for the 'System.Collections.Generic.IEnumerable`1[[OrmBattle.BLToolkitModel.Customer, BLToolkitModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' type.
     public void ComplexTest2()
     {
       var result = db.Customers
@@ -1781,10 +1780,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: SqlException
-    // Message:
-    //   Incorrect syntax near ','.
+    // Passed.
     public void MathRoundAwayFromZeroTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight/10, 1, MidpointRounding.AwayFromZero) == 6.5m );
@@ -1794,10 +1790,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: SqlException
-    // Message:
-    //   Incorrect syntax near ','.
+    // Passed.
     public void MathRoundToEvenTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1, MidpointRounding.ToEven) == 6.5m);
@@ -1807,10 +1800,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: SqlException
-    // Message:
-    //   Incorrect syntax near ','.
+    // Passed.
     public void MathRoundDefaultTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1) == 6.5m);
@@ -1820,10 +1810,7 @@ namespace OrmBattle.Tests.Linq
     
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: SqlException
-    // Message:
-    //   Incorrect syntax near ','.
+    // Passed.
     public void ConvertToInt32()
     {
       var expected =    Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);

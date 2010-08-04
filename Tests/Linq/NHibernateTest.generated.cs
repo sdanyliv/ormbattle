@@ -1826,9 +1826,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method Remove is not implemented.
     public void StringRemoveTest()
     {
       var customer = db.Customers.Where(c => c.City.Remove(3) == "Sea").First();
@@ -1838,9 +1838,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method IndexOf is not implemented.
     public void StringIndexOfTest()
     {
       var customer = db.Customers.Where(c => c.City.IndexOf("tt") == 3).First();
@@ -1850,9 +1850,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method LastIndexOf is not implemented.
     public void StringLastIndexOfTest()
     {
       var customer = db.Customers.Where(c => c.City.LastIndexOf("t", 1, 3) == 3).First();
@@ -1862,9 +1862,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: NotImplementedException
     // Message:
-    //   Could not understand: (("123" + c.City.PadLeft(8)) == "123 Seattle")
+    //   The method PadLeft is not implemented.
     public void StringPadLeftTest()
     {
       var customer = db.Customers.Where(c => "123" + c.City.PadLeft(8) == "123 Seattle").First();
@@ -1922,9 +1922,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method Abs is not implemented.
     public void MathAbsTest()
     {
       var order = db.Orders.Where(o => Math.Abs(o.Id) == 10 || o.Id > 0).First();
@@ -1934,9 +1934,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method Cos is not implemented.
     public void MathTrignometricTest()
     {
       var order = db.Orders.Where(o => Math.Asin(Math.Cos(o.Id)) == 0 || o.Id > 0).First();
@@ -1946,9 +1946,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method Floor is not implemented.
     public void MathFloorTest()
     {
       var result = db.Orders.Where(o => Math.Floor(o.Freight) == 140);
@@ -1959,9 +1959,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method Ceiling is not implemented.
     public void MathCeilingTest()
     {
       var result = db.Orders.Where(o => Math.Ceiling(o.Freight) == 141);
@@ -1972,9 +1972,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method Truncate is not implemented.
     public void MathTruncateTest()
     {
       var result = db.Orders.Where(o => Math.Truncate(o.Freight) == 141);
@@ -1985,9 +1985,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method Round is not implemented.
     public void MathRoundAwayFromZeroTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight/10, 1, MidpointRounding.AwayFromZero) == 6.5m );
@@ -1998,9 +1998,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method Round is not implemented.
     public void MathRoundToEvenTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1, MidpointRounding.ToEven) == 6.5m);
@@ -2011,9 +2011,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method Round is not implemented.
     public void MathRoundDefaultTest()
     {
       var result = db.Orders.Where(o => Math.Round(o.Freight / 10, 1) == 6.5m);
@@ -2024,9 +2024,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method ToInt32 is not implemented.
     public void ConvertToInt32()
     {
       var expected =    Orders.Where(o => Convert.ToInt32(o.Freight * 10) == 592);
@@ -2038,9 +2038,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: QueryException
+    // Exception: NotImplementedException
     // Message:
-    //   Cannot use subqueries on a criteria without a projection.
+    //   The method CompareTo is not implemented.
     public void StringCompareToTest()
     {
       var customer = db.Customers.Where(c => c.City.CompareTo("Seattle") >= 0).First();
