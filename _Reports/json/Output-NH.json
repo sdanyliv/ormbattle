@@ -1,0 +1,899 @@
+ {
+  "Name": "LINQ tests",
+  "Tests": [
+    {
+      "Name": "Aggregates",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "All/Any/Contains",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 6,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Complex",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 6,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Element operations",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 9,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Filtering",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 12,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Grouping",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 10,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Join",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 4,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Ordering",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 8,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Projections",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 13,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "References",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 4,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Set operations",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 9,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Standard functions",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 25,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Take/Skip",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Type casts",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 7,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 5,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 1
+        },
+        {
+          "First": 17,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 1
+        }
+      ],
+      "Performed": 121,
+      "Passed": 58,
+      "Failed": 63,
+      "Score": "47,9"
+    }
+  ]
+}{
+  "Name": "Performance tests (50 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": null
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": null
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": null
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        6583,
+        3405,
+        2914,
+        3125,
+        3135,
+        15538,
+        13010,
+        13770,
+        14028,
+        968,
+        null,
+        4254,
+        806,
+        562,
+        null,
+        null,
+        25051,
+        39120
+      ]
+    }
+  ]
+}{
+  "Name": "Performance tests (100 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": null
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": null
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        6714,
+        4079,
+        1790,
+        1869,
+        2240,
+        16326,
+        9393,
+        16740,
+        13189,
+        1120,
+        null,
+        5004,
+        900,
+        728,
+        482,
+        null,
+        37485,
+        55154
+      ]
+    }
+  ]
+}{
+  "Name": "Performance tests (500 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": null
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7880,
+        4150,
+        2046,
+        2899,
+        2791,
+        15191,
+        17704,
+        19407,
+        17257,
+        1191,
+        null,
+        5715,
+        993,
+        871,
+        637,
+        438,
+        61453,
+        79667
+      ]
+    }
+  ]
+}{
+  "Name": "Performance tests (1000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": null
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        5477,
+        4229,
+        1043,
+        1482,
+        1604,
+        13105,
+        12819,
+        20012,
+        14685,
+        1044,
+        null,
+        3801,
+        709,
+        657,
+        645,
+        460,
+        65314,
+        83088
+      ]
+    }
+  ]
+}{
+  "Name": "Performance tests (5000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": null
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7796,
+        4154,
+        348,
+        654,
+        646,
+        19617,
+        17636,
+        19312,
+        18813,
+        1171,
+        null,
+        5741,
+        971,
+        836,
+        627,
+        460,
+        64939,
+        78495
+      ]
+    }
+  ]
+}{
+  "Name": "Performance tests (10000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": null
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7144,
+        3931,
+        176,
+        341,
+        338,
+        18367,
+        15211,
+        18080,
+        17094,
+        1123,
+        null,
+        5102,
+        906,
+        791,
+        561,
+        407,
+        60190,
+        76470
+      ]
+    }
+  ]
+}{
+  "Name": "Performance tests (30000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": null
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7776,
+        4820,
+        58,
+        119,
+        116,
+        21422,
+        17611,
+        19132,
+        19263,
+        1184,
+        null,
+        5758,
+        961,
+        843,
+        611,
+        423,
+        56806,
+        70646
+      ]
+    }
+  ]
+}]
