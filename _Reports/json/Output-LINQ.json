@@ -1,0 +1,581 @@
+ {
+  "Name": "LINQ tests",
+  "Tests": [
+    {
+      "Name": "Aggregates",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "All/Any/Contains",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 6,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Complex",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 6,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Element operations",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 9,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Filtering",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 12,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Grouping",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 10,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Join",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 4,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Ordering",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 8,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Projections",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 13,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "References",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 4,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Set operations",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 9,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Standard functions",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 25,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Take/Skip",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Type casts",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 5,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 3,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 1
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 102,
+      "Failed": 19,
+      "Score": "84,3"
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 2
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 11,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 96,
+      "Failed": 25,
+      "Score": "79,3"
+    },
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 119,
+      "Failed": 2,
+      "Score": "98,3"
+    },
+    {
+      "ShortName": "LC",
+      "Name": "LinqConnect",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 3,
+          "Second": 1
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 106,
+      "Failed": 15,
+      "Score": "87,6"
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 2
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 3,
+          "Second": 1
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 108,
+      "Failed": 13,
+      "Score": "89,3"
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 7,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 5,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 1
+        },
+        {
+          "First": 17,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 1
+        }
+      ],
+      "Performed": 121,
+      "Passed": 58,
+      "Failed": 63,
+      "Score": "47,9"
+    },
+    {
+      "ShortName": "OA",
+      "Name": "OpenAccess",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 3,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 5,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 1
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 8,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 94,
+      "Failed": 27,
+      "Score": "77,7"
+    }
+  ]
+}]
