@@ -1,0 +1,15 @@
+﻿<hibernate-mapping default-cascade="none" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="OrmBattle.NHibernateModel.Northwind.OrderDetail, NHibernateModel" table="[Order Details]">
+    <composite-id>
+      <key-many-to-one name="Order" class="OrmBattle.NHibernateModel.Northwind.Order, NHibernateModel">
+        <column name="OrderID" />
+      </key-many-to-one>
+      <key-many-to-one name="Product" class="OrmBattle.NHibernateModel.Northwind.Product, NHibernateModel">
+        <column name="ProductID" />
+      </key-many-to-one>
+    </composite-id>
+    <property name="Discount" type="System.Single" column="Discount" not-null="true" />
+    <property name="Quantity" type="System.Int16" column="Quantity" not-null="true" />
+    <property name="UnitPrice" type="System.Decimal" column="UnitPrice" not-null="true" />
+  </class>
+</hibernate-mapping>

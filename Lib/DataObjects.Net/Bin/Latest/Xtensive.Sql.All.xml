@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Xtensive.Sql.All</name>
+  </assembly>
+  <members>
+    <member name="T:Xtensive.Sql.All.Referencer">
+      <summary>
+            Does nothing, but references types from all SQL DOM assemblies.
+            </summary>
+    </member>
+  </members>
+</doc>

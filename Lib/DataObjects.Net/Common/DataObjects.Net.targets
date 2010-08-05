@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Paths -->
+
+  <PropertyGroup>
+    <UseDataObjectsDotNet
+      Condition="'$(UseDataObjectsDotNet)'==''">true</UseDataObjectsDotNet>
+    <DataObjectsDotNetDir
+      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(DataObjectsDotNetPath)\</DataObjectsDotNetDir>
+    <DataObjectsDotNetDir
+      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\X-tensive.com\DataObjects.Net@LatestInstallLocation)\</DataObjectsDotNetDir>
+    <DataObjectsDotNetDir
+      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\X-tensive.com\DataObjects.Net@LatestInstallLocation)\</DataObjectsDotNetDir>
+    <DataObjectsDotNetDir
+      Condition="'$(DataObjectsDotNetDir)'=='' or '$(DataObjectsDotNetDir)'=='\'">$(MSBuildProjectDirectory)\..\..\</DataObjectsDotNetDir>
+    <DataObjectsDotNetLibDir 
+      Condition="'$(DataObjectsDotNetLibDir)'==''">$(DataObjectsDotNetDir)Lib\</DataObjectsDotNetLibDir>
+    <DataObjectsDotNetBinDir 
+      Condition="'$(DataObjectsDotNetBinDir)'==''">$(DataObjectsDotNetDir)Bin\Latest\</DataObjectsDotNetBinDir>
+    <DataObjectsDotNetCommonDir 
+      Condition="'$(DataObjectsDotNetCommonDir)'==''">$(DataObjectsDotNetDir)Common\</DataObjectsDotNetCommonDir>
+    <XtensiveMSBuildTasksPath 
+      Condition="$(XtensiveMSBuildTasksPath)==''">$(DataObjectsDotNetCommonDir)Xtensive.MSBuildTasks</XtensiveMSBuildTasksPath>
+    <PostSharpPath
+      Condition="$(PostSharpPath)==''">$(DataObjectsDotNetLibDir)PostSharp\Release</PostSharpPath>
+    <PostSharpPluginsPath
+      Condition="$(PostSharpPluginsPath)==''">$(DataObjectsDotNetBinDir).</PostSharpPluginsPath>
+  </PropertyGroup>
+ 
+  
+  <!-- Configuring PostSharp, FiXml, etc. -->
+  
+  <PropertyGroup>
+    <PostSharpAutoUpdateDisable Condition="$(PostSharpAutoUpdateDisable)==''">true</PostSharpAutoUpdateDisable>
+    <UseFiXml Condition="'$(UseFiXml)'==''">false</UseFiXml>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <RemoveInstallableDependency Include="$(DataObjectsDotNetLibDir)Oracle\Oracle*.*" />
+    <RemoveInstallableDependency Include="$(DataObjectsDotNetLibDir)VistaDB\VistaDB*.*" />
+  </ItemGroup>
+
+  
+  <!-- Importing targets -->
+
+  <Import Condition="'$(PostSharp20Imported)'==''" 
+          Project="$(PostSharpPath)\..\PostSharp.targets" />
+  <Import Condition="Exists('$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets')" 
+                    Project="$(XtensiveMSBuildTasksPath)\Xtensive.MSBuildTasks.Targets" />
+  <Import Project="UpdateReferenceSearchPaths.targets" />
+  <Import Project="CopyIndirectDependencies.targets" />
+  <Import Project="RemoveInstallableDependencies.targets" />
+  <Import Project="ValidateRequirements.targets" />
+
+
+  <!-- Adding DataObjects.Net presence check target to build chain -->
+
+  <PropertyGroup>
+    <CoreBuildDependsOn>
+      RequiresDataObjectsDotNet;
+      $(CoreBuildDependsOn)
+    </CoreBuildDependsOn>
+  </PropertyGroup>
+
+</Project>
