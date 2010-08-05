@@ -1,7 +1,8 @@
 @echo off
-set ReportsPath=..\..\..\_Reports
+set ReportsPath=_Reports
 set Output=Output-LINQ
 pushd TestRunner\bin\Release
-  start /HIGH /WAIT cmd /C ..\..\..\Redirect.bat %ReportsPath%\%Output%.txt TestRunner.exe "-pt:" "-luc" "-json:%ReportsPath%\json\%Output%.json"
+  set RootPath=..\..\..
+  start /HIGH /WAIT cmd /C %RootPath%\Redirect.bat %RootPath%\%ReportsPath%\%Output%.txt TestRunner.exe "-pt:" "-luc" "-json:%RootPath%\%ReportsPath%\json\%Output%.json"
 popd
 copy /Y "%ReportsPath%\%Output%.txt" .
