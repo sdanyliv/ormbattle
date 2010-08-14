@@ -100,12 +100,12 @@ namespace OrmBattle.Tests.Performance
     protected override void InsertSingleTest(int count)
     {
       using (var ts = new esTransactionScope()) {
-        var simplests = new SimplestsCollection();
         for (int i = 0; i < count; i++) {
-          var simplest = simplests.AddNew();
-          simplest.Id = i;
-          simplest.Value = i;
-          simplests.Save();
+          var simplest = new Simplests {
+            Id = i, 
+            Value = i
+          };
+          simplest.Save();
         }
         ts.Complete();
       }
@@ -119,7 +119,7 @@ namespace OrmBattle.Tests.Performance
         simplests.LoadAll();
         foreach (var o in simplests) {
           o.Value++;
-          simplests.Save();
+          o.Save();
         }
         ts.Complete();
       }
@@ -131,8 +131,9 @@ namespace OrmBattle.Tests.Performance
         var simplests = new SimplestsCollection();
         simplests.LoadAll();
         for (int i = simplests.Count - 1; i >= 0; i--) {
-            simplests.FindByPrimaryKey(i).MarkAsDeleted();
-            simplests.Save();
+          var o = simplests[0];
+          o.MarkAsDeleted();
+          o.Save();
         }
         ts.Complete();
       }
