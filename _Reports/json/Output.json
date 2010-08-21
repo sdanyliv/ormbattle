@@ -1,4 +1,4 @@
-[{
+ResultToMemory([{
   "Name": "LINQ tests",
   "Tests": [
     {
@@ -117,7 +117,7 @@
   "Tools": [
     {
       "ShortName": "BLT",
-      "NAme": "BLToolkit",
+      "Name": "BLToolkit",
       "Results": [
         {
           "First": 1,
@@ -183,7 +183,7 @@
     },
     {
       "ShortName": "EF",
-      "NAme": "ADO.NET Entity Framework",
+      "Name": "ADO.NET Entity Framework",
       "Results": [
         {
           "First": 0,
@@ -249,7 +249,7 @@
     },
     {
       "ShortName": "DO",
-      "NAme": "DataObjects.Net",
+      "Name": "DataObjects.Net",
       "Results": [
         {
           "First": 0,
@@ -314,74 +314,8 @@
       "Score": "98,3"
     },
     {
-      "ShortName": "LS",
-      "NAme": "LightSpeed",
-      "Results": [
-        {
-          "First": 2,
-          "Second": 0
-        },
-        {
-          "First": 4,
-          "Second": 0
-        },
-        {
-          "First": 4,
-          "Second": 0
-        },
-        {
-          "First": 1,
-          "Second": 0
-        },
-        {
-          "First": 3,
-          "Second": 0
-        },
-        {
-          "First": 4,
-          "Second": 0
-        },
-        {
-          "First": 3,
-          "Second": 0
-        },
-        {
-          "First": 5,
-          "Second": 1
-        },
-        {
-          "First": 5,
-          "Second": 1
-        },
-        {
-          "First": 2,
-          "Second": 0
-        },
-        {
-          "First": 4,
-          "Second": 1
-        },
-        {
-          "First": 12,
-          "Second": 0
-        },
-        {
-          "First": 1,
-          "Second": 1
-        },
-        {
-          "First": 0,
-          "Second": 0
-        }
-      ],
-      "Performed": 121,
-      "Passed": 71,
-      "Failed": 50,
-      "Score": "58,7"
-    },
-    {
       "ShortName": "LC",
-      "NAme": "LinqConnect",
+      "Name": "LinqConnect",
       "Results": [
         {
           "First": 1,
@@ -447,7 +381,7 @@
     },
     {
       "ShortName": "L2S",
-      "NAme": "LINQ to SQL",
+      "Name": "LINQ to SQL",
       "Results": [
         {
           "First": 0,
@@ -513,7 +447,7 @@
     },
     {
       "ShortName": "NH",
-      "NAme": "NHibernate",
+      "Name": "NHibernate",
       "Results": [
         {
           "First": 3,
@@ -579,7 +513,7 @@
     },
     {
       "ShortName": "OA",
-      "NAme": "OpenAccess",
+      "Name": "OpenAccess",
       "Results": [
         {
           "First": 1,
@@ -723,267 +657,243 @@
   "Tools": [
     {
       "ShortName": "BLT",
-      "NAme": "BLToolkit",
+      "Name": "BLToolkit",
       "Results": [
-        7292,
-        2174,
-        1988,
-        1983,
-        2009,
-        15733,
-        17448,
-        19509,
-        16451,
-        4557,
-        6327,
-        6398,
-        2081,
-        1422,
+        4632,
+        3103,
+        502,
+        1037,
+        915,
+        4731,
+        2256,
+        3479,
+        3184,
+        2408,
+        2407,
+        2287,
+        2098,
+        1355,
         null,
         null,
-        48548,
-        74283
+        51743,
+        81011
       ]
     },
     {
       "ShortName": "EF",
-      "NAme": "ADO.NET Entity Framework",
+      "Name": "ADO.NET Entity Framework",
       "Results": [
+        2883,
+        1511,
+        545,
+        1422,
+        937,
+        4333,
+        5944,
+        2865,
+        4010,
+        370,
+        2863,
+        2187,
+        1619,
+        1049,
         null,
-        1470,
-        1414,
-        1470,
-        1428,
-        2519,
-        2440,
-        2646,
-        2508,
-        434,
-        1757,
-        2066,
-        1404,
-        1198,
         null,
-        null,
-        13486,
-        52720
+        12817,
+        59722
       ]
     },
     {
       "ShortName": "ES",
-      "NAme": "EntitySpaces",
+      "Name": "EntitySpaces",
       "Results": [
+        2223,
+        702,
+        1861,
+        1037,
+        1025,
+        2910,
+        2787,
+        2943,
+        2878,
+        689,
+        848,
+        1992,
+        792,
+        667,
         null,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        18338,
+        60452
       ]
     },
     {
       "ShortName": "DO",
-      "NAme": "DataObjects.Net",
+      "Name": "DataObjects.Net",
       "Results": [
-        2252,
-        3556,
-        3380,
-        3218,
-        3379,
-        13280,
-        12289,
-        14337,
-        13195,
-        778,
-        4673,
-        2008,
-        3135,
-        1513,
+        3228,
+        1588,
+        1263,
+        477,
+        852,
+        2404,
+        2160,
+        2350,
+        2299,
+        705,
+        2042,
+        1928,
+        1118,
+        769,
         null,
         null,
-        42767,
-        50802
-      ]
-    },
-    {
-      "ShortName": "LS",
-      "NAme": "LightSpeed",
-      "Results": [
-        6029,
-        1522,
-        1783,
-        1749,
-        1658,
-        5743,
-        14216,
-        10336,
-        8726,
-        959,
-        null,
-        4109,
-        798,
-        646,
-        null,
-        null,
-        43025,
-        57944
+        41291,
+        52007
       ]
     },
     {
       "ShortName": "LC",
-      "NAme": "Devart LinqConnect",
+      "Name": "Devart LinqConnect",
       "Results": [
-        2663,
-        2118,
-        1921,
-        2088,
-        2003,
-        13986,
-        12410,
-        13693,
-        13236,
-        1503,
-        2281,
+        4266,
+        2001,
+        1612,
+        1097,
+        1476,
+        1553,
+        1672,
+        2427,
+        1813,
+        1323,
+        1947,
         null,
-        1826,
-        1395,
+        1234,
+        1146,
         null,
         null,
-        29227,
+        32656,
         null
       ]
     },
     {
       "ShortName": "L2S",
-      "NAme": "LINQ to SQL",
+      "Name": "LINQ to SQL",
       "Results": [
-        2354,
-        1647,
-        867,
-        1122,
-        1086,
-        1823,
-        1006,
-        1046,
-        1197,
-        709,
-        2463,
+        2282,
+        1142,
+        541,
+        285,
+        481,
+        2134,
+        944,
+        301,
+        618,
+        671,
+        2037,
         null,
-        1750,
-        1287,
+        1903,
+        1279,
         null,
         null,
-        31675,
+        32609,
         null
       ]
     },
     {
       "ShortName": "NH",
-      "NAme": "NHibernate",
+      "Name": "NHibernate",
       "Results": [
-        1921,
-        1351,
-        1231,
-        1428,
-        1308,
-        11648,
-        10287,
-        11145,
-        10676,
-        778,
+        1112,
+        158,
+        318,
+        1086,
+        288,
+        11653,
+        10847,
+        3415,
+        6371,
+        404,
         null,
-        2738,
-        627,
-        496,
+        2833,
+        311,
+        100,
         null,
         null,
-        17428,
-        32010
+        17138,
+        32605
       ]
     },
     {
       "ShortName": "OA",
-      "NAme": "OpenAccess",
+      "Name": "OpenAccess",
       "Results": [
-        1584,
-        2057,
-        1747,
-        1801,
-        1850,
-        3148,
-        4952,
-        16412,
-        5123,
-        1055,
-        1066,
-        1322,
-        958,
-        863,
+        532,
+        2158,
+        1676,
+        877,
+        1363,
+        388,
+        295,
+        4434,
+        484,
+        1414,
+        1705,
+        406,
+        88,
+        702,
         null,
         null,
-        34525,
-        74985
+        35803,
+        80269
       ]
     },
     {
       "ShortName": "SS",
-      "NAme": "Subsonic",
+      "Name": "Subsonic",
       "Results": [
-        2600,
-        1050,
-        936,
-        899,
-        950,
-        1064,
-        1068,
-        1098,
-        1072,
-        339,
+        6925,
+        904,
+        790,
+        859,
+        848,
+        805,
+        763,
+        1047,
+        855,
+        322,
         null,
-        2316,
-        343,
-        316,
+        3187,
+        127,
+        233,
         null,
         null,
-        18943,
-        71164
+        18047,
+        67990
       ]
     },
     {
       "ShortName": "SQL",
-      "NAme": "SqlClient",
+      "Name": "SqlClient",
       "Results": [
-        10878,
-        5072,
-        2655,
-        4643,
-        3703,
-        17860,
-        20437,
-        25016,
-        20042,
+        4989,
+        2725,
+        3196,
+        3042,
+        2974,
+        18033,
+        18459,
+        20500,
+        18938,
         null,
         null,
-        7652,
+        3031,
         null,
         null,
         null,
         null,
         null,
-        106089
+        115928
       ]
     }
   ]
-}]
+}])
