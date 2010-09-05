@@ -8,7 +8,7 @@ namespace OrmBattle.TestRunner
 {
   internal static class JsonWriter
   {
-    private static string Prefix = "ResultToMemory([";
+    private static string Prefix = "OnLoadOutput([";
     private static string Comma = ",";
     private static string Suffix = "])";
 

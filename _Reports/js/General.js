@@ -1,4 +1,4 @@
-﻿//var FullResult;
+﻿var FullResult;
 var CheckToolNames = [];
 var VirtualForm = [];
 var TestSelector;
@@ -9,7 +9,7 @@ function LoadOutputJson() {
   LoadJsonP("json/Output.json");
 }
 
-function ResultToMemory(json) {
+function OnLoadOutput(json) {
   FullResult = json;
   RenderSelectBar();
 }

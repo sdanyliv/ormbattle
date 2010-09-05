@@ -1,4 +1,4 @@
-ResultToMemory([{
+OnLoadOutput([{
   "Name": "LINQ tests",
   "Tests": [
     {
