@@ -6,7 +6,7 @@ var TestSelector;
 
 function LoadOutputJson() {
   document.title = "Test Result";
-  LoadJson("json/Output.json");
+  LoadJsonP("json/Output.json");
 }
 
 function ResultToMemory(json) {
@@ -58,7 +58,7 @@ function Start() {
   RenderLINQResults();
   RenderPerfomanceResults()
 
-  LoadJson("json/PerfomanceTable.json");
+  LoadJsonP("json/PerfomanceTable.json");
 }
 
 function RenderPerfomanceTable(tableTemplate) {
@@ -316,7 +316,7 @@ function GetPropertyFromPath(object, path) {
   return ob;
 }
 
-function LoadJson(url) {
+function LoadJsonP(url) {
   var script = document.createElement('script');
   script.src = url;
   script.type = 'text/javascript';
