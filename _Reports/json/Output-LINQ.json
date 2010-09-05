@@ -1,4 +1,4 @@
- {
+ResultToMemory([{
   "Name": "LINQ tests",
   "Tests": [
     {
@@ -578,4 +578,4 @@
       "Score": "77,7"
     }
   ]
-}]
+}])

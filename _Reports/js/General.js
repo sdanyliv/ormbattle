@@ -3,11 +3,10 @@ var CheckToolNames = [];
 var VirtualForm = [];
 var TestSelector;
 
-function LoadData() {
+
+function LoadOutputJson() {
   document.title = "Test Result";
-  //$.getJSON('json/Output.json', {}, function (json) {
-  GetJsonp("json/Output.json");
-  //})
+  LoadJson("json/Output.json");
 }
 
 function ResultToMemory(json) {
@@ -30,7 +29,6 @@ function RenderSelectBar() {
     TestSelector.add(element);
   }
   Parent.appendChild(TestSelector);
-
 }
 
 function AddTool(tool, Parent) {
@@ -60,8 +58,7 @@ function Start() {
   RenderLINQResults();
   RenderPerfomanceResults()
 
-  //$.getJSON('json/PerfomanceTable.json', {}, RenderPerfomanceTable);
-  GetJsonp("json/PerfomanceTable.json");
+  LoadJson("json/PerfomanceTable.json");
 }
 
 function RenderPerfomanceTable(tableTemplate) {
@@ -319,7 +316,7 @@ function GetPropertyFromPath(object, path) {
   return ob;
 }
 
-function GetJsonp(url) {
+function LoadJson(url) {
   var script = document.createElement('script');
   script.src = url;
   script.type = 'text/javascript';
