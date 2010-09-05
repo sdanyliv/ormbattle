@@ -34,6 +34,7 @@ function RenderSelectBar() {
 function AddTool(tool, Parent) {
   var label = document.createElement('div');
   var checkBox = document.createElement('input');
+  checkBox.checked = true;
   checkBox.type = 'CheckBox';
   checkBox.id = 'CheckToolGroup';
   checkBox.name = 'CheckToolGroup';
@@ -41,7 +42,7 @@ function AddTool(tool, Parent) {
   VirtualForm[VirtualForm.length] = checkBox;
   
   label.appendChild(checkBox);
-  label.appendChild(document.createTextNode(tool.NAme + '(' + tool.ShortName + ')'));
+  label.appendChild(document.createTextNode(tool.Name + ' (' + tool.ShortName + ')'));
   label.style.background = '#c5c5c5';  
   Parent.appendChild(label);
 }
