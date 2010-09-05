@@ -1,14 +1,18 @@
-﻿var FullResult;
+﻿//var FullResult;
 var CheckToolNames = [];
 var VirtualForm = [];
 var TestSelector;
 
 function LoadData() {
   document.title = "Test Result";
-  $.getJSON('json/Output.json', {}, function (json) {
-    FullResult = json;
-    RenderSelectBar();
-  })
+  //$.getJSON('json/Output.json', {}, function (json) {
+  GetJsonp("json/Output.json");
+  //})
+}
+
+function ResultToMemory(json) {
+  FullResult = json;
+  RenderSelectBar();
 }
 
 function RenderSelectBar() {
@@ -56,11 +60,13 @@ function Start() {
   RenderLINQResults();
   RenderPerfomanceResults()
 
-  $.getJSON('json/PerfomanceTable.json', {}, RenderPerfomanceTable);
+  //$.getJSON('json/PerfomanceTable.json', {}, RenderPerfomanceTable);
+  GetJsonp("json/PerfomanceTable.json");
 }
 
 function RenderPerfomanceTable(tableTemplate) {
   var display = document.getElementById('TableDisplay');
+  display.innerHTML = "";
   var scorecard = FullResult[document.getElementById('Selector').value];
 
   var rowController = HeadController(['min', 'max'], ['unit']);
@@ -295,24 +301,30 @@ function GetCheckedTools(scorecard) {
     return result;
   }
 
-  function GetPropertyFromPath(object, path) {
-    var ob = object;
-    var cursor = 0;
-    for (var i = 0; i < path.length; i++) {
-      if (path[i] == '.' || path[i] == ']' || path[i] == '[') {
-        propertyName = path.substr(cursor, i - cursor);
-        ob = ob[propertyName];
-        cursor = i + 1;
-      }
-      if (path[i] == ']') { cursor++; i++ }
-    }
-    if (path[path.length - 1] != ']') {
-      propertyName = path.substr(cursor, path.length);
+function GetPropertyFromPath(object, path) {
+  var ob = object;
+  var cursor = 0;
+  for (var i = 0; i < path.length; i++) {
+    if (path[i] == '.' || path[i] == ']' || path[i] == '[') {
+      propertyName = path.substr(cursor, i - cursor);
       ob = ob[propertyName];
+      cursor = i + 1;
     }
-    return ob;
+    if (path[i] == ']') { cursor++; i++ }
   }
+  if (path[path.length - 1] != ']') {
+    propertyName = path.substr(cursor, path.length);
+    ob = ob[propertyName];
+  }
+  return ob;
+}
 
+function GetJsonp(url) {
+  var script = document.createElement('script');
+  script.src = url;
+  script.type = 'text/javascript';
+  document.body.appendChild(script);
+}
 
 function _inChecked(tool) {
   var Display = document.getElementById('ResultsDisplay');
@@ -331,7 +343,6 @@ function _pr(text) {
   var Display = document.getElementById('ResultsDisplay');
   Display.appendChild(document.createTextNode(text));
 }
-
 
 function _replaceChar(str, chr, newchr) {
   for (var i = 0; i < str.length; i++) {

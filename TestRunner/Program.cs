@@ -17,7 +17,7 @@ namespace OrmBattle.TestRunner
     private const string TArgMarker = "-t:";
     private const string WArgMarker = "-w";
     private const string JsonArgMarker = "-json:";
-    private const string JsonOutputFile = "../../../Results/json/Output.json";
+    private const string JsonOutputFile = "../../../Result/json/Output.json";
 
     public static string[] Args;
     public static List<string> ToolNames = null;
