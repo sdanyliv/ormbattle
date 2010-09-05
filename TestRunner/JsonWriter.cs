@@ -11,14 +11,18 @@ namespace OrmBattle.TestRunner
     private readonly static Encoding encoding = new UTF8Encoding();
     private static Stream stream;
     private static BinaryWriter writer;
+    private static string EndMarker = "])";
+    private static bool FirstRecord = true;
 
     public static void Write(string value)
     {
       if (stream==null)
         return;
-      stream.Position = stream.Position - 1;
+      stream.Position = stream.Position - EndMarker.Length;
+      if (!FirstRecord) writer.Write(encoding.GetBytes(","));
+      else FirstRecord = false;
       writer.Write(encoding.GetBytes(value));
-      writer.Write(encoding.GetBytes("]"));
+      writer.Write(encoding.GetBytes(EndMarker));
       writer.Flush();
       stream.Flush();
     }
@@ -30,8 +34,7 @@ namespace OrmBattle.TestRunner
     {
       stream = File.Create(fileName);
       writer = new BinaryWriter(stream);
-      writer.Write(encoding.GetBytes(" "));
-      writer.Write("[");
+      writer.Write(encoding.GetBytes("ResultToMemory(["+EndMarker));
       return writer.Join(stream);
     }
   }
