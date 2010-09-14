@@ -432,7 +432,7 @@
       <returns>A new post-compiler.</returns>
     </member>
     <member name="M:Xtensive.Storage.Providers.Index.DomainHandler.BuildMapping">
-      <exception cref="T:Xtensive.Storage.DomainBuilderException">Somethig went wrong.</exception>
+      <exception cref="T:Xtensive.Storage.DomainBuilderException">Something went wrong.</exception>
       <summary>
             Builds the mapping schema.
             </summary>
@@ -794,11 +794,17 @@
             Upgrades storage schema.
             </summary>
     </member>
-    <member name="M:Xtensive.Storage.Providers.Index.Memory.SchemaUpgradeHandler.GetExtractedSchema">
+    <member name="M:Xtensive.Storage.Providers.Index.Memory.SchemaUpgradeHandler.ExtractSchema">
       <summary>
-            Gets the extracted schema.
+            Extracts the schema.
             </summary>
       <returns>The extracted schema.</returns>
+    </member>
+    <member name="M:Xtensive.Storage.Providers.Index.Memory.SchemaUpgradeHandler.ExtractNativeSchema">
+      <summary>
+            Extracts the native schema.
+            </summary>
+      <returns>The native extracted schema.</returns>
     </member>
     <member name="M:Xtensive.Storage.Providers.Index.Memory.SchemaUpgradeHandler.UpgradeSchema(Xtensive.Modelling.Actions.ActionSequence,Xtensive.Storage.Indexing.Model.StorageInfo,Xtensive.Storage.Indexing.Model.StorageInfo)">
       <summary>

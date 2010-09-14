@@ -47,16 +47,11 @@
             </summary>
       <param name="table">The parent table.</param>
       <param name="name">The column name.</param>
-      <param name="columnType">Type of the column.</param>
+      <param name="type">Type of the column.</param>
     </member>
     <member name="P:Xtensive.Storage.Indexing.Model.ColumnInfo.Type">
       <summary>
             Gets or sets the type of the column.
-            </summary>
-    </member>
-    <member name="P:Xtensive.Storage.Indexing.Model.ColumnInfo.OriginalType">
-      <summary>
-            Gets or sets the original type.
             </summary>
     </member>
     <member name="P:Xtensive.Storage.Indexing.Model.ColumnInfo.DefaultValue">
@@ -706,11 +701,6 @@
             Gets or sets the type.
             </summary>
     </member>
-    <member name="P:Xtensive.Storage.Indexing.Model.SequenceInfo.OriginalType">
-      <summary>
-            Gets or sets the original type.
-            </summary>
-    </member>
     <member name="P:Xtensive.Storage.Indexing.Model.SequenceInfo.Current">
       <summary>
             Gets or sets the current sequence value.
@@ -913,28 +903,31 @@
                 </returns>
       <filterpriority>2</filterpriority>
     </member>
-    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type)">
+    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Object)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" /> class.
             </summary>
       <param name="type">Underlying data type.</param>
+      <param name="nativeType">The native type.</param>
     </member>
-    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Nullable{System.Int32})">
+    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Nullable{System.Int32},System.Object)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" /> class.
             </summary>
       <param name="type">Underlying data type.</param>
       <param name="length">The length.</param>
+      <param name="nativeType">The native type.</param>
     </member>
-    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Nullable{System.Int32},System.Globalization.CultureInfo)">
+    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Nullable{System.Int32},System.Globalization.CultureInfo,System.Object)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" /> class.
             </summary>
       <param name="type">Underlying data type.</param>
       <param name="length">The length.</param>
       <param name="culture">The culture.</param>
+      <param name="nativeType">The native type.</param>
     </member>
-    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Object)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" /> class.
             </summary>
@@ -942,23 +935,26 @@
       <param name="length">The length.</param>
       <param name="scale">The scale.</param>
       <param name="precision">The precision.</param>
+      <param name="nativeType">The native type.</param>
     </member>
-    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Boolean)">
+    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Boolean,System.Object)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" /> class.
             </summary>
       <param name="type">Underlying data type.</param>
       <param name="isNullable">Indicates whether type is nullable.</param>
+      <param name="nativeType">The native type.</param>
     </member>
-    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Boolean,System.Nullable{System.Int32})">
+    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Boolean,System.Nullable{System.Int32},System.Object)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" /> class.
             </summary>
       <param name="type">Underlying data type.</param>
       <param name="isNullable">Indicates whether type is nullable.</param>
       <param name="length">The length.</param>
+      <param name="nativeType">The native type.</param>
     </member>
-    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Boolean,System.Nullable{System.Int32},System.Globalization.CultureInfo)">
+    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Boolean,System.Nullable{System.Int32},System.Globalization.CultureInfo,System.Object)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" /> class.
             </summary>
@@ -966,8 +962,9 @@
       <param name="isNullable">Indicates whether type is nullable.</param>
       <param name="length">The length.</param>
       <param name="culture">The culture.</param>
+      <param name="nativeType">The native type.</param>
     </member>
-    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+    <member name="M:Xtensive.Storage.Indexing.Model.TypeInfo.#ctor(System.Type,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Object)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" /> class.
             </summary>
@@ -976,6 +973,7 @@
       <param name="length">The length.</param>
       <param name="scale">The scale.</param>
       <param name="precision">The precision.</param>
+      <param name="nativeType">The native type.</param>
     </member>
     <member name="P:Xtensive.Storage.Indexing.Model.TypeInfo.Undefined">
       <summary>
@@ -1015,6 +1013,11 @@
     <member name="P:Xtensive.Storage.Indexing.Model.TypeInfo.Precision">
       <summary>
             Gets the precision.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Storage.Indexing.Model.TypeInfo.NativeType">
+      <summary>
+            Gets the native type.
             </summary>
     </member>
     <member name="T:Xtensive.Storage.Indexing.Model.ValueColumnRef">
@@ -1063,6 +1066,11 @@
       <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Storage.Indexing.Model.Resources.Strings._Culture">
+      <summary>
+              Looks up a localized string similar to Culture.
             </summary>
     </member>
     <member name="P:Xtensive.Storage.Indexing.Model.Resources.Strings.Comma">
@@ -1168,6 +1176,11 @@
     <member name="P:Xtensive.Storage.Indexing.Model.Resources.Strings.Length">
       <summary>
               Looks up a localized string similar to Length.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Storage.Indexing.Model.Resources.Strings.NativeType">
+      <summary>
+              Looks up a localized string similar to Native type.
             </summary>
     </member>
     <member name="P:Xtensive.Storage.Indexing.Model.Resources.Strings.NullableMark">

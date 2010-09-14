@@ -164,12 +164,31 @@
     <CreateProperty Value="POSTSHARP=200,$(FinalDefineConstants)" Condition="'$(Language)'=='VB'">
       <Output TaskParameter="Value" PropertyName="FinalDefineConstants"/>
     </CreateProperty>
+
+    
   </Target>
+
+  <Target Name="PostSharp20TimestampBeforeCompile">
+    <CreateItem Include="%(IntermediateAssembly.ModifiedTime)">
+      <Output TaskParameter="Include" PropertyName="_PostSharpAssemblyTimestampBeforeCompile"/>
+    </CreateItem>
+  </Target>
+
+  <Target Name="PostSharp20TimestampAfterCompile">
+    <CreateItem Include="%(IntermediateAssembly.ModifiedTime)">
+      <Output TaskParameter="Include" PropertyName="_PostSharpAssemblyTimestampAfterCompile"/>
+    </CreateItem>
+  </Target>
+  
 
 
   <!-- Task PostSharp: executes PostSharp if the PostSharp20Project is defined. -->
   <Target	Name="PostSharp20"
-      Condition="'$(BuildingProject)'=='true' AND '$(PostSharp20Project)'!='' AND '$(SkipPostSharp)'!='True' AND Exists('$(_IntermediateAssemblyFullPath)')"
+      Condition="'$(BuildingProject)'=='true' AND 
+                 '$(PostSharp20Project)'!='' AND 
+                 '$(SkipPostSharp)'!='True' AND 
+                 Exists('$(_IntermediateAssemblyFullPath)') AND 
+                  '$(_PostSharpAssemblyTimestampBeforeCompile)'!='$(_PostSharpAssemblyTimestampAfterCompile)'"
       Inputs="$(PostSharp20Project);@(IntermediateAssembly->'%(FullPath)')"
       Outputs="@(IntermediateAssembly->'%(FullPath).postsharp')"
       DependsOnTargets="_CopyFilesMarkedCopyLocal;ResolveKeySource">
@@ -382,7 +401,9 @@
       PostSharp20InspectConstants;
       PostSharp20InspectReferences;
       PostSharp20DefineConstant;
+      PostSharp20TimestampBeforeCompile;
       $(CompileDependsOn);
+      PostSharp20TimestampAfterCompile;
       PostSharp20
     </CompileDependsOn>
     <BuildDependsOn>

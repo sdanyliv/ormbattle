@@ -4,6 +4,11 @@
     <name>Xtensive.Core.Aspects</name>
   </assembly>
   <members>
+    <member name="T:Xtensive.Core.Aspects.ErrorLog">
+      <summary>
+            Error log used by aspects.
+            </summary>
+    </member>
     <member name="F:Xtensive.Core.Aspects.ErrorLog.MessageSource">
       <summary>
             Gets the message source this log is bound to.
@@ -239,8 +244,13 @@
     </member>
     <member name="T:Xtensive.Core.Aspects.ImplementFactoryMethod">
       <summary>
-            Implements static factory method that calls specified constructor found by its signature.
+            Implements static factory method that calls the specified constructor found by its signature.
             </summary>
+      <remarks>
+            If you're really interested in actual behavior, we recommend you to
+            study the decompiled MSIL code of class having this attribute applied 
+            using .NET Reflector.
+            </remarks>
     </member>
     <member name="M:Xtensive.Core.Aspects.ImplementFactoryMethod.CompileTimeValidate(System.Type)">
       <summary>
@@ -283,6 +293,11 @@
       <summary>
             Replaces auto-property implementation to invocation of property get and set generic handlers.
             </summary>
+      <remarks>
+            If you're really interested in actual behavior, we recommend you to
+            study the decompiled MSIL code of class having this attribute applied 
+            using .NET Reflector.
+            </remarks>
     </member>
     <member name="M:Xtensive.Core.Aspects.ReplaceAutoProperty.CompileTimeValidate(System.Reflection.MethodBase)">
       <summary>
@@ -316,6 +331,11 @@
             Implements protected constructor with a set of specified parameter types.
             Implemented constructor will call the constructor with the same set of arguments from the base type.
             </summary>
+      <remarks>
+            If you're really interested in actual behavior, we recommend you to
+            study the decompiled MSIL code of class having this attribute applied 
+            using .NET Reflector.
+            </remarks>
     </member>
     <member name="M:Xtensive.Core.Aspects.ImplementConstructor.CompileTimeValidate(System.Type)">
       <summary>
@@ -341,8 +361,13 @@
     </member>
     <member name="T:Xtensive.Core.Aspects.ImplementConstructorEpilogue">
       <summary>
-            Implements epilogue call in constructor.
+            Injects epilogue method calls into the constructor.
             </summary>
+      <remarks>
+            If you're really interested in actual behavior, we recommend you to
+            study the decompiled MSIL code of class having this attribute applied 
+            using .NET Reflector.
+            </remarks>
     </member>
     <member name="M:Xtensive.Core.Aspects.ImplementConstructorEpilogue.CompileTimeValidate(System.Reflection.MethodBase)">
       <summary>
@@ -394,6 +419,19 @@
             Marks a method or property as infrastructure method or property.
             No any aspects will be applied to it by default.
             </summary>
+    </member>
+    <member name="T:Xtensive.Core.Aspects.InitializableAttribute">
+      <summary>
+            Injects "initializable" aspect by modifying constructors so that
+            methods with name <see cref="F:Xtensive.Core.Aspects.InitializableAttribute.InitializeMethodName" /> and 
+            <see cref="F:Xtensive.Core.Aspects.InitializableAttribute.InitializationErrorMethodName" /> are invoked by each of them
+            to ensure common post-construction initialization task is completed.
+            </summary>
+      <remarks>
+            If you're really interested in actual behavior, we recommend you to
+            study the decompiled MSIL code of class having this attribute applied 
+            using .NET Reflector.
+            </remarks>
     </member>
     <member name="M:Xtensive.Core.Aspects.NotSupportedAttribute.#ctor">
       <summary>

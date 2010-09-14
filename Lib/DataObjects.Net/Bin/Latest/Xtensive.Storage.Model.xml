@@ -163,6 +163,11 @@
             Gets the <see cref="T:Xtensive.Storage.OnRemoveAction" /> that will be applied on <see cref="P:Xtensive.Storage.Model.AssociationInfo.OwnerType" /> object removal.
             </summary>
     </member>
+    <member name="T:Xtensive.Storage.Model.AssociationInfoCollection">
+      <summary>
+            A collection of <see cref="T:Xtensive.Storage.Model.AssociationInfo" /> objects.
+            </summary>
+    </member>
     <member name="T:Xtensive.Storage.Model.NodeCollection`1">
       <summary>
             A base class for collection of nodes in model.
@@ -261,6 +266,11 @@
     <member name="M:Xtensive.Storage.Model.AssociationInfoCollection.#ctor(Xtensive.Storage.Model.Node,System.String)">
       <inheritdoc />
     </member>
+    <member name="T:Xtensive.Storage.Model.ColumnAttributes">
+      <summary>
+            Column attributes.
+            </summary>
+    </member>
     <member name="T:Xtensive.Storage.Model.ColumnGroup">
       <summary>
             Describes a group of columns that belongs to the specified <see cref="P:Xtensive.Storage.Model.ColumnGroup.TypeInfoRef" />.
@@ -298,6 +308,11 @@
             Gets the indexes of all columns.
             </summary>
     </member>
+    <member name="T:Xtensive.Storage.Model.ColumnIndexMap">
+      <summary>
+            A map of useful column indexes.
+            </summary>
+    </member>
     <member name="M:Xtensive.Storage.Model.ColumnIndexMap.#ctor(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Model.ColumnIndexMap" /> class.
@@ -319,6 +334,11 @@
     <member name="P:Xtensive.Storage.Model.ColumnIndexMap.Regular">
       <summary>
             Gets or sets positions of regular columns (not system and not lazy load) within <see cref="T:Xtensive.Storage.Model.IndexInfo" />.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Model.ColumnInfo">
+      <summary>
+            Describes a single column.
             </summary>
     </member>
     <member name="M:Xtensive.Storage.Model.ColumnInfo.GetComparer(System.Globalization.CultureInfo)">
@@ -429,6 +449,13 @@
             Gets or sets corresponding field.
             </summary>
     </member>
+    <member name="P:Xtensive.Storage.Model.ColumnInfo.ValueType">
+      <summary>
+            Specifies the type that should be used to store the
+            value of the field (available for properties that can be mapped
+            to multiple data types).
+            </summary>
+    </member>
     <member name="P:Xtensive.Storage.Model.ColumnInfo.Length">
       <summary>
             Gets or sets the length of the column.
@@ -444,11 +471,10 @@
             Gets or sets the precision of the column.
             </summary>
     </member>
-    <member name="P:Xtensive.Storage.Model.ColumnInfo.ValueType">
+    <member name="P:Xtensive.Storage.Model.ColumnInfo.DefaultValue">
       <summary>
-            Specifies the type that should be used to store the
-            value of the field (available for properties that can be mapped
-            to multiple data types).
+            Gets or sets the default value for this field.
+            <see langword="null" /> indicates default value is provided automatically.
             </summary>
     </member>
     <member name="P:Xtensive.Storage.Model.ColumnInfo.Attributes">
@@ -464,6 +490,11 @@
     <member name="P:Xtensive.Storage.Model.ColumnInfo.Indexes">
       <summary>
             Gets or the indexes this field is included to.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Model.ColumnInfoCollection">
+      <summary>
+            A collection of <see cref="T:Xtensive.Storage.Model.ColumnInfo" /> objects.
             </summary>
     </member>
     <member name="M:Xtensive.Storage.Model.ColumnInfoCollection.#ctor(Xtensive.Storage.Model.Node,System.String)">
@@ -686,9 +717,19 @@
       <param name="model">The model to convert.</param>
       <returns>A result of conversion.</returns>
     </member>
+    <member name="T:Xtensive.Storage.Model.FullTextColumnInfo">
+      <summary>
+            Describes single column in full-text index.
+            </summary>
+    </member>
     <member name="M:Xtensive.Storage.Model.FullTextColumnInfo.#ctor(Xtensive.Storage.Model.ColumnInfo)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Model.FullTextColumnInfo" /> class.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Model.FullTextColumnInfoCollection">
+      <summary>
+            A collection of <see cref="T:Xtensive.Storage.Model.FullTextColumnInfo" /> objects.
             </summary>
     </member>
     <member name="M:Xtensive.Storage.Model.FullTextColumnInfoCollection.Insert(System.Int32,Xtensive.Storage.Model.FullTextColumnInfo)">
@@ -725,7 +766,7 @@
     </member>
     <member name="T:Xtensive.Storage.Model.FullTextIndexInfo">
       <summary>
-            Describes a full-text index in terms of storage.
+            Describes a single full-text index.
             </summary>
     </member>
     <member name="M:Xtensive.Storage.Model.FullTextIndexInfo.Lock(System.Boolean)">
@@ -748,6 +789,11 @@
     <member name="P:Xtensive.Storage.Model.FullTextIndexInfo.Columns">
       <summary>
             Gets the full-text index columns.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Model.FullTextIndexInfoCollection">
+      <summary>
+            A collection of <see cref="T:Xtensive.Storage.Model.FullTextIndexInfo" /> objects.
             </summary>
     </member>
     <member name="M:Xtensive.Storage.Model.FullTextIndexInfoCollection.TryGetValue(Xtensive.Storage.Model.TypeInfo,Xtensive.Storage.Model.FullTextIndexInfo@)">
@@ -837,6 +883,16 @@
     <member name="P:Xtensive.Storage.Model.SequenceInfo.Increment">
       <summary>
             Gets or sets the increment value.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Model.FieldAttributes">
+      <summary>
+            Field attributes.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Model.FieldInfo">
+      <summary>
+            Describes a single field.
             </summary>
     </member>
     <member name="F:Xtensive.Storage.Model.FieldInfo.NoFieldId">
@@ -943,6 +999,21 @@
             Gets a value indicating whether this property is system.
             </summary>
     </member>
+    <member name="P:Xtensive.Storage.Model.FieldInfo.SkipVersion">
+      <summary>
+            Gets a value indicating whether this property is not used within an entity version.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Storage.Model.FieldInfo.ManualVersion">
+      <summary>
+            Gets a value indicating whether this property belongs to an entity version. Updated manually.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Storage.Model.FieldInfo.AutoVersion">
+      <summary>
+            Gets a value indicating whether this property belongs to an entity version. Updated automatically.
+            </summary>
+    </member>
     <member name="P:Xtensive.Storage.Model.FieldInfo.IsTypeId">
       <summary>
             Gets a value indicating whether this property contains type identifier.
@@ -1018,11 +1089,6 @@
             Gets or sets a value indicating whether property will be loaded on demand.
             </summary>
     </member>
-    <member name="P:Xtensive.Storage.Model.FieldInfo.IsVersion">
-      <summary>
-            Gets or sets a value indicating whether property is part of version.
-            </summary>
-    </member>
     <member name="P:Xtensive.Storage.Model.FieldInfo.OriginalName">
       <summary>
             Gets or sets original name of this instance.
@@ -1051,6 +1117,12 @@
     <member name="P:Xtensive.Storage.Model.FieldInfo.Precision">
       <summary>
             Gets or sets the precision of the field.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Storage.Model.FieldInfo.DefaultValue">
+      <summary>
+            Gets or sets the default value for this field.
+            <see langword="null" /> indicates default value is provided automatically.
             </summary>
     </member>
     <member name="P:Xtensive.Storage.Model.FieldInfo.Attributes">
@@ -1116,6 +1188,11 @@
             Gets field columns.
             </summary>
     </member>
+    <member name="T:Xtensive.Storage.Model.FieldInfoCollection">
+      <summary>
+            A collection of <see cref="T:Xtensive.Storage.Model.FieldInfo" /> objects.
+            </summary>
+    </member>
     <member name="M:Xtensive.Storage.Model.FieldInfoCollection.Find(Xtensive.Storage.Model.FieldAttributes)">
       <summary>
             Finds the items from initial collection according to specified filter <paramref name="criteria" />.
@@ -1139,13 +1216,23 @@
     <member name="M:Xtensive.Storage.Model.FieldInfoCollection.#ctor(Xtensive.Storage.Model.Node,System.String)">
       <inheritdoc />
     </member>
+    <member name="T:Xtensive.Storage.Model.FieldMap">
+      <summary>
+            Maps type fields to interface fields and vice versa.
+            </summary>
+    </member>
     <member name="T:Xtensive.Storage.Model.HierarchyInfoCollection">
       <summary>
-            A collection of hierarchies.
+            A collection of <see cref="T:Xtensive.Storage.Model.HierarchyInfo" /> objects.
             </summary>
     </member>
     <member name="M:Xtensive.Storage.Model.HierarchyInfoCollection.#ctor(Xtensive.Storage.Model.Node,System.String)">
       <inheritdoc />
+    </member>
+    <member name="T:Xtensive.Storage.Model.HierarchyInfo">
+      <summary>
+            Describes a single persistent type hierarchy.
+            </summary>
     </member>
     <member name="M:Xtensive.Storage.Model.HierarchyInfo.UpdateState(System.Boolean)">
       <summary>
@@ -1193,6 +1280,11 @@
     <member name="P:Xtensive.Storage.Model.HierarchyInfo.TypeDiscriminatorMap">
       <summary>
             Gets the type discriminator.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Model.IndexAttributes">
+      <summary>
+            Index attributes.
             </summary>
     </member>
     <member name="T:Xtensive.Storage.Model.IndexInfo">
@@ -2082,6 +2174,11 @@
             Gets a value indicating whether underlying type is generic.
             </summary>
     </member>
+    <member name="T:Xtensive.Storage.Model.TypeDiscriminatorMap">
+      <summary>
+            Type discriminator map.
+            </summary>
+    </member>
     <member name="M:Xtensive.Storage.Model.TypeDiscriminatorMap.System#Collections#IEnumerable#GetEnumerator">
       <summary>
                     Returns an enumerator that iterates through the collection.
@@ -2099,6 +2196,11 @@
                     A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.
                 </returns>
       <filterpriority>1</filterpriority>
+    </member>
+    <member name="T:Xtensive.Storage.Model.TypeIndexInfoCollection">
+      <summary>
+            A collection of indexes that belongs to a particular <see cref="T:Xtensive.Storage.Model.TypeInfo" />.
+            </summary>
     </member>
     <member name="M:Xtensive.Storage.Model.TypeIndexInfoCollection.UpdateState(System.Boolean)">
       <inheritdoc />
@@ -2253,6 +2355,11 @@
     <member name="P:Xtensive.Storage.Model.Resources.Strings.ExUnableToFindMasterAssociation">
       <summary>
               Looks up a localized string similar to Unable to find master association of association '{0}'.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Storage.Model.Resources.Strings.LogExErrorSettingDefaultValueXForColumnYInTypeZ">
+      <summary>
+              Looks up a localized string similar to Error setting default value {0} for column '{1}' in type '{2}'. Most likely, its type is incorrect..
             </summary>
     </member>
     <member name="P:Xtensive.Storage.Model.Resources.Strings.NodeCollectionFullNameFormat">
@@ -2839,9 +2946,10 @@
     <member name="M:Xtensive.Storage.Model.TypeInfoCollection.OnInserted(Xtensive.Storage.Model.TypeInfo,System.Int32)">
       <inheritdoc />
     </member>
-    <member name="M:Xtensive.Storage.Model.TypeInfoCollection.BuildTypeIdIndex">
+    <member name="M:Xtensive.Storage.Model.TypeInfoCollection.RebuildTypeIdIndex">
       <summary>
-            Generates the type ids.
+            Generates index allowing to quickly find 
+            the type by its <see cref="P:Xtensive.Storage.Model.TypeInfo.TypeId" />.
             </summary>
     </member>
     <member name="M:Xtensive.Storage.Model.TypeInfoCollection.RegisterInheritance(Xtensive.Storage.Model.TypeInfo,Xtensive.Storage.Model.TypeInfo)">

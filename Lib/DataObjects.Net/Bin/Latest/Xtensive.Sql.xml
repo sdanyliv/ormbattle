@@ -4,11 +4,31 @@
     <name>Xtensive.Sql</name>
   </assembly>
   <members>
+    <member name="T:Xtensive.Sql.Compiler.Node">
+      <summary>
+            Node in SQL DOM query model.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Sql.Compiler.SqlCompilerNamingScope">
+      <summary>
+            SQL compiler naming scope.
+            </summary>
+    </member>
     <member name="M:Xtensive.Sql.Compiler.SqlCompilerNamingScope.Dispose">
       <summary>
                     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
                 </summary>
       <filterpriority>2</filterpriority>
+    </member>
+    <member name="T:Xtensive.Sql.Compiler.ContainerNode">
+      <summary>
+            Container node in SQL DOM query model.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Sql.Compiler.SqlParameterNameProvider">
+      <summary>
+            SQL parameter name provider.
+            </summary>
     </member>
     <member name="M:Xtensive.Sql.Compiler.SqlParameterNameProvider.GetName(System.Object)">
       <summary>
@@ -56,6 +76,11 @@
       <param name="configuration">The postcompiler configuration.</param>
       <returns>The SQL text command.</returns>
     </member>
+    <member name="T:Xtensive.Sql.Compiler.SqlCompiler">
+      <summary>
+            Base class for any SQL compiler.
+            </summary>
+    </member>
     <member name="T:Xtensive.Sql.SqlDriverBound">
       <summary>
             A <see cref="T:Xtensive.Sql.SqlDriver" /> bound object.
@@ -72,11 +97,21 @@
             Gets the driver.
             </summary>
     </member>
+    <member name="T:Xtensive.Sql.ISqlVisitor">
+      <summary>
+            A contract for visitor of SQL DOM query model.
+            </summary>
+    </member>
     <member name="M:Xtensive.Sql.Compiler.SqlCompiler.#ctor(Xtensive.Sql.SqlDriver)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Sql.Compiler.SqlCompiler" /> class.
             </summary>
       <param name="driver">The driver.</param>
+    </member>
+    <member name="T:Xtensive.Sql.Compiler.SqlCompilerContext">
+      <summary>
+            SQL compiler context.
+            </summary>
     </member>
     <member name="T:Xtensive.Sql.Compiler.SqlCompilerConfiguration">
       <summary>
@@ -101,11 +136,26 @@
             Gets or sets the parameter prefix.
             </summary>
     </member>
+    <member name="T:Xtensive.Sql.Compiler.SqlCompilerOutputScope">
+      <summary>
+            SQL compiler output scope.
+            </summary>
+    </member>
     <member name="M:Xtensive.Sql.Compiler.SqlCompilerOutputScope.Dispose">
       <summary>
                     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
                 </summary>
       <filterpriority>2</filterpriority>
+    </member>
+    <member name="T:Xtensive.Sql.Compiler.SqlPostCompilerConfiguration">
+      <summary>
+        <see cref="T:Xtensive.Sql.Compiler.PostCompiler" /> configuration.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Sql.Compiler.SqlTranslator">
+      <summary>
+            SQL translator.
+            </summary>
     </member>
     <member name="M:Xtensive.Sql.Compiler.SqlTranslator.Initialize">
       <summary>
@@ -168,9 +218,19 @@
             Gets the parameter prefix.
             </summary>
     </member>
+    <member name="T:Xtensive.Sql.Compiler.SqlTableNameProvider">
+      <summary>
+            Table name provider.
+            </summary>
+    </member>
     <member name="T:Xtensive.Sql.SqlNode">
       <summary>
             Represents any node in Sql expression tree.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Sql.ISqlNode">
+      <summary>
+            A contract for server-independent node in SQL DOM query model.
             </summary>
     </member>
     <member name="M:Xtensive.Sql.SqlNode.Clone">
@@ -190,6 +250,11 @@
     <member name="T:Xtensive.Sql.SqlStatement">
       <summary>
             Base class for SQL statements.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Sql.ISqlCompileUnit">
+      <summary>
+            A contract for server-independent  SQL compilation unit.
             </summary>
     </member>
     <member name="T:Xtensive.Sql.Dml.SqlExpression">
@@ -429,6 +494,11 @@
             </summary>
       <value>
       </value>
+    </member>
+    <member name="T:Xtensive.Sql.ISqlQueryExpression">
+      <summary>
+            A contract for server-independent expression in SQL DOM query model.
+            </summary>
     </member>
     <member name="T:Xtensive.Sql.Info.FullTextSearchInfo">
       <summary>
@@ -745,9 +815,14 @@
             Determines whether default value has been specified.
             </summary>
     </member>
+    <member name="T:Xtensive.Sql.Model.FullTextIndex">
+      <summary>
+            Represents full-text index.
+            </summary>
+    </member>
     <member name="T:Xtensive.Sql.Model.Index">
       <summary>
-            Represents an Index object.
+            Represents an index.
             </summary>
     </member>
     <member name="T:Xtensive.Sql.Model.DataTableNode">
@@ -1504,12 +1579,12 @@
             A factory for SQL DDL operations.
             </summary>
     </member>
-    <member name="T:Xtensive.Sql.ValueTypeMapping.DataRangeValidator">
+    <member name="T:Xtensive.Sql.ValueRangeValidator">
       <summary>
-            A validator for primitive types.
+            A range validator for primitive types.
             </summary>
     </member>
-    <member name="M:Xtensive.Sql.ValueTypeMapping.DataRangeValidator.Validate``1(``0,Xtensive.Sql.Info.ValueRange{``0})">
+    <member name="M:Xtensive.Sql.ValueRangeValidator.Validate``1(``0,Xtensive.Sql.Info.ValueRange{``0})">
       <summary>
             Ensures that the specified value is in <paramref name="allowedRange" />.
             </summary>
@@ -1517,7 +1592,7 @@
       <param name="value">The value.</param>
       <param name="allowedRange">The allowed range.</param>
     </member>
-    <member name="M:Xtensive.Sql.ValueTypeMapping.DataRangeValidator.Correct``1(``0,Xtensive.Sql.Info.ValueRange{``0})">
+    <member name="M:Xtensive.Sql.ValueRangeValidator.Correct``1(``0,Xtensive.Sql.Info.ValueRange{``0})">
       <summary>
             Corrects the specified value to fall into the <paramref name="allowedRange" />.
             </summary>
@@ -1526,7 +1601,12 @@
       <param name="allowedRange">The allowed range.</param>
       <returns>Corrected value.</returns>
     </member>
-    <member name="M:Xtensive.Sql.ValueTypeMapping.TypeMapper.Initialize">
+    <member name="T:Xtensive.Sql.TypeMapper">
+      <summary>
+            Abstract base class for any value (data) type mapper.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Sql.TypeMapper.Initialize">
       <summary>
             Initializes this instance.
             </summary>
@@ -4062,6 +4142,16 @@
             Represents a Sql parameter.
             </summary>
     </member>
+    <member name="T:Xtensive.Sql.ISqlCursorFetchTarget">
+      <summary>
+            A contract for server-independent cursor fetch target.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Sql.ISqlLValue">
+      <summary>
+            A contract for server-independent LValue in SQL DOM query model.
+            </summary>
+    </member>
     <member name="T:Xtensive.Sql.Dml.SqlSubQuery">
       <summary>
             Represents sub query expression.
@@ -4919,7 +5009,7 @@
     </member>
     <member name="T:Xtensive.Sql.Compiler.SqlCompilerException">
       <summary>
-            A <see cref="T:Xtensive.Sql.Compiler.SqlCompiler" /> exception
+            An <see cref="T:Xtensive.Sql.Compiler.SqlCompiler" /> exception.
             </summary>
     </member>
     <member name="M:Xtensive.Sql.Compiler.SqlCompilerException.#ctor(System.String)">
@@ -6673,12 +6763,12 @@
     </member>
     <member name="T:Xtensive.Sql.IBinaryLargeObject">
       <summary>
-            A server-independed wrapper for using native binary large objects (BLOBs) as query parameters.
+            A contract for server-independent native binary large objects (BLOBs) query parameter.
             </summary>
     </member>
     <member name="T:Xtensive.Sql.ILargeObject">
       <summary>
-            A server-independed wrapper for using native large objects (LOBs) as query parameters.
+            A contract for server-independent native large objects (LOBs) query parameter.
             </summary>
     </member>
     <member name="M:Xtensive.Sql.ILargeObject.Nullify">
@@ -6723,7 +6813,7 @@
     </member>
     <member name="T:Xtensive.Sql.ICharacterLargeObject">
       <summary>
-            A server-independed wrapper for using character large objects (CLOBs) as query parameters.
+            A contract for server-independent character large objects (CLOBs) query parameter.
             </summary>
     </member>
     <member name="M:Xtensive.Sql.ICharacterLargeObject.Write(System.Char[],System.Int32,System.Int32)">
@@ -6733,6 +6823,16 @@
       <param name="buffer">The buffer.</param>
       <param name="offset">The offset.</param>
       <param name="count">The length.</param>
+    </member>
+    <member name="T:Xtensive.Sql.TypeMapping">
+      <summary>
+            Value (data) type mapping.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Sql.TypeMappingCollection">
+      <summary>
+            A collection of <see cref="T:Xtensive.Sql.TypeMapping" /> objects.
+            </summary>
     </member>
   </members>
 </doc>

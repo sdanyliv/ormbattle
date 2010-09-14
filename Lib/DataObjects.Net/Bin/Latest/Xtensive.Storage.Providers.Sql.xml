@@ -96,38 +96,6 @@
             </summary>
       <param name="descriptor">The descriptor.</param>
     </member>
-    <member name="T:Xtensive.Storage.Providers.Sql.Servers.SqlServer.SchemaUpgradeHandler">
-      <summary>
-            A schema upgrade handler specific to Microsoft SQL Server RDBMS.
-            </summary>
-    </member>
-    <member name="T:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler">
-      <summary>
-            Upgrades storage schema.
-            </summary>
-    </member>
-    <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.UpgradeSchema(Xtensive.Modelling.Actions.ActionSequence,Xtensive.Storage.Indexing.Model.StorageInfo,Xtensive.Storage.Indexing.Model.StorageInfo)">
-      <summary>
-            Upgrades the storage.
-            </summary>
-      <param name="upgradeActions">The upgrade actions.</param>
-      <param name="sourceSchema">The source schema.</param>
-      <param name="targetSchema">The target schema.</param>
-    </member>
-    <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.GetExtractedSchema">
-      <summary>
-            Gets the extracted schema.
-            </summary>
-      <returns>The extracted schema.</returns>
-    </member>
-    <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.CreateTypeInfo(System.Type,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
-      <summary>
-            Creates the type info.
-            </summary>
-      <param name="type">The type.</param>
-      <param name="length">The length.</param>
-      <returns>Newly created <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" />.</returns>
-    </member>
     <member name="T:Xtensive.Storage.Providers.Sql.SessionHandler">
       <summary>
         <see cref="T:Xtensive.Storage.Session" />-level handler for SQL storages.
@@ -728,6 +696,26 @@
       <param name="parameterContext">A value for <see cref="F:Xtensive.Storage.Providers.Sql.SqlQueryTask.ParameterContext" />.</param>
       <param name="output">A value for <see cref="F:Xtensive.Storage.Providers.Sql.SqlQueryTask.Output" />.</param>
     </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.NonTransactionalStage">
+      <summary>
+            Enumerates non-transactional stages.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Storage.Providers.Sql.NonTransactionalStage.None">
+      <summary>
+            None.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Storage.Providers.Sql.NonTransactionalStage.Prologue">
+      <summary>
+            Prologue.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Storage.Providers.Sql.NonTransactionalStage.Epilogue">
+      <summary>
+            Epilogue.
+            </summary>
+    </member>
     <member name="T:Xtensive.Storage.Providers.Sql.Servers.SqlServerCe.DomainHandler">
       <summary>
             A domain handler specific to Microsoft SQL Server RDBMS.
@@ -783,7 +771,7 @@
       <returns>A newly created <see cref="T:Xtensive.Storage.Rse.PreCompilation.Correction.ProviderOrderingDescriptor" />.</returns>
     </member>
     <member name="M:Xtensive.Storage.Providers.Sql.DomainHandler.BuildMapping">
-      <exception cref="T:Xtensive.Storage.DomainBuilderException">Somethig went wrong.</exception>
+      <exception cref="T:Xtensive.Storage.DomainBuilderException">Something went wrong.</exception>
       <summary>
             Builds the mapping schema.
             </summary>
@@ -1071,6 +1059,16 @@
             Gets the <see cref="T:Xtensive.Storage.Providers.HandlerAccessor" /> object providing access to available storage handlers.
             </summary>
     </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.DbDataReaderAccessor">
+      <summary>
+            Provider-level <see cref="T:System.Data.Common.DbDataReader" /> accessor.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.Driver">
+      <summary>
+            SQL provider driver.
+            </summary>
+    </member>
     <member name="T:Xtensive.Storage.Providers.Sql.SimpleCommandProcessor">
       <summary>
             A command processor that simply executes all incoming commands immediately.
@@ -1153,7 +1151,7 @@
             A binding of a parameter for <see cref="T:Xtensive.Storage.Providers.Sql.QueryRequest" />.
             </summary>
     </member>
-    <member name="M:Xtensive.Storage.Providers.Sql.ParameterBinding.#ctor(Xtensive.Sql.ValueTypeMapping.TypeMapping)">
+    <member name="M:Xtensive.Storage.Providers.Sql.ParameterBinding.#ctor(Xtensive.Sql.TypeMapping)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Providers.Sql.ParameterBinding" /> class.
             </summary>
@@ -1168,7 +1166,7 @@
             Gets the parameter reference.
             </summary>
     </member>
-    <member name="M:Xtensive.Storage.Providers.Sql.QueryParameterBinding.#ctor(System.Func{System.Object},Xtensive.Sql.ValueTypeMapping.TypeMapping,Xtensive.Storage.Providers.Sql.QueryParameterBindingType)">
+    <member name="M:Xtensive.Storage.Providers.Sql.QueryParameterBinding.#ctor(System.Func{System.Object},Xtensive.Sql.TypeMapping,Xtensive.Storage.Providers.Sql.QueryParameterBindingType)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Providers.Sql.QueryParameterBinding" /> class.
             </summary>
@@ -1176,7 +1174,7 @@
       <param name="typeMapping">Value for <see cref="P:Xtensive.Storage.Providers.Sql.ParameterBinding.TypeMapping" />.</param>
       <param name="bindingType">Value for <see cref="P:Xtensive.Storage.Providers.Sql.QueryParameterBinding.BindingType" />.</param>
     </member>
-    <member name="M:Xtensive.Storage.Providers.Sql.QueryParameterBinding.#ctor(System.Func{System.Object},Xtensive.Sql.ValueTypeMapping.TypeMapping)">
+    <member name="M:Xtensive.Storage.Providers.Sql.QueryParameterBinding.#ctor(System.Func{System.Object},Xtensive.Sql.TypeMapping)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Providers.Sql.QueryParameterBinding" /> class.
             .
@@ -1238,6 +1236,59 @@
             <see cref="P:Xtensive.Storage.Providers.Sql.QueryParameterBinding.ValueAccessor" /> returns a collection of <see cref="T:Xtensive.Core.Tuples.Tuple" />s.
             <see cref="P:Xtensive.Storage.Providers.Sql.ParameterBinding.TypeMapping" /> is ignored in this case.
             </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.Mappings.ColumnMapping">
+      <summary>
+            Defines column mapping.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.Mappings.SecondaryIndexMapping">
+      <summary>
+            Defines secondary index mapping.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.Mappings.ModelMapping">
+      <summary>
+            Defines model mapping.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.Mappings.PrimaryIndexMapping">
+      <summary>
+            Defines primary index mapping.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler">
+      <summary>
+            Upgrades storage schema.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.UpgradeSchema(Xtensive.Modelling.Actions.ActionSequence,Xtensive.Storage.Indexing.Model.StorageInfo,Xtensive.Storage.Indexing.Model.StorageInfo)">
+      <summary>
+            Upgrades the storage.
+            </summary>
+      <param name="upgradeActions">The upgrade actions.</param>
+      <param name="sourceSchema">The source schema.</param>
+      <param name="targetSchema">The target schema.</param>
+    </member>
+    <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.ExtractSchema">
+      <summary>
+            Extracts the schema.
+            </summary>
+      <returns>The extracted schema.</returns>
+    </member>
+    <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.ExtractNativeSchema">
+      <summary>
+            Extracts the native schema.
+            </summary>
+      <returns>The native extracted schema.</returns>
+    </member>
+    <member name="M:Xtensive.Storage.Providers.Sql.SchemaUpgradeHandler.CreateTypeInfo(System.Type,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+      <summary>
+            Creates the type info.
+            </summary>
+      <param name="type">The type.</param>
+      <param name="length">The length.</param>
+      <returns>Newly created <see cref="T:Xtensive.Storage.Indexing.Model.TypeInfo" />.</returns>
     </member>
     <member name="T:Xtensive.Storage.Providers.Sql.Servers.Oracle.DomainHandler">
       <summary>
@@ -1690,6 +1741,16 @@
             {1}.
              </summary>
     </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.SqlTemporaryDataProvider">
+      <summary>
+            Abstract base class for any SQL temporary data provider.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.SqlProvider">
+      <summary>
+            Unified SQL provider implementation (<see cref="T:Xtensive.Storage.Rse.Providers.ExecutableProvider" />).
+            </summary>
+    </member>
     <member name="M:Xtensive.Storage.Providers.Sql.SqlProvider.OnEnumerate(Xtensive.Storage.Rse.Providers.EnumerationContext)">
       <summary>
             Gets the sequence this provider provides in the specified <see cref="T:Xtensive.Storage.Rse.Providers.EnumerationContext" />.
@@ -2075,7 +2136,7 @@
             A binding of a parameter for <see cref="T:Xtensive.Storage.Providers.Sql.PersistRequest" />.
             </summary>
     </member>
-    <member name="M:Xtensive.Storage.Providers.Sql.PersistParameterBinding.#ctor(System.Int32,Xtensive.Sql.ValueTypeMapping.TypeMapping,Xtensive.Storage.Providers.Sql.PersistParameterBindingType)">
+    <member name="M:Xtensive.Storage.Providers.Sql.PersistParameterBinding.#ctor(System.Int32,Xtensive.Sql.TypeMapping,Xtensive.Storage.Providers.Sql.PersistParameterBindingType)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Providers.Sql.PersistParameterBinding" /> class.
             </summary>
@@ -2083,7 +2144,7 @@
       <param name="typeMapping">The type mapping.</param>
       <param name="bindingType">Type of the binding.</param>
     </member>
-    <member name="M:Xtensive.Storage.Providers.Sql.PersistParameterBinding.#ctor(System.Int32,Xtensive.Sql.ValueTypeMapping.TypeMapping)">
+    <member name="M:Xtensive.Storage.Providers.Sql.PersistParameterBinding.#ctor(System.Int32,Xtensive.Sql.TypeMapping)">
       <summary>
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Providers.Sql.PersistParameterBinding" /> class.
             </summary>
@@ -2167,6 +2228,11 @@
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Providers.Sql.PersistRequestBuilder" /> class.
             </summary>
     </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.PersistRequestBuilderContext">
+      <summary>
+        <see cref="T:Xtensive.Storage.Providers.Sql.PersistRequestBuilder" /> context.
+            </summary>
+    </member>
     <member name="T:Xtensive.Storage.Providers.Sql.PersistRequestBuilderTask">
       <summary>
             A task for <see cref="T:Xtensive.Storage.Providers.Sql.PersistRequestBuilder" />.
@@ -2230,6 +2296,11 @@
     <member name="F:Xtensive.Storage.Providers.Sql.PersistRequestKind.Update">
       <summary>
             Update request.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Providers.Sql.SqlStoreProvider">
+      <summary>
+            Default implementation of SQL temporary data provider.
             </summary>
     </member>
     <member name="T:Xtensive.Storage.Providers.Sql.TemporaryTableDescriptor">

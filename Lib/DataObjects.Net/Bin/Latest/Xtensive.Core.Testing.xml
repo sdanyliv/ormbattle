@@ -175,6 +175,50 @@
             </summary>
       <param name="provider">Instance generator provider this generator is bound to.</param>
     </member>
+    <member name="T:Xtensive.Core.Testing.InstanceGenerationUtils`1">
+      <summary>
+            Helper type providing instance generation facilities.
+            </summary>
+      <typeparam name="T">The type of generated items.</typeparam>
+    </member>
+    <member name="M:Xtensive.Core.Testing.InstanceGenerationUtils`1.GetPairs(System.Random,System.Double)">
+      <summary>
+            Generates the sequence of pairs of type <typeparamref name="T" />
+            using default instance generator (see <see cref="P:Xtensive.Core.Testing.InstanceGeneratorProvider.Default" />).
+            </summary>
+      <param name="random">The random generator to use.</param>
+      <param name="equalityProbability">The item equality probability.</param>
+      <returns>Described sequence.</returns>
+    </member>
+    <member name="M:Xtensive.Core.Testing.InstanceGenerationUtils`1.GetPairs(Xtensive.Core.Testing.IInstanceGenerator{`0},System.Random,System.Double)">
+      <summary>
+            Generates the sequence of pairs of type <typeparamref name="T" />
+            using specified instance generator.
+            </summary>
+      <param name="generator">The instance generator to use.</param>
+      <param name="random">The random generator to use.</param>
+      <param name="equalityProbability">The item equality probability.</param>
+      <returns>Described sequence.</returns>
+    </member>
+    <member name="M:Xtensive.Core.Testing.InstanceGenerationUtils`1.GetInstances(System.Random,System.Double)">
+      <summary>
+            Generates the sequence of instances of type <typeparamref name="T" />
+            using default instance generator (see <see cref="P:Xtensive.Core.Testing.InstanceGeneratorProvider.Default" />).
+            </summary>
+      <param name="random">The random generator to use.</param>
+      <param name="equalityProbability">The subsequent item equality probability.</param>
+      <returns>Described sequence.</returns>
+    </member>
+    <member name="M:Xtensive.Core.Testing.InstanceGenerationUtils`1.GetInstances(Xtensive.Core.Testing.IInstanceGenerator{`0},System.Random,System.Double)">
+      <summary>
+            Generates the sequence of instances of type <typeparamref name="T" />
+            using specified instance generator.
+            </summary>
+      <param name="generator">The instance generator to use.</param>
+      <param name="random">The random generator to use.</param>
+      <param name="equalityProbability">The subsequent item equality probability.</param>
+      <returns>Described sequence.</returns>
+    </member>
     <member name="T:Xtensive.Core.Testing.TestHelper">
       <summary>
             Test helper class.
@@ -319,6 +363,42 @@
     <member name="P:Xtensive.Core.Testing.Resources.Strings.TestFolderNameFormat">
       <summary>
               Looks up a localized string similar to XtensiveUnitTest_{0:D2}.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Core.Testing.SeedVariatorType">
+      <summary>
+            Describes seed variation strategy for random sequence.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Core.Testing.SeedVariatorType.Default">
+      <summary>
+            Default strategy.
+            The same as <see cref="F:Xtensive.Core.Testing.SeedVariatorType.None" />.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Core.Testing.SeedVariatorType.None">
+      <summary>
+            No seed variation.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Core.Testing.SeedVariatorType.CallingType">
+      <summary>
+            Seed determined by the calling type.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Core.Testing.SeedVariatorType.CallingMethod">
+      <summary>
+            Seed determined by the calling method.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Core.Testing.SeedVariatorType.CallingAssembly">
+      <summary>
+            Seed determined by the calling assembly.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Core.Testing.SeedVariatorType.Day">
+      <summary>
+            Seed determined by the current day (ie. truncated part of <see cref="P:System.DateTime.Now" />).
             </summary>
     </member>
   </members>
