@@ -1130,6 +1130,13 @@
             Gets the set of measures.
             </summary>
     </member>
+    <member name="T:Xtensive.Indexing.IndexConfiguration`2">
+      <summary>
+            Defines index configuration.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TItem">The type of the item.</typeparam>
+    </member>
     <member name="T:Xtensive.Indexing.IndexConfigurationBase`2">
       <summary>
             Index configuration. 
@@ -1521,6 +1528,13 @@
             Gets key of the page.
             </summary>
     </member>
+    <member name="T:Xtensive.Indexing.Implementation.DescriptorPage`2">
+      <summary>
+            Base class for index descriptor page.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TItem">The type of the item.</typeparam>
+    </member>
     <member name="M:Xtensive.Indexing.Implementation.DescriptorPage`2.AddMeasure(Xtensive.Indexing.Measures.IMeasure{`1})">
       <summary>
             Adds a <paramref name="measure" /> to the index.
@@ -1678,7 +1692,7 @@
     </member>
     <member name="T:Xtensive.Indexing.Implementation.IIndexPageProvider`2">
       <summary>
-        <see cref="!:Index&lt;TKey,TItem&gt;" /> page provider - creates, stores and loads pages.
+        <see cref="T:Xtensive.Indexing.Index`2" /> page provider - creates, stores and loads pages.
             </summary>
       <typeparam name="TKey">Key type.</typeparam>
       <typeparam name="TItem">Value type.</typeparam>
@@ -1870,9 +1884,59 @@
             </summary>
       <param name="index">The index of the item.</param>
     </member>
+    <member name="T:Xtensive.Indexing.MeasuredItem`2">
+      <summary>
+            Describes measured item.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TValue">The type of the value.</typeparam>
+    </member>
+    <member name="F:Xtensive.Indexing.MeasuredItem`2.KeyIsNew">
+      <summary>
+            Indicates whether key is new.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Indexing.MeasuredItem`2.Key">
+      <summary>
+            The key.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Indexing.MeasuredItem`2.Value">
+      <summary>
+            The value.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Indexing.MeasuredItem`2.Equals(System.Object)">
+      <summary>
+                    Indicates whether this instance and a specified object are equal.
+                </summary>
+      <returns>true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false.
+                </returns>
+      <param name="obj">
+                    Another object to compare to. 
+                </param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:Xtensive.Indexing.MeasuredItem`2.GetHashCode">
+      <summary>
+                    Returns the hash code for this instance.
+                </summary>
+      <returns>
+                    A 32-bit signed integer that is the hash code for this instance.
+                </returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:Xtensive.Indexing.MeasuredItem`2.#ctor(`0,`1,System.Boolean)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Indexing.MeasuredItem`2" /> class.
+            </summary>
+      <param name="key">The key.</param>
+      <param name="value">The value.</param>
+      <param name="keyIsNew">Indicates whether key is new.</param>
+    </member>
     <member name="T:Xtensive.Indexing.Providers.IndexPageProviderBase`2">
       <summary>
-            Default base class for <see cref="!:Index&lt;TKey,TItem&gt;" /> page providers.
+            Default base class for <see cref="T:Xtensive.Indexing.Index`2" /> page providers.
             </summary>
       <typeparam name="TKey">Key type.</typeparam>
       <typeparam name="TItem">Value type.</typeparam>
@@ -2687,6 +2751,13 @@
             </summary>
       <value>The segment configurations.</value>
     </member>
+    <member name="T:Xtensive.Indexing.Composite.IndexSegmentSet`2">
+      <summary>
+            Describes a set of segments composing the composite index.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TItem">The type of the item.</typeparam>
+    </member>
     <member name="M:Xtensive.Indexing.Composite.IndexSegmentSet`2.GetItemName(Xtensive.Indexing.Composite.IndexSegment{`0,`1})">
       <summary>
             Gets the name of the <paramref name="item" />.
@@ -3137,6 +3208,13 @@
     <member name="P:Xtensive.Indexing.Entire`1.HasValue">
       <inheritdoc />
     </member>
+    <member name="T:Xtensive.Indexing.Composite.IndexSegment`2">
+      <summary>
+            Describes segment of composite index.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TItem">The type of the item.</typeparam>
+    </member>
     <member name="M:Xtensive.Indexing.Composite.IndexSegment`2.GetItem(`0)">
       <summary>
             Gets the item by its key.
@@ -3583,7 +3661,7 @@
     </member>
     <member name="T:Xtensive.Indexing.IHasRange`2">
       <summary>
-            Should be implemented by an object that contains <see cref="!:Range&lt;T&gt;" />.
+            Should be implemented by an object that contains <see cref="T:Xtensive.Indexing.Range`1" />.
             </summary>
       <typeparam name="TObject">The type of object containing the range.</typeparam>
       <typeparam name="TPoint">The type of range point.</typeparam>
@@ -3644,6 +3722,111 @@
             Performs the tasks associated with freeing, releasing, or resetting unmanaged resources
             or associated <see cref="T:System.IDisposable" /> objects.
             </summary>
+    </member>
+    <member name="T:Xtensive.Indexing.Joiner">
+      <summary>
+            A class providing various join algorithms.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Indexing.Joiner.MergeJoin``3(Xtensive.Indexing.IOrderedEnumerable{``0,``1},Xtensive.Indexing.IOrderedEnumerable{``0,``2})">
+      <summary>
+            Merge join implementation.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TValue">The type of the value.</typeparam>
+      <typeparam name="TRightValue">The type of the right value.</typeparam>
+      <param name="left">The left sequence.</param>
+      <param name="right">The right sequence.</param>
+      <returns>Join operation result.</returns>
+    </member>
+    <member name="M:Xtensive.Indexing.Joiner.MergeJoinLeft``3(System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2},System.Converter{``1,``0},System.Converter{``2,``0},Xtensive.Core.Comparison.AdvancedComparer{``0})">
+      <summary>
+            "Merge join left" implementation.
+            "Left" implies any item from the left sequence will be kept in the output sequence,
+            even if there is no corresponding item in the right sequence; if so,
+            default value for <typeparamref name="TRightValue" /> will be used as matching one there.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TValue">The type of the value.</typeparam>
+      <typeparam name="TRightValue">The type of the right value.</typeparam>
+      <param name="left">The left sequence.</param>
+      <param name="right">The right sequence.</param>
+      <param name="keyExtractorLeft">The key extractor for the left sequence.</param>
+      <param name="keyExtractorRight">The key extractor for the right sequence.</param>
+      <param name="comparer">The comparer.</param>
+      <returns>Join operation result.</returns>
+    </member>
+    <member name="M:Xtensive.Indexing.Joiner.MergeJoinLeft``3(Xtensive.Indexing.IOrderedEnumerable{``0,``1},Xtensive.Indexing.IOrderedEnumerable{``0,``2})">
+      <summary>
+            "Merge join left" implementation.
+            "Left" implies any item from the left sequence will be kept in the output sequence,
+            even if there is no corresponding item in the right sequence; if so,
+            default value for <typeparamref name="TRightValue" /> will be used as matching one there.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TValue">The type of the value.</typeparam>
+      <typeparam name="TRightValue">The type of the right value.</typeparam>
+      <param name="left">The left sequence.</param>
+      <param name="right">The right sequence.</param>
+      <returns>Join operation result.</returns>
+    </member>
+    <member name="M:Xtensive.Indexing.Joiner.LoopJoin``3(System.Collections.Generic.IEnumerable{``1},Xtensive.Indexing.IOrderedEnumerable{``0,``2},System.Converter{``1,``0})">
+      <summary>
+            Loop join implementation.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TValue">The type of the value.</typeparam>
+      <typeparam name="TRightValue">The type of the right value.</typeparam>
+      <param name="left">The left sequence.</param>
+      <param name="right">The right sequence.</param>
+      <param name="keyExtractor">The key extractor.</param>
+      <returns>Join operation result.</returns>
+    </member>
+    <member name="M:Xtensive.Indexing.Joiner.LoopJoinLeft``3(System.Collections.Generic.IEnumerable{``1},Xtensive.Indexing.IOrderedEnumerable{``0,``2},System.Converter{``1,``0})">
+      <summary>
+            "Loop join left" implementation.
+            "Left" implies any item from the left sequence will be kept in the output sequence,
+            even if there is no corresponding item in the right sequence; if so,
+            default value for <typeparamref name="TRightValue" /> will be used as matching one there.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TValue">The type of the value.</typeparam>
+      <typeparam name="TRightValue">The type of the right value.</typeparam>
+      <param name="left">The left sequence.</param>
+      <param name="right">The right sequence.</param>
+      <param name="keyExtractor">The key extractor.</param>
+      <returns>Join operation result.</returns>
+    </member>
+    <member name="M:Xtensive.Indexing.Joiner.NestedLoopJoin``3(System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2},System.Converter{``1,``0},System.Converter{``2,``0},Xtensive.Core.Comparison.AdvancedComparer{``0})">
+      <summary>
+            Nested loop join implementation.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TValue">The type of the value.</typeparam>
+      <typeparam name="TRightValue">The type of the right value.</typeparam>
+      <param name="left">The left sequence.</param>
+      <param name="right">The right sequence.</param>
+      <param name="keyExtractorLeft">The key extractor for the left sequence.</param>
+      <param name="keyExtractorRight">The key extractor for the right sequence.</param>
+      <param name="comparer">The comparer.</param>
+      <returns>Join operation result.</returns>
+    </member>
+    <member name="M:Xtensive.Indexing.Joiner.NestedLoopJoinLeft``3(System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2},System.Converter{``1,``0},System.Converter{``2,``0},Xtensive.Core.Comparison.AdvancedComparer{``0})">
+      <summary>
+            "Nested loop join left" implementation.
+            "Left" implies any item from the left sequence will be kept in the output sequence,
+            even if there is no corresponding item in the right sequence; if so,
+            default value for <typeparamref name="TRightValue" /> will be used as matching one there.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TValue">The type of the value.</typeparam>
+      <typeparam name="TRightValue">The type of the right value.</typeparam>
+      <param name="left">The left sequence.</param>
+      <param name="right">The right sequence.</param>
+      <param name="keyExtractorLeft">The key extractor for the left sequence.</param>
+      <param name="keyExtractorRight">The key extractor for the right sequence.</param>
+      <param name="comparer">The comparer.</param>
+      <returns>Join operation result.</returns>
     </member>
     <member name="T:Xtensive.Indexing.Log">
       <summary>
@@ -6002,6 +6185,14 @@
             Gets or sets the origin configuration.
             </summary>
     </member>
+    <member name="T:Xtensive.Indexing.Differential.DifferentialIndexReader`3">
+      <summary>
+            Differential index reader.
+            </summary>
+      <typeparam name="TKey">The type of the key.</typeparam>
+      <typeparam name="TItem">The type of the item.</typeparam>
+      <typeparam name="TImpl">The type of the impl.</typeparam>
+    </member>
     <member name="M:Xtensive.Indexing.Differential.DifferentialIndexReader`3.GetEnumerator">
       <summary>
                     Returns an enumerator that iterates through the collection.
@@ -6093,6 +6284,20 @@
                     The enumerator is positioned before the first element of the collection or after the last element.
                 </exception>
       <filterpriority>2</filterpriority>
+    </member>
+    <member name="T:Xtensive.Indexing.EntireValueTypeExtensions">
+      <summary>
+        <see cref="T:Xtensive.Indexing.EntireValueType" /> related extension methods.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Indexing.EntireValueTypeExtensions.IsInfinity(Xtensive.Indexing.EntireValueType)">
+      <summary>
+            Determines whether the specified <see cref="T:Xtensive.Indexing.EntireValueType" /> is infinity.
+            </summary>
+      <param name="valueType">Entire value type to check.</param>
+      <returns>
+            Check result.
+            </returns>
     </member>
     <member name="M:Xtensive.Indexing.Providers.Internals.MemorySerilizer`2.#ctor(Xtensive.Indexing.Implementation.IIndexPageProvider{`0,`1})">
       <summary>

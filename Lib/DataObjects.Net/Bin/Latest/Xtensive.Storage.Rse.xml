@@ -1810,10 +1810,16 @@
       <param name="left">The left provider to intersect.</param>
       <param name="right">The right provider to intersect.</param>
     </member>
+    <member name="T:Xtensive.Storage.Rse.Providers.Compilable.FreeTextProvider">
+      <summary>
+            Executes full-text search (free text query) against specified <see cref="P:Xtensive.Storage.Rse.Providers.Compilable.FreeTextProvider.PrimaryIndex" />.
+            </summary>
+    </member>
     <member name="T:Xtensive.Storage.Rse.Providers.Compilable.IncludeProvider">
       <summary>
             Compilable provider that returns <see cref="T:System.Boolean" /> column. 
-            Column value is <see langword="true" /> if source value equal to one of provided values; otherwise <see langword="false" />.
+            Column value is <see langword="true" /> if source value equal to one of provided values; 
+            otherwise, <see langword="false" />.
             </summary>
     </member>
     <member name="T:Xtensive.Storage.Rse.Providers.Compilable.UnaryProvider">
@@ -2233,6 +2239,13 @@
             Gets the "right" data source of this provider.
             </summary>
     </member>
+    <member name="T:Xtensive.Storage.Rse.Providers.Executable.IncludeProvider">
+      <summary>
+            Executable provider that returns <see cref="T:System.Boolean" /> column. 
+            Column value is <see langword="true" /> if source value equal to one of provided values; 
+            otherwise, <see langword="false" />.
+            </summary>
+    </member>
     <member name="T:Xtensive.Storage.Rse.Providers.Executable.UnaryExecutableProvider`1">
       <summary>
             An abstract base class for executable provider having a single data <see cref="P:Xtensive.Storage.Rse.Providers.Executable.UnaryExecutableProvider`1.Source" />.
@@ -2255,13 +2268,18 @@
             Initializes a new instance of the <see cref="T:Xtensive.Storage.Rse.Providers.Executable.IncludeProvider" /> class.
             </summary>
     </member>
-    <member name="M:Xtensive.Storage.Rse.Providers.Executable.MultySeekProvider.OnBeforeEnumerate(Xtensive.Storage.Rse.Providers.EnumerationContext)">
+    <member name="T:Xtensive.Storage.Rse.Providers.Executable.MultiSeekProvider">
+      <summary>
+            Multi-seek operation executable provider.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Storage.Rse.Providers.Executable.MultiSeekProvider.OnBeforeEnumerate(Xtensive.Storage.Rse.Providers.EnumerationContext)">
       <summary>
             Called when enumerator is created on this provider.
             </summary>
       <param name="context">The enumeration context.</param>
     </member>
-    <member name="M:Xtensive.Storage.Rse.Providers.Executable.MultySeekProvider.OnEnumerate(Xtensive.Storage.Rse.Providers.EnumerationContext)">
+    <member name="M:Xtensive.Storage.Rse.Providers.Executable.MultiSeekProvider.OnEnumerate(Xtensive.Storage.Rse.Providers.EnumerationContext)">
       <summary>
             Gets the sequence this provider provides in the specified <see cref="T:Xtensive.Storage.Rse.Providers.EnumerationContext" />.
             Invoked by <see cref="M:Xtensive.Storage.Rse.Providers.ExecutableProvider.Enumerate(Xtensive.Storage.Rse.Providers.EnumerationContext)" /> method in case there is no cached result for the specified context.
@@ -3202,6 +3220,11 @@
             Prefer client execution.
             </summary>
     </member>
+    <member name="T:Xtensive.Storage.Rse.Providers.Compilable.TransferProvider">
+      <summary>
+            Transfers further computations to the specified location.
+            </summary>
+    </member>
     <member name="M:Xtensive.Storage.Rse.Providers.Compilable.TransferProvider.ParametersToString">
       <summary>
             Gets the string representation of provider parameters 
@@ -3921,6 +3944,18 @@
             </summary>
       <returns>Provider parameters as a single line string.</returns>
     </member>
+    <member name="T:Xtensive.Storage.Rse.Providers.IIndexedProvider">
+      <summary>
+            Returned as service (see <see cref="M:Xtensive.Storage.Rse.Providers.ExecutableProvider.GetService``1" />) 
+            by providers that support indexed access to their records.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Rse.Providers.IOrderedProvider">
+      <summary>
+            Returned as service (see <see cref="M:Xtensive.Storage.Rse.Providers.ExecutableProvider.GetService``1" />) 
+            by providers that return ordered sequence of records.
+            </summary>
+    </member>
     <member name="T:Xtensive.Storage.Rse.Providers.IListProvider">
       <summary>
             Returned as service (see <see cref="M:Xtensive.Storage.Rse.Providers.ExecutableProvider.GetService``1" />) 
@@ -4006,6 +4041,11 @@
     <member name="P:Xtensive.Storage.Rse.ColumnGroupCollection.Empty">
       <summary>
             Gets the empty <see cref="T:Xtensive.Storage.Rse.ColumnGroupCollection" />.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Rse.Providers.ProviderType">
+      <summary>
+            Enumerates all supported provider types.
             </summary>
     </member>
     <member name="T:Xtensive.Storage.Rse.RecordSetHeaderExtensions">
@@ -4597,6 +4637,11 @@
       <exception cref="T:System.ArgumentNullException">
         <see cref="P:Xtensive.Storage.Rse.Providers.ExecutableProvider.Origin" /> is null.</exception>
     </member>
+    <member name="T:Xtensive.Storage.Rse.Providers.Executable.RawProvider">
+      <summary>
+            Enumerates specified array of <see cref="T:Xtensive.Core.Tuples.Tuple" /> instances.
+            </summary>
+    </member>
     <member name="M:Xtensive.Storage.Rse.Providers.Executable.RawProvider.OnBeforeEnumerate(Xtensive.Storage.Rse.Providers.EnumerationContext)">
       <summary>
             Called when enumerator is created on this provider.
@@ -4999,6 +5044,11 @@
     <member name="P:Xtensive.Storage.Rse.RecordSet.Provider">
       <summary>
             Gets the provider this <see cref="T:Xtensive.Storage.Rse.RecordSet" /> is bound to.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Storage.Rse.RecordSetExtensions">
+      <summary>
+        <see cref="T:Xtensive.Storage.Rse.RecordSet" /> related extension methods.
             </summary>
     </member>
     <member name="M:Xtensive.Storage.Rse.RecordSetExtensions.Lock(Xtensive.Storage.Rse.RecordSet,Xtensive.Storage.Rse.LockMode,Xtensive.Storage.Rse.LockBehavior)">
