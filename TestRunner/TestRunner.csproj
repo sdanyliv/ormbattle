@@ -118,9 +118,6 @@
     <Reference Include="NHibernate.ByteCode.Castle">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="NHibernate.Linq">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="nunit.framework">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
