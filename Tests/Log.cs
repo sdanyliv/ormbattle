@@ -5,7 +5,7 @@
 // Created:    2009.07.29
 
 using System.Reflection;
-using Xtensive.Core.Diagnostics;
+using Xtensive.Diagnostics;
 
 namespace OrmBattle.Tests
 {

@@ -54,7 +54,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+    </Reference>
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -64,68 +65,68 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Telerik.OpenAccess, Version=2010.1.623.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.dll</HintPath>
+    <Reference Include="System.Data">
     </Reference>
-    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2010.1.623.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="System.Xml">
+    </Reference>
+    <Reference Include="Telerik.OpenAccess, Version=2010.3.1125.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342">
+      <HintPath>C:\Program Files (x86)\Telerik\OpenAccess ORM\bin\Telerik.OpenAccess.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.35.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2010.3.1125.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342">
+      <HintPath>C:\Program Files (x86)\Telerik\OpenAccess ORM\bin\Telerik.OpenAccess.35.Extensions.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveProduct.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="Category.Telerik.OpenAccess.cs">
-      <DependentUpon>Category.cs</DependentUpon>
+    <Compile Include="Category.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="Customer.cs" />
-    <Compile Include="Customer.Telerik.OpenAccess.cs">
-      <DependentUpon>Customer.cs</DependentUpon>
+    <Compile Include="Customer.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
     <Compile Include="DiscontinuedProduct.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="Employee.Telerik.OpenAccess.cs">
-      <DependentUpon>Employee.cs</DependentUpon>
+    <Compile Include="Employee.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDiagrams.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
     <Compile Include="NorthwindContext.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="Order.Telerik.OpenAccess.cs">
-      <DependentUpon>Order.cs</DependentUpon>
+    <Compile Include="Order.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="OrderDetail.cs" />
-    <Compile Include="OrderDetail.Telerik.OpenAccess.cs">
-      <DependentUpon>OrderDetail.cs</DependentUpon>
+    <Compile Include="OrderDetail.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="Product.cs" />
-    <Compile Include="Product.Telerik.OpenAccess.cs">
-      <DependentUpon>Product.cs</DependentUpon>
+    <Compile Include="Product.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Region.cs" />
-    <Compile Include="Region.Telerik.OpenAccess.cs">
-      <DependentUpon>Region.cs</DependentUpon>
+    <Compile Include="Region.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="Shipper.cs" />
-    <Compile Include="Shipper.Telerik.OpenAccess.cs">
-      <DependentUpon>Shipper.cs</DependentUpon>
+    <Compile Include="Shipper.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="Supplier.cs" />
-    <Compile Include="Supplier.Telerik.OpenAccess.cs">
-      <DependentUpon>Supplier.cs</DependentUpon>
+    <Compile Include="Supplier.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="Territory.cs" />
-    <Compile Include="Territory.Telerik.OpenAccess.cs">
-      <DependentUpon>Territory.cs</DependentUpon>
+    <Compile Include="Territory.generated.cs">
+      <DependentUpon>EntityDiagrams.rlinq</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="reversemapping.config" />
+    <OpenAccessDeploy Include="EntityDiagrams.rlinq">
+      <Generator>MetaModelCodeGenerator</Generator>
+      <LastGenOutput>EntityDiagrams.cs</LastGenOutput>
+    </OpenAccessDeploy>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -154,9 +155,5 @@
   </Target>
   -->
   <Import Project="..\Lib\Telerik OpenAccess ORM\enhance.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="NorthwindConnection" OpenAccess_Enhancing="true" OpenAccess_UpdateDatabase="false" OpenAccess_EnhancementOutputLevel="1" />
-    </VisualStudio>
-  </ProjectExtensions>
+  <Import Condition="Exists('$(MSBuildExtensionsPath)\OpenAccess.targets')" Project="$(MSBuildExtensionsPath)\OpenAccess.targets" />
 </Project>

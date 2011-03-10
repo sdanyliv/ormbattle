@@ -1,0 +1,1160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rlinq dslVersion="1.0.0.0" xmlns="http://schemas.microsoft.com/dsltools/EntityDiagrams">
+  <Runtime>
+    <MetaModel Name="NorthwindContext" namespace="OrmBattle.TelerikModel.Northwind">
+      <Types>
+        <MetaClass Id="4043294f-5e1b-4a30-a4f7-e07a9b3c8bf1" Name="Category" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="BackendCalculated" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <Attributes>
+            <MetaProperty Id="bbcd8611-0ed0-4efa-b8c4-1fe019713de5" Name="CategoryID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="CategoryID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="89790768-4008-4348-95a2-3abfcf0d0c25" Name="CategoryName" accessModifier="Public" inheritanceModifier="None" label="CategoryName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="ea6990c9-d768-4ac0-b9ea-fc4e90a23439" Name="Description" accessModifier="Public" inheritanceModifier="None" label="Description : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="e3c20906-b433-4c5c-ab0a-9634d032a519" Name="Picture" accessModifier="Public" inheritanceModifier="None" Type="Byte[]" label="Picture : Byte[]" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="afd65d21-2613-4b9b-b0d8-877c5bc54b7a" Name="Products" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;Product&gt;" label="Products : IList&lt;Product&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+        <MetaClass Id="455c4005-53b4-4ef7-bb31-4911fc216fb0" Name="Customer" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="Default" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <Attributes>
+            <MetaProperty Id="003bb624-ccf9-4a65-b04f-1fc2ff669f82" Name="CustomerID" accessModifier="Public" inheritanceModifier="None" label="CustomerID : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="557b1300-8815-415f-ae8b-943c4297c87c" Name="CompanyName" accessModifier="Public" inheritanceModifier="None" label="CompanyName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="fe2640f7-ae72-41ba-92c1-79e22b03bfa0" Name="ContactName" accessModifier="Public" inheritanceModifier="None" label="ContactName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="a6f34f1f-9b3c-44b4-8d24-b17733a0abe7" Name="ContactTitle" accessModifier="Public" inheritanceModifier="None" label="ContactTitle : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="00bba755-0cac-48d7-8526-e9ca9543f737" Name="Address" accessModifier="Public" inheritanceModifier="None" label="Address : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="57a51793-789c-4ba3-a027-0d121c9cbee5" Name="City" accessModifier="Public" inheritanceModifier="None" label="City : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="83b18e8a-92dc-4bb3-97ea-baaf2e41b3c4" Name="Region" accessModifier="Public" inheritanceModifier="None" label="Region : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="99ea24d1-d17d-44ba-ab0e-ef8a6c73efdc" Name="PostalCode" accessModifier="Public" inheritanceModifier="None" label="PostalCode : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="6439cc43-a7c3-4209-9124-6f58725e7202" Name="Country" accessModifier="Public" inheritanceModifier="None" label="Country : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="41bfc5eb-449c-49dc-92ee-5ee69b0466f3" Name="Phone" accessModifier="Public" inheritanceModifier="None" label="Phone : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="5074ce20-8a47-42cb-a28b-b6e027e55adc" Name="Fax" accessModifier="Public" inheritanceModifier="None" label="Fax : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="9794d24f-68ea-4f3c-8c93-62c1213db8c1" Name="Orders" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;Order&gt;" label="Orders : IList&lt;Order&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+        <MetaClass Id="10221416-06b9-42f9-8190-66438a733b15" Name="Employee" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="BackendCalculated" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <AssociationTargets>
+            <Association Id="7f86468b-5035-41a9-9a58-531cde6626e2" SourceMultiplicity="ZeroOne" useGenerics="false" name="EmployeeHasReportsTo" sourcePropertyName="ReportsTo" targetPropertyName="Employees" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Employee" />
+            </Association>
+            <Association Id="de54b8c1-cf85-4295-99db-256ed5b9cdd5" useGenerics="false" name="TerritoriesReferenceEmployees" sourcePropertyName="Territories" targetPropertyName="Employees" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Territory" />
+            </Association>
+          </AssociationTargets>
+          <Attributes>
+            <MetaProperty Id="0a5897a5-54b4-4238-90ff-3c29b953b358" Name="EmployeeID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="EmployeeID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="eca04480-49fb-47e7-9a9a-2ae998ae6538" Name="LastName" accessModifier="Public" inheritanceModifier="None" label="LastName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="b9666dca-8aac-4641-adde-1624c77dae8d" Name="FirstName" accessModifier="Public" inheritanceModifier="None" label="FirstName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="133982c6-8790-46cc-8272-e2044af07a5b" Name="Title" accessModifier="Public" inheritanceModifier="None" label="Title : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="8aeb277b-8467-49b2-b6d9-9082826ded76" Name="TitleOfCourtesy" accessModifier="Public" inheritanceModifier="None" label="TitleOfCourtesy : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="aa81c9b9-7e55-4fd0-94dd-0b930c990c53" Name="BirthDate" accessModifier="Public" inheritanceModifier="None" Type="DateTime" label="BirthDate : DateTime" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="f2b320b7-7c0d-4594-92bf-b98f13881180" Name="HireDate" accessModifier="Public" inheritanceModifier="None" Type="DateTime" label="HireDate : DateTime" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="ec3136aa-a382-4609-9d1d-859892c5963a" Name="Address" accessModifier="Public" inheritanceModifier="None" label="Address : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="8b6d1369-9554-486c-873a-d9a9f16bcb7e" Name="City" accessModifier="Public" inheritanceModifier="None" label="City : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="264a9a84-6b49-4bba-b069-b4567b69094d" Name="Region" accessModifier="Public" inheritanceModifier="None" label="Region : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="94c36306-6a6b-4052-82a2-a05491a07cff" Name="PostalCode" accessModifier="Public" inheritanceModifier="None" label="PostalCode : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="b0343fa2-6d17-4527-8ebe-6f69f48fba62" Name="Country" accessModifier="Public" inheritanceModifier="None" label="Country : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="2d01cce8-3533-45e1-b193-2d96d70a741f" Name="HomePhone" accessModifier="Public" inheritanceModifier="None" label="HomePhone : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="23d627a0-2dd7-4cf7-90c7-c794989ba411" Name="Extension" accessModifier="Public" inheritanceModifier="None" label="Extension : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="3e433475-8ae3-4968-ad51-0e08b2795db6" Name="Photo" accessModifier="Public" inheritanceModifier="None" Type="Byte[]" label="Photo : Byte[]" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="9e546dd5-f633-495d-8d8c-bd6ab2d7ad9f" Name="Notes" accessModifier="Public" inheritanceModifier="None" label="Notes : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="0688370f-117d-4b9b-ace9-103173f9aead" Name="ReportsToID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="ReportsToID : Int32" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="2ce3f8ad-bfff-4495-82c7-70729676d72e" Name="PhotoPath" accessModifier="Public" inheritanceModifier="None" label="PhotoPath : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="698e16c4-77af-4c75-903b-f8f8e8f88272" Name="ReportsTo" accessModifier="Public" inheritanceModifier="None" Type="Employee" label="ReportsTo : Employee" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="3008bc25-3bcb-40d6-9ff7-92bfe3a89c95" Name="Employees" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;Employee&gt;" label="Employees : IList&lt;Employee&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="90bea524-15d2-444c-bbf6-4c37478c4661" Name="Orders" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;Order&gt;" label="Orders : IList&lt;Order&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="a17f51bf-ba68-43cf-9118-42b6c09ccf9d" Name="Territories" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;Territory&gt;" label="Territories : IList&lt;Territory&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+        <MetaClass Id="d328aeec-1bdc-4ba6-930b-83d8ac830e09" Name="OrderDetail" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="Default" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <AssociationTargets>
+            <Association Id="129d8a03-b2b2-40e4-8bc1-fb8e07488504" SourceMultiplicity="One" useGenerics="false" name="OrderDetailHasOrder" sourcePropertyName="Order" targetPropertyName="OrderDetails" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Order" />
+            </Association>
+            <Association Id="675e5e19-2664-421e-a156-60d26e2aefce" SourceMultiplicity="One" useGenerics="false" name="OrderDetailHasProduct" sourcePropertyName="Product" targetPropertyName="OrderDetails" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Product" />
+            </Association>
+          </AssociationTargets>
+          <Attributes>
+            <MetaProperty Id="956a85db-84a7-445c-98b6-0e2d1c37b311" Name="OrderID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="OrderID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="fef8b9bd-775d-4e18-9147-82eac79ba064" Name="ProductID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="ProductID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="a9f51eff-06d6-4c78-883f-bbf9cf99d705" Name="UnitPrice" accessModifier="Public" inheritanceModifier="None" Type="Decimal" label="UnitPrice : Decimal" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="4eda2ae9-d23d-4f0b-bb95-725b74fc5844" Name="Quantity" accessModifier="Public" inheritanceModifier="None" Type="Int16" label="Quantity : Int16" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="04d83e98-8043-4490-a711-5c174dc39aba" Name="Discount" accessModifier="Public" inheritanceModifier="None" Type="Single" label="Discount : Single" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="81ca0c4a-c0e5-4f9a-a03f-ce2573dd3ca3" Name="Order" accessModifier="Public" inheritanceModifier="None" Type="Order" label="Order : Order" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="c26e2828-17a2-4fb9-b6ba-2693e3ee7e7a" Name="Product" accessModifier="Public" inheritanceModifier="None" Type="Product" label="Product : Product" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+        <MetaClass Id="1a97e8a0-621e-4c6c-8f46-b7a8ea9ed115" Name="Order" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="BackendCalculated" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <AssociationTargets>
+            <Association Id="35bb7067-2300-428e-8cea-b866c4913570" SourceMultiplicity="ZeroOne" useGenerics="false" name="OrderHasCustomer" sourcePropertyName="Customer" targetPropertyName="Orders" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Customer" />
+            </Association>
+            <Association Id="d049b3f1-61e6-4312-8af6-c9ec83972d7d" SourceMultiplicity="ZeroOne" useGenerics="false" name="OrderHasEmployee" sourcePropertyName="Employee" targetPropertyName="Orders" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Employee" />
+            </Association>
+            <Association Id="52d4c98c-ea00-43ec-b0c6-00055b7fa320" SourceMultiplicity="ZeroOne" useGenerics="false" name="OrderHasShipper" sourcePropertyName="Shipper" targetPropertyName="Orders" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Shipper" />
+            </Association>
+          </AssociationTargets>
+          <Attributes>
+            <MetaProperty Id="db1f00c3-65ce-42bf-abed-b1bff6fb1be5" Name="OrderID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="OrderID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="07a60e42-b3cd-469c-8045-899016526272" Name="CustomerID" accessModifier="Public" inheritanceModifier="None" label="CustomerID : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="5d75fcdb-eb52-4d62-b908-09454bc72f12" Name="EmployeeID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="EmployeeID : Int32" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="a5bc27d8-48b2-431d-a5e8-c85124f9cf8e" Name="OrderDate" accessModifier="Public" inheritanceModifier="None" Type="DateTime" label="OrderDate : DateTime" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="a6cae209-69dc-4e2e-963d-8bf66212e57f" Name="RequiredDate" accessModifier="Public" inheritanceModifier="None" Type="DateTime" label="RequiredDate : DateTime" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="9dd3695d-cce8-415a-b372-dd3b8f4bb4aa" Name="ShippedDate" accessModifier="Public" inheritanceModifier="None" Type="DateTime" label="ShippedDate : DateTime" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="4a0a5394-baa4-4f16-a010-48121ef5d32c" Name="ShipVia" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="ShipVia : Int32" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="a1672a46-c6ea-4314-a3bc-9f82d76cf7ae" Name="Freight" accessModifier="Public" inheritanceModifier="None" Type="Decimal" label="Freight : Decimal" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="63904e11-c4fb-4f52-940e-97ae3a243be3" Name="ShipName" accessModifier="Public" inheritanceModifier="None" label="ShipName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="1732c3fa-bc1f-4915-aef9-4a3f7757ab6e" Name="ShipAddress" accessModifier="Public" inheritanceModifier="None" label="ShipAddress : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="aabbdc9c-fb0e-4862-a572-ceefcf6dafd2" Name="ShipCity" accessModifier="Public" inheritanceModifier="None" label="ShipCity : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="d44a5381-fea0-4634-b454-089b9bedf69f" Name="ShipRegion" accessModifier="Public" inheritanceModifier="None" label="ShipRegion : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="ece47575-caa9-4820-927f-56d301975d55" Name="ShipPostalCode" accessModifier="Public" inheritanceModifier="None" label="ShipPostalCode : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="d78354b8-478e-45a9-8b70-53412c40b902" Name="ShipCountry" accessModifier="Public" inheritanceModifier="None" label="ShipCountry : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="cffcfd66-9b71-4a96-87eb-942f6e5115aa" Name="OrderDetails" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;OrderDetail&gt;" label="OrderDetails : IList&lt;OrderDetail&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="cb311ef3-f83c-4e22-b208-6b16c854439a" Name="Customer" accessModifier="Public" inheritanceModifier="None" Type="Customer" label="Customer : Customer" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="c67f2e7a-e384-41b5-8b8a-ab891b3581f6" Name="Employee" accessModifier="Public" inheritanceModifier="None" Type="Employee" label="Employee : Employee" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="381094c3-6482-46b9-b7f0-6d5736e7b45e" Name="Shipper" accessModifier="Public" inheritanceModifier="None" Type="Shipper" label="Shipper : Shipper" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+        <MetaClass Id="8faffb70-9269-4595-ad09-a92e904b7562" Name="Product" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="BackendCalculated" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <AssociationTargets>
+            <Association Id="429cb5de-c844-4bf8-b04f-c259cb7769ed" SourceMultiplicity="ZeroOne" useGenerics="false" name="ProductHasCategory" sourcePropertyName="Category" targetPropertyName="Products" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Category" />
+            </Association>
+            <Association Id="e8858b2c-51d9-4c00-b541-1769942d2deb" SourceMultiplicity="ZeroOne" useGenerics="false" name="ProductHasSupplier" sourcePropertyName="Supplier" targetPropertyName="Products" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Supplier" />
+            </Association>
+          </AssociationTargets>
+          <Attributes>
+            <MetaProperty Id="6a992655-300c-48a9-bdff-daab19b1a27b" Name="ProductID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="ProductID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="e06a020d-3cc0-486f-a905-104ca708f98e" Name="ProductName" accessModifier="Public" inheritanceModifier="None" label="ProductName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="54729da6-575c-4e0d-b2a5-355cbfcb59d2" Name="SupplierID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="SupplierID : Int32" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="c63ad65d-8169-4b6e-9f7c-92cd35a268df" Name="CategoryID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="CategoryID : Int32" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="5ba6032b-29ed-4b79-b82b-2de84bf895ac" Name="QuantityPerUnit" accessModifier="Public" inheritanceModifier="None" label="QuantityPerUnit : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="1ba4ee00-391d-4671-9720-41510331ebfd" Name="UnitPrice" accessModifier="Public" inheritanceModifier="None" Type="Decimal" label="UnitPrice : Decimal" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="49567e81-f92a-4a5b-848d-b2b162d9593c" Name="UnitsInStock" accessModifier="Public" inheritanceModifier="None" Type="Int16" label="UnitsInStock : Int16" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="be235652-d301-4b79-b3d8-f3a0e077eda8" Name="UnitsOnOrder" accessModifier="Public" inheritanceModifier="None" Type="Int16" label="UnitsOnOrder : Int16" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="a5fee64d-9367-4ba7-ad00-45925a92c5dd" Name="ReorderLevel" accessModifier="Public" inheritanceModifier="None" Type="Int16" label="ReorderLevel : Int16" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="0cbd3af7-da40-44f6-9b92-92e3046a3de6" Name="Discontinued" accessModifier="Public" inheritanceModifier="None" Type="Boolean" label="Discontinued : Boolean" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="89337e0d-eb7c-45d8-ac7a-472ad39f5d1a" Name="OrderDetails" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;OrderDetail&gt;" label="OrderDetails : IList&lt;OrderDetail&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="fad27622-cfaa-41c5-9b87-83bcb4ea7756" Name="Category" accessModifier="Public" inheritanceModifier="None" Type="Category" label="Category : Category" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="4e3ce4c6-d045-4c3f-9a89-649ef7d9de62" Name="Supplier" accessModifier="Public" inheritanceModifier="None" Type="Supplier" label="Supplier : Supplier" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+        <MetaClass Id="ae17b504-9290-40a8-bf58-498fa23427e5" Name="Region" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="Default" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <Attributes>
+            <MetaProperty Id="ec2bc461-a7b1-4bb5-b663-4a61163411d0" Name="RegionID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="RegionID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="f763ddbf-103c-4db0-aff3-d0cc67a75820" Name="RegionDescription" accessModifier="Public" inheritanceModifier="None" label="RegionDescription : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="33f144ae-1b02-42a6-987a-a27d9f846a60" Name="Territories" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;Territory&gt;" label="Territories : IList&lt;Territory&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+        <MetaClass Id="ba972902-575d-418c-a82a-44c70045c16a" Name="Shipper" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="BackendCalculated" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <Attributes>
+            <MetaProperty Id="ebfb22a8-1b33-424e-ba69-9c2ad3978f3a" Name="ShipperID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="ShipperID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="37bd4ce0-ef98-4e48-9c01-a741de6b6677" Name="CompanyName" accessModifier="Public" inheritanceModifier="None" label="CompanyName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="7ca0561e-03ea-46a7-aa1d-b2d53547140f" Name="Phone" accessModifier="Public" inheritanceModifier="None" label="Phone : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="d8903e26-d60b-48ca-a9c7-fd1463d7faed" Name="Orders" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;Order&gt;" label="Orders : IList&lt;Order&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+        <MetaClass Id="5cda7073-9f4c-4cde-b2a5-5ac2a1d36cb1" Name="Supplier" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="BackendCalculated" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <Attributes>
+            <MetaProperty Id="eb32e1cf-7207-4b21-aee3-ae626c67e93b" Name="SupplierID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="SupplierID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="44bfc766-5591-49d9-ad84-a8928938d2d8" Name="CompanyName" accessModifier="Public" inheritanceModifier="None" label="CompanyName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="3836d0b3-f4f6-490f-b81b-510035993913" Name="ContactName" accessModifier="Public" inheritanceModifier="None" label="ContactName : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="cf7adf60-34f1-4296-b02f-3a86d6a58b5f" Name="ContactTitle" accessModifier="Public" inheritanceModifier="None" label="ContactTitle : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="1eaceee2-fe7d-4366-8686-5992b9dd6b74" Name="Address" accessModifier="Public" inheritanceModifier="None" label="Address : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="11c8b31d-6b97-4fa4-b70d-37992f18a815" Name="City" accessModifier="Public" inheritanceModifier="None" label="City : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="8c0e4a0d-732f-4b09-a7a2-017196a735c3" Name="Region" accessModifier="Public" inheritanceModifier="None" label="Region : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="23087a5e-41ab-419a-9e19-15b1d0948e0b" Name="PostalCode" accessModifier="Public" inheritanceModifier="None" label="PostalCode : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="de1e76b6-5b31-4296-989b-5c3add606ed3" Name="Country" accessModifier="Public" inheritanceModifier="None" label="Country : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="1ef6837e-4951-4a35-970f-a830bb1db62e" Name="Phone" accessModifier="Public" inheritanceModifier="None" label="Phone : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="3c979dca-e2ad-410b-b67e-d0587fad0332" Name="Fax" accessModifier="Public" inheritanceModifier="None" label="Fax : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="1c0341d9-551c-44de-b72e-a6ea8e84d36c" Name="HomePage" accessModifier="Public" inheritanceModifier="None" label="HomePage : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="7f0536c6-18ce-4847-b6a4-98ea2c1f1a46" Name="Products" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;Product&gt;" label="Products : IList&lt;Product&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+        <MetaClass Id="1aa312ce-0c72-470a-8a9c-aad1851be183" Name="Territory" namespace="OrmBattle.TelerikModel.Northwind" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="Default" concurrencyMode="Default" concurrencyMember="(AUTO)" updateSchema="false">
+          <AssociationTargets>
+            <Association Id="445fd0d7-929e-4c81-92f6-72b0cd2482c0" SourceMultiplicity="One" useGenerics="false" name="TerritoryHasRegion" sourcePropertyName="Region" targetPropertyName="Territories" generateReferences="false" generateForeignKeys="false">
+              <MetaClassMoniker Name="/NorthwindContext/Region" />
+            </Association>
+          </AssociationTargets>
+          <Attributes>
+            <MetaProperty Id="42df60ac-789f-4e5b-a24b-4d37de43625f" Name="TerritoryID" accessModifier="Public" inheritanceModifier="None" label="TerritoryID : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="96944ca2-ed6e-4654-960b-ff103335dd83" Name="TerritoryDescription" accessModifier="Public" inheritanceModifier="None" label="TerritoryDescription : String" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="47d7fb60-8e9d-44f4-ba44-aeba701271bd" Name="RegionID" accessModifier="Public" inheritanceModifier="None" Type="Int32" label="RegionID : Int32" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="da0d0891-16c5-411f-b558-e68372234f5d" Name="Region" accessModifier="Public" inheritanceModifier="None" Type="Region" label="Region : Region" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+            <MetaProperty Id="66ef0fba-a3a6-4573-9d20-18381525f46b" Name="Employees" accessModifier="Public" inheritanceModifier="None" Type="IList&lt;Employee&gt;" label="Employees : IList&lt;Employee&gt;" kind="Default" nullable="true" hasGetter="true" hasSetter="true" identity="false" isNavigable="true" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+      </Types>
+      <domainContext>
+        <metaModelHasDomainContext Id="f3fdaaf0-4eed-4f46-af89-de6678bdbe1d">
+          <domainContextContainer Name="NorthwindContext">
+            <entitySets>
+              <metadataContainerHasProperties Id="3bffcaed-7a80-41dd-b1df-32a6dbb13c3b">
+                <entitySetProperty Name="Categories" type="Category" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+              <metadataContainerHasProperties Id="3c8467a3-f92f-49c2-9c81-9fc428ba7a87">
+                <entitySetProperty Name="Customers" type="Customer" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+              <metadataContainerHasProperties Id="d64ad8a2-e7b0-4842-8a3b-28ecda5649e6">
+                <entitySetProperty Name="Employees" type="Employee" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+              <metadataContainerHasProperties Id="8797c591-4874-4a4e-be1a-ef7f43bd5d2e">
+                <entitySetProperty Name="OrderDetails" type="OrderDetail" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+              <metadataContainerHasProperties Id="f4dff990-3263-4485-a520-d47f0c24e4c1">
+                <entitySetProperty Name="Orders" type="Order" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+              <metadataContainerHasProperties Id="e91e833d-9df2-42ca-a4d6-a93b62aadb3d">
+                <entitySetProperty Name="Products" type="Product" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+              <metadataContainerHasProperties Id="699e00e0-ac38-4bb6-9086-fdb118370bd9">
+                <entitySetProperty Name="Regions" type="Region" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+              <metadataContainerHasProperties Id="979cd80b-6d92-4916-bc14-404bed388df8">
+                <entitySetProperty Name="Shippers" type="Shipper" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+              <metadataContainerHasProperties Id="7e9e650a-8fd8-4ab2-a259-fb78ee8b4485">
+                <entitySetProperty Name="Suppliers" type="Supplier" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+              <metadataContainerHasProperties Id="afb72bd5-e4ce-4af0-bb6b-25eb9b655c07">
+                <entitySetProperty Name="Territories" type="Territory" namespace="OrmBattle.TelerikModel.Northwind" />
+              </metadataContainerHasProperties>
+            </entitySets>
+          </domainContextContainer>
+        </metaModelHasDomainContext>
+      </domainContext>
+    </MetaModel>
+    <orm:orm name="NorthwindContext" backend="mssql" xmlns:orm="http://tempuri.org/ORM">
+      <orm:namespace name="OrmBattle.TelerikModel.Northwind" default="true">
+        <orm:class name="Category" uniqueId="4043294f-5e1b-4a30-a4f7-e07a9b3c8bf1">
+          <orm:table name="Categories" />
+          <orm:identity>
+            <orm:key-generator name="autoinc" />
+            <orm:single-field field-name="categoryID" />
+          </orm:identity>
+          <orm:field name="categoryID" property="Id" uniqueId="bbcd8611-0ed0-4efa-b8c4-1fe019713de5" type="System.Int32">
+            <orm:column name="CategoryID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          </orm:field>
+          <orm:field name="categoryName" property="CategoryName" uniqueId="89790768-4008-4348-95a2-3abfcf0d0c25" type="System.String">
+            <orm:column name="CategoryName" sql-type="nvarchar" nullable="false" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="description" property="Description" uniqueId="ea6990c9-d768-4ac0-b9ea-fc4e90a23439" type="System.String">
+            <orm:column name="Description" sql-type="ntext" nullable="true" length="0" scale="0" ado-type="Clob" />
+          </orm:field>
+          <orm:field name="picture" property="Picture" uniqueId="e3c20906-b433-4c5c-ab0a-9634d032a519" type="System.Byte[]">
+            <orm:column name="Picture" sql-type="image" nullable="true" length="0" scale="0" ado-type="LongVarBinary" />
+          </orm:field>
+          <orm:field name="products" property="Products" uniqueId="afd65d21-2613-4b9b-b0d8-877c5bc54b7a" type="OrmBattle.TelerikModel.Northwind.Product">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.Product" inverse-field="category" order-by="" uniqueId="429cb5de-c844-4bf8-b04f-c259cb7769ed" />
+          </orm:field>
+          <orm:index name="CategoryName">
+            <orm:column name="CategoryName" sql-type="nvarchar" nullable="false" length="15" scale="0" ado-type="Varchar" />
+          </orm:index>
+        </orm:class>
+        <orm:class name="Customer" uniqueId="455c4005-53b4-4ef7-bb31-4911fc216fb0">
+          <orm:table name="Customers" />
+          <orm:identity>
+            <orm:single-field field-name="customerID" />
+          </orm:identity>
+          <orm:field name="customerID" property="Id" uniqueId="003bb624-ccf9-4a65-b04f-1fc2ff669f82" type="System.String">
+            <orm:column name="CustomerID" sql-type="nchar" nullable="false" length="5" scale="0" primary-key="true" ado-type="Character" />
+          </orm:field>
+          <orm:field name="companyName" property="CompanyName" uniqueId="557b1300-8815-415f-ae8b-943c4297c87c" type="System.String">
+            <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="contactName" property="ContactName" uniqueId="fe2640f7-ae72-41ba-92c1-79e22b03bfa0" type="System.String">
+            <orm:column name="ContactName" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="contactTitle" property="ContactTitle" uniqueId="a6f34f1f-9b3c-44b4-8d24-b17733a0abe7" type="System.String">
+            <orm:column name="ContactTitle" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="address" property="Address" uniqueId="00bba755-0cac-48d7-8526-e9ca9543f737" type="System.String">
+            <orm:column name="Address" sql-type="nvarchar" nullable="true" length="60" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="city" property="City" uniqueId="57a51793-789c-4ba3-a027-0d121c9cbee5" type="System.String">
+            <orm:column name="City" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="region" property="Region" uniqueId="83b18e8a-92dc-4bb3-97ea-baaf2e41b3c4" type="System.String">
+            <orm:column name="Region" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="postalCode" property="PostalCode" uniqueId="99ea24d1-d17d-44ba-ab0e-ef8a6c73efdc" type="System.String">
+            <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="country" property="Country" uniqueId="6439cc43-a7c3-4209-9124-6f58725e7202" type="System.String">
+            <orm:column name="Country" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="phone" property="Phone" uniqueId="41bfc5eb-449c-49dc-92ee-5ee69b0466f3" type="System.String">
+            <orm:column name="Phone" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="fax" property="Fax" uniqueId="5074ce20-8a47-42cb-a28b-b6e027e55adc" type="System.String">
+            <orm:column name="Fax" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="orders" property="Orders" uniqueId="9794d24f-68ea-4f3c-8c93-62c1213db8c1" type="OrmBattle.TelerikModel.Northwind.Order">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.Order" inverse-field="customer" order-by="" uniqueId="35bb7067-2300-428e-8cea-b866c4913570" />
+          </orm:field>
+          <orm:index name="City">
+            <orm:column name="City" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="CompanyName">
+            <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="PostalCode">
+            <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="Region">
+            <orm:column name="Region" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:index>
+        </orm:class>
+        <orm:class name="Employee" uniqueId="10221416-06b9-42f9-8190-66438a733b15">
+          <orm:table name="Employees" />
+          <orm:identity>
+            <orm:key-generator name="autoinc" />
+            <orm:single-field field-name="employeeID" />
+          </orm:identity>
+          <orm:field name="employeeID" property="Id" uniqueId="0a5897a5-54b4-4238-90ff-3c29b953b358" type="System.Int32">
+            <orm:column name="EmployeeID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          </orm:field>
+          <orm:field name="lastName" property="LastName" uniqueId="eca04480-49fb-47e7-9a9a-2ae998ae6538" type="System.String">
+            <orm:column name="LastName" sql-type="nvarchar" nullable="false" length="20" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="firstName" property="FirstName" uniqueId="b9666dca-8aac-4641-adde-1624c77dae8d" type="System.String">
+            <orm:column name="FirstName" sql-type="nvarchar" nullable="false" length="10" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="title" property="Title" uniqueId="133982c6-8790-46cc-8272-e2044af07a5b" type="System.String">
+            <orm:column name="Title" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="titleOfCourtesy" property="TitleOfCourtesy" uniqueId="8aeb277b-8467-49b2-b6d9-9082826ded76" type="System.String">
+            <orm:column name="TitleOfCourtesy" sql-type="nvarchar" nullable="true" length="25" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="birthDate" property="BirthDate" uniqueId="aa81c9b9-7e55-4fd0-94dd-0b930c990c53" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="BirthDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          </orm:field>
+          <orm:field name="hireDate" property="HireDate" uniqueId="f2b320b7-7c0d-4594-92bf-b98f13881180" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="HireDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          </orm:field>
+          <orm:field name="address" property="Address" uniqueId="ec3136aa-a382-4609-9d1d-859892c5963a" type="System.String">
+            <orm:column name="Address" sql-type="nvarchar" nullable="true" length="60" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="city" property="City" uniqueId="8b6d1369-9554-486c-873a-d9a9f16bcb7e" type="System.String">
+            <orm:column name="City" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="region" property="Region" uniqueId="264a9a84-6b49-4bba-b069-b4567b69094d" type="System.String">
+            <orm:column name="Region" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="postalCode" property="PostalCode" uniqueId="94c36306-6a6b-4052-82a2-a05491a07cff" type="System.String">
+            <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="country" property="Country" uniqueId="b0343fa2-6d17-4527-8ebe-6f69f48fba62" type="System.String">
+            <orm:column name="Country" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="homePhone" property="HomePhone" uniqueId="2d01cce8-3533-45e1-b193-2d96d70a741f" type="System.String">
+            <orm:column name="HomePhone" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="extension" property="Extension" uniqueId="23d627a0-2dd7-4cf7-90c7-c794989ba411" type="System.String">
+            <orm:column name="Extension" sql-type="nvarchar" nullable="true" length="4" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="photo" property="Photo" uniqueId="3e433475-8ae3-4968-ad51-0e08b2795db6" type="System.Byte[]">
+            <orm:column name="Photo" sql-type="image" nullable="true" length="0" scale="0" ado-type="LongVarBinary" />
+          </orm:field>
+          <orm:field name="notes" property="Notes" uniqueId="9e546dd5-f633-495d-8d8c-bd6ab2d7ad9f" type="System.String">
+            <orm:column name="Notes" sql-type="ntext" nullable="true" length="0" scale="0" ado-type="Clob" />
+          </orm:field>
+          <orm:field name="reportsToID" property="ReportsToID" uniqueId="0688370f-117d-4b9b-ace9-103173f9aead" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="ReportsTo" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          </orm:field>
+          <orm:field name="photoPath" property="PhotoPath" uniqueId="2ce3f8ad-bfff-4495-82c7-70729676d72e" type="System.String">
+            <orm:column name="PhotoPath" sql-type="nvarchar" nullable="true" length="255" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="reportsTo" property="ReportsTo" uniqueId="698e16c4-77af-4c75-903b-f8f8e8f88272" type="OrmBattle.TelerikModel.Northwind.Employee">
+            <orm:reference uniqueId="7f86468b-5035-41a9-9a58-531cde6626e2">
+              <orm:sharedfield name="reportsToID" />
+              <orm:constraint name="FK_Employees_Employees" destination-table="Employees">
+                <orm:column name="ReportsTo" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+              </orm:constraint>
+            </orm:reference>
+          </orm:field>
+          <orm:field name="territories" property="Territories" uniqueId="a17f51bf-ba68-43cf-9118-42b6c09ccf9d" type="OrmBattle.TelerikModel.Northwind.Territory">
+            <orm:join-table uniqueId="de54b8c1-cf85-4295-99db-256ed5b9cdd5" association-name="TerritoriesReferenceEmployees">
+              <orm:table name="EmployeeTerritories" join-table="true" />
+              <orm:owner>
+                <orm:constraint name="FK_EmployeeTerritories_Employees" destination-table="Employees">
+                  <orm:column name="EmployeeID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+                </orm:constraint>
+              </orm:owner>
+              <orm:value>
+                <orm:constraint name="FK_EmployeeTerritories_Territories" destination-table="Territories">
+                  <orm:column name="TerritoryID" sql-type="nvarchar" nullable="false" length="20" scale="0" primary-key="true" ado-type="Varchar" target-class="OrmBattle.TelerikModel.Northwind.Territory" target-field="territoryID" />
+                </orm:constraint>
+              </orm:value>
+            </orm:join-table>
+          </orm:field>
+          <orm:field name="employees" property="Employees" uniqueId="3008bc25-3bcb-40d6-9ff7-92bfe3a89c95" type="OrmBattle.TelerikModel.Northwind.Employee">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.Employee" inverse-field="reportsTo" order-by="" uniqueId="7f86468b-5035-41a9-9a58-531cde6626e2" />
+          </orm:field>
+          <orm:field name="orders" property="Orders" uniqueId="90bea524-15d2-444c-bbf6-4c37478c4661" type="OrmBattle.TelerikModel.Northwind.Order">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.Order" inverse-field="employee" order-by="" uniqueId="d049b3f1-61e6-4312-8af6-c9ec83972d7d" />
+          </orm:field>
+          <orm:index name="LastName">
+            <orm:column name="LastName" sql-type="nvarchar" nullable="false" length="20" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="PostalCode">
+            <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:index>
+        </orm:class>
+        <orm:class name="OrderDetail" uniqueId="d328aeec-1bdc-4ba6-930b-83d8ac830e09">
+          <orm:table name="Order Details" />
+          <orm:identity>
+            <orm:multiple-field class-name="OrmBattle.TelerikModel.Northwind.OrderDetail+ID">
+              <orm:single-field field-name="orderID" />
+              <orm:single-field field-name="productID" />
+            </orm:multiple-field>
+          </orm:identity>
+          <orm:field name="orderID" property="OrderID" uniqueId="956a85db-84a7-445c-98b6-0e2d1c37b311" type="System.Int32">
+            <orm:column name="OrderID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Order" target-field="orderID" />
+          </orm:field>
+          <orm:field name="productID" property="ProductID" uniqueId="fef8b9bd-775d-4e18-9147-82eac79ba064" type="System.Int32">
+            <orm:column name="ProductID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Product" target-field="productID" />
+          </orm:field>
+          <orm:field name="unitPrice" property="UnitPrice" uniqueId="a9f51eff-06d6-4c78-883f-bbf9cf99d705" type="System.Decimal">
+            <orm:column name="UnitPrice" sql-type="money" nullable="false" length="0" scale="0" ado-type="Decimal" />
+          </orm:field>
+          <orm:field name="quantity" property="Quantity" uniqueId="4eda2ae9-d23d-4f0b-bb95-725b74fc5844" type="System.Int16">
+            <orm:column name="Quantity" sql-type="smallint" nullable="false" length="0" scale="0" ado-type="Int16" />
+          </orm:field>
+          <orm:field name="discount" property="Discount" uniqueId="04d83e98-8043-4490-a711-5c174dc39aba" type="System.Single">
+            <orm:column name="Discount" sql-type="real" nullable="false" length="0" scale="0" ado-type="Real" />
+          </orm:field>
+          <orm:field name="order" property="Order" uniqueId="81ca0c4a-c0e5-4f9a-a03f-ce2573dd3ca3" type="OrmBattle.TelerikModel.Northwind.Order">
+            <orm:reference uniqueId="129d8a03-b2b2-40e4-8bc1-fb8e07488504">
+              <orm:sharedfield name="orderID" />
+              <orm:constraint name="FK_Order_Details_Orders" destination-table="Orders">
+                <orm:column name="OrderID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Order" target-field="orderID" />
+              </orm:constraint>
+            </orm:reference>
+          </orm:field>
+          <orm:field name="product" property="Product" uniqueId="c26e2828-17a2-4fb9-b6ba-2693e3ee7e7a" type="OrmBattle.TelerikModel.Northwind.Product">
+            <orm:reference uniqueId="675e5e19-2664-421e-a156-60d26e2aefce">
+              <orm:sharedfield name="productID" />
+              <orm:constraint name="FK_Order_Details_Products" destination-table="Products">
+                <orm:column name="ProductID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Product" target-field="productID" />
+              </orm:constraint>
+            </orm:reference>
+          </orm:field>
+          <orm:index name="OrderID">
+            <orm:column name="OrderID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Order" target-field="orderID" />
+          </orm:index>
+          <orm:index name="ProductID">
+            <orm:column name="ProductID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Product" target-field="productID" />
+          </orm:index>
+        </orm:class>
+        <orm:class name="Order" uniqueId="1a97e8a0-621e-4c6c-8f46-b7a8ea9ed115">
+          <orm:table name="Orders" />
+          <orm:identity>
+            <orm:key-generator name="autoinc" />
+            <orm:single-field field-name="orderID" />
+          </orm:identity>
+          <orm:discriminator discriminator-value="OrmBattle.TelerikModel.Northwind.Order" />
+          <orm:field name="orderID" property="Id" uniqueId="db1f00c3-65ce-42bf-abed-b1bff6fb1be5" type="System.Int32">
+            <orm:column name="OrderID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          </orm:field>
+          <orm:field name="customerID" property="CustomerID" uniqueId="07a60e42-b3cd-469c-8045-899016526272" type="System.String">
+            <orm:column name="CustomerID" sql-type="nchar" nullable="true" length="5" scale="0" ado-type="Character" target-class="OrmBattle.TelerikModel.Northwind.Customer" target-field="customerID" />
+          </orm:field>
+          <orm:field name="employeeID" property="EmployeeID" uniqueId="5d75fcdb-eb52-4d62-b908-09454bc72f12" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="EmployeeID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          </orm:field>
+          <orm:field name="orderDate" property="OrderDate" uniqueId="a5bc27d8-48b2-431d-a5e8-c85124f9cf8e" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="OrderDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          </orm:field>
+          <orm:field name="requiredDate" property="RequiredDate" uniqueId="a6cae209-69dc-4e2e-963d-8bf66212e57f" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="RequiredDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          </orm:field>
+          <orm:field name="shippedDate" property="ShippedDate" uniqueId="9dd3695d-cce8-415a-b372-dd3b8f4bb4aa" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="ShippedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          </orm:field>
+          <orm:field name="shipVia" property="ShipVia" uniqueId="4a0a5394-baa4-4f16-a010-48121ef5d32c" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="ShipVia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Shipper" target-field="shipperID" />
+          </orm:field>
+          <orm:field name="freight" property="Freight" uniqueId="a1672a46-c6ea-4314-a3bc-9f82d76cf7ae" type="System.Decimal">
+            <orm:column name="Freight" sql-type="money" nullable="true" length="0" scale="0" ado-type="Decimal" />
+          </orm:field>
+          <orm:field name="shipName" property="ShipName" uniqueId="63904e11-c4fb-4f52-940e-97ae3a243be3" type="System.String">
+            <orm:column name="ShipName" sql-type="nvarchar" nullable="true" length="40" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="shipAddress" property="ShipAddress" uniqueId="1732c3fa-bc1f-4915-aef9-4a3f7757ab6e" type="System.String">
+            <orm:column name="ShipAddress" sql-type="nvarchar" nullable="true" length="60" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="shipCity" property="ShipCity" uniqueId="aabbdc9c-fb0e-4862-a572-ceefcf6dafd2" type="System.String">
+            <orm:column name="ShipCity" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="shipRegion" property="ShipRegion" uniqueId="d44a5381-fea0-4634-b454-089b9bedf69f" type="System.String">
+            <orm:column name="ShipRegion" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="shipPostalCode" property="ShipPostalCode" uniqueId="ece47575-caa9-4820-927f-56d301975d55" type="System.String">
+            <orm:column name="ShipPostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="shipCountry" property="ShipCountry" uniqueId="d78354b8-478e-45a9-8b70-53412c40b902" type="System.String">
+            <orm:column name="ShipCountry" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="customer" property="Customer" uniqueId="cb311ef3-f83c-4e22-b208-6b16c854439a" type="OrmBattle.TelerikModel.Northwind.Customer">
+            <orm:reference uniqueId="35bb7067-2300-428e-8cea-b866c4913570">
+              <orm:sharedfield name="customerID" />
+              <orm:constraint name="FK_Orders_Customers" destination-table="Customers">
+                <orm:column name="CustomerID" sql-type="nchar" nullable="true" length="5" scale="0" ado-type="Character" target-class="OrmBattle.TelerikModel.Northwind.Customer" target-field="customerID" />
+              </orm:constraint>
+            </orm:reference>
+          </orm:field>
+          <orm:field name="employee" property="Employee" uniqueId="c67f2e7a-e384-41b5-8b8a-ab891b3581f6" type="OrmBattle.TelerikModel.Northwind.Employee">
+            <orm:reference uniqueId="d049b3f1-61e6-4312-8af6-c9ec83972d7d">
+              <orm:sharedfield name="employeeID" />
+              <orm:constraint name="FK_Orders_Employees" destination-table="Employees">
+                <orm:column name="EmployeeID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+              </orm:constraint>
+            </orm:reference>
+          </orm:field>
+          <orm:field name="shipper" property="Shipper" uniqueId="381094c3-6482-46b9-b7f0-6d5736e7b45e" type="OrmBattle.TelerikModel.Northwind.Shipper">
+            <orm:reference uniqueId="52d4c98c-ea00-43ec-b0c6-00055b7fa320">
+              <orm:sharedfield name="shipVia" />
+              <orm:constraint name="FK_Orders_Shippers" destination-table="Shippers">
+                <orm:column name="ShipVia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Shipper" target-field="shipperID" />
+              </orm:constraint>
+            </orm:reference>
+          </orm:field>
+          <orm:field name="orderDetails" property="OrderDetails" uniqueId="cffcfd66-9b71-4a96-87eb-942f6e5115aa" type="OrmBattle.TelerikModel.Northwind.OrderDetail">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.OrderDetail" inverse-field="order" order-by="" uniqueId="129d8a03-b2b2-40e4-8bc1-fb8e07488504" />
+          </orm:field>
+          <orm:index name="CustomerID">
+            <orm:column name="CustomerID" sql-type="nchar" nullable="true" length="5" scale="0" ado-type="Character" target-class="OrmBattle.TelerikModel.Northwind.Customer" target-field="customerID" />
+          </orm:index>
+          <orm:index name="EmployeeID">
+            <orm:column name="EmployeeID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          </orm:index>
+          <orm:index name="OrderDate">
+            <orm:column name="OrderDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          </orm:index>
+          <orm:index name="ShippedDate">
+            <orm:column name="ShippedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          </orm:index>
+          <orm:index name="ShippersOrders">
+            <orm:column name="ShipVia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Shipper" target-field="shipperID" />
+          </orm:index>
+          <orm:index name="ShipPostalCode">
+            <orm:column name="ShipPostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:index>
+        </orm:class>
+        <orm:class name="Product" uniqueId="8faffb70-9269-4595-ad09-a92e904b7562">
+          <orm:table name="Products" />
+          <orm:identity>
+            <orm:key-generator name="autoinc" />
+            <orm:single-field field-name="productID" />
+          </orm:identity>
+          <orm:field name="productID" property="Id" uniqueId="6a992655-300c-48a9-bdff-daab19b1a27b" type="System.Int32">
+            <orm:column name="ProductID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          </orm:field>
+          <orm:field name="productName" property="ProductName" uniqueId="e06a020d-3cc0-486f-a905-104ca708f98e" type="System.String">
+            <orm:column name="ProductName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="supplierID" property="SupplierID" uniqueId="54729da6-575c-4e0d-b2a5-355cbfcb59d2" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="SupplierID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Supplier" target-field="supplierID" />
+          </orm:field>
+          <orm:field name="categoryID" property="CategoryID" uniqueId="c63ad65d-8169-4b6e-9f7c-92cd35a268df" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="CategoryID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Category" target-field="categoryID" />
+          </orm:field>
+          <orm:field name="quantityPerUnit" property="QuantityPerUnit" uniqueId="5ba6032b-29ed-4b79-b82b-2de84bf895ac" type="System.String">
+            <orm:column name="QuantityPerUnit" sql-type="nvarchar" nullable="true" length="20" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="unitPrice" property="UnitPrice" uniqueId="1ba4ee00-391d-4671-9720-41510331ebfd" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="UnitPrice" sql-type="money" nullable="true" length="0" scale="0" ado-type="Decimal" />
+          </orm:field>
+          <orm:field name="unitsInStock" property="UnitsInStock" uniqueId="49567e81-f92a-4a5b-848d-b2b162d9593c" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="UnitsInStock" sql-type="smallint" nullable="true" length="0" scale="0" ado-type="Int16" />
+          </orm:field>
+          <orm:field name="unitsOnOrder" property="UnitsOnOrder" uniqueId="be235652-d301-4b79-b3d8-f3a0e077eda8" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="UnitsOnOrder" sql-type="smallint" nullable="true" length="0" scale="0" ado-type="Int16" />
+          </orm:field>
+          <orm:field name="reorderLevel" property="ReorderLevel" uniqueId="a5fee64d-9367-4ba7-ad00-45925a92c5dd" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+            <orm:column name="ReorderLevel" sql-type="smallint" nullable="true" length="0" scale="0" ado-type="Int16" />
+          </orm:field>
+          <orm:field name="discontinued" property="Discontinued" uniqueId="0cbd3af7-da40-44f6-9b92-92e3046a3de6" type="System.Boolean">
+            <orm:column name="Discontinued" sql-type="bit" nullable="false" length="0" scale="0" ado-type="Bit" />
+          </orm:field>
+          <orm:field name="category" property="Category" uniqueId="fad27622-cfaa-41c5-9b87-83bcb4ea7756" type="OrmBattle.TelerikModel.Northwind.Category">
+            <orm:reference uniqueId="429cb5de-c844-4bf8-b04f-c259cb7769ed">
+              <orm:sharedfield name="categoryID" />
+              <orm:constraint name="FK_Products_Categories" destination-table="Categories">
+                <orm:column name="CategoryID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Category" target-field="categoryID" />
+              </orm:constraint>
+            </orm:reference>
+          </orm:field>
+          <orm:field name="supplier" property="Supplier" uniqueId="4e3ce4c6-d045-4c3f-9a89-649ef7d9de62" type="OrmBattle.TelerikModel.Northwind.Supplier">
+            <orm:reference uniqueId="e8858b2c-51d9-4c00-b541-1769942d2deb">
+              <orm:sharedfield name="supplierID" />
+              <orm:constraint name="FK_Products_Suppliers" destination-table="Suppliers">
+                <orm:column name="SupplierID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Supplier" target-field="supplierID" />
+              </orm:constraint>
+            </orm:reference>
+          </orm:field>
+          <orm:field name="orderDetails" property="OrderDetails" uniqueId="89337e0d-eb7c-45d8-ac7a-472ad39f5d1a" type="OrmBattle.TelerikModel.Northwind.OrderDetail">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.OrderDetail" inverse-field="product" order-by="" uniqueId="675e5e19-2664-421e-a156-60d26e2aefce" />
+          </orm:field>
+          <orm:index name="CategoriesProducts">
+            <orm:column name="CategoryID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Category" target-field="categoryID" />
+          </orm:index>
+          <orm:index name="ProductName">
+            <orm:column name="ProductName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="SupplierID">
+            <orm:column name="SupplierID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Supplier" target-field="supplierID" />
+          </orm:index>
+        </orm:class>
+        <orm:class name="Region" uniqueId="ae17b504-9290-40a8-bf58-498fa23427e5">
+          <orm:table name="Region" />
+          <orm:identity>
+            <orm:single-field field-name="regionID" />
+          </orm:identity>
+          <orm:field name="regionID" property="Id" uniqueId="ec2bc461-a7b1-4bb5-b663-4a61163411d0" type="System.Int32">
+            <orm:column name="RegionID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+          </orm:field>
+          <orm:field name="regionDescription" property="RegionDescription" uniqueId="f763ddbf-103c-4db0-aff3-d0cc67a75820" type="System.String">
+            <orm:column name="RegionDescription" sql-type="nchar" nullable="false" length="50" scale="0" ado-type="Character" />
+          </orm:field>
+          <orm:field name="territories" property="Territories" uniqueId="33f144ae-1b02-42a6-987a-a27d9f846a60" type="OrmBattle.TelerikModel.Northwind.Territory">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.Territory" inverse-field="region" order-by="" uniqueId="445fd0d7-929e-4c81-92f6-72b0cd2482c0" />
+          </orm:field>
+        </orm:class>
+        <orm:class name="Shipper" uniqueId="ba972902-575d-418c-a82a-44c70045c16a">
+          <orm:table name="Shippers" />
+          <orm:identity>
+            <orm:key-generator name="autoinc" />
+            <orm:single-field field-name="shipperID" />
+          </orm:identity>
+          <orm:field name="shipperID" property="Id" uniqueId="ebfb22a8-1b33-424e-ba69-9c2ad3978f3a" type="System.Int32">
+            <orm:column name="ShipperID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          </orm:field>
+          <orm:field name="companyName" property="CompanyName" uniqueId="37bd4ce0-ef98-4e48-9c01-a741de6b6677" type="System.String">
+            <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="phone" property="Phone" uniqueId="7ca0561e-03ea-46a7-aa1d-b2d53547140f" type="System.String">
+            <orm:column name="Phone" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="orders" property="Orders" uniqueId="d8903e26-d60b-48ca-a9c7-fd1463d7faed" type="OrmBattle.TelerikModel.Northwind.Order">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.Order" inverse-field="shipper" order-by="" uniqueId="52d4c98c-ea00-43ec-b0c6-00055b7fa320" />
+          </orm:field>
+        </orm:class>
+        <orm:class name="Supplier" uniqueId="5cda7073-9f4c-4cde-b2a5-5ac2a1d36cb1">
+          <orm:table name="Suppliers" />
+          <orm:identity>
+            <orm:key-generator name="autoinc" />
+            <orm:single-field field-name="supplierID" />
+          </orm:identity>
+          <orm:field name="supplierID" property="Id" uniqueId="eb32e1cf-7207-4b21-aee3-ae626c67e93b" type="System.Int32">
+            <orm:column name="SupplierID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          </orm:field>
+          <orm:field name="companyName" property="CompanyName" uniqueId="44bfc766-5591-49d9-ad84-a8928938d2d8" type="System.String">
+            <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="contactName" property="ContactName" uniqueId="3836d0b3-f4f6-490f-b81b-510035993913" type="System.String">
+            <orm:column name="ContactName" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="contactTitle" property="ContactTitle" uniqueId="cf7adf60-34f1-4296-b02f-3a86d6a58b5f" type="System.String">
+            <orm:column name="ContactTitle" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="address" property="Address" uniqueId="1eaceee2-fe7d-4366-8686-5992b9dd6b74" type="System.String">
+            <orm:column name="Address" sql-type="nvarchar" nullable="true" length="60" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="city" property="City" uniqueId="11c8b31d-6b97-4fa4-b70d-37992f18a815" type="System.String">
+            <orm:column name="City" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="region" property="Region" uniqueId="8c0e4a0d-732f-4b09-a7a2-017196a735c3" type="System.String">
+            <orm:column name="Region" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="postalCode" property="PostalCode" uniqueId="23087a5e-41ab-419a-9e19-15b1d0948e0b" type="System.String">
+            <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="country" property="Country" uniqueId="de1e76b6-5b31-4296-989b-5c3add606ed3" type="System.String">
+            <orm:column name="Country" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="phone" property="Phone" uniqueId="1ef6837e-4951-4a35-970f-a830bb1db62e" type="System.String">
+            <orm:column name="Phone" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="fax" property="Fax" uniqueId="3c979dca-e2ad-410b-b67e-d0587fad0332" type="System.String">
+            <orm:column name="Fax" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="homePage" property="HomePage" uniqueId="1c0341d9-551c-44de-b72e-a6ea8e84d36c" type="System.String">
+            <orm:column name="HomePage" sql-type="ntext" nullable="true" length="0" scale="0" ado-type="Clob" />
+          </orm:field>
+          <orm:field name="products" property="Products" uniqueId="7f0536c6-18ce-4847-b6a4-98ea2c1f1a46" type="OrmBattle.TelerikModel.Northwind.Product">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.Product" inverse-field="supplier" order-by="" uniqueId="e8858b2c-51d9-4c00-b541-1769942d2deb" />
+          </orm:field>
+          <orm:index name="CompanyName">
+            <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="PostalCode">
+            <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:index>
+        </orm:class>
+        <orm:class name="Territory" uniqueId="1aa312ce-0c72-470a-8a9c-aad1851be183">
+          <orm:table name="Territories" />
+          <orm:identity>
+            <orm:single-field field-name="territoryID" />
+          </orm:identity>
+          <orm:field name="territoryID" property="Id" uniqueId="42df60ac-789f-4e5b-a24b-4d37de43625f" type="System.String">
+            <orm:column name="TerritoryID" sql-type="nvarchar" nullable="false" length="20" scale="0" primary-key="true" ado-type="Varchar" />
+          </orm:field>
+          <orm:field name="territoryDescription" property="TerritoryDescription" uniqueId="96944ca2-ed6e-4654-960b-ff103335dd83" type="System.String">
+            <orm:column name="TerritoryDescription" sql-type="nchar" nullable="false" length="50" scale="0" ado-type="Character" />
+          </orm:field>
+          <orm:field name="regionID" property="RegionID" uniqueId="47d7fb60-8e9d-44f4-ba44-aeba701271bd" type="System.Int32">
+            <orm:column name="RegionID" sql-type="int" nullable="false" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Region" target-field="regionID" />
+          </orm:field>
+          <orm:field name="region" property="Region" uniqueId="da0d0891-16c5-411f-b558-e68372234f5d" type="OrmBattle.TelerikModel.Northwind.Region">
+            <orm:reference uniqueId="445fd0d7-929e-4c81-92f6-72b0cd2482c0">
+              <orm:sharedfield name="regionID" />
+              <orm:constraint name="FK_Territories_Region" destination-table="Region">
+                <orm:column name="RegionID" sql-type="int" nullable="false" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Region" target-field="regionID" />
+              </orm:constraint>
+            </orm:reference>
+          </orm:field>
+          <orm:field name="employees" property="Employees" uniqueId="66ef0fba-a3a6-4573-9d20-18381525f46b" type="OrmBattle.TelerikModel.Northwind.Employee">
+            <orm:collection element-class="OrmBattle.TelerikModel.Northwind.Employee" inverse-field="territories" order-by="" uniqueId="de54b8c1-cf85-4295-99db-256ed5b9cdd5" />
+          </orm:field>
+        </orm:class>
+      </orm:namespace>
+      <orm:schema schema="">
+        <orm:table name="Categories">
+          <orm:column name="CategoryID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          <orm:column name="CategoryName" sql-type="nvarchar" nullable="false" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="Description" sql-type="ntext" nullable="true" length="0" scale="0" ado-type="Clob" />
+          <orm:column name="Picture" sql-type="image" nullable="true" length="0" scale="0" ado-type="LongVarBinary" />
+          <orm:index name="CategoryName">
+            <orm:column name="CategoryName" sql-type="nvarchar" nullable="false" length="15" scale="0" ado-type="Varchar" />
+          </orm:index>
+        </orm:table>
+        <orm:table name="Customers">
+          <orm:column name="CustomerID" sql-type="nchar" nullable="false" length="5" scale="0" primary-key="true" ado-type="Character" />
+          <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          <orm:column name="ContactName" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          <orm:column name="ContactTitle" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          <orm:column name="Address" sql-type="nvarchar" nullable="true" length="60" scale="0" ado-type="Varchar" />
+          <orm:column name="City" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="Region" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          <orm:column name="Country" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="Phone" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          <orm:column name="Fax" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          <orm:index name="City">
+            <orm:column name="City" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="CompanyName">
+            <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="PostalCode">
+            <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="Region">
+            <orm:column name="Region" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          </orm:index>
+        </orm:table>
+        <orm:table name="Employees">
+          <orm:column name="EmployeeID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          <orm:column name="LastName" sql-type="nvarchar" nullable="false" length="20" scale="0" ado-type="Varchar" />
+          <orm:column name="FirstName" sql-type="nvarchar" nullable="false" length="10" scale="0" ado-type="Varchar" />
+          <orm:column name="Title" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          <orm:column name="TitleOfCourtesy" sql-type="nvarchar" nullable="true" length="25" scale="0" ado-type="Varchar" />
+          <orm:column name="BirthDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          <orm:column name="HireDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          <orm:column name="Address" sql-type="nvarchar" nullable="true" length="60" scale="0" ado-type="Varchar" />
+          <orm:column name="City" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="Region" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          <orm:column name="Country" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="HomePhone" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          <orm:column name="Extension" sql-type="nvarchar" nullable="true" length="4" scale="0" ado-type="Varchar" />
+          <orm:column name="Photo" sql-type="image" nullable="true" length="0" scale="0" ado-type="LongVarBinary" />
+          <orm:column name="Notes" sql-type="ntext" nullable="true" length="0" scale="0" ado-type="Clob" />
+          <orm:column name="ReportsTo" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          <orm:column name="PhotoPath" sql-type="nvarchar" nullable="true" length="255" scale="0" ado-type="Varchar" />
+          <orm:index name="LastName">
+            <orm:column name="LastName" sql-type="nvarchar" nullable="false" length="20" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="PostalCode">
+            <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:constraint name="FK_Employees_Employees" destination-table="Employees">
+            <orm:column name="ReportsTo" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          </orm:constraint>
+        </orm:table>
+        <orm:table name="EmployeeTerritories" join-table="true">
+          <orm:column name="EmployeeID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          <orm:column name="TerritoryID" sql-type="nvarchar" nullable="false" length="20" scale="0" primary-key="true" ado-type="Varchar" target-class="OrmBattle.TelerikModel.Northwind.Territory" target-field="territoryID" />
+          <orm:constraint name="FK_EmployeeTerritories_Employees" destination-table="Employees">
+            <orm:column name="EmployeeID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          </orm:constraint>
+          <orm:constraint name="FK_EmployeeTerritories_Territories" destination-table="Territories">
+            <orm:column name="TerritoryID" sql-type="nvarchar" nullable="false" length="20" scale="0" primary-key="true" ado-type="Varchar" target-class="OrmBattle.TelerikModel.Northwind.Territory" target-field="territoryID" />
+          </orm:constraint>
+        </orm:table>
+        <orm:table name="Order Details">
+          <orm:column name="OrderID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Order" target-field="orderID" />
+          <orm:column name="ProductID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Product" target-field="productID" />
+          <orm:column name="UnitPrice" sql-type="money" nullable="false" length="0" scale="0" ado-type="Decimal" />
+          <orm:column name="Quantity" sql-type="smallint" nullable="false" length="0" scale="0" ado-type="Int16" />
+          <orm:column name="Discount" sql-type="real" nullable="false" length="0" scale="0" ado-type="Real" />
+          <orm:index name="OrderID">
+            <orm:column name="OrderID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Order" target-field="orderID" />
+          </orm:index>
+          <orm:index name="ProductID">
+            <orm:column name="ProductID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Product" target-field="productID" />
+          </orm:index>
+          <orm:constraint name="FK_Order_Details_Orders" destination-table="Orders">
+            <orm:column name="OrderID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Order" target-field="orderID" />
+          </orm:constraint>
+          <orm:constraint name="FK_Order_Details_Products" destination-table="Products">
+            <orm:column name="ProductID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Product" target-field="productID" />
+          </orm:constraint>
+        </orm:table>
+        <orm:table name="Orders">
+          <orm:column name="OrderID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          <orm:column name="CustomerID" sql-type="nchar" nullable="true" length="5" scale="0" ado-type="Character" target-class="OrmBattle.TelerikModel.Northwind.Customer" target-field="customerID" />
+          <orm:column name="EmployeeID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          <orm:column name="OrderDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          <orm:column name="RequiredDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          <orm:column name="ShippedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          <orm:column name="ShipVia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Shipper" target-field="shipperID" />
+          <orm:column name="Freight" sql-type="money" nullable="true" length="0" scale="0" ado-type="Decimal" />
+          <orm:column name="ShipName" sql-type="nvarchar" nullable="true" length="40" scale="0" ado-type="Varchar" />
+          <orm:column name="ShipAddress" sql-type="nvarchar" nullable="true" length="60" scale="0" ado-type="Varchar" />
+          <orm:column name="ShipCity" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="ShipRegion" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="ShipPostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          <orm:column name="ShipCountry" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:index name="CustomerID">
+            <orm:column name="CustomerID" sql-type="nchar" nullable="true" length="5" scale="0" ado-type="Character" target-class="OrmBattle.TelerikModel.Northwind.Customer" target-field="customerID" />
+          </orm:index>
+          <orm:index name="EmployeeID">
+            <orm:column name="EmployeeID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          </orm:index>
+          <orm:index name="OrderDate">
+            <orm:column name="OrderDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          </orm:index>
+          <orm:index name="ShippedDate">
+            <orm:column name="ShippedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          </orm:index>
+          <orm:index name="ShippersOrders">
+            <orm:column name="ShipVia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Shipper" target-field="shipperID" />
+          </orm:index>
+          <orm:index name="ShipPostalCode">
+            <orm:column name="ShipPostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:constraint name="FK_Orders_Customers" destination-table="Customers">
+            <orm:column name="CustomerID" sql-type="nchar" nullable="true" length="5" scale="0" ado-type="Character" target-class="OrmBattle.TelerikModel.Northwind.Customer" target-field="customerID" />
+          </orm:constraint>
+          <orm:constraint name="FK_Orders_Employees" destination-table="Employees">
+            <orm:column name="EmployeeID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Employee" target-field="employeeID" />
+          </orm:constraint>
+          <orm:constraint name="FK_Orders_Shippers" destination-table="Shippers">
+            <orm:column name="ShipVia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Shipper" target-field="shipperID" />
+          </orm:constraint>
+        </orm:table>
+        <orm:table name="Products">
+          <orm:column name="ProductID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          <orm:column name="ProductName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          <orm:column name="SupplierID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Supplier" target-field="supplierID" />
+          <orm:column name="CategoryID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Category" target-field="categoryID" />
+          <orm:column name="QuantityPerUnit" sql-type="nvarchar" nullable="true" length="20" scale="0" ado-type="Varchar" />
+          <orm:column name="UnitPrice" sql-type="money" nullable="true" length="0" scale="0" ado-type="Decimal" />
+          <orm:column name="UnitsInStock" sql-type="smallint" nullable="true" length="0" scale="0" ado-type="Int16" />
+          <orm:column name="UnitsOnOrder" sql-type="smallint" nullable="true" length="0" scale="0" ado-type="Int16" />
+          <orm:column name="ReorderLevel" sql-type="smallint" nullable="true" length="0" scale="0" ado-type="Int16" />
+          <orm:column name="Discontinued" sql-type="bit" nullable="false" length="0" scale="0" ado-type="Bit" />
+          <orm:index name="CategoriesProducts">
+            <orm:column name="CategoryID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Category" target-field="categoryID" />
+          </orm:index>
+          <orm:index name="ProductName">
+            <orm:column name="ProductName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="SupplierID">
+            <orm:column name="SupplierID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Supplier" target-field="supplierID" />
+          </orm:index>
+          <orm:constraint name="FK_Products_Categories" destination-table="Categories">
+            <orm:column name="CategoryID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Category" target-field="categoryID" />
+          </orm:constraint>
+          <orm:constraint name="FK_Products_Suppliers" destination-table="Suppliers">
+            <orm:column name="SupplierID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Supplier" target-field="supplierID" />
+          </orm:constraint>
+        </orm:table>
+        <orm:table name="Region">
+          <orm:column name="RegionID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+          <orm:column name="RegionDescription" sql-type="nchar" nullable="false" length="50" scale="0" ado-type="Character" />
+        </orm:table>
+        <orm:table name="Shippers">
+          <orm:column name="ShipperID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          <orm:column name="Phone" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+        </orm:table>
+        <orm:table name="Suppliers">
+          <orm:column name="SupplierID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+          <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          <orm:column name="ContactName" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          <orm:column name="ContactTitle" sql-type="nvarchar" nullable="true" length="30" scale="0" ado-type="Varchar" />
+          <orm:column name="Address" sql-type="nvarchar" nullable="true" length="60" scale="0" ado-type="Varchar" />
+          <orm:column name="City" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="Region" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          <orm:column name="Country" sql-type="nvarchar" nullable="true" length="15" scale="0" ado-type="Varchar" />
+          <orm:column name="Phone" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          <orm:column name="Fax" sql-type="nvarchar" nullable="true" length="24" scale="0" ado-type="Varchar" />
+          <orm:column name="HomePage" sql-type="ntext" nullable="true" length="0" scale="0" ado-type="Clob" />
+          <orm:index name="CompanyName">
+            <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="40" scale="0" ado-type="Varchar" />
+          </orm:index>
+          <orm:index name="PostalCode">
+            <orm:column name="PostalCode" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="Varchar" />
+          </orm:index>
+        </orm:table>
+        <orm:table name="Territories">
+          <orm:column name="TerritoryID" sql-type="nvarchar" nullable="false" length="20" scale="0" primary-key="true" ado-type="Varchar" />
+          <orm:column name="TerritoryDescription" sql-type="nchar" nullable="false" length="50" scale="0" ado-type="Character" />
+          <orm:column name="RegionID" sql-type="int" nullable="false" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Region" target-field="regionID" />
+          <orm:constraint name="FK_Territories_Region" destination-table="Region">
+            <orm:column name="RegionID" sql-type="int" nullable="false" length="0" scale="0" ado-type="Int32" target-class="OrmBattle.TelerikModel.Northwind.Region" target-field="regionID" />
+          </orm:constraint>
+        </orm:table>
+      </orm:schema>
+    </orm:orm>
+    <ModelSettings xmlns="">
+      <AppConfigConnectionPropertyName>NorthwindContext</AppConfigConnectionPropertyName>
+      <AppConfigConnectionString>Data Source=.;Initial Catalog=Northwind;Integrated Security=True</AppConfigConnectionString>
+      <DesignTimeConnectionString>Data Source=.;Initial Catalog=Northwind;Integrated Security=True</DesignTimeConnectionString>
+      <InitialCatalog>Northwind</InitialCatalog>
+      <SaveConnectionStringInAppConfig>true</SaveConnectionStringInAppConfig>
+      <ModelNamespace>OrmBattle.TelerikModel.Northwind</ModelNamespace>
+      <ModelName>NorthwindContext</ModelName>
+      <NamingSettings>
+        <ClassRules>
+          <AddPrefix />
+          <AddSuffix />
+          <RemovePrefix />
+          <RemoveSuffix />
+          <CaseMode>PascalCase</CaseMode>
+          <PluralizationMode>Singularize</PluralizationMode>
+          <PluralizationModeCollections>Unchanged</PluralizationModeCollections>
+          <RemoveUnderscore>false</RemoveUnderscore>
+          <UnderscoreAsWordDelimiter>false</UnderscoreAsWordDelimiter>
+          <SchemaNameAsPrefix>false</SchemaNameAsPrefix>
+        </ClassRules>
+        <FieldRules>
+          <AddPrefix />
+          <AddSuffix />
+          <RemovePrefix />
+          <RemoveSuffix />
+          <CaseMode>CamelCase</CaseMode>
+          <PluralizationMode>Unchanged</PluralizationMode>
+          <PluralizationModeCollections>Unchanged</PluralizationModeCollections>
+          <RemoveUnderscore>false</RemoveUnderscore>
+          <UnderscoreAsWordDelimiter>false</UnderscoreAsWordDelimiter>
+          <SchemaNameAsPrefix>false</SchemaNameAsPrefix>
+        </FieldRules>
+        <PropertyRules>
+          <AddPrefix />
+          <AddSuffix />
+          <RemovePrefix />
+          <RemoveSuffix />
+          <CaseMode>PascalCase</CaseMode>
+          <PluralizationMode>Unchanged</PluralizationMode>
+          <PluralizationModeCollections>Unchanged</PluralizationModeCollections>
+          <RemoveUnderscore>false</RemoveUnderscore>
+          <UnderscoreAsWordDelimiter>false</UnderscoreAsWordDelimiter>
+          <SchemaNameAsPrefix>false</SchemaNameAsPrefix>
+        </PropertyRules>
+      </NamingSettings>
+      <CodeGenerationSettings>
+        <ShouldGenerateContext>true</ShouldGenerateContext>
+        <OutputProjectName />
+        <OutputProjectFolder />
+        <OutputPath />
+        <UseCustomTemplate>false</UseCustomTemplate>
+        <MappingDefinitionType>Xml</MappingDefinitionType>
+        <GenerateMultipleFiles>true</GenerateMultipleFiles>
+        <OverrideToAutoProperties>true</OverrideToAutoProperties>
+        <OutputMode>ProjectFolder</OutputMode>
+      </CodeGenerationSettings>
+      <SchemaUpdateSettings>
+        <NamingScheme>UseDefaultNaming</NamingScheme>
+        <NamePrefix />
+        <AppendDateTimeStamp>true</AppendDateTimeStamp>
+        <EnableDeployment>false</EnableDeployment>
+        <DeploymentProject />
+        <DeploymentDirectory />
+        <SchemaUpdateStrategy>GenerateSchemaDDL</SchemaUpdateStrategy>
+      </SchemaUpdateSettings>
+      <BackendConfigurationSettings>
+        <BackendConfiguration>
+          <Backend>mssql</Backend>
+        </BackendConfiguration>
+      </BackendConfigurationSettings>
+      <UseSchemaAsNamespace>false</UseSchemaAsNamespace>
+      <ConnectionStringNotSet>false</ConnectionStringNotSet>
+    </ModelSettings>
+  </Runtime>
+  <Designer>
+    <Diagrams>
+      <entityDiagramsDiagram absoluteBounds="0, 0, 11.5, 23.25" name="EntityDiagrams">
+        <MetaModelMoniker Name="/NorthwindContext" />
+        <nestedChildShapes>
+          <classShape Id="3d8b7de1-5135-4391-a920-0bc74f6ef064" absoluteBounds="5.25, 6.5, 1.5, 2.2280729564030963">
+            <MetaClassMoniker Name="/NorthwindContext/Category" />
+            <nestedChildShapes>
+              <elementListCompartment Id="b84dbe6c-fb1e-4492-b5a4-858e1e860003" absoluteBounds="5.265, 7.01, 1.4700000000000002, 1.3309733395775159" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="20344491-beb9-4f5c-93a7-9d39b1759b34" absoluteBounds="5.265, 8.3509733395775161, 1.4700000000000002, 0.27709961682558082" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <classShape Id="7283177c-5f00-44e0-be2d-0954942cef97" absoluteBounds="5.25, 12.25, 1.5, 3.7034961682558034">
+            <MetaClassMoniker Name="/NorthwindContext/Customer" />
+            <nestedChildShapes>
+              <elementListCompartment Id="5a9c65cf-120f-4e13-bc52-460173132f2d" absoluteBounds="5.265, 12.76, 1.4700000000000002, 2.8063965514302254" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="8bd7a37f-e182-49d0-b87d-61b7e891e69f" absoluteBounds="5.265, 15.576396551430225, 1.4700000000000002, 0.2770996168255806" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <classShape Id="71cc8d1a-e762-43c6-b910-b93f4e8bb639" absoluteBounds="5.25, 16.75, 1.5, 5.8112436137596717">
+            <MetaClassMoniker Name="/NorthwindContext/Employee" />
+            <nestedChildShapes>
+              <elementListCompartment Id="d85761ab-f5b0-42f5-98b5-f82fee31f160" absoluteBounds="5.265, 17.259999999999998, 1.4700000000000002, 4.9141439969340954" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="635487a5-3532-40e2-9666-66ec16539780" absoluteBounds="5.265, 22.184143996934097, 1.4700000000000002, 0.2770996168255806" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <classShape Id="c41ca5c3-0f99-409f-81d8-b5e5b87f4f25" absoluteBounds="0.75, 10.875, 1.5, 2.6496224455038693">
+            <MetaClassMoniker Name="/NorthwindContext/OrderDetail" />
+            <nestedChildShapes>
+              <elementListCompartment Id="0486c330-aa50-4fd9-ab68-133c4845c51e" absoluteBounds="0.76500000000000012, 11.385, 1.4700000000000002, 1.7525228286782901" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="66baf899-f3c0-4d68-97c8-2a5c30fe9144" absoluteBounds="0.76500000000000012, 13.147522828678291, 1.4700000000000002, 0.2770996168255806" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <classShape Id="ce9bc95f-e562-4cf2-a884-afa30fac7858" absoluteBounds="3, 13.5, 1.5, 4.9681446355581258">
+            <MetaClassMoniker Name="/NorthwindContext/Order" />
+            <nestedChildShapes>
+              <elementListCompartment Id="5629547b-f7f2-4448-a2b5-a50468547ae1" absoluteBounds="3.015, 14.01, 1.4700000000000002, 4.0710450187325478" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="24384f9d-2f75-444a-be51-2b9423f0e9cc" absoluteBounds="3.015, 18.091045018732547, 1.4700000000000002, 0.2770996168255806" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <classShape Id="a618b088-40c8-40f1-a437-e2a4fab6029f" absoluteBounds="3, 3.375, 1.5, 3.9142709128061921">
+            <MetaClassMoniker Name="/NorthwindContext/Product" />
+            <nestedChildShapes>
+              <elementListCompartment Id="52871256-2e85-4edf-a99a-40d613732dd7" absoluteBounds="3.015, 3.885, 1.4700000000000002, 3.0171712959806127" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="5ee757c5-ee64-4a45-9c94-c3b0678d3c1d" absoluteBounds="3.015, 6.9121712959806123, 1.4700000000000002, 0.2770996168255806" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <classShape Id="7db9cff5-e0e2-4f16-ad40-86d4dff2edef" absoluteBounds="9.75, 18.75, 1.5, 1.8065234673023198">
+            <MetaClassMoniker Name="/NorthwindContext/Region" />
+            <nestedChildShapes>
+              <elementListCompartment Id="d529e89f-1a4a-4dac-b5d6-4c77005e1aa9" absoluteBounds="9.765, 19.26, 1.4700000000000002, 0.90942385047674179" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="0a6ea7d3-43ac-4a6b-b4de-7878bad7fd47" absoluteBounds="9.765, 20.179423850476741, 1.4700000000000002, 0.2770996168255806" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <classShape Id="72c36b31-67d6-495c-b8d3-e1e7afd677bc" absoluteBounds="5.25, 9.5, 1.5, 2.0172982118527116">
+            <MetaClassMoniker Name="/NorthwindContext/Shipper" />
+            <nestedChildShapes>
+              <elementListCompartment Id="c43ae43e-0d12-43a3-bc87-fb90a74b5535" absoluteBounds="5.265, 10.01, 1.4700000000000002, 1.1201985950271287" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="516c6ac2-6b13-4370-96c5-856175a5ca68" absoluteBounds="5.265, 11.14019859502713, 1.4700000000000002, 0.2770996168255806" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <classShape Id="ce171427-9700-41a5-8a55-63d65ada64e6" absoluteBounds="5.25, 1.875, 1.5, 3.9142709128061921">
+            <MetaClassMoniker Name="/NorthwindContext/Supplier" />
+            <nestedChildShapes>
+              <elementListCompartment Id="51732f62-c8d7-4b20-92ce-9a9782e77524" absoluteBounds="5.2650000000000006, 2.385, 1.4700000000000002, 3.0171712959806127" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="d7d6ee63-2972-4560-b18a-6991cf815fce" absoluteBounds="5.2650000000000006, 5.4121712959806123, 1.4700000000000002, 0.2770996168255806" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <classShape Id="5bf9a7cd-8f64-452e-bc1f-8b286d588671" absoluteBounds="7.5, 18.5, 1.5, 2.2280729564030963">
+            <MetaClassMoniker Name="/NorthwindContext/Territory" />
+            <nestedChildShapes>
+              <elementListCompartment Id="e7ca21f3-2176-4a21-94c8-2f30b88224da" absoluteBounds="7.5150000000000006, 19.009999999999998, 1.4700000000000002, 1.3309733395775159" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="33c20abb-9dc0-4a97-9b72-d0032d5898aa" absoluteBounds="7.5150000000000006, 20.350973339577514, 1.4700000000000002, 0.27709961682558082" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+          <associationConnector edgePoints="[(5.78192307692308 : 22.5612436137597); (5.78192307692308 : 22.8112436137597); (6.22846153846154 : 22.8112436137597); (6.22846153846154 : 22.5612436137597)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="7f86468b-5035-41a9-9a58-531cde6626e2" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="71cc8d1a-e762-43c6-b910-b93f4e8bb639" />
+              <classShapeMoniker Id="71cc8d1a-e762-43c6-b910-b93f4e8bb639" />
+            </nodes>
+          </associationConnector>
+          <associationConnector edgePoints="[(6.75 : 19.6140364782015); (7.5 : 19.6140364782015)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="de54b8c1-cf85-4295-99db-256ed5b9cdd5" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="71cc8d1a-e762-43c6-b910-b93f4e8bb639" />
+              <classShapeMoniker Id="5bf9a7cd-8f64-452e-bc1f-8b286d588671" />
+            </nodes>
+          </associationConnector>
+          <associationConnector edgePoints="[(2.25 : 12.1874995); (3.75 : 12.1874995); (3.75 : 13.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="129d8a03-b2b2-40e4-8bc1-fb8e07488504" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="c41ca5c3-0f99-409f-81d8-b5e5b87f4f25" />
+              <classShapeMoniker Id="ce9bc95f-e562-4cf2-a884-afa30fac7858" />
+            </nodes>
+          </associationConnector>
+          <associationConnector edgePoints="[(1.5 : 10.875); (1.5 : 5.3321354564031); (3 : 5.3321354564031)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="675e5e19-2664-421e-a156-60d26e2aefce" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="c41ca5c3-0f99-409f-81d8-b5e5b87f4f25" />
+              <classShapeMoniker Id="a618b088-40c8-40f1-a437-e2a4fab6029f" />
+            </nodes>
+          </associationConnector>
+          <associationConnector edgePoints="[(4.5 : 14.7267480841279); (5.25 : 14.7267480841279)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="35bb7067-2300-428e-8cea-b866c4913570" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="ce9bc95f-e562-4cf2-a884-afa30fac7858" />
+              <classShapeMoniker Id="7283177c-5f00-44e0-be2d-0954942cef97" />
+            </nodes>
+          </associationConnector>
+          <associationConnector edgePoints="[(4.5 : 17.6090723177791); (5.25 : 17.6090723177791)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="d049b3f1-61e6-4312-8af6-c9ec83972d7d" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="ce9bc95f-e562-4cf2-a884-afa30fac7858" />
+              <classShapeMoniker Id="71cc8d1a-e762-43c6-b910-b93f4e8bb639" />
+            </nodes>
+          </associationConnector>
+          <associationConnector edgePoints="[(4.1562525 : 13.5); (4.1562525 : 10.5086491059264); (5.25 : 10.5086491059264)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="52d4c98c-ea00-43ec-b0c6-00055b7fa320" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="ce9bc95f-e562-4cf2-a884-afa30fac7858" />
+              <classShapeMoniker Id="72c36b31-67d6-495c-b8d3-e1e7afd677bc" />
+            </nodes>
+          </associationConnector>
+          <associationConnector edgePoints="[(4.5 : 6.8946354564031); (5.25 : 6.8946354564031)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="429cb5de-c844-4bf8-b04f-c259cb7769ed" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="a618b088-40c8-40f1-a437-e2a4fab6029f" />
+              <classShapeMoniker Id="3d8b7de1-5135-4391-a920-0bc74f6ef064" />
+            </nodes>
+          </associationConnector>
+          <associationConnector edgePoints="[(4.5 : 4.5821354564031); (5.25 : 4.5821354564031)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="e8858b2c-51d9-4c00-b541-1769942d2deb" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="a618b088-40c8-40f1-a437-e2a4fab6029f" />
+              <classShapeMoniker Id="ce171427-9700-41a5-8a55-63d65ada64e6" />
+            </nodes>
+          </associationConnector>
+          <associationConnector edgePoints="[(9 : 19.6532617336512); (9.75 : 19.6532617336512)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+            <AssociationMoniker Id="445fd0d7-929e-4c81-92f6-72b0cd2482c0" />
+            <relativeChildShapes />
+            <nodes>
+              <classShapeMoniker Id="5bf9a7cd-8f64-452e-bc1f-8b286d588671" />
+              <classShapeMoniker Id="7db9cff5-e0e2-4f16-ad40-86d4dff2edef" />
+            </nodes>
+          </associationConnector>
+        </nestedChildShapes>
+      </entityDiagramsDiagram>
+    </Diagrams>
+  </Designer>
+</rlinq>

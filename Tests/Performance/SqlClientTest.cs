@@ -12,7 +12,7 @@ using System.Text;
 using OrmBattle.NHibernateModel;
 using System.Diagnostics;
 using NUnit.Framework;
-using Xtensive.Core.Diagnostics;
+using Xtensive.Diagnostics;
 
 namespace OrmBattle.Tests.Performance
 {

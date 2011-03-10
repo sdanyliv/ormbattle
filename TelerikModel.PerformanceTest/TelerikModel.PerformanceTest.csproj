@@ -54,7 +54,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+    </Reference>
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -64,30 +65,34 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Telerik.OpenAccess, Version=2010.1.623.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.dll</HintPath>
+    <Reference Include="System.Data">
     </Reference>
-    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2010.1.623.5, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="System.Xml">
+    </Reference>
+    <Reference Include="Telerik.OpenAccess, Version=2010.3.1125.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342">
+      <HintPath>C:\Program Files (x86)\Telerik\OpenAccess ORM\bin\Telerik.OpenAccess.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telerik OpenAccess ORM\Binaries\Telerik.OpenAccess.35.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2010.3.1125.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342">
+      <HintPath>C:\Program Files (x86)\Telerik\OpenAccess ORM\bin\Telerik.OpenAccess.35.Extensions.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PerformanceTestContext.cs" />
+    <Compile Include="PerformanceTest.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PerformanceTest.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Simplest.cs" />
-    <Compile Include="Simplest.Telerik.OpenAccess.cs">
-      <DependentUpon>Simplest.cs</DependentUpon>
+    <Compile Include="Simplest.generated.cs">
+      <DependentUpon>PerformanceTest.rlinq</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="reversemapping.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -116,9 +121,11 @@
   </Target>
   -->
   <Import Project="..\Lib\Telerik OpenAccess ORM\enhance.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="PerformanceTest" OpenAccess_Enhancing="true" OpenAccess_UpdateDatabase="false" OpenAccess_EnhancementOutputLevel="1" />
-    </VisualStudio>
-  </ProjectExtensions>
+  <Import Condition="Exists('$(MSBuildExtensionsPath)\OpenAccess.targets')" Project="$(MSBuildExtensionsPath)\OpenAccess.targets" />
+  <ItemGroup>
+    <OpenAccessDeploy Include="PerformanceTest.rlinq">
+      <Generator>MetaModelCodeGenerator</Generator>
+      <LastGenOutput>PerformanceTest.cs</LastGenOutput>
+    </OpenAccessDeploy>
+  </ItemGroup>
 </Project>

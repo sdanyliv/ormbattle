@@ -29,7 +29,8 @@
 
   
   <!-- Importing common targets -->
-  
+
+  <Import Project="ILMerge.targets"                       Condition="'$(ILMergeAssembliesRegex)'!=''"/>  
   <Import Project="UpdateReferenceSearchPaths.targets" />
   <Import Project="UpdateSharedBinaries.targets"          Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->
   <Import Project="CopyExternalFiles.targets"             Condition="'$(AssemblyFoldersSuffix)'!=''"/> <!-- Identifies C# or VB.NET -->

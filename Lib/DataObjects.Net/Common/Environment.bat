@@ -26,7 +26,6 @@ rem Tool paths (manual)
 set HtmlHelp1SDKPath=%ProgramFiles%\Microsoft Help 1.0 SDK
 set HtmlHelp2SDKPath=%ProgramFiles%\Microsoft Help 2.0 SDK
 set SandcastlePath=%ProgramFiles%\Sandcastle
-set HeatFixPath=Bin\Latest\HeatFix.exe
 
 rem Tool paths (automatic)
 call :SetRegPath MSBuildPath "HKLM\SOFTWARE\%Wow6432Key%Microsoft\MSBuild\ToolsVersions\4.0" /v MSBuildToolsPath 2>nul
@@ -40,8 +39,6 @@ call :SetRegPath InnoSetupPath "HKLM\SOFTWARE\%Wow6432Key%Microsoft\Windows\Curr
 call :DotPath InnoSetupPath
 call :SetRegSrvPath TortoiseSVNPath "HKLM\SOFTWARE\%Wow6432Key%Classes\CLSID\{30351346-7B7D-4FCC-81B4-1E394CA267EB}\InProcServer32" /ve 2>nul
 call :DotPath TortoiseSVNPath
-set SubWCRevPath=%TortoiseSVNPath%\SubWCRev.exe
-set WixPath=%WIX%bin
 
 rem Visual Studio 2008 & .NET paths (automatic)
 call :SetRegPath DevEnv2008Path "HKLM\SOFTWARE\%Wow6432Key%Microsoft\VisualStudio\9.0" /v InstallDir 2>nul

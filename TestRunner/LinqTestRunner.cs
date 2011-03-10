@@ -13,9 +13,9 @@ using NUnit.Framework;
 using OrmBattle.Tests;
 using OrmBattle.Tests.Linq;
 using Xtensive.Core;
-using Xtensive.Core.Collections;
-using Xtensive.Core.Helpers;
-using Xtensive.Core.Reflection;
+using Xtensive.Collections;
+using Xtensive.Helpers;
+using Xtensive.Reflection;
 
 
 namespace OrmBattle.TestRunner

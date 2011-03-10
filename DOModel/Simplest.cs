@@ -4,7 +4,7 @@
 // Created by: Alexis Kochetov
 // Created:    2009.07.29
 
-using Xtensive.Storage;
+using Xtensive.Orm;
 
 namespace OrmBattle.DOModel
 {
@@ -20,8 +20,8 @@ namespace OrmBattle.DOModel
 
     // Constructors
 
-    public Simplest(long id, long value)
-      : base(id)
+    public Simplest(Session session, long id, long value)
+      : base(session, id)
     {
       Value = value;
     }

@@ -14,8 +14,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Xtensive.Core;
-using Xtensive.Core.Disposing;
-using Xtensive.Core.Collections;
+using Xtensive.Disposing;
+using Xtensive.Collections;
 
 namespace OrmBattle.Tests.Linq
 {

@@ -14,8 +14,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Xtensive.Core;
-using Xtensive.Core.Disposing;
-using Xtensive.Core.Collections;
+using Xtensive.Disposing;
+using Xtensive.Collections;
 
 namespace OrmBattle.Tests.Linq
 {
@@ -43,8 +43,9 @@ namespace OrmBattle.Tests.Linq
 
     protected override void Setup()
     {
-      scope = NorthwindContext.ObjectScope();
-      db = NorthwindContext.CurrentContext;
+      db = new NorthwindContext();
+      scope = db.Scope;
+
       
       Customers = db.Customers.ToList();
       Employees = db.Employees.ToList();
@@ -55,6 +56,7 @@ namespace OrmBattle.Tests.Linq
     protected override void TearDown()
     {
       scope.Dispose();
+      db.Dispose();
     }
 
     List<Customer> Customers;
@@ -975,7 +977,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Passed.
+    // Failed.
+    // Exception: InvalidOperationException
+    // Message:
+    //   The cast is not to a subclass
     public void TypeCastIsChildTest()
     {
       var result = db.Products.Where(p => p is DiscontinuedProduct);
@@ -999,7 +1004,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Passed.
+    // Failed.
+    // Exception: InvalidOperationException
+    // Message:
+    //   The cast is not to a subclass
     public void TypeCastIsChildConditionalTest()
     {
       var result = db.Products
@@ -1021,7 +1029,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Passed.
+    // Failed.
+    // Exception: InvalidOperationException
+    // Message:
+    //   The cast is not to a subclass
     public void TypeCastOfTypeTest()
     {
       var result = db.Products.OfType<DiscontinuedProduct>();
@@ -1033,7 +1044,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Passed.
+    // Failed.
+    // Exception: OpenAccessException
+    // Message:
+    //   No metadata has been registered for class OrmBattle.TelerikModel.Northwind.DiscontinuedProduct. (This usually indicates, that either this class is not declared persistent or it is declared persistent but not enhanced. The class was loaded from file:///C:/Projects/Xtensive/OrmBattle/TestRunner/bin/Release/TelerikModel.Northwind.DLL.)
     public void TypeCastAsTest()
     {
       var result = db.DiscontinuedProducts
@@ -1568,9 +1582,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: InvalidOperationException
+    // Exception: IndexOutOfRangeException
     // Message:
-    //   Must specify parameter on right side of operation. ({value(OrmBattle.Tests.Linq.OpenAccessTest).db.Orders})
+    //   Index was outside the bounds of the array.
     public void ComplexTest5()
     {
       var result = db.Customers
@@ -1617,7 +1631,11 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Passed.
+    // Failed with assertion.
+    // Exception: AssertionException
+    // Message:
+    //     Expected: 13
+    //     But was:  0
     public void StringStartsWithParameterizedTest()
     {
       var likeA = "A";

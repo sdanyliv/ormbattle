@@ -39,18 +39,18 @@
              Text="Indirect dependency: %(ReferenceDependencyPaths.Filename)%(ReferenceDependencyPaths.Extension)" />
 
     <!-- Creating indirect dependency list -->
-    <CreateItem Include="%(ReferenceDependencyPaths.FullPath)" 
-                Condition="'%(ReferenceDependencyPaths.CopyLocal)'=='true'">
+    <CreateItem Include="%(ReferenceDependencyPaths.FullPath)"               
+                Condition="('%(ReferenceDependencyPaths.Private)'=='true' or '%(ReferenceDependencyPaths.CopyLocal)'=='true')">
       <Output TaskParameter="Include" 
               ItemName="_IndirectDependency"/>
     </CreateItem>
     <CreateItem Include="%(ReferenceDependencyPaths.RootDir)%(ReferenceDependencyPaths.Directory)%(ReferenceDependencyPaths.Filename).xml"
-                Condition="'%(ReferenceDependencyPaths.CopyLocal)'=='true' and '$(CopyIndirectDependenciesXml)'=='true'">
+                Condition="('%(ReferenceDependencyPaths.Private)'=='true' or '%(ReferenceDependencyPaths.CopyLocal)'=='true') and '$(CopyIndirectDependenciesXml)'=='true'">
       <Output TaskParameter="Include" 
               ItemName="_IndirectDependency"/>
     </CreateItem>
     <CreateItem Include="%(ReferenceDependencyPaths.RootDir)%(ReferenceDependencyPaths.Directory)%(ReferenceDependencyPaths.Filename).pdb"
-                Condition="'%(ReferenceDependencyPaths.CopyLocal)'=='true' and '$(CopyIndirectDependenciesPdb)'=='true'">
+                Condition="('%(ReferenceDependencyPaths.Private)'=='true' or '%(ReferenceDependencyPaths.CopyLocal)'=='true') and '$(CopyIndirectDependenciesPdb)'=='true'">
       <Output TaskParameter="Include" 
               ItemName="_IndirectDependency"/>
     </CreateItem>

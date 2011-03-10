@@ -8,17 +8,17 @@ using System.Linq;
 using OrmBattle.DOModel;
 using NUnit.Framework;
 using Xtensive.Core;
-using Xtensive.Core.Disposing;
-using Xtensive.Storage;
-using Xtensive.Storage.Configuration;
+using Xtensive.Disposing;
+using Xtensive.Orm;
+using Xtensive.Orm.Configuration;
 using Xtensive.Storage.Rse;
-using Xtensive.Storage.Linq;
+using Xtensive.Orm.Linq;
 
 namespace OrmBattle.Tests.Performance
 {
   public class DOTest : PerformanceTestBase
   {
-    protected Domain domain;
+    private Domain domain;
     private Session session;
 
     public override string ToolName {
@@ -37,9 +37,9 @@ namespace OrmBattle.Tests.Performance
       config.Sessions.Default.CacheType = SessionCacheType.Infinite;
       config.Types.Register(typeof(Simplest).Assembly, typeof(Simplest).Namespace);
       domain = Domain.Build(config);
-      using (Session.Open(domain))
-      using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query.All<Simplest>());
+      using (var session = domain.OpenSession())
+      using (var ts = session.OpenTransaction()) {
+        var query = session.Query.Execute(qe => qe.All<Simplest>());
         foreach (var o in query)
           o.Remove();
         ts.Complete();
@@ -48,9 +48,9 @@ namespace OrmBattle.Tests.Performance
 
     protected override void TearDown()
     {
-      using (Session.Open(domain))
-      using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query.All<Simplest>());
+      using (var session = domain.OpenSession())
+      using (var ts = session.OpenTransaction()) {
+        var query = session.Query.Execute(qe => qe.All<Simplest>());
         foreach (var o in query)
           o.Remove();
         ts.Complete();
@@ -60,7 +60,7 @@ namespace OrmBattle.Tests.Performance
 
     protected override void OpenSession()
     {
-      session = Session.Open(domain);
+      session = domain.OpenSession();
     }
 
     protected override void CloseSession()
@@ -70,9 +70,9 @@ namespace OrmBattle.Tests.Performance
 
     protected override void InsertMultipleTest(int count)
     {
-      using (var ts = Transaction.Open()) {
+      using (var ts = session.OpenTransaction()) {
         for (int i = 0; i < count; i++)
-          new Simplest(i, i);
+          new Simplest(session, i, i);
         ts.Complete();
       }
       InstanceCount = count;
@@ -80,8 +80,8 @@ namespace OrmBattle.Tests.Performance
 
     protected override void UpdateMultipleTest()
     {
-      using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query.All<Simplest>());
+      using (var ts = session.OpenTransaction()) {
+        var query = session.Query.Execute(qe => qe.All<Simplest>());
         foreach (var o in query)
           o.Value++;
         ts.Complete();
@@ -90,8 +90,8 @@ namespace OrmBattle.Tests.Performance
 
     protected override void DeleteMultipleTest()
     {
-      using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query.All<Simplest>());
+      using (var ts = session.OpenTransaction()) {
+        var query = session.Query.Execute(qe => qe.All<Simplest>());
         foreach (var o in query)
           o.Remove();
         ts.Complete();
@@ -100,10 +100,10 @@ namespace OrmBattle.Tests.Performance
 
     protected override void InsertSingleTest(int count)
     {
-      using (var ts = Transaction.Open()) {
+      using (var ts = session.OpenTransaction()) {
         for (int i = 0; i < count; i++) {
-          new Simplest(i, i);
-          session.Persist();
+          new Simplest(session, i, i);
+          session.SaveChanges();
         }
         ts.Complete();
       }
@@ -112,11 +112,11 @@ namespace OrmBattle.Tests.Performance
 
     protected override void UpdateSingleTest()
     {
-      using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query.All<Simplest>());
+      using (var ts = session.OpenTransaction()) {
+        var query = session.Query.Execute(qe => qe.All<Simplest>());
         foreach (var o in query) {
           o.Value++;
-          session.Persist();
+          session.SaveChanges();
         }
         ts.Complete();
       }
@@ -124,11 +124,11 @@ namespace OrmBattle.Tests.Performance
 
     protected override void DeleteSingleTest()
     {
-      using (var ts = Transaction.Open()) {
-        var query = Query.Execute(() => Query.All<Simplest>());
+      using (var ts = session.OpenTransaction()) {
+        var query = session.Query.Execute(qe => qe.All<Simplest>());
         foreach (var o in query) {
           o.Remove();
-          session.Persist();
+          session.SaveChanges();
         }
         ts.Complete();
       }
@@ -137,10 +137,10 @@ namespace OrmBattle.Tests.Performance
     protected override void FetchTest(int count)
     {
       long sum = (long)count * (count - 1) / 2;
-      using (var ts = Transaction.Open()) {
+      using (var ts = session.OpenTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = (long) i % InstanceCount;
-          var o = Query.SingleOrDefault<Simplest>(id);
+          var o = session.Query.SingleOrDefault<Simplest>(id);
           sum -= o.Id;
         }
         ts.Complete();
@@ -151,10 +151,10 @@ namespace OrmBattle.Tests.Performance
 
     protected override void LinqQueryTest(int count)
     {
-      using (var ts = Transaction.Open()) {
+      using (var ts = session.OpenTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = i%InstanceCount;
-          var query = Query.All<Simplest>().Where(o => o.Id == id);
+          var query = session.Query.All<Simplest>().Where(o => o.Id == id);
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }
@@ -165,10 +165,10 @@ namespace OrmBattle.Tests.Performance
 
     protected override void CompiledLinqQueryTest(int count)
     {
-      using (var ts = Transaction.Open()) {
+      using (var ts = session.OpenTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = i % InstanceCount;
-          var query = Query.Execute(() => Query.All<Simplest>().Where(o => o.Id == id));
+          var query = session.Query.Execute(qe => qe.All<Simplest>().Where(o => o.Id == id));
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }
@@ -181,11 +181,11 @@ namespace OrmBattle.Tests.Performance
     {
       var primaryIndex = session.Domain.Model.Types[typeof(Simplest)].Indexes.PrimaryIndex;
       long id = 0;
-      var recordSet = primaryIndex.ToRecordSet().Filter(t => t.GetValueOrDefault<long>(0) == id);
-      using (var ts = Transaction.Open()) {
+      var recordQuery = primaryIndex.ToRecordQuery().Filter(t => t.GetValueOrDefault<long>(0) == id);
+      using (var ts = session.OpenTransaction()) {
         for (int i = 0; i < count; i++) {
           id = i % InstanceCount;
-          foreach (var simplest in recordSet.ToEntities<Simplest>(0)) {
+          foreach (var simplest in recordQuery.ToRecordSet(session).ToEntities<Simplest>(0)) {
             // Doing nothing, just enumerate
           }
         }
@@ -195,10 +195,10 @@ namespace OrmBattle.Tests.Performance
 
     protected override void LinqMaterializeTest(int count)
     {
-      using (var ts = Transaction.Open()) {
+      using (var ts = session.OpenTransaction()) {
         int i = 0;
         while (i < count)
-          foreach (var o in Query.Execute(() => Query.All<Simplest>().Where(s => s.Id > 0)))
+          foreach (var o in session.Query.Execute(qe => qe.All<Simplest>().Where(s => s.Id > 0)))
             if (++i >= count)
               break;
         ts.Complete();
@@ -208,8 +208,8 @@ namespace OrmBattle.Tests.Performance
     protected override void NativeMaterializeTest(int count)
     {
       var primaryIndex = session.Domain.Model.Types[typeof(Simplest)].Indexes.PrimaryIndex;
-      var simplests = primaryIndex.ToRecordSet().ToEntities<Simplest>(0);
-      using (var ts = Transaction.Open()) {
+      var simplests = primaryIndex.ToRecordQuery().ToRecordSet(session).ToEntities<Simplest>(0);
+      using (var ts = session.OpenTransaction()) {
         int i = 0;
         while (i < count) {
           foreach (var o in simplests)
@@ -223,12 +223,12 @@ namespace OrmBattle.Tests.Performance
     protected override void LinqQueryPageTest(int count, int pageSize)
     {
       var cacheKey = "LinqQueryPageTest.Query-" + pageSize.ToString();
-      using (var ts = Transaction.Open()) {
+      using (var ts = session.OpenTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = (i*pageSize) % InstanceCount;
           var localPageSize = pageSize;
-          var query = Query.Execute(cacheKey, () => 
-            Query.All<Simplest>().Where(o => o.Id >= id).Take(() => localPageSize));
+          var query = session.Query.Execute(cacheKey, qe => 
+            qe.All<Simplest>().Where(o => o.Id >= id).Take(() => localPageSize));
           foreach (var simplest in query) {
             // Doing nothing, just enumerate
           }

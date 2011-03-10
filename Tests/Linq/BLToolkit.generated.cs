@@ -14,8 +14,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Xtensive.Core;
-using Xtensive.Core.Disposing;
-using Xtensive.Core.Collections;
+using Xtensive.Disposing;
+using Xtensive.Collections;
 
 namespace OrmBattle.Tests.Linq
 {
@@ -420,11 +420,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Projections")]
-    // Failed with assertion.
-    // Exception: AssertionException
+    // Failed.
+    // Exception: LinqException
     // Message:
-    //     Expected: 89
-    //     But was:  3
+    //   'o.Customer' cannot be converted to SQL.
     public void SelectManyGroupByTest()
     {
       var result = db.Orders
@@ -733,7 +732,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Grouping")]
-    // Passed.
+    // Failed.
+    // Exception: NotImplementedException
+    // Message:
+    //   The method or operation is not implemented.
     public void GroupByWhereTest()
     {
       var result = 

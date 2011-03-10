@@ -6,9 +6,9 @@
 
 using System;
 using NUnit.Framework;
-using Xtensive.Core.Diagnostics;
-using Xtensive.Core.Testing;
-using Xtensive.Core.Reflection;
+using Xtensive.Diagnostics;
+using Xtensive.Testing;
+using Xtensive.Reflection;
 
 namespace OrmBattle.Tests.Performance
 {

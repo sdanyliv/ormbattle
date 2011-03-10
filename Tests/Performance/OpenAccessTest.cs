@@ -29,25 +29,28 @@ namespace OrmBattle.Tests.Performance
 
     protected override void Setup()
     {
-      using (var scope = PerformanceTestContext.ObjectScope()) {
+      var db = new PerformanceTest();
+      using (var scope = db.Scope) {
         scope.Transaction.Begin();
-        scope.Remove(scope.Extent<Simplest>().ToList());
+        db.Delete(db.Simplests);
         scope.Transaction.Commit();
       }
     }
 
     protected override void TearDown()
     {
-      using (var scope = PerformanceTestContext.ObjectScope()) {
+      var db = new PerformanceTest();
+      using (var scope = db.Scope) {
         scope.Transaction.Begin();
-        scope.Remove(scope.Extent<Simplest>().ToList());
+        db.Delete(db.Simplests);
         scope.Transaction.Commit();
       }
     }
 
     protected override void OpenSession()
     {
-      scope = PerformanceTestContext.ObjectScope();
+      var db = new PerformanceTest();
+      scope = db.Scope;
     }
 
     protected override void CloseSession()
@@ -59,7 +62,7 @@ namespace OrmBattle.Tests.Performance
     {
       scope.Transaction.Begin();
       for (int i = 0; i < count; i++) {
-        var s = new Simplest(i, i);
+        var s = new Simplest { Id = i, Value = i };
         scope.Add(s);
       }
       scope.Transaction.Commit();
@@ -88,7 +91,7 @@ namespace OrmBattle.Tests.Performance
     {
       scope.Transaction.Begin();
       for (int i = 0; i < count; i++) {
-        var s = new Simplest(i, i);
+        var s = new Simplest{Id = i, Value = i};
         scope.Add(s);
         scope.Transaction.Flush();
       }

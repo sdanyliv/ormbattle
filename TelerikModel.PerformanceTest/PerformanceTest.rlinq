@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rlinq dslVersion="1.0.0.0" xmlns="http://schemas.microsoft.com/dsltools/EntityDiagrams">
+  <Runtime>
+    <MetaModel Name="">
+      <Types>
+        <MetaClass Id="5175a9f5-6e3c-41de-a249-eacb32b97c9a" Name="Simplest" namespace="OrmBattle.TelerikModel.PerformanceTest" accessModifier="Public" Kind="Default" doubleDerived="false" cachePolicy="Default" identityMechanism="Default" concurrencyMode="Changed" concurrencyMember="(AUTO)" updateSchema="false">
+          <Attributes>
+            <MetaProperty Id="e3ca4745-a32f-4c72-bcec-9f5cb97b8c76" Name="Id" accessModifier="Public" inheritanceModifier="None" Type="Int64" label="Id : Int64" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="true" isNavigable="false" loadBehavior="Default" />
+            <MetaProperty Id="ec72cf10-5884-472d-9236-6dc45e8691b6" Name="Value" accessModifier="Public" inheritanceModifier="None" Type="Int64" label="Value : Int64" kind="Default" nullable="false" hasGetter="true" hasSetter="true" identity="false" isNavigable="false" loadBehavior="Default" />
+          </Attributes>
+        </MetaClass>
+      </Types>
+      <domainContext>
+        <metaModelHasDomainContext Id="42af1f57-4dda-42a5-92b8-7cd8a9f06d37">
+          <domainContextContainer Name="">
+            <entitySets>
+              <metadataContainerHasProperties Id="0807e016-3a43-4e4a-a639-45f7f3272904">
+                <entitySetProperty Name="Simplests" type="Simplest" namespace="OrmBattle.TelerikModel.PerformanceTest" />
+              </metadataContainerHasProperties>
+            </entitySets>
+          </domainContextContainer>
+        </metaModelHasDomainContext>
+      </domainContext>
+    </MetaModel>
+    <orm:orm name="PerformanceTest" backend="mssql" xmlns:orm="http://tempuri.org/ORM">
+      <orm:namespace name="TelerikModel.PerformanceTest" default="true" />
+      <orm:namespace name="OrmBattle.TelerikModel.PerformanceTest">
+        <orm:class name="Simplest" uniqueId="5175a9f5-6e3c-41de-a249-eacb32b97c9a">
+          <orm:table name="Simplests" />
+          <orm:identity>
+            <orm:single-field field-name="id" />
+          </orm:identity>
+          <orm:concurrency strategy="changed" />
+          <orm:field name="id" property="Id" uniqueId="e3ca4745-a32f-4c72-bcec-9f5cb97b8c76" type="System.Int64">
+            <orm:column name="Id" sql-type="bigint" nullable="false" length="0" primary-key="true" ado-type="Int64" />
+          </orm:field>
+          <orm:field name="value" property="Value" uniqueId="ec72cf10-5884-472d-9236-6dc45e8691b6" type="System.Int64">
+            <orm:column name="Value" sql-type="bigint" nullable="false" length="0" ado-type="Int64" />
+          </orm:field>
+        </orm:class>
+      </orm:namespace>
+      <orm:schema schema="">
+        <orm:table name="Simplests">
+          <orm:column name="Id" sql-type="bigint" nullable="false" length="0" primary-key="true" ado-type="Int64" />
+          <orm:column name="Value" sql-type="bigint" nullable="false" length="0" ado-type="Int64" />
+        </orm:table>
+      </orm:schema>
+    </orm:orm>
+    <ModelSettings xmlns="">
+      <AppConfigConnectionPropertyName>PerformanceTest</AppConfigConnectionPropertyName>
+      <AppConfigConnectionString />
+      <DesignTimeConnectionString />
+      <SaveConnectionStringInAppConfig>true</SaveConnectionStringInAppConfig>
+      <ModelName>PerformanceTest</ModelName>
+      <NamingSettings>
+        <ClassRules>
+          <AddPrefix />
+          <AddSuffix />
+          <RemovePrefix />
+          <RemoveSuffix />
+          <CaseMode>PascalCase</CaseMode>
+          <PluralizationMode>Singularize</PluralizationMode>
+          <PluralizationModeCollections>Unchanged</PluralizationModeCollections>
+          <RemoveUnderscore>false</RemoveUnderscore>
+          <UnderscoreAsWordDelimiter>false</UnderscoreAsWordDelimiter>
+          <SchemaNameAsPrefix>false</SchemaNameAsPrefix>
+        </ClassRules>
+        <FieldRules>
+          <AddPrefix />
+          <AddSuffix />
+          <RemovePrefix />
+          <RemoveSuffix />
+          <CaseMode>CamelCase</CaseMode>
+          <PluralizationMode>Unchanged</PluralizationMode>
+          <PluralizationModeCollections>Unchanged</PluralizationModeCollections>
+          <RemoveUnderscore>false</RemoveUnderscore>
+          <UnderscoreAsWordDelimiter>false</UnderscoreAsWordDelimiter>
+          <SchemaNameAsPrefix>false</SchemaNameAsPrefix>
+        </FieldRules>
+        <PropertyRules>
+          <AddPrefix />
+          <AddSuffix />
+          <RemovePrefix />
+          <RemoveSuffix />
+          <CaseMode>PascalCase</CaseMode>
+          <PluralizationMode>Unchanged</PluralizationMode>
+          <PluralizationModeCollections>Unchanged</PluralizationModeCollections>
+          <RemoveUnderscore>false</RemoveUnderscore>
+          <UnderscoreAsWordDelimiter>false</UnderscoreAsWordDelimiter>
+          <SchemaNameAsPrefix>false</SchemaNameAsPrefix>
+        </PropertyRules>
+      </NamingSettings>
+      <CodeGenerationSettings>
+        <ShouldGenerateContext>true</ShouldGenerateContext>
+        <OutputProjectName />
+        <OutputProjectFolder />
+        <OutputPath />
+        <UseCustomTemplate>false</UseCustomTemplate>
+        <MappingDefinitionType>Xml</MappingDefinitionType>
+        <GenerateMultipleFiles>true</GenerateMultipleFiles>
+        <OverrideToAutoProperties>true</OverrideToAutoProperties>
+        <OutputMode>ProjectFolder</OutputMode>
+      </CodeGenerationSettings>
+      <SchemaUpdateSettings>
+        <NamingScheme>UseDefaultNaming</NamingScheme>
+        <NamePrefix />
+        <AppendDateTimeStamp>true</AppendDateTimeStamp>
+        <EnableDeployment>false</EnableDeployment>
+        <DeploymentProject />
+        <DeploymentDirectory />
+        <SchemaUpdateStrategy>GenerateSchemaDDL</SchemaUpdateStrategy>
+      </SchemaUpdateSettings>
+      <BackendConfigurationSettings>
+        <BackendConfiguration>
+          <Backend>mssql</Backend>
+        </BackendConfiguration>
+      </BackendConfigurationSettings>
+      <UseSchemaAsNamespace>false</UseSchemaAsNamespace>
+      <ConnectionStringNotSet>false</ConnectionStringNotSet>
+    </ModelSettings>
+  </Runtime>
+  <Designer>
+    <Diagrams>
+      <entityDiagramsDiagram absoluteBounds="0, 0, 11, 8.5" name="PerformanceTest">
+        <MetaModelMoniker Name="/" />
+        <nestedChildShapes>
+          <classShape Id="dfdf68ed-e9d1-4c74-a175-fc61354670db" absoluteBounds="0.5, 1.5, 1.5, 1.6157487227519356">
+            <MetaClassMoniker Name="//Simplest" />
+            <nestedChildShapes>
+              <elementListCompartment Id="0d6cc856-ab57-4e50-97f8-64abff4fecbb" absoluteBounds="0.515, 2.01, 1.4700000000000002, 0.69864910592635465" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+              <elementListCompartment Id="01d02eb8-b41b-4126-9b58-00c41e6cf4fc" absoluteBounds="0.515, 2.7186491059263549, 1.4700000000000002, 0.29709961682558061" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+            </nestedChildShapes>
+          </classShape>
+        </nestedChildShapes>
+      </entityDiagramsDiagram>
+    </Diagrams>
+  </Designer>
+</rlinq>

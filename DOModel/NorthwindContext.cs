@@ -8,71 +8,89 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using OrmBattle.DOModel.Northwind;
-using Xtensive.Storage;
+using Xtensive.Orm;
 
 namespace OrmBattle.DOModel
 {
   [Serializable]
-  public class NorthwindContext
+  public class NorthwindContext : IDisposable
   {
+    private bool disposed = false;
+    private readonly Session session;
+    private readonly TransactionScope transactionScope;
+
     public IQueryable<Category> Categories
     {
-      get { return Query.All<Category>(); }
+      get { return session.Query.All<Category>(); }
     }
 
     public IQueryable<Customer> Customers
     {
-      get { return Query.All<Customer>(); }
+      get { return session.Query.All<Customer>(); }
     }
 
     public IQueryable<Employee> Employees
     {
-      get { return Query.All<Employee>(); }
+      get { return session.Query.All<Employee>(); }
     }
 
     public IQueryable<Order> Orders
     {
-      get { return Query.All<Order>(); }
+      get { return session.Query.All<Order>(); }
     }
 
     public IQueryable<OrderDetail> OrderDetails
     {
-      get { return Query.All<OrderDetail>(); }
+      get { return session.Query.All<OrderDetail>(); }
     }
 
     public IQueryable<Product> Products
     {
-      get { return Query.All<Product>(); }
+      get { return session.Query.All<Product>(); }
     }
 
     public IQueryable<ActiveProduct> ActiveProducts
     {
-      get { return Query.All<ActiveProduct>(); }
+      get { return session.Query.All<ActiveProduct>(); }
     }
 
     public IQueryable<DiscontinuedProduct> DiscontinuedProducts
     {
-      get { return Query.All<DiscontinuedProduct>(); }
+      get { return session.Query.All<DiscontinuedProduct>(); }
     }
 
     public IQueryable<Region> Regions
     {
-      get { return Query.All<Region>(); }
+      get { return session.Query.All<Region>(); }
     }
 
     public IQueryable<Shipper> Shippers
     {
-      get { return Query.All<Shipper>(); }
+      get { return session.Query.All<Shipper>(); }
     }
 
     public IQueryable<Supplier> Suppliers
     {
-      get { return Query.All<Supplier>(); }
+      get { return session.Query.All<Supplier>(); }
     }
 
     public IQueryable<Territory> Territories
     {
-      get { return Query.All<Territory>(); }
+      get { return session.Query.All<Territory>(); }
+    }
+
+    public void Dispose()
+    {
+      if (disposed)
+        return;
+      transactionScope.Dispose();
+      session.Dispose();
+    }
+    
+    public NorthwindContext(Domain domain)
+    {
+      session = domain.OpenSession();
+      transactionScope = session.OpenTransaction();
     }
   }
 }

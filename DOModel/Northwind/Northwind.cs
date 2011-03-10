@@ -8,9 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Xtensive.Core.Tuples;
-using Xtensive.Storage;
-using Xtensive.Storage.Model;
+using Xtensive.Tuples;
+using Xtensive.Orm;
+using Xtensive.Orm.Model;
 
 namespace OrmBattle.DOModel.Northwind
 {
@@ -33,6 +33,10 @@ namespace OrmBattle.DOModel.Northwind
 
     [Field, Association(PairTo = "Category")]
     public EntitySet<Product> Products { get; private set; }
+
+    public Category(Session session)
+      : base(session)
+    {}
   }
 
   [TableMapping("Customers")]
@@ -78,10 +82,9 @@ namespace OrmBattle.DOModel.Northwind
 
     // Constructors
 
-    public Customer(string id)
-      : base(id)
-    {
-    }
+    public Customer(Session session, string id)
+      : base(session, id)
+    {}
   }
 
   [HierarchyRoot]
@@ -92,6 +95,10 @@ namespace OrmBattle.DOModel.Northwind
 
     [Field(Length = 50)]
     public string RegionDescription { get; set; }
+
+    public Region(Session session)
+      : base(session)
+    {}
   }
 
   [TableMapping("Suppliers")]
@@ -133,6 +140,10 @@ namespace OrmBattle.DOModel.Northwind
 
     [Field]
     public string HomePage { get; set; }
+
+    public Supplier(Session session)
+      : base(session)
+    {}
   }
 
   [TableMapping("Shippers")]
@@ -147,17 +158,21 @@ namespace OrmBattle.DOModel.Northwind
 
     [Field(Length = 24)]
     public string Phone { get; set; }
+
+    public Shipper(Session session)
+      : base(session)
+    {}
   }
 
   public class ActiveProduct : Product
   {
-    public ActiveProduct()
+    public ActiveProduct(Session session) : base(session)
     {}
   }
 
   public class DiscontinuedProduct : Product
   {
-    public DiscontinuedProduct()
+    public DiscontinuedProduct(Session session) : base(session)
     {}
   }
 
@@ -194,6 +209,10 @@ namespace OrmBattle.DOModel.Northwind
 
     [Field]
     public bool Discontinued { get; set; }
+
+    public Product(Session session)
+      : base(session)
+    {}
   }
 
   [TableMapping("Employees")]
@@ -262,6 +281,10 @@ namespace OrmBattle.DOModel.Northwind
     
     [Field]
     public EntitySet<Territory> Territories { get; private set; }
+
+    public Employee(Session session) : base(session)
+    {
+    }
   }
 
   [TableMapping("Territories")]
@@ -283,10 +306,9 @@ namespace OrmBattle.DOModel.Northwind
 
     // Constructors
 
-    public Territory(string id)
-      : base(id)
-    {
-    }
+    public Territory(Session session, string id)
+      : base(session, id)
+    {}
   }
 
   [TableMapping("Orders")]
@@ -334,6 +356,9 @@ namespace OrmBattle.DOModel.Northwind
 
     [Field(Length = 15)]
     public string ShipCountry { get; set; }
+
+    public Order(Session session) : base(session)
+    {}
   }
 
   [TableMapping("OrderDetails")]
@@ -360,7 +385,7 @@ namespace OrmBattle.DOModel.Northwind
     // Constructors
 
     public OrderDetail(Order order, Product product)
-      : base(order, product)
+      : base(order.Session, order, product)
     {
     }
   }

@@ -14,21 +14,20 @@ using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Xtensive.Core;
-using Xtensive.Core.Disposing;
-using Xtensive.Core.Collections;
+using Xtensive.Disposing;
+using Xtensive.Collections;
 
 namespace OrmBattle.Tests.Linq
 {
   using DOModel;
   using DOModel.Northwind;
-  using Xtensive.Storage;
-  using Xtensive.Storage.Configuration;
+  using Xtensive.Orm;
+  using Xtensive.Orm.Configuration;
   
   [TestFixture]
   public class DOTest : LinqTestBase
   {
-    protected NorthwindContext db;
-    private DisposableSet disposables;
+    private NorthwindContext db;
     private Domain domain;
 
     public override string ToolName {
@@ -49,11 +48,7 @@ namespace OrmBattle.Tests.Linq
       config.Sessions.Add(new SessionConfiguration("Default"));
       config.Types.Register(typeof(Supplier).Assembly, typeof(Supplier).Namespace);
       domain = BuildDomain(config);
-
-      disposables = new DisposableSet();
-      disposables.Add(Session.Open(domain));
-      disposables.Add(Transaction.Open());
-      db = new NorthwindContext();
+      db = new NorthwindContext(domain);
       
       Customers = db.Customers.ToList();
       Employees = db.Employees.ToList();
@@ -79,7 +74,7 @@ namespace OrmBattle.Tests.Linq
     
     protected override void TearDown()
     {
-      disposables.DisposeSafely();
+      db.DisposeSafely();
     }
   
     List<Customer> Customers;

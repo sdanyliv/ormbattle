@@ -14,8 +14,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Xtensive.Core;
-using Xtensive.Core.Disposing;
-using Xtensive.Core.Collections;
+using Xtensive.Disposing;
+using Xtensive.Collections;
 
 namespace OrmBattle.Tests.Linq
 {
@@ -920,10 +920,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Set operations")]
-    // Failed.
-    // Exception: SqlException
-    // Message:
-    //   Incorrect syntax near the keyword 'DISTINCT'.
+    // Passed.
     public void DistinctTakeLastTest()
     {
       var result = 
@@ -1246,10 +1243,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("All/Any/Contains")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Local sequence cannot be used in LINQ to SQL implementation of query operators except the Contains() operator.
+    // Passed.
     public void AnyParameterizedTest()
     {
       var ids = new[] { "ABCDE", "ALFKI" };
@@ -1365,11 +1359,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Join")]
-    // Failed.
-    // Exception: ArgumentNullException
-    // Message:
-    //   Value cannot be null.
-    //   Parameter name: value
+    // Passed.
     public void JoinByAnonymousTest()
     {
       var result =
@@ -1488,7 +1478,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: ArgumentException
     // Message:
-    //   Object of type 'System.Func`2[aw,System.Collections.Generic.IEnumerable`1[OrmBattle.LinqConnectModel.Customer]]' cannot be converted to type 'System.Func`2[aw,OrmBattle.LinqConnectModel.Customer]'.
+    //   Object of type 'System.Func`2[Devart.Data.Linq.Provider.b,System.Collections.Generic.IEnumerable`1[OrmBattle.LinqConnectModel.Customer]]' cannot be converted to type 'System.Func`2[Devart.Data.Linq.Provider.b,OrmBattle.LinqConnectModel.Customer]'.
     public void ComplexTest2()
     {
       var result = db.Customers
@@ -1648,9 +1638,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Standard functions")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: InvalidOperationException
     // Message:
-    //   Method 'LastIndexOf' has no supported translation to SQL.
+    //   Sequence contains no elements
     public void StringLastIndexOfTest()
     {
       var customer = db.Customers.Where(c => c.City.LastIndexOf("t", 1, 3) == 3).First();
@@ -1659,10 +1649,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Standard functions")]
-    // Failed.
-    // Exception: NotSupportedException
-    // Message:
-    //   Method 'PadLeft' has no supported translation to SQL.
+    // Passed.
     public void StringPadLeftTest()
     {
       var customer = db.Customers.Where(c => "123" + c.City.PadLeft(8) == "123 Seattle").First();

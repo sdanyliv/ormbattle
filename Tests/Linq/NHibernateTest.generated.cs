@@ -14,8 +14,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Xtensive.Core;
-using Xtensive.Core.Disposing;
-using Xtensive.Core.Collections;
+using Xtensive.Disposing;
+using Xtensive.Collections;
 
 namespace OrmBattle.Tests.Linq
 {
@@ -169,10 +169,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: QueryException
-    // Message:
-    //   could not resolve property: HasValue of: OrmBattle.NHibernateModel.Northwind.Order [.Where(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (Not(o.ShippedDate.HasValue))), )]
+    // Passed.
     public void WhereNullableTest()
     {
       var result = from o in db.Orders
@@ -197,10 +194,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Filtering")]
-    // Failed.
-    // Exception: InvalidOperationException
-    // Message:
-    //   Operation is not valid due to the current state of the object.
+    // Passed.
     public void WhereCoalesceTest()
     {
       var result = from o in db.Orders
@@ -443,9 +437,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Projections")]
     // Failed.
-    // Exception: KeyNotFoundException
+    // Exception: InvalidOperationException
     // Message:
-    //   The given key was not present in the dictionary.
+    //   Code supposed to be unreachable
     public void SelectManyGroupByTest()
     {
       var result = db.Orders
@@ -460,9 +454,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Projections")]
     // Failed.
-    // Exception: KeyNotFoundException
+    // Exception: NotSupportedException
     // Message:
-    //   The given key was not present in the dictionary.
+    //   Specified method is not supported.
     public void SelectManyOuterProjectionTest()
     {
       var result = db.Customers.SelectMany(i => i.Orders.Select(t => i));
@@ -622,10 +616,7 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Ordering")]
-    // Failed.
-    // Exception: QuerySyntaxException
-    // Message:
-    //   Exception of type 'Antlr.Runtime.MismatchedTreeNodeException' was thrown. [.Take(.Where(.ThenBy(.OrderBy(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (o.OrderDate)), ), Quote((o, ) => (o.Id)), ), Quote((o, ) => (DateTime.op_GreaterThan(o.OrderDate, p1))), ), p2, )]
+    // Passed.
     public void OrderByWhereTest()
     {
       var result = (from o in db.Orders
@@ -741,7 +732,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: QuerySyntaxException
     // Message:
-    //   Exception of type 'Antlr.Runtime.NoViableAltException' was thrown. [.Select(.ThenBy(.OrderBy(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (AndAlso(Decimal.op_GreaterThan(o.Freight, p1), DateTime.op_Inequality(o.ShippedDate, p2)))), ), Quote((o, ) => (o.Id)), ), Quote((o, ) => (o.Id)), )]
+    //   Exception of type 'Antlr.Runtime.NoViableAltException' was thrown. [.Select[OrmBattle.NHibernateModel.Northwind.Order,System.Int32](.ThenBy[OrmBattle.NHibernateModel.Northwind.Order,System.Int32](.OrderBy[OrmBattle.NHibernateModel.Northwind.Order,System.Boolean](NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (AndAlso(Decimal.op_GreaterThan(o.Freight, p1), DateTime.op_Inequality(o.ShippedDate, NULLp2)))), ), Quote((o, ) => (o.Id)), ), Quote((o, ) => (o.Id)), )]
     public void OrderByPredicateTest()
     {
       var result = db.Orders.OrderBy(o => o.Freight > 0 && o.ShippedDate != null).ThenBy(o => o.Id).Select(o => o.Id);
@@ -803,9 +794,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Grouping")]
     // Failed.
-    // Exception: NotSupportedException
+    // Exception: SqlException
     // Message:
-    //   NewExpression
+    //   Column 'Customers.CustomerID' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.
     public void GroupByTestAnonymous()
     {
       var result = from c in db.Customers
@@ -830,9 +821,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Grouping")]
     // Failed.
-    // Exception: KeyNotFoundException
+    // Exception: InvalidOperationException
     // Message:
-    //   The given key was not present in the dictionary.
+    //   Code supposed to be unreachable
     public void GroupBySelectManyTest()
     {
       var result = db.Customers
@@ -882,7 +873,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: QuerySyntaxException
     // Message:
-    //   Exception of type 'Antlr.Runtime.EarlyExitException' was thrown. [.GroupBy(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Customer], Quote((c, ) => (Decimal.op_GreaterThanOrEqual(.Average(c.Orders, (o, ) => (o.Freight), ), p1))), )]
+    //   Exception of type 'Antlr.Runtime.EarlyExitException' was thrown. [.GroupBy[OrmBattle.NHibernateModel.Northwind.Customer,System.Boolean](NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Customer], Quote((c, ) => (Decimal.op_GreaterThanOrEqual(.Average[OrmBattle.NHibernateModel.Northwind.Order](c.Orders, (o, ) => (o.Freight), ), p1))), )]
     public void GroupByAggregate()
     {
       var result = 
@@ -931,9 +922,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Set operations")]
     // Failed.
-    // Exception: KeyNotFoundException
+    // Exception: ParserException
     // Message:
-    //   The given key was not present in the dictionary.
+    //   Could not parse expression 'value(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Customer]).Where(c => (c.Orders.Count <= 1)).Concat(value(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Customer]).Where(c => (c.Orders.Count > 1)))': This overload of the method 'System.Linq.Queryable.Concat' is currently not supported.
     public void ConcatTest()
     {
       var result = db.Customers.Where(c => c.Orders.Count <= 1).Concat(db.Customers.Where(c => c.Orders.Count > 1));
@@ -1047,7 +1038,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: NotSupportedException
     // Message:
-    //   Expression type 10005 is not supported by this SelectClauseVisitor.
+    //   Expression type 'NhDistinctExpression' is not supported by this SelectClauseVisitor.
     public void DistinctAnonymousTest()
     {
       var result = db.Customers.Select(c => new {c.Region, c.City}).Distinct();
@@ -1073,11 +1064,10 @@ namespace OrmBattle.Tests.Linq
 
     [Test]
     [Category("Type casts")]
-    // Failed with assertion.
-    // Exception: AssertionException
+    // Failed.
+    // Exception: SqlException
     // Message:
-    //     Expected: 77
-    //     But was:  8
+    //   Conversion failed when converting the varchar value 'OrmBattle.NHibernateModel.Northwind.Product' to data type bit.
     public void TypeCastIsParentTest()
     {
       var result = db.Products.Where(p => p is Product);
@@ -1126,7 +1116,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: NotSupportedException
     // Message:
-    //   ([-1] As Product)
+    //   ([100001] As Product)
     public void TypeCastAsTest()
     {
       var result = db.DiscontinuedProducts
@@ -1185,7 +1175,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: QuerySyntaxException
     // Message:
-    //   Exception of type 'Antlr.Runtime.NoViableAltException' was thrown. [.Select(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Product], Quote((p, ) => (new <>f__AnonymousType10`2(p.Id, .FirstOrDefault(.OrderByDescending(.Where(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.OrderDetail], Quote((od, ) => (Equal(od.Product, p))), ), Quote((od, ) => (Decimal.op_Multiply(od.UnitPrice, Convert(od.Quantity)))), ), ).Order, ))), )]
+    //   Exception of type 'Antlr.Runtime.NoViableAltException' was thrown. [.Select[OrmBattle.NHibernateModel.Northwind.Product,<>f__AnonymousType10`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[OrmBattle.NHibernateModel.Northwind.Order, NHibernateModel, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]](NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Product], Quote((p, ) => (new <>f__AnonymousType10`2(p.Id, .FirstOrDefault[OrmBattle.NHibernateModel.Northwind.OrderDetail](.OrderByDescending[OrmBattle.NHibernateModel.Northwind.OrderDetail,System.Decimal](.Where[OrmBattle.NHibernateModel.Northwind.OrderDetail](NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.OrderDetail], Quote((od, ) => (Equal(od.Product, p))), ), Quote((od, ) => (Decimal.op_Multiply(od.UnitPrice, Convert(od.Quantity)))), ), ).Order, ))), )]
     public void NestedFirstOrDefaultTest()
     {
       var result =
@@ -1247,9 +1237,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Element operations")]
     // Failed.
-    // Exception: KeyNotFoundException
+    // Exception: ParserException
     // Message:
-    //   The given key was not present in the dictionary.
+    //   Could not parse expression 'value(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Customer]).OrderBy(c => c.Id).ElementAt(15)': This overload of the method 'System.Linq.Queryable.ElementAt' is currently not supported.
     public void ElementAtTest()
     {
       var customer = db.Customers.OrderBy(c => c.Id).ElementAt(15);
@@ -1433,7 +1423,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: QuerySyntaxException
     // Message:
-    //   Exception of type 'Antlr.Runtime.NoViableAltException' was thrown. [.Max(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Customer], Quote((c, ) => (.Count(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (String.op_Equality(o.Customer.Id, c.Id))), ))), )]
+    //   Exception of type 'Antlr.Runtime.NoViableAltException' was thrown. [.Max[OrmBattle.NHibernateModel.Northwind.Customer,System.Int32](NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Customer], Quote((c, ) => (.Count[OrmBattle.NHibernateModel.Northwind.Order](NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (String.op_Equality(o.Customer.Id, c.Id))), ))), )]
     public void MaxCountTest()
     {
       var max = db.Customers.Max(c => db.Orders.Count(o => o.Customer.Id == c.Id));
@@ -1601,9 +1591,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: KeyNotFoundException
+    // Exception: InvalidOperationException
     // Message:
-    //   The given key was not present in the dictionary.
+    //   Code supposed to be unreachable
     public void ComplexTest2()
     {
       var result = db.Customers
@@ -1684,9 +1674,9 @@ namespace OrmBattle.Tests.Linq
     [Test]
     [Category("Complex")]
     // Failed.
-    // Exception: KeyNotFoundException
+    // Exception: NotSupportedException
     // Message:
-    //   The given key was not present in the dictionary.
+    //   Specified method is not supported.
     public void ComplexTest6()
     {
       var result = db.Customers
@@ -1823,7 +1813,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: QueryException
     // Message:
-    //   could not resolve property: DayOfWeek of: OrmBattle.NHibernateModel.Northwind.Order [.First(.Where(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (Equal(Convert(o.OrderDate.Value.DayOfWeek), p1))), ), )]
+    //   could not resolve property: DayOfWeek of: OrmBattle.NHibernateModel.Northwind.Order [.First[OrmBattle.NHibernateModel.Northwind.Order](.Where[OrmBattle.NHibernateModel.Northwind.Order](NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (Equal(Convert(o.OrderDate.Value.DayOfWeek), p1))), ), )]
     public void DateTimeDayOfWeek()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfWeek == DayOfWeek.Friday).First();
@@ -1835,7 +1825,7 @@ namespace OrmBattle.Tests.Linq
     // Failed.
     // Exception: QueryException
     // Message:
-    //   could not resolve property: DayOfYear of: OrmBattle.NHibernateModel.Northwind.Order [.First(.Where(NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (Equal(o.OrderDate.Value.DayOfYear, p1))), ), )]
+    //   could not resolve property: DayOfYear of: OrmBattle.NHibernateModel.Northwind.Order [.First[OrmBattle.NHibernateModel.Northwind.Order](.Where[OrmBattle.NHibernateModel.Northwind.Order](NHibernate.Linq.NhQueryable`1[OrmBattle.NHibernateModel.Northwind.Order], Quote((o, ) => (Equal(o.OrderDate.Value.DayOfYear, p1))), ), )]
     public void DateTimeDayOfYear()
     {
       var order = db.Orders.Where(o => o.OrderDate.Value.DayOfYear == 360).First();

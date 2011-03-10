@@ -11,7 +11,7 @@
   <!-- UpdateXxx part -->
 
   <Target Name="UpdateSharedBinaries" Condition="$(ShareBinaries)=='true'"
-      DependsOnTargets="EnsureSharedBinaryDirExist;GetSharedBinaries;$(UpdateSharedBinariesDependsOn)" >
+      DependsOnTargets="EnsureSharedBinaryDirExist;GetSharedBinaries;$(UpdateSharedBinariesDependsOn)">
     <Message Importance="low" Text="Updating shared binaries..." />
     <CreateItem Exclude="*" Include="">
       <Output TaskParameter="Include" ItemName="_ExistingSharedBinary" />
