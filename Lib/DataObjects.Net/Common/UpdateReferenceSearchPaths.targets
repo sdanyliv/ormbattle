@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <ReferencePath Condition="'$(UseDataObjectsDotNet)'=='true'">$(ReferencePath);$(DataObjectsDotNetBinDir)</ReferencePath>
+    <ReferencePath Condition="'$(UseDataObjectsDotNet)'!='true'">$(ReferencePath);$(BinLatestDir)</ReferencePath>
+  </PropertyGroup>
+
+  <ItemGroup>  
+    <!-- Excluding non-release PostSharp libraries. Its redistribution conditions require redistributing it only as whole -->
+    <LibFiles Condition="'$(UseDataObjectsDotNet)'=='true'"
+              Include="$(DataObjectsDotNetLibDir)**\*.dll"
+              Exclude="$(DataObjectsDotNetLibDir)PostSharp\Diag\*.dll;$(DataObjectsDotNetLibDir)PostSharp\Reference Assemblies\**\*.dll;$(DataObjectsDotNetLibDir)PostSharp\Samples\**\*.dll" />
+    <LibFiles Condition="'$(UseDataObjectsDotNet)'=='true'"
+              Include="$(DataObjectsDotNetBinDir)*.dll" />
+
+    <LibFiles Condition="'$(UseDataObjectsDotNet)'!='true'"
+              Include="$(BinLatestDir)*.dll" />
+    <LibFiles Condition="'$(UseDataObjectsDotNet)'!='true'"
+              Include="$(LibDir)**\*.dll" />
+  </ItemGroup>  
+  
+  <Target Name="UpdateAssemblySearchPaths">  
+    <RemoveDuplicates Inputs="@(LibFiles->'%(RootDir)%(Directory)')">      
+      <Output TaskParameter="Filtered" ItemName="LibFilePaths" />  
+    </RemoveDuplicates>  
+
+    <CreateProperty Value="@(LibFilePaths);$(AssemblySearchPaths)">  
+      <Output TaskParameter="Value"  
+          PropertyName="AssemblySearchPaths" />  
+    </CreateProperty>  
+  </Target>  
+
+
+  <!-- Build sequence modification -->
+
+  <PropertyGroup>
+    <ResolveReferencesDependsOn>
+      UpdateAssemblySearchPaths;
+      $(ResolveReferencesDependsOn)
+    </ResolveReferencesDependsOn>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      UpdateAssemblySearchPaths
+    </CleanDependsOn>
+  </PropertyGroup>
+
+</Project>

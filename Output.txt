@@ -1,0 +1,685 @@
+LINQ tests:
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: DataObjects.Net (DO)
+  Testing: LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+
+LINQ tests scorecard:
+                                       BLT        EF        DO        LC       L2S        NH        OA   Maximum      Unit
+LINQ Implementation:            
+  Aggregates                             1         0         0         1         0         1         1         5       f/a
+  All/Any/Contains                       1         0         0         1         1         2         3         6       f/a
+  Complex                                6         0         0         2         0         6         4         6       f/a
+  Element operations                     5         4         0         0         2         6         5         9       f/a
+  Filtering                              0       4/2         0         0       2/2         4         0        12       f/a
+  Grouping                               3         1         0         2         1       7/1         2        10       f/a
+  Join                                   0         0         0         1         0         1         1         4       f/a
+  Ordering                               0       2/1         0         2         2         5       1/1         8       f/a
+  Projections                          2/1         1         0         1         1         4       1/1        13       f/a
+  References                             0         0         0         0         0         0         0         4       f/a
+  Set operations                         0         0         0         1         0       6/1         0         9       f/a
+  Standard functions                     0      11/1         2       3/1       3/1        17       8/1        25       f/a
+  Take/Skip                              1         1         0         0         0         2         1         5       f/a
+  Type casts                             0         1         0         1         1       2/1         0         5       f/a
+Total:                          
+  Performed                            121       121       121       121       121       121       121       121         #
+  Passed                               102        96       119       106       108        58        94       121         #
+  Failed                                19        25         2        15        13        63        27       121         #
+    Properly                            18        21         2        14        10        60        24       121         #
+    Asserted                             1         4         0         1         3         3         3       121         #
+  Score                               84,3      79,3      98,3      87,6      89,3      47,9      77,7     100,0         %
+
+Units:
+  f/a: total count of failed tests [ / count of tests failed with assertion ],
+       less is better (0 is ideal);
+  #:   count;
+  %:   percentage (% of passed tests), more is better.
+
+
+Performance tests (50 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 4 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 5 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+
+Performance tests (50 items) scorecard:
+                                       BLT        EF        ES        DO        LC       L2S        NH        OA        SS       SQL      Unit
+CRUD Performance:               
+  Fetch                               9493      4948      7415      7802      9810      7565      6725      5674      8477     15973      op/s
+  Single Operation:             
+    Create Instance                   6499      3781      6237      5360      6641      4070      3495      6043      3382      8943      op/s
+    Update Instance                   5990      3562      5466      4935      5589      1641      2989      5111      1434      8362      op/s
+    Remove Instance                   6214      3860      5686      5090      5847      1728      3183      5710      1461      8637      op/s
+    CUD Average                       6139      3711      5773      5052      5960      2090      3201      5584      1766      8549      op/s
+  Multiple Operations:          
+    Create Instance                  23376      7231     10353     16823     21301      5946     15622     12288      3755     25642      op/s
+    Update Instance                  22016      7051      9843     17417     18181      2089     13272     11093      3033     28290      op/s
+    Remove Instance                  28349      8035     10564     19963     23042      2238     14075     31125      3157     41732      op/s
+    CUD Average                      20734      7393     10159     17832     18992      2694     13552     14569      3190     29983      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        5513       552       796      1439      3564       720      1041      3179       228       n/a queries/s
+    Compiled LINQ Query               7872      4802      2234      6057      6673      6526       n/a      3315       n/a       n/a queries/s
+    Native Query                      8691      5910      6019      5649       n/a       n/a      4373      5042      5989     10982 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)       5284      3047      1844      3968      4524      4446       801      2318       214       n/a   pages/s
+    Get Average Page (20 items)       2954      1835      1370      2219      2489      2607       577      1605       193       n/a   pages/s
+    Get Large Page   (50 items)        n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
+    Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
+  Materialization:              
+    LINQ Materialize                 61057     14552     19108     54288     47067     38922     26415     44208     10516       n/a objects/s
+    Native Materialize               98425     64892     85778     59115       n/a       n/a     41425     93300     64350    144550 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (100 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 4 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 5 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+
+Performance tests (100 items) scorecard:
+                                       BLT        EF        ES        DO        LC       L2S        NH        OA        SS       SQL      Unit
+CRUD Performance:               
+  Fetch                              10452      5198      7979      8439     10689      8120      7230      5901      8873     17987      op/s
+  Single Operation:             
+    Create Instance                   8198      4269      7532      6280      8171      4764      4005      7093      3454     11809      op/s
+    Update Instance                   7698      4150      6736      6151      7147      1832      3148      6369      2107     11279      op/s
+    Remove Instance                   7912      4558      7140      6477      7639      1901      3549      7089      2185     11588      op/s
+    CUD Average                       7930      4319      7074      6272      7614      2332      3530      6812      2440     11433      op/s
+  Multiple Operations:          
+    Create Instance                  29479      7496     11086     19087     22147      6232     17932     13204      3822     30984      op/s
+    Update Instance                  27676      7343     10640     20962     21391      1815     15299     12386      3478     33122      op/s
+    Remove Instance                  37931      8412     11487     21273     29235      1838     16469     25288      3615     54077      op/s
+    CUD Average                      27918      7419     11034     19126     22708      2351     15518     15195      3490     36357      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        6441       430       829      1527      3889       751      1111      3440       230       n/a queries/s
+    Compiled LINQ Query               9623      5520      2292      7163      7850      7693       n/a      3570       n/a       n/a queries/s
+    Native Query                     11158      7022      6842      7346       n/a       n/a      4878      5560      6679     13834 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)       7027      3598      2010      4899      5510      5672       875      2544       219       n/a   pages/s
+    Get Average Page (20 items)       4934      2596      1754      3345      3762      4192       719      2116       208       n/a   pages/s
+    Get Large Page   (50 items)       2650      1427      1284      1727      1982      2602       468      1390       181       n/a   pages/s
+    Get Huge Page    (100 items)       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a       n/a
+  Materialization:              
+    LINQ Materialize                111669     26369     34298     87024     79377     72176     37683     74283     19024       n/a objects/s
+    Native Materialize              177809     96422    142429     94688       n/a       n/a     53495    139586     85157    255623 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (500 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 4 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 5 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+
+Performance tests (500 items) scorecard:
+                                       BLT        EF        ES        DO        LC       L2S        NH        OA        SS       SQL      Unit
+CRUD Performance:               
+  Fetch                              11626      5540      6398      9337     11742      8788      7791      6131      9578     20296      op/s
+  Single Operation:             
+    Create Instance                   8014      4390      7325      6508      8144      4380      4073      6820      3744     11107      op/s
+    Update Instance                  10222      5049      8669      8288      9857      1654      1760      8340      3502     15875      op/s
+    Remove Instance                  10579      5685      9344      8951     10737      1814      2303      9501      3685     16650      op/s
+    CUD Average                       9437      4964      8340      7738      9438      2152      2383      8063      3597     13966      op/s
+  Multiple Operations:          
+    Create Instance                  23133      7493      9737     17688     19595      5750     15223     11027      3220     23256      op/s
+    Update Instance                  36161      6353     11483     25595     26434      2040     17659     13566      3728     40250      op/s
+    Remove Instance                  54334      6331     12516     31371     37962      2169     19246     27754      3776     33528      op/s
+    CUD Average                      33495      6650     11055     23302     25999      2635     17203     14913      3509     30671      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        7755       541       796      1403      3625       714      1057      3790       225       n/a queries/s
+    Compiled LINQ Query              12212      6378      1917      8775      9454      9288       n/a      3947       n/a       n/a queries/s
+    Native Query                     14618      8486      8049     10356       n/a       n/a      5614      6076      7580     17673 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)      10030      4394      1505      6519      7106      7528       689      2955       214       n/a   pages/s
+    Get Average Page (20 items)       8362      3526      2188      5013      5569      6535       858      2697       202       n/a   pages/s
+    Get Large Page   (50 items)       5700      2195      1863      2982      3346      4692       628      2039       205       n/a   pages/s
+    Get Huge Page    (100 items)      3726      1349      1508      1759      2038      3250       432      1519       184       n/a   pages/s
+  Materialization:              
+    LINQ Materialize                379449     88945    106491    176019    203906    277284     61270    200585     58634       n/a objects/s
+    Native Materialize              575241    176485    310269    218598       n/a       n/a     77208    287488    116808    806842 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (1000 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 4 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 5 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+
+Performance tests (1000 items) scorecard:
+                                       BLT        EF        ES        DO        LC       L2S        NH        OA        SS       SQL      Unit
+CRUD Performance:               
+  Fetch                              11718      4933      7351      7875     12018      8845      6870      5507      8499     20778      op/s
+  Single Operation:             
+    Create Instance                  10986      3612      9694      6861     11275      3450      4744      8754      3263     11462      op/s
+    Update Instance                  10796      4021      9013      8821     10340      1744      1296      8545      3804     16357      op/s
+    Remove Instance                  11194      4414      9709      9336     11076      1968      1945      9816      4026     17160      op/s
+    CUD Average                      10989      3944      9449      8176     10881      2185      1990      8812      3637     14511      op/s
+  Multiple Operations:          
+    Create Instance                  41643      6245      9447     19407     14772      5285     21685     14290      3525     22654      op/s
+    Update Instance                  39318      6196     10439     20944     22311      2126     15331     13756      3860     41513      op/s
+    Remove Instance                  60110      7523     10923     24756     27030      2279     19753     24498      3891     25608      op/s
+    CUD Average                      44887      6517     10221     21438     20023      2723     18461     16273      3698     27189      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        7945       565       838      1465      2993       751      1115      3244       228       n/a queries/s
+    Compiled LINQ Query              12610      6472      2243      8984      9783      9647       n/a      3367       n/a       n/a queries/s
+    Native Query                     15422      8648      8138     10911       n/a       n/a      4473      6187      7762     17973 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)      10709      4558      1796      6806      7148      7785       880      3018       218       n/a   pages/s
+    Get Average Page (20 items)       9313      3681      1538      5375      5615      6972       736      2751       205       n/a   pages/s
+    Get Large Page   (50 items)       6720      2341      1984      3302      3412      5425       655      2206       188       n/a   pages/s
+    Get Huge Page    (100 items)      4651      1471      1650      1982      2250      3923       460      1647       188       n/a   pages/s
+  Materialization:              
+    LINQ Materialize                564047    118643    146769    222504    234433    463542     65004    264648     79548       n/a objects/s
+    Native Materialize              849545    202889    374854    273897       n/a       n/a     81674    335807    124550   1208605 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (5000 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 4 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 5 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+
+Performance tests (5000 items) scorecard:
+                                       BLT        EF        ES        DO        LC       L2S        NH        OA        SS       SQL      Unit
+CRUD Performance:               
+  Fetch                              11228      5408      8302      9057     11653      8568      7433      5872      9175     21137      op/s
+  Single Operation:             
+    Create Instance                   8543      4184      7111      6655      7872      2324      4000      6396      3616     11981      op/s
+    Update Instance                  11302      4790      8405      8558      9778      1402       362      7666      3706     17847      op/s
+    Remove Instance                  11880      5614      8680      9007     10454      1938       672      8948      3837     18766      op/s
+    CUD Average                      10309      4781      8002      7913      9231      1807       665      7463      3699     15412      op/s
+  Multiple Operations:          
+    Create Instance                  35075      6039      8522     21696     15411      6061     21097     12097      3420     43183      op/s
+    Update Instance                  40911      5685     10874     24648     24578      2177     17038     12501      3775     42266      op/s
+    Remove Instance                  64798      7548      9907     31109     33618      2321     18170     46199      3986     67171      op/s
+    CUD Average                      43770      6323      9641     24545     22066      2817     18033     16222      3693     48535      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        7339       579       866      1520       440       772      1149      3679       230       n/a queries/s
+    Compiled LINQ Query              13093      6109      2445      8683      9145      8779       n/a      3845       n/a       n/a queries/s
+    Native Query                     15953      8032      7600     10467       n/a       n/a      5302      5629      6892     18619 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)      11254      3712      2229      6201      6363      6900       934      2772       222       n/a   pages/s
+    Get Average Page (20 items)      10222      3084      2042      4602      6226      7504       811      2198       216       n/a   pages/s
+    Get Large Page   (50 items)       7927      1804      1638      2604      3977      6138       565      1713       200       n/a   pages/s
+    Get Huge Page    (100 items)      5836      1579      1242      1531      2556      4677       403      1112       180       n/a   pages/s
+  Materialization:              
+    LINQ Materialize                987303    193133    136113    186920    335737    883220     56620    168292     92661       n/a objects/s
+    Native Materialize             1502945    228818    228445    199832       n/a       n/a     66614    187140    105634   2184932 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (10000 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 4 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 5 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+
+Performance tests (10000 items) scorecard:
+                                       BLT        EF        ES        DO        LC       L2S        NH        OA        SS       SQL      Unit
+CRUD Performance:               
+  Fetch                              11527      5471      8453      9110     11776      8750      7600      5925      9519     20509      op/s
+  Single Operation:             
+    Create Instance                   8040      4246      7619      6592     10807      1644      4139      8389      3755     11888      op/s
+    Update Instance                  10647      4776      8717      8610     10420      1070       186      8283      3910     17750      op/s
+    Remove Instance                  11039      5792      8702      9015     11148      1772       351      9397      4561     18932      op/s
+    CUD Average                       9699      4816      8302      7874     10740      1418       354      8616      4037     15492      op/s
+  Multiple Operations:          
+    Create Instance                  27501      5636     11317     13800     15383      6399     21435     13489      3438     22202      op/s
+    Update Instance                  41207      5884     10164     25237     24890      2177     17261     12910      3690     41167      op/s
+    Remove Instance                  65029      7164      8209     31188     35010      2322     18611     42905      3929     67308      op/s
+    CUD Average                      39342      6141      9706     20811     22402      2866     18930     17068      3644     35631      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        7761       580       870      1515       440       774      1159      3758       231       n/a queries/s
+    Compiled LINQ Query              12175      6321      2494      8615      9413      9344       n/a      3880       n/a       n/a queries/s
+    Native Query                     16189      8324      7982     10552       n/a       n/a      5468      5915      7333     16955 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)       9687      4174      2296      6048      6873      7371       948      2725       223       n/a   pages/s
+    Get Average Page (20 items)       7779      3384      2174      4469      5416      6328       824      2367       218       n/a   pages/s
+    Get Large Page   (50 items)       8136      2075      1849      2745      3150      6283       613      1749       204       n/a   pages/s
+    Get Huge Page    (100 items)      6044      1257      1495      1614      1888      4850       409      1173       184       n/a   pages/s
+  Materialization:              
+    LINQ Materialize               1107591    156349    122040    199857    243215   1010672     56454    224845     98977       n/a objects/s
+    Native Materialize             1661681    183467    288908    231325       n/a       n/a     64497    238877    105602   2459843 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (30000 items):
+Pass 1 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 2 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 3 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 4 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+Pass 5 out of 5...
+  Testing: BLToolkit (BLT)
+  Testing: ADO.NET Entity Framework (EF)
+  Testing: EntitySpaces (ES)
+  Testing: DataObjects.Net (DO)
+  Testing: Devart LinqConnect (LC)
+  Testing: LINQ to SQL (L2S)
+  Testing: NHibernate (NH)
+  Testing: OpenAccess (OA)
+  Testing: Subsonic (SS)
+  Testing: SqlClient (SQL)
+
+Performance tests (30000 items) scorecard:
+                                       BLT        EF        ES        DO        LC       L2S        NH        OA        SS       SQL      Unit
+CRUD Performance:               
+  Fetch                              11769      5524      8585      9230     11969      8851      7669      5943      9735     20838      op/s
+  Single Operation:             
+    Create Instance                  10835      4231      8769      8242      8491       681      4230      8026      3494     11568      op/s
+    Update Instance                  11141      4324      8774      9007     10697       551        61      8357      3776     17465      op/s
+    Remove Instance                  11644      5853      7471      9552     11462      1296       123      9601      3967     19027      op/s
+    CUD Average                      11001      4695      8287      8843     10015       737       121      8568      3700     15252      op/s
+  Multiple Operations:          
+    Create Instance                  30921      6001     10515     22586     26598      6487     21160     11913      3331     30347      op/s
+    Update Instance                  40413      5817     10761     25169     25180      2168     17166     12246      3548     42065      op/s
+    Remove Instance                  62750      7337      4541     31981     35185      2324     18683     42180      3746     65328      op/s
+    CUD Average                      41022      6292      7335     25816     28219      2868     18861     15820      3511     41359      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        8123       583       874      1509       440       775      1168      3776       228       n/a queries/s
+    Compiled LINQ Query              13022      6484      2519      8876      9763      9596       n/a      3926       n/a       n/a queries/s
+    Native Query                     15684      8520      8260     10871       n/a       n/a      5659      5940      7691     18077 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)      10967      4209      2347      6233      7279      7761       940      2780       222       n/a   pages/s
+    Get Average Page (20 items)       9395      3374      2251      4559      5593      7008       829      2389       219       n/a   pages/s
+    Get Large Page   (50 items)       6867      2075      1996      2683      3427      5568       604      1750       206       n/a   pages/s
+    Get Huge Page    (100 items)      4757      1239      1668      1631      2035      4032       404      1234       189       n/a   pages/s
+  Materialization:              
+    LINQ Materialize               1088790    163168    115801    191728    260961   1136850     55457    182613    110647       n/a objects/s
+    Native Materialize             1794666    167934    280725    232443       n/a       n/a     64998    188933    119943   2659079 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+

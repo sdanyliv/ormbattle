@@ -1,0 +1,15 @@
+﻿<hibernate-mapping default-cascade="none" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="OrmBattle.NHibernateModel.Northwind.Shipper, NHibernateModel" table="Shippers">
+    <id name="Id" type="System.Int32" column="ShipperID" unsaved-value="0">
+      <generator class="native" />
+    </id>
+    <property name="CompanyName" type="System.String" column="CompanyName" not-null="true" />
+    <property name="Phone" type="System.String" column="Phone" not-null="false" />
+    <bag name="Orders" inverse="false" lazy="true" cascade="none">
+      <key>
+        <column name="ShipVia" not-null="false" />
+      </key>
+      <one-to-many class="OrmBattle.NHibernateModel.Northwind.Order, NHibernateModel" />
+    </bag>
+  </class>
+</hibernate-mapping>
