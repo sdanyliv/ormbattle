@@ -63,14 +63,6 @@ namespace OrmBattle.TelerikModel.PerformanceTest
 			backend.Backend = "mssql";
 			return backend;
 		}
-
-    public IObjectScope Scope
-    {
-      get
-      {
-        return this.GetScope();
-      }
-    }
 	}
 }
 #pragma warning restore 1591
