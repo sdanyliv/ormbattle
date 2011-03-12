@@ -26,7 +26,6 @@ namespace OrmBattle.Tests.Linq
   [TestFixture]
   public class OpenAccessTest : LinqTestBase
   {
-    protected IObjectScope scope;
     protected NorthwindContext db;
 
     public override string ToolName {
@@ -44,9 +43,7 @@ namespace OrmBattle.Tests.Linq
     protected override void Setup()
     {
       db = new NorthwindContext();
-      scope = db.Scope;
 
-      
       Customers = db.Customers.ToList();
       Employees = db.Employees.ToList();
       Orders = db.Orders.ToList();
@@ -55,7 +52,6 @@ namespace OrmBattle.Tests.Linq
 
     protected override void TearDown()
     {
-      scope.Dispose();
       db.Dispose();
     }
 

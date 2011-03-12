@@ -5,12 +5,9 @@ namespace OrmBattle.TelerikModel.Northwind
 {
   public partial class NorthwindContext
   {
-    public IObjectScope Scope
+    public new IObjectScope GetScope()
     {
-      get
-      {
-        return this.GetScope();
-      }
+      return base.GetScope();
     }
 
     public IQueryable<ActiveProduct> ActiveProducts

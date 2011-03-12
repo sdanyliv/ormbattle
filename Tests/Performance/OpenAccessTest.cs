@@ -7,6 +7,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Transactions;
 using NUnit.Framework;
 using Telerik.OpenAccess;
 using Telerik.OpenAccess.Query;
@@ -17,7 +18,7 @@ namespace OrmBattle.Tests.Performance
   [Serializable]
   public class OpenAccessTest : PerformanceTestBase
   {
-    private IObjectScope scope;
+    private PerformanceTest context;
 
     public override string ToolName {
       get { return "OpenAccess"; }
@@ -30,210 +31,222 @@ namespace OrmBattle.Tests.Performance
     protected override void Setup()
     {
       var db = new PerformanceTest();
-      using (var scope = db.Scope) {
-        scope.Transaction.Begin();
+      using (var ts = new TransactionScope()) {
         db.Delete(db.Simplests);
-        scope.Transaction.Commit();
+        db.SaveChanges();
+        ts.Complete();
       }
     }
 
     protected override void TearDown()
     {
       var db = new PerformanceTest();
-      using (var scope = db.Scope) {
-        scope.Transaction.Begin();
+      using (var ts = new TransactionScope()) {
         db.Delete(db.Simplests);
-        scope.Transaction.Commit();
+        db.SaveChanges();
+        ts.Complete();
       }
+    }
+
+    [Test]
+    public void SomeTest()
+    {
+      Execute();
     }
 
     protected override void OpenSession()
     {
-      var db = new PerformanceTest();
-      scope = db.Scope;
+      context = new PerformanceTest();
     }
 
     protected override void CloseSession()
     {
-      scope.Dispose();
+      context.Dispose();
     }
 
     protected override void InsertMultipleTest(int count)
     {
-      scope.Transaction.Begin();
-      for (int i = 0; i < count; i++) {
-        var s = new Simplest { Id = i, Value = i };
-        scope.Add(s);
+      using (var ts = new TransactionScope()) {
+        for (int i = 0; i < count; i++) {
+          var s = new Simplest {Id = i, Value = i};
+          context.Add(s);
+        }
+        context.SaveChanges();
+        ts.Complete();
       }
-      scope.Transaction.Commit();
       InstanceCount = count;
     }
 
     protected override void UpdateMultipleTest()
     {
-      scope.Transaction.Begin();
-      var query = scope.Extent<Simplest>();
-      foreach (var o in query)
-        o.Value++;
-      scope.Transaction.Commit();
+      using (var ts = new TransactionScope()) {
+        var query = context.Simplests;
+        foreach (var o in query)
+          o.Value++;
+        context.SaveChanges();
+        ts.Complete();
+      }
     }
 
     protected override void DeleteMultipleTest()
     {
-      scope.Transaction.Begin();
-      var query = scope.Extent<Simplest>();
-      foreach (var s in query)
-        scope.Remove(s);
-      scope.Transaction.Commit();
+      using (var ts = new TransactionScope()) {
+        var query = context.Simplests;
+        foreach (var s in query)
+          context.Delete(s);
+        context.SaveChanges();
+        ts.Complete();
+      }
     }
 
     protected override void InsertSingleTest(int count)
     {
-      scope.Transaction.Begin();
       for (int i = 0; i < count; i++) {
-        var s = new Simplest{Id = i, Value = i};
-        scope.Add(s);
-        scope.Transaction.Flush();
+        var s = new Simplest {Id = i, Value = i};
+        context.Add(s);
+        context.SaveChanges();
       }
-      scope.Transaction.Commit();
       InstanceCount = count;
     }
 
     protected override void UpdateSingleTest()
     {
-      scope.Transaction.Begin();
-      var query = scope.Extent<Simplest>();
+      var query = context.Simplests;
       foreach (var o in query) {
         o.Value++;
-        scope.Transaction.Flush();
+        context.SaveChanges();
       }
-      scope.Transaction.Commit();
     }
 
     protected override void DeleteSingleTest()
     {
-      scope.Transaction.Begin();
-      var query = scope.Extent<Simplest>();
+      var query = context.Simplests;
       foreach (var s in query) {
-        scope.Remove(s);
-        scope.Transaction.Flush();
+        context.Delete(s);
+        context.SaveChanges();
       }
-      scope.Transaction.Commit();
     }
 
     protected override void FetchTest(int count)
     {
       long sum = (long)count * (count - 1) / 2;
-      scope.Transaction.Begin();
-      for (int i = 0; i < count; i++) {
-        var id = (long)i % InstanceCount;
-        var classId = scope.PersistentMetaData.GetPersistentTypeDescriptor(typeof (Simplest)).ClassId;
-        var objectId = Database.OID.ParseObjectId(null, classId + "-" + id);
-        var s = (Simplest)scope.GetObjectById(objectId);
-        sum -= s.Id;
+      var scope = context.GetScope();
+      var classId = scope.PersistentMetaData.GetPersistentTypeDescriptor(typeof(Simplest)).ClassId;
+      using (var ts = new TransactionScope()) {
+        for (int i = 0; i < count; i++) {
+          var id = (long) i%InstanceCount;
+          var objectId = Database.OID.ParseObjectId(null, classId + "-" + id);
+          var s = (Simplest) scope.GetObjectById(objectId);
+          sum -= s.Id;
+        }
+        ts.Complete();
       }
-      scope.Transaction.Commit();
       if (count <= InstanceCount)
         Assert.AreEqual(0, sum);
     }
 
     protected override void LinqQueryTest(int count)
     {
-      scope.Transaction.Begin();
-      for (int i = 0; i < count; i++) {
-        var id = i % InstanceCount;
-        var query = scope.Extent<Simplest>().Where(o => o.Id == id);
-        foreach (var simplest in query) {
-          // Doing nothing, just enumerate
+      using (var ts = new TransactionScope()) {
+        for (int i = 0; i < count; i++) {
+          var id = i%InstanceCount;
+          var query = context.Simplests.Where(o => o.Id == id);
+          foreach (var simplest in query) {
+            // Doing nothing, just enumerate
+          }
         }
+        ts.Complete();
       }
-      scope.Transaction.Commit();
     }
 
     protected override void CompiledLinqQueryTest(int count)
     {
-      scope.Transaction.Begin();
-      for (int i = 0; i < count; i++) {
-        var id = i % InstanceCount;
-        var query = GetSimplest(scope, id);
-        foreach (var simplest in query) {
-          // Doing nothing, just enumerate
+      using (var ts = new TransactionScope()) {
+        for (int i = 0; i < count; i++) {
+          var id = i%InstanceCount;
+          var query = GetSimplest(context, id); 
+          foreach (var simplest in query) {
+            // Doing nothing, just enumerate
+          }
         }
+        ts.Complete();
       }
-      scope.Transaction.Commit();
     }
 
     protected override void NativeQueryTest(int count)
     {
-      scope.Transaction.Begin();
-      for (int i = 0; i < count; i++) {
-        var id = i % InstanceCount;
-        var query = scope.GetOqlQuery<Simplest>("select * from SimplestExtent AS s where s.Id == $1");
-        foreach (var simplest in query.ExecuteEnumerable(id)) {
-          // Doing nothing, just enumerate
+      using (var ts = new TransactionScope()) {
+        for (int i = 0; i < count; i++) {
+          var id = i%InstanceCount;
+          var query = context.GetScope().GetOqlQuery<Simplest>("select * from SimplestExtent AS s where s.Id == $1");
+          foreach (var simplest in query.ExecuteEnumerable(id)) {
+            // Doing nothing, just enumerate
+          }
         }
+        ts.Complete();
       }
-      scope.Transaction.Commit();
     }
 
     protected override void LinqMaterializeTest(int count)
     {
-      scope.Transaction.Begin();
-      int i = 0;
-      while (i < count)
-        foreach (var o in GetAllSimplest(scope))
-          if (++i >= count)
-            break;
-
-      scope.Transaction.Commit();
+      using (var ts = new TransactionScope()) {
+        int i = 0;
+        while (i < count)
+          foreach (var o in GetAllSimplest(context))
+            if (++i >= count)
+              break;
+        ts.Complete();
+      }
     }
 
     protected override void NativeMaterializeTest(int count)
     {
-      scope.Transaction.Begin();
-      int i = 0;
-      while (i < count)
-        foreach (var o in scope.GetOqlQuery<Simplest>().ExecuteEnumerable())
-          if (++i >= count)
-            break;
-
-      scope.Transaction.Commit();
+      using (var ts = new TransactionScope()) {
+        var scope = context.GetScope();
+        int i = 0;
+        while (i < count)
+          foreach (var o in scope.GetOqlQuery<Simplest>().ExecuteEnumerable())
+            if (++i >= count)
+              break;
+        ts.Complete();
+      }
     }
 
     protected override void LinqQueryPageTest(int count, int pageSize)
     {
-      scope.Transaction.Begin();
-      for (int i = 0; i < count; i++) {
-        var id = (i*pageSize) % InstanceCount;
-        var query = GetSimplestPage(scope, id, pageSize);
-        foreach (var simplest in query) {
-          // Doing nothing, just enumerate
+      using (var ts = new TransactionScope()) {
+        for (int i = 0; i < count; i++) {
+          var id = (i*pageSize)%InstanceCount;
+          var query = GetSimplestPage(context, id, pageSize);
+          foreach (var simplest in query) {
+            // Doing nothing, just enumerate
+          }
         }
+        ts.Complete();
       }
-      scope.Transaction.Commit();
     }
 
-    static IQueryable GetSimplest(IObjectScope scope, long id)
+    static IQueryable GetSimplest(PerformanceTest context, long id)
     {
       var query = 
-        from e in scope.Extent<Simplest>()
+        from e in context.Simplests
         where e.Id == id
         select e;
       return query;
     }
 
-    static IQueryable GetSimplestPage(IObjectScope scope, long idFrom, int pageSize)
+    static IQueryable GetSimplestPage(PerformanceTest context, long idFrom, int pageSize)
     {
       var query = 
-        from e in scope.Extent<Simplest>()
+        from e in context.Simplests
         where e.Id >= idFrom
         select e;
       return query.Take(pageSize);
     }
 
-    static IQueryable GetAllSimplest(IObjectScope scope)
+    static IQueryable GetAllSimplest(PerformanceTest context)
     {
-      return scope.Extent<Simplest>().Where(s => s.Id > 0);
+      return context.Simplests.Where(s => s.Id > 0);
     }
   }
 }
