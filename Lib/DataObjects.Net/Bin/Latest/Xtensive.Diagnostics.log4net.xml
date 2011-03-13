@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Xtensive.Diagnostics.log4net</name>
+  </assembly>
+  <members>
+    <member name="T:Xtensive.Diagnostics.log4net.Log">
+      <summary>
+            Log for this namespace.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Diagnostics.log4net.Log.Name">
+      <summary>
+            Log name.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Diagnostics.log4net.LogImplementation">
+      <summary>
+            Log implementation for log4net.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Diagnostics.log4net.LogImplementation.GetFormattedMessage(System.String,System.Object[])">
+      <summary>
+            Gets the formatted message.
+            </summary>
+      <param name="format">The format.</param>
+      <param name="args">The arguments.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Xtensive.Diagnostics.log4net.LogImplementation.#ctor(Xtensive.Diagnostics.IRealLog)">
+      <inheritdoc />
+    </member>
+    <member name="T:Xtensive.Diagnostics.log4net.LogProviderImplementation">
+      <summary>
+            Log provider implementation for log4net.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Diagnostics.log4net.LogProviderImplementation.GetLogImplementation(Xtensive.Diagnostics.IRealLog)">
+      <summary>
+            Gets the <see cref="T:Xtensive.Diagnostics.ILog" /> instance.
+            </summary>
+      <param name="realLog">The real log.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:Xtensive.Diagnostics.log4net.LogProviderImplementation.GetRealLog(System.String)">
+      <summary>
+            Gets the <see cref="T:Xtensive.Diagnostics.IRealLog" /> instance.
+            </summary>
+      <param name="key">The key.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:Xtensive.Diagnostics.log4net.RealLogImplementation">
+      <summary>
+        <see cref="T:Xtensive.Diagnostics.IRealLog" /> implementation based on
+            <see langword="log4net" />'s <see cref="T:log4net.Core.ILogger" />.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Diagnostics.log4net.RealLogImplementation.LogEvent(Xtensive.Diagnostics.LogEventTypes,System.Object,System.Exception,Xtensive.Diagnostics.IRealLog,Xtensive.Diagnostics.LogCaptureScope)">
+      <summary>
+            Logs the event.
+            </summary>
+      <param name="eventType">The type of event to log.</param>
+      <param name="message">Message to log.</param>
+      <param name="exception">Exception to log.</param>
+      <param name="sentTo">The original log, to which message was sent 
+            (useful e.g. when <see cref="T:Xtensive.Diagnostics.LogCaptureScope" /> is used to capture the events sent to another log).</param>
+      <param name="capturedBy">The scope that captured the event, if any.</param>
+    </member>
+    <member name="M:Xtensive.Diagnostics.log4net.RealLogImplementation.UpdateCachedProperties">
+      <summary>
+            Updates cached log properties.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Diagnostics.log4net.RealLogImplementation.ToLevel(Xtensive.Diagnostics.LogEventTypes)">
+      <exception cref="T:System.InvalidOperationException">RealLogImplementation.ToLevel: Wrong LogEventTypes.</exception>
+    </member>
+    <member name="M:Xtensive.Diagnostics.log4net.RealLogImplementation.#ctor(System.String,log4net.Core.ILogger)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Diagnostics.log4net.RealLogImplementation" /> class.
+            </summary>
+      <param name="name">Log name.</param>
+      <param name="logger">Underlying <see langword="log4net" /> logger.</param>
+    </member>
+    <member name="M:Xtensive.Diagnostics.log4net.RealLogImplementation.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Diagnostics.log4net.RealLogImplementation" /> class.
+            </summary>
+      <param name="name">Log name.</param>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Xtensive.Practices.Localization</name>
+  </assembly>
+  <members>
+    <member name="M:Xtensive.Practices.Localization.LocalizationExpressionVisitor.VisitMemberAccess(System.Linq.Expressions.MemberExpression)">
+      <summary>
+            Visits the member access expression.
+            </summary>
+      <param name="me">The member access expression.</param>
+      <returns>Visit result.</returns>
+    </member>
+    <member name="M:Xtensive.Practices.Localization.QueryPreprocessor.Apply(System.Linq.Expressions.Expression)">
+      <summary>
+            Applies the preprocessor to the specified query.
+            </summary>
+      <param name="query">The query to apply the preprocessor to.</param>
+      <returns>Application (preprocessing) result.</returns>
+    </member>
+    <member name="M:Xtensive.Practices.Localization.QueryPreprocessor.IsDependentOn(Xtensive.Orm.IQueryPreprocessor)">
+      <summary>
+            Determines whether this query preprocessor is dependent on the <paramref name="other" /> one.
+            </summary>
+      <param name="other">The other query preprocessor.</param>
+      <returns>
+        <see langword="true" /> if this query preprocessor 
+            is dependent on <paramref name="other" />; 
+            otherwise, <see langword="false" />.
+            </returns>
+    </member>
+    <member name="T:Xtensive.Practices.Localization.ILocalizable`1">
+      <summary>
+            Defines localization contract.
+            </summary>
+      <typeparam name="T">Entity</typeparam>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.ILocalizable`1.Localizations">
+      <summary>
+             Set of localizations.
+            </summary>
+    </member>
+    <!-- Badly formed XML comment ignored for member "T:Xtensive.Practices.Localization.QueryExtensions" -->
+    <member name="M:Xtensive.Practices.Localization.QueryExtensions.All``2(Xtensive.Orm.Session.QueryEndpoint)">
+      <summary>
+            Starting point for every query for localizable entities.
+            </summary>
+      <typeparam name="TTarget">The type of the target.</typeparam>
+      <typeparam name="TLocalization">The type of the localization.</typeparam>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:Xtensive.Practices.Localization.LocalizationContext">
+      <summary>
+            Localization context.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Practices.Localization.LocalizationContext.#ctor(System.Globalization.CultureInfo)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Practices.Localization.LocalizationContext" /> class.
+            </summary>
+      <param name="culture">The culture.</param>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationContext.Culture">
+      <summary>
+            Gets or sets the culture of this instance.
+            </summary>
+      <value>The culture.</value>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationContext.CultureName">
+      <summary>
+            Gets or sets the name of the culture.
+            </summary>
+      <value>The name of the culture.</value>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationContext.Policy">
+      <summary>
+            Gets or sets the localization policy.
+            </summary>
+      <value>The policy.</value>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationContext.Current">
+      <summary>
+            Gets the current localization context.
+            </summary>
+      <value>The current localization context.</value>
+    </member>
+    <member name="T:Xtensive.Practices.Localization.LocalizationPair`2">
+      <summary>
+            A pair of localizable entity and its localization.
+            </summary>
+      <typeparam name="TTarget">The type of the target.</typeparam>
+      <typeparam name="TLocalization">The type of the localization.</typeparam>
+    </member>
+    <member name="M:Xtensive.Practices.Localization.LocalizationPair`2.#ctor(`0,`1)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Practices.Localization.LocalizationPair`2" /> class.
+            </summary>
+      <param name="target">The target.</param>
+      <param name="localization">The localization.</param>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationPair`2.Target">
+      <summary>
+            Gets or sets the localizable entity.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationPair`2.Localization">
+      <summary>
+            Gets or sets the localization.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Practices.Localization.LocalizationPolicy">
+      <summary>
+            Localization policy.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Practices.Localization.LocalizationPolicy.Default">
+      <summary>
+            Default policy. New localization instance should be created in case it is absent.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Practices.Localization.LocalizationScope">
+      <summary>
+            Scope of localization.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Practices.Localization.LocalizationScope.#ctor(System.Globalization.CultureInfo)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Practices.Localization.LocalizationScope" /> class.
+            </summary>
+      <param name="culture">The culture.</param>
+    </member>
+    <member name="M:Xtensive.Practices.Localization.LocalizationScope.#ctor(System.Globalization.CultureInfo,Xtensive.Practices.Localization.LocalizationPolicy)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Practices.Localization.LocalizationScope" /> class.
+            </summary>
+      <param name="culture">The culture.</param>
+      <param name="policy">The policy.</param>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationScope.Current">
+      <summary>
+            Gets the current localization scope.
+            </summary>
+      <value>The current localization scope. Returns <see langword="null" /> in case it is absent.</value>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationScope.Context">
+      <summary>
+            Gets the context of this scope.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Practices.Localization.Localization">
+      <summary>
+            Base localization class.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Practices.Localization.Localization.#ctor(Xtensive.Orm.Session,System.Globalization.CultureInfo,Xtensive.Orm.Entity)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Practices.Localization.Localization" /> class.
+            </summary>
+      <param name="session">The session.</param>
+      <param name="culture">The culture.</param>
+      <param name="target">The target.</param>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.Localization.CultureName">
+      <summary>
+            Gets or sets the name of the culture this particular localization is corresponds to.
+            </summary>
+      <value>The name of the culture.</value>
+    </member>
+    <member name="T:Xtensive.Practices.Localization.Localization`1">
+      <summary>
+            Base localization class with typed reference to localizable one.
+            </summary>
+      <typeparam name="T">
+      </typeparam>
+    </member>
+    <member name="M:Xtensive.Practices.Localization.Localization`1.#ctor(Xtensive.Orm.Session,System.Globalization.CultureInfo,`0)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Practices.Localization.Localization`1" /> class.
+            </summary>
+      <param name="session">The session.</param>
+      <param name="culture">The culture.</param>
+      <param name="target">The target.</param>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.Localization`1.Target">
+      <summary>
+            Gets the target that is being localized.
+            </summary>
+      <value>The target.</value>
+    </member>
+    <member name="T:Xtensive.Practices.Localization.LocalizationSet`1">
+      <summary>
+            Set of localizations of <typeparamref name="TItem" /> type.
+            </summary>
+      <typeparam name="TItem">The type of the item.</typeparam>
+    </member>
+    <member name="M:Xtensive.Practices.Localization.LocalizationSet`1.#ctor(Xtensive.Orm.Entity,Xtensive.Orm.Model.FieldInfo)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Xtensive.Practices.Localization.LocalizationSet`1" /> class.
+            </summary>
+      <param name="owner">The owner.</param>
+      <param name="field">The field.</param>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationSet`1.Item(System.Globalization.CultureInfo)">
+      <summary>
+            Gets the appropriate <see cref="!:TItem" /> according to the specified culture.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Localization.LocalizationSet`1.Current">
+      <summary>
+            Gets the currently active localization.
+            </summary>
+      <value>The current localization.</value>
+    </member>
+  </members>
+</doc>

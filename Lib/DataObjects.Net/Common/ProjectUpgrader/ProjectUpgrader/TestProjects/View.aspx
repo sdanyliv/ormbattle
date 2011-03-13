@@ -1,0 +1,46 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<AspNetMvcSample.Models.PersonsIndexModel>" %>
+<%@ Import Namespace="AspNetMvcSample.Model"%>
+<%@ Import Namespace="Xtensive.Storage"%>
+<%@ Import Namespace="Xtensive.Integrity" %>
+
+<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
+<%
+  var model = ViewData.Model;
+%>
+
+<% Html.RenderPartial("Messages"); %>
+
+<p><%= Html.ActionLink("Create new Person", "Create") %></p>
+
+<div>Persons (total count: <%= model.Pager.ItemCount %>)</div>
+<ul>
+<%
+  foreach (var person in model.Persons) {
+%>
+  <li><%= Html.Encode(person.FullName) %> (
+    <%= Html.ActionLink("Edit", "Edit", new { id = person.Id }) %>,
+    <%= Html.ActionLink("Remove", "Remove", new { id = person.Id }) %>
+  )</li>
+<%
+  } 
+%>
+  <li style="<%= model.Persons.Any() ? "display: none" : string.Empty %>">No items.</li>
+</ul>
+
+<div class="pager">
+Go to page:
+<%
+  foreach (var tab in model.Pager) {
+%>
+  <span class="pagerTab">
+  <% if (tab.Enabled) {%>
+    <%=Html.ActionLink(tab.Title, "Index", tab.Page)%>
+  <% } else { %>
+    <%=Html.Encode(tab.Title)%>
+  <% } %>
+  </span>
+<%
+  } 
+%>
+</div>
+</asp:Content>
