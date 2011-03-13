@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcSample", "AspNetMvcSample.csproj", "{83A98E85-A096-47D5-9D0F-45F8D8B4EBC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcSample.Tests", "AspNetMvcSample.Tests.csproj", "{BF7CC0E3-30AE-464E-B866-E1D9E4995A14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcSample.Model", "AspNetMvcSample.Model.csproj", "{52745F8E-9F66-43B3-9876-8CE1CF22BAD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83A98E85-A096-47D5-9D0F-45F8D8B4EBC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A98E85-A096-47D5-9D0F-45F8D8B4EBC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83A98E85-A096-47D5-9D0F-45F8D8B4EBC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83A98E85-A096-47D5-9D0F-45F8D8B4EBC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF7CC0E3-30AE-464E-B866-E1D9E4995A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF7CC0E3-30AE-464E-B866-E1D9E4995A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF7CC0E3-30AE-464E-B866-E1D9E4995A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF7CC0E3-30AE-464E-B866-E1D9E4995A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52745F8E-9F66-43B3-9876-8CE1CF22BAD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52745F8E-9F66-43B3-9876-8CE1CF22BAD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52745F8E-9F66-43B3-9876-8CE1CF22BAD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52745F8E-9F66-43B3-9876-8CE1CF22BAD6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

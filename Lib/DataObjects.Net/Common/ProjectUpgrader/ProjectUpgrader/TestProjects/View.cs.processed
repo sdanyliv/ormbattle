@@ -1,0 +1,31 @@
+// Copyright (C) 2010 Xtensive LLC.
+// All rights reserved.
+// For conditions of distribution and use, see license.
+// Created by: Alex Yakunin
+// Created:    2010.04.07
+
+using System;
+using System.Web.Mvc;
+using Xtensive.Core;
+using Xtensive.Collections;
+using Xtensive.Aspects.Helpers;
+using Xtensive.Orm.Validation;
+using Xtensive.Orm.Validation;
+using Xtensive.Orm;
+using Xtensive.Orm.Upgrade;
+using Xtensive.Orm.Model;
+using Xtensive.Storage.Rse;
+using Xtensive.Storage.Rse.Compilation;
+using Xtensive.Storage.Providers;
+using Xtensive.Storage.Providers.Indexing;
+using Xtensive.Storage.Providers.Sql;
+using Xtensive.Storage.Model;
+using T = Xtensive.Orm.Test;
+using IM = Xtensive.Storage.Model;
+
+using Xtensive.Integrity.Wrong;
+using Xtensive.Integrity.Aspects.Wrong;
+
+namespace AspNetMvcSample.Models
+{
+}

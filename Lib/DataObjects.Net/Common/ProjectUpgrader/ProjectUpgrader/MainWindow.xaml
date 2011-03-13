@@ -1,0 +1,87 @@
+﻿<Window x:Class="ProjectUpgrader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DataObjects.Net Project Upgrade Tool" Height="264" Width="489" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Initialized="Window_Initialized" 
+        DataContext="{Binding RelativeSource={RelativeSource Self}, Path=UpgradeConfiguration}">
+  <Grid Margin="8">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="8" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <TabControl SelectedIndex="{Binding Path=Options.UITabIndex}">
+      <TabItem Header="Upgrade solution" Name="solutionTab">
+        <Grid Margin="4">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" MinWidth="200" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Label Content="Solution file: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0,3,0,4" />
+          <TextBox Height="23" Name="solutionName" Grid.Column="1" 
+                   Text="{Binding Path=SolutionPath}" IsReadOnly="True"/>
+          <Button Content="Browse" Height="23" HorizontalAlignment="Left" Name="bBrowseSln" VerticalAlignment="Top" Width="75" Margin="5,0,0,0" Grid.Column="2" Click="bBrowseSln_Click" />
+          <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                     Text=
+"The tool will upgrade all DataObjects.Net v4.3 projects listed in the solution file to DataObjects.Net v4.4 format.
+
+Assembly references, namespace import directives (&quot;using&quot; in C# files) and some other project properties will be updated.
+" 
+                     Height="Auto" Width="Auto" TextWrapping="Wrap" />
+        </Grid>
+      </TabItem>
+      <TabItem Header="Upgrade project" Name="projectTab">
+        <Grid Margin="4">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" MinHeight="4" />
+          </Grid.RowDefinitions>
+          <Label Content="Actions to perform:" Height="18" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" FontStyle="Normal" FontWeight="Normal" FontStretch="Normal" OpacityMask="Black" />
+          <CheckBox Content="Add references to DataObjects.Net .target file(s)" Height="16" HorizontalAlignment="Left" Name="addImports" VerticalAlignment="Top" Grid.Row="1" 
+                    IsChecked="{Binding Path=Options.AddImports}" />
+          <CheckBox Content="Add references to DataObjects.Net assemblies" Height="16" HorizontalAlignment="Left" Name="addAssemblies" VerticalAlignment="Top" Grid.Row="2" 
+                    IsChecked="{Binding Path=Options.AddReferences}" />
+          <CheckBox Content="Project requires all indirectly referenced assemblies to be copied to Bin folder" Height="16" HorizontalAlignment="Left" Name="copyIndirectDependencies" VerticalAlignment="Top" Grid.Row="3"
+                    ToolTip="This option is required for .exe, web application or unit test projecs - Bin folder there must contain all the assemblies necessary to run." 
+                    IsChecked="{Binding Path=Options.CopyIndirectDependencies}" />
+          <CheckBox Content="Project does not require PostSharp" Height="16" HorizontalAlignment="Left" Name="skipPostSharp" VerticalAlignment="Top" Grid.Row="4" 
+                    ToolTip="This option is required for projects that do not contain persistent types, services - i.e. without PostSharp aspects."
+                    IsChecked="{Binding Path=Options.SkipPostSharp}" />
+          <CheckBox Content="Upgrade DataObjects.Net v4.3.X project to DataObjects.Net v4.4 format" Height="16" HorizontalAlignment="Left" Name="upgradeProject" VerticalAlignment="Top" Grid.Row="5" 
+                    ToolTip="CAUTION: Don't use this option for already upgraded projects - this may lead to inappropriate changes in namespace import directives (&quot;using&quot; in C#)!"
+                    IsChecked="{Binding Path=Options.UpgradeProject}"/>
+          <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" MinWidth="200" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Project file: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0,3,0,4" />
+            <TextBox Height="23" Name="fileName" Grid.Column="1" 
+                     Text="{Binding Path=SourcePath}" IsReadOnly="True" />
+            <Button Content="Browse" Height="23" HorizontalAlignment="Left" Name="bBrowse" VerticalAlignment="Top" Width="75" Margin="5,0,0,0" Grid.Column="2" Click="bBrowse_Click" />
+          </Grid>
+        </Grid>
+      </TabItem>
+    </TabControl>
+    <CheckBox Content="Debug mode" Grid.Row="2" HorizontalAlignment="Left" Margin="10,0" Name="debugMode" VerticalAlignment="Center" 
+              ToolTip="Enables saving a copy of each processed file with .processed extension instead of overwriting it."
+              IsChecked="{Binding Path=Options.DebugMode}"/>
+    <WrapPanel Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+      <Button Content="Ok" Grid.Row="6" Height="23" HorizontalAlignment="Left" Name="bOk" VerticalAlignment="Top" Width="75" Margin="0,0,8,0" IsDefault="True" Click="bOk_Click" />
+      <Button Content="Cancel" Grid.Row="6" Height="23" HorizontalAlignment="Left" Name="bCancel" VerticalAlignment="Top" Width="75" Margin="0,0,10,0" IsCancel="True" Click="bCancel_Click" />
+    </WrapPanel>
+  </Grid>
+</Window>

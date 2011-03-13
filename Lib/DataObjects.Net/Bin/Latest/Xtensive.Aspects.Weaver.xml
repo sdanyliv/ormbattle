@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Xtensive.Aspects.Weaver</name>
+  </assembly>
+  <members>
+    <member name="T:Xtensive.Aspects.Weaver.Resources.Strings">
+      <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Aspects.Weaver.Resources.Strings.ResourceManager">
+      <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Aspects.Weaver.Resources.Strings.Culture">
+      <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Aspects.Weaver.Resources.Strings.ExCantWeavePublicMember">
+      <summary>
+              Looks up a localized string similar to Can't apply {{{0}}} weaver to a public member {{{1}}}..
+            </summary>
+    </member>
+    <member name="P:Xtensive.Aspects.Weaver.Resources.Strings.ExCouldNotFindBaseConstructorForX">
+      <summary>
+              Looks up a localized string similar to Could not find base constructor for type '{0}'..
+            </summary>
+    </member>
+    <member name="P:Xtensive.Aspects.Weaver.Resources.Strings.ExUnexpectedJoinPointKindX">
+      <summary>
+              Looks up a localized string similar to Unexpected join point kind: {0}.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Aspects.Weaver.Resources.Strings.WeaverDebug">
+      <summary>
+              Looks up a localized string similar to {{{0}}}.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Aspects.Weaver.PlugIn">
+      <summary>
+            Creates the weavers defined by the 'Xtensive.Weaver' plug-in.
+            </summary>
+    </member>
+    <member name="M:Xtensive.Aspects.Weaver.PlugIn.Initialize">
+      <exception cref="T:System.InvalidOperationException">Something went wrong.</exception>
+    </member>
+  </members>
+</doc>
