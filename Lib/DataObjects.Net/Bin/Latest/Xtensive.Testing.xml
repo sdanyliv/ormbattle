@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xtensive.Testing</name>
+    </assembly>
+    <members>
+        <member name="T:Xtensive.Testing.AssertEx">
+            <summary>
+            Additional assertion methods.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Testing.IInstanceGeneratorBase">
+            <summary>
+            Base interface for any instance generator supported by
+            <see cref="T:Xtensive.Testing.InstanceGeneratorProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Testing.IInstanceGeneratorBase.GetInstance(System.Random)">
+            <summary>
+            Gets new random instance.
+            </summary>
+            <returns>A new random instance.</returns>
+        </member>
+        <member name="M:Xtensive.Testing.IInstanceGeneratorBase.GetInstances(System.Random,System.Nullable{System.Int32})">
+            <summary>
+            Gets the enumerable providing new sequence of random instances.
+            </summary>
+            <returns>A new enumerable providing new sequence of random instances.</returns>
+        </member>
+        <member name="P:Xtensive.Testing.IInstanceGeneratorBase.Provider">
+            <summary>
+            Gets the provider this instance generator is associated with.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Testing.Log">
+            <summary>
+            Log for this namespace.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Testing.WrappingInstanceGenerator`4">
+            <summary>
+            Base class for any wrapping <see cref="T:Xtensive.Testing.IInstanceGenerator`1"/>s.
+            </summary>
+            <typeparam name="T">The type to generate random instances for.</typeparam>
+            <typeparam name="TBase1">First base (wrapped) type.</typeparam>
+            <typeparam name="TBase2">Second base (wrapped) type.</typeparam>
+            <typeparam name="TBase3">Third base (wrapped) type.</typeparam>
+        </member>
+        <member name="T:Xtensive.Testing.InstanceGeneratorBase`1">
+            <summary>
+            Base class for any random generator.
+            </summary>
+            <typeparam name="T">Type of instances to generate.</typeparam>
+        </member>
+        <member name="T:Xtensive.Testing.IInstanceGenerator`1">
+            <summary>
+            Generates random instances of specified type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">Type of instances to generate.</typeparam>
+        </member>
+        <member name="M:Xtensive.Testing.IInstanceGenerator`1.GetInstance(System.Random)">
+            <summary>
+            Gets new random instance.
+            </summary>
+            <returns>A new random instance.</returns>
+        </member>
+        <member name="M:Xtensive.Testing.IInstanceGenerator`1.GetInstances(System.Random,System.Nullable{System.Int32})">
+            <summary>
+            Gets the enumerable providing new sequence of random instances.
+            </summary>
+            <returns>A new enumerable providing new sequence of random instances.</returns>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGeneratorBase`1.GetInstance(System.Random)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGeneratorBase`1.GetInstances(System.Random,System.Nullable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGeneratorBase`1.Xtensive#Testing#IInstanceGeneratorBase#GetInstance(System.Random)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGeneratorBase`1.Xtensive#Testing#IInstanceGeneratorBase#GetInstances(System.Random,System.Nullable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGeneratorBase`1.#ctor(Xtensive.Testing.IInstanceGeneratorProvider)">
+            <summary>
+            <see cref="M:Xtensive.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="provider">Instance generator provider this generator is bound to.</param>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGeneratorBase`1.OnDeserialization(System.Object)">
+            <see cref="M:Xtensive.Internals.DocTemplates.SerializableDocTemplate.OnDeserialization(System.Object)" copy="true"/>
+        </member>
+        <member name="P:Xtensive.Testing.InstanceGeneratorBase`1.Provider">
+            <inheritdoc/>
+        </member>
+        <member name="F:Xtensive.Testing.WrappingInstanceGenerator`4.BaseGenerator1">
+            <summary>
+            Generator for the first base (wrapped) type.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Testing.WrappingInstanceGenerator`4.BaseGenerator2">
+            <summary>
+            Generator for the second base (wrapped) type.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Testing.WrappingInstanceGenerator`4.BaseGenerator3">
+            <summary>
+            Generator for the third base (wrapped) type.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Testing.WrappingInstanceGenerator`4.#ctor(Xtensive.Testing.IInstanceGeneratorProvider)">
+            <summary>
+            <see cref="M:Xtensive.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="provider">Instance generator provider this generator is bound to.</param>
+        </member>
+        <member name="T:Xtensive.Testing.WrappingInstanceGenerator`3">
+            <summary>
+            Base class for any wrapping <see cref="T:Xtensive.Testing.IInstanceGenerator`1"/>s.
+            </summary>
+            <typeparam name="T">The type to generate random instances for.</typeparam>
+            <typeparam name="TBase1">First base (wrapped) type.</typeparam>
+            <typeparam name="TBase2">Second base (wrapped) type.</typeparam>
+        </member>
+        <member name="F:Xtensive.Testing.WrappingInstanceGenerator`3.BaseGenerator1">
+            <summary>
+            Generator for the first base (wrapped) type.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Testing.WrappingInstanceGenerator`3.BaseGenerator2">
+            <summary>
+            Generator for the first base (wrapped) type.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Testing.WrappingInstanceGenerator`3.#ctor(Xtensive.Testing.IInstanceGeneratorProvider)">
+            <summary>
+            <see cref="M:Xtensive.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="provider">Instance generator provider this generator is bound to.</param>
+        </member>
+        <member name="T:Xtensive.Testing.WrappingInstanceGenerator`2">
+            <summary>
+            Base class for any wrapping <see cref="T:Xtensive.Testing.IInstanceGenerator`1"/>s.
+            </summary>
+            <typeparam name="T">The type to generate random instances for.</typeparam>
+            <typeparam name="TBase">Base (wrapped) type.</typeparam>
+        </member>
+        <member name="F:Xtensive.Testing.WrappingInstanceGenerator`2.BaseGenerator">
+            <summary>
+            Generator for base (wrapped) type.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Testing.WrappingInstanceGenerator`2.#ctor(Xtensive.Testing.IInstanceGeneratorProvider)">
+            <summary>
+            <see cref="M:Xtensive.Internals.DocTemplates.ClassDocTemplate.Ctor" copy="true"/>
+            </summary>
+            <param name="provider">Instance generator provider this generator is bound to.</param>
+        </member>
+        <member name="T:Xtensive.Testing.InstanceGenerationUtils`1">
+            <summary>
+            Helper type providing instance generation facilities.
+            </summary>
+            <typeparam name="T">The type of generated items.</typeparam>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGenerationUtils`1.GetPairs(System.Random,System.Double)">
+            <summary>
+            Generates the sequence of pairs of type <typeparamref name="T"/>
+            using default instance generator (see <see cref="P:Xtensive.Testing.InstanceGeneratorProvider.Default"/>).
+            </summary>
+            <param name="random">The random generator to use.</param>
+            <param name="equalityProbability">The item equality probability.</param>
+            <returns>Described sequence.</returns>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGenerationUtils`1.GetPairs(Xtensive.Testing.IInstanceGenerator{`0},System.Random,System.Double)">
+            <summary>
+            Generates the sequence of pairs of type <typeparamref name="T"/>
+            using specified instance generator.
+            </summary>
+            <param name="generator">The instance generator to use.</param>
+            <param name="random">The random generator to use.</param>
+            <param name="equalityProbability">The item equality probability.</param>
+            <returns>Described sequence.</returns>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGenerationUtils`1.GetInstances(System.Random,System.Double)">
+            <summary>
+            Generates the sequence of instances of type <typeparamref name="T"/>
+            using default instance generator (see <see cref="P:Xtensive.Testing.InstanceGeneratorProvider.Default"/>).
+            </summary>
+            <param name="random">The random generator to use.</param>
+            <param name="equalityProbability">The subsequent item equality probability.</param>
+            <returns>Described sequence.</returns>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGenerationUtils`1.GetInstances(Xtensive.Testing.IInstanceGenerator{`0},System.Random,System.Double)">
+            <summary>
+            Generates the sequence of instances of type <typeparamref name="T"/>
+            using specified instance generator.
+            </summary>
+            <param name="generator">The instance generator to use.</param>
+            <param name="random">The random generator to use.</param>
+            <param name="equalityProbability">The subsequent item equality probability.</param>
+            <returns>Described sequence.</returns>
+        </member>
+        <member name="T:Xtensive.Testing.TestHelper">
+            <summary>
+            Test helper class.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Testing.TestHelper.CollectGarbage">
+            <summary>
+            Ensures full garbage collection.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Testing.TestHelper.CollectGarbage(System.Boolean)">
+            <summary>
+            Ensures full garbage collection.
+            </summary>
+            <param name="preferFullRatherThanFast">Full rather then fast collection should be performed.</param>
+        </member>
+        <member name="P:Xtensive.Testing.TestHelper.TestFolderName">
+            <summary>
+            Gets temporary folder name (for tests only).
+            </summary>
+            <remarks>
+            The folder name is generated automatically.
+            Such folders are removed either in <see cref="E:System.AppDomain.DomainUnload"/> (if possible),
+            or on the next attempt to read this property after the next application startup.
+            </remarks>
+        </member>
+        <member name="T:Xtensive.Testing.TestInfo">
+            <summary>
+            Provides various info related to the current test.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Testing.TestInfo.IsPerformanceTestRunning">
+            <summary>
+            <see langword="True"/>, if performance test is running (i.e. a test with
+            "Performance" category).
+            </summary>
+            <remarks>
+            Currently only NUnit tests are recognized.
+            </remarks>
+        </member>
+        <member name="P:Xtensive.Testing.TestInfo.IsProfileTestRunning">
+            <summary>
+            <see langword="True"/>, if performance test is running (i.e. a test with
+            "Performance" category).
+            </summary>
+            <remarks>
+            Currently only NUnit tests are recognized.
+            </remarks>
+        </member>
+        <member name="P:Xtensive.Testing.TestInfo.IsBuildServer">
+            <summary>
+            Gets a value indicating whether test is running under build server.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Testing.InstanceGeneratorProvider">
+            <summary>
+            Default <see cref="T:Xtensive.Testing.IInstanceGenerator`1"/> provider. 
+            Provides default instance generator for the specified type.
+            </summary>
+            <remarks>
+            <para id="About"><see cref="T:Xtensive.Internals.DocTemplates.HasStaticDefaultDocTemplate" copy="true"/></para>
+            </remarks>
+        </member>
+        <member name="T:Xtensive.Testing.IInstanceGeneratorProvider">
+            <summary>
+            Instance generator provider.
+            </summary>
+        </member>
+        <member name="M:Xtensive.Testing.IInstanceGeneratorProvider.GetInstanceGenerator``1">
+            <summary>
+            Gets <see cref="T:Xtensive.Testing.IInstanceGenerator`1"/> for the specified type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">Type to get the hasher for.</typeparam>
+            <returns><see cref="T:Xtensive.Testing.IInstanceGenerator`1"/> for the specified type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:Xtensive.Testing.IInstanceGeneratorProvider.GetInstanceGenerator(System.Type)">
+            <summary>
+            Gets <see cref="T:Xtensive.Testing.IInstanceGeneratorBase"/> for the specified <paramref name="type"/>.
+            </summary>
+            <param name="type">Type to get the instance generator for.</param>
+            <returns><see cref="T:Xtensive.Testing.IInstanceGenerator`1"/> for the specified <paramref name="type"/>.</returns>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGeneratorProvider.GetInstanceGenerator``1">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xtensive.Testing.InstanceGeneratorProvider.GetInstanceGenerator(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xtensive.Testing.InstanceGeneratorProvider.Default">
+            <see cref="P:Xtensive.Internals.DocTemplates.HasStaticDefaultDocTemplate.Default" copy="true"/>
+        </member>
+        <member name="T:Xtensive.Testing.RandomManager">
+            <summary>
+            Creates random-seeded <see cref="T:System.Random"/>
+            generators when running tests on build server;
+            otherwise it creates the generator
+            </summary>
+        </member>
+        <member name="T:Xtensive.Testing.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Testing.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Testing.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Xtensive.Testing.Resources.Strings.AssertCollectionsArentEqual">
+            <summary>
+              Looks up a localized string similar to Collections aren&apos;t equal..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Testing.Resources.Strings.ExCantCreateTestFolder">
+            <summary>
+              Looks up a localized string similar to Can&apos;t create temporary test folder, paths tried: &quot;{0}&quot;...&quot;{1}&quot;..
+            </summary>
+        </member>
+        <member name="P:Xtensive.Testing.Resources.Strings.TestFolderNameFormat">
+            <summary>
+              Looks up a localized string similar to XtensiveUnitTest_{0:D2}.
+            </summary>
+        </member>
+        <member name="T:Xtensive.Testing.SeedVariatorType">
+            <summary>
+            Describes seed variation strategy for random sequence.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Testing.SeedVariatorType.Default">
+            <summary>
+            Default strategy.
+            The same as <see cref="F:Xtensive.Testing.SeedVariatorType.None"/>.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Testing.SeedVariatorType.None">
+            <summary>
+            No seed variation.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Testing.SeedVariatorType.CallingType">
+            <summary>
+            Seed determined by the calling type.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Testing.SeedVariatorType.CallingMethod">
+            <summary>
+            Seed determined by the calling method.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Testing.SeedVariatorType.CallingAssembly">
+            <summary>
+            Seed determined by the calling assembly.
+            </summary>
+        </member>
+        <member name="F:Xtensive.Testing.SeedVariatorType.Day">
+            <summary>
+            Seed determined by the current day (ie. truncated part of <see cref="P:System.DateTime.Now"/>).
+            </summary>
+        </member>
+    </members>
+</doc>
