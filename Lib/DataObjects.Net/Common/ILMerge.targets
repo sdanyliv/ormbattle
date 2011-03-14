@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="DetectILMergeAssemblies"
+          DependsOnTargets="DetectIndirectDependencies"
+          Condition="'$(ILMergeAssembliesRegex)'!=''">
+
+    <!-- ILMerge output -->
+    <CreateProperty Value="$(AssemblyName)">  
+      <Output TaskParameter="Value"  
+              PropertyName="ILMergeOutput" />  
+    </CreateProperty>  
+    
+    <!-- ILMerge log -->
+    <CreateProperty Value="$(ILMergeOutput).ILMerge-log">  
+      <Output TaskParameter="Value"  
+              PropertyName="ILMergeLog" />
+    </CreateProperty>  
+    
+    <!-- ILMerge key parameters -->
+    <CreateProperty Value="/keyfile:&quot;$(ProjectDir)$(AssemblyOriginatorKeyFile)&quot;"
+                    Condition="'$(AssemblyOriginatorKeyFile)'!='12'">  
+      <Output TaskParameter="Value"  
+              PropertyName="_ILMergeKeyParameters" />  
+    </CreateProperty>  
+    <CreateProperty Value=""
+                    Condition="'$(AssemblyOriginatorKeyFile)'==''">  
+      <Output TaskParameter="Value"  
+              PropertyName="_ILMergeKeyParameters" />  
+    </CreateProperty>  
+
+    <!-- ILMerge assemblies -->
+    <CreateItem Include="%(ReferencePath.FullPath)">
+      <Output TaskParameter="Include" ItemName="_ILMergeCandidate"/>
+    </CreateItem>
+    <CreateItem Include="%(IndirectDependency.FullPath)">
+      <Output TaskParameter="Include" ItemName="_ILMergeCandidate"/>
+    </CreateItem>
+    <RegexMatch Input="@(_ILMergeCandidate)" 
+                Expression="$(ILMergeAssembliesRegex)">
+       <Output TaskParameter="Output" ItemName ="ILMergeAssemblies" />
+    </RegexMatch>
+
+    <!-- ILMerge output paths -->
+    <CreateItem Include="$(TargetDir)$(ILMergeOutput).*">
+      <Output TaskParameter="Include" ItemName="ILMergeOutputPaths"/>
+    </CreateItem>
+    <CreateItem Include="$(TargetDir)$(ILMergeLog)">
+      <Output TaskParameter="Include" ItemName="ILMergeOutputPaths"/>
+    </CreateItem>
+
+    <!-- ILMerge documentation paths -->
+    <CreateItem Condition="'$(DocumentationFile)' != ''" 
+                Include="$(ProjectDir)$(DocumentationFile)">
+      <Output TaskParameter="Include" ItemName="ILMergeDocumentationPaths"/>
+    </CreateItem>
+  </Target>
+
+  <Target Name="ILMerge"
+          DependsOnTargets="DetectILMergeAssemblies;RequiresILMerge;$(ILMergeDependsOn)"
+          Inputs="@(IntermediateAssembly->'%(FullPath)')"
+          Outputs="$(TargetDir)$(ILMergeLog)"
+          Condition="'$(ILMergeAssembliesRegex)'!=''">
+    
+    <Message Text="Merging assemblies:" Importance="high" />
+    <Message Text="  Target:  $(ILMergeOutput).dll" Importance="high" />
+    <Message Text="  Sources: @(ILMergeAssemblies->'%(Filename)%(Extension)', ', ')" Importance="high" />
+    
+    <Delete Files="$(TargetDir)$(ILMergeLog)" 
+            Condition="Exists('$(TargetDir)$(ILMergeLog)')" />
+    
+    <!-- It's necessary to copy documentation to this folder to ensure it's merged -->
+    <Copy SourceFiles="@(ILMergeDocumentationPaths)" 
+          DestinationFolder="$(IntermediateOutputPath)"
+          SkipUnchangedFiles="true" >
+    </Copy>
+
+    <Exec Command="&quot;$(ILMergePath)\ILMerge.exe&quot; /xmldocs $(_ILMergeKeyParameters) /targetplatform:$(ILMergeTargetPlatform) /closed  /log:$(ILMergeLog) /out:$(ILMergeOutput).dll &quot;..\..\@(IntermediateAssembly)&quot; @(ILMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')"
+          WorkingDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" >
+      <Output TaskParameter="ExitCode" PropertyName="_ILMergeExitCode"/>
+    </Exec>
+
+    <Copy SourceFiles="@(ILMergeOutputPaths)" 
+        DestinationFolder="$(IntermediateOutputPath)" 
+        SkipUnchangedFiles="true" 
+        OverwriteReadOnlyFiles="$(OverwriteReadOnlyFiles)">
+    </Copy>
+    <Copy SourceFiles="@(_DebugSymbolsOutputPath)" 
+        DestinationFiles="@(_DebugSymbolsIntermediatePath)" 
+        SkipUnchangedFiles="true" 
+        OverwriteReadOnlyFiles="$(OverwriteReadOnlyFiles)" 
+        Condition="'$(_DebugSymbolsProduced)'=='true' and '$(SkipCopyingSymbolsToOutputDirectory)' != 'true'">
+    </Copy>
+  </Target>
+
+  <Target Name="CleanILMerge"
+          DependsOnTargets="DetectILMergeAssemblies">
+    <Delete Condition="'@(ILMergeOutputPaths)'!=''"
+            Files="@(ILMergeOutputPaths->'%(FullPath)')" />
+    <Delete Condition="Exists('$(TargetDir)$(ILMergeLog)')"
+            Files="$(TargetDir)$(ILMergeLog)" />
+    <Delete Condition="Exists('$(IntermediateOutputPath)$(ILMergeLog)')"
+            Files="$(IntermediateOutputPath)$(ILMergeLog)" />
+    <Delete Files="@(ILMergeDocumentationPaths->'$(IntermediateOutputPath)%(Filename)%(Extension)')" />
+  </Target>
+
+  <PropertyGroup>
+    <CoreBuildDependsOn>
+      $(CoreBuildDependsOn);
+      ILMerge
+    </CoreBuildDependsOn>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      CleanILMerge
+    </CleanDependsOn>
+    <UpdateSharedBinariesDependsOn>
+      $(UpdateSharedBinariesDependsOn);
+      ILMerge
+    </UpdateSharedBinariesDependsOn>
+  </PropertyGroup>
+
+</Project>

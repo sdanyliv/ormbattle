@@ -56,8 +56,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PostSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\DataObjects.Net\Lib\PostSharp\Release\PostSharp.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -69,20 +68,13 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="Xtensive.Aspects, Version=4.4.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\DataObjects.Net\Bin\Latest\Xtensive.Aspects.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
     <Reference Include="Xtensive.Core, Version=4.4.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\DataObjects.Net\Bin\Latest\Xtensive.Core.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
     <Reference Include="Xtensive.Orm, Version=4.4.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\DataObjects.Net\Bin\Latest\Xtensive.Orm.dll</HintPath>
-    </Reference>
-    <Reference Include="Xtensive.Sql, Version=4.4.0.0, Culture=neutral, PublicKeyToken=93a6c53d77a5296c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\DataObjects.Net\Bin\Latest\Xtensive.Sql.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
