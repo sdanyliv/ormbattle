@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Subconfig properties -->
+
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
+    <Fullconfig>$(Configuration)</Fullconfig>
+    <Fullconfig Condition="'$(Subconfig)'!=''">$(Configuration)-$(Subconfig)</Fullconfig>
+    <RootDir Condition="'$(RootDir)'==''">$(MSBuildProjectDirectory)\..\..\</RootDir>
+    <CommonDir Condition="'$(CommonDir)'==''">$(RootDir)Common\</CommonDir>
+    <LibDir Condition="'$(LibDir)'==''">$(RootDir)Lib\</LibDir>
+    <OutputPath Condition="'$(OutputPath)'!='' and '$(Subconfig)'!=''">bin\$(Fullconfig)\</OutputPath>
+    <DocumentationFile 
+      Condition="'$(DocumentationFile)'!='' and '$(Subconfig)'!=''">bin\$(Fullconfig)\$(AssemblyName).xml</DocumentationFile>
+    <BinOutputDir Condition="'$(BinOutputDir)'==''">$(RootDir)Bin\$(Fullconfig)\</BinOutputDir>
+    <SolutionBinOutputDir Condition="'$(SolutionBinOutputDir)'==''">$(SolutionDir)Bin\$(Fullconfig)\</SolutionBinOutputDir>
+
+    <!-- Ensures integrated version of PostSharp is used on builds -->    
+    <DontImportPostSharp>true</DontImportPostSharp>
+  </PropertyGroup>
+
+</Project>

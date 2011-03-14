@@ -1,0 +1,2807 @@
+OnLoadOutput([{
+  "Name": "LINQ tests",
+  "Tests": [
+    {
+      "Name": "Aggregates",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "All/Any/Contains",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 6,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Complex",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 6,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Element operations",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 9,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Filtering",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 12,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Grouping",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 10,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Join",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 4,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Ordering",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 8,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Projections",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 13,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "References",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 4,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Set operations",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 9,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Standard functions",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 25,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Take/Skip",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Type casts",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 5,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 101,
+      "Failed": 20,
+      "Score": "83,5"
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 2
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 11,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 96,
+      "Failed": 25,
+      "Score": "79,3"
+    },
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 119,
+      "Failed": 2,
+      "Score": "98,3"
+    },
+    {
+      "ShortName": "LC",
+      "Name": "LinqConnect",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 1
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 110,
+      "Failed": 11,
+      "Score": "90,9"
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 2
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 3,
+          "Second": 1
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 108,
+      "Failed": 13,
+      "Score": "89,3"
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 7,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 1
+        },
+        {
+          "First": 17,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 61,
+      "Failed": 60,
+      "Score": "50,4"
+    },
+    {
+      "ShortName": "OA",
+      "Name": "OpenAccess",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 3,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 5,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 1
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 9,
+          "Second": 2
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 89,
+      "Failed": 32,
+      "Score": "73,6"
+    }
+  ]
+},{
+  "Name": "Performance tests (50 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": null
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": null
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        9574,
+        6462,
+        5896,
+        6131,
+        6154,
+        23465,
+        21563,
+        27561,
+        23896,
+        5370,
+        7409,
+        8762,
+        5062,
+        2777,
+        null,
+        null,
+        59966,
+        94876
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        4984,
+        3808,
+        3587,
+        3892,
+        3744,
+        7243,
+        7038,
+        8072,
+        7395,
+        545,
+        4914,
+        5946,
+        3105,
+        1886,
+        null,
+        null,
+        14769,
+        65850
+      ]
+    },
+    {
+      "ShortName": "ES",
+      "Name": "EntitySpaces",
+      "Results": [
+        7319,
+        5981,
+        5145,
+        5394,
+        5484,
+        9778,
+        9303,
+        10217,
+        9703,
+        795,
+        2235,
+        5881,
+        1864,
+        1398,
+        null,
+        null,
+        18333,
+        72621
+      ]
+    },
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        7474,
+        5248,
+        5108,
+        5165,
+        5173,
+        16670,
+        17397,
+        19825,
+        17827,
+        1466,
+        6200,
+        5690,
+        3963,
+        2238,
+        null,
+        null,
+        57997,
+        61192
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        9883,
+        6595,
+        5647,
+        5972,
+        5904,
+        21463,
+        18255,
+        23125,
+        20660,
+        3577,
+        6705,
+        null,
+        4404,
+        2471,
+        null,
+        null,
+        46528,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        7494,
+        4027,
+        1661,
+        1729,
+        2085,
+        5674,
+        2090,
+        2215,
+        2709,
+        713,
+        6536,
+        null,
+        4513,
+        2624,
+        null,
+        null,
+        39625,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7202,
+        3555,
+        3096,
+        3273,
+        3218,
+        15834,
+        13357,
+        14447,
+        14437,
+        1010,
+        null,
+        4337,
+        767,
+        565,
+        null,
+        null,
+        26778,
+        40512
+      ]
+    },
+    {
+      "ShortName": "OA",
+      "Name": "OpenAccess",
+      "Results": [
+        5178,
+        2304,
+        1590,
+        2297,
+        1967,
+        10987,
+        10196,
+        24613,
+        12968,
+        3022,
+        3015,
+        4118,
+        1987,
+        1321,
+        null,
+        null,
+        34999,
+        56676
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        8508,
+        3301,
+        1443,
+        1477,
+        1780,
+        3710,
+        3034,
+        3417,
+        3332,
+        225,
+        null,
+        6029,
+        212,
+        193,
+        null,
+        null,
+        10533,
+        65214
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        15102,
+        9003,
+        8294,
+        8640,
+        8598,
+        25700,
+        27759,
+        34008,
+        27848,
+        null,
+        null,
+        11176,
+        null,
+        null,
+        null,
+        null,
+        null,
+        140528
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (100 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": null
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        10205,
+        8079,
+        7571,
+        7846,
+        7813,
+        28925,
+        27177,
+        37461,
+        30569,
+        6237,
+        9017,
+        11024,
+        6554,
+        4761,
+        2504,
+        null,
+        108248,
+        180407
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5205,
+        4305,
+        4079,
+        4602,
+        4303,
+        7458,
+        7273,
+        8374,
+        7664,
+        430,
+        5634,
+        6824,
+        3654,
+        2646,
+        1422,
+        null,
+        26788,
+        98892
+      ]
+    },
+    {
+      "ShortName": "ES",
+      "Name": "EntitySpaces",
+      "Results": [
+        7632,
+        7174,
+        6236,
+        6739,
+        6665,
+        10426,
+        9900,
+        11177,
+        10448,
+        816,
+        2290,
+        6635,
+        2012,
+        1738,
+        1256,
+        null,
+        30756,
+        111000
+      ]
+    },
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        7957,
+        6304,
+        6272,
+        6412,
+        6300,
+        19208,
+        20796,
+        23337,
+        20916,
+        1547,
+        7127,
+        7297,
+        4962,
+        3271,
+        1699,
+        null,
+        85005,
+        97933
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        10608,
+        8094,
+        7183,
+        7625,
+        7456,
+        25111,
+        21651,
+        28495,
+        24528,
+        3839,
+        7934,
+        null,
+        5400,
+        3712,
+        2003,
+        null,
+        79706,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        7930,
+        4636,
+        1838,
+        1865,
+        2306,
+        5936,
+        1765,
+        1867,
+        2351,
+        742,
+        7703,
+        null,
+        5548,
+        4205,
+        2414,
+        null,
+        72679,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7887,
+        4069,
+        3208,
+        3634,
+        3573,
+        18191,
+        15264,
+        16519,
+        16467,
+        1075,
+        null,
+        4925,
+        844,
+        698,
+        462,
+        null,
+        38030,
+        53507
+      ]
+    },
+    {
+      "ShortName": "OA",
+      "Name": "OpenAccess",
+      "Results": [
+        5574,
+        2425,
+        1664,
+        2405,
+        2080,
+        12500,
+        11401,
+        33886,
+        15200,
+        3238,
+        3404,
+        4959,
+        2327,
+        1850,
+        1124,
+        null,
+        59998,
+        94286
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        8861,
+        3430,
+        2099,
+        2167,
+        2425,
+        3762,
+        3470,
+        3671,
+        3607,
+        228,
+        null,
+        6684,
+        216,
+        206,
+        180,
+        null,
+        19162,
+        87153
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        18204,
+        11915,
+        11058,
+        11381,
+        11359,
+        30958,
+        32938,
+        43863,
+        34420,
+        null,
+        null,
+        14016,
+        null,
+        null,
+        null,
+        null,
+        null,
+        257201
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (500 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        11456,
+        8030,
+        10004,
+        10445,
+        9344,
+        22840,
+        35903,
+        53701,
+        33136,
+        7534,
+        11590,
+        14452,
+        9491,
+        7848,
+        5460,
+        3583,
+        371885,
+        568117
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5586,
+        4447,
+        5088,
+        5656,
+        5009,
+        5941,
+        6383,
+        6242,
+        6147,
+        532,
+        6469,
+        8337,
+        4448,
+        3565,
+        2261,
+        1381,
+        91451,
+        187455
+      ]
+    },
+    {
+      "ShortName": "ES",
+      "Name": "EntitySpaces",
+      "Results": [
+        6326,
+        6994,
+        8004,
+        8762,
+        7849,
+        9312,
+        10782,
+        12086,
+        10602,
+        794,
+        1896,
+        7736,
+        1142,
+        2172,
+        1835,
+        1520,
+        78866,
+        202667
+      ]
+    },
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        6522,
+        6542,
+        8340,
+        8678,
+        7699,
+        12384,
+        25115,
+        20259,
+        17370,
+        1435,
+        8758,
+        9939,
+        6358,
+        4847,
+        2918,
+        1722,
+        173502,
+        220536
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        11590,
+        7955,
+        9755,
+        10467,
+        9169,
+        19564,
+        26339,
+        37814,
+        25602,
+        3631,
+        9315,
+        null,
+        6962,
+        5301,
+        3300,
+        1950,
+        196718,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        8552,
+        4175,
+        1620,
+        1764,
+        2105,
+        5090,
+        2069,
+        2183,
+        2623,
+        707,
+        9209,
+        null,
+        7430,
+        6536,
+        4718,
+        3234,
+        280630,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        8385,
+        4151,
+        1752,
+        2320,
+        2399,
+        15185,
+        17418,
+        19317,
+        17102,
+        1009,
+        null,
+        5602,
+        650,
+        822,
+        606,
+        425,
+        60469,
+        76540
+      ]
+    },
+    {
+      "ShortName": "OA",
+      "Name": "OpenAccess",
+      "Results": [
+        null,
+        2542,
+        null,
+        null,
+        null,
+        null,
+        91099,
+        70398,
+        null,
+        3755,
+        3908,
+        6026,
+        2946,
+        2643,
+        2039,
+        1704,
+        119343,
+        155545
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        9549,
+        3136,
+        3572,
+        3679,
+        3409,
+        3010,
+        3670,
+        3812,
+        3429,
+        223,
+        null,
+        7542,
+        212,
+        199,
+        202,
+        181,
+        58267,
+        117049
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        20223,
+        11008,
+        15123,
+        15771,
+        13600,
+        23205,
+        39704,
+        58388,
+        34847,
+        null,
+        null,
+        17621,
+        null,
+        null,
+        null,
+        null,
+        null,
+        793776
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (1000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        11573,
+        8305,
+        10581,
+        11022,
+        9726,
+        19124,
+        38587,
+        59148,
+        31151,
+        7728,
+        11946,
+        15009,
+        9902,
+        8644,
+        6437,
+        4524,
+        563539,
+        856531
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        4912,
+        3607,
+        4075,
+        4478,
+        3988,
+        5334,
+        6483,
+        7383,
+        6279,
+        554,
+        6581,
+        8612,
+        4572,
+        3756,
+        2414,
+        1500,
+        131887,
+        210823
+      ]
+    },
+    {
+      "ShortName": "ES",
+      "Name": "EntitySpaces",
+      "Results": [
+        7073,
+        7225,
+        8329,
+        8934,
+        8063,
+        7719,
+        9782,
+        10473,
+        9147,
+        827,
+        2185,
+        5724,
+        1858,
+        1533,
+        1960,
+        1640,
+        96768,
+        226044
+      ]
+    },
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        7585,
+        6700,
+        8744,
+        9167,
+        8002,
+        18841,
+        20926,
+        23918,
+        20468,
+        1511,
+        8894,
+        10511,
+        6700,
+        5228,
+        3118,
+        1899,
+        215387,
+        285812
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        11743,
+        8388,
+        10233,
+        10789,
+        9650,
+        14084,
+        21246,
+        27113,
+        19306,
+        3026,
+        9593,
+        null,
+        7042,
+        5385,
+        3305,
+        2189,
+        222975,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        7365,
+        3319,
+        1718,
+        1927,
+        2139,
+        5889,
+        2100,
+        2235,
+        2736,
+        742,
+        9482,
+        null,
+        7704,
+        7027,
+        5354,
+        3907,
+        461936,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7197,
+        4503,
+        1277,
+        1942,
+        1949,
+        13463,
+        14982,
+        19975,
+        15632,
+        1072,
+        null,
+        4541,
+        852,
+        702,
+        632,
+        444,
+        64780,
+        80680
+      ]
+    },
+    {
+      "ShortName": "OA",
+      "Name": "OpenAccess",
+      "Results": [
+        null,
+        2151,
+        null,
+        null,
+        null,
+        null,
+        75727,
+        127919,
+        null,
+        3214,
+        3328,
+        6091,
+        3011,
+        2753,
+        2222,
+        1648,
+        157753,
+        232099
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        8064,
+        3162,
+        3786,
+        4062,
+        3581,
+        3517,
+        3847,
+        4087,
+        3752,
+        225,
+        null,
+        7608,
+        217,
+        208,
+        183,
+        186,
+        78224,
+        123263
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        20888,
+        17027,
+        16192,
+        17220,
+        16739,
+        38537,
+        41313,
+        64130,
+        44909,
+        null,
+        null,
+        17789,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1215214
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (5000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        10925,
+        8538,
+        11175,
+        11783,
+        10260,
+        34373,
+        40360,
+        63752,
+        42831,
+        7219,
+        10954,
+        15866,
+        8299,
+        9600,
+        7532,
+        5563,
+        1001101,
+        1518141
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5402,
+        4171,
+        4813,
+        5579,
+        4782,
+        5807,
+        5622,
+        7278,
+        6086,
+        567,
+        6137,
+        7908,
+        4109,
+        3130,
+        1876,
+        1633,
+        201522,
+        238856
+      ]
+    },
+    {
+      "ShortName": "ES",
+      "Name": "EntitySpaces",
+      "Results": [
+        8026,
+        6878,
+        7846,
+        8152,
+        7583,
+        10379,
+        10106,
+        9531,
+        9908,
+        849,
+        2373,
+        7269,
+        2176,
+        1996,
+        1581,
+        1274,
+        90381,
+        158490
+      ]
+    },
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        8510,
+        6384,
+        8099,
+        8679,
+        7536,
+        14742,
+        24300,
+        29648,
+        20919,
+        1536,
+        8328,
+        9781,
+        5877,
+        4256,
+        2359,
+        1308,
+        150237,
+        167791
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        11416,
+        7886,
+        9656,
+        10392,
+        9124,
+        25891,
+        24332,
+        32951,
+        26115,
+        453,
+        8949,
+        null,
+        6263,
+        5942,
+        3798,
+        2371,
+        310010,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        8287,
+        2255,
+        1373,
+        1919,
+        1767,
+        5929,
+        2127,
+        2272,
+        2772,
+        762,
+        8783,
+        null,
+        6806,
+        7460,
+        6060,
+        4607,
+        884173,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        8038,
+        4048,
+        348,
+        648,
+        640,
+        18620,
+        16579,
+        18352,
+        17495,
+        1106,
+        null,
+        5307,
+        896,
+        792,
+        556,
+        411,
+        58231,
+        66949
+      ]
+    },
+    {
+      "ShortName": "OA",
+      "Name": "OpenAccess",
+      "Results": [
+        null,
+        2311,
+        null,
+        null,
+        null,
+        null,
+        69682,
+        265385,
+        null,
+        3581,
+        3707,
+        5583,
+        2721,
+        2412,
+        1681,
+        1133,
+        394253,
+        400567
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        9284,
+        2851,
+        3820,
+        4048,
+        3488,
+        3454,
+        3772,
+        4100,
+        3527,
+        227,
+        null,
+        7029,
+        219,
+        213,
+        200,
+        180,
+        89318,
+        103177
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        20942,
+        11682,
+        17296,
+        18202,
+        15105,
+        19269,
+        41525,
+        66263,
+        32830,
+        null,
+        null,
+        18345,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2211704
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (10000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        11337,
+        8049,
+        10481,
+        10963,
+        9650,
+        19259,
+        39903,
+        63954,
+        32282,
+        7555,
+        11174,
+        16040,
+        9059,
+        7965,
+        7745,
+        5782,
+        1099964,
+        1662814
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5486,
+        4247,
+        4811,
+        5749,
+        4859,
+        5572,
+        5840,
+        7147,
+        6025,
+        569,
+        6280,
+        8321,
+        4120,
+        3418,
+        2123,
+        1354,
+        161371,
+        183024
+      ]
+    },
+    {
+      "ShortName": "ES",
+      "Name": "EntitySpaces",
+      "Results": [
+        8163,
+        7960,
+        7961,
+        8060,
+        7923,
+        8073,
+        10092,
+        8054,
+        8608,
+        859,
+        2458,
+        7679,
+        2230,
+        2111,
+        1803,
+        1429,
+        78440,
+        187204
+      ]
+    },
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        8718,
+        6552,
+        8479,
+        9069,
+        7863,
+        21538,
+        24095,
+        29983,
+        24724,
+        1556,
+        8655,
+        10141,
+        5989,
+        4411,
+        2414,
+        1577,
+        193611,
+        229493
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        11663,
+        9952,
+        9876,
+        10886,
+        10206,
+        15238,
+        24621,
+        34566,
+        21994,
+        450,
+        9215,
+        null,
+        6631,
+        5176,
+        3014,
+        1748,
+        215438,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        8418,
+        1537,
+        1029,
+        1744,
+        1366,
+        5936,
+        2143,
+        2286,
+        2797,
+        761,
+        9172,
+        null,
+        7298,
+        6277,
+        6195,
+        4775,
+        1001201,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7958,
+        4645,
+        182,
+        352,
+        350,
+        19126,
+        16590,
+        17978,
+        17821,
+        1116,
+        null,
+        5383,
+        894,
+        787,
+        570,
+        388,
+        55531,
+        63998
+      ]
+    },
+    {
+      "ShortName": "OA",
+      "Name": "OpenAccess",
+      "Results": [
+        null,
+        2277,
+        null,
+        null,
+        null,
+        null,
+        60967,
+        269858,
+        null,
+        3651,
+        3807,
+        5733,
+        2756,
+        2414,
+        1956,
+        1399,
+        237953,
+        235559
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        9490,
+        3132,
+        3894,
+        4086,
+        3654,
+        3345,
+        3645,
+        3904,
+        3522,
+        226,
+        null,
+        7446,
+        219,
+        214,
+        203,
+        184,
+        101657,
+        113887
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        20333,
+        11791,
+        17848,
+        18707,
+        15440,
+        18801,
+        40559,
+        67458,
+        32280,
+        null,
+        null,
+        17753,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2456157
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (30000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        11409,
+        8315,
+        10842,
+        11299,
+        9931,
+        41783,
+        39287,
+        60897,
+        44632,
+        7670,
+        11711,
+        15128,
+        10086,
+        8973,
+        6350,
+        4591,
+        919382,
+        1751712
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5444,
+        3950,
+        4246,
+        5733,
+        4435,
+        5813,
+        5629,
+        7176,
+        6106,
+        560,
+        6400,
+        8239,
+        4180,
+        3295,
+        2032,
+        1236,
+        171405,
+        181066
+      ]
+    },
+    {
+      "ShortName": "ES",
+      "Name": "EntitySpaces",
+      "Results": [
+        8177,
+        8242,
+        8114,
+        6860,
+        7663,
+        10236,
+        10196,
+        4410,
+        7088,
+        844,
+        2419,
+        7842,
+        2269,
+        2185,
+        1944,
+        1628,
+        72583,
+        164234
+      ]
+    },
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        8724,
+        6693,
+        8832,
+        9321,
+        8095,
+        21005,
+        24277,
+        30541,
+        24670,
+        1520,
+        8791,
+        10348,
+        6096,
+        4412,
+        2484,
+        1538,
+        187074,
+        224808
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        11614,
+        8194,
+        10426,
+        11170,
+        9756,
+        23762,
+        24469,
+        34521,
+        26247,
+        445,
+        9508,
+        null,
+        6879,
+        5270,
+        3252,
+        1914,
+        235556,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        8443,
+        657,
+        526,
+        1255,
+        710,
+        5929,
+        2107,
+        2245,
+        2754,
+        752,
+        9367,
+        null,
+        7654,
+        6852,
+        5339,
+        3803,
+        1097899,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        8079,
+        4189,
+        57,
+        117,
+        113,
+        20700,
+        16399,
+        18046,
+        18178,
+        1104,
+        null,
+        5483,
+        886,
+        780,
+        560,
+        383,
+        50979,
+        62915
+      ]
+    },
+    {
+      "ShortName": "OA",
+      "Name": "OpenAccess",
+      "Results": [
+        null,
+        2452,
+        null,
+        null,
+        null,
+        null,
+        181501,
+        806373,
+        null,
+        3637,
+        3805,
+        5817,
+        2750,
+        2466,
+        1962,
+        1488,
+        283562,
+        284251
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        9482,
+        3343,
+        3726,
+        4038,
+        3618,
+        3273,
+        3605,
+        3829,
+        3520,
+        222,
+        null,
+        7439,
+        216,
+        211,
+        199,
+        182,
+        108668,
+        119975
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        20196,
+        11369,
+        16935,
+        18389,
+        14896,
+        29834,
+        40337,
+        63926,
+        40307,
+        null,
+        null,
+        17647,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2606044
+      ]
+    }
+  ]
+}])

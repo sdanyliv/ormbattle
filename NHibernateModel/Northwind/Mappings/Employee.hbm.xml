@@ -1,0 +1,44 @@
+﻿<hibernate-mapping default-cascade="none" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="OrmBattle.NHibernateModel.Northwind.Employee, NHibernateModel" table="Employees">
+    <id name="Id" type="System.Int32" column="EmployeeID" unsaved-value="0">
+      <generator class="native" />
+    </id>
+    <property name="Address" type="System.String" column="Address" not-null="false" />
+    <property name="BirthDate" type="System.DateTime" column="BirthDate" not-null="false" />
+    <property name="City" type="System.String" column="City" not-null="false" />
+    <property name="Country" type="System.String" column="Country" not-null="false" />
+    <property name="Extension" type="System.String" column="Extension" not-null="false" />
+    <property name="FirstName" type="System.String" column="FirstName" not-null="true" />
+    <property name="HireDate" type="System.DateTime" column="HireDate" not-null="false" />
+    <property name="HomePhone" type="System.String" column="HomePhone" not-null="false" />
+    <property name="LastName" type="System.String" column="LastName" not-null="true" />
+    <property name="Notes" type="System.String" column="Notes" not-null="false" />
+    <property name="Photo" type="System.Byte[]" column="Photo" not-null="false" />
+    <property name="PhotoPath" type="System.String" column="PhotoPath" not-null="false" />
+    <property name="PostalCode" type="System.String" column="PostalCode" not-null="false" />
+    <property name="Region" type="System.String" column="Region" not-null="false" />
+    <property name="Title" type="System.String" column="Title" not-null="false" />
+    <property name="TitleOfCourtesy" type="System.String" column="TitleOfCourtesy" not-null="false" />
+    <many-to-one name="ReportsTo" class="OrmBattle.NHibernateModel.Northwind.Employee, NHibernateModel">
+      <column name="ReportsTo" not-null="false" />
+    </many-to-one>
+    <bag name="Employees" inverse="true" lazy="true" cascade="none">
+      <key>
+        <column name="ReportsTo" not-null="true" />
+      </key>
+      <one-to-many class="OrmBattle.NHibernateModel.Northwind.Employee, NHibernateModel" />
+    </bag>
+    <bag name="Territories" table="EmployeeTerritories" inverse="false" lazy="true" cascade="none">
+      <key>
+        <column name="EmployeeID" not-null="true" />
+      </key>
+      <many-to-many class="OrmBattle.NHibernateModel.Northwind.Territory, NHibernateModel" column="TerritoryID" />
+    </bag>
+    <bag name="Orders" inverse="false" lazy="true" cascade="none">
+      <key>
+        <column name="EmployeeID" not-null="false" />
+      </key>
+      <one-to-many class="OrmBattle.NHibernateModel.Northwind.Order, NHibernateModel" />
+    </bag>
+  </class>
+</hibernate-mapping>

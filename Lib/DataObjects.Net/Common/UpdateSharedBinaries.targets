@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup>
+    <SharedBinaryDir Include="$(BinLatestDir)" />
+    <SharedBinaryDir Condition="$(BinOutputDir)!=''" 
+                     Include="$(BinOutputDir)" />
+  </ItemGroup>
+
+
+  <!-- UpdateXxx part -->
+
+  <Target Name="UpdateSharedBinaries" Condition="$(ShareBinaries)=='true'"
+      DependsOnTargets="EnsureSharedBinaryDirExist;GetSharedBinaries;$(UpdateSharedBinariesDependsOn)">
+    <Message Importance="low" Text="Updating shared binaries..." />
+    <CreateItem Exclude="*" Include="">
+      <Output TaskParameter="Include" ItemName="_ExistingSharedBinary" />
+    </CreateItem>
+    <CreateItem Condition="Exists('%(SharedBinary.FullPath)')"
+        Include="%(SharedBinary.FullPath)">
+      <Output TaskParameter="Include" ItemName="_ExistingSharedBinary" />
+    </CreateItem>
+    <Copy
+        SourceFiles="@(_ExistingSharedBinary)" 
+        DestinationFolder="%(SharedBinaryDir.Identity)" 
+        SkipUnchangedFiles="true" >
+      <Output
+          TaskParameter="CopiedFiles"
+          ItemName="SharedBinaryCopy" />
+    </Copy>
+    <Message Text="Shared Binary is copied to: '%(SharedBinaryCopy.Identity)'." />
+  </Target>
+
+
+  <!-- EnsureXxx targets -->
+
+  <Target Name="EnsureSharedBinaryDirExist" DependsOnTargets="GetFrameworkPaths">
+    <Message Condition="!Exists('%(SharedBinaryDir.Identity)')"
+        Text="'%(SharedBinaryDir.Identity)' folder is created." />
+    <MakeDir Condition="!Exists('%(SharedBinaryDir.Identity)')"
+        Directories="%(SharedBinaryDir.Identity)" />
+  </Target>
+
+
+  <!-- CleanXxx targets -->
+  
+  <Target Name="CleanSharedBinaries" Condition="$(ShareBinaries)=='true'" 
+      DependsOnTargets="
+        EnsureSharedBinaryDirExist;
+        GetSharedBinaries;
+        GetSharedBinariesToRemove
+      ">
+    <Delete Files="@(SharedBinaryToRemove)" />
+    <Delete Files="@(ProjectBinary->'$(LibraryDir)%(Filename)%(Extension)')" />
+  </Target>
+
+
+  <!-- GetXxx targets -->
+  
+  <Target Name="GetSharedBinaries" Condition="$(ShareBinaries)=='true'"
+      DependsOnTargets="GetProjectBinaries">
+    <CreateItem Include="@(ProjectBinary)" >
+      <Output TaskParameter="Include" ItemName="SharedBinary" />
+    </CreateItem>
+    <Message Text="Shared Binary found: '%(SharedBinary.Identity)'." />
+  </Target>
+
+  <Target Name="GetSharedBinariesToRemove" Condition="$(ShareBinaries)=='true'"
+      DependsOnTargets="_GetSharedBinariesToRemove">
+    <Message Text="Shared Binary to remove found: '%(SharedBinaryToRemove.Identity)'." />
+  </Target>
+
+  <Target Name="_GetSharedBinariesToRemove" 
+      DependsOnTargets="GetProjectBinaries"
+      Inputs="@(SharedBinaryDir)"
+      Outputs="%(FullPath)NotExistingFile.txt" >
+    <CreateProperty Value="%(SharedBinaryDir.Identity)" >
+      <Output TaskParameter="Value" PropertyName="CurrentSharedBinaryDir" />
+    </CreateProperty>
+    <CreateProperty Value="%(SharedBinaryDir.Shared)" >
+      <Output TaskParameter="Value" PropertyName="CurrentSharedBinaryDirShared" />
+    </CreateProperty>
+    <CreateItem
+        Include="@(ProjectBinary->'$(CurrentSharedBinaryDir)%(Filename)%(Extension)')" >
+      <Output TaskParameter="Include" ItemName="SharedBinaryToRemove" />
+    </CreateItem>
+  </Target>
+
+  <Target Name="GetProjectBinaries" Condition="$(ShareBinaries)=='true'">
+    <CreateItem Condition="$(OutputPath)!='' and $(AssemblyName)!=''"
+        Include="$(ProjectDir)$(OutputPath)$(AssemblyName).exe.config">
+      <Output TaskParameter="Include" ItemName="ProjectBinary" />
+    </CreateItem>
+    <CreateItem Condition="$(OutputPath)!='' and $(AssemblyName)!='' and $(OutputType)=='Exe'"
+        Include="$(ProjectDir)$(OutputPath)$(AssemblyName).exe">
+      <Output TaskParameter="Include" ItemName="ProjectBinary" />
+    </CreateItem>
+    <CreateItem Condition="$(OutputPath)!='' and $(AssemblyName)!='' and $(OutputType)=='WinExe'"
+        Include="$(ProjectDir)$(OutputPath)$(AssemblyName).exe">
+      <Output TaskParameter="Include" ItemName="ProjectBinary" />
+    </CreateItem>
+    <CreateItem Condition="$(OutputPath)!='' and $(AssemblyName)!='' and $(OutputType)=='Library'"
+        Include="$(ProjectDir)$(OutputPath)$(AssemblyName).dll">
+      <Output TaskParameter="Include" ItemName="ProjectBinary" />
+    </CreateItem>
+    <CreateItem Condition="$(OutputPath)!='' and $(AssemblyName)!='' and ($(DebugType)=='full' or $(DebugType)=='pdbonly')"
+        Include="$(ProjectDir)$(OutputPath)$(AssemblyName).pdb">
+      <Output TaskParameter="Include" ItemName="ProjectBinary" />
+    </CreateItem>
+    <CreateItem Condition="$(OutputPath)!='' and $(OutputName)!='' and $(OutputType)=='Package'"
+        Include="$(ProjectDir)$(OutputPath)$(OutputName).msi">
+      <Output TaskParameter="Include" ItemName="ProjectBinary" />
+    </CreateItem>
+    <CreateItem Condition="$(OutputPath)!='' and $(DocumentationFile)!=''"
+        Include="$(ProjectDir)$(DocumentationFile)">
+      <Output TaskParameter="Include" ItemName="ProjectBinary" />
+    </CreateItem>
+    <Message Text="Project Binary found: '%(ProjectBinary.Identity)'." />
+  </Target>
+
+
+  <!-- Build sequence modification -->
+
+  <PropertyGroup>
+    <BuildDependsOn>
+      $(BuildDependsOn);
+      UpdateSharedBinaries
+    </BuildDependsOn>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      CleanSharedBinaries
+    </CleanDependsOn>
+  </PropertyGroup>
+
+</Project>

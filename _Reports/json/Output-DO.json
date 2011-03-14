@@ -1,0 +1,1601 @@
+OnLoadOutput([{
+  "Name": "LINQ tests",
+  "Tests": [
+    {
+      "Name": "Aggregates",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "All/Any/Contains",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 6,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Complex",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 6,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Element operations",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 9,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Filtering",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 12,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Grouping",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 10,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Join",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 4,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Ordering",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 8,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Projections",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 13,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "References",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 4,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Set operations",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 9,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Standard functions",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 25,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Take/Skip",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    },
+    {
+      "Name": "Type casts",
+      "Unit": "f/a",
+      "Maximum": {
+        "First": 5,
+        "Second": 0
+      }
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 119,
+      "Failed": 2,
+      "Score": "98,3"
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 2
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 11,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 96,
+      "Failed": 25,
+      "Score": "79,3"
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 2
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 3,
+          "Second": 1
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 1,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 108,
+      "Failed": 13,
+      "Score": "89,3"
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 7,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 1
+        },
+        {
+          "First": 17,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        }
+      ],
+      "Performed": 121,
+      "Passed": 61,
+      "Failed": 60,
+      "Score": "50,4"
+    }
+  ]
+},{
+  "Name": "Performance tests (50 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": null
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": null
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        7650,
+        5402,
+        5100,
+        5137,
+        5178,
+        16842,
+        17637,
+        19788,
+        17937,
+        1452,
+        6216,
+        5746,
+        3969,
+        2156,
+        null,
+        null,
+        54206,
+        63548
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        4994,
+        3780,
+        3592,
+        3861,
+        3731,
+        7273,
+        7007,
+        8042,
+        7402,
+        558,
+        4882,
+        5881,
+        3084,
+        1885,
+        null,
+        null,
+        14787,
+        66233
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        7678,
+        4193,
+        1677,
+        1774,
+        2138,
+        6155,
+        2128,
+        2295,
+        2796,
+        723,
+        6516,
+        null,
+        4455,
+        2570,
+        null,
+        null,
+        39594,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7272,
+        3489,
+        3015,
+        3240,
+        3212,
+        15759,
+        13093,
+        14310,
+        14280,
+        1028,
+        null,
+        4326,
+        787,
+        568,
+        null,
+        null,
+        26910,
+        39669
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (100 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": null
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        8165,
+        6539,
+        6369,
+        6569,
+        6464,
+        19365,
+        21128,
+        24293,
+        21408,
+        1548,
+        7410,
+        7425,
+        4939,
+        3332,
+        1706,
+        null,
+        83626,
+        97352
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5308,
+        4259,
+        4128,
+        4536,
+        4286,
+        7722,
+        7547,
+        8515,
+        7892,
+        463,
+        5630,
+        7000,
+        3639,
+        2628,
+        1439,
+        null,
+        26678,
+        98299
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        8281,
+        4835,
+        1863,
+        1957,
+        2387,
+        6247,
+        1874,
+        1968,
+        2491,
+        756,
+        7639,
+        null,
+        5628,
+        4107,
+        2338,
+        null,
+        71387,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7819,
+        4025,
+        3193,
+        3599,
+        3566,
+        18003,
+        15090,
+        16416,
+        16391,
+        1095,
+        null,
+        5011,
+        860,
+        705,
+        459,
+        null,
+        37727,
+        52317
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (500 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        6911,
+        6953,
+        8712,
+        8865,
+        8042,
+        12622,
+        25441,
+        19617,
+        17674,
+        1458,
+        8998,
+        10184,
+        6709,
+        4976,
+        2905,
+        1755,
+        172723,
+        221425
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5629,
+        4416,
+        5067,
+        5658,
+        4994,
+        6133,
+        6594,
+        6865,
+        6470,
+        556,
+        6485,
+        8445,
+        4504,
+        3602,
+        2262,
+        1391,
+        90973,
+        182855
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        8931,
+        4504,
+        1685,
+        1894,
+        2233,
+        5450,
+        2125,
+        2273,
+        2712,
+        735,
+        9471,
+        null,
+        7552,
+        6541,
+        4698,
+        3230,
+        275512,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        8512,
+        4725,
+        1850,
+        2450,
+        2564,
+        17107,
+        17358,
+        19401,
+        17832,
+        1051,
+        null,
+        5650,
+        743,
+        841,
+        613,
+        424,
+        59685,
+        74867
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (1000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        7979,
+        7109,
+        9166,
+        9526,
+        8456,
+        13412,
+        24301,
+        25039,
+        19274,
+        1491,
+        9278,
+        10693,
+        6837,
+        5171,
+        3171,
+        1869,
+        214256,
+        274235
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5112,
+        3863,
+        4351,
+        4802,
+        4294,
+        5504,
+        6637,
+        7291,
+        6372,
+        574,
+        6629,
+        8677,
+        4599,
+        3730,
+        2396,
+        1499,
+        120860,
+        206223
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        9065,
+        3595,
+        1787,
+        2039,
+        2248,
+        5363,
+        2161,
+        2336,
+        2777,
+        762,
+        9691,
+        null,
+        7912,
+        7106,
+        5386,
+        3928,
+        445732,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7598,
+        4193,
+        1344,
+        2049,
+        2030,
+        21730,
+        15708,
+        19687,
+        18662,
+        1106,
+        null,
+        4693,
+        880,
+        732,
+        634,
+        448,
+        63409,
+        78087
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (5000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        8816,
+        6847,
+        8735,
+        9287,
+        8138,
+        13777,
+        24399,
+        30154,
+        20418,
+        1555,
+        8719,
+        10195,
+        6367,
+        4552,
+        2555,
+        1418,
+        202651,
+        215192
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5532,
+        4407,
+        4878,
+        5727,
+        4890,
+        5897,
+        5929,
+        7495,
+        6250,
+        583,
+        6398,
+        8298,
+        4112,
+        3310,
+        2060,
+        1642,
+        200841,
+        236518
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        8804,
+        2410,
+        1422,
+        1982,
+        1839,
+        5708,
+        2190,
+        2358,
+        2836,
+        780,
+        9196,
+        null,
+        7180,
+        7563,
+        6167,
+        4658,
+        850672,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        8309,
+        4220,
+        376,
+        708,
+        694,
+        19885,
+        16797,
+        18305,
+        18127,
+        1137,
+        null,
+        5482,
+        924,
+        820,
+        571,
+        411,
+        58428,
+        69048
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (10000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        8907,
+        7011,
+        9399,
+        9664,
+        8395,
+        13791,
+        24802,
+        30501,
+        20542,
+        1562,
+        9167,
+        10498,
+        6234,
+        4803,
+        2658,
+        1692,
+        230487,
+        269670
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5562,
+        4311,
+        4886,
+        5901,
+        4943,
+        6139,
+        5909,
+        7359,
+        6410,
+        585,
+        6459,
+        8599,
+        4347,
+        3589,
+        2211,
+        1389,
+        176491,
+        189536
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        8969,
+        1602,
+        1082,
+        1805,
+        1422,
+        5586,
+        2202,
+        2372,
+        2841,
+        780,
+        9549,
+        null,
+        7643,
+        6682,
+        6255,
+        4781,
+        957973,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        8310,
+        4293,
+        195,
+        381,
+        375,
+        19602,
+        16681,
+        18370,
+        18124,
+        1143,
+        null,
+        5601,
+        929,
+        812,
+        589,
+        406,
+        57030,
+        65961
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (30000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "DO",
+      "Name": "DataObjects.Net",
+      "Results": [
+        9057,
+        9199,
+        9396,
+        10018,
+        9525,
+        21177,
+        25222,
+        31409,
+        25011,
+        1557,
+        9228,
+        10853,
+        6391,
+        4640,
+        2601,
+        1639,
+        196013,
+        230489
+      ]
+    },
+    {
+      "ShortName": "EF",
+      "Name": "ADO.NET Entity Framework",
+      "Results": [
+        5599,
+        4356,
+        4356,
+        5920,
+        4770,
+        6083,
+        5880,
+        7392,
+        6355,
+        587,
+        6599,
+        8673,
+        4360,
+        3531,
+        2172,
+        1320,
+        171907,
+        188947
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        9050,
+        684,
+        554,
+        1316,
+        743,
+        6661,
+        2194,
+        2367,
+        2916,
+        780,
+        9664,
+        null,
+        7748,
+        7042,
+        5580,
+        3937,
+        1062740,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        8336,
+        4858,
+        63,
+        130,
+        126,
+        22042,
+        16601,
+        18373,
+        18743,
+        1147,
+        null,
+        5703,
+        921,
+        790,
+        571,
+        391,
+        52158,
+        63307
+      ]
+    }
+  ]
+}])
