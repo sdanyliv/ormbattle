@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Xtensive.Practices.Web</name>
+  </assembly>
+  <members>
+    <member name="T:Xtensive.Practices.Web.Log">
+      <summary>
+            Log for this namespace.
+            </summary>
+    </member>
+    <member name="F:Xtensive.Practices.Web.Log.Name">
+      <summary>
+            Gets the name of this log.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Practices.Web.SessionManager">
+      <summary>
+            Provides access to current <see cref="P:Xtensive.Practices.Web.SessionManager.Domain" /> and <see cref="P:Xtensive.Practices.Web.SessionManager.Session" /> for web applications;
+            ensures <see cref="P:Xtensive.Practices.Web.SessionManager.Domain" /> is built, and built just once.
+            </summary>
+      <remarks>
+            To initialize this class, add it to <see cref="T:System.Web.Configuration.HttpModulesSection" /> configuration section 
+            in <c>web.config</c> file and set its <see cref="P:Xtensive.Practices.Web.SessionManager.DomainBuilder" /> in
+            <c>Application_Start</c> method of your <c>Global.asax.cs</c> file.
+            </remarks>
+      <example>
+        <c>web.config</c>:
+            <code>
+            &lt;configuration&gt;
+              &lt;system.web&gt;
+                &lt;httpModules&gt;
+                  &lt;add name="SessionManager" type="Xtensive.Orm.Web.SessionManager, Xtensive.Orm"/&gt;
+                &lt;/httpModules&gt;
+              &lt;/system.web&gt;
+            &lt;/configuration&gt;
+            </code><c>Global.asax.cs</c>:
+            <code>
+              public class Global : System.Web.HttpApplication
+              {
+                protected void Application_Start(object sender, EventArgs e)
+                {
+                  SessionManager.DomainBuilder = DomainBuilder.Build;
+                }
+              }
+            </code><c>DomainBuilder.cs</c>:
+            <code>
+              public static class DomainBuilder
+              {
+                public static Domain Build()
+                {
+                  var config = DomainConfiguration.Load("mssql");
+                  var domain = Domain.Build(config);
+                  return domain;
+                }
+              }
+            </code></example>
+    </member>
+    <member name="M:Xtensive.Practices.Web.SessionManager.Demand">
+      <summary>
+            Gets the <see cref="T:Xtensive.Practices.Web.SessionManager" /> instance 
+            bound to the current <see cref="T:System.Web.HttpRequest" />,
+            or throws <see cref="T:System.InvalidOperationException" />, 
+            if <see cref="P:Xtensive.Practices.Web.SessionManager.Current" /> is <see langword="null" />.
+            </summary>
+      <returns>Current <see cref="T:Xtensive.Practices.Web.SessionManager" />.</returns>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:Xtensive.Practices.Web.SessionManager.Current" /> is <see langword="null" />.</exception>
+    </member>
+    <member name="M:Xtensive.Practices.Web.SessionManager.BeginRequest(System.Object,System.EventArgs)">
+      <summary>
+            Handles request beginning.
+            </summary>
+      <param name="sender">The sender.</param>
+      <param name="e">The <see cref="T:System.EventArgs" /> instance containing the event data.</param>
+    </member>
+    <member name="M:Xtensive.Practices.Web.SessionManager.Error(System.Object,System.EventArgs)">
+      <summary>
+            Handles request processing error.
+            </summary>
+      <param name="sender">The sender.</param>
+      <param name="e">The <see cref="T:System.EventArgs" /> instance containing the event data.</param>
+    </member>
+    <member name="M:Xtensive.Practices.Web.SessionManager.EndRequest(System.Object,System.EventArgs)">
+      <summary>
+            Completes request processing.
+            </summary>
+      <param name="sender">The sender.</param>
+      <param name="e">The <see cref="T:System.EventArgs" /> instance containing the event data.</param>
+    </member>
+    <member name="M:Xtensive.Practices.Web.SessionManager.ProvideSession">
+      <summary>
+            Default <see cref="P:Xtensive.Practices.Web.SessionManager.SessionProvider" /> implementation.
+            </summary>
+      <returns>A pair of <see cref="P:Xtensive.Practices.Web.SessionManager.Session" /> and <see cref="T:System.IDisposable" /> 
+            to invoke on request completion.</returns>
+    </member>
+    <member name="M:Xtensive.Practices.Web.SessionManager.System#Web#IHttpModule#Init(System.Web.HttpApplication)">
+      <summary>
+                    Initializes a module and prepares it to handle requests.
+                </summary>
+      <param name="context">
+                    An <see cref="T:System.Web.HttpApplication" /> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application 
+                </param>
+    </member>
+    <member name="M:Xtensive.Practices.Web.SessionManager.System#Web#IHttpModule#Dispose">
+      <summary>
+                    Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule" />.
+                </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.SessionManager.DomainBuilder">
+      <summary>
+            Sets the domain builder delegate.
+            This delegate is invoked to build the domain on first request.
+            </summary>
+      <remarks>
+        <para>
+            The setter of this property can be invoked just once per application lifetime,
+            usually in <c>Application_Start</c> method in <c>Global.asax.cs</c>.
+            Assigned domain builder can not be changed.
+            </para>
+      </remarks>
+      <exception cref="T:System.NotSupportedException">Domain builder is already assigned.</exception>
+    </member>
+    <member name="P:Xtensive.Practices.Web.SessionManager.SessionProvider">
+      <summary>
+            Sets the session provider delegate.
+            </summary>
+      <remarks>
+        <para>
+            This delegate is invoked to open the <see cref="P:Xtensive.Practices.Web.SessionManager.Session" /> on the first attempt
+            to read this property (see <see cref="P:Xtensive.Practices.Web.SessionManager.HasSession" /> as well) in each web request.
+            Normally, this delegate must also ensure a transaction is created there.
+            </para>
+        <para>
+            The setter of this property can be invoked just once per application lifetime; 
+            assigned session provider can not be changed.
+            </para>
+      </remarks>
+      <exception cref="T:System.NotSupportedException">Session provider is already assigned.</exception>
+    </member>
+    <member name="P:Xtensive.Practices.Web.SessionManager.Current">
+      <summary>
+            Gets the <see cref="T:Xtensive.Practices.Web.SessionManager" /> instance
+            bound to the current <see cref="T:System.Web.HttpRequest" />.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.SessionManager.Domain">
+      <summary>
+            Gets the domain used in web application.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.SessionManager.HasSession">
+      <summary>
+            Gets a value indicating whether current <see cref="T:Xtensive.Practices.Web.SessionManager" /> has session.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.SessionManager.Session">
+      <summary>
+            Gets or sets the session for the current <see cref="T:System.Web.HttpContext" />.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.SessionManager.HasErrors">
+      <summary>
+            Gets or sets value indicating whether an error has occurred 
+            on execution of the current request and transaction should be rollbacked.
+            </summary>
+    </member>
+    <member name="T:Xtensive.Practices.Web.Resources.Strings">
+      <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.Resources.Strings.ResourceManager">
+      <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.Resources.Strings.Culture">
+      <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.Resources.Strings.ExConfigurationForDomainIsNotFoundInApplicationConfigurationFile">
+      <summary>
+              Looks up a localized string similar to Configuration for Domain with name '{0}' is not found in application configuration file (section '{1}')..
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.Resources.Strings.ExSectionIsNotFoundInApplicationConfigurationFile">
+      <summary>
+              Looks up a localized string similar to Section '{0}' is not found in application configuration file..
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.Resources.Strings.ExThereIsNoCurrentHttpRequestOrSessionManagerIsnTBoundToItYet">
+      <summary>
+              Looks up a localized string similar to There is no current HttpRequest, or SessionManager is not bound to it yet..
+            </summary>
+    </member>
+    <member name="P:Xtensive.Practices.Web.Resources.Strings.LogSessionManagerEndRequestMethodWasNotInvoked">
+      <summary>
+              Looks up a localized string similar to SessionManager.EndRequest method was not invoked during processing of the previous request to this module..
+            </summary>
+    </member>
+    <member name="M:Xtensive.Practices.Web.WebDomainConfiguration.Load(System.String,System.String)">
+      <summary>
+            Loads the <see cref="T:Xtensive.Orm.Configuration.DomainConfiguration" /> for <see cref="T:Xtensive.Orm.Domain" />
+            with the specified <paramref name="name" />
+            from application configuration file (section with <paramref name="sectionName" />).
+            </summary>
+      <param name="sectionName">Name of the section.</param>
+      <param name="name">Name of the <see cref="T:Xtensive.Orm.Domain" />.</param>
+      <returns>
+            The <see cref="T:Xtensive.Orm.Configuration.DomainConfiguration" /> for the specified domain.
+            </returns>
+      <exception cref="T:System.InvalidOperationException">Section <paramref name="sectionName" />
+            is not found in application configuration file, or there is no configuration for
+            the <see cref="T:Xtensive.Orm.Domain" /> with specified <paramref name="name" />.</exception>
+    </member>
+  </members>
+</doc>

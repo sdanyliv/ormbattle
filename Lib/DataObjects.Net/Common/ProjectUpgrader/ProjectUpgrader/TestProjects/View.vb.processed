@@ -1,0 +1,26 @@
+Rem VB.NET file
+
+Imports System
+Imports System.Web.Mvc
+Imports Xtensive.Core
+Imports Xtensive.Collections
+Imports Xtensive.Aspects.Helpers
+Imports Xtensive.Orm.Validation
+Imports Xtensive.Orm.Validation
+Imports Xtensive.Orm
+Imports Xtensive.Orm.Upgrade
+Imports Xtensive.Orm.Model
+Imports Xtensive.Storage.Rse
+Imports Xtensive.Storage.Rse.Compilation
+Imports Xtensive.Storage.Providers
+Imports Xtensive.Storage.Providers.Indexing
+Imports Xtensive.Storage.Providers.Sql
+Imports Xtensive.Storage.Model
+
+Imports Xtensive.Integrity.Wrong
+Imports Xtensive.Integrity.Aspects.Wrong
+
+Namespace Something
+
+End Namespace
+
