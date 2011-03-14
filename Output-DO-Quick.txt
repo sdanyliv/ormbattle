@@ -1,0 +1,121 @@
+LINQ tests:
+  Testing: DataObjects.Net (DO)
+
+LINQ tests scorecard:
+                                        DO   Maximum      Unit
+LINQ Implementation:            
+  Aggregates                             0         5       f/a
+  All/Any/Contains                       0         6       f/a
+  Complex                                0         6       f/a
+  Element operations                     0         9       f/a
+  Filtering                              0        12       f/a
+  Grouping                               0        10       f/a
+  Join                                   0         4       f/a
+  Ordering                               0         8       f/a
+  Projections                            0        13       f/a
+  References                             0         4       f/a
+  Set operations                         0         9       f/a
+  Standard functions                     2        25       f/a
+  Take/Skip                              0         5       f/a
+  Type casts                             0         5       f/a
+Total:                          
+  Performed                            121       121         #
+  Passed                               119       121         #
+  Failed                                 2       121         #
+    Properly                             2       121         #
+    Asserted                             0       121         #
+  Score                               98,3     100,0         %
+
+Units:
+  f/a: total count of failed tests [ / count of tests failed with assertion ],
+       less is better (0 is ideal);
+  #:   count;
+  %:   percentage (% of passed tests), more is better.
+
+
+Performance tests (1000 items):
+Pass 1 out of 3...
+  Testing: DataObjects.Net (DO)
+Pass 2 out of 3...
+  Testing: DataObjects.Net (DO)
+Pass 3 out of 3...
+  Testing: DataObjects.Net (DO)
+
+Performance tests (1000 items) scorecard:
+                                        DO      Unit
+CRUD Performance:               
+  Fetch                               6828      op/s
+  Single Operation:             
+    Create Instance                   6610      op/s
+    Update Instance                   8305      op/s
+    Remove Instance                   9093      op/s
+    CUD Average                       7841      op/s
+  Multiple Operations:          
+    Create Instance                  10386      op/s
+    Update Instance                  16873      op/s
+    Remove Instance                  15972      op/s
+    CUD Average                      13424      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        1206 queries/s
+    Compiled LINQ Query               9297 queries/s
+    Native Query                     10555 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)       6976   pages/s
+    Get Average Page (20 items)       5267   pages/s
+    Get Large Page   (50 items)       3198   pages/s
+    Get Huge Page    (100 items)      1920   pages/s
+  Materialization:              
+    LINQ Materialize                213183 objects/s
+    Native Materialize              268564 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+
+Performance tests (5000 items):
+Pass 1 out of 3...
+  Testing: DataObjects.Net (DO)
+Pass 2 out of 3...
+  Testing: DataObjects.Net (DO)
+Pass 3 out of 3...
+  Testing: DataObjects.Net (DO)
+
+Performance tests (5000 items) scorecard:
+                                        DO      Unit
+CRUD Performance:               
+  Fetch                               8837      op/s
+  Single Operation:             
+    Create Instance                   6751      op/s
+    Update Instance                   8609      op/s
+    Remove Instance                   9000      op/s
+    CUD Average                       7884      op/s
+  Multiple Operations:          
+    Create Instance                  19675      op/s
+    Update Instance                  24292      op/s
+    Remove Instance                  30522      op/s
+    CUD Average                      20725      op/s
+Data Access Performance:        
+  Query:                        
+    LINQ Query                        1514 queries/s
+    Compiled LINQ Query               8867 queries/s
+    Native Query                     10479 queries/s
+  Paging (LINQ only):           
+    Get Small Page   (10 items)       6491   pages/s
+    Get Average Page (20 items)       4893   pages/s
+    Get Large Page   (50 items)       2749   pages/s
+    Get Huge Page    (100 items)      1660   pages/s
+  Materialization:              
+    LINQ Materialize                196409 objects/s
+    Native Materialize              215179 objects/s
+
+Units:
+  op/s:      operations per second, more is better;
+  queries/s: queries per second, more is better;
+  pages/s:   pages per second, more is better;
+  objects/s: # of materialized objects per second, more is better.
+
+

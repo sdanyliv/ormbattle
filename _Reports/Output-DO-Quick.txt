@@ -44,30 +44,30 @@ Pass 3 out of 3...
 Performance tests (1000 items) scorecard:
                                         DO      Unit
 CRUD Performance:               
-  Fetch                               8545      op/s
+  Fetch                               6828      op/s
   Single Operation:             
-    Create Instance                   6243      op/s
-    Update Instance                   8180      op/s
-    Remove Instance                   8569      op/s
-    CUD Average                       7485      op/s
+    Create Instance                   6610      op/s
+    Update Instance                   8305      op/s
+    Remove Instance                   9093      op/s
+    CUD Average                       7841      op/s
   Multiple Operations:          
-    Create Instance                  12787      op/s
-    Update Instance                  23674      op/s
-    Remove Instance                  30220      op/s
-    CUD Average                      19410      op/s
+    Create Instance                  10386      op/s
+    Update Instance                  16873      op/s
+    Remove Instance                  15972      op/s
+    CUD Average                      13424      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                        1295 queries/s
-    Compiled LINQ Query               8218 queries/s
-    Native Query                      9885 queries/s
+    LINQ Query                        1206 queries/s
+    Compiled LINQ Query               9297 queries/s
+    Native Query                     10555 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)       6426   pages/s
-    Get Average Page (20 items)       4971   pages/s
-    Get Large Page   (50 items)       3166   pages/s
-    Get Huge Page    (100 items)      1941   pages/s
+    Get Small Page   (10 items)       6976   pages/s
+    Get Average Page (20 items)       5267   pages/s
+    Get Large Page   (50 items)       3198   pages/s
+    Get Huge Page    (100 items)      1920   pages/s
   Materialization:              
-    LINQ Materialize                212820 objects/s
-    Native Materialize              279267 objects/s
+    LINQ Materialize                213183 objects/s
+    Native Materialize              268564 objects/s
 
 Units:
   op/s:      operations per second, more is better;
@@ -87,30 +87,30 @@ Pass 3 out of 3...
 Performance tests (5000 items) scorecard:
                                         DO      Unit
 CRUD Performance:               
-  Fetch                               8531      op/s
+  Fetch                               8837      op/s
   Single Operation:             
-    Create Instance                   6076      op/s
-    Update Instance                   8123      op/s
-    Remove Instance                   8560      op/s
-    CUD Average                       7415      op/s
+    Create Instance                   6751      op/s
+    Update Instance                   8609      op/s
+    Remove Instance                   9000      op/s
+    CUD Average                       7884      op/s
   Multiple Operations:          
-    Create Instance                  12826      op/s
-    Update Instance                  23534      op/s
-    Remove Instance                  30533      op/s
-    CUD Average                      19534      op/s
+    Create Instance                  19675      op/s
+    Update Instance                  24292      op/s
+    Remove Instance                  30522      op/s
+    CUD Average                      20725      op/s
 Data Access Performance:        
   Query:                        
-    LINQ Query                        1286 queries/s
-    Compiled LINQ Query               8109 queries/s
-    Native Query                      9942 queries/s
+    LINQ Query                        1514 queries/s
+    Compiled LINQ Query               8867 queries/s
+    Native Query                     10479 queries/s
   Paging (LINQ only):           
-    Get Small Page   (10 items)       6018   pages/s
-    Get Average Page (20 items)       4563   pages/s
-    Get Large Page   (50 items)       2644   pages/s
-    Get Huge Page    (100 items)      1566   pages/s
+    Get Small Page   (10 items)       6491   pages/s
+    Get Average Page (20 items)       4893   pages/s
+    Get Large Page   (50 items)       2749   pages/s
+    Get Huge Page    (100 items)      1660   pages/s
   Materialization:              
-    LINQ Materialize                198257 objects/s
-    Native Materialize              337648 objects/s
+    LINQ Materialize                196409 objects/s
+    Native Materialize              215179 objects/s
 
 Units:
   op/s:      operations per second, more is better;
