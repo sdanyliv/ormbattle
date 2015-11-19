@@ -15,6 +15,7 @@ using BLToolkitTest = OrmBattle.Tests.Performance.BLToolkitTest;
 //using DOTest = OrmBattle.Tests.Performance.DOTest;
 using EFTest = OrmBattle.Tests.Performance.EFTest;
 using LightSpeedTest = OrmBattle.Tests.Performance.LightSpeedTest;
+using Linq2DbTest = OrmBattle.Tests.Performance.Linq2DbTest;
 using LinqConnectTest = OrmBattle.Tests.Performance.LinqConnectTest;
 using Linq2SqlTest = OrmBattle.Tests.Performance.Linq2SqlTest;
 using NHibernateTest = OrmBattle.Tests.Performance.NHibernateTest;
@@ -81,8 +82,9 @@ namespace OrmBattle.TestRunner
 
         var tests = new List<PerformanceTestBase> {
           new BLToolkitTest(),
+          new Linq2DbTest(),
           new EFTest(),
-          new EntitySpacesTest(),
+          // new EntitySpacesTest(),
           // new DOTest(),
           // new LightSpeedTest(),
           new LinqConnectTest(), 
