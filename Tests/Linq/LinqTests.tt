@@ -125,44 +125,6 @@ namespace OrmBattle.Tests.Linq
 
 <# manager.EndBlock(); #>
 
-<# manager.StartBlock("OpenAccessTest.generated.cs"); #>
-  using Telerik.OpenAccess;
-  using Telerik.OpenAccess.Query;
-  using TelerikModel.Northwind;
-  
-  [TestFixture]
-  public class OpenAccessTest : LinqTestBase
-  {
-    protected NorthwindContext db;
-
-    public override string ToolName {
-      get { return "OpenAccess"; }
-    }
-
-    public override string ShortToolName {
-      get { return "OA"; }
-    }
-
-    public override string SourceFileName {
-      get { return @"<#= manager.CurrentBlock.Name #>"; }
-    }
-
-    protected override void Setup()
-    {
-      db = new NorthwindContext();
-
-      Customers = db.Customers.ToList();
-      Employees = db.Employees.ToList();
-      Orders = db.Orders.ToList();
-      Products = db.Products.ToList();
-    }
-
-    protected override void TearDown()
-    {
-      db.Dispose();
-    }
-
-<# manager.EndBlock(); #>
 
 <# manager.StartBlock("LightSpeedTest.generated.cs"); #>
   using Mindscape.LightSpeed;
@@ -204,66 +166,6 @@ namespace OrmBattle.Tests.Linq
 
 <# manager.EndBlock(); #>
 
-<# manager.StartBlock("DOTest.generated.cs"); #>
-  using DOModel;
-  using DOModel.Northwind;
-  using Xtensive.Orm;
-  using Xtensive.Orm.Configuration;
-  
-  [TestFixture]
-  public class DOTest : LinqTestBase
-  {
-    private NorthwindContext db;
-    private Domain domain;
-
-    public override string ToolName {
-      get { return "DataObjects.Net"; }
-    }
-
-    public override string ShortToolName {
-      get { return "DO"; }
-    }
-
-    public override string SourceFileName {
-      get { return @"<#= manager.CurrentBlock.Name #>"; }
-    }
-
-    protected override void Setup()
-    {
-      var config = DomainConfiguration.Load("mssql2005");
-      config.Sessions.Add(new SessionConfiguration("Default"));
-      config.Types.Register(typeof(Supplier).Assembly, typeof(Supplier).Namespace);
-      domain = BuildDomain(config);
-      db = new NorthwindContext(domain);
-      
-      Customers = db.Customers.ToList();
-      Employees = db.Employees.ToList();
-      Orders = db.Orders.ToList();
-      Products = db.Products.ToList();
-    }
-
-    private Domain BuildDomain(DomainConfiguration configuration)
-    {
-      try {
-        var validateConfig = configuration.Clone();
-        validateConfig.UpgradeMode = DomainUpgradeMode.Validate;
-        return Domain.Build(validateConfig);
-      }
-      catch {
-        var recreateConfig = configuration.Clone();
-        recreateConfig.UpgradeMode = DomainUpgradeMode.Recreate;
-        Domain result = Domain.Build(recreateConfig);
-        DataBaseFiller.Fill(result);
-        return result;
-      }
-    }
-    
-    protected override void TearDown()
-    {
-      db.DisposeSafely();
-    }
-  
-<# manager.EndBlock(); #>
 
 <# manager.StartBlock("BLToolkit.generated.cs"); #>
   using BLToolkitModel;

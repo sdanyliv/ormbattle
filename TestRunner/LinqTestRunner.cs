@@ -54,12 +54,12 @@ namespace OrmBattle.TestRunner
       var tests = new List<LinqTestBase> {
         new BLToolkitTest(),
         new EFTest(), 
-        new DOTest(),
+        //new DOTest(),
         //new LightSpeedTest(),
         new LinqConnectTest(),
         new Linq2SqlTest(),
         new NHibernateTest(),
-        new OpenAccessTest(),
+        //new OpenAccessTest(),
       };
       if (toolNames!=null)
         tests = (

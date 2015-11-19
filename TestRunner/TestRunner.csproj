@@ -193,10 +193,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DOModel\DOModel.csproj">
-      <Project>{9E177A2F-7AED-4E92-88A2-B4B689B87FF5}</Project>
-      <Name>DOModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EFModel\EFModel.csproj">
       <Project>{A26B0BCD-92A2-45EF-9F5F-EE31CE9F3EF7}</Project>
       <Name>EFModel</Name>
@@ -205,17 +201,9 @@
       <Project>{8CF4DE14-5D1B-4E75-99A0-98757B96F28F}</Project>
       <Name>EntitySpacesModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LightSpeedModel\LightSpeedModel.csproj">
-      <Project>{2961A24F-A9D7-433C-87B2-1DBC29EBCFEF}</Project>
-      <Name>LightSpeedModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NHibernateModel\NHibernateModel.csproj">
       <Project>{C16E9E0F-62F2-4452-8992-5515CDE563B5}</Project>
       <Name>NHibernateModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TelerikModel\TelerikModel.Northwind.csproj">
-      <Project>{5FA51A55-7120-44B5-A68A-D77B58AB05D5}</Project>
-      <Name>TelerikModel.Northwind</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tests\Tests.csproj">
       <Project>{0CE6E3AF-29DE-43AF-8C95-C92D608D16CD}</Project>
@@ -224,10 +212,6 @@
     <ProjectReference Include="..\SubsonicModel\SubsonicModel.csproj">
       <Project>{0E8FC1DF-927A-489D-83A2-151F72ECB273}</Project>
       <Name>SubsonicModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TelerikModel.PerformanceTest\TelerikModel.PerformanceTest.csproj">
-      <Project>{B27823BC-536A-4AAC-9763-E7E641F29385}</Project>
-      <Name>TelerikModel.PerformanceTest</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -267,7 +251,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="False" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
+      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="False" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
