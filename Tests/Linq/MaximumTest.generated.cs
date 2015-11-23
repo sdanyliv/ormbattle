@@ -19,12 +19,13 @@ using Xtensive.Collections;
 
 namespace OrmBattle.Tests.Linq
 {
+  using System.Data.Entity;
   using EFModel;
   
   [TestFixture]
   public class MaximumTest : LinqTestBase
   {
-    protected NorthwindEntities db;
+    protected MaximumTest db;
 
     public override string ToolName {
       get { return "Maximum"; }
@@ -40,11 +41,18 @@ namespace OrmBattle.Tests.Linq
 
     protected override void Setup()
     {
-      Customers = new List<Customer>();
-      Employees = new List<Employee>();
-      Orders    = new List<Order>();
-      Products  = new List<Product>();
-      Products.Reverse();
+	  db = this;
+	  using (var data = new NorthwindEntities())
+	  {
+		  Customers    = data.Customers.Include(x => x.Orders).ToList();
+		  Employees    = data.Employees.ToList();
+		  Orders       = data.Orders.ToList();
+		  Products     = data.Products.ToList();
+		  Categories   = data.Categories.Include(x => x.Products).ToList();
+		  Suppliers    = data.Suppliers.ToList();
+		  OrderDetails = data.OrderDetails.ToList();
+		  DiscontinuedProducts = data.Products.Where(p => true).ToList();
+	  }
     }
 
     protected override void TearDown()
@@ -53,8 +61,12 @@ namespace OrmBattle.Tests.Linq
   
     List<Customer> Customers;
     List<Employee> Employees;
-    List<Order> Orders;
-    List<Product> Products;
+    List<Order>    Orders;
+    List<Product>  Products;
+    List<Category> Categories;
+    List<Supplier> Suppliers;
+	List<Product>  DiscontinuedProducts;
+	List<OrderDetail> OrderDetails;
     
     // DTO for testing purposes.
     public class OrderDTO
@@ -580,7 +592,7 @@ namespace OrmBattle.Tests.Linq
         from o in Orders
         orderby o.Id
         select o;
-      Assert.IsTrue(expected.SequenceEqual(result));
+      Assert.IsTrue(expected.SequenceEqual(result, new GenericEqualityComparer<Order>(o => o.Id)));
     }
 
     [Test]
@@ -595,7 +607,7 @@ namespace OrmBattle.Tests.Linq
         from o in Orders
         orderby o.OrderDate, o.ShippedDate, o.Id
         select o;
-      Assert.IsTrue(expected.SequenceEqual(result));
+      Assert.IsTrue(expected.SequenceEqual(result, new GenericEqualityComparer<Order>(o => o.Id)));
     }
 
     [Test]

@@ -58,8 +58,12 @@ namespace OrmBattle.Tests.Linq
 
     List<Customer> Customers;
     List<Employee> Employees;
-    List<Order> Orders;
-    List<Product> Products;
+    List<Order>    Orders;
+    List<Product>  Products;
+    List<Category> Categories;
+    List<Supplier> Suppliers;
+	List<Product>  DiscontinuedProducts;
+	List<OrderDetail> OrderDetails;
     
     // DTO for testing purposes.
     public class OrderDTO
@@ -585,7 +589,7 @@ namespace OrmBattle.Tests.Linq
         from o in Orders
         orderby o.Id
         select o;
-      Assert.IsTrue(expected.SequenceEqual(result));
+      Assert.IsTrue(expected.SequenceEqual(result, new GenericEqualityComparer<Order>(o => o.Id)));
     }
 
     [Test]
@@ -600,7 +604,7 @@ namespace OrmBattle.Tests.Linq
         from o in Orders
         orderby o.OrderDate, o.ShippedDate, o.Id
         select o;
-      Assert.IsTrue(expected.SequenceEqual(result));
+      Assert.IsTrue(expected.SequenceEqual(result, new GenericEqualityComparer<Order>(o => o.Id)));
     }
 
     [Test]

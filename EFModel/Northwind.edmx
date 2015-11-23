@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NorthwindModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="NorthwindModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="NorthwindModelStoreContainer">
           <EntitySet Name="Categories" EntityType="NorthwindModel.Store.Categories" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
           <EntitySet Name="Customers" EntityType="NorthwindModel.Store.Customers" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
@@ -335,7 +335,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NorthwindModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -388,8 +389,9 @@
           </AssociationSet>
           <AssociationSet Name="EmployeeTerritories" Association="NorthwindModel.EmployeeTerritories">
             <End Role="Territories" EntitySet="Territories" />
-            <End Role="Employees" EntitySet="Employees" /></AssociationSet>
-          </EntityContainer>
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -442,7 +444,7 @@
           <NavigationProperty Name="ReportsTo" Relationship="NorthwindModel.FK_Employees_Employees" FromRole="Employees" ToRole="ReportsTo" />
           <NavigationProperty Name="Orders" Relationship="NorthwindModel.FK_Orders_Employees" FromRole="Employee" ToRole="Orders" />
           <NavigationProperty Name="Territories" Relationship="NorthwindModel.EmployeeTerritories" FromRole="Employees" ToRole="Territories" />
-          </EntityType>
+        </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
             <PropertyRef Name="OrderID" />
@@ -480,7 +482,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <!--<Property Name="Discontinued" Type="Boolean" Nullable="false" />-->
+<!--          <Property Name="Discontinued" Type="Boolean" Nullable="false" />-->
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
           <Property Name="QuantityPerUnit" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
@@ -535,7 +537,7 @@
           <Property Name="Id" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Region" Relationship="NorthwindModel.FK_Territories_Region" FromRole="Territories" ToRole="Region" />
           <NavigationProperty Name="Employees" Relationship="NorthwindModel.EmployeeTerritories" FromRole="Territories" ToRole="Employees" />
-          </EntityType>
+        </EntityType>
         <Association Name="FK_Products_Categories">
           <End Role="Category" Type="NorthwindModel.Category" Multiplicity="0..1" />
           <End Role="Products" Type="NorthwindModel.Product" Multiplicity="*" />
@@ -555,19 +557,27 @@
         <Association Name="FK_Order_Details_Orders">
           <End Role="Order" Type="NorthwindModel.Order" Multiplicity="1" />
           <End Role="Order_Details" Type="NorthwindModel.OrderDetail" Multiplicity="*" />
-        <ReferentialConstraint>
+          <ReferentialConstraint>
             <Principal Role="Order">
-              <PropertyRef Name="Id" /></Principal>
+              <PropertyRef Name="Id" />
+            </Principal>
             <Dependent Role="Order_Details">
-              <PropertyRef Name="OrderID" /></Dependent></ReferentialConstraint></Association>
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_Details_Products">
           <End Role="Product" Type="NorthwindModel.Product" Multiplicity="1" />
           <End Role="OrderDetails" Type="NorthwindModel.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
-              <PropertyRef Name="Id" /></Principal>
+              <PropertyRef Name="Id" />
+            </Principal>
             <Dependent Role="OrderDetails">
-              <PropertyRef Name="ProductID" /></Dependent></ReferentialConstraint></Association>
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_Shippers">
           <End Role="Shipper" Type="NorthwindModel.Shipper" Multiplicity="0..1" />
           <End Role="Orders" Type="NorthwindModel.Order" Multiplicity="*" />
@@ -582,9 +592,11 @@
         </Association>
         <Association Name="EmployeeTerritories">
           <End Type="NorthwindModel.Territory" Role="Territories" Multiplicity="*" />
-          <End Type="NorthwindModel.Employee" Role="Employees" Multiplicity="*" /></Association>
+          <End Type="NorthwindModel.Employee" Role="Employees" Multiplicity="*" />
+        </Association>
         <EntityType Name="ActiveProduct" BaseType="NorthwindModel.Product" />
-        <EntityType Name="DiscontinuedProduct" BaseType="NorthwindModel.Product" /></Schema>
+        <EntityType Name="DiscontinuedProduct" BaseType="NorthwindModel.Product" />
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -683,11 +695,16 @@
             <EntityTypeMapping TypeName="IsTypeOf(NorthwindModel.ActiveProduct)">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Id" ColumnName="ProductID" />
-                <Condition ColumnName="Discontinued" Value="0" /></MappingFragment></EntityTypeMapping>
+                <Condition ColumnName="Discontinued" Value="0" />
+              </MappingFragment>
+            </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(NorthwindModel.DiscontinuedProduct)">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Id" ColumnName="ProductID" />
-                <Condition ColumnName="Discontinued" Value="1" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+                <Condition ColumnName="Discontinued" Value="1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Regions">
             <EntityTypeMapping TypeName="IsTypeOf(NorthwindModel.Region)">
               <MappingFragment StoreEntitySet="Region">
@@ -813,9 +830,13 @@
           </AssociationSetMapping>
           <AssociationSetMapping Name="EmployeeTerritories" TypeName="NorthwindModel.EmployeeTerritories" StoreEntitySet="EmployeeTerritories">
             <EndProperty Name="Employees">
-              <ScalarProperty Name="Id" ColumnName="EmployeeID" /></EndProperty>
+              <ScalarProperty Name="Id" ColumnName="EmployeeID" />
+            </EndProperty>
             <EndProperty Name="Territories">
-              <ScalarProperty Name="Id" ColumnName="TerritoryID" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+              <ScalarProperty Name="Id" ColumnName="TerritoryID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -829,6 +850,7 @@
     <edmx:Options>
       <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
@@ -847,43 +869,48 @@
         <AssociationConnector Association="NorthwindModel.FK_Products_Categories" ManuallyRouted="false">
           <ConnectorPoint PointX="8.375" PointY="6" />
           <ConnectorPoint PointX="8.375" PointY="3.7427376302083317" />
-          </AssociationConnector>
+        </AssociationConnector>
         <AssociationConnector Association="NorthwindModel.FK_Orders_Customers" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="3.5750634764507412" />
           <ConnectorPoint PointX="3" PointY="3.5750634764507412" />
-          </AssociationConnector>
+        </AssociationConnector>
         <AssociationConnector Association="NorthwindModel.FK_Employees_Employees" ManuallyRouted="false">
           <ConnectorPoint PointX="1.2819230769230767" PointY="10.425558268229166" />
           <ConnectorPoint PointX="1.2819230769230767" PointY="10.675558268229167" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="10.675558268229167" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="10.425558268229166" /></AssociationConnector>
+          <ConnectorPoint PointX="1.7284615384615383" PointY="10.425558268229166" />
+        </AssociationConnector>
         <AssociationConnector Association="NorthwindModel.FK_Orders_Employees" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="6.2883665903972634" />
           <ConnectorPoint PointX="3.75" PointY="6.2883665903972634" />
-          <ConnectorPoint PointX="3.75" PointY="4.400126953125" /></AssociationConnector>
+          <ConnectorPoint PointX="3.75" PointY="4.400126953125" />
+        </AssociationConnector>
         <AssociationConnector Association="NorthwindModel.FK_Order_Details_Orders" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="2.0426741537575919" />
-          <ConnectorPoint PointX="5.375" PointY="2.0426741537575919" /></AssociationConnector>
+          <ConnectorPoint PointX="5.375" PointY="2.0426741537575919" />
+        </AssociationConnector>
         <AssociationConnector Association="NorthwindModel.FK_Order_Details_Products" ManuallyRouted="false">
           <ConnectorPoint PointX="7.75" PointY="1.2932290891247522" />
           <ConnectorPoint PointX="6.875" PointY="1.2932290891247522" />
-          </AssociationConnector>
+        </AssociationConnector>
         <AssociationConnector Association="NorthwindModel.FK_Orders_Shippers" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="1.7961531575520833" />
-          <ConnectorPoint PointX="3" PointY="1.7961531575520833" /></AssociationConnector>
+          <ConnectorPoint PointX="3" PointY="1.7961531575520833" />
+        </AssociationConnector>
         <AssociationConnector Association="NorthwindModel.FK_Products_Suppliers" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="2.3713688151041659" />
           <ConnectorPoint PointX="9.25" PointY="2.3713688151041659" />
-          </AssociationConnector>
+        </AssociationConnector>
         <AssociationConnector Association="NorthwindModel.FK_Territories_Region" ManuallyRouted="false">
           <ConnectorPoint PointX="6.125" PointY="5.052958984375" />
           <ConnectorPoint PointX="6.125" PointY="5.875" />
-          </AssociationConnector>
+        </AssociationConnector>
         <AssociationConnector Association="NorthwindModel.EmployeeTerritories" ManuallyRouted="true">
           <ConnectorPoint PointX="5.375" PointY="6.7512502176365494" />
           <ConnectorPoint PointX="3.8125" PointY="6.7512502176365494" />
           <ConnectorPoint PointX="3.8125" PointY="6.69903143837363" />
-          <ConnectorPoint PointX="2.25" PointY="6.69903143837363" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="6.69903143837363" />
+        </AssociationConnector>
         <EntityTypeShape EntityType="NorthwindModel.ActiveProduct" Width="1.5" PointX="9.875" PointY="4.875" Height="0.9349169921875" />
         <EntityTypeShape EntityType="NorthwindModel.DiscontinuedProduct" Width="1.5" PointX="10.375" PointY="6.625" Height="0.9349169921875" />
         <InheritanceConnector EntityType="NorthwindModel.ActiveProduct">
@@ -893,12 +920,16 @@
           <ConnectorPoint PointX="8.4583333333333339" PointY="5.3125" />
           <ConnectorPoint PointX="8.7604186666666664" PointY="5.3124999999999991" />
           <ConnectorPoint PointX="8.9270853333333342" PointY="5.3125" />
-          <ConnectorPoint PointX="9.875" PointY="5.3125" /></InheritanceConnector>
+          <ConnectorPoint PointX="9.875" PointY="5.3125" />
+        </InheritanceConnector>
         <InheritanceConnector EntityType="NorthwindModel.DiscontinuedProduct">
           <ConnectorPoint PointX="8.843752" PointY="3.7427376302083317" />
           <ConnectorPoint PointX="8.843752" PointY="5.75" />
           <ConnectorPoint PointX="9.25" PointY="5.75" />
           <ConnectorPoint PointX="9.25" PointY="7.09245849609375" />
-          <ConnectorPoint PointX="10.375" PointY="7.09245849609375" /></InheritanceConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="10.375" PointY="7.09245849609375" />
+        </InheritanceConnector>
+      </Diagram>
+    </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

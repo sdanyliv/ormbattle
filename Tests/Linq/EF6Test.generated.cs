@@ -19,44 +19,33 @@ using Xtensive.Collections;
 
 namespace OrmBattle.Tests.Linq
 {
-  using Linq2DbModel;
-
+  using EFModel;
+  
   [TestFixture]
-  public class Linq2DbTest : LinqTestBase
+  public class EF6Test : LinqTestBase
   {
-    protected NorthwindDB db;
+    protected NorthwindEntities db;
 
     public override string ToolName {
-      get { return "Linq2Db"; }
+      get { return "Entity Framework 6"; }
     }
 
     public override string ShortToolName {
-      get { return "L2DB"; }
+      get { return "EF6"; }
     }
 
     public override string SourceFileName {
-      get { return @"Linq2Db.generated.cs"; }
+      get { return @"EF6Test.generated.cs"; }
     }
 
     protected override void Setup()
     {
-      //using (new DbManager("PerformanceTest"))
-      //{}
-      db = new NorthwindDB();
-
+      db = new NorthwindEntities();
+      
       Customers = db.Customers.ToList();
       Employees = db.Employees.ToList();
-      Orders    = db.Orders.   ToList();
-      Products  = db.Products. ToList();
-
-      foreach (var o in Orders)
-      {
-        o.Customer = Customers.SingleOrDefault(c => c.Id == o.CustomerID);
-        o.Employee = Employees.SingleOrDefault(e => e.EmployeeID == o.EmployeeID);
-      }
-
-      foreach (var c in Customers)
-        c.Orders = Orders.Where(o => c.Id == o.CustomerID).ToList();
+      Orders = db.Orders.ToList();
+      Products = db.Products.ToList();
     }
 
     protected override void TearDown()
