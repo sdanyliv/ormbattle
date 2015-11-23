@@ -12,13 +12,14 @@ using OrmBattle.Tests.Linq;
 using OrmBattle.Tests.Performance;
 using Xtensive.Core;
 using BLToolkitTest = OrmBattle.Tests.Performance.BLToolkitTest;
-using DOTest = OrmBattle.Tests.Performance.DOTest;
-using EFTest = OrmBattle.Tests.Performance.EFTest;
+using EF6Test = OrmBattle.Tests.Performance.EF6Test;
+//using DOTest = OrmBattle.Tests.Performance.DOTest;
 using LightSpeedTest = OrmBattle.Tests.Performance.LightSpeedTest;
+using Linq2DbTest = OrmBattle.Tests.Performance.Linq2DbTest;
 using LinqConnectTest = OrmBattle.Tests.Performance.LinqConnectTest;
 using Linq2SqlTest = OrmBattle.Tests.Performance.Linq2SqlTest;
 using NHibernateTest = OrmBattle.Tests.Performance.NHibernateTest;
-using OpenAccessTest = OrmBattle.Tests.Performance.OpenAccessTest;
+//using OpenAccessTest = OrmBattle.Tests.Performance.OpenAccessTest;
 
 namespace OrmBattle.TestRunner
 {
@@ -81,14 +82,15 @@ namespace OrmBattle.TestRunner
 
         var tests = new List<PerformanceTestBase> {
           new BLToolkitTest(),
-          new EFTest(),
-          new EntitySpacesTest(),
-          new DOTest(),
+          new Linq2DbTest(),
+          new EF6Test(),
+          // new EntitySpacesTest(),
+          // new DOTest(),
           // new LightSpeedTest(),
           new LinqConnectTest(), 
           new Linq2SqlTest(),
           new NHibernateTest(),
-          new OpenAccessTest(),
+          //new OpenAccessTest(),
           new SubsonicTest(),
           new SqlClientTest()
         };

@@ -88,20 +88,20 @@ namespace OrmBattle.Tests.Linq
 
 <# manager.EndBlock(); #>
 
-<# manager.StartBlock("EFTest.generated.cs"); #>
+<# manager.StartBlock("EF6Test.generated.cs"); #>
   using EFModel;
   
   [TestFixture]
-  public class EFTest : LinqTestBase
+  public class EF6Test : LinqTestBase
   {
     protected NorthwindEntities db;
 
     public override string ToolName {
-      get { return "ADO.NET Entity Framework"; }
+      get { return "Entity Framework 6"; }
     }
 
     public override string ShortToolName {
-      get { return "EF"; }
+      get { return "EF6"; }
     }
 
     public override string SourceFileName {
@@ -125,44 +125,6 @@ namespace OrmBattle.Tests.Linq
 
 <# manager.EndBlock(); #>
 
-<# manager.StartBlock("OpenAccessTest.generated.cs"); #>
-  using Telerik.OpenAccess;
-  using Telerik.OpenAccess.Query;
-  using TelerikModel.Northwind;
-  
-  [TestFixture]
-  public class OpenAccessTest : LinqTestBase
-  {
-    protected NorthwindContext db;
-
-    public override string ToolName {
-      get { return "OpenAccess"; }
-    }
-
-    public override string ShortToolName {
-      get { return "OA"; }
-    }
-
-    public override string SourceFileName {
-      get { return @"<#= manager.CurrentBlock.Name #>"; }
-    }
-
-    protected override void Setup()
-    {
-      db = new NorthwindContext();
-
-      Customers = db.Customers.ToList();
-      Employees = db.Employees.ToList();
-      Orders = db.Orders.ToList();
-      Products = db.Products.ToList();
-    }
-
-    protected override void TearDown()
-    {
-      db.Dispose();
-    }
-
-<# manager.EndBlock(); #>
 
 <# manager.StartBlock("LightSpeedTest.generated.cs"); #>
   using Mindscape.LightSpeed;
@@ -204,66 +166,6 @@ namespace OrmBattle.Tests.Linq
 
 <# manager.EndBlock(); #>
 
-<# manager.StartBlock("DOTest.generated.cs"); #>
-  using DOModel;
-  using DOModel.Northwind;
-  using Xtensive.Orm;
-  using Xtensive.Orm.Configuration;
-  
-  [TestFixture]
-  public class DOTest : LinqTestBase
-  {
-    private NorthwindContext db;
-    private Domain domain;
-
-    public override string ToolName {
-      get { return "DataObjects.Net"; }
-    }
-
-    public override string ShortToolName {
-      get { return "DO"; }
-    }
-
-    public override string SourceFileName {
-      get { return @"<#= manager.CurrentBlock.Name #>"; }
-    }
-
-    protected override void Setup()
-    {
-      var config = DomainConfiguration.Load("mssql2005");
-      config.Sessions.Add(new SessionConfiguration("Default"));
-      config.Types.Register(typeof(Supplier).Assembly, typeof(Supplier).Namespace);
-      domain = BuildDomain(config);
-      db = new NorthwindContext(domain);
-      
-      Customers = db.Customers.ToList();
-      Employees = db.Employees.ToList();
-      Orders = db.Orders.ToList();
-      Products = db.Products.ToList();
-    }
-
-    private Domain BuildDomain(DomainConfiguration configuration)
-    {
-      try {
-        var validateConfig = configuration.Clone();
-        validateConfig.UpgradeMode = DomainUpgradeMode.Validate;
-        return Domain.Build(validateConfig);
-      }
-      catch {
-        var recreateConfig = configuration.Clone();
-        recreateConfig.UpgradeMode = DomainUpgradeMode.Recreate;
-        Domain result = Domain.Build(recreateConfig);
-        DataBaseFiller.Fill(result);
-        return result;
-      }
-    }
-    
-    protected override void TearDown()
-    {
-      db.DisposeSafely();
-    }
-  
-<# manager.EndBlock(); #>
 
 <# manager.StartBlock("BLToolkit.generated.cs"); #>
   using BLToolkitModel;
@@ -279,6 +181,54 @@ namespace OrmBattle.Tests.Linq
 
     public override string ShortToolName {
       get { return "BLT"; }
+    }
+
+    public override string SourceFileName {
+      get { return @"<#= manager.CurrentBlock.Name #>"; }
+    }
+
+    protected override void Setup()
+    {
+      //using (new DbManager("PerformanceTest"))
+      //{}
+      db = new NorthwindDB();
+
+      Customers = db.Customers.ToList();
+      Employees = db.Employees.ToList();
+      Orders    = db.Orders.   ToList();
+      Products  = db.Products. ToList();
+
+      foreach (var o in Orders)
+      {
+        o.Customer = Customers.SingleOrDefault(c => c.Id == o.CustomerID);
+        o.Employee = Employees.SingleOrDefault(e => e.EmployeeID == o.EmployeeID);
+      }
+
+      foreach (var c in Customers)
+        c.Orders = Orders.Where(o => c.Id == o.CustomerID).ToList();
+    }
+
+    protected override void TearDown()
+    {
+      db.Dispose();
+    }
+
+<# manager.EndBlock(); #>
+
+<# manager.StartBlock("Linq2Db.generated.cs"); #>
+  using Linq2DbModel;
+
+  [TestFixture]
+  public class Linq2DbTest : LinqTestBase
+  {
+    protected NorthwindDB db;
+
+    public override string ToolName {
+      get { return "Linq2Db"; }
+    }
+
+    public override string ShortToolName {
+      get { return "L2DB"; }
     }
 
     public override string SourceFileName {
@@ -390,12 +340,13 @@ namespace OrmBattle.Tests.Linq
 <# manager.EndBlock(); #>
 
 <# manager.StartBlock("MaximumTest.generated.cs"); #>
+  using System.Data.Entity;
   using EFModel;
   
   [TestFixture]
   public class MaximumTest : LinqTestBase
   {
-    protected NorthwindEntities db;
+    protected MaximumTest db;
 
     public override string ToolName {
       get { return "Maximum"; }
@@ -411,11 +362,18 @@ namespace OrmBattle.Tests.Linq
 
     protected override void Setup()
     {
-      Customers = new List<Customer>();
-      Employees = new List<Employee>();
-      Orders    = new List<Order>();
-      Products  = new List<Product>();
-      Products.Reverse();
+	  db = this;
+	  using (var data = new NorthwindEntities())
+	  {
+		  Customers    = data.Customers.Include(x => x.Orders).ToList();
+		  Employees    = data.Employees.ToList();
+		  Orders       = data.Orders.ToList();
+		  Products     = data.Products.ToList();
+		  Categories   = data.Categories.Include(x => x.Products).ToList();
+		  Suppliers    = data.Suppliers.ToList();
+		  OrderDetails = data.OrderDetails.ToList();
+		  DiscontinuedProducts = data.Products.Where(p => true).ToList();
+	  }
     }
 
     protected override void TearDown()
@@ -427,8 +385,12 @@ namespace OrmBattle.Tests.Linq
 <# manager.StartFooter(); #>
     List<Customer> Customers;
     List<Employee> Employees;
-    List<Order> Orders;
-    List<Product> Products;
+    List<Order>    Orders;
+    List<Product>  Products;
+    List<Category> Categories;
+    List<Supplier> Suppliers;
+	List<Product>  DiscontinuedProducts;
+	List<OrderDetail> OrderDetails;
     
     // DTO for testing purposes.
     public class OrderDTO
@@ -954,7 +916,7 @@ namespace OrmBattle.Tests.Linq
         from o in Orders
         orderby o.Id
         select o;
-      Assert.IsTrue(expected.SequenceEqual(result));
+      Assert.IsTrue(expected.SequenceEqual(result, new GenericEqualityComparer<Order>(o => o.Id)));
     }
 
     [Test]
@@ -969,7 +931,7 @@ namespace OrmBattle.Tests.Linq
         from o in Orders
         orderby o.OrderDate, o.ShippedDate, o.Id
         select o;
-      Assert.IsTrue(expected.SequenceEqual(result));
+      Assert.IsTrue(expected.SequenceEqual(result, new GenericEqualityComparer<Order>(o => o.Id)));
     }
 
     [Test]
