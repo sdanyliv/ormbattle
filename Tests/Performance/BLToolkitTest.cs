@@ -15,8 +15,8 @@ namespace OrmBattle.Tests.Performance
 	[Serializable]
 	public class BLToolkitTest : PerformanceTestBase
 	{
-		DbManager           db;
-		SqlQuery<Simplests> query;
+		DbManager           _db;
+		SqlQuery<Simplests> _query;
 
 		public override string ToolName      { get { return "BLToolkit"; } }
 		public override string ShortToolName { get { return "BLT";       } }
@@ -40,13 +40,13 @@ namespace OrmBattle.Tests.Performance
 		protected override void OpenSession()
 		{
 			DbManager.DefaultConfiguration = "PerformanceTest";
-			db    = new DbManager("PerformanceTest");
-			query = new SqlQuery<Simplests>();
+			_db    = new DbManager("PerformanceTest");
+			_query = new SqlQuery<Simplests>();
 		}
 
 		protected override void CloseSession()
 		{
-			db.Dispose();
+			_db.Dispose();
 		}
 
 		static IEnumerable<Simplests> CreateNewSimplests(int count)
@@ -57,18 +57,18 @@ namespace OrmBattle.Tests.Performance
 
 		protected override void InsertMultipleTest(int count)
 		{
-			db.BeginTransaction();
-			InstanceCount = query.Insert(db, 25, CreateNewSimplests(count));
-			db.CommitTransaction();
+			_db.BeginTransaction();
+			InstanceCount = _query.Insert(_db, 25, CreateNewSimplests(count));
+			_db.CommitTransaction();
 		}
 
 		protected override void UpdateMultipleTest()
 		{
 			long sum = (long)InstanceCount * (InstanceCount - 1) / 2;
 
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
-			var list = query.SelectAll(db);
+			var list = _query.SelectAll(_db);
 
 			foreach (var s in list)
 			{
@@ -76,28 +76,28 @@ namespace OrmBattle.Tests.Performance
 				sum -= s.Id;
 			}
 
-			query.Update(db, 25, list);
+			_query.Update(_db, 25, list);
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 
 			Assert.AreEqual(0, sum);
 		}
 
 		protected override void DeleteMultipleTest()
 		{
-			db.BeginTransaction();
-			query.Delete(db, 25, query.SelectAll(db));
-			db.CommitTransaction();
+			_db.BeginTransaction();
+			_query.Delete(_db, 25, _query.SelectAll(_db));
+			_db.CommitTransaction();
 		}
 
 		protected override void InsertSingleTest(int count)
 		{
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
 			for (var i = 0; i < count; i++)
-				query.Insert(db, new Simplests { Id = i, Value = i });
+				_query.Insert(_db, new Simplests { Id = i, Value = i });
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 
 			InstanceCount = count;
 		}
@@ -106,44 +106,44 @@ namespace OrmBattle.Tests.Performance
 		{
 			long sum = (long)InstanceCount * (InstanceCount - 1) / 2;
 
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
-			foreach (var s in query.SelectAll(db))
+			foreach (var s in _query.SelectAll(_db))
 			{
 				s.Value++;
 				sum -= s.Id;
 
-				query.Update(db, s);
+				_query.Update(_db, s);
 			}
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 
 			Assert.AreEqual(0, sum);
 		}
 
 		protected override void DeleteSingleTest()
 		{
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
-			foreach (var s in query.SelectAll(db))
-				query.Delete(db, s);
+			foreach (var s in _query.SelectAll(_db))
+				_query.Delete(_db, s);
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 		}
 
 		protected override void FetchTest(int count)
 		{
 			long sum = (long)count * (count - 1) / 2;
 
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
 			for (var i = 0; i < count; i++)
 			{
-				var s = query.SelectByKey(db, (long)i % InstanceCount);
+				var s = _query.SelectByKey(_db, (long)i % InstanceCount);
 				sum -= s.Id;
 			}
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 
 			if (count <= InstanceCount)
 				Assert.AreEqual(0, sum);
@@ -151,12 +151,12 @@ namespace OrmBattle.Tests.Performance
 
 		protected override void LinqQueryTest(int count)
 		{
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
 			for (var i = 0; i < count; i++)
 			{
 				var id     = (long)i % InstanceCount;
-				var result = db.GetTable<Simplests>().Where(o => o.Id == id);
+				var result = _db.GetTable<Simplests>().Where(o => o.Id == id);
 
 				foreach (var o in result)
 				{
@@ -164,7 +164,7 @@ namespace OrmBattle.Tests.Performance
 				}
 			}
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 		}
 
 		static readonly Func<DbManager,long,IQueryable<Simplests>> _compiledQuery = CompiledQuery.Compile(
@@ -172,65 +172,65 @@ namespace OrmBattle.Tests.Performance
 
 		protected override void CompiledLinqQueryTest(int count)
 		{
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
 			for (var i = 0; i < count; i++)
 			{
 				var id = (long)i % InstanceCount;
-				foreach (var o in _compiledQuery(db, id))
+				foreach (var o in _compiledQuery(_db, id))
 				{
 					// Doing nothing, just enumerate
 				}
 			}
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 		}
 
 		protected override void NativeQueryTest(int count)
 		{
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
-			db
+			_db
 				.SetCommand(@"SELECT * FROM Simplests WHERE Id = @id",
-					db.Parameter("@id", DbType.Int32, 4))
+					_db.Parameter("@id", DbType.Int32, 4))
 				.Prepare();
 
 			for (var i = 0; i < count; i++)
 			{
-				db.Parameter("@id").Value = i % InstanceCount;
+				_db.Parameter("@id").Value = i % InstanceCount;
 
-				var result = db.ExecuteObject<Simplests>();
+				var result = _db.ExecuteObject<Simplests>();
 			}
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 		}
 
 		protected override void LinqMaterializeTest(int count)
 		{
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
 			var i = 0;
 
 			while (i < count)
-				foreach (var o in db.GetTable<Simplests>().Where(s => s.Id > 0))
+				foreach (var o in _db.GetTable<Simplests>().Where(s => s.Id > 0))
 					if (++i >= count)
 						break;
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 		}
 
 		protected override void NativeMaterializeTest(int count)
 		{
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
 			var i = 0;
 
 			while (i < count)
-				foreach (var o in query.SelectAll(db))
+				foreach (var o in _query.SelectAll(_db))
 					if (++i >= count)
 						break;
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 		}
 
 		static readonly Func<DbManager,long,int,IQueryable<Simplests>> _pageQuery = CompiledQuery.Compile(
@@ -238,19 +238,19 @@ namespace OrmBattle.Tests.Performance
 
 		protected override void LinqQueryPageTest(int count, int pageSize)
 		{
-			db.BeginTransaction();
+			_db.BeginTransaction();
 
 			for (var i = 0; i < count; i++)
 			{
 				var id = (i * pageSize) % InstanceCount;
 
-				foreach (var o in _pageQuery(db, id, pageSize))
+				foreach (var o in _pageQuery(_db, id, pageSize))
 				{
 					// Doing nothing, just enumerate
 				}
 			}
 
-			db.CommitTransaction();
+			_db.CommitTransaction();
 		}
 	}
 }

@@ -4,26 +4,23 @@
 // Created by: Alexis Kochetov
 // Created:    2009.07.29
 
-using System;
-using System.Diagnostics;
-
 namespace OrmBattle.NHibernateModel
 {
-  public class Simplest
-  {
-    public virtual long Id { get; set; }
-    public virtual long Value { get; set; }
-
-
-    // Constructors
-
-    public Simplest()
-    {}
-
-    public Simplest(long id, long value)
+    public class Simplest
     {
-      Id = id;
-      Value = value;
+        // Constructors
+
+        public Simplest()
+        {
+        }
+
+        public Simplest(long id, long value)
+        {
+            Id = id;
+            Value = value;
+        }
+
+        public virtual long Id { get; set; }
+        public virtual long Value { get; set; }
     }
-  }
 }

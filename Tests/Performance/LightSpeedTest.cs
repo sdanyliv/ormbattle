@@ -154,7 +154,7 @@ namespace OrmBattle.Tests.Performance
       using (var transaction = db.BeginTransaction()) {
         for (int i = 0; i < count; i++) {
           var id = minId + i % InstanceCount;
-          var o = db.FindOne<Simplest>(id);
+          var o = db.FindById<Simplest>(id);
         }
         transaction.Commit();
       }
