@@ -147,6 +147,47 @@ namespace OrmBattle.Tests.Linq
 
 <# manager.EndBlock(); #>
 
+<# manager.StartBlock("EF7Test.generated.cs"); #>
+    using EF7Model;
+  
+    [TestFixture]
+    public class EF7Test : LinqTestBase
+    {
+	    protected NorthwindContext db;
+	
+	    public override string ToolName 
+		{
+	        get { return "Entity Framework 7"; }
+
+	    }
+	
+	    public override string ShortToolName 
+		{
+	        get { return "EF7"; }
+		}
+	
+        public override string SourceFileName 
+        {
+            get { return @"<#= manager.CurrentBlock.Name #>"; }
+        }
+	
+        protected override void Setup()
+        {
+            db = new NorthwindContext();
+	      
+            Customers = db.Customers.ToList();
+            Employees = db.Employees.ToList();
+            Orders = db.Orders.ToList();
+            Products = db.Products.ToList();
+	    }
+	
+        protected override void TearDown()
+        {
+	        db.Dispose();
+        }
+
+<# manager.EndBlock(); #>
+
 
 <# manager.StartBlock("LightSpeedTest.generated.cs"); #>
     using Mindscape.LightSpeed;
