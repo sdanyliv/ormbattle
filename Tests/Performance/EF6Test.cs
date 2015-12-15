@@ -70,7 +70,7 @@ namespace OrmBattle.Tests.Performance
 
         protected override void InsertMultipleTest(int count)
         {
-            using (var transaction = context.Database.Connection.BeginTransaction())
+            using (var transaction = context.Database.BeginTransaction())
             {
                 for (var i = 0; i < count; i++)
                 {
@@ -103,8 +103,7 @@ namespace OrmBattle.Tests.Performance
         {
             using (var transaction = context.Database.BeginTransaction())
             {
-                foreach (var s in context.Simplests)
-                    context.Simplests.Remove(s);
+                context.Simplests.RemoveRange(context.Simplests);
                 context.SaveChanges();
                 transaction.Commit();
             }

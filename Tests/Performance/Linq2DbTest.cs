@@ -160,7 +160,7 @@ namespace OrmBattle.Tests.Performance
 			_db.CommitTransaction();
 		}
 
-		static readonly Func<DataConnection,long,IQueryable<Simplests>> _compiledQuery = CompiledQuery.Compile(
+		static readonly Func<DataConnection,long,IQueryable<Simplests>> CompiledQuery = LinqToDB.CompiledQuery.Compile(
 			(DataConnection db, long id) => db.GetTable<Simplests>().Where(o => o.Id == id));
 
 		protected override void CompiledLinqQueryTest(int count)
@@ -170,7 +170,7 @@ namespace OrmBattle.Tests.Performance
 			for (var i = 0; i < count; i++)
 			{
 				var id = i % InstanceCount;
-				foreach (var o in _compiledQuery(_db, id))
+				foreach (var o in CompiledQuery(_db, id))
 				{
 					// Doing nothing, just enumerate
 				}
@@ -222,8 +222,8 @@ namespace OrmBattle.Tests.Performance
 			_db.CommitTransaction();
 		}
 
-		static readonly Func<DataConnection,long,int,IQueryable<Simplests>> _pageQuery = CompiledQuery.Compile(
-			(DataConnection db, long id, int pgSize) => db.GetTable<Simplests>().Where(o => o.Id >= id).Take(pgSize));
+	    static readonly Func<DataConnection, long, int, IQueryable<Simplests>> PageQuery = LinqToDB.CompiledQuery.Compile(
+	        (DataConnection db, long id, int pgSize) => db.GetTable<Simplests>().Where(o => o.Id >= id).Take(pgSize));
 
 		protected override void LinqQueryPageTest(int count, int pageSize)
 		{
@@ -233,7 +233,7 @@ namespace OrmBattle.Tests.Performance
 			{
 				var id = (i * pageSize) % InstanceCount;
 
-				foreach (var o in _pageQuery(_db, id, pageSize))
+				foreach (var o in PageQuery(_db, id, pageSize))
 				{
 					// Doing nothing, just enumerate
 				}

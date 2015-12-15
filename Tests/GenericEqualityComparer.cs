@@ -18,16 +18,6 @@ namespace OrmBattle.Tests
             _propertyInfos.AddRange(props);
         }
 
-        public bool Equals(object x, object y)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetHashCode(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
         #region IEqualityComparer Members
 
         public bool Equals(T x, T y)
