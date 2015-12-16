@@ -21,38 +21,53 @@ using NUnit.Framework;
 
 namespace OrmBattle.Tests.Linq
 {
-    using EFModel;
+    using Microsoft.Data.Entity;
+    using Microsoft.Data.Entity.Infrastructure;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using EF7Model;
   
     [TestFixture]
-    public class EF6Test : LinqTestBase
+    public class EF7Test : LinqTestBase
     {
-        protected NorthwindEntities db;
+        protected NorthwindContext db;
     
+        public static class DbContextLogging
+        {
+            public static void LogToTrace(DbContext context)
+            {
+                var contextServices = ((IInfrastructure<IServiceProvider>) context).Instance;
+                var loggerFactory = contextServices.GetRequiredService<ILoggerFactory>();
+                loggerFactory.AddDebug(LogLevel.Verbose);
+            }
+        }
+
         public override string ToolName 
         {
-            get { return "Entity Framework 6"; }
+            get { return "Entity Framework 7"; }
+
         }
     
         public override string ShortToolName 
         {
-            get { return "EF6"; }
+            get { return "EF7"; }
         }
     
         public override string SourceFileName 
         {
-            get { return @"EF6Test.generated.cs"; }
+            get { return @"EF7Test.generated.cs"; }
         }
     
         protected override void Setup()
         {
-            db = new NorthwindEntities();
+            db = new NorthwindContext();
           
             Customers = db.Customers.ToList();
             Employees = db.Employees.ToList();
             Orders = db.Orders.ToList();
             Products = db.Products.ToList();
 
-            db.Database.Log = s => Trace.WriteLine(s);
+            // DbContextLogging.LogToTrace(db);
         }
     
         protected override void TearDown()
