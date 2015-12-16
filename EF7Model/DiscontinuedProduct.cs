@@ -1,4 +1,4 @@
-﻿namespace EF7Model
+﻿namespace OrmBattle.EF7Model
 {
     public class DiscontinuedProduct : Product
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EF7Model
+namespace OrmBattle.EF7Model
 {
     [Table("Employees")]
     public partial class Employee

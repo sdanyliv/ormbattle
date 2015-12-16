@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EF7Model
+namespace OrmBattle.EF7Model
 {
     public partial class Shippers
     {

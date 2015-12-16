@@ -3,14 +3,13 @@ using System.Configuration;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
 
-namespace EF7Model
+namespace OrmBattle.EF7Model
 {
     public partial class NorthwindContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(ConfigurationManager.ConnectionStrings["Northwind"].ConnectionString);
-//            options.UseSqlServer(@"Server=OCEANIA;Database=Northwind;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
