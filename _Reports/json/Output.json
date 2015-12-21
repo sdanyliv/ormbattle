@@ -314,6 +314,72 @@ OnLoadOutput([{
       "Score": "81.8"
     },
     {
+      "ShortName": "EF7",
+      "Name": "Entity Framework 7",
+      "Results": [
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 3,
+          "Second": 0
+        },
+        {
+          "First": 3,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 1
+        },
+        {
+          "First": 1,
+          "Second": 0
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 0
+        },
+        {
+          "First": 6,
+          "Second": 1
+        },
+        {
+          "First": 2,
+          "Second": 0
+        },
+        {
+          "First": 5,
+          "Second": 1
+        },
+        {
+          "First": 4,
+          "Second": 2
+        },
+        {
+          "First": 0,
+          "Second": 0
+        },
+        {
+          "First": 4,
+          "Second": 3
+        }
+      ],
+      "Performed": 121,
+      "Passed": 80,
+      "Failed": 41,
+      "Score": "66.1"
+    },
+    {
       "ShortName": "L2S",
       "Name": "LINQ to SQL",
       "Results": [
@@ -444,6 +510,2064 @@ OnLoadOutput([{
       "Passed": 78,
       "Failed": 43,
       "Score": "64.5"
+    }
+  ]
+},{
+  "Name": "Performance tests (50 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": null
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": null
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        7192,
+        4222,
+        2907,
+        3383,
+        3261,
+        25414,
+        27038,
+        4240,
+        9513,
+        4112,
+        5355,
+        5803,
+        2583,
+        2033,
+        null,
+        null,
+        63500,
+        90057
+      ]
+    },
+    {
+      "ShortName": "L2DB",
+      "Name": "Linq2Db",
+      "Results": [
+        6369,
+        3774,
+        4219,
+        4692,
+        4139,
+        16771,
+        39786,
+        30894,
+        24411,
+        4204,
+        5922,
+        5783,
+        3575,
+        2408,
+        null,
+        null,
+        60968,
+        93527
+      ]
+    },
+    {
+      "ShortName": "EF6",
+      "Name": "Entity Framework 6",
+      "Results": [
+        1005,
+        2239,
+        2161,
+        2324,
+        2239,
+        5494,
+        5564,
+        5636,
+        5561,
+        1176,
+        null,
+        null,
+        868,
+        659,
+        null,
+        null,
+        31841,
+        52317
+      ]
+    },
+    {
+      "ShortName": "EF7",
+      "Name": "Entity Framework 7",
+      "Results": [
+        1144,
+        2564,
+        2188,
+        2562,
+        2408,
+        11577,
+        8982,
+        10981,
+        10362,
+        1208,
+        null,
+        null,
+        849,
+        559,
+        null,
+        null,
+        22197,
+        27662
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        7739,
+        4474,
+        3744,
+        4034,
+        3913,
+        23587,
+        19882,
+        16169,
+        18995,
+        3352,
+        4901,
+        null,
+        3344,
+        2178,
+        null,
+        null,
+        51392,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        6286,
+        2964,
+        1548,
+        1953,
+        1956,
+        6129,
+        2654,
+        2644,
+        3241,
+        1043,
+        4596,
+        null,
+        2325,
+        2291,
+        null,
+        null,
+        40163,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        4908,
+        2771,
+        2411,
+        2600,
+        2585,
+        17511,
+        14432,
+        12484,
+        14411,
+        1228,
+        null,
+        2869,
+        905,
+        648,
+        null,
+        null,
+        26452,
+        43878
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        6390,
+        2790,
+        1873,
+        1929,
+        2103,
+        4872,
+        4369,
+        4192,
+        4416,
+        407,
+        null,
+        4308,
+        369,
+        351,
+        null,
+        null,
+        18384,
+        83042
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        11263,
+        5612,
+        5523,
+        6096,
+        5100,
+        29120,
+        27240,
+        23733,
+        25899,
+        null,
+        null,
+        5812,
+        null,
+        null,
+        null,
+        null,
+        null,
+        121447
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (100 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": null
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        10499,
+        6251,
+        5727,
+        5348,
+        5751,
+        34196,
+        31200,
+        27543,
+        29838,
+        5795,
+        7753,
+        7390,
+        4111,
+        3227,
+        1774,
+        null,
+        109890,
+        179629
+      ]
+    },
+    {
+      "ShortName": "L2DB",
+      "Name": "Linq2Db",
+      "Results": [
+        7062,
+        4441,
+        4875,
+        5136,
+        4668,
+        30512,
+        50740,
+        59021,
+        38614,
+        5341,
+        6644,
+        6883,
+        3405,
+        3179,
+        1845,
+        null,
+        128667,
+        162733
+      ]
+    },
+    {
+      "ShortName": "EF6",
+      "Name": "Entity Framework 6",
+      "Results": [
+        994,
+        2797,
+        2951,
+        3037,
+        2858,
+        5357,
+        6154,
+        6572,
+        5813,
+        1346,
+        null,
+        null,
+        1042,
+        841,
+        586,
+        null,
+        52061,
+        81987
+      ]
+    },
+    {
+      "ShortName": "EF7",
+      "Name": "Entity Framework 7",
+      "Results": [
+        1236,
+        2928,
+        2701,
+        3481,
+        2943,
+        12222,
+        9819,
+        12584,
+        11017,
+        1390,
+        null,
+        null,
+        968,
+        703,
+        420,
+        null,
+        31395,
+        35022
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        10175,
+        7356,
+        5476,
+        5599,
+        5939,
+        34093,
+        25904,
+        27834,
+        27663,
+        3878,
+        6697,
+        null,
+        4318,
+        3314,
+        2018,
+        null,
+        81340,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        8255,
+        4040,
+        2115,
+        2304,
+        2502,
+        7123,
+        2785,
+        2830,
+        3517,
+        1122,
+        9252,
+        null,
+        4085,
+        3399,
+        2290,
+        null,
+        76828,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        5617,
+        3478,
+        3071,
+        3475,
+        3189,
+        21060,
+        18485,
+        17592,
+        18927,
+        1269,
+        null,
+        3808,
+        996,
+        810,
+        544,
+        null,
+        39736,
+        60088
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        8064,
+        4480,
+        2887,
+        2970,
+        3124,
+        5321,
+        5177,
+        5406,
+        5298,
+        406,
+        null,
+        5371,
+        388,
+        369,
+        323,
+        null,
+        34224,
+        123243
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        13862,
+        9345,
+        8546,
+        9532,
+        8579,
+        37771,
+        36621,
+        44357,
+        39085,
+        null,
+        null,
+        11793,
+        null,
+        null,
+        null,
+        null,
+        null,
+        235238
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (500 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        11757,
+        9124,
+        10127,
+        10170,
+        9593,
+        32571,
+        48403,
+        60020,
+        44102,
+        8655,
+        11465,
+        13427,
+        8492,
+        6491,
+        4005,
+        2845,
+        386847,
+        525430
+      ]
+    },
+    {
+      "ShortName": "L2DB",
+      "Name": "Linq2Db",
+      "Results": [
+        9620,
+        7382,
+        12036,
+        11944,
+        9637,
+        108939,
+        274589,
+        263866,
+        166385,
+        8657,
+        12172,
+        12392,
+        9449,
+        6874,
+        3969,
+        3297,
+        443262,
+        645661
+      ]
+    },
+    {
+      "ShortName": "EF6",
+      "Name": "Entity Framework 6",
+      "Results": [
+        1038,
+        2790,
+        3440,
+        3998,
+        3272,
+        3819,
+        6012,
+        7354,
+        5302,
+        1402,
+        null,
+        null,
+        1209,
+        1085,
+        840,
+        607,
+        116593,
+        142389
+      ]
+    },
+    {
+      "ShortName": "EF7",
+      "Name": "Entity Framework 7",
+      "Results": [
+        1252,
+        2088,
+        2022,
+        5479,
+        2495,
+        6946,
+        7020,
+        11934,
+        8095,
+        1447,
+        null,
+        null,
+        1070,
+        870,
+        551,
+        338,
+        45768,
+        49306
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        12061,
+        9380,
+        9412,
+        9596,
+        9188,
+        28082,
+        35625,
+        42818,
+        33715,
+        4294,
+        9734,
+        null,
+        6994,
+        5063,
+        3288,
+        2119,
+        230404,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        9678,
+        5348,
+        2502,
+        2699,
+        3068,
+        7115,
+        3217,
+        3377,
+        3922,
+        1158,
+        10621,
+        null,
+        7953,
+        6784,
+        3986,
+        2652,
+        315119,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        6841,
+        4612,
+        2759,
+        3615,
+        3445,
+        20854,
+        22377,
+        24979,
+        22489,
+        1406,
+        null,
+        4912,
+        1142,
+        1059,
+        780,
+        525,
+        73566,
+        98662
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        10084,
+        4947,
+        5126,
+        5486,
+        5138,
+        5452,
+        6257,
+        6564,
+        6026,
+        420,
+        null,
+        7890,
+        403,
+        396,
+        367,
+        321,
+        102213,
+        194257
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        18957,
+        12443,
+        15672,
+        17886,
+        14222,
+        34655,
+        51090,
+        42253,
+        39338,
+        null,
+        null,
+        15837,
+        null,
+        null,
+        null,
+        null,
+        null,
+        768875
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (1000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        12056,
+        9636,
+        11423,
+        11579,
+        10677,
+        28424,
+        51531,
+        69610,
+        43061,
+        9454,
+        13195,
+        14617,
+        9803,
+        8140,
+        4970,
+        3217,
+        462920,
+        691037
+      ]
+    },
+    {
+      "ShortName": "L2DB",
+      "Name": "Linq2Db",
+      "Results": [
+        9979,
+        7787,
+        13180,
+        13030,
+        10566,
+        45940,
+        345673,
+        405630,
+        109521,
+        9453,
+        12751,
+        13896,
+        11003,
+        8230,
+        5511,
+        3856,
+        566091,
+        840406
+      ]
+    },
+    {
+      "ShortName": "EF6",
+      "Name": "Entity Framework 6",
+      "Results": [
+        1043,
+        2819,
+        3156,
+        4493,
+        3281,
+        2937,
+        6359,
+        7169,
+        4684,
+        1435,
+        null,
+        null,
+        1214,
+        1132,
+        909,
+        690,
+        137801,
+        159757
+      ]
+    },
+    {
+      "ShortName": "EF7",
+      "Name": "Entity Framework 7",
+      "Results": [
+        1248,
+        1429,
+        1325,
+        5279,
+        1810,
+        4382,
+        4546,
+        9655,
+        5432,
+        1487,
+        null,
+        null,
+        1059,
+        839,
+        541,
+        378,
+        49728,
+        51593
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        12167,
+        9422,
+        10782,
+        11850,
+        10316,
+        24674,
+        35948,
+        46552,
+        32924,
+        3674,
+        10731,
+        null,
+        8117,
+        5605,
+        4001,
+        2566,
+        307163,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        10046,
+        5200,
+        2548,
+        2993,
+        3205,
+        6925,
+        3179,
+        3429,
+        3996,
+        1177,
+        10931,
+        null,
+        8627,
+        6941,
+        4419,
+        3079,
+        439560,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7187,
+        4773,
+        1938,
+        2876,
+        2748,
+        19213,
+        23380,
+        25141,
+        22207,
+        1458,
+        null,
+        5271,
+        1179,
+        1021,
+        812,
+        596,
+        82498,
+        106956
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        10699,
+        5195,
+        5931,
+        6129,
+        5658,
+        5773,
+        6463,
+        6877,
+        6304,
+        422,
+        null,
+        8291,
+        405,
+        398,
+        370,
+        333,
+        135884,
+        212197
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        20795,
+        13942,
+        16778,
+        18143,
+        16005,
+        29983,
+        56960,
+        31187,
+        35397,
+        null,
+        null,
+        18530,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1032951
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (5000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        12650,
+        10345,
+        12509,
+        12926,
+        11808,
+        29156,
+        57927,
+        81609,
+        46977,
+        9934,
+        13641,
+        16245,
+        10963,
+        9356,
+        7061,
+        4121,
+        762892,
+        1200307
+      ]
+    },
+    {
+      "ShortName": "L2DB",
+      "Name": "Linq2Db",
+      "Results": [
+        10250,
+        8345,
+        14102,
+        14414,
+        11484,
+        51282,
+        508001,
+        621033,
+        129814,
+        9896,
+        14015,
+        15171,
+        11876,
+        10158,
+        7300,
+        5555,
+        883751,
+        1479465
+      ]
+    },
+    {
+      "ShortName": "EF6",
+      "Name": "Entity Framework 6",
+      "Results": [
+        1046,
+        1340,
+        1933,
+        4877,
+        2035,
+        950,
+        6059,
+        7210,
+        2211,
+        1464,
+        null,
+        null,
+        1217,
+        1131,
+        932,
+        698,
+        170843,
+        185377
+      ]
+    },
+    {
+      "ShortName": "EF7",
+      "Name": "Entity Framework 7",
+      "Results": [
+        1259,
+        400,
+        354,
+        5936,
+        545,
+        4061,
+        4433,
+        7114,
+        4898,
+        1502,
+        null,
+        null,
+        1062,
+        877,
+        557,
+        339,
+        47302,
+        47139
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        12946,
+        12274,
+        11600,
+        11906,
+        11780,
+        37994,
+        36881,
+        45282,
+        38559,
+        583,
+        10886,
+        null,
+        8281,
+        7032,
+        4540,
+        2798,
+        442227,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        10477,
+        4008,
+        2121,
+        2923,
+        2815,
+        7786,
+        3244,
+        3505,
+        4143,
+        1179,
+        11631,
+        null,
+        9369,
+        9010,
+        6629,
+        4334,
+        925943,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7226,
+        5619,
+        642,
+        1123,
+        1141,
+        27664,
+        22807,
+        24724,
+        24653,
+        1457,
+        null,
+        5417,
+        1192,
+        1060,
+        771,
+        561,
+        85806,
+        116152
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        10849,
+        5811,
+        6477,
+        6938,
+        6332,
+        5868,
+        6603,
+        7094,
+        6461,
+        422,
+        null,
+        8761,
+        406,
+        397,
+        373,
+        342,
+        199761,
+        237691
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        20945,
+        20099,
+        19456,
+        20443,
+        19697,
+        54731,
+        58303,
+        91806,
+        63651,
+        null,
+        null,
+        18553,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1616919
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (10000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        12643,
+        10449,
+        12559,
+        12801,
+        11829,
+        36675,
+        57709,
+        81746,
+        51798,
+        10147,
+        13799,
+        16539,
+        11713,
+        10542,
+        8089,
+        5576,
+        1009244,
+        1434123
+      ]
+    },
+    {
+      "ShortName": "L2DB",
+      "Name": "Linq2Db",
+      "Results": [
+        10339,
+        8431,
+        14224,
+        14680,
+        11655,
+        172532,
+        670178,
+        788911,
+        350641,
+        10189,
+        14528,
+        15594,
+        12434,
+        11491,
+        8978,
+        6391,
+        1338598,
+        1787853
+      ]
+    },
+    {
+      "ShortName": "EF6",
+      "Name": "Entity Framework 6",
+      "Results": [
+        1048,
+        835,
+        1223,
+        4980,
+        1351,
+        477,
+        5975,
+        7303,
+        1248,
+        1433,
+        null,
+        null,
+        1216,
+        1108,
+        912,
+        665,
+        166014,
+        173957
+      ]
+    },
+    {
+      "ShortName": "EF7",
+      "Name": "Entity Framework 7",
+      "Results": [
+        1257,
+        206,
+        182,
+        5971,
+        285,
+        3420,
+        4242,
+        5395,
+        4189,
+        1504,
+        null,
+        null,
+        1066,
+        851,
+        540,
+        337,
+        44656,
+        44923
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        13012,
+        12327,
+        11736,
+        12465,
+        11949,
+        34835,
+        35598,
+        46910,
+        38264,
+        583,
+        11612,
+        null,
+        8763,
+        7088,
+        4854,
+        2870,
+        467700,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        10437,
+        2666,
+        1681,
+        2460,
+        2176,
+        7880,
+        3230,
+        3499,
+        4133,
+        1181,
+        11698,
+        null,
+        9808,
+        8537,
+        7076,
+        5126,
+        1033164,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7243,
+        5631,
+        351,
+        646,
+        654,
+        28621,
+        22387,
+        24597,
+        24723,
+        1449,
+        null,
+        5454,
+        1184,
+        1042,
+        790,
+        544,
+        81211,
+        108579
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        10965,
+        5878,
+        6554,
+        7030,
+        6436,
+        5660,
+        6599,
+        7083,
+        6309,
+        422,
+        null,
+        8946,
+        408,
+        400,
+        378,
+        347,
+        205669,
+        233534
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        21463,
+        16909,
+        20173,
+        20525,
+        18794,
+        31105,
+        58938,
+        97874,
+        49941,
+        null,
+        null,
+        19154,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2005655
+      ]
+    }
+  ]
+},{
+  "Name": "Performance tests (30000 items)",
+  "Tests": [
+    {
+      "Name": "Fetch",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Single]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Create Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Update Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "Remove Instance [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "CUD Average [Multiple]",
+      "Unit": "op/s"
+    },
+    {
+      "Name": "LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Compiled LINQ Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Native Query",
+      "Unit": "queries/s"
+    },
+    {
+      "Name": "Get Small Page   (10 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Average Page (20 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Large Page   (50 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "Get Huge Page    (100 items)",
+      "Unit": "pages/s"
+    },
+    {
+      "Name": "LINQ Materialize",
+      "Unit": "objects/s"
+    },
+    {
+      "Name": "Native Materialize",
+      "Unit": "objects/s"
+    }
+  ],
+  "Tools": [
+    {
+      "ShortName": "BLT",
+      "Name": "BLToolkit",
+      "Results": [
+        12878,
+        10564,
+        12734,
+        13193,
+        12012,
+        59133,
+        58752,
+        83979,
+        64784,
+        10408,
+        14200,
+        17158,
+        12059,
+        10900,
+        8394,
+        5943,
+        1147604,
+        1545189
+      ]
+    },
+    {
+      "ShortName": "L2DB",
+      "Name": "Linq2Db",
+      "Results": [
+        10490,
+        8817,
+        14393,
+        15046,
+        11981,
+        301045,
+        984933,
+        1127272,
+        573700,
+        10476,
+        14722,
+        16087,
+        12858,
+        11836,
+        9694,
+        7205,
+        1488678,
+        2000240
+      ]
+    },
+    {
+      "ShortName": "EF6",
+      "Name": "Entity Framework 6",
+      "Results": [
+        1053,
+        308,
+        477,
+        4979,
+        539,
+        121,
+        5970,
+        7119,
+        349,
+        1443,
+        null,
+        null,
+        1230,
+        1113,
+        895,
+        663,
+        155394,
+        161308
+      ]
+    },
+    {
+      "ShortName": "EF7",
+      "Name": "Entity Framework 7",
+      "Results": [
+        1268,
+        72,
+        63,
+        5951,
+        100,
+        1805,
+        4060,
+        2418,
+        2469,
+        1517,
+        null,
+        null,
+        1070,
+        860,
+        538,
+        331,
+        41577,
+        41647
+      ]
+    },
+    {
+      "ShortName": "LC",
+      "Name": "Devart LinqConnect",
+      "Results": [
+        13010,
+        11483,
+        11821,
+        12472,
+        11835,
+        37981,
+        37169,
+        50533,
+        40211,
+        584,
+        11702,
+        null,
+        8717,
+        7016,
+        4455,
+        2638,
+        444070,
+        null
+      ]
+    },
+    {
+      "ShortName": "L2S",
+      "Name": "LINQ to SQL",
+      "Results": [
+        10469,
+        1226,
+        978,
+        1797,
+        1251,
+        7695,
+        3221,
+        3518,
+        4138,
+        1189,
+        11678,
+        null,
+        9806,
+        8674,
+        6823,
+        5539,
+        1118193,
+        null
+      ]
+    },
+    {
+      "ShortName": "NH",
+      "Name": "NHibernate",
+      "Results": [
+        7368,
+        5404,
+        115,
+        233,
+        227,
+        29916,
+        23095,
+        25019,
+        25707,
+        1509,
+        null,
+        5529,
+        1245,
+        1082,
+        786,
+        535,
+        72406,
+        96522
+      ]
+    },
+    {
+      "ShortName": "SS",
+      "Name": "Subsonic",
+      "Results": [
+        11179,
+        5916,
+        6671,
+        7193,
+        6473,
+        6010,
+        6733,
+        7256,
+        6626,
+        424,
+        null,
+        9008,
+        410,
+        403,
+        381,
+        349,
+        211681,
+        236757
+      ]
+    },
+    {
+      "ShortName": "SQL",
+      "Name": "SqlClient",
+      "Results": [
+        21660,
+        15432,
+        20429,
+        21116,
+        18597,
+        50792,
+        59143,
+        95722,
+        63634,
+        null,
+        null,
+        19292,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2150691
+      ]
     }
   ]
 }])
