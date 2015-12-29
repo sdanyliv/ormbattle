@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Transactions;
 using NUnit.Framework;
 using LinqToDB;
 using LinqToDB.Data;
@@ -61,41 +62,48 @@ namespace OrmBattle.Tests.Performance
 
         protected override void InsertMultipleTest(int count)
         {
-            _db.BeginTransaction();
-            InstanceCount = (int) _db.BulkCopy(CreateNewSimplests(count)).RowsCopied;
-            _db.CommitTransaction();
+            using (var transaction = new TransactionScope())
+            {
+                InstanceCount = (int)_db.BulkCopy(CreateNewSimplests(count)).RowsCopied;
+                transaction.Complete();
+            }
         }
 
         protected override void UpdateMultipleTest()
         {
             long sum = InstanceCount * (InstanceCount - 1) / 2;
 
-            _db.BeginTransaction();
+            using (var transaction = new TransactionScope())
+            {
+                _table
+                    .Set(s => s.Value, s => s.Value + 1)
+                    .Update();
 
-            _table
-                .Set(s => s.Value, s => s.Value + 1)
-                .Update();
-
-            _db.CommitTransaction();
+                transaction.Complete();
+            }
 
 //			Assert.AreEqual(0, sum);
         }
 
         protected override void DeleteMultipleTest()
         {
-            _db.BeginTransaction();
-            _table.Delete();
-            _db.CommitTransaction();
+            using (var transaction = new TransactionScope())
+            {
+                _table.Delete();
+
+                transaction.Complete();
+            }
         }
 
         protected override void InsertSingleTest(int count)
         {
-            _db.BeginTransaction();
+            using (var transaction = new TransactionScope())
+            {
+                for (var i = 0; i < count; i++)
+                    _table.Insert(() => new Simplests { Id = i, Value = i });
 
-            for (var i = 0; i < count; i++)
-                _table.Insert(() => new Simplests {Id = i, Value = i});
-
-            _db.CommitTransaction();
+                transaction.Complete();
+            }
 
             InstanceCount = count;
         }
@@ -104,45 +112,48 @@ namespace OrmBattle.Tests.Performance
         {
             long sum = InstanceCount * (InstanceCount - 1) / 2;
 
-            _db.BeginTransaction();
-
-            foreach (var s in _table.ToList())
+            using (var transaction = new TransactionScope())
             {
-                s.Value++;
-                sum -= s.Id;
+                foreach (var s in _table.ToList())
+                {
+                    s.Value++;
+                    sum -= s.Id;
 
-                _db.Update(s);
+                    _db.Update(s);
+                }
+
+                transaction.Complete();
             }
-
-            _db.CommitTransaction();
 
             Assert.AreEqual(0, sum);
         }
 
         protected override void DeleteSingleTest()
         {
-            _db.BeginTransaction();
+            using (var transaction = new TransactionScope())
+            {
+                foreach (var s in _table.ToList())
+                    _db.Delete(s);
 
-            foreach (var s in _table.ToList())
-                _db.Delete(s);
-
-            _db.CommitTransaction();
+                transaction.Complete();
+            }
         }
 
         protected override void FetchTest(int count)
         {
             long sum = (long) count * (count - 1) / 2;
 
-            _db.BeginTransaction();
-
-            for (var i = 0; i < count; i++)
+            using (var transaction = new TransactionScope())
             {
-                var id = i % InstanceCount;
-                var s = _table.FirstOrDefault(q => q.Id == id);
-                sum -= s.Id;
-            }
+                for (var i = 0; i < count; i++)
+                {
+                    var id = i % InstanceCount;
+                    var s = _table.FirstOrDefault(q => q.Id == id);
+                    sum -= s.Id;
+                }
 
-            _db.CommitTransaction();
+                transaction.Complete();
+            }
 
             if (count <= InstanceCount)
                 Assert.AreEqual(0, sum);
@@ -150,20 +161,21 @@ namespace OrmBattle.Tests.Performance
 
         protected override void LinqQueryTest(int count)
         {
-            _db.BeginTransaction();
-
-            for (var i = 0; i < count; i++)
+            using (var transaction = new TransactionScope())
             {
-                var id = (long) i % InstanceCount;
-                var result = _table.Where(o => o.Id == id);
-
-                foreach (var o in result)
+                for (var i = 0; i < count; i++)
                 {
-                    // Doing nothing, just enumerate
-                }
-            }
+                    var id = (long)i % InstanceCount;
+                    var result = _table.Where(o => o.Id == id);
 
-            _db.CommitTransaction();
+                    foreach (var o in result)
+                    {
+                        // Doing nothing, just enumerate
+                    }
+                }
+
+                transaction.Complete();
+            }
         }
 
         static readonly Func<DataConnection, long, IQueryable<Simplests>> CompiledQuery = LinqToDB.CompiledQuery.Compile
@@ -172,62 +184,67 @@ namespace OrmBattle.Tests.Performance
 
         protected override void CompiledLinqQueryTest(int count)
         {
-            _db.BeginTransaction();
-
-            for (var i = 0; i < count; i++)
+            using (var transaction = new TransactionScope())
             {
-                var id = i % InstanceCount;
-                foreach (var o in CompiledQuery(_db, id))
+                for (var i = 0; i < count; i++)
                 {
-                    // Doing nothing, just enumerate
+                    var id = i % InstanceCount;
+                    foreach (var o in CompiledQuery(_db, id))
+                    {
+                        // Doing nothing, just enumerate
+                    }
                 }
-            }
 
-            _db.CommitTransaction();
+                transaction.Complete();
+            }
         }
 
         protected override void NativeQueryTest(int count)
         {
-            _db.BeginTransaction();
-
-            var command = DataConnectionExtensions.SetCommand(_db, @"SELECT * FROM Simplests WHERE Id = @id",
-                new DataParameter("@id", DbType.Int32));
-
-            for (var i = 0; i < count; i++)
+            using (var transaction = new TransactionScope())
             {
-                command.Parameters[0].Value = i % InstanceCount;
-                var result = command.Execute<Simplests>();
-            }
+                var command = DataConnectionExtensions.SetCommand(_db, @"SELECT * FROM Simplests WHERE Id = @id",
+                    new DataParameter("@id", DbType.Int32));
+                _db.Command.Prepare();
 
-            _db.CommitTransaction();
+                for (var i = 0; i < count; i++)
+                {
+                    command.Parameters[0].Value = i % InstanceCount;
+                    var result = command.Execute<Simplests>();
+                }
+
+                transaction.Complete();
+            }
         }
 
         protected override void LinqMaterializeTest(int count)
         {
-            _db.BeginTransaction();
+            using (var transaction = new TransactionScope())
+            {
+                var i = 0;
 
-            var i = 0;
+                while (i < count)
+                    foreach (var o in _table.Where(s => s.Id > 0))
+                        if (++i >= count)
+                            break;
 
-            while (i < count)
-                foreach (var o in _table.Where(s => s.Id > 0))
-                    if (++i >= count)
-                        break;
-
-            _db.CommitTransaction();
+                transaction.Complete();
+            }
         }
 
         protected override void NativeMaterializeTest(int count)
         {
-            _db.BeginTransaction();
+            using (var transaction = new TransactionScope())
+            {
+                var i = 0;
 
-            var i = 0;
+                while (i < count)
+                    foreach (var o in _table)
+                        if (++i >= count)
+                            break;
 
-            while (i < count)
-                foreach (var o in _table)
-                    if (++i >= count)
-                        break;
-
-            _db.CommitTransaction();
+                transaction.Complete();
+            }
         }
 
         static readonly Func<DataConnection, long, int, IQueryable<Simplests>> PageQuery = LinqToDB.CompiledQuery
@@ -236,19 +253,20 @@ namespace OrmBattle.Tests.Performance
 
         protected override void LinqQueryPageTest(int count, int pageSize)
         {
-            _db.BeginTransaction();
-
-            for (var i = 0; i < count; i++)
+            using (var transaction = new TransactionScope())
             {
-                var id = (i * pageSize) % InstanceCount;
-
-                foreach (var o in PageQuery(_db, id, pageSize))
+                for (var i = 0; i < count; i++)
                 {
-                    // Doing nothing, just enumerate
-                }
-            }
+                    var id = (i * pageSize) % InstanceCount;
 
-            _db.CommitTransaction();
+                    foreach (var o in PageQuery(_db, id, pageSize))
+                    {
+                        // Doing nothing, just enumerate
+                    }
+                }
+
+                transaction.Complete();
+            }
         }
     }
 }

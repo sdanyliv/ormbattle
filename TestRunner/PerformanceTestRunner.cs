@@ -86,6 +86,7 @@ namespace OrmBattle.TestRunner
           new Linq2DbTest(),
           new EF6Test(),
           new EF7Test(),
+          new DapperTest(),
           // new EntitySpacesTest(),
           // new DOTest(),
           // new LightSpeedTest(),

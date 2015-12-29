@@ -70,6 +70,10 @@
       <HintPath>..\packages\Common.Logging.Core.3.1.0\lib\net40\Common.Logging.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Devart.Data.Linq">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\LinqConnect\Binaries\Devart.Data.Linq.dll</HintPath>
@@ -335,6 +339,7 @@
     <Compile Include="Performance\EF6Test.cs" />
     <Compile Include="Performance\LightSpeedTest.cs" />
     <Compile Include="Performance\NHibernateTest.cs" />
+    <Compile Include="Performance\DapperTest.cs" />
     <Compile Include="Performance\SqlClientTest.cs" />
     <Compile Include="Performance\SubsonicTest.cs" />
     <Compile Include="Performance\PerformanceTestBase.cs" />
@@ -432,7 +437,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties OpenAccess_ConfigFile="App.config" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_Enhancing="False" OpenAccess_UpdateDatabase="False" OpenAccess_EnhancementOutputLevel="1" />
+      <UserProperties OpenAccess_EnhancementOutputLevel="1" OpenAccess_UpdateDatabase="False" OpenAccess_Enhancing="False" OpenAccess_ConnectionId="DatabaseConnection1" OpenAccess_ConfigFile="App.config" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

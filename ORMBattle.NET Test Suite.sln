@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq2DbModel", "Linq2DbMode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF7Model", "EF7Model\EF7Model.csproj", "{DC546042-8674-448B-9AC9-882D35BF0EB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperModel", "DapperModel\DapperModel.csproj", "{D2B6C80B-AA89-4C43-A5EE-4FBD48417762}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{DC546042-8674-448B-9AC9-882D35BF0EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC546042-8674-448B-9AC9-882D35BF0EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC546042-8674-448B-9AC9-882D35BF0EB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2B6C80B-AA89-4C43-A5EE-4FBD48417762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2B6C80B-AA89-4C43-A5EE-4FBD48417762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2B6C80B-AA89-4C43-A5EE-4FBD48417762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2B6C80B-AA89-4C43-A5EE-4FBD48417762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
