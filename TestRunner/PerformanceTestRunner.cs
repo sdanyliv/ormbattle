@@ -13,7 +13,7 @@ using OrmBattle.Tests.Performance;
 using Xtensive.Core;
 using BLToolkitTest = OrmBattle.Tests.Performance.BLToolkitTest;
 using EF6Test = OrmBattle.Tests.Performance.EF6Test;
-using EF7Test = OrmBattle.Tests.Performance.EF7Test;
+using EFCoreTest = OrmBattle.Tests.Performance.EFCoreTest;
 //using DOTest = OrmBattle.Tests.Performance.DOTest;
 using LightSpeedTest = OrmBattle.Tests.Performance.LightSpeedTest;
 using Linq2DbTest = OrmBattle.Tests.Performance.Linq2DbTest;
@@ -85,7 +85,7 @@ namespace OrmBattle.TestRunner
           new BLToolkitTest(),
           new Linq2DbTest(),
           new EF6Test(),
-          new EF7Test(),
+          new EFCoreTest(),
           new DapperTest(),
           // new EntitySpacesTest(),
           // new DOTest(),
