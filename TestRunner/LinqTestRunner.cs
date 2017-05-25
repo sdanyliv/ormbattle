@@ -54,8 +54,8 @@ namespace OrmBattle.TestRunner
       var tests = new List<LinqTestBase> {
         new BLToolkitTest(),
         new Linq2DbTest(),
-        new EF6Test(),
-        new EF7Test(), 
+	    new EFCoreTest(), 
+        new EF6Test(), 
         //new DOTest(),
         //new LightSpeedTest(),
         //new LinqConnectTest(),

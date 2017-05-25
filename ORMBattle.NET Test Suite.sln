@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFModel", "EFModel\EFModel.csproj", "{A26B0BCD-92A2-45EF-9F5F-EE31CE9F3EF7}"
 EndProject
@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqConnectModel", "LinqCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq2DbModel", "Linq2DbModel\Linq2DbModel.csproj", "{70BEF1D5-1FC9-41AB-A3F7-5D3AA9BEFD31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF7Model", "EF7Model\EF7Model.csproj", "{DC546042-8674-448B-9AC9-882D35BF0EB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreModel", "EFCoreModel\EFCoreModel.csproj", "{DC546042-8674-448B-9AC9-882D35BF0EB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperModel", "DapperModel\DapperModel.csproj", "{D2B6C80B-AA89-4C43-A5EE-4FBD48417762}"
 EndProject
