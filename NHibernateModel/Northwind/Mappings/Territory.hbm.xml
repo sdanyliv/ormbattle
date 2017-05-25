@@ -1,17 +1,17 @@
 <hibernate-mapping default-cascade="none" xmlns="urn:nhibernate-mapping-2.2">
- <class name="OrmBattle.NHibernateModel.Northwind.Territory, NHibernateModel" table="Territories">
-   <id name="Id" type="System.String" column="TerritoryID" unsaved-value="0">
-     <generator class="assigned" />
-   </id>
-   <property name="TerritoryDescription" type="System.String" column="TerritoryDescription" not-null="true" />
-   <bag name="Employees" table="EmployeeTerritories" inverse="true" lazy="true" cascade="none">
-     <key>
-       <column name="TerritoryID" not-null="true" />
-     </key>
-     <many-to-many class="OrmBattle.NHibernateModel.Northwind.Employee, NHibernateModel" column="EmployeeID" />
-   </bag>
-   <many-to-one name="Region" class="OrmBattle.NHibernateModel.Northwind.Region, NHibernateModel" fetch="select">
-     <column name="RegionID" not-null="true" />
-   </many-to-one>
- </class>
+  <class name="OrmBattle.NHibernateModel.Northwind.Territory, NHibernateModel" table="Territories">
+    <id name="Id" type="System.String" column="TerritoryID" unsaved-value="0">
+      <generator class="assigned" />
+    </id>
+    <property name="TerritoryDescription" type="System.String" column="TerritoryDescription" not-null="true" />
+    <bag name="Employees" table="EmployeeTerritories" inverse="true" lazy="true" cascade="none">
+      <key>
+        <column name="TerritoryID" not-null="true" />
+      </key>
+      <many-to-many class="OrmBattle.NHibernateModel.Northwind.Employee, NHibernateModel" column="EmployeeID" />
+    </bag>
+    <many-to-one name="Region" class="OrmBattle.NHibernateModel.Northwind.Region, NHibernateModel" fetch="select">
+      <column name="RegionID" not-null="true" />
+    </many-to-one>
+  </class>
 </hibernate-mapping>
