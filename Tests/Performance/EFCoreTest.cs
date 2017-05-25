@@ -9,29 +9,30 @@
 using System;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using OrmBattle.EFModel;
+using OrmBattle.EFCoreModel;
 
 namespace OrmBattle.Tests.Performance
 {
     [Serializable]
-    public class EF6Test : PerformanceTestBase
+    public class EFCoreTest : PerformanceTestBase
     {
-        private PerformanceTestEntities context;
+        private PerformanceTestContext context;
 
         public override string ToolName
         {
-            get { return "Entity Framework 6"; }
+            get { return "Entity Framework Core"; }
         }
 
         public override string ShortToolName
         {
-            get { return "EF6"; }
+            get { return "EFCore"; }
         }
 
         protected override void Setup()
         {
-            using (var dataContext = new PerformanceTestEntities())
+            using (var dataContext = new PerformanceTestContext())
             {
                 using (var transaction = dataContext.Database.BeginTransaction())
                 {
@@ -45,7 +46,7 @@ namespace OrmBattle.Tests.Performance
 
         protected override void TearDown()
         {
-            using (var dataContext = new PerformanceTestEntities())
+            using (var dataContext = new PerformanceTestContext())
             {
                 using (var transaction = dataContext.Database.BeginTransaction())
                 {
@@ -59,8 +60,8 @@ namespace OrmBattle.Tests.Performance
 
         protected override void OpenSession()
         {
-            context = new PerformanceTestEntities();
-            context.Database.Connection.Open();
+            context = new PerformanceTestContext();
+            context.Database.OpenConnection();
         }
 
         protected override void CloseSession()
@@ -70,11 +71,11 @@ namespace OrmBattle.Tests.Performance
 
         protected override void InsertMultipleTest(int count)
         {
-            using (var transaction = context.Database.Connection.BeginTransaction())
+            using (var transaction = context.Database.BeginTransaction())
             {
                 for (var i = 0; i < count; i++)
                 {
-                    var s = new Simplest {Id = i, Value = i};
+                    var s = new Simplest { Id = i, Value = i };
                     context.Simplests.Add(s);
                 }
                 context.SaveChanges();
@@ -85,7 +86,7 @@ namespace OrmBattle.Tests.Performance
 
         protected override void UpdateMultipleTest()
         {
-            var sum = (long) InstanceCount * (InstanceCount - 1) / 2;
+            var sum = (long)InstanceCount * (InstanceCount - 1) / 2;
             using (var transaction = context.Database.BeginTransaction())
             {
                 foreach (var s in context.Simplests)
@@ -116,7 +117,7 @@ namespace OrmBattle.Tests.Performance
             {
                 for (var i = 0; i < count; i++)
                 {
-                    var s = new Simplest {Id = i, Value = i};
+                    var s = new Simplest { Id = i, Value = i };
                     context.Simplests.Add(s);
                     context.SaveChanges();
                 }
@@ -127,7 +128,7 @@ namespace OrmBattle.Tests.Performance
 
         protected override void UpdateSingleTest()
         {
-            var sum = (long) InstanceCount * (InstanceCount - 1) / 2;
+            var sum = (long)InstanceCount * (InstanceCount - 1) / 2;
             using (var transaction = context.Database.BeginTransaction())
             {
                 foreach (var s in context.Simplests)
@@ -156,12 +157,12 @@ namespace OrmBattle.Tests.Performance
 
         protected override void FetchTest(int count)
         {
-            var sum = (long) count * (count - 1) / 2;
+            var sum = (long)count * (count - 1) / 2;
             using (var transaction = context.Database.BeginTransaction())
             {
                 for (var i = 0; i < count; i++)
                 {
-                    var s = context.Simplests.FirstOrDefault(e => e.Id == (long) i % InstanceCount);
+                    var s = context.Simplests.FirstOrDefault(e => e.Id == (long)i % InstanceCount);
                     sum -= s.Id;
                 }
                 transaction.Commit();
@@ -188,22 +189,22 @@ namespace OrmBattle.Tests.Performance
             }
         }
 
-//    private static readonly Func<PerformanceTestEntities, long, IQueryable<Simplest>> _compiledQuery =
-//      CompiledQuery.Compile<PerformanceTestEntities, long, IQueryable<Simplest>>((context, id) => 
-//        context.Simplests.Where(o => o.Id==id));
+        //    private static readonly Func<PerformanceTestEntities, long, IQueryable<Simplest>> _compiledQuery =
+        //      CompiledQuery.Compile<PerformanceTestEntities, long, IQueryable<Simplest>>((context, id) => 
+        //        context.Simplests.Where(o => o.Id==id));
 
         protected override void CompiledLinqQueryTest(int count)
         {
             throw new NotImplementedException();
-//      using (var transaction = context.Database.BeginTransaction()) {
-//        for (int i = 0; i < count; i++) {
-//          var id = i % InstanceCount;
-//          foreach (var o in _compiledQuery(context, id)) {
-//            // Doing nothing, just enumerate
-//          }
-//        }
-//        transaction.Commit();
-//      }
+            //      using (var transaction = context.Database.BeginTransaction()) {
+            //        for (int i = 0; i < count; i++) {
+            //          var id = i % InstanceCount;
+            //          foreach (var o in _compiledQuery(context, id)) {
+            //            // Doing nothing, just enumerate
+            //          }
+            //        }
+            //        transaction.Commit();
+            //      }
         }
 
         protected override void NativeQueryTest(int count)
@@ -213,8 +214,7 @@ namespace OrmBattle.Tests.Performance
                 for (var i = 0; i < count; i++)
                 {
                     var id = i % InstanceCount;
-                    var result = context.Simplests.SqlQuery("select * from Simplests it where it.Id == @id",
-                        new ObjectParameter("id", id));
+                    var result = context.Simplests.FromSql("select * from Simplests it where it.Id == {0}", id);
                     foreach (var o in result)
                     {
                         // Doing nothing, just enumerate
@@ -254,9 +254,9 @@ namespace OrmBattle.Tests.Performance
             }
         }
 
-//    private static readonly Func<PerformanceTestEntities, long, int, IQueryable<Simplest>> _pageQuery =
-//      CompiledQuery.Compile((PerformanceTestEntities context, long id, int pageSize) => 
-//        context.Simplests.Where(o => o.Id >= id).Take(pageSize));
+        //    private static readonly Func<PerformanceTestEntities, long, int, IQueryable<Simplest>> _pageQuery =
+        //      CompiledQuery.Compile((PerformanceTestEntities context, long id, int pageSize) => 
+        //        context.Simplests.Where(o => o.Id >= id).Take(pageSize));
 
         protected override void LinqQueryPageTest(int count, int pageSize)
         {

@@ -16,39 +16,55 @@ using NUnit.Framework;
 
 namespace OrmBattle.Tests.Linq
 {
-  using EFModel;
-  
-  [TestFixture]
-  public class EF6Test : LinqTestBase
-  {
-    protected NorthwindEntities db;
+    using EFCoreModel;
 
-    public override string ToolName {
-      get { return "Entity Framework 6"; }
-    }
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+	using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.DependencyInjection;
 
-    public override string ShortToolName {
-      get { return "EF6"; }
-    }
+    using Customer = EFCoreModel.Customers;
+    using Employee = EFCoreModel.Employees;
+    using Order    = EFCoreModel.Orders;
+    using Product  = EFCoreModel.Products;
 
-    public override string SourceFileName {
-      get { return @"EF6Test.generated.cs"; }
-    }
-
-    protected override void Setup()
+    [TestFixture]
+    public class EFCoreTest : LinqTestBase
     {
-      db = new NorthwindEntities();
-      
-      Customers = db.Customers.ToList();
-      Employees = db.Employees.ToList();
-      Orders = db.Orders.ToList();
-      Products = db.Products.ToList();
-    }
+        protected NorthwindContext db;
 
-    protected override void TearDown()
-    {
-      db.Dispose();
-    }
+        public override string ToolName
+        {
+            get { return "Entity Framework Core"; }
+        }
+
+        public override string ShortToolName
+        {
+            get { return "EF.Core"; }
+        }
+
+        public override string SourceFileName
+        {
+            get { return @"EFCoreTest.generated.cs"; }
+        }
+
+        protected override void Setup()
+        {
+            db = new NorthwindContext();
+
+            Customers = db.Customers.ToList();
+            Employees = db.Employees.ToList();
+            Orders    = db.Orders.ToList();
+            Products  = db.Products.ToList();
+
+            var contextServices = ((IInfrastructure<IServiceProvider>)db).Instance;
+            var loggerFactory   = contextServices.GetRequiredService<ILoggerFactory>();
+            loggerFactory.AddConsole(LogLevel.Information);
+        }
+
+        protected override void TearDown()
+        {
+            db.Dispose();
+        }
 
         List<Customer> Customers;
         List<Employee> Employees;

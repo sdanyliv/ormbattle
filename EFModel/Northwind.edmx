@@ -784,24 +784,6 @@
             </EndProperty>
             <Condition ColumnName="EmployeeID" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Order_Details_Orders" TypeName="NorthwindModel.FK_Order_Details_Orders" StoreEntitySet="Order Details">
-            <EndProperty Name="Order">
-              <ScalarProperty Name="Id" ColumnName="OrderID" />
-            </EndProperty>
-            <EndProperty Name="Order_Details">
-              <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Order_Details_Products" TypeName="NorthwindModel.FK_Order_Details_Products" StoreEntitySet="Order Details">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="ProductID" />
-            </EndProperty>
-            <EndProperty Name="OrderDetails">
-              <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="FK_Orders_Shippers" TypeName="NorthwindModel.FK_Orders_Shippers" StoreEntitySet="Orders">
             <EndProperty Name="Shipper">
               <ScalarProperty Name="Id" ColumnName="ShipVia" />
